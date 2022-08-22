@@ -1,0 +1,8 @@
+= CORE Platform from Moonlight Labs
+
+
+== CONTENTS
+
+* .prettier.yml - `npx prettier -c .` or `npx prettier -w` to check or format many code files
+* .rubocop.yml - `rubocopy -a` to cleanup and report on ruby code
+* Taskfile.yml - `task` to see tasks that can run across full repo
