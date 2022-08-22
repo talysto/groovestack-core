@@ -6,3 +6,8 @@
 * .prettier.yml - `npx prettier -c .` or `npx prettier -w` to check or format many code files
 * .rubocop.yml - `rubocopy -a` to cleanup and report on ruby code
 * Taskfile.yml - `task` to see tasks that can run across full repo
+
+
+== SAMPLES
+
+* core-rails6-sample-app - created with `rails _6.1.6_ new core-rails6-sample-app -d=postgresql -J --skip-turbolinks`
