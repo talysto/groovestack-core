@@ -14,4 +14,4 @@ tasks:
   tidy:
     cmds:
       - rubocop -A **/*.rb **/*.gemspec **/Gemfile
-      - npx prettier -w .
+      - npx prettier --loglevel warn -w .

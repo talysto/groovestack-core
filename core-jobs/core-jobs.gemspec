@@ -10,7 +10,9 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'CORE extension for full-stack background job management'
   spec.description   = 'CORE::Jobs is a high-performance background-job processing extension for the CORE Platform.'
-  spec.homepage      = 'https://moonlight-labs.com/core/'
+  spec.post_install_message = 'CORE::Jobs installed'
+
+  spec.homepage = 'https://moonlight-labs.com/core/'
   spec.required_ruby_version = Gem::Requirement.new('>= 3.1.0')
 
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
@@ -28,16 +30,18 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activerecord', '~> 6.0.0'
-  spec.add_dependency 'graphql'
-  spec.add_dependency 'pg'
+  # spec.add_dependency 'activerecord', '~> 6.0'
   spec.add_dependency 'que', '~> 2.0.0.beta1' # , github: 'que/que'
 
+  spec.add_development_dependency 'graphql'
+  spec.add_development_dependency 'pg'
+
+  spec.add_development_dependency 'combustion', '~> 1.3' # for smaller test app
   spec.add_development_dependency 'minitest-color'
   spec.add_development_dependency 'racksh'
   spec.add_development_dependency 'sinatra-activerecord'
-
   # Consider this dep if we need db:TASKS in development:
   # https://github.com/sinatra-activerecord/sinatra-activerecord
+
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
