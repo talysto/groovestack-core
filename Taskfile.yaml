@@ -15,3 +15,23 @@ tasks:
     cmds:
       - rubocop -A **/*.rb **/*.gemspec **/Gemfile
       - npx prettier --loglevel warn -w .
+
+  versions:
+    silent: true
+    cmds:
+      - task --version
+      - ruby -v
+      - echo -n 'rubocop '
+      - rubocop --version
+      - echo -n 'prettier '
+      - npx prettier --version
+
+  test:
+    cmds:
+      - task: versions
+      - task: test-core-jobs
+
+  test-core-jobs:
+    dir: core-jobs
+    cmds:
+      - bundle exec rake
