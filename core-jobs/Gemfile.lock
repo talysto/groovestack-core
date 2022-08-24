@@ -47,8 +47,6 @@ GEM
       nokogiri (>= 1.5.9)
     method_source (1.0.0)
     minitest (5.16.3)
-    minitest-color (0.0.2)
-      minitest (~> 5)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.13.8-arm64-darwin)
@@ -101,7 +99,6 @@ DEPENDENCIES
   core-jobs!
   graphql
   minitest (~> 5.0)
-  minitest-color
   pg
   racksh
   rake (~> 12.0)

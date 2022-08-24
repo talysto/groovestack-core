@@ -11,6 +11,7 @@ require 'active_record'
 require 'que/active_record/model'
 
 require 'core/jobs/railtie'
+require 'core/jobs/job'
 
 module Core
   module Jobs

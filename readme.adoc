@@ -12,6 +12,10 @@
 
 * core-rails6-sample-app - created with `rails _6.1.6_ new core-rails6-sample-app -d=postgresql -J --skip-turbolinks`
 
+== TODO
+
+- [ ] Setup CLOC ie `cloc --vcs=git`
+- [ ] Code coverage
 
 == See also
 * Combustion - simpler dummy apps for testing modules

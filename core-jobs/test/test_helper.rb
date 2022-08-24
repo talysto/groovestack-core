@@ -13,4 +13,3 @@ require 'core/jobs'
 # Combustion.initialize! :active_record, :action_controller
 
 require 'minitest/autorun'
-require 'minitest/color'

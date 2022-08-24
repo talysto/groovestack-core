@@ -37,7 +37,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pg'
 
   spec.add_development_dependency 'combustion', '~> 1.3' # for smaller test app
-  spec.add_development_dependency 'minitest-color'
   spec.add_development_dependency 'racksh'
   spec.add_development_dependency 'sinatra-activerecord'
   # Consider this dep if we need db:TASKS in development:
