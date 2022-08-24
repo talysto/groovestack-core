@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.post_install_message = 'CORE::Jobs installed'
 
   spec.homepage = 'https://moonlight-labs.com/core/'
-  spec.required_ruby_version = Gem::Requirement.new('>= 3.1.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
 
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 

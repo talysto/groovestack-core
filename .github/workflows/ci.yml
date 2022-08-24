@@ -20,6 +20,7 @@ jobs:
       - name: Set up Ruby ${{ matrix.ruby-version }}
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
         with:
+          bundler-cache: true
           ruby-version: ${{ matrix.ruby-version }}
       - name: Install dependencies
         working-directory: ./core-jobs
