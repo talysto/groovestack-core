@@ -11,7 +11,7 @@
 # require: rubocop-rake
 
 AllCops:
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.0
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
