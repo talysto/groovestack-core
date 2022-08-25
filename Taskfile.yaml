@@ -19,15 +19,31 @@ tasks:
       - ruby -v
       - echo -n 'rubocop '
       - rubocop --version
+      - echo -n 'pnpm '
+      - npx pnpm --version
       - echo -n 'prettier '
       - npx prettier --version
 
   test:
     cmds:
-      - task: versions
       - task: test-core-jobs
+
+  build:
+    cmds:
+      - task: build-core-jobs-fe
 
   test-core-jobs:
     dir: core-jobs
     cmds:
       - bundle exec rake
+
+  build-core-jobs-fe:
+    dir: core-jobs-fe
+    cmds:
+      - npx pnpm build
+    sources:
+      - src/**/*.*
+      - tsconfig.json
+      - vite.config.js
+    generates:
+      - dist/core-jobs.js

@@ -1,0 +1,52 @@
+{
+  "name": "core-jobs-fe",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/core-jobs.umd.cjs",
+  "module": "./dist/core-jobs.js",
+  "types": "./dist/core-jobs.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/core-jobs.js",
+      "require": "./dist/core-jobs.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "devDependencies": {
+    "@babel/core": "7",
+    "@mui/icons-material": "^5.10.2",
+    "@mui/material": "^5.10.2",
+    "@types/react": "^18.0.17",
+    "@types/react-copy-to-clipboard": "^5.0.4",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
+    "react": "^18.2.0",
+    "react-admin": "^4.3.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-google-charts": "^4.0.0",
+    "rollup": "3.0.0-4",
+    "rollup-plugin-visualizer": "^5.8.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.7",
+    "vite-plugin-dts": "^1.4.1"
+  },
+  "peerDependencies": {
+    "@mui/icons-material": "^5.10.2",
+    "@mui/material": "^5.10.2",
+    "react": "^18.2.0",
+    "react-admin": "^4.3.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-google-charts": "^4.0.0"
+  }
+}
