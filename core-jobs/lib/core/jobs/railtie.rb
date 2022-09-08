@@ -35,6 +35,18 @@ if defined?(Rails)
         #   puts "BEFORE"
         # end
 
+        # engine_name 'sass'
+        # isolate_namespace Saas
+
+        # Enable our new migrations for the parent app
+        initializer :append_migrations do |app|
+          unless app.root.to_s.match? root.to_s
+            config.paths['db/migrate'].expanded.each do |expanded_path|
+              app.config.paths['db/migrate'] << expanded_path
+            end
+          end
+        end
+
         config.after_initialize do
           if (ENV["RAILS_ENV"] || ENV["RACK_ENV"]) == 'development'
 
