@@ -1,8 +1,8 @@
 module Core
   module Jobs
     module GraphQL
-      module Mutations
-        module JobMutations
+      module Job
+        module Mutations
           class Delete < GraphQL::Schema::Mutation
             argument :id, ID, required: true
 
@@ -40,8 +40,8 @@ module Core
 
           included do
             # field :createForm, mutation: Core::Job::GraphQL::Mutations::Form::Create
-            field :deleteJob, mutation: Core::Jobs::GraphQL::JobMutations::Delete
-            field :updateJob, mutation: Core::Jobs::GraphQL::JobMutations::Update
+            field :deleteJob, mutation: Core::Jobs::GraphQL::Job::Mutations::Delete
+            field :updateJob, mutation: Core::Jobs::GraphQL::Job::Mutations::Update
           end
         end
       end

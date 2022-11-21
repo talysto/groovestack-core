@@ -30,17 +30,17 @@ end
 if defined?(Rails)
   module Core
     module Jobs
-      class Railtie < Rails::Railtie
+      class Railtie < Rails::Engine
         # config.before_initialize do
         #   puts "BEFORE"
         # end
 
-        # engine_name 'sass'
-        # isolate_namespace Saas
+        # engine_name 'something'
+        # isolate_namespace SOMETHING
 
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
-          unless app.root.to_s.match? root.to_s
+          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
             config.paths['db/migrate'].expanded.each do |expanded_path|
               app.config.paths['db/migrate'] << expanded_path
             end
@@ -125,6 +125,17 @@ if defined?(Rails)
 
           end
         end
+
+        # Does the Railtie has tasks?
+        # rake_tasks do
+        #   load "path/to/my_railtie.tasks"
+        # end
+
+        # Does the Railtie have generators?
+        # generators do
+        #   require "path/to/my_railtie_generator"
+        # end
+
       end
     end
   end

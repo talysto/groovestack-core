@@ -10,7 +10,7 @@ require 'core/jobs/version'
 require 'active_record'
 require 'que/active_record/model'
 
-require 'core/jobs/railtie'
+require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/job'
 
 module Core
