@@ -13,6 +13,8 @@ require 'que/active_record/model'
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/job'
 
+Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
+
 module Core
   module Jobs
     class Error < StandardError; end
