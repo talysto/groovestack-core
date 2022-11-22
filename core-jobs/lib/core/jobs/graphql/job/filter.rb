@@ -3,7 +3,7 @@ module Core
     module GraphQL
       module Job
         class Filter < ::GraphQL::Schema::InputObject
-          graphql_name "CORE-Job-filter"
+          # graphql_name "CORE-Job-filter"
 
           argument_class ::GraphQL::Schema::Argument
 
