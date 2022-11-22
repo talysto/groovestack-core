@@ -10,7 +10,7 @@ require 'core/jobs/version'
 require 'active_record'
 require 'que/active_record/model'
 
-require 'core/graphql/resource_providers/react_admin'
+require 'core/graphql/providers/react_admin'
 
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/job'
