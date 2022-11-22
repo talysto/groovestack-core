@@ -35,14 +35,13 @@ module Core
               job
             end
           end
+        end
 
-          extend ActiveSupport::Concern
+        extend ActiveSupport::Concern
 
-          included do
-            # field :createForm, mutation: Core::Job::GraphQL::Mutations::Form::Create
-            field :deleteJob, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Delete
-            field :updateJob, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Update
-          end
+        included do
+          field :deleteJob, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Delete
+          field :updateJob, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Update
         end
       end
     end
