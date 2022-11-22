@@ -9,7 +9,7 @@ module Core
             # resource 'core/jobs/job', entity: :jobs
 
             field :Job, ::Core::Jobs::GraphQL::Types::Job, null: true, resolver_method: :job do
-              argument :id, ::GraphQL::Types::Base::Object::ID, required: true
+              argument :id, ID, required: true
             end
 
             field :allJobs, [::Core::Jobs::GraphQL::Types::Job], null: false, resolver_method: :jobs do
