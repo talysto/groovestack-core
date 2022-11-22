@@ -6,23 +6,23 @@ module Core
           description 'A background job'
 
           field :id, ID, null: false
-          field :queue_name, String, null: false
-          field :priority, Integer, null: true
+          field :priority, Integer, null: false
+          field :job_class, String, null: false
 
-          # field :serialized_params, Integer, null: true
 
-          field :error, String, null: true
-          field :status, String, null: false
-          field :summary, String, null: true
+          field :last_error_backtrace, String, null: true
+          field :last_error_message, String, null: true
+          field :error_count, Integer, null: true
+
+          field :args, ::GraphQL::Types::JSON, null: true
+          field :data, ::GraphQL::Types::JSON, null: true
+          field :kwargs, ::GraphQL::Types::JSON, null: true
 
           field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
           field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
-          field :scheduled_at, ::GraphQL::Types::ISO8601DateTime, null: true
-          field :performed_at, ::GraphQL::Types::ISO8601DateTime, null: true
+          field :run_at, ::GraphQL::Types::ISO8601DateTime, null: true
+          field :expired_at, ::GraphQL::Types::ISO8601DateTime, null: true
           field :finished_at, ::GraphQL::Types::ISO8601DateTime, null: true
-
-          # associations
-          # field :notifications, [::Types::Notification], null: false
         end
 
         class JobListMetadata < ::GraphQL::Schema::Object
