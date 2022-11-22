@@ -15,7 +15,7 @@ require 'core/jobs/job'
 require 'core/jobs/graphql/filters'
 require 'core/jobs/graphql/mutations'
 require 'core/jobs/graphql/queries'
-require 'core/jobs/graphql/types/job'
+require 'core/jobs/graphql/types'
 
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
