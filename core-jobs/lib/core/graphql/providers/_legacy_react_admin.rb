@@ -2,6 +2,7 @@ module Core
   module GraphQL
     module Providers
       module ReactAdmin
+        
         def self.resource(entity, **args)
           entity_core_namespace = entity.to_s.camelize
           entity_model_name = entity.to_s.classify
