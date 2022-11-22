@@ -5,7 +5,7 @@ module Core
         module Resource
           extend ActiveSupport::Concern
             
-          included do 
+          class_methods do 
             def react_admin_resource(entity, **args)
               entity_core_namespace = entity.to_s.camelize
               entity_model_name = entity.to_s.classify
