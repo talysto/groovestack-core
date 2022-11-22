@@ -39,7 +39,7 @@ module Core
             end
 
             # resolver_method for Collection meta
-            
+
             unless except.include?(:collection_meta)
               define_method "#{entity}_meta".to_sym do |page: nil, per_page: nil, **attrs| # rubocop:disable Lint/UnusedBlockArgument
                 { count: send("#{entity}_scope", attrs).count }
@@ -69,7 +69,7 @@ module Core
             # Collection meta
 
             unless except.include?(:collection_meta)
-              field "_all#{entity.to_s.camelize}Meta".to_sym, [Types::ListMetadata], camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym) do
+              field "_all#{entity.to_s.camelize}Meta".to_sym, [Types::ListMetadata], camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
                 argument :page, ::GraphQL::Types::Int, required: false
                 argument :per_page, ::GraphQL::Types::Int, required: false
                 argument :sort_field, ::GraphQL::Types::String, required: false
