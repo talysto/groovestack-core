@@ -6,7 +6,7 @@ module Core
           class Delete < ::GraphQL::Schema::Mutation
             argument :id, ID, required: true
 
-            type ::Core::Jobs::GraphQL::JobType
+            type ::Core::Jobs::GraphQL::Types::Job
 
             def resolve(id:)
               job = ::Core::Job.find(id)
@@ -21,7 +21,7 @@ module Core
             argument :finished_at, String, required: false
             argument :error, String, required: false
 
-            type ::Core::Jobs::GraphQL::JobType
+            type ::Core::Jobs::GraphQL::Types::Job
 
             def resolve(id:, fire_retry:, **attrs)
               job = ::Core::Job::Job.find(id)
