@@ -1,6 +1,6 @@
 module Core
   module GraphQL
-    module ResourceProviders
+    module Providers
       module ReactAdmin
         def self.resource(entity, **args)
           entity_core_namespace = entity.to_s.camelize
@@ -66,13 +66,19 @@ module Core
           # Collection meta
 
           unless except.include?(:collection_meta)
-            ::GraphQL::Schema::Object.field "_all#{entity.to_s.camelize}Meta".to_sym, [Types::ListMetadata], camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
+            ::GraphQL::Schema::Object.field "_all#{entity.to_s.camelize}Meta".to_sym, Types::RAListMetadata, camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
               argument :page, ::GraphQL::Types::Int, required: false
               argument :per_page, ::GraphQL::Types::Int, required: false
               argument :sort_field, ::GraphQL::Types::String, required: false
               argument :sort_order, ::GraphQL::Types::String, required: false
               argument :filter, entity_filter_type, required: false
             end
+          end
+        end
+
+        module Types 
+          class RAListMetadata < ::GraphQL::Schema::Object
+            field :count, Int, null: false
           end
         end
       end
