@@ -8,14 +8,25 @@ module Core
           included do
             # resource 'core/jobs/job', entity: :jobs
 
-            field :Job, ::Core::Job::GraphQL::Types::Job, null: true, resolver_method: :job do
+            field :Job, ::Core::Jobs::GraphQL::Types::Job, null: true, resolver_method: :job do
               argument :id, ::GraphQL::Types::Base::Object::ID, required: true
             end
 
-            field_with_filter_pagination_sort :allJobs, type: [::Core::Job::GraphQL::Types::Job], filter_type: ::Core::Job::GraphQL::Filters::Job, null: false, resolver_method: :jobs
+            field :allJobs, [::Core::Jobs::GraphQL::Types::Job], null: false, resolver_method: :jobs do
+              argument :page, Int, required: false
+              argument :per_page, Int, required: false
+              argument :sort_field, String, required: false
+              argument :sort_order, String, required: false
+              argument :filter, ::Core::Jobs::GraphQL::Filters::Job, required: false
+            end
 
-            # use Admin::Types::ListMetadata b/c jobs are only used acessed by admin
-            field_with_filter_pagination_sort :_allJobsMeta, type: ::Admin::Types::ListMetadata, filter_type: ::Core::Job::GraphQL::Filters::Job, camelize: false, null: true, resolver_method: :jobs_meta
+            field :_allJobsMeta, ::Core::Jobs::GraphQL::Types::JobListMetadata, camelize: false, null: true, resolver_method: :jobs_meta do
+              argument :page, Int, required: false
+              argument :per_page, Int, required: false
+              argument :sort_field, String, required: false
+              argument :sort_order, String, required: false
+              argument :filter, ::Core::Jobs::GraphQL::Filters::Job, required: false
+            end
           end
 
           def job(id:)

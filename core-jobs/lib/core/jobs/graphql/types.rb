@@ -24,6 +24,10 @@ module Core
           # associations
           # field :notifications, [::Types::Notification], null: false
         end
+
+        class JobListMetadata < ::GraphQL::Schema::Object
+          field :count, Int, null: false
+        end
       end
     end
   end
