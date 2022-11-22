@@ -7,7 +7,7 @@
 * .rubocop.yml - `rubocopy -a` to cleanup and report on ruby code
 * Taskfile.yml - `task` to see tasks that can run across full repo
 
-== SETUP
+== SETUP for Core-Jobs
 * add the core gem to your Gemfile
 ```
 git 'https://github.com/moonlight-labs/core.git', branch: 'dev' do
@@ -19,6 +19,7 @@ end
 * set `config.active_job.queue_adapter = :que` in `(environment).rb`
 * include `include Core::Jobs::GraphQL::Queries` in `Types::Query`
 * include `include Core::Jobs::GraphQL::Mutations` in `Types::Mutation`
+* configure the job runner (in Procfile, etc.) `bundle exec que`
 
 
 
