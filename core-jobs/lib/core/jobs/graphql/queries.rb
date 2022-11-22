@@ -4,43 +4,10 @@ module Core
       module Queries
         module Job
           extend ActiveSupport::Concern
+          include ::Core::GraphQL::ResourceProviders::ReactAdmin
 
           included do
-            # resource 'core/jobs/job', entity: :jobs
-
-            field :Job, ::Core::Jobs::GraphQL::Types::Job, null: true, resolver_method: :job do
-              argument :id, ::GraphQL::Types::ID, required: true
-            end
-
-            field :allJobs, [::Core::Jobs::GraphQL::Types::Job], null: false, resolver_method: :jobs do
-              argument :page, ::GraphQL::Types::Int, required: false
-              argument :per_page, ::GraphQL::Types::Int, required: false
-              argument :sort_field, ::GraphQL::Types::String, required: false
-              argument :sort_order, ::GraphQL::Types::String, required: false
-              argument :filter, ::Core::Jobs::GraphQL::Filters::JobFilter, required: false
-            end
-
-            field :_allJobsMeta, ::Core::Jobs::GraphQL::Types::JobListMetadata, camelize: false, null: true, resolver_method: :jobs_meta do
-              argument :page, ::GraphQL::Types::Int, required: false
-              argument :per_page, ::GraphQL::Types::Int, required: false
-              argument :sort_field, ::GraphQL::Types::String, required: false
-              argument :sort_order, ::GraphQL::Types::String, required: false
-              argument :filter, ::Core::Jobs::GraphQL::Filters::JobFilter, required: false
-            end
-          end
-
-          def job(id:)
-            ::Core::Jobs::Job.find id
-          end
-
-          def jobs(page: nil, per_page: nil, **attrs)
-            scope = jobs_scope(attrs)
-            scope = scope.page(page + 1).per(per_page) if page.present?
-            scope
-          end
-
-          def jobs_meta(page: nil, per_page: nil, **attrs) # rubocop:disable Lint/UnusedMethodArgument
-            { count: jobs_scope(attrs).count }
+            ra_resource :jobs
           end
 
           def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
