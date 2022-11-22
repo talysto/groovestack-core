@@ -17,7 +17,7 @@ module Core
               argument :per_page, ::GraphQL::Types::Int, required: false
               argument :sort_field, ::GraphQL::Types::String, required: false
               argument :sort_order, ::GraphQL::Types::String, required: false
-              argument :filter, ::Core::Jobs::GraphQL::Filters::Job, required: false
+              argument :filter, ::Core::Jobs::GraphQL::Filters::JobFilter, required: false
             end
 
             field :_allJobsMeta, ::Core::Jobs::GraphQL::Types::JobListMetadata, camelize: false, null: true, resolver_method: :jobs_meta do
@@ -25,7 +25,7 @@ module Core
               argument :per_page, ::GraphQL::Types::Int, required: false
               argument :sort_field, ::GraphQL::Types::String, required: false
               argument :sort_order, ::GraphQL::Types::String, required: false
-              argument :filter, ::Core::Jobs::GraphQL::Filters::Job, required: false
+              argument :filter, ::Core::Jobs::GraphQL::Filters::JobFilter, required: false
             end
           end
 
