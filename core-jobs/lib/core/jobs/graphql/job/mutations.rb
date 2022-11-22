@@ -3,7 +3,7 @@ module Core
     module GraphQL
       module Job
         module Mutations
-          class Delete < GraphQL::Schema::Mutation
+          class Delete < ::GraphQL::Schema::Mutation
             argument :id, ID, required: true
 
             type ::Core::Jobs::GraphQL::JobType
@@ -14,7 +14,7 @@ module Core
             end
           end
 
-          class Update < GraphQL::Schema::Mutation
+          class Update < ::GraphQL::Schema::Mutation
             argument :id, ID, required: true
             argument :fire_retry, Boolean, required: false
             argument :performed_at, String, required: false
