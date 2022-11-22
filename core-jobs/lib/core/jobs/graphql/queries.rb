@@ -33,7 +33,7 @@ module Core
           # end
 
           def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
-            scope = ::Core::Job.unscoped
+            scope = ::Core::Jobs::Job.unscoped
             scope = scope.where(id: filter.ids) unless filter.ids.nil?
             # scope = scope.where(type: filter.type) if filter.type.present?
             scope = scope.where("serialized_params->>'job_class' ilike ?", "%#{filter.q}%") if filter.q.present?
