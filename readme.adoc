@@ -17,8 +17,18 @@ end
 * run `bundle`
 * run `rails db:migrate`
 * set `config.active_job.queue_adapter = :que` in `(environment).rb`
-* include `include Core::Jobs::GraphQL::Queries` in `Types::Query`
-* include `include Core::Jobs::GraphQL::Mutations` in `Types::Mutation`
+* include `include Core::Jobs::GraphQL::Queries` in `Types::Query`. ex:
+```
+class Types::Query < GraphQL::Schema::Object
+  include Core::Jobs::GraphQL::Queries
+end
+```
+* include `include Core::Jobs::GraphQL::Mutations` in `Types::Mutation`. ex: 
+```
+class Types::Mutation < GraphQL::Schema::Object
+  include Core::Jobs::GraphQL::Mutations
+end
+```
 * configure the job runner (in Procfile, etc.) `bundle exec que`
 
 
