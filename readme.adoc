@@ -16,8 +16,10 @@ end
 ```
 * run `bundle`
 * run `rails db:migrate`
-* add `include Core::Jobs::GraphQL::Queries` to `Types::Query`
-* add `include Core::Jobs::GraphQL::Mutations` to `Types::Mutation`
+* set `config.active_job.queue_adapter = :que` in `(environment).rb`
+* include `include Core::Jobs::GraphQL::Queries` in `Types::Query`
+* include `include Core::Jobs::GraphQL::Mutations` in `Types::Mutation`
+
 
 
 == SAMPLES
