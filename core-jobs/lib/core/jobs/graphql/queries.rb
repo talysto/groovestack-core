@@ -4,10 +4,9 @@ module Core
       module Queries
         module Job
           extend ActiveSupport::Concern
-          include ::Core::GraphQL::ResourceProviders::ReactAdmin
 
           included do
-            ra_resource :jobs
+            ::Core::GraphQL::ResourceProviders::ReactAdmin.resource :jobs
           end
 
           def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
