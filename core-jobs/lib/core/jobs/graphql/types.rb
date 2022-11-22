@@ -1,8 +1,8 @@
 module Core
   module Jobs
     module GraphQL
-      module Job
-        class Type < ::GraphQL::Schema::Object
+      module Types
+        class Job < ::GraphQL::Schema::Object
           description 'A background job'
 
           field :id, ID, null: false

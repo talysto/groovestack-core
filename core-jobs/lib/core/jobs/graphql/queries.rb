@@ -1,8 +1,8 @@
 module Core
   module Jobs
     module GraphQL
-      module Job
-        module Queries
+      module Queries
+        module Job
           extend ActiveSupport::Concern
 
           included do

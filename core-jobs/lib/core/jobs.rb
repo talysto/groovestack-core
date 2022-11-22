@@ -12,10 +12,10 @@ require 'que/active_record/model'
 
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/job'
-require 'core/jobs/graphql/job/filter'
-require 'core/jobs/graphql/job/mutations'
-require 'core/jobs/graphql/job/queries'
-require 'core/jobs/graphql/job/type'
+require 'core/jobs/graphql/filters'
+require 'core/jobs/graphql/mutations'
+require 'core/jobs/graphql/queries'
+require 'core/jobs/graphql/types'
 
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
