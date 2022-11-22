@@ -46,7 +46,7 @@ module Core
           # Record
 
           unless except.include?(:find)
-            field entity_model_name.to_sym, entity_type, null: true, resolver_method: entity_model_name.to_sym, description: "Find #{entity_class}." do
+            ::GraphQL::Schema::Object.field entity_model_name.to_sym, entity_type, null: true, resolver_method: entity_model_name.to_sym, description: "Find #{entity_class}." do
               argument :id, ::GraphQL::Types::ID, required: true
             end
           end
@@ -54,7 +54,7 @@ module Core
           # Collection
           
           unless except.include?(:collection)
-            field "all#{entity.to_s.camelize}".to_sym, [entity_type], null: false, resolver_method: entity do
+            ::GraphQL::Schema::Object.field "all#{entity.to_s.camelize}".to_sym, [entity_type], null: false, resolver_method: entity do
               argument :page, ::GraphQL::Types::Int, required: false
               argument :per_page, ::GraphQL::Types::Int, required: false
               argument :sort_field, ::GraphQL::Types::String, required: false
@@ -66,7 +66,7 @@ module Core
           # Collection meta
 
           unless except.include?(:collection_meta)
-            field "_all#{entity.to_s.camelize}Meta".to_sym, [Types::ListMetadata], camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
+            ::GraphQL::Schema::Object.field "_all#{entity.to_s.camelize}Meta".to_sym, [Types::ListMetadata], camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
               argument :page, ::GraphQL::Types::Int, required: false
               argument :per_page, ::GraphQL::Types::Int, required: false
               argument :sort_field, ::GraphQL::Types::String, required: false
