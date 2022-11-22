@@ -6,7 +6,7 @@ module Core
           extend ActiveSupport::Concern
 
           included do
-            resource :job
+            resource 'core/jobs/job', entity: :jobs
 
             # field :Job, ::Core::Job::GraphQL::JobType, null: true, resolver_method: :job do
             #   argument :id, ::GraphQL::Types::Base::Object::ID, required: true

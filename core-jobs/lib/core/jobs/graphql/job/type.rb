@@ -15,11 +15,11 @@ module Core
           field :status, String, null: false
           field :summary, String, null: true
 
-          field :created_at, GraphQL::Types::ISO8601DateTime, null: false
-          field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-          field :scheduled_at, GraphQL::Types::ISO8601DateTime, null: true
-          field :performed_at, GraphQL::Types::ISO8601DateTime, null: true
-          field :finished_at, GraphQL::Types::ISO8601DateTime, null: true
+          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
+          field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
+          field :scheduled_at, ::GraphQL::Types::ISO8601DateTime, null: true
+          field :performed_at, ::GraphQL::Types::ISO8601DateTime, null: true
+          field :finished_at, ::GraphQL::Types::ISO8601DateTime, null: true
 
           # associations
           # field :notifications, [::Types::Notification], null: false

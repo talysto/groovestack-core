@@ -5,7 +5,7 @@ module Core
         class Filter < GraphQL::Schema::InputObject
           graphql_name "CORE-Job-filter"
 
-          argument_class GraphQL::Schema::Argument
+          argument_class ::GraphQL::Schema::Argument
 
           description 'job filter props'
           argument :q, String, required: false
