@@ -9,7 +9,7 @@ module Core
             type ::Core::Jobs::GraphQL::Types::Job
 
             def resolve(id:)
-              job = ::Core::Job.find(id)
+              job = ::Core::Jobs::Job.find(id)
               job.destroy!
             end
           end
@@ -24,7 +24,7 @@ module Core
             type ::Core::Jobs::GraphQL::Types::Job
 
             def resolve(id:, fire_retry:, **attrs)
-              job = ::Core::Job::Job.find(id)
+              job = ::Core::Jobs::Job.find(id)
 
               if fire_retry
                 job.retry!
