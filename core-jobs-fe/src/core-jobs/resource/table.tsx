@@ -69,7 +69,7 @@ export const Table = () => {
   return (
     <List exporter={false} filters={JobsFilters} aside={<JobsAside />}>
       <Datagrid sort={{ field: "priority", order: "ASC" }} rowClick="edit">
-        <FunctionField
+        {/* <FunctionField
           label="Job"
           render={(record: any) => (
             <div onClick={(e) => e.stopPropagation()}>
@@ -89,13 +89,13 @@ export const Table = () => {
           )}
         />
 
-        <TextField source="queue" sortable={false} />
+        <TextField source="queue" sortable={false} /> */}
         <NumberField source="priority" />
 
-        <FunctionField label="Status" render={enhancedStatus} />
+        {/* <FunctionField label="Status" render={enhancedStatus} /> */}
 
         {/* <EditButton label="View" /> */}
-        <DeleteWithConfirmButton label="" />
+        {/* <DeleteWithConfirmButton label="" /> */}
       </Datagrid>
     </List>
   );
