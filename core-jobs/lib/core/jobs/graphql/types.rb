@@ -9,6 +9,7 @@ module Core
           field :priority, Integer, null: false
           field :job_class, String, null: false
           field :type, String, null: false
+          field :queue, String, null: false
 
 
           field :last_error_backtrace, String, null: true
@@ -22,6 +23,10 @@ module Core
           field :run_at, ::GraphQL::Types::ISO8601DateTime, null: true
           field :expired_at, ::GraphQL::Types::ISO8601DateTime, null: true
           field :finished_at, ::GraphQL::Types::ISO8601DateTime, null: true
+
+          def queue
+            object.args[0]['queue_name']
+          end
 
           def type
             object.args[0]['job_class']
