@@ -50,7 +50,7 @@ module Core
               # Record
   
               unless except.include?(:find)
-                ::GraphQL::Schema::Object.field entity_model_name.to_sym, entity_type, null: true, resolver_method: entity_model_name.to_sym, description: "Find #{entity_class}." do
+                field entity_model_name.to_sym, entity_type, null: true, resolver_method: entity_model_name.to_sym, description: "Find #{entity_class}." do
                   argument :id, ::GraphQL::Types::ID, required: true
                 end
               end
@@ -58,7 +58,7 @@ module Core
               # Collection
               
               unless except.include?(:collection)
-                ::GraphQL::Schema::Object.field "all#{entity.to_s.camelize}".to_sym, type: [entity_type], null: false, resolver_method: entity do
+                field "all#{entity.to_s.camelize}".to_sym, type: [entity_type], null: false, resolver_method: entity do
                   argument :page, ::GraphQL::Types::Int, required: false
                   argument :per_page, ::GraphQL::Types::Int, required: false
                   argument :sort_field, ::GraphQL::Types::String, required: false
@@ -70,7 +70,7 @@ module Core
               # Collection meta
   
               unless except.include?(:collection_meta)
-                ::GraphQL::Schema::Object.field "_all#{entity.to_s.camelize}Meta".to_sym, type: ::Core::GraphQL::Providers::ReactAdmin::Types::RAListMetadata, camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
+                field "_all#{entity.to_s.camelize}Meta".to_sym, type: ::Core::GraphQL::Providers::ReactAdmin::Types::RAListMetadata, camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
                   argument :page, ::GraphQL::Types::Int, required: false
                   argument :per_page, ::GraphQL::Types::Int, required: false
                   argument :sort_field, ::GraphQL::Types::String, required: false
