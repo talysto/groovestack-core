@@ -8,6 +8,7 @@ module Core
           field :id, ID, null: false
           field :priority, Integer, null: false
           field :job_class, String, null: false
+          field :type, String, null: false
 
 
           field :last_error_backtrace, String, null: true
@@ -21,6 +22,10 @@ module Core
           field :run_at, ::GraphQL::Types::ISO8601DateTime, null: true
           field :expired_at, ::GraphQL::Types::ISO8601DateTime, null: true
           field :finished_at, ::GraphQL::Types::ISO8601DateTime, null: true
+
+          def type
+            object.args[0]['job_class']
+          end
         end
 
         class JobListMetadata < ::GraphQL::Schema::Object
