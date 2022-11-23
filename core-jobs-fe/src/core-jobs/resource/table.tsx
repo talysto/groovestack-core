@@ -1,5 +1,5 @@
 // import { FC, useEffect } from 'react'
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+// import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Grid } from "@mui/material";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
@@ -69,7 +69,7 @@ export const Table = () => {
   return (
     <List exporter={false} filters={JobsFilters} aside={<JobsAside />}>
       <Datagrid sort={{ field: "priority", order: "ASC" }} rowClick="edit">
-        {/* <FunctionField
+        <FunctionField
           label="Job"
           render={(record: any) => (
             <div onClick={(e) => e.stopPropagation()}>
@@ -82,20 +82,20 @@ export const Table = () => {
                   <small style={{ marginRight: 5 }}>
                     {record.id.substring(0, 6)}
                   </small>
-                  <ContentCopyIcon fontSize="inherit" />
+                  {/* <ContentCopyIcon fontSize="inherit" /> */}
                 </Grid>
               </CopyToClipboard>
             </div>
           )}
         />
 
-        <TextField source="queue" sortable={false} /> */}
+        <TextField source="queue" sortable={false} />
         <NumberField source="priority" />
 
-        {/* <FunctionField label="Status" render={enhancedStatus} /> */}
+        <FunctionField label="Status" render={enhancedStatus} />
 
         {/* <EditButton label="View" /> */}
-        {/* <DeleteWithConfirmButton label="" /> */}
+        <DeleteWithConfirmButton label="" />
       </Datagrid>
     </List>
   );
