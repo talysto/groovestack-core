@@ -18,7 +18,6 @@ module Core
           field :data, ::GraphQL::Types::JSON, null: true
           field :kwargs, ::GraphQL::Types::JSON, null: true
 
-          field :enqueued_at, ::GraphQL::Types::ISO8601DateTime, null: false
           field :run_at, ::GraphQL::Types::ISO8601DateTime, null: true
           field :expired_at, ::GraphQL::Types::ISO8601DateTime, null: true
           field :finished_at, ::GraphQL::Types::ISO8601DateTime, null: true
