@@ -61,6 +61,10 @@ if defined?(Rails)
               {
                 eval: Proc.new { Que::ActiveRecord::Model.count },
                 message: 'Error: Must run migration for que.'
+              },
+              {
+                eval: Proc.new { raise Core::Jobs::WrongActiveJobQueueAdapter unless Rails.application.config.active_job.queue_adapter == :que },
+                message: 'Error: Must change your active job queue adapter to :que'
               }
             ]
 
