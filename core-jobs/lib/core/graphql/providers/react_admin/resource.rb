@@ -58,7 +58,6 @@ module Core
               # Collection
               
               unless except.include?(:collection)
-                puts "defining field #{"all#{entity.to_s.camelize}".to_sym}"
                 ::GraphQL::Schema::Object.field "all#{entity.to_s.camelize}".to_sym, [entity_type], null: false, resolver_method: entity do
                   argument :page, ::GraphQL::Types::Int, required: false
                   argument :per_page, ::GraphQL::Types::Int, required: false
