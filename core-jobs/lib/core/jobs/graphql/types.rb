@@ -10,6 +10,7 @@ module Core
           field :job_class, String, null: false
           field :type, String, null: false
           field :queue, String, null: false
+          field :status, String, null: false
 
 
           field :last_error_backtrace, String, null: true
