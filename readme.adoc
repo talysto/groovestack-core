@@ -31,6 +31,9 @@ end
 ```
 * configure the job runner (in Procfile, etc.) `bundle exec que`
 
+== SETUP for Core-Jobs-FE
+* add core-jobs-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-jobs-fe?main`
+
 
 
 == SAMPLES
