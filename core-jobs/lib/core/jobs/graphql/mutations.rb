@@ -21,7 +21,7 @@ module Core
 
             type ::Core::Jobs::GraphQL::Types::Job
 
-            def resolve(id:, fire_retry:, **attrs)
+            def resolve(id:, **attrs)
               job = ::Core::Jobs::Job.find(id)
               job.update!(attrs)
               job
