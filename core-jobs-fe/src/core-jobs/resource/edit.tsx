@@ -19,15 +19,21 @@ const ErrorPanel: React.FC = () => {
 
   return (
     <>
-      <Labeled label="Error Count">
-        <TextField source="errorCount" />
-      </Labeled>
-      <Labeled label="Last Error Message">
-        <TextField source="lastErrorMessage" />
-      </Labeled>
-      <Labeled label="Error Stacktrace">
-        <TextField source="lastErrorBacktrace" />
-      </Labeled>
+      <div>
+        <Labeled label="Error Count">
+          <TextField source="errorCount" />
+        </Labeled>
+      </div>
+      <div>
+        <Labeled label="Last Error Message">
+          <TextField source="lastErrorMessage" />
+        </Labeled>
+      </div>
+      <div>
+        <Labeled label="Error Stacktrace">
+          <TextField source="lastErrorBacktrace" />
+        </Labeled>
+      </div>
     </>
   )
 }
