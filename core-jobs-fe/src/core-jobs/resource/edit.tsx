@@ -1,5 +1,6 @@
 import {
   Edit,
+  Labeled,
   SaveButton,
   SimpleForm,
   SimpleShowLayout,
@@ -18,9 +19,15 @@ const ErrorPanel: React.FC = () => {
 
   return (
     <>
-      <TextField source="errorCount" />
-      <TextField source="lastErrorMessage" />
-      <TextField source="lastErrorBacktrace" />
+      <Labeled label="Error Count">
+        <TextField source="errorCount" />
+      </Labeled>
+      <Labeled label="Last Error Message">
+        <TextField source="lastErrorMessage" />
+      </Labeled>
+      <Labeled label="Error Stacktrace">
+        <TextField source="lastErrorBacktrace" />
+      </Labeled>
     </>
   )
 }
@@ -41,7 +48,6 @@ export const EditJob = (props: any) => {
         <TextField source="id" />
         <TextField source="jobClass" />
         <TextField source="type" />
-        <TextField source="args" />
 
         <JsonField
           source="args"
