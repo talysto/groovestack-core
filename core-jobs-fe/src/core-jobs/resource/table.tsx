@@ -79,7 +79,9 @@ export const RetryButton: React.FC = () => {
 
   if (!record) return null;
 
-  const triggerRetry = async () => {
+  const triggerRetry = async (e) => {
+    e.preventDefault()
+
     try {
       await dataProvider.update(resource, { 
         id: record.id, 
