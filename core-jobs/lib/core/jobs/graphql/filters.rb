@@ -12,6 +12,14 @@ module Core
           argument :ids, [ID], required: false
           argument :status, String, required: false
         end
+
+        class LockerFilter < ::GraphQL::Schema::InputObject
+          # graphql_name "CORE-Job-filter"
+
+          argument_class ::GraphQL::Schema::Argument
+
+          description 'que locker filter props'
+        end
       end
     end
   end

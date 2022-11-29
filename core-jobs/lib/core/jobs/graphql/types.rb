@@ -37,6 +37,31 @@ module Core
         class JobListMetadata < ::GraphQL::Schema::Object
           field :count, Int, null: false
         end
+
+        class Locker < ::GraphQL::Schema::Object
+          description 'A queue locker'
+
+          field :listening, Bool, null: false
+          field :pid, String, null: false
+          field :queues, [String], null: false
+          field :ruby_pid, Integer, null: false
+          field :workers, Integer, null: false
+          field :worker_priorities, [Integer], null: false
+
+          field :host, String, null: false 
+
+          def host 
+            object.ruby_hostname
+          end
+
+          def workers
+            object.worker_count
+          end
+        end
+
+        class LockerMetadata < ::GraphQL::Schema::Object
+          field :count, Int, null: false
+        end
       end
     end
   end
