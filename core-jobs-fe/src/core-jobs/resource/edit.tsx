@@ -56,15 +56,43 @@ export const EditJob = (props: any) => {
 
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <TextField source="id" />
-            <TextField source="status" />
-            <TextField source="queue" />
-            <TextField source="priority" />
+            <div>
+              <Labeled label="ID">
+                <TextField source="id" />
+              </Labeled>
+            </div>
+            <div>
+              <Labeled label="Status">
+                <TextField source="status" />
+              </Labeled>
+            </div>
+            <div>
+              <Labeled label="Queue">
+                <TextField source="queue" />
+              </Labeled>
+            </div>
+            <div>
+              <Labeled label="Priority">
+                <TextField source="priority" />
+              </Labeled>
+            </div>
           </Grid>
           <Grid item xs={6}>
-            <TimeAgoField source="runAt" />
-            <TimeAgoField source="finishedAt" />
-            <TimeAgoField source="expiredAt" />
+            <div>
+              <Labeled label="Run At">
+                <TimeAgoField source="runAt" />
+              </Labeled>
+            </div>
+            <div>
+              <Labeled label="Finished At">
+              <TimeAgoField source="finishedAt" />
+              </Labeled>
+            </div>
+            <div>
+              <Labeled label="Expired At">
+                <TimeAgoField source="expiredAt" />
+              </Labeled>
+            </div>
           </Grid>
         </Grid>
 
