@@ -11,6 +11,7 @@ import {
 import { JsonField } from "react-admin-json-view";
 
 import { TimeAgoField } from "./TimeAgoField";
+import Grid from '@mui/material/Grid';
 
 const ErrorPanel: React.FC = () => {
   const record = useRecordContext()
@@ -49,11 +50,23 @@ export const EditJob = (props: any) => {
 
   return (
     <Edit>
-      {/* //   <SimpleForm toolbar={<EditToolbar />}> */}
       <SimpleShowLayout>
-        <TextField source="id" />
-        <TextField source="jobClass" />
-        <TextField source="type" />
+        {/* <TextField source="jobClass" /> */}
+        <TextField source="type" label='Job' />
+
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <TextField source="id" />
+            <TextField source="status" />
+            <TextField source="queue" />
+            <TextField source="priority" />
+          </Grid>
+          <Grid item xs={6}>
+            <TimeAgoField source="runAt" />
+            <TimeAgoField source="finishedAt" />
+            <TimeAgoField source="expiredAt" />
+          </Grid>
+        </Grid>
 
         <JsonField
           source="args"
@@ -79,17 +92,8 @@ export const EditJob = (props: any) => {
           }}
         />
 
-        <TextField source="queue" />
-        <TextField source="priority" />
-        <TextField source="status" />
-
-        <TimeAgoField source="runAt" />
-        <TimeAgoField source="finishedAt" />
-        <TimeAgoField source="expiredAt" />
-
         <ErrorPanel />
       </SimpleShowLayout>
-      {/* //   </SimpleForm> */}
     </Edit>
   );
 };

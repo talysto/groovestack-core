@@ -133,7 +133,7 @@ export const Table = () => {
         <NumberField source="priority" />
         <FunctionField label="Status" render={enhancedStatus} />
         <TimeAgoField label="Scheduled" source="runAt" />
-        <NumberField source="errorCount" />
+        <NumberField source="errorCount" label="Errors" />
         <TimeAgoField label="Expired" source="expiredAt" />
 
         <RetryButton />
