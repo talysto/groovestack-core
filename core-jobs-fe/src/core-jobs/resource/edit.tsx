@@ -5,7 +5,25 @@ import {
   SimpleShowLayout,
   TextField,
   Toolbar,
+  useRecordContext,
 } from "react-admin";
+import { JsonField } from "react-admin-json-view";
+
+import { TimeAgoField } from "./TimeAgoField";
+
+const ErrorPanel: React.FC = () => {
+  const record = useRecordContext()
+  
+  if (!record || !record.errorCount) return null 
+
+  return (
+    <>
+      <TextField source="errorCount" />
+      <TextField source="lastErrorMessage" />
+      <TextField source="lastErrorBacktrace" />
+    </>
+  )
+}
 
 export const EditJob = (props: any) => {
   const EditToolbar = (props: any) => (
@@ -21,20 +39,43 @@ export const EditJob = (props: any) => {
       {/* //   <SimpleForm toolbar={<EditToolbar />}> */}
       <SimpleShowLayout>
         <TextField source="id" />
+        <TextField source="jobClass" />
         <TextField source="type" />
         <TextField source="args" />
+
+        <JsonField
+          source="args"
+          jsonString={false} // Set to true if the value is a string, default: false
+          reactJsonOptions={{
+            // Props passed to react-json-view
+            name: null,
+            collapsed: true,
+            enableClipboard: false,
+            displayDataTypes: false,
+          }}
+        />
+
+        <JsonField
+          source="data"
+          jsonString={false} // Set to true if the value is a string, default: false
+          reactJsonOptions={{
+            // Props passed to react-json-view
+            name: null,
+            collapsed: true,
+            enableClipboard: false,
+            displayDataTypes: false,
+          }}
+        />
 
         <TextField source="queue" />
         <TextField source="priority" />
         <TextField source="status" />
 
-        <TextField source="createdAt" />
-        <TextField source="runAt" />
-        <TextField source="errorAt" />
-        <TextField source="completedAt" />
+        <TimeAgoField source="runAt" />
+        <TimeAgoField source="finishedAt" />
+        <TimeAgoField source="expiredAt" />
 
-        <TextField source="errors" />
-        <TextField source="lastError" />
+        <ErrorPanel />
       </SimpleShowLayout>
       {/* //   </SimpleForm> */}
     </Edit>
