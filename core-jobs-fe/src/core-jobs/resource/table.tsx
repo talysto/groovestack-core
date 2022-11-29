@@ -2,7 +2,7 @@
 // import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Grid } from "@mui/material";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
+import moment from 'moment';
 import {
   Datagrid,
   DeleteWithConfirmButton,
@@ -13,7 +13,13 @@ import {
   SelectInput,
   TextField,
   useNotify,
+  useRecordContext,
+  Button, 
+  useDataProvider,
+  useResourceContext,
+  useRefresh,
 } from "react-admin";
+
 import { JobsAside } from "./JobsAside";
 
 const JobsFilters = [
@@ -34,32 +40,82 @@ const JobsFilters = [
 
 const enhancedStatus = (record: any) => {
   // const record = useRecordContext()
-  var extended = null;
+  // var extended = null;
 
-  switch (record.status) {
-    case "running": {
-      extended = `for 34s`;
-      break;
-    }
-    case "error": {
-      extended = `2m 12s ago`;
-      break;
-    }
-    case "failed": {
-      extended = `8m 45s ago`;
-      break;
-    }
-    case "scheduled": {
-      extended = `3h from now`;
-      break;
-    }
-  }
+  // switch (record.status) {
+  //   case "running": {
+  //     extended = `for 34s`;
+  //     break;
+  //   }
+  //   case "error": {
+  //     extended = `2m 12s ago`;
+  //     break;
+  //   }
+  //   case "failed": {
+  //     extended = `8m 45s ago`;
+  //     break;
+  //   }
+  //   case "scheduled": {
+  //     extended = `3h from now`;
+  //     break;
+  //   }
+  // }
 
   return (
     <div>
       <div>{record.status}</div>
-      {extended && <small>{extended}</small>}
+      {/* {extended && <small>{extended}</small>} */}
     </div>
+  );
+};
+
+export const timeAgo = (timestamp: string) => {
+  if (!timestamp) return null;
+
+  const m = moment(timestamp);
+  return (
+    <span title={m.format('dddd, MMMM Do YYYY, h:mm a')}>{m.fromNow()}</span>
+  );
+};
+
+export const TimeAgoField:React.FC<{ label: string; source: string; }> = ({ source }) => {
+  const record = useRecordContext()
+
+  if (!record) return null 
+
+  return timeAgo(record[source]);
+}
+
+export const RetryButton: React.FC = () => {
+  const dataProvider = useDataProvider()
+  const notify = useNotify()
+  const record = useRecordContext()
+  const refresh = useRefresh()
+  const resource = useResourceContext()
+
+  if (!record) return null;
+
+  const triggerRetry = async () => {
+    try {
+      await dataProvider.update(resource, { 
+        id: record.id, 
+        previousData: record,
+        data: { expiredAt: null, runAt: moment() }
+      })
+      notify('Retry triggered!', {type: 'success'})
+      refresh()
+    }catch (e){
+      console.error(e)
+      notify(JSON.stringify(e), {type: 'error'})
+    }
+  }
+
+  return (
+    <Button
+      label="Retry"
+      color="secondary"
+      onClick={triggerRetry}
+    />
   );
 };
 
@@ -91,10 +147,12 @@ export const Table = () => {
 
         <TextField source="queue" sortable={false} />
         <NumberField source="priority" />
-
         <FunctionField label="Status" render={enhancedStatus} />
+        <TimeAgoField label="Scheduled" source="runAt" />
+        <NumberField source="errorCount" />
+        <TimeAgoField label="Expired" source="expiredAt" />
 
-        {/* <EditButton label="View" /> */}
+        <RetryButton />
         <DeleteWithConfirmButton label="" />
       </Datagrid>
     </List>

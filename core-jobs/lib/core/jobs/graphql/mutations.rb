@@ -16,22 +16,14 @@ module Core
 
           class Update < ::GraphQL::Schema::Mutation
             argument :id, ID, required: true
-            argument :fire_retry, Boolean, required: false
-            argument :performed_at, String, required: false
-            argument :finished_at, String, required: false
-            argument :error, String, required: false
+            argument :expired_at, ::GraphQL::Types::ISO8601DateTime, required: false
+            argument :run_at, ::GraphQL::Types::ISO8601DateTime, required: false
 
             type ::Core::Jobs::GraphQL::Types::Job
 
             def resolve(id:, fire_retry:, **attrs)
               job = ::Core::Jobs::Job.find(id)
-
-              if fire_retry
-                job.retry!
-              else
-                job.update!(attrs)
-              end
-
+              job.update!(attrs)
               job
             end
           end

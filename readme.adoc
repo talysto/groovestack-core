@@ -29,7 +29,12 @@ class Types::Mutation < GraphQL::Schema::Object
   include Core::Jobs::GraphQL::Mutations
 end
 ```
-* configure the job runner (in Procfile, etc.) `bundle exec que`
+* configure the job runner (in Procfile, etc.)
+```
+worker: bin/que ./config/environment.rb -q high -q default -q low
+worker-low: bin/que ./config/environment.rb -q low
+worker-high: bin/que ./config/environment.rb -q high
+```
 
 == SETUP for Core-Jobs-FE
 * add core-jobs-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-jobs-fe?main`
