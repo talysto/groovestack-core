@@ -15,6 +15,7 @@ require 'core/graphql/providers/react_admin/resource'
 
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/job'
+require 'core/jobs/locker'
 require 'core/jobs/graphql/types'
 require 'core/jobs/graphql/filters'
 require 'core/jobs/graphql/mutations'
