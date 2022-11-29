@@ -100,7 +100,7 @@ export const RetryButton: React.FC = () => {
       await dataProvider.update(resource, { 
         id: record.id, 
         previousData: record,
-        data: { expiredAt: null, runAt: moment() }
+        data: { expiredAt: null, runAt: moment().toISOString() }
       })
       notify('Retry triggered!', {type: 'success'})
       refresh()
