@@ -55,7 +55,7 @@ export const EditJob = (props: any) => {
         <TextField source="type" label='Job' />
 
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <div>
               <Labeled label="ID">
                 <TextField source="id" />
@@ -66,6 +66,8 @@ export const EditJob = (props: any) => {
                 <TextField source="status" />
               </Labeled>
             </div>
+          </Grid>
+          <Grid item xs={4}>
             <div>
               <Labeled label="Queue">
                 <TextField source="queue" />
@@ -77,7 +79,7 @@ export const EditJob = (props: any) => {
               </Labeled>
             </div>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <div>
               <Labeled label="Run At">
                 <TimeAgoField source="runAt" />
