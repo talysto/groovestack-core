@@ -46,7 +46,7 @@ module Core
           field :queues, [String], null: true
           field :ruby_pid, Integer, null: true
           field :workers, Integer, null: true
-          field :worker_priorities, [Integer], null: true
+          # field :worker_priorities, [Integer], null: true
 
           field :host, String, null: true 
 

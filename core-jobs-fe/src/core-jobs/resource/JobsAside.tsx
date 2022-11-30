@@ -12,7 +12,7 @@ export const JobsAside = () => {
   const refreshWorkersTable = () => {
     const resourcePath = resource.split('/')
     const namespacedResource = (resourcePath.length > 1) ? `${resourcePath[0]}/locker` : 'locker'
-    return dataProvider.getList(namespacedResource, { filter: {}, pagination: {page: 0, perPage: 100}, sort: { field: '', order: ''} })
+    return dataProvider.getList(namespacedResource, { filter: {}, pagination: {page: 1, perPage: 100}, sort: { field: '', order: ''} })
   }
 
   return (
