@@ -4,7 +4,7 @@ type LiveTableProps = {
   columns: string[]
   refreshData: () => Promise<any>;
   refreshInterval?: number;
-  transform?: () => any[]
+  transform?: (data: any) => any[]
 }
 
 export const LiveTable: React.FC<LiveTableProps> = ({ columns, refreshData, refreshInterval, transform }) => {
@@ -15,7 +15,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({ columns, refreshData, refr
     try {
       const data = await refreshData()
       console.log('LiveTable: fetched data', data)
-      setData(data)
+      setData(transform ? transform(data) : data)
     } catch(e){
       console.error(e)
     }

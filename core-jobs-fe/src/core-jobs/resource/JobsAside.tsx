@@ -66,6 +66,7 @@ export const JobsAside = () => {
               columns={['host', 'pid', 'workers']}
               refreshData={refreshWorkersTable}
               refreshInterval={30}
+              transform={({data}) => data}
             />
           </CardContent>
         </Card>
