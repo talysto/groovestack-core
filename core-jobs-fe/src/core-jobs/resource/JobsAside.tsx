@@ -1,71 +1,74 @@
 import { Typography, Card, CardContent } from "@mui/material";
+import { useDataProvider, useResourceContext } from "react-admin";
+
 import { Charts } from "../views";
+import { LiveTable } from "./LiveTable";
 import "./pivot.css";
 
-export const JobsAside = () => (
-  <div style={{ minWidth: "33%", margin: "1em" }}>
-    <Typography
-      style={{
-        marginTop: "4em",
-        display: "flex",
-        flexDirection: "column",
-        gap: 20,
-      }}
-    >
-      <Card>
-        <CardContent>
-          <Charts.KPIs />
+export const JobsAside = () => {
+  const dataProvider = useDataProvider()
+  const resource = useResourceContext()
 
-          <h3>Job RPM</h3>
-          <Charts.RPM />
-        </CardContent>
-      </Card>
+  const refreshWorkersTable = () => {
+    const resourcePath = resource.split('/')
+    const namespacedResource = (resourcePath.length > 1) ? `${resourcePath[0]}/lockers` : 'lockers'
+    return dataProvider.getList(namespacedResource, { filter: {}, pagination: {page: 0, perPage: 100}, sort: { field: '', order: ''} })
+  }
 
-      <Card>
-        <CardContent>
-          <h3>Jobs by Type</h3>
-          <table className="pivot-table" style={{ width: "100%" }}>
-            <thead>
-              <tr>
-                <th>TYPE</th>
-                <th>QUEUED</th>
-                <th>RUNNING</th>
-                <th>ERRORS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Mailer:Welcome</td>
-                <td>102</td>
-                <td>3</td>
-                <td>0</td>
-              </tr>
-            </tbody>
-          </table>
-        </CardContent>
-      </Card>
+  return (
+    <div style={{ minWidth: "33%", margin: "1em" }}>
+      <Typography
+        style={{
+          marginTop: "4em",
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
+        }}
+      >
+        <Card>
+          <CardContent>
+            <Charts.KPIs />
 
-      <Card>
-        <CardContent>
-          <h3>Workers</h3>
-          <table className="pivot-table" style={{ width: "100%" }}>
-            <thead>
-              <tr>
-                <th>HOST</th>
-                <th>PID</th>
-                <th>WORKERS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>a6d52a</td>
-                <td>28472</td>
-                <td>6</td>
-              </tr>
-            </tbody>
-          </table>
-        </CardContent>
-      </Card>
-    </Typography>
-  </div>
-);
+            <h3>Job RPM</h3>
+            <Charts.RPM />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <h3>Jobs by Type</h3>
+            <table className="pivot-table" style={{ width: "100%" }}>
+              <thead>
+                <tr>
+                  <th>TYPE</th>
+                  <th>QUEUED</th>
+                  <th>RUNNING</th>
+                  <th>ERRORS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mailer:Welcome</td>
+                  <td>102</td>
+                  <td>3</td>
+                  <td>0</td>
+                </tr>
+              </tbody>
+            </table>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <h3>Workers</h3>
+            <LiveTable
+              columns={['host', 'pid', 'workers']}
+              refreshData={refreshWorkersTable}
+              refreshInterval={30}
+            />
+          </CardContent>
+        </Card>
+      </Typography>
+    </div>
+  )
+};
