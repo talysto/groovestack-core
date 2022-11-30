@@ -47,6 +47,15 @@ if defined?(Rails)
           end
         end
 
+        # Enable our new views for the parent app
+        initializer :append_views do |app|
+          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
+            config.paths['db/views'].expanded.each do |expanded_path|
+              app.config.paths['db/views'] << expanded_path
+            end
+          end
+        end
+
         config.after_initialize do
           if (ENV["RAILS_ENV"] || ENV["RACK_ENV"]) == 'development'
 
