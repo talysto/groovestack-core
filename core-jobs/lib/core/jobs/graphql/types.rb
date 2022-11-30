@@ -41,7 +41,7 @@ module Core
         class Locker < ::GraphQL::Schema::Object
           description 'A queue locker'
 
-          field :listening, Bool, null: false
+          field :listening, Boolean, null: false
           field :pid, String, null: false
           field :queues, [String], null: false
           field :ruby_pid, Integer, null: false
