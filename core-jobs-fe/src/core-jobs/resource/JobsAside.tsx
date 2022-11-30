@@ -17,7 +17,7 @@ export const JobsAside = () => {
   }
 
   return (
-    <div style={{ minWidth: "33%", margin: "1em" }}>
+    <div style={{ minWidth: "33%", marginLeft: "1em", marginRight: '1em' }}>
       <Typography
         style={{
           marginTop: "4em",
@@ -26,14 +26,14 @@ export const JobsAside = () => {
           gap: 20,
         }}
       >
-        <Card>
+        {/* <Card>
           <CardContent>
             <Charts.KPIs />
 
             <h3>Job RPM</h3>
             <Charts.RPM />
           </CardContent>
-        </Card>
+        </Card> */}
 
         <Card>
           <CardContent>

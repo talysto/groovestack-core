@@ -32,9 +32,10 @@ const JobsFilters = [
     choices={[
       { id: "scheduled", name: "Scheduled" },
       { id: "running", name: "Running" },
-      { id: "complete", name: "Complete" },
-      { id: "errored", name: "Scheduled" },
+      { id: "finished", name: "Finished" },
+      { id: "errored", name: "Errored" },
       { id: "failed", name: "Failed" },
+      { id: "expired", name: "Expired" },
     ]}
   />,
 ];

@@ -1,18 +1,32 @@
 module Core
   module Jobs
     class Job < Que::ActiveRecord::Model
-      scope :failed, -> { where.not(expired_at: nil).where.not(error_count: 0) }
-      scope :scheduled, -> { where("run_at > ?", Time.now.utc) }
-      scope :complete, -> { where.not(finished_at: nil) }
-      scope :running, -> { where("run_at <= ?", Time.now.utc).where(finished_at: nil).where(expired_at: nil) }
-      scope :errored, -> { where.not(error_count: 0) }
-      scope :expired, -> { where.not(expired_at: nil) }
+      # https://github.com/que-rb/que/blob/528f17175454b0e24cb5e1bafd6cb4b72a038f92/lib/que/active_record/model.rb
+
+      # scope :errored,     -> { where(t[:error_count].gt(0)) }
+      # scope :not_errored, -> { where(t[:error_count].eq(0)) }
+
+      # scope :expired,     -> { where(t[:expired_at].not_eq(nil)) }
+      # scope :not_expired, -> { where(t[:expired_at].eq(nil)) }
+
+      # scope :finished,     -> { where(t[:finished_at].not_eq(nil)) }
+      # scope :not_finished, -> { where(t[:finished_at].eq(nil)) }
+
+      # scope :scheduled,     -> { where(t[:run_at].gt  (Arel.sql("now()"))) }
+      # scope :not_scheduled, -> { where(t[:run_at].lteq(Arel.sql("now()"))) }
+
+      # scope :ready,     -> { not_errored.not_expired.not_finished.not_scheduled }
+      # scope :not_ready, -> { where(t[:error_count].gt(0).or(t[:expired_at].not_eq(nil)).or(t[:finished_at].not_eq(nil)).or(t[:run_at].gt(Arel.sql("now()")))) }
+
+
+      scope :failed, -> { errored.expired }
+      scope :running, -> { not_expired.not_finished.not_scheduled } # should this exclude errored jobs?
 
       def status
         now = Time.zone.now
 
         return :scheduled if run_at > now
-        return :complete if finished_at.present?
+        return :finished if finished_at.present?
         if expired_at.present?
           return :failed if error_count.positive?
           return :expired
