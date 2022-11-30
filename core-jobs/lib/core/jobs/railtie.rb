@@ -40,12 +40,12 @@ if defined?(Rails)
 
         # Enable our new views for the parent app
         initializer :append_views do |app|
-          puts "\n\nPATHS\n\n#{config.paths.to_h}\n\n"
-          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            config.paths['db/views'].expanded.each do |expanded_path|
-              app.config.paths['db/views'] << expanded_path
-            end
-          end
+          puts "\n\nPATHS\n\n#{config.paths.all_paths}\n\n"
+          # unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
+          #   config.paths['db/views'].expanded.each do |expanded_path|
+          #     app.config.paths['db/views'] << expanded_path
+          #   end
+          # end
         end
 
         # Enable our new migrations for the parent app
