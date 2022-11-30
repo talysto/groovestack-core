@@ -7,11 +7,11 @@ module Core
             
           class_methods do 
             def react_admin_resource(entity, **args)
-              entity_core_namespace = entity.to_s.camelize
+              core_namespace = args.delete(:core_namespace)
               entity_model_name = entity.to_s.classify
-              entity_class = "Core::#{entity_core_namespace}::#{entity_model_name}"
-              entity_type = "Core::#{entity_core_namespace}::GraphQL::Types::#{entity_model_name}".constantize
-              entity_filter_type = "Core::#{entity_core_namespace}::GraphQL::Filters::#{entity_model_name}Filter".constantize
+              entity_class = "Core::#{core_namespace}::#{entity_model_name}"
+              entity_type = "Core::#{core_namespace}::GraphQL::Types::#{entity_model_name}".constantize
+              entity_filter_type = "Core::#{core_namespace}::GraphQL::Filters::#{entity_model_name}Filter".constantize
   
               except = args.delete(:except) || []
   

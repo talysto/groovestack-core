@@ -7,8 +7,8 @@ module Core
         include ::Core::GraphQL::Providers::ReactAdmin::Resource
 
         included do
-          react_admin_resource :jobs
-          react_admin_resource :lockers
+          react_admin_resource :jobs, core_namespace: 'Jobs'
+          react_admin_resource :lockers, core_namespace: 'Jobs'
         end
 
         def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
