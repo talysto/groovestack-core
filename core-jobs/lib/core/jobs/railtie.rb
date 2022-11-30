@@ -38,17 +38,6 @@ if defined?(Rails)
         # engine_name 'something'
         # isolate_namespace SOMETHING
 
-        # Enable our new views for the parent app
-        initializer :append_views do |app|
-          config.paths.add "db/views"
-          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            app.config.paths.add "db/views"
-            config.paths['db/views'].expanded.each do |expanded_path|
-              app.config.paths['db/views'] << expanded_path
-            end
-          end
-        end
-
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
