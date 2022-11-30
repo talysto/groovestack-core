@@ -7,7 +7,13 @@ class CreateQueAll < ActiveRecord::Migration[6.0]
             SELECT
               que_jobs.*
               , locks.id as lock_id
-              , que_lockers.*
+              , que_lockers.pid
+              , que_lockers.worker_count
+              , que_lockers.worker_priorities
+              , que_lockers.ruby_pid
+              , que_lockers.ruby_hostname
+              , que_lockers.queues
+              , que_lockers.listening
               , args->0->>'job_class' as sub_class
               
             FROM public.que_jobs 
