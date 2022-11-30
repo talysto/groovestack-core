@@ -41,6 +41,7 @@ module Core
         class Locker < ::GraphQL::Schema::Object
           description 'A queue locker'
 
+          field :id, String, null: false
           field :listening, Boolean, null: true
           field :pid, String, null: true
           field :queues, [String], null: true
@@ -49,6 +50,10 @@ module Core
           # field :worker_priorities, [Integer], null: true
 
           field :host, String, null: true 
+
+          def id
+            object.pid
+          end
 
           def host 
             object.ruby_hostname
