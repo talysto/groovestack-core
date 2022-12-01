@@ -18,7 +18,7 @@ module Core
           scope = scope.where(id: filter.ids) unless filter.ids.nil?
           # scope = scope.where(type: filter.type) if filter.type.present?
           scope = scope.where("(args->0)->>'job_class' ilike ?", "%#{filter.q}%") if filter.q.present?
-          scope = scope.send(filter.status) if filter.status.present? && ['failed', 'scheduled', 'complete', 'running', 'errored', 'expired'].include?(filter.status)
+          scope = scope.send(filter.status) if filter.status.present? && ['failed', 'scheduled', 'finished', 'running', 'errored', 'expired'].include?(filter.status)
 
           return scope unless sort_field.present?
 
