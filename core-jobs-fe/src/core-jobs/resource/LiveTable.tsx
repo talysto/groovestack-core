@@ -1,7 +1,7 @@
 import React from 'react'
 
 type LiveTableProps = {
-  columns: string[]
+  columns: {key: string; label?: string;}[]
   refreshData: () => Promise<any>;
   refreshInterval?: number;
   transform?: (data: any) => any[]
@@ -39,14 +39,14 @@ export const LiveTable: React.FC<LiveTableProps> = ({ columns, refreshData, refr
     <table className="pivot-table" style={{ width: "100%" }}>
       <thead>
         <tr>
-          {columns.map((c, i) => <th key={i}>{c.toUpperCase()}</th>)}
+          {columns.map(({key, label}, i) => <th key={i}>{label ? label.toUpperCase() : key.toUpperCase()}</th>)}
         </tr>
       </thead>
       <tbody>
         {data.map((record, i) => (
           <tr key={i}>
-            {columns.map((column, k) => (
-              <td key={`${i}-${k}`}>{record[column]}</td>
+            {columns.map(({key}, k) => (
+              <td key={`${i}-${k}`}>{record[key]}</td>
             ))}
           </tr>
         ))}

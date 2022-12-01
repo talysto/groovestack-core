@@ -50,7 +50,12 @@ export const JobsAside = () => {
           <CardContent>
             <h3>Jobs by Type</h3>
             <LiveTable
-              columns={['sub_class', 'count', 'count_working', 'count_errored']}
+              columns={[
+                { key: 'sub_class', label: 'type'}, 
+                { key: 'count', label: 'queued'}, 
+                {key: 'count_working', label: 'working'}, 
+                {key: 'count_errored', label: 'errors'}
+              ]}
               refreshData={refreshJobStatsTable}
               refreshInterval={30}
               transform={transformJobStatsData}
@@ -62,7 +67,7 @@ export const JobsAside = () => {
           <CardContent>
             <h3>Workers</h3>
             <LiveTable
-              columns={['host', 'pid', 'workers']}
+              columns={[{ key: 'host'}, { key: 'pid'}, { key: 'workers'}]}
               refreshData={refreshWorkersTable}
               refreshInterval={30}
               transform={({data}) => data}
