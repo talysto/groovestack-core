@@ -38,6 +38,12 @@ module Core
           field :count, Int, null: false
         end
 
+        class JobReport < ::GraphQL::Schema::Object 
+          description 'a job report'
+
+          field :data, ::GraphQL::Types::JSON, null: false
+        end
+
         class Locker < ::GraphQL::Schema::Object
           description 'A queue locker'
 

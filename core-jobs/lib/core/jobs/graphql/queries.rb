@@ -9,6 +9,7 @@ module Core
         included do
           react_admin_resource :jobs, core_namespace: 'Jobs'
           react_admin_resource :lockers, core_namespace: 'Jobs'
+          field :jobStats, ::Core::Jobs::GraphQL::Types::JobReport, null: false, resolver_method: :job_stats
         end
 
         def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
@@ -35,6 +36,33 @@ module Core
           # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
 
           scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
+        end
+
+        def job_stats
+          sql = <<-SQL
+            SELECT
+              job_class,
+              sub_class,
+              count(*)                    AS count,
+              count(lock_id)              AS count_working,
+              sum((error_count > 0)::int) AS count_errored,
+              max(error_count)            AS highest_error_count,
+              min(run_at)                 AS oldest_run_at
+
+            FROM public.que_all
+            WHERE 
+              finished_at IS NULL 
+              AND expired_at IS NULL
+            GROUP BY job_class, sub_class
+            ORDER BY count(*) DESC
+          SQL
+
+          sanitized_sql = ActiveRecord::Base.sanitize_sql_array([sql, {}])
+          data = ActiveRecord::Base.connection.execute(sanitized_sql)
+
+          {
+            data: data.to_a
+          }
         end
       end
     end
