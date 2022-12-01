@@ -24,7 +24,7 @@ export const JobsAside = () => {
   }
 
   const transformJobStatsData = ({ data }: { data: any}) => {
-    return data
+    return data[0].data
   }
 
   return (
