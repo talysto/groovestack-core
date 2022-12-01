@@ -27,7 +27,7 @@ const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" />,
   <SelectInput
     key="status"
-    alwaysOn
+    // alwaysOn
     source="status"
     choices={[
       { id: "scheduled", name: "Scheduled" },
@@ -106,6 +106,19 @@ export const RetryButton: React.FC = () => {
   );
 };
 
+const JobActions = () => {
+  const record = useRecordContext()
+
+  if (!record) return null 
+
+  return (
+    <>
+      {record.actions.includes('retry') && <RetryButton />}
+      <DeleteWithConfirmButton label="" />
+    </>
+  )
+}
+
 export const Table = () => {
   const notify = useNotify();
 
@@ -138,9 +151,7 @@ export const Table = () => {
         <TimeAgoField label="Scheduled" source="runAt" />
         <NumberField source="errorCount" label="Errors" />
         <TimeAgoField label="Expired" source="expiredAt" />
-
-        <RetryButton />
-        <DeleteWithConfirmButton label="" />
+        <JobActions />
       </Datagrid>
     </List>
   );

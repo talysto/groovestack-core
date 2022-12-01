@@ -22,6 +22,12 @@ module Core
       scope :failed, -> { errored.expired }
       scope :running, -> { not_expired.not_finished.not_scheduled } # should this exclude errored jobs?
 
+      def actions 
+        return [:retry] if error_count.positive?
+
+        []
+      end
+
       def status
         now = Time.zone.now
 
