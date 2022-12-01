@@ -106,13 +106,13 @@ export const RetryButton: React.FC = () => {
   );
 };
 
-const JobActions = () => {
+const JobActions = ({label}: {label?: string}) => {
   const record = useRecordContext()
 
   if (!record) return null 
 
   return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+    <div style={{display: 'flex', alignItems: 'center' }}>
       {record.actions.includes('retry') && <RetryButton />}
       <DeleteWithConfirmButton label="" />
     </div>
@@ -151,7 +151,7 @@ export const Table = () => {
         <TimeAgoField label="Scheduled" source="runAt" />
         <NumberField source="errorCount" label="Errors" />
         <TimeAgoField label="Expired" source="expiredAt" />
-        <JobActions />
+        <JobActions label="Actions" />
       </Datagrid>
     </List>
   );
