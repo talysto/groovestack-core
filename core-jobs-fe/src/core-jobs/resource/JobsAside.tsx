@@ -9,11 +9,22 @@ export const JobsAside = () => {
   const dataProvider = useDataProvider()
   const resource = useResourceContext()
 
+  const refreshJobStatsTable = () => {
+    const resourcePath = resource.split('/')
+    const namespacedResource = (resourcePath.length > 1) ? `${resourcePath[0]}/JobReport` : 'JobReport'
+
+    return dataProvider.getList(namespacedResource, { filter: { reportName: 'job_stats' }, pagination: { page: null, perPage: null}, sort: { field: '', order: ''} })
+  }
+
   const refreshWorkersTable = () => {
     const resourcePath = resource.split('/')
     const namespacedResource = (resourcePath.length > 1) ? `${resourcePath[0]}/locker` : 'locker'
 
     return dataProvider.getList(namespacedResource, { filter: {}, pagination: {page: 1, perPage: 100}, sort: { field: '', order: ''} })
+  }
+
+  const transformJobStatsData = ({ data }: { data: any}) => {
+    return data
   }
 
   return (
@@ -38,24 +49,12 @@ export const JobsAside = () => {
         <Card>
           <CardContent>
             <h3>Jobs by Type</h3>
-            <table className="pivot-table" style={{ width: "100%" }}>
-              <thead>
-                <tr>
-                  <th>TYPE</th>
-                  <th>QUEUED</th>
-                  <th>RUNNING</th>
-                  <th>ERRORS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mailer:Welcome</td>
-                  <td>102</td>
-                  <td>3</td>
-                  <td>0</td>
-                </tr>
-              </tbody>
-            </table>
+            <LiveTable
+              columns={['sub_class', 'count', 'count_working', 'count_errored']}
+              refreshData={refreshJobStatsTable}
+              refreshInterval={30}
+              transform={transformJobStatsData}
+            />
           </CardContent>
         </Card>
 
