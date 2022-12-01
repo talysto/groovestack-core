@@ -112,10 +112,10 @@ const JobActions = () => {
   if (!record) return null 
 
   return (
-    <>
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
       {record.actions.includes('retry') && <RetryButton />}
       <DeleteWithConfirmButton label="" />
-    </>
+    </div>
   )
 }
 
