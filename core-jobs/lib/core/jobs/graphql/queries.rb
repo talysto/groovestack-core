@@ -9,7 +9,8 @@ module Core
         included do
           react_admin_resource :jobs, core_namespace: 'Jobs'
           react_admin_resource :lockers, core_namespace: 'Jobs'
-          field :jobStats, ::Core::Jobs::GraphQL::Types::JobReport, null: false, resolver_method: :job_stats
+          react_admin_resource :job_reports, core_namespace: 'Jobs', except: [:find, :collection_meta]
+          # field :allJobReports, [::Core::Jobs::GraphQL::Types::JobReport], null: false, resolver_method: :job_stats
         end
 
         def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
@@ -36,6 +37,12 @@ module Core
           # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
 
           scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
+        end
+
+        def job_reports_scope(sort_field: nil, sort_order: nil, filter: {})
+          return job_stats if filter.report_name == 'job_stats'
+
+          raise 'unrecognized job report_name'
         end
 
         def job_stats
