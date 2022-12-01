@@ -9,7 +9,7 @@ module Core
         included do
           react_admin_resource :jobs, core_namespace: 'Jobs'
           react_admin_resource :lockers, core_namespace: 'Jobs'
-          react_admin_resource :job_reports, core_namespace: 'Jobs', except: [:find, :collection_meta]
+          react_admin_resource :job_reports, core_namespace: 'Jobs', except: [:find]
           # field :allJobReports, [::Core::Jobs::GraphQL::Types::JobReport], null: false, resolver_method: :job_stats
         end
 

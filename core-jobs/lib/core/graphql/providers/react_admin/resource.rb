@@ -43,7 +43,7 @@ module Core
   
               unless except.include?(:collection_meta)
                 define_method "#{entity}_meta".to_sym do |page: nil, per_page: nil, **attrs| # rubocop:disable Lint/UnusedBlockArgument
-                  { count: send("#{entity}_scope", attrs).count }
+                  { count: send("#{entity}_scope", attrs).size }
                 end
               end
   
