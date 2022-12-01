@@ -40,7 +40,7 @@ module Core
         end
 
         def job_reports_scope(sort_field: nil, sort_order: nil, filter: {})
-          return job_stats if filter.report_name == 'job_stats'
+          return [job_stats] if filter.report_name == 'job_stats'
 
           raise 'unrecognized job report_name'
         end
