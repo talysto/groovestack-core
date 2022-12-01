@@ -68,6 +68,7 @@ module Core
           data = ActiveRecord::Base.connection.execute(sanitized_sql)
 
           {
+            id: :job_stats,
             data: data.to_a
           }
         end

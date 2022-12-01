@@ -41,6 +41,7 @@ module Core
         class JobReport < ::GraphQL::Schema::Object 
           description 'a job report'
 
+          field :id, String, null: false
           field :data, ::GraphQL::Types::JSON, null: false
         end
 
