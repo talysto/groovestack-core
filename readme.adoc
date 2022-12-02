@@ -10,7 +10,7 @@
 == SETUP for Core-Jobs
 * add the core gem to your Gemfile
 ```
-git 'https://github.com/moonlight-labs/core.git', branch: 'dev' do
+git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
   gem 'core-jobs'
 end
 ```
@@ -38,6 +38,17 @@ worker-high: bin/que ./config/environment.rb -q high
 
 == SETUP for Core-Jobs-FE
 * add core-jobs-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-jobs-fe?main`
+* add Jobs RA Resource
+```
+<Resource
+  key="admin-jobs-resource"
+  name="admin/job"
+  icon={DashboardIcon}
+  options={[{ label: 'Job Queue', menu: 'admin' }]}
+  edit={<CoreJobs.Resource.Edit />}
+  list={<CoreJobs.Resource.List />}
+/>
+```
 
 
 
