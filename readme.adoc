@@ -38,6 +38,7 @@ worker-high: bin/que ./config/environment.rb -q high
 
 == SETUP for Core-Jobs-FE
 * add core-jobs-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-jobs-fe?main`
+* ensure peer dependencies are installed
 * add Jobs RA Resource
 ```
 <Resource
