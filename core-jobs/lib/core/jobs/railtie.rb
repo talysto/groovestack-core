@@ -41,7 +41,7 @@ if defined?(Rails)
         # Enable our puma plugins for the parent app
         initializer :append_puma_plugins do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            config.paths['config/puma/plugin'].expanded.each do |expanded_path|
+            config.paths['lib/core/jobs/puma/plugin'].expanded.each do |expanded_path|
               app.config.paths['app/lib/puma/plugin'] << expanded_path
             end
           end
