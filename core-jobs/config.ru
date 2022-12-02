@@ -10,6 +10,3 @@ Combustion.initialize!  :active_record
 
 # Combustion.initialize! :all
 run Combustion::Application
-
-# override default of 15
-Que::Job.maximum_retry_count = 5
