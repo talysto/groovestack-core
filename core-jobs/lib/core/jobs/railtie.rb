@@ -38,6 +38,15 @@ if defined?(Rails)
         # engine_name 'something'
         # isolate_namespace SOMETHING
 
+        # Enable our puma plugins for the parent app
+        initializer :append_puma_plugins do |app|
+          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
+            config.paths['puma/plugin'].expanded.each do |expanded_path|
+              app.config.paths['app/lib/puma/plugin'] << expanded_path
+            end
+          end
+        end
+
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
@@ -48,7 +57,7 @@ if defined?(Rails)
         end
 
         # Enable our new initializers for the parent app
-        initializer :append_migrations do |app|
+        initializer :append_initializers do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
             config.paths['config/initializers'].expanded.each do |expanded_path|
               app.config.paths['config/initializers'] << expanded_path
