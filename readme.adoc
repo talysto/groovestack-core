@@ -35,6 +35,11 @@ worker: bin/que ./config/environment.rb -q high -q default -q low
 worker-low: bin/que ./config/environment.rb -q low
 worker-high: bin/que ./config/environment.rb -q high
 ```
+* configure workers within puma config
+```
+# w/in config/puma.rb
+plugin :que
+```
 
 == SETUP for Core-Jobs-FE
 * add core-jobs-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-jobs-fe?main`
