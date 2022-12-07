@@ -8,6 +8,6 @@ export const PivotTable = () => (
   <div>
     Pivot Table
     <br />
-    props={["data"]}
+    props={['data']}
   </div>
-);
+)

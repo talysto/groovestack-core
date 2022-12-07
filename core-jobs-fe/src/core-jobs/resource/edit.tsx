@@ -7,16 +7,16 @@ import {
   TextField,
   Toolbar,
   useRecordContext,
-} from "react-admin";
-import { JsonField } from "react-admin-json-view";
+} from 'react-admin'
+import { JsonField } from 'react-admin-json-view'
 
-import { TimeAgoField } from "./TimeAgoField";
-import Grid from '@mui/material/Grid';
+import { TimeAgoField } from './TimeAgoField'
+import Grid from '@mui/material/Grid'
 
 const ErrorPanel: React.FC = () => {
   const record = useRecordContext()
-  
-  if (!record || !record.errorCount) return null 
+
+  if (!record || !record.errorCount) return null
 
   return (
     <>
@@ -44,7 +44,7 @@ export const EditJob = (props: any) => {
     <Toolbar {...props}>
       <SaveButton />
     </Toolbar>
-  );
+  )
 
   // const { record } = useShowController({ resource: 'sessions' })
 
@@ -52,7 +52,7 @@ export const EditJob = (props: any) => {
     <Edit>
       <SimpleShowLayout>
         {/* <TextField source="jobClass" /> */}
-        <TextField source="type" label='Job' />
+        <TextField source="type" label="Job" />
 
         <Grid container spacing={2}>
           <Grid item xs={4}>
@@ -87,7 +87,7 @@ export const EditJob = (props: any) => {
             </div>
             <div>
               <Labeled label="Finished At">
-              <TimeAgoField source="finishedAt" />
+                <TimeAgoField source="finishedAt" />
               </Labeled>
             </div>
             <div>
@@ -125,5 +125,5 @@ export const EditJob = (props: any) => {
         <ErrorPanel />
       </SimpleShowLayout>
     </Edit>
-  );
-};
+  )
+}

@@ -1,36 +1,36 @@
-import { Chart as GoogleChart } from "react-google-charts";
+import { Chart as GoogleChart } from 'react-google-charts'
 
 export const RPMChart: React.FC<{ data?: any }> = ({ data }) => {
   // if (!data) return <>No recent data.</>;
 
-  const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000);
+  const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
   const sampleData = [
-    ["Period", "Jobs"],
+    ['Period', 'Jobs'],
     [new Date(roundedNow.getTime() - 1000 * 60 * 60), 1],
     [new Date(roundedNow.getTime() - 800 * 60 * 60), 2],
     [new Date(roundedNow.getTime() - 600 * 60 * 60), 7],
     [new Date(roundedNow.getTime() - 400 * 60 * 60), 2],
     [new Date(roundedNow.getTime() - 200 * 60 * 60), 3],
     [roundedNow, 4],
-  ];
+  ]
 
   return (
     <GoogleChart
-      width={"100%"}
-      height={"64px"}
+      width={'100%'}
+      height={'64px'}
       chartType="ColumnChart"
       loader={<div>Loading...</div>}
       data={data || sampleData}
       options={{
-        title: "Job RPM",
-        bar: { groupWidth: "100%" },
+        title: 'Job RPM',
+        bar: { groupWidth: '100%' },
         animation: {
           startup: true,
-          easing: "out",
+          easing: 'out',
           duration: 500,
         },
         // enableInteractivity: false,
-        legend: "none",
+        legend: 'none',
         // chartArea: { left: 40, top: 20, right: 20 },
         hAxis: {
           viewWindow: {
@@ -39,10 +39,10 @@ export const RPMChart: React.FC<{ data?: any }> = ({ data }) => {
           },
         },
         vAxis: {
-          format: "#",
+          format: '#',
           viewWindow: { min: 0 },
         },
       }}
     />
-  );
-};
+  )
+}

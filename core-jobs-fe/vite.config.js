@@ -1,8 +1,8 @@
-import { resolve } from "path";
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import dts from "vite-plugin-dts";
-import { visualizer } from "rollup-plugin-visualizer";
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts'
+import { visualizer } from 'rollup-plugin-visualizer'
 // import autoExternal from "rollup-plugin-auto-external";
 
 // https://vitejs.dev/config/
@@ -17,11 +17,11 @@ export default defineConfig({
   build: {
     lib: {
       // entry: resolve(__dirname, "lib/main.js"),
-      entry: resolve(__dirname, "src/core-jobs/index.ts"),
-      formats: ["es"], // UMD
-      name: "CORE-JOBS",
+      entry: resolve(__dirname, 'src/core-jobs/index.ts'),
+      formats: ['es'], // UMD
+      name: 'CORE-JOBS',
       // the proper extensions will be added
-      fileName: "core-jobs",
+      fileName: 'core-jobs',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -39,7 +39,7 @@ export default defineConfig({
       },
     },
   },
-});
+})
 
 // {
 //   // path to your declaration files root
