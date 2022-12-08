@@ -8,7 +8,7 @@ import {
   Toolbar,
   useRecordContext,
 } from 'react-admin'
-import { JsonField } from 'react-admin-json-view'
+// import { JsonField } from 'react-admin-json-view'
 
 import { TimeAgoField } from './TimeAgoField'
 import Grid from '@mui/material/Grid'
@@ -17,6 +17,8 @@ const ErrorPanel: React.FC = () => {
   const record = useRecordContext()
 
   if (!record || !record.errorCount) return null
+
+  console.log(record)
 
   return (
     <>
@@ -98,7 +100,11 @@ export const EditJob = (props: any) => {
           </Grid>
         </Grid>
 
-        <JsonField
+        <TextField source="args" />
+
+        <TextField source="data" />
+
+        {/* <JsonField
           source="args"
           jsonString={false} // Set to true if the value is a string, default: false
           reactJsonOptions={{
@@ -120,7 +126,7 @@ export const EditJob = (props: any) => {
             enableClipboard: false,
             displayDataTypes: false,
           }}
-        />
+        /> */}
 
         <ErrorPanel />
       </SimpleShowLayout>
