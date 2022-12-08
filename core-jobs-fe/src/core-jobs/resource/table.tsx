@@ -1,4 +1,6 @@
-import { Chip } from '@mui/material'
+import { Chip, CircularProgress } from '@mui/material'
+// import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors'
+
 import dayjs from 'dayjs'
 
 import {
@@ -30,7 +32,7 @@ const JobsFilters = [
     choices={[
       { id: 'scheduled', name: 'Scheduled' },
       { id: 'running', name: 'Running' },
-      { id: 'finished', name: 'Finished' },
+      { id: 'complete', name: 'Complete' },
       { id: 'errored', name: 'Errored' },
       { id: 'failed', name: 'Failed' },
       { id: 'expired', name: 'Expired' },
@@ -40,22 +42,30 @@ const JobsFilters = [
 
 const enhancedStatus = () => {
   const record = useRecordContext()
-  var extended = null;
+  // var extended = null;
+
+  const runningIcon = <CircularProgress size='0.75em' />
 
   switch (record.status) {
     case "running": {
-      return <Chip label={record.status} color="success" size="small"  />
-      break;
+      return <Chip label={'Running'} color="info" size="small" icon={runningIcon} />
     }
 
     case "failed": {
-      return <><Chip label={record.status} variant="outlined" color="error" size="small"  /><small style={{display: 'block'}}>{record.errorCount} retries</small></>
-      break;
+      return <Chip label={'Failed'} variant="outlined" color="error" size="small"  />
     }
 
     case "error": {
-      return <><Chip label={record.status} variant="outlined" color="warning" size="small"  /><small style={{display: 'block'}}>{record.errorCount} retries</small></>
-      break;
+      // icon={<RunningWithErrorsIcon />
+      return <Chip label={`Error: 3/5 retries`} variant="outlined" color="warning" size="small" />
+    }
+
+    case "scheduled": {
+      return <Chip label={'Scheduled'} size="small"  />
+    }
+
+    case "complete": {
+      return <Chip label={'Complete'} size="small"  />
     }
   }
 
