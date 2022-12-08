@@ -69,13 +69,15 @@ export const JobsAside = () => {
                 { key: 'count_errored', label: 'errors' },
               ]}
               emptyContent={
-                <tr aria-colspan={4}>
-                  <Box >
-                    <Skeleton animation={false} />
-                    <Skeleton animation={false} />
-                    <Skeleton animation={false} />
-                    <div>No jobs in the queue</div>
-                  </Box>
+                <tr>
+                  <td colSpan={4}>
+                    <Box style={{width: '100%'}}>
+                      <Skeleton animation={false} />
+                      <Skeleton animation={false} />
+                      <Skeleton animation={false} />
+                      <div style={{textAlign: 'center'}}>No jobs in the queue</div>
+                    </Box>
+                  </td>
                 </tr>
               }
               refreshData={refreshJobStatsTable}
