@@ -16,7 +16,7 @@ export const JobsAside = () => {
 
     return dataProvider.getList(namespacedResource, {
       filter: { reportName: 'job_stats' },
-      pagination: { page: 1, perPage: 100 },
+      pagination: { page: null, perPage: null },
       sort: { field: '', order: '' },
     })
   }
@@ -66,7 +66,7 @@ export const JobsAside = () => {
                 { key: 'count_working', label: 'working' },
                 { key: 'count_errored', label: 'errors' },
               ]}
-              emptyContent={<tr aria-colspan={4}><div style={{display: 'flex', justifyContent: 'center'}}><span>No jobs in the queue</span></div></tr>}
+              emptyContent={<tr aria-colspan={4} style={{textAlign: 'center'}}>No jobs in the queue</tr>}
               refreshData={refreshJobStatsTable}
               refreshInterval={30}
               transform={transformJobStatsData}
