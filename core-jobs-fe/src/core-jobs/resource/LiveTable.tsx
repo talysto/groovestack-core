@@ -49,7 +49,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({
         {rowTotals && data.length > 0 ? (
           <tr> 
             {columns.map(({ key }, k) => (
-              <td style={{fontWeight: 'bold'}} key={`total-${k}`}>{Number(data[0][key]) == NaN ? null : data.reduce((prev, curr) => prev + Number(curr[key]), 0)}</td>
+              <td style={{fontWeight: 'bold'}} key={`total-${k}`}>{isNaN(Number(data[0][key])) ? null : data.reduce((prev, curr) => prev + Number(curr[key]), 0)}</td>
             ))}
           </tr>
         ) : null}
