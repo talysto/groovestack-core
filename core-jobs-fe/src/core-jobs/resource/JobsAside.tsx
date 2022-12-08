@@ -66,6 +66,7 @@ export const JobsAside = () => {
                 { key: 'count_working', label: 'working' },
                 { key: 'count_errored', label: 'errors' },
               ]}
+              emptyContent={<tr aria-colspan={4}><div style={{display: 'flex', justifyContent: 'center'}}><span>No jobs in the queue</span></div></tr>}
               refreshData={refreshJobStatsTable}
               refreshInterval={30}
               transform={transformJobStatsData}
@@ -78,7 +79,7 @@ export const JobsAside = () => {
           <CardContent>
             <h3>Workers</h3>
             <LiveTable
-              columns={[{ key: 'host' }, { key: 'pid' }, { key: 'workers' }]}
+              columns={[{ key: 'host', render: ((v: string) => v.substring(0, 6)) }, { key: 'pid' }, { key: 'workers' }]}
               refreshData={refreshWorkersTable}
               refreshInterval={30}
               transform={({ data }) => data}
