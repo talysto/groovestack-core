@@ -1,4 +1,6 @@
 import { Typography, Card, CardContent } from '@mui/material'
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 import { useDataProvider, useResourceContext } from 'react-admin'
 
 import { Charts } from '../views'
@@ -66,7 +68,16 @@ export const JobsAside = () => {
                 { key: 'count_working', label: 'working' },
                 { key: 'count_errored', label: 'errors' },
               ]}
-              emptyContent={<tr aria-colspan={4} style={{textAlign: 'center'}}>No jobs in the queue</tr>}
+              emptyContent={
+                <tr aria-colspan={4}>
+                  <Box >
+                    <Skeleton animation={false} />
+                    <Skeleton animation={false} />
+                    <Skeleton animation={false} />
+                    <div>No jobs in the queue</div>
+                  </Box>
+                </tr>
+              }
               refreshData={refreshJobStatsTable}
               refreshInterval={30}
               transform={transformJobStatsData}
