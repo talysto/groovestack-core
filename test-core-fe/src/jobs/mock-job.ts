@@ -31,7 +31,7 @@ const base = () => ({
   // completion metadata
   finishedAt: faker.date.future(),
 
-  actions: ['retry'].sample(),
+  actions: [['retry'],[],[]].sample(),
 
   // que-specific
   data: {},

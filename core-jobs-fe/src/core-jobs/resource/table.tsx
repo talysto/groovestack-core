@@ -1,3 +1,4 @@
+import { Chip } from '@mui/material'
 import dayjs from 'dayjs'
 
 import {
@@ -37,34 +38,29 @@ const JobsFilters = [
   />,
 ]
 
-const enhancedStatus = (record: any) => {
-  // const record = useRecordContext()
-  // var extended = null;
+const enhancedStatus = () => {
+  const record = useRecordContext()
+  var extended = null;
 
-  // switch (record.status) {
-  //   case "running": {
-  //     extended = `for 34s`;
-  //     break;
-  //   }
-  //   case "error": {
-  //     extended = `2m 12s ago`;
-  //     break;
-  //   }
-  //   case "failed": {
-  //     extended = `8m 45s ago`;
-  //     break;
-  //   }
-  //   case "scheduled": {
-  //     extended = `3h from now`;
-  //     break;
-  //   }
-  // }
+  switch (record.status) {
+    case "running": {
+      return <Chip label={record.status} color="success" size="small"  />
+      break;
+    }
+
+    case "failed": {
+      return <><Chip label={record.status} variant="outlined" color="error" size="small"  /><small style={{display: 'block'}}>{record.errorCount} retries</small></>
+      break;
+    }
+
+    case "error": {
+      return <><Chip label={record.status} variant="outlined" color="warning" size="small"  /><small style={{display: 'block'}}>{record.errorCount} retries</small></>
+      break;
+    }
+  }
 
   return (
-    <div>
-      <div>{record.status}</div>
-      {/* {extended && <small>{extended}</small>} */}
-    </div>
+    <Chip label={record.status} size='small'/>
   )
 }
 
@@ -134,8 +130,8 @@ export const Table = () => {
         <NumberField source="priority" />
         <FunctionField label="Status" render={enhancedStatus} />
         <TimeAgoField label="Scheduled" source="runAt" />
-        <NumberField source="errorCount" label="Errors" />
-        <TimeAgoField label="Expired" source="expiredAt" />
+        {/* <NumberField source="errorCount" label="Errors" />
+        <TimeAgoField label="Expired" source="expiredAt" /> */}
         <JobActions label="Actions" />
       </Datagrid>
     </List>
