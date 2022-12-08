@@ -1,4 +1,6 @@
 import { Typography, Card, CardContent } from '@mui/material'
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 import { useDataProvider, useResourceContext } from 'react-admin'
 
 import { Charts } from '../views'
@@ -16,7 +18,7 @@ export const JobsAside = () => {
 
     return dataProvider.getList(namespacedResource, {
       filter: { reportName: 'job_stats' },
-      pagination: { page: 1, perPage: 100 },
+      pagination: { page: null, perPage: null },
       sort: { field: '', order: '' },
     })
   }
@@ -66,6 +68,18 @@ export const JobsAside = () => {
                 { key: 'count_working', label: 'working' },
                 { key: 'count_errored', label: 'errors' },
               ]}
+              emptyContent={
+                <tr>
+                  <td colSpan={4}>
+                    <Box style={{width: '100%'}}>
+                      <Skeleton animation={false} />
+                      <Skeleton animation={false} />
+                      <Skeleton animation={false} />
+                      <div style={{textAlign: 'center'}}>No jobs in the queue</div>
+                    </Box>
+                  </td>
+                </tr>
+              }
               refreshData={refreshJobStatsTable}
               refreshInterval={30}
               transform={transformJobStatsData}
@@ -78,7 +92,7 @@ export const JobsAside = () => {
           <CardContent>
             <h3>Workers</h3>
             <LiveTable
-              columns={[{ key: 'host' }, { key: 'pid' }, { key: 'workers' }]}
+              columns={[{ key: 'host', render: ((v: string) => v.substring(0, 6)) }, { key: 'pid' }, { key: 'workers' }]}
               refreshData={refreshWorkersTable}
               refreshInterval={30}
               transform={({ data }) => data}

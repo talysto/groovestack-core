@@ -1,7 +1,3 @@
-// import { FC, useEffect } from 'react'
-// import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { Grid } from '@mui/material'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 import dayjs from 'dayjs'
 
 import {
@@ -125,19 +121,11 @@ export const Table = () => {
         <FunctionField
           label="Job"
           render={(record: any) => (
-            <div onClick={(e) => e.stopPropagation()}>
+            <div>
               <div>{record.type}</div>
-              <CopyToClipboard
-                text={record.id}
-                onCopy={() => notify('ID Copied')}
-              >
-                <Grid container direction="row" alignItems="center">
-                  <small style={{ marginRight: 5 }}>
-                    {record.id.substring(0, 6)}
-                  </small>
-                  {/* <ContentCopyIcon fontSize="inherit" /> */}
-                </Grid>
-              </CopyToClipboard>
+              <small style={{ marginRight: 5 }}>
+                {record.id.substring(0, 6)}
+              </small>
             </div>
           )}
         />
