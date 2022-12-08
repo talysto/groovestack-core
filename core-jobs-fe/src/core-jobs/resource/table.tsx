@@ -24,7 +24,7 @@ const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" />,
   <SelectInput
     key="status"
-    // alwaysOn
+    alwaysOn
     source="status"
     choices={[
       { id: 'scheduled', name: 'Scheduled' },

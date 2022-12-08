@@ -5,11 +5,11 @@ import { Admin, Resource } from 'react-admin'
 
 // Source Code import
 import { CoreJobs } from '../../core-jobs-fe/src/core-jobs'
-// const Jobs = CoreJobs.Resource
+const Jobs = CoreJobs.Resource
 
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
-import { Jobs } from './jobs/resource'
+// import { Jobs } from './jobs/resource'
 
 
 import dataProvider from './mock-data-provider'

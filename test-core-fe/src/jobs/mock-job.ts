@@ -11,7 +11,7 @@ const base = () => ({
   type: ['Mailer::Welcome', 'Notify::Slack', 'Reports::EndOfMonth', 'Payment:ProcessRefund'].sample(),
   jobClass: ['ActiveJob::QueueAdapters::QueAdapter::JobWrapper'].sample(),
 
-  arguments: {},
+  // arguments: {},
   // "kwargs": {},
   runAt: faker.date.future(),
 
@@ -23,10 +23,10 @@ const base = () => ({
   expiredAt: faker.date.recent(),
 
   // error metadata
-  errorCount: 0,
+  errorCount: [0,0,0,3].sample(),
   lastError: {},
-  lastErrorBacktrace: null, // ie "/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:431:in `find_with_ids'\n/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:69:in `find'"
-  lastErrorMessage: null, // ie "ActiveRecord::RecordNotFound: Couldn't find User without an ID"
+  lastErrorBacktrace: "/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:431:in `find_with_ids'\n/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:69:in `find'",
+  lastErrorMessage: "ActiveRecord::RecordNotFound: Couldn't find User without an ID",
 
   // completion metadata
   finishedAt: faker.date.future(),
