@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Chart as GoogleChart } from 'react-google-charts'
 
 export const RPMChart: React.FC<{ data?: any }> = ({ data }) => {
