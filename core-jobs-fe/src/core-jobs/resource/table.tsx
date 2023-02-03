@@ -1,8 +1,10 @@
-// import { FC, useEffect } from 'react'
-// import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { Grid } from "@mui/material";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import moment from 'moment';
+import React from 'react'
+
+import { Chip, CircularProgress } from '@mui/material'
+// import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors'
+
+import dayjs from 'dayjs'
+
 import {
   Datagrid,
   DeleteWithConfirmButton,
@@ -14,62 +16,65 @@ import {
   TextField,
   useNotify,
   useRecordContext,
-  Button, 
+  Button,
   useDataProvider,
   useResourceContext,
   useRefresh,
-} from "react-admin";
+} from 'react-admin'
 
-import { JobsAside } from "./JobsAside";
-import { TimeAgoField } from "./TimeAgoField";
+import { JobsAside } from './JobsAside'
+import { TimeAgoField } from './TimeAgoField'
 
 const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" />,
   <SelectInput
     key="status"
-    // alwaysOn
+    alwaysOn
     source="status"
     choices={[
-      { id: "scheduled", name: "Scheduled" },
-      { id: "running", name: "Running" },
-      { id: "finished", name: "Finished" },
-      { id: "errored", name: "Errored" },
-      { id: "failed", name: "Failed" },
-      { id: "expired", name: "Expired" },
+      { id: 'scheduled', name: 'Scheduled' },
+      { id: 'running', name: 'Running' },
+      { id: 'complete', name: 'Complete' },
+      { id: 'errored', name: 'Errored' },
+      { id: 'failed', name: 'Failed' },
+      { id: 'expired', name: 'Expired' },
     ]}
   />,
-];
+]
 
-const enhancedStatus = (record: any) => {
-  // const record = useRecordContext()
+const enhancedStatus = () => {
+  const record = useRecordContext()
   // var extended = null;
 
-  // switch (record.status) {
-  //   case "running": {
-  //     extended = `for 34s`;
-  //     break;
-  //   }
-  //   case "error": {
-  //     extended = `2m 12s ago`;
-  //     break;
-  //   }
-  //   case "failed": {
-  //     extended = `8m 45s ago`;
-  //     break;
-  //   }
-  //   case "scheduled": {
-  //     extended = `3h from now`;
-  //     break;
-  //   }
-  // }
+  const runningIcon = <CircularProgress size='0.75em' />
+
+  switch (record.status) {
+    case "running": {
+      return <Chip label={'Running'} color="info" size="small" icon={runningIcon} />
+    }
+
+    case "failed": {
+      return <Chip label={'Failed'} variant="outlined" color="error" size="small"  />
+    }
+
+    case "error": {
+      // icon={<RunningWithErrorsIcon />
+      return <Chip label={`Error: 3/5 retries`} variant="outlined" color="warning" size="small" />
+    }
+
+    case "scheduled": {
+      return <Chip label={'Scheduled'} size="small"  />
+    }
+
+    case "complete": {
+      return <Chip label={'Complete'} size="small"  />
+    }
+  }
 
   return (
-    <div>
-      <div>{record.status}</div>
-      {/* {extended && <small>{extended}</small>} */}
-    </div>
-  );
-};
+    <Chip label={record.status} size='small'/>
+  )
+}
 
 export const RetryButton: React.FC = () => {
   const dataProvider = useDataProvider()
@@ -78,41 +83,37 @@ export const RetryButton: React.FC = () => {
   const refresh = useRefresh()
   const resource = useResourceContext()
 
-  if (!record) return null;
+  if (!record) return null
 
-  const triggerRetry = async (e) => {
+  const triggerRetry = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
 
     try {
-      await dataProvider.update(resource, { 
-        id: record.id, 
+      await dataProvider.update(resource, {
+        id: record.id,
         previousData: record,
-        data: { expiredAt: null, runAt: moment().toISOString() }
+        data: { expiredAt: null, runAt: dayjs().toISOString() },
       })
-      notify('Retry triggered!', {type: 'success'})
+      notify('Retry triggered!', { type: 'success' })
       refresh()
-    }catch (e){
+    } catch (e) {
       console.error(e)
-      notify(JSON.stringify(e), {type: 'error'})
+      notify(JSON.stringify(e), { type: 'error' })
     }
   }
 
-  return (
-    <Button
-      label="Retry"
-      color="secondary"
-      onClick={triggerRetry}
-    />
-  );
-};
+  return <Button label="Retry" color="secondary" onClick={triggerRetry} />
+}
 
-const JobActions = ({label}: {label?: string}) => {
+const JobActions = ({ label }: { label?: string }) => {
   const record = useRecordContext()
 
-  if (!record) return null 
+  if (!record) return null
 
   return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
+    <div
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
+    >
       {record.actions.includes('retry') && <RetryButton />}
       <DeleteWithConfirmButton label="" />
     </div>
@@ -120,27 +121,19 @@ const JobActions = ({label}: {label?: string}) => {
 }
 
 export const Table = () => {
-  const notify = useNotify();
+  const notify = useNotify()
 
   return (
     <List exporter={false} filters={JobsFilters} aside={<JobsAside />}>
-      <Datagrid sort={{ field: "priority", order: "ASC" }} rowClick="edit">
+      <Datagrid sort={{ field: 'priority', order: 'ASC' }} rowClick="edit">
         <FunctionField
           label="Job"
           render={(record: any) => (
-            <div onClick={(e) => e.stopPropagation()}>
+            <div>
               <div>{record.type}</div>
-              <CopyToClipboard
-                text={record.id}
-                onCopy={() => notify("ID Copied")}
-              >
-                <Grid container direction="row" alignItems="center">
-                  <small style={{ marginRight: 5 }}>
-                    {record.id.substring(0, 6)}
-                  </small>
-                  {/* <ContentCopyIcon fontSize="inherit" /> */}
-                </Grid>
-              </CopyToClipboard>
+              <small style={{ marginRight: 5 }}>
+                {record.id.substring(0, 6)}
+              </small>
             </div>
           )}
         />
@@ -149,10 +142,10 @@ export const Table = () => {
         <NumberField source="priority" />
         <FunctionField label="Status" render={enhancedStatus} />
         <TimeAgoField label="Scheduled" source="runAt" />
-        <NumberField source="errorCount" label="Errors" />
-        <TimeAgoField label="Expired" source="expiredAt" />
+        {/* <NumberField source="errorCount" label="Errors" />
+        <TimeAgoField label="Expired" source="expiredAt" /> */}
         <JobActions label="Actions" />
       </Datagrid>
     </List>
-  );
-};
+  )
+}

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
   Edit,
   Labeled,
@@ -7,16 +9,18 @@ import {
   TextField,
   Toolbar,
   useRecordContext,
-} from "react-admin";
-import { JsonField } from "react-admin-json-view";
+} from 'react-admin'
+// import { JsonField } from 'react-admin-json-view'
 
-import { TimeAgoField } from "./TimeAgoField";
-import Grid from '@mui/material/Grid';
+import { TimeAgoField } from './TimeAgoField'
+import Grid from '@mui/material/Grid'
 
 const ErrorPanel: React.FC = () => {
   const record = useRecordContext()
-  
-  if (!record || !record.errorCount) return null 
+
+  if (!record || !record.errorCount) return null
+
+  console.log(record)
 
   return (
     <>
@@ -44,7 +48,7 @@ export const EditJob = (props: any) => {
     <Toolbar {...props}>
       <SaveButton />
     </Toolbar>
-  );
+  )
 
   // const { record } = useShowController({ resource: 'sessions' })
 
@@ -52,7 +56,7 @@ export const EditJob = (props: any) => {
     <Edit>
       <SimpleShowLayout>
         {/* <TextField source="jobClass" /> */}
-        <TextField source="type" label='Job' />
+        <TextField source="type" label="Job" />
 
         <Grid container spacing={2}>
           <Grid item xs={4}>
@@ -87,7 +91,7 @@ export const EditJob = (props: any) => {
             </div>
             <div>
               <Labeled label="Finished At">
-              <TimeAgoField source="finishedAt" />
+                <TimeAgoField source="finishedAt" />
               </Labeled>
             </div>
             <div>
@@ -98,7 +102,11 @@ export const EditJob = (props: any) => {
           </Grid>
         </Grid>
 
-        <JsonField
+        <TextField source="args" />
+
+        <TextField source="data" />
+
+        {/* <JsonField
           source="args"
           jsonString={false} // Set to true if the value is a string, default: false
           reactJsonOptions={{
@@ -120,10 +128,10 @@ export const EditJob = (props: any) => {
             enableClipboard: false,
             displayDataTypes: false,
           }}
-        />
+        /> */}
 
         <ErrorPanel />
       </SimpleShowLayout>
     </Edit>
-  );
-};
+  )
+}
