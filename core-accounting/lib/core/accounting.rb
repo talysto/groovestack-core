@@ -17,10 +17,10 @@ require 'active_record'
 require 'core/accounting/railtie' if defined?(Rails::Railtie)
 # require 'core/jobs/job'
 # require 'core/jobs/locker'
-# require 'core/jobs/graphql/types'
-# require 'core/jobs/graphql/filters'
-# require 'core/jobs/graphql/mutations'
-# require 'core/jobs/graphql/queries'
+require 'core/accounting/graphql/types'
+require 'core/accounting/graphql/filters'
+# require 'core/accounting/graphql/mutations'
+require 'core/accounting/graphql/queries'
 
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
