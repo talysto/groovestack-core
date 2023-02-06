@@ -10,8 +10,12 @@ module Core
           react_admin_resource :lines, core_namespace: 'Accounting'
         end
 
+        def lines_base_scope
+          ::DoubleEntry::Line.all
+        end
+
         def lines_scope(sort_field: nil, sort_order: nil, filter: {})
-          scope = ::DoubleEntry::Line.all
+          scope = lines_base_scope
           scope = scope.where(id: filter.ids) unless filter.ids.nil?
 
           return scope unless sort_field.present?
