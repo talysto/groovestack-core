@@ -1,8 +1,9 @@
+import { LineShow } from './show'
 import { Table } from "./table"
 
 export class Lines {
   static List = Table
-  // static Edit = EditJob
+  static Show = LineShow
   // // static Show = ShowSession
   // static Icon = PlaylistAddCheckIcon
 }

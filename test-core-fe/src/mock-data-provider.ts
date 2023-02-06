@@ -1,5 +1,6 @@
 import fakeDataProvider from 'ra-data-fakerest'
 import { job } from './jobs/mock-job'
+import { line } from './lines/mock-line'
 // import { faker } from '@faker-js/faker'
 
 declare global {
@@ -13,14 +14,20 @@ Array.prototype.sample = function () {
 }
 
 const jobs = Array.from({ length: 15 }, () => {
-  return Object.assign(job.asAdmin(), {
+    return Object.assign(job.asAdmin(), {
     // divisionId: divisions.sample().id,
+  })
+})
+
+const lines = Array.from({ length: 15 }, () => {
+    return Object.assign(line.asAdmin(), {
   })
 })
 
 export default fakeDataProvider(
   {
     jobs,
+    lines
   },
   true
 )

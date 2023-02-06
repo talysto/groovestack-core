@@ -5,6 +5,9 @@ import { Admin, Resource } from 'react-admin'
 
 // Source Code import
 import { CoreJobs } from '../../core-jobs-fe/src/core-jobs'
+// import { CoreAccounting } from 'core-accounting-fe'
+import { CoreAccounting} from '../../core-accounting-fe/src/core-accounting'
+
 const Jobs = CoreJobs.Resource
 
 // Wireframed Version of the resource (Local)
@@ -40,6 +43,15 @@ function AdminApp() {
         edit={<Jobs.Edit />}
         list={<Jobs.List />}
       />
+
+      <Resource
+        key="admin-lines-resource"
+        name="lines"
+        // icon={Jobs.Icon}
+        options={[{ label: 'Lines', menu: 'admin' }]}
+        show={<CoreAccounting.Lines.Show />}
+        list={<CoreAccounting.Lines.List />}
+      />  
 
     </Admin>
   )
