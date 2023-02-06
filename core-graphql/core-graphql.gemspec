@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'lib/core/accounting/version'
+require_relative 'lib/core/graphql/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'core-accounting'
-  spec.version       = Core::Accounting::VERSION
+  spec.name          = 'core-graphql'
+  spec.version       = Core::GraphQL::VERSION
   spec.authors       = ['Max Schridde']
   spec.email         = ['maxjschridde@gmail.com']
 
-  spec.summary       = 'CORE extension for accounting backend'
-  spec.description   = 'CORE::Accounting is a double entry accounting extension for the CORE Platform.'
-  spec.post_install_message = 'CORE::Accounting installed'
+  spec.summary       = 'CORE extension for shared graphql modules'
+  spec.description   = 'CORE::GraphQL is a module for shared graphql functionality for the CORE Platform.'
+  spec.post_install_message = 'CORE::GraphQL installed'
 
   spec.homepage = 'https://moonlight-labs.com/core/'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.7.2')
@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://moonlight-labs.com//core/'
-  spec.metadata['changelog_uri'] = 'https://moonlight-labs.com/core/core-accounting#changelog'
+  spec.metadata['source_code_uri'] = 'https://moonlight-labs.com/core/'
+  spec.metadata['changelog_uri'] = 'https://moonlight-labs.com/core/core-graphql#changelog'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -33,15 +33,14 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'activerecord', '~> 6.0'
   # spec.add_dependency 'puma'
   # spec.add_dependency 'que', '~> 2.0.0.beta1' # , github: 'que/que'
-  spec.add_dependency 'double_entry'
-  spec.add_dependency 'core-graphql'
+  # spec.add_dependency 'double_entry'
 
   spec.add_development_dependency 'graphql'
-  spec.add_development_dependency 'pg'
+  # spec.add_development_dependency 'pg'
 
-  spec.add_development_dependency 'combustion', '~> 1.3' # for smaller test app
-  spec.add_development_dependency 'racksh'
-  spec.add_development_dependency 'sinatra-activerecord'
+  # spec.add_development_dependency 'combustion', '~> 1.3' # for smaller test app
+  # spec.add_development_dependency 'racksh'
+  # spec.add_development_dependency 'sinatra-activerecord'
   # Consider this dep if we need db:TASKS in development:
   # https://github.com/sinatra-activerecord/sinatra-activerecord
 
