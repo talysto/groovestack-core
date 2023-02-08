@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'activerecord', '~> 6.0'
   # spec.add_dependency 'puma'
   # spec.add_dependency 'que', '~> 2.0.0.beta1' # , github: 'que/que'
-  spec.add_dependency 'double_entry', '~> 2.0'
+  spec.add_dependency 'double_entry', '~> 2.0.0.beta5'
   spec.add_dependency 'core-graphql'
 
   spec.add_development_dependency 'graphql'
