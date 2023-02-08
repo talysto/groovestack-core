@@ -12,8 +12,6 @@ module Core
           field :account, String, null: false 
           field :scope, String, null: false 
           field :code, String, null: false
-          # field :amount, Int, null: false 
-          # field :balance, Int, null: false 
           field :amount, ::GraphQL::Types::JSON, null: false # money object
           field :balance, ::GraphQL::Types::JSON, null: false # money object
           field :partner_account, String, null: false 

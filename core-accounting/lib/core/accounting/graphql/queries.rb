@@ -17,6 +17,8 @@ module Core
         def lines_scope(sort_field: nil, sort_order: nil, filter: {})
           scope = lines_base_scope
           scope = scope.where(id: filter.ids) unless filter.ids.nil?
+          scope = scope.where(code: filter.code) unless filter.code.nil?
+          scope = scope.where(scope: filter.scope) unless filter.scope.nil?
 
           return scope unless sort_field.present?
 
