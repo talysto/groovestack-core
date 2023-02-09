@@ -1,2 +1,2 @@
-module Api::AdminHelper
+module API::AdminHelper
 end
