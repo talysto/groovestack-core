@@ -9,3 +9,6 @@
 
 20.times { User.create!(name: Faker::Name.name, email: Faker::Internet.email) } unless User.count.positive?
 100.times { Thing.create!(name: Faker::FunnyName.two_word_name) } unless Thing.count.positive?
+
+OrgUnit.where(name: 'ATMOS').first_or_create!
+OrgUnit.where(name: 'Emergent Intergalactic').first_or_create!

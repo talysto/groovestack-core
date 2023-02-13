@@ -6,6 +6,9 @@ module Types
 
     include ::Core::Accounting::GraphQL::Queries
 
+    include Queries::OrgUnit 
+    include Queries::User
+
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 

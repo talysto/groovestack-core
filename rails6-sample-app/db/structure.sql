@@ -283,6 +283,30 @@ CREATE TABLE public.double_entry_lines (
 
 
 --
+-- Name: org_unit_hierarchies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.org_unit_hierarchies (
+    ancestor_id uuid NOT NULL,
+    descendant_id uuid NOT NULL,
+    generations integer NOT NULL
+);
+
+
+--
+-- Name: org_units; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.org_units (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    name character varying NOT NULL,
+    parent_id uuid,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: que_lockers; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -482,6 +506,14 @@ ALTER TABLE ONLY public.double_entry_lines
 
 
 --
+-- Name: org_units org_units_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units
+    ADD CONSTRAINT org_units_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: que_jobs que_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -579,6 +611,20 @@ CREATE INDEX lines_scope_account_id_idx ON public.double_entry_lines USING btree
 
 
 --
+-- Name: org_unit_anc_desc_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX org_unit_anc_desc_idx ON public.org_unit_hierarchies USING btree (ancestor_id, descendant_id, generations);
+
+
+--
+-- Name: org_unit_desc_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX org_unit_desc_idx ON public.org_unit_hierarchies USING btree (descendant_id);
+
+
+--
 -- Name: que_jobs_args_gin_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -621,6 +667,14 @@ CREATE TRIGGER que_state_notify AFTER INSERT OR DELETE OR UPDATE ON public.que_j
 
 
 --
+-- Name: org_units fk_rails_54c0512b74; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units
+    ADD CONSTRAINT fk_rails_54c0512b74 FOREIGN KEY (parent_id) REFERENCES public.org_units(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -631,6 +685,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220822215935'),
 ('20221130214506'),
 ('20230203214505'),
-('20230206231054');
+('20230206231054'),
+('20230209165828'),
+('20230209171357');
 
 

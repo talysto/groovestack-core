@@ -13,12 +13,12 @@ gem 'racksh'
 gem 'rails', '~> 6.1.6' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'graphql'
 gem "jsonb_accessor"
+gem 'closure_tree' # Performant tree relationships for models
+
+gem 'rack-cors' # enable CORS request for specific APIs
 
 git 'https://github.com/moonlight-labs/core.git', branch: 'core-accounting' do
   gem 'core-graphql'
-end
-
-git 'https://github.com/moonlight-labs/core.git', branch: 'core-accounting' do
   gem 'core-accounting'
 end
 
