@@ -46,34 +46,43 @@ const enhancedStatus = () => {
   const record = useRecordContext()
   // var extended = null;
 
-  const runningIcon = <CircularProgress size='0.75em' />
+  const runningIcon = <CircularProgress size="0.75em" />
 
   switch (record.status) {
-    case "running": {
-      return <Chip label={'Running'} color="info" size="small" icon={runningIcon} />
+    case 'running': {
+      return (
+        <Chip label={'Running'} color="info" size="small" icon={runningIcon} />
+      )
     }
 
-    case "failed": {
-      return <Chip label={'Failed'} variant="outlined" color="error" size="small"  />
+    case 'failed': {
+      return (
+        <Chip label={'Failed'} variant="outlined" color="error" size="small" />
+      )
     }
 
-    case "error": {
+    case 'error': {
       // icon={<RunningWithErrorsIcon />
-      return <Chip label={`Error: 3/5 retries`} variant="outlined" color="warning" size="small" />
+      return (
+        <Chip
+          label={`Error: 3/5 retries`}
+          variant="outlined"
+          color="warning"
+          size="small"
+        />
+      )
     }
 
-    case "scheduled": {
-      return <Chip label={'Scheduled'} size="small"  />
+    case 'scheduled': {
+      return <Chip label={'Scheduled'} size="small" />
     }
 
-    case "complete": {
-      return <Chip label={'Complete'} size="small"  />
+    case 'complete': {
+      return <Chip label={'Complete'} size="small" />
     }
   }
 
-  return (
-    <Chip label={record.status} size='small'/>
-  )
+  return <Chip label={record.status} size="small" />
 }
 
 export const RetryButton: React.FC = () => {

@@ -1,11 +1,8 @@
-import React from 'react'
-
 import { Typography, Card, CardContent } from '@mui/material'
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
+import Box from '@mui/material/Box'
+import Skeleton from '@mui/material/Skeleton'
 import { useDataProvider, useResourceContext } from 'react-admin'
 
-import { Charts } from '../views'
 import { LiveTable } from './LiveTable'
 import './pivot.css'
 
@@ -20,7 +17,7 @@ export const JobsAside = () => {
 
     return dataProvider.getList(namespacedResource, {
       filter: { reportName: 'job_stats' },
-      pagination: { page: null, perPage: null },
+      pagination: { page: 0, perPage: 10 },
       sort: { field: '', order: '' },
     })
   }
@@ -73,11 +70,13 @@ export const JobsAside = () => {
               emptyContent={
                 <tr>
                   <td colSpan={4}>
-                    <Box style={{width: '100%'}}>
+                    <Box style={{ width: '100%' }}>
                       <Skeleton animation={false} />
                       <Skeleton animation={false} />
                       <Skeleton animation={false} />
-                      <div style={{textAlign: 'center'}}>No jobs in the queue</div>
+                      <div style={{ textAlign: 'center' }}>
+                        No jobs in the queue
+                      </div>
                     </Box>
                   </td>
                 </tr>
@@ -94,7 +93,11 @@ export const JobsAside = () => {
           <CardContent>
             <h3>Workers</h3>
             <LiveTable
-              columns={[{ key: 'host', render: ((v: string) => v.substring(0, 6)) }, { key: 'pid' }, { key: 'workers' }]}
+              columns={[
+                { key: 'host', render: (v: string) => v.substring(0, 6) },
+                { key: 'pid' },
+                { key: 'workers' },
+              ]}
               refreshData={refreshWorkersTable}
               refreshInterval={30}
               transform={({ data }) => data}
