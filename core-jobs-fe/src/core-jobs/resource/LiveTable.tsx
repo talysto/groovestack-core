@@ -1,6 +1,4 @@
-import { BottomNavigationClassKey } from '@mui/material'
 import React from 'react'
-import { number } from 'react-admin'
 
 type LiveTableProps = {
   columns: { key: string; label?: string; render?: (v: string) => string }[]
