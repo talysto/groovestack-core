@@ -1,26 +1,18 @@
 import fakeDataProvider from 'ra-data-fakerest'
-import { job } from './jobs/mock-job'
-// import { faker } from '@faker-js/faker'
+import { mockJob } from 'core-jobs-fe'
 
-declare global {
-  interface Array<T> {
-    sample(): T
-  }
-}
+// import {mockJob} from 'core-jobs-fe'
 
-Array.prototype.sample = function () {
-  return this[Math.floor(Math.random() * this.length)]
-}
 
-const jobs = Array.from({ length: 15 }, () => {
-  return Object.assign(job.asAdmin(), {
-    // divisionId: divisions.sample().id,
-  })
-})
+// let i = 1
+// const jobs = Array.from({ length: 15 }, () => ({id: i++, name: 'hello' }))
+// console.log(mockJob)
+
+const jobs = Array.from({ length: 15 }, () => mockJob() )
 
 export default fakeDataProvider(
   {
-    jobs,
+    jobs: jobs,
   },
   true
 )

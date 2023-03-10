@@ -6,6 +6,8 @@ import { useDataProvider, useResourceContext } from 'react-admin'
 
 import { LiveTable } from './LiveTable'
 import './pivot.css'
+import { Paper } from '@mui/material'
+import { Grid } from '@mui/material'
 
 export const JobsAside = () => {
   const dataProvider = useDataProvider()
@@ -40,27 +42,10 @@ export const JobsAside = () => {
   }
 
   return (
-    <div style={{ minWidth: '33%', marginLeft: '1em', marginRight: '1em' }}>
-      <Typography
-        style={{
-          marginTop: '4em',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 20,
-        }}
-      >
-        {/* <Card>
+    <Box sx={{ minWidth: '33%', marginLeft: '1em', marginRight: '1em', mt: 8, gap: 3}}>
+        <Card sx={{mb:3}}>
           <CardContent>
-            <Charts.KPIs />
-
-            <h3>Job RPM</h3>
-            <Charts.RPM />
-          </CardContent>
-        </Card> */}
-
-        <Card>
-          <CardContent>
-            <h3>Jobs by Type</h3>
+          <Typography variant="h6">Jobs by Type</Typography>
             <LiveTable
               columns={[
                 { key: 'sub_class', label: 'type' },
@@ -92,7 +77,7 @@ export const JobsAside = () => {
 
         <Card>
           <CardContent>
-            <h3>Workers</h3>
+          <Typography variant="h6">Workers</Typography>
             <LiveTable
               columns={[
                 { key: 'host', render: (v: string) => v.substring(0, 6) },
@@ -105,7 +90,6 @@ export const JobsAside = () => {
             />
           </CardContent>
         </Card>
-      </Typography>
-    </div>
+    </Box>
   )
 }

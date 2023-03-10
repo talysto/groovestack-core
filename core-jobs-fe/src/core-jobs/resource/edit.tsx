@@ -10,7 +10,6 @@ import {
   Toolbar,
   useRecordContext,
 } from 'react-admin'
-// import { JsonField } from 'react-admin-json-view'
 
 import { TimeAgoField } from './TimeAgoField'
 import Grid from '@mui/material/Grid'
@@ -43,14 +42,13 @@ const ErrorPanel: React.FC = () => {
   )
 }
 
-export const EditJob = (props: any) => {
-  const EditToolbar = (props: any) => (
-    <Toolbar {...props}>
-      <SaveButton />
-    </Toolbar>
-  )
+// const EditToolbar = (props: any) => (
+//   <Toolbar {...props}>
+//     <SaveButton />
+//   </Toolbar>
+// )
 
-  // const { record } = useShowController({ resource: 'sessions' })
+export const EditJob = (props: any) => {
 
   return (
     <Edit>
@@ -105,30 +103,6 @@ export const EditJob = (props: any) => {
         <TextField source="args" />
 
         <TextField source="data" />
-
-        {/* <JsonField
-          source="args"
-          jsonString={false} // Set to true if the value is a string, default: false
-          reactJsonOptions={{
-            // Props passed to react-json-view
-            name: null,
-            collapsed: true,
-            enableClipboard: false,
-            displayDataTypes: false,
-          }}
-        />
-
-        <JsonField
-          source="data"
-          jsonString={false} // Set to true if the value is a string, default: false
-          reactJsonOptions={{
-            // Props passed to react-json-view
-            name: null,
-            collapsed: true,
-            enableClipboard: false,
-            displayDataTypes: false,
-          }}
-        /> */}
 
         <ErrorPanel />
       </SimpleShowLayout>
