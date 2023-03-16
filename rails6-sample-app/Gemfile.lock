@@ -1,15 +1,13 @@
 GIT
   remote: https://github.com/moonlight-labs/core.git
-  revision: c4c23a316e485b2f93ee2c5f19446f042b789c4c
+  revision: 4d7e5dedbee55b707362cfd132eae856cb7b552e
   branch: sprint/core-1.0
   specs:
     core-accounting (0.1.0)
-      core-graphql
       double_entry (~> 2.0.0.beta5)
     core-base (0.1.0)
       graphql
       pg
-    core-graphql (0.1.0)
 
 GEM
   remote: https://rubygems.org/
