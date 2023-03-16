@@ -17,8 +17,8 @@ gem 'closure_tree' # Performant tree relationships for models
 
 gem 'rack-cors' # enable CORS request for specific APIs
 
-git 'https://github.com/moonlight-labs/core.git', branch: 'core-accounting' do
-  gem 'core-graphql'
+git 'https://github.com/moonlight-labs/core.git', branch: 'sprint/core-1.0' do # TODO: update branch name to main
+  gem 'core-base'
   gem 'core-accounting'
 end
 
