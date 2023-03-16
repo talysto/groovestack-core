@@ -13,9 +13,8 @@ import {
   SelectInput,
   ReferenceField,
 } from 'react-admin'
+import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 
-// import { AuthorField } from './AuthorField'
-import { ResourceField } from './ResourceField'
 
 const ActionsField = (props: any) => {
   return (
@@ -47,20 +46,10 @@ export const CommentsList = () => {
       filters={commentFilters}
     >
       <Datagrid rowClick="edit">
-        {/* <TextField source="id" /> */}
 
-        <TextField source="author.name" label="Author" />
-        <TextField source="resource.name" label="Resource" />
-        <TextField source="resource.type" label="Resource Type" />
-        {/* <ReferenceField
-              label="Resource"
-              source="resource.id"
-              reference={(resource) => resource.type}
-              link="show"
-            >
-              <TextField source="name" />
-            </ReferenceField> */}
-        <ResourceField source="resource" />
+        <PolymorphicReferenceField source="author" />
+        <PolymorphicReferenceField source="resource" />
+
         <TextField source="body" label="Comment" />
         <DateField source="created_at" label="Date" />
         <ActionsField source="actions" />
