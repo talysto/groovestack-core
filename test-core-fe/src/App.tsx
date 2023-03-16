@@ -18,6 +18,7 @@ const Comments = CoreComments.Resource
 
 import dataProvider from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
+import { Company } from './resources/company'
 
 // export default {
 //   title: 'CORE/React Admin',
@@ -26,8 +27,8 @@ import { HomeView } from './pages/HomeView'
 // export const Resources = (args) => <AdminApp {...args} />
 
 // const lineFilters = [
-//   <SelectArrayInput 
-//     source="code" 
+//   <SelectArrayInput
+//     source="code"
 //     choices={[
 //       { id: 'buy_aqd', name: 'Buy AQD' },
 //       { id: 'spend_aqd', name: 'Spend AQD' },
@@ -37,7 +38,7 @@ import { HomeView } from './pages/HomeView'
 
 // const AccountScopeReferenceField = () => {
 //   const record = useRecordContext()
-//   if (!record) return null 
+//   if (!record) return null
 //   return (
 //     <ReferenceField
 //       label="Scope"
@@ -79,9 +80,11 @@ function AdminApp() {
 
       <Resource
         name="Comment"
-        icon={Comments.Icon}
+        // icon={Comments.Icon}
         list={Comments.List}
         edit={Comments.Edit}
+        // recordRepresentation='body'
+        // recordRepresentation={(record) => record.body.substring(0, 40)}
       />
 
       {/* <Resource
@@ -92,15 +95,15 @@ function AdminApp() {
         options={[{ label: 'Lines', menu: 'admin' }]}
         show={<CoreAccounting.Lines.Show />}
         list={
-          <CoreAccounting.Lines.List 
-            tableProps={{filters: lineFilters}} 
+          <CoreAccounting.Lines.List
+            tableProps={{filters: lineFilters}}
           >
             <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
             <TextField source="scope" sortable={false} />
           </CoreAccounting.Lines.List>
         }
-      />  
+      />
       <Resource key="org-unit" name="OrgUnit" /> */}
 
       <Resource name="webhooks" list={ListGuesser} />
@@ -118,8 +121,8 @@ function AdminApp() {
 
       <Resource
         name="Company"
-        edit={EditGuesser}
-        list={ListGuesser}
+        edit={Company.Edit}
+        list={Company.List}
         recordRepresentation="name"
       />
     </Admin>

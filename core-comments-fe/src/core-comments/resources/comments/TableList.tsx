@@ -39,7 +39,7 @@ const commentFilters = [
   // </ReferenceInput>,
 ]
 
-export const CommentsList = () => {
+export const CommentsTable = () => {
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}

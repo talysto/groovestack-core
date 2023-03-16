@@ -6,10 +6,10 @@ import { faker } from '@faker-js/faker'
 import { mockUsers } from './mockUsers'
 import { mockCompanies } from './mockCompanies'
 
-const users = mockUsers(35)
-const companies = mockCompanies(15)
+const users = mockUsers(10)
+const companies = mockCompanies(5)
 
-const comments = mockComments(25).map((comment) => {
+const comments = mockComments(50).map((comment) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([faker.helpers.arrayElement(users), faker.helpers.arrayElement(companies)])
 

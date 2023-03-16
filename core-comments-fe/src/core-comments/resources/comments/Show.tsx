@@ -26,12 +26,12 @@ type CommentsShowProps = ShowProps & {
     }
 }
 
-export const CommentsShow: React.FC<CommentsShowProps> = ({ showLayoutWrapper = { component: null, props: null }, ...props }) => {
+export const CommentShow: React.FC<CommentsShowProps> = ({ showLayoutWrapper = { component: null, props: null }, ...props }) => {
     const renderLayout = () => (
         <SimpleShowLayout>
             <TextField source="id" />
             {/* <AuthorField source="author" addLabel /> */}
-            <PolymorphicReferenceField source="resource" addLabel />
+            <PolymorphicReferenceField source="resource" />
             <TextField source="body" />
         </SimpleShowLayout>
     )

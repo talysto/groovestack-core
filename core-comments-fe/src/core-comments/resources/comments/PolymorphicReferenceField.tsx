@@ -1,8 +1,13 @@
 import React from 'react'
 
-import { ReferenceField, TextField, useRecordContext } from 'react-admin'
+import { PublicFieldProps, ReferenceField, TextField, useRecordContext } from 'react-admin'
 
-export const PolymorphicReferenceField = ({ source }) => {
+interface PolymorphicReferenceFieldProps extends PublicFieldProps {
+  source: string
+}
+
+export const PolymorphicReferenceField = ({ source } : PolymorphicReferenceFieldProps)  => {
+
   const record = useRecordContext()
 
   let refReference = record[`${source}_type`]
@@ -12,8 +17,6 @@ export const PolymorphicReferenceField = ({ source }) => {
     refReference = record[source]['type']
     refSource = `${source}.id`
   }
-
-  console.log(`${refReference} /${refSource}`)
 
   return (
     <ReferenceField source={refSource} reference={refReference} />
