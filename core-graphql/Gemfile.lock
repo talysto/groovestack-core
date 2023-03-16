@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    core-graphql (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    graphql (2.0.16)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  core-graphql!
+  graphql
+
+BUNDLED WITH
+   2.1.4

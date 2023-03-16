@@ -233,22 +233,77 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: que_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: double_entry_account_balances; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.que_jobs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+CREATE TABLE public.double_entry_account_balances (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    account character varying NOT NULL,
+    scope character varying,
+    balance bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
--- Name: que_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: double_entry_line_checks; Type: TABLE; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.que_jobs_id_seq OWNED BY public.que_jobs.id;
+CREATE TABLE public.double_entry_line_checks (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    last_line_id bigint NOT NULL,
+    errors_found boolean NOT NULL,
+    log text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: double_entry_lines; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.double_entry_lines (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    account character varying NOT NULL,
+    scope character varying,
+    code character varying NOT NULL,
+    amount bigint NOT NULL,
+    balance bigint NOT NULL,
+    partner_id uuid,
+    partner_account character varying NOT NULL,
+    partner_scope character varying,
+    detail_type character varying,
+    detail_id uuid,
+    metadata jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: org_unit_hierarchies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.org_unit_hierarchies (
+    ancestor_id uuid NOT NULL,
+    descendant_id uuid NOT NULL,
+    generations integer NOT NULL
+);
+
+
+--
+-- Name: org_units; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.org_units (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    name character varying NOT NULL,
+    parent_id uuid,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
@@ -267,6 +322,76 @@ CREATE UNLOGGED TABLE public.que_lockers (
     CONSTRAINT valid_queues CHECK (((array_ndims(queues) = 1) AND (array_length(queues, 1) IS NOT NULL))),
     CONSTRAINT valid_worker_priorities CHECK (((array_ndims(worker_priorities) = 1) AND (array_length(worker_priorities, 1) IS NOT NULL)))
 );
+
+
+--
+-- Name: que_all; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.que_all AS
+ SELECT que_jobs.priority,
+    que_jobs.run_at,
+    que_jobs.id,
+    que_jobs.job_class,
+    que_jobs.error_count,
+    que_jobs.last_error_message,
+    que_jobs.queue,
+    que_jobs.last_error_backtrace,
+    que_jobs.finished_at,
+    que_jobs.expired_at,
+    que_jobs.args,
+    que_jobs.data,
+    que_jobs.job_schema_version,
+    que_jobs.kwargs,
+    locks.id AS lock_id,
+    que_lockers.pid,
+    que_lockers.worker_count,
+    que_lockers.worker_priorities,
+    que_lockers.ruby_pid,
+    que_lockers.ruby_hostname,
+    que_lockers.queues,
+    que_lockers.listening,
+    ((que_jobs.args -> 0) ->> 'job_class'::text) AS sub_class
+   FROM ((public.que_jobs
+     LEFT JOIN ( SELECT (((pg_locks.classid)::bigint << 32) + (pg_locks.objid)::bigint) AS id,
+            pg_locks.locktype,
+            pg_locks.database,
+            pg_locks.relation,
+            pg_locks.page,
+            pg_locks.tuple,
+            pg_locks.virtualxid,
+            pg_locks.transactionid,
+            pg_locks.classid,
+            pg_locks.objid,
+            pg_locks.objsubid,
+            pg_locks.virtualtransaction,
+            pg_locks.pid,
+            pg_locks.mode,
+            pg_locks.granted,
+            pg_locks.fastpath,
+            pg_locks.waitstart
+           FROM pg_locks
+          WHERE (pg_locks.locktype = 'advisory'::text)) locks USING (id))
+     LEFT JOIN public.que_lockers ON ((locks.pid = que_lockers.pid)));
+
+
+--
+-- Name: que_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.que_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: que_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.que_jobs_id_seq OWNED BY public.que_jobs.id;
 
 
 --
@@ -322,6 +447,19 @@ ALTER SEQUENCE public.things_id_seq OWNED BY public.things.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    name character varying,
+    email character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: que_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -341,6 +479,38 @@ ALTER TABLE ONLY public.things ALTER COLUMN id SET DEFAULT nextval('public.thing
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: double_entry_account_balances double_entry_account_balances_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.double_entry_account_balances
+    ADD CONSTRAINT double_entry_account_balances_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: double_entry_line_checks double_entry_line_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.double_entry_line_checks
+    ADD CONSTRAINT double_entry_line_checks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: double_entry_lines double_entry_lines_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.double_entry_lines
+    ADD CONSTRAINT double_entry_lines_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: org_units org_units_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units
+    ADD CONSTRAINT org_units_pkey PRIMARY KEY (id);
 
 
 --
@@ -381,6 +551,77 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.things
     ADD CONSTRAINT things_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_account_balances_on_account; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_account_balances_on_account ON public.double_entry_account_balances USING btree (account);
+
+
+--
+-- Name: index_account_balances_on_scope_and_account; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_account_balances_on_scope_and_account ON public.double_entry_account_balances USING btree (scope, account);
+
+
+--
+-- Name: line_checks_created_at_last_line_id_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX line_checks_created_at_last_line_id_idx ON public.double_entry_line_checks USING btree (created_at, last_line_id);
+
+
+--
+-- Name: lines_account_code_created_at_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX lines_account_code_created_at_idx ON public.double_entry_lines USING btree (account, code, created_at);
+
+
+--
+-- Name: lines_account_created_at_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX lines_account_created_at_idx ON public.double_entry_lines USING btree (account, created_at);
+
+
+--
+-- Name: lines_scope_account_created_at_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX lines_scope_account_created_at_idx ON public.double_entry_lines USING btree (scope, account, created_at);
+
+
+--
+-- Name: lines_scope_account_id_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX lines_scope_account_id_idx ON public.double_entry_lines USING btree (scope, account, id);
+
+
+--
+-- Name: org_unit_anc_desc_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX org_unit_anc_desc_idx ON public.org_unit_hierarchies USING btree (ancestor_id, descendant_id, generations);
+
+
+--
+-- Name: org_unit_desc_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX org_unit_desc_idx ON public.org_unit_hierarchies USING btree (descendant_id);
 
 
 --
@@ -426,6 +667,14 @@ CREATE TRIGGER que_state_notify AFTER INSERT OR DELETE OR UPDATE ON public.que_j
 
 
 --
+-- Name: org_units fk_rails_54c0512b74; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units
+    ADD CONSTRAINT fk_rails_54c0512b74 FOREIGN KEY (parent_id) REFERENCES public.org_units(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -433,6 +682,11 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20220822214505'),
-('20220822215935');
+('20220822215935'),
+('20221130214506'),
+('20230203214505'),
+('20230206231054'),
+('20230209165828'),
+('20230209171357');
 
 

@@ -27,6 +27,11 @@ const comments = mockComments(25).map((comment) => {
   })
 })
 
+// const lines = Array.from({ length: 15 }, () => {
+//   return Object.assign(line.asAdmin(), {
+// })
+// })
+
 export default fakeDataProvider(
   {
     // CORE Modules
