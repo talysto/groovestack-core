@@ -7,10 +7,34 @@
 * .rubocop.yml - `rubocopy -a` to cleanup and report on ruby code
 * Taskfile.yml - `task` to see tasks that can run across full repo
 
+== SETUP for Core-Accounting
+* add the core gem to your Gemfile
+```
+git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
+  gem 'core-base'
+  gem 'core-accounting'
+end
+```
+* run `bundle`
+* run `rails db:migrate`
+* include `include Core::Accounting::GraphQL::Queries` in `Types::Query`. ex:
+```
+class Types::Query < GraphQL::Schema::Object
+  include Core::Accounting::GraphQL::Queries
+end
+```
+* add a core-accounting initializer to 
+- configure double entry
+- define double entry accounts
+- define double entry transfers
+- extend the DoubleEntry::Line model (particularly for configuring the metadata jsonb_accessor)
+- extend the Core::Accounting::GraphQL::Types::Line 
+
 == SETUP for Core-Jobs
 * add the core gem to your Gemfile
 ```
 git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
+  gem 'core-base'
   gem 'core-jobs'
 end
 ```
