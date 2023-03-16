@@ -7,8 +7,6 @@ async function importFaker():Promise<any>{
   }
 }
 
-// import { faker } from '@faker-js/faker'
-
 let admin: () => {[key: string]: any}
 
 const faker = await importFaker()
