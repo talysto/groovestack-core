@@ -4,14 +4,14 @@ module Core
       module Queries
         extend ActiveSupport::Concern
         
-        include ::Core::GraphQL::Providers::ReactAdmin::Resource
-
         included do
+          include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
+
           react_admin_resource :jobs, core_namespace: 'Jobs'
           react_admin_resource :lockers, core_namespace: 'Jobs'
           react_admin_resource :job_reports, core_namespace: 'Jobs', except: [:find]
           # field :allJobReports, [::Core::Jobs::GraphQL::Types::JobReport], null: false, resolver_method: :job_stats
-        end
+        end if defined?(::Core::Base)
 
         def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
           scope = ::Core::Jobs::Job.unscoped
