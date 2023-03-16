@@ -4,7 +4,7 @@ module Core
       module Queries
         extend ActiveSupport::Concern
         
-        include ::Core::GraphQL::Providers::ReactAdmin::Resource
+        include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
         included do
           react_admin_resource :jobs, core_namespace: 'Jobs'
