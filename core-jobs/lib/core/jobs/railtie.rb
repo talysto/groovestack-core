@@ -76,7 +76,7 @@ if defined?(Rails)
                 message: "Error: 'pg' gem is required, add it your your gemfile" },
               {
                 eval: Proc.new { raise Core::Jobs::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
-                message: 'Error: Must change your schema format to :sql'
+                message: 'Error: Must change your schema format to :sql. In application.rb, add \'config.active_record.schema_format = :sql\''
               },
               {
                 eval: Proc.new { Que::ActiveRecord::Model.count },
@@ -84,7 +84,7 @@ if defined?(Rails)
               },
               {
                 eval: Proc.new { raise Core::Jobs::WrongActiveJobQueueAdapter unless Rails.application.config.active_job.queue_adapter == :que },
-                message: 'Error: Must change your active job queue adapter to :que'
+                message: 'Error: Must change your active job queue adapter to :que.  In application.rb, add \'config.active_job.queue_adapter = :que\''
               }
             ]
 

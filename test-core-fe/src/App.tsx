@@ -1,4 +1,4 @@
-import { Admin, ListGuesser, Resource } from 'react-admin'
+import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -11,7 +11,7 @@ const Jobs = CoreJobs.Resource
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
 
-import dataProvider from './mock-data-provider'
+import dataProvider from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
 
 // export default {
@@ -35,9 +35,23 @@ function AdminApp() {
       <Resource
         name="jobs"
         icon={Jobs.Icon}
-        options={[{ label: 'Job Queue'}]}
+        // options={{ label: 'CORE::Jobs'}}
         edit={Jobs.Edit}
         list={Jobs.List}
+      />
+
+
+      <Resource name="webhooks" list={ListGuesser} />
+      <Resource name="Lookups" list={ListGuesser} />
+      <Resource name="Accounts" list={ListGuesser} />
+      <Resource name="Account Transactions" list={ListGuesser} />
+      <Resource name="versions" list={ListGuesser} />
+      <Resource name="comments" list={ListGuesser} />
+
+      <Resource
+        name="users"
+        edit={EditGuesser}
+        list={ListGuesser}
       />
 
     </Admin>
