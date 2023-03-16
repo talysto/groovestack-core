@@ -15,8 +15,15 @@ const comments = mockComments(25).map((comment) => {
 
   return ( {
     ...comment,
-    author: user,
-    resource: resource
+
+    author_id: user.id,
+    author_type: user.type,
+
+    resource_id: resource.id,
+    resource_type: resource.type,
+
+    // author: user,
+    // resource: resource
   })
 })
 
