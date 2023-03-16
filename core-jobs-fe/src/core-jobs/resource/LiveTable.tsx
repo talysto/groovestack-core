@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 type LiveTableProps = {
   columns: { key: string; label?: string; render?: (v: string) => string }[]
@@ -19,7 +19,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({
   transform,
   rowTotals = false,
 }) => {
-  const [data, setData] = React.useState<any[]>([])
+  const [data, setData] = useState<any[]>([])
 
   const fetchData = async () => {
     console.log('LiveTable: fetching data...')
@@ -61,7 +61,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({
     )
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData()
 
     let interval: Timeout

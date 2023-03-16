@@ -1,13 +1,10 @@
 import React from 'react'
-import { Typography, Card, CardContent } from '@mui/material'
-import Box from '@mui/material/Box'
-import Skeleton from '@mui/material/Skeleton'
+import { Typography, Card, CardContent, Box, Skeleton } from '@mui/material'
 import { useDataProvider, useResourceContext } from 'react-admin'
 
 import { LiveTable } from './LiveTable'
 import './pivot.css'
-import { Paper } from '@mui/material'
-import { Grid } from '@mui/material'
+
 
 export const JobsAside = () => {
   const dataProvider = useDataProvider()

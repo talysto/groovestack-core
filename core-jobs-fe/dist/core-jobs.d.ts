@@ -23,7 +23,9 @@ declare class Jobs {
     };
 }
 
-export declare const mockJob: () => {
+export declare const mockJobs: ({ count }: {
+    count?: number | undefined;
+}) => {
     id: string;
     createdAt: Date;
     updatedAt: Date;
@@ -44,6 +46,15 @@ export declare const mockJob: () => {
     args: {
         job_id: string;
     }[];
-};
+}[];
+
+export declare const mockLockers: ({ count }: {
+    count?: number | undefined;
+}) => {
+    id: string;
+    host: string;
+    pid: number;
+    wokers: string;
+}[];
 
 export { }

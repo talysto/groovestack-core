@@ -1,7 +1,7 @@
 import { Charts } from './views'
 import { Jobs } from './resource'
 
-export { mockJob } from './mock-job'
+export { mockJobs, mockLockers } from './mock-job'
 
 export class CoreJobs {
   static Charts = Charts
