@@ -73,7 +73,12 @@ if defined?(Rails)
             validations = [
               {
                 eval: Proc.new { require 'pg' },
-                message: "Error: 'pg' gem is required, add it your your gemfile" },
+                message: "Error: 'pg' gem is required, add it your your gemfile" 
+              },
+              {
+                eval: Proc.new { require 'graphql' },
+                message: "Error: 'graphql' gem is required, add it your your gemfile" 
+              },
               {
                 eval: Proc.new { raise Core::Jobs::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
                 message: 'Error: Must change your schema format to :sql'
