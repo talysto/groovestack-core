@@ -8,7 +8,6 @@ specifiers:
   '@types/react-copy-to-clipboard': ^5.0.4
   '@types/react-dom': ^18.0.11
   '@vitejs/plugin-react': ^3.1.0
-  core-accounting-fe: https://gitpkg.now.sh/moonlight-labs/core/core-accounting-fe?4dafec9
   import: ^0.0.6
   ra-data-fakerest: ^4.8.2
   react: ^18.2.0
@@ -24,7 +23,6 @@ dependencies:
   '@faker-js/faker': 7.6.0
   '@mui/icons-material': 5.11.11_e2f19213392100bddfc99878d46bd6fd
   '@mui/material': 5.11.13_cd160f55359eec37085c65857803cdca
-  core-accounting-fe: '@gitpkg.now.sh/moonlight-labs/core/core-accounting-fe?4dafec9_e1c76275ab6167cb1b584c032143446f'
   ra-data-fakerest: 4.8.3
   react: 18.2.0
   react-admin: 4.8.3_cd160f55359eec37085c65857803cdca
@@ -2302,25 +2300,4 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
-    dev: false
-
-  '@gitpkg.now.sh/moonlight-labs/core/core-accounting-fe?4dafec9_e1c76275ab6167cb1b584c032143446f':
-    resolution: {tarball: https://gitpkg.now.sh/moonlight-labs/core/core-accounting-fe?4dafec9}
-    id: '@gitpkg.now.sh/moonlight-labs/core/core-accounting-fe?4dafec9'
-    name: core-accounting-fe
-    version: 0.1.0
-    requiresBuild: true
-    peerDependencies:
-      '@mui/icons-material': ^5.10.2
-      '@mui/material': ^5.10.2
-      react: ^18.2.0
-      react-admin: ^4.3.0
-      react-admin-json-view: ^2.0.0
-      react-dom: ^18.2.0
-    dependencies:
-      '@mui/icons-material': 5.11.11_e2f19213392100bddfc99878d46bd6fd
-      '@mui/material': 5.11.13_cd160f55359eec37085c65857803cdca
-      react: 18.2.0
-      react-admin: 4.8.3_cd160f55359eec37085c65857803cdca
-      react-dom: 18.2.0_react@18.2.0
     dev: false

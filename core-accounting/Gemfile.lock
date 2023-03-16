@@ -1,16 +1,8 @@
-GIT
-  remote: https://github.com/moonlight-labs/core.git
-  revision: 44255890f8fc93bdeb4de01ecd22ed2c64df203e
-  branch: core-accounting
-  specs:
-    core-graphql (0.1.0)
-
 PATH
   remote: .
   specs:
     core-accounting (0.1.0)
-      core-graphql
-      double_entry
+      double_entry (~> 2.0.0.beta5)
 
 GEM
   remote: https://rubygems.org/
@@ -45,7 +37,7 @@ GEM
       thor (>= 0.14.6)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
-    double_entry (1.0.1)
+    double_entry (2.0.0.beta5)
       activerecord (>= 3.2.0)
       activesupport (>= 3.2.0)
       money (>= 6.0.0)
@@ -112,7 +104,6 @@ DEPENDENCIES
   activerecord
   combustion (~> 1.3)
   core-accounting!
-  core-graphql!
   graphql
   minitest (~> 5.0)
   pg

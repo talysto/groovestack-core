@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@babel/core': '7'
+  '@faker-js/faker': ^7.6.0
   '@mui/icons-material': ^5.10.2
   '@mui/material': ^5.10.2
   '@types/react': ^18.0.17
@@ -20,6 +21,7 @@ specifiers:
 
 devDependencies:
   '@babel/core': 7.20.12
+  '@faker-js/faker': 7.6.0
   '@mui/icons-material': 5.11.0_66f1ac29f311f0ec1a6e8b913f2f643c
   '@mui/material': 5.11.7_eb470c8c7e9f228ade54526bb46c0ad4
   '@types/react': 18.0.27
@@ -456,6 +458,11 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: true
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}

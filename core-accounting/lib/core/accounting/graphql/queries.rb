@@ -4,11 +4,11 @@ module Core
       module Queries
         extend ActiveSupport::Concern
 
-        include ::Core::GraphQL::Providers::ReactAdmin::Resource
-
         included do
+          include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
+
           react_admin_resource :lines, core_namespace: 'Accounting'
-        end
+        end if defined?(::Core::Base)
 
         def lines_base_scope
           ::DoubleEntry::Line.all

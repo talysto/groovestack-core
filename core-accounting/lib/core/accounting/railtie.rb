@@ -25,8 +25,6 @@ class String
   def reverse_color;  "\e[7m#{self}\e[27m" end
 end
 
-
-
 if defined?(Rails)
   module Core
     module Accounting
@@ -55,7 +53,12 @@ if defined?(Rails)
             validations = [
               {
                 eval: Proc.new { require 'pg' },
-                message: "Error: 'pg' gem is required, add it your your gemfile" },
+                message: "Error: 'pg' gem is required, add it your your gemfile" 
+              },
+              {
+                eval: Proc.new { raise unless defined?(::Core::Base) },
+                message: "Error: 'core-base' gem is required, add it your your gemfile" 
+              },
               {
                 eval: Proc.new { raise Core::Accounting::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
                 message: 'Error: Must change your schema format to :sql'

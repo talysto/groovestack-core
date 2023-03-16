@@ -1,6 +1,7 @@
 import fakeDataProvider from 'ra-data-fakerest'
 import { mockJobs, mockLockers } from 'core-jobs-fe'
 import { mockComments } from 'core-comments-fe'
+import { mockLine } from 'core-accounting-fe'
 
 import { faker } from '@faker-js/faker'
 import { mockUsers } from './mockUsers'
@@ -27,10 +28,7 @@ const comments = mockComments(50).map((comment) => {
   })
 })
 
-// const lines = Array.from({ length: 15 }, () => {
-//   return Object.assign(line.asAdmin(), {
-// })
-// })
+const lines = Array.from({ length: 15 }, () => mockLine.asAdmin())
 
 export default fakeDataProvider(
   {
@@ -38,7 +36,7 @@ export default fakeDataProvider(
     jobs: mockJobs(15),
     lockers: mockLockers(3),
     Comment: comments,
-
+    Line: lines,
     // For Testing Integrations
     User: users,
     Company: companies
