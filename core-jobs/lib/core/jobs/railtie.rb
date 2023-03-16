@@ -80,7 +80,7 @@ if defined?(Rails)
                 message: "Error: 'graphql' gem is required, add it your your gemfile" 
               },
               {
-                eval: Proc.new { defined?(::Core::Base) },
+                eval: Proc.new { raise unless defined?(::Core::Base) },
                 message: "Error: 'core-base' gem is required, add it your your gemfile" 
               },
               {
