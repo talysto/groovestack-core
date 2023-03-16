@@ -5,7 +5,7 @@ import { Admin, EditGuesser, ListGuesser, ReferenceField, Resource, SelectArrayI
 
 // Source Code import
 import { CoreJobs } from 'core-jobs-fe'
-import { CoreAccounting} from '../../core-accounting-fe/src/core-accounting'
+import { CoreAccounting} from 'core-accounting-fe'
 
 const Jobs = CoreJobs.Resource
 
@@ -35,7 +35,7 @@ import { HomeView } from './pages/HomeView'
 //   />
 // ];
 
-// const AccountScopeReferenceField = () => {
+// const AccountScopeReferenceField: React.FC<{source: string}> = ({source}) => {
 //   const record = useRecordContext()
 //   if (!record) return null 
 //   return (
@@ -84,7 +84,7 @@ function AdminApp() {
         edit={Comments.Edit}
       />
 
-      {/* <Resource
+      <Resource
         key="admin-lines-resource"
         // name="lines"
         name="Line"
@@ -93,15 +93,15 @@ function AdminApp() {
         show={<CoreAccounting.Lines.Show />}
         list={
           <CoreAccounting.Lines.List 
-            tableProps={{filters: lineFilters}} 
+            // tableProps={{filters: lineFilters}} 
           >
-            <TextField label="Account" source="accountIdentifier" sortable={false} />
+            {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
-            <TextField source="scope" sortable={false} />
+            <TextField source="scope" sortable={false} /> */}
           </CoreAccounting.Lines.List>
         }
       />  
-      <Resource key="org-unit" name="OrgUnit" /> */}
+      {/* <Resource key="org-unit" name="OrgUnit" /> */}
 
       <Resource name="webhooks" list={ListGuesser} />
       <Resource name="Lookups" list={ListGuesser} />
