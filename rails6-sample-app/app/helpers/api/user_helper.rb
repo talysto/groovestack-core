@@ -1,2 +1,2 @@
-module Api::UserHelper
+module API::UserHelper
 end
