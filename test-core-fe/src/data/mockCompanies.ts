@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export const mockCompanies = ({ count = 15 }) => Array.from({ length: count }, () => ({
+export const mockCompanies = ( count = 15 ) => Array.from({ length: count }, () => ({
   name: faker.company.name(),
   address: faker.address.streetAddress(),
 

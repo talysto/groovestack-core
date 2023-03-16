@@ -8,19 +8,18 @@ import {
   EditProps,
   SimpleShowLayout,
 } from 'react-admin'
+import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 
-export const CommentsEdit = () => {
+export const CommentEdit = () => {
   return (
     <Edit>
       <SimpleShowLayout>
         <TextField source="id" />
-        <TextField source="author.name" />
-        <TextField source="resource.name" />
-        <TextField source="resource.type" />
+        <PolymorphicReferenceField source="author" />
+        <PolymorphicReferenceField source="resource" />
+
       </SimpleShowLayout>
       <SimpleForm>
-        {/* <AuthorField source="author" addLabel /> */}
-        {/* <ResourceField source="resource" addLabel /> */}
         <TextInput source="body" multiline />
       </SimpleForm>
     </Edit>

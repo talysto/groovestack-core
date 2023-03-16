@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-export const mockComments = ({ count = 15 }) =>
+export const mockComments = (count = 15) =>
   Array.from({ length: count }, () => ({
 
     body: faker.lorem.paragraph(),
