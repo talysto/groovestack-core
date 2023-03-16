@@ -10,9 +10,6 @@ require 'core/jobs/version'
 require 'active_record'
 require 'que/active_record/model'
 
-require 'core/graphql/providers/react_admin/types'
-require 'core/graphql/providers/react_admin/resource'
-
 require 'core/jobs/puma/plugin/que'
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/job'
