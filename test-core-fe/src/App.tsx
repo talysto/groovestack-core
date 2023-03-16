@@ -7,6 +7,9 @@ import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin'
 import { CoreJobs } from 'core-jobs-fe'
 const Jobs = CoreJobs.Resource
 
+import { CoreComments } from 'core-comments-fe'
+const Comments = CoreComments.Resource
+
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
@@ -31,7 +34,6 @@ function AdminApp() {
       dashboard={HomeView}
       // layout={CustomLayout}
     >
-
       <Resource
         name="jobs"
         icon={Jobs.Icon}
@@ -40,20 +42,32 @@ function AdminApp() {
         list={Jobs.List}
       />
 
+      <Resource
+        name="Comment"
+        icon={Comments.Icon}
+        list={Comments.List}
+        edit={Comments.Edit}
+      />
 
       <Resource name="webhooks" list={ListGuesser} />
       <Resource name="Lookups" list={ListGuesser} />
       <Resource name="Accounts" list={ListGuesser} />
       <Resource name="Account Transactions" list={ListGuesser} />
       <Resource name="versions" list={ListGuesser} />
-      <Resource name="comments" list={ListGuesser} />
 
       <Resource
-        name="users"
+        name="User"
         edit={EditGuesser}
         list={ListGuesser}
+        recordRepresentation="name"
       />
 
+      <Resource
+        name="Company"
+        edit={EditGuesser}
+        list={ListGuesser}
+        recordRepresentation="name"
+      />
     </Admin>
   )
 }

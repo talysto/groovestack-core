@@ -7,7 +7,7 @@ import {
     TextField,
 } from "react-admin";
 
-import { AuthorField } from './AuthorField'
+// import { AuthorField } from './AuthorField'
 import { ResourceField } from './ResourceField'
 
 const CommentsTitle = (props: any) => {
@@ -30,7 +30,7 @@ export const CommentsShow: React.FC<CommentsShowProps> = ({ showLayoutWrapper = 
     const renderLayout = () => (
         <SimpleShowLayout>
             <TextField source="id" />
-            <AuthorField source="author" addLabel />
+            {/* <AuthorField source="author" addLabel /> */}
             <ResourceField source="resource" addLabel />
             <TextField source="body" />
         </SimpleShowLayout>

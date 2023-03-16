@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ReferenceField } from "react-admin";
+import { ReferenceField, TextField, useRecordContext } from "react-admin";
 
 const ResourceDisplay: React.FC<{ record?: any, type: string }> = ({ record, type }) => {
   if (!record) return null
@@ -15,12 +15,19 @@ const ResourceDisplay: React.FC<{ record?: any, type: string }> = ({ record, typ
   )
 }
 
-export const ResourceField = (props: any) => {
-  const { record } = props;
-  const reference = `admin/${record.resourceType.toLowerCase()}`
+export const ResourceField = ({ source }) => {
+  const record = useRecordContext()
+  console.log(record[source])
+
+  // const reference = `admin/${record.type.toLowerCase()}`
+  const reference = record[source]['type']
+
   return (
-    <ReferenceField record={record} source="resourceId" reference={reference}>
-      <ResourceDisplay type={record.resourceType} />
+    <ReferenceField source={record[source]['id']} reference={record[source]['type']}>
+
+      <TextField source="name" />
+      {/* <ResourceDisplay type={record.type} /> */}
+
     </ReferenceField>
   )
 }
