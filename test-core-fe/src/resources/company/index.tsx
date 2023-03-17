@@ -13,6 +13,8 @@ import {
 
 import { Paper, Typography } from '@mui/material'
 import { CoreComments } from 'core-comments-fe'
+import { CoreVersions } from 'core-versions-fe'
+
 const Comments = CoreComments.Resource
 
 const inlineLayout = {
@@ -31,6 +33,11 @@ export const CompanyAside = () => (
     <Typography variant="h6">Comments</Typography>
     <SimpleShowLayout>
       <CoreComments.CommentStream />
+    </SimpleShowLayout>
+
+    <Typography variant="h6">Versions</Typography>
+    <SimpleShowLayout>
+      <CoreVersions.VersionStream />
     </SimpleShowLayout>
   </Paper>
 )
