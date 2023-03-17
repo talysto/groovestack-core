@@ -1,6 +1,6 @@
 import { Lines } from './resource'
 
-export { line as mockLine } from './mock-line'
+export { mockLines } from './mockLines'
 
 export class CoreAccounting {
   static Lines = Lines
