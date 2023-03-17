@@ -49,7 +49,6 @@ const ErrorPanel: React.FC = () => {
 // )
 
 export const EditJob = (props: any) => {
-
   return (
     <Edit>
       <SimpleShowLayout>

@@ -38,8 +38,7 @@ export const CompanyAside = () => (
 export const CompanyList = () => (
   <List>
     <Datagrid rowClick="edit">
-
-      <TextField source="name" sx={{fontWeight: 'bold'}} />
+      <TextField source="name" sx={{ fontWeight: 'bold' }} />
       <TextField source="address" />
       <ReferenceManyCount
         label="Comments"

@@ -12,9 +12,12 @@ const companies = mockCompanies(5)
 
 const comments = mockComments(50).map((comment) => {
   const user = faker.helpers.arrayElement(users)
-  const resource = faker.helpers.arrayElement([faker.helpers.arrayElement(users), faker.helpers.arrayElement(companies)])
+  const resource = faker.helpers.arrayElement([
+    faker.helpers.arrayElement(users),
+    faker.helpers.arrayElement(companies),
+  ])
 
-  return ( {
+  return {
     ...comment,
 
     author_id: user.id,
@@ -25,7 +28,7 @@ const comments = mockComments(50).map((comment) => {
 
     // author: user,
     // resource: resource
-  })
+  }
 })
 
 const lines = Array.from({ length: 15 }, () => mockLine.asAdmin())
@@ -39,11 +42,9 @@ export default fakeDataProvider(
     Line: lines,
     // For Testing Integrations
     User: users,
-    Company: companies
+    Company: companies,
   },
   true
 )
 
 // Comment
-
-

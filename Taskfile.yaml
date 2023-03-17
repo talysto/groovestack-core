@@ -7,9 +7,15 @@ tasks:
     cmds:
       - task: versions
 
+  tidy-check:
+    cmds:
+      - cmd: rubocop **/*.rb **/*.gemspec **/Gemfile 1
+        ignore_error: true
+      - npx prettier -c .
+
   tidy:
     cmds:
-      - rubocop -A **/*.rb **/*.gemspec **/Gemfile
+      - rubocop -a **/*.rb **/*.gemspec **/Gemfile
       - npx prettier --loglevel warn -w .
 
   versions:
@@ -60,4 +66,3 @@ tasks:
       - mkdir -p cd {{.CLI_ARGS}}-fe/src/{{.CLI_ARGS}}
       # - BACKEND
       - mkdir {{.CLI_ARGS}}
-

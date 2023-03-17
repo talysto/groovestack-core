@@ -1,13 +1,13 @@
-async function importFaker():Promise<any>{
+async function importFaker(): Promise<any> {
   try {
-    const {faker} = await import('@faker-js/faker');
-    return faker;
+    const { faker } = await import('@faker-js/faker')
+    return faker
   } catch (e) {
     return null
   }
 }
 
-let admin: () => {[key: string]: any}
+let admin: () => { [key: string]: any }
 
 const faker = await importFaker()
 
@@ -23,16 +23,16 @@ if (faker) {
       formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
       currency: {
         code: 'EQD',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     },
     balance: {
       amount: faker.commerce.price(1, 1000, 0),
       formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
       currency: {
         code: 'EQD',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     },
     partnerAccount: faker.datatype.uuid(),
     partnerScope: faker.datatype.uuid(),
@@ -40,7 +40,7 @@ if (faker) {
     detailId: faker.datatype.uuid(),
     detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
     // TODO improve metadata fake data
-    metadata: {key1: ['value 1', 'value 2'], key2: 'value 3'},
+    metadata: { key1: ['value 1', 'value 2'], key2: 'value 3' },
     createdAt: faker.date.recent(),
     updatedAt: faker.date.recent(),
   })

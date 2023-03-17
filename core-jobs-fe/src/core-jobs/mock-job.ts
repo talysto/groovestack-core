@@ -5,9 +5,8 @@ export const mockLockers = ({ count = 15 }) =>
     id: faker.datatype.uuid(),
     host: faker.word.adjective() + '_' + faker.word.noun(),
     pid: 12332,
-    wokers: faker.random.numeric()
-  })
-)
+    wokers: faker.random.numeric(),
+  }))
 
 export const mockJobs = ({ count = 15 }) =>
   Array.from({ length: count }, () => ({

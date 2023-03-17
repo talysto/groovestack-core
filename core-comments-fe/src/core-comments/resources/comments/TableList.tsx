@@ -15,7 +15,6 @@ import {
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 
-
 const ActionsField = (props: any) => {
   return (
     <EditButton
@@ -46,7 +45,6 @@ export const CommentsTable = () => {
       filters={commentFilters}
     >
       <Datagrid rowClick="edit">
-
         <PolymorphicReferenceField source="author" />
         <PolymorphicReferenceField source="resource" />
 

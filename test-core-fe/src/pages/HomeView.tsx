@@ -19,7 +19,9 @@ export const HomeView = () => (
   <Paper elevation={2} sx={{ minHeight: 600, p: 5, minWidth: 800 }}>
     <h2>CORE Platform</h2>
     <p>
-      The CORE Platform is a suite of modules that provide full-stack functionality to allow you to build new bespoke platforms faster than ever.
+      The CORE Platform is a suite of modules that provide full-stack
+      functionality to allow you to build new bespoke platforms faster than
+      ever.
     </p>
 
     <h3>Design Approach</h3>
@@ -35,8 +37,8 @@ export const HomeView = () => (
     <ul>
       <li>Base - shared elements leveraged by most CORE modules</li>
       <li>
-        <b>Jobs</b> - reliable, persistent asynchronous job management. [PostgreSQL,
-        que gem ]
+        <b>Jobs</b> - reliable, persistent asynchronous job management.
+        [PostgreSQL, que gem ]
       </li>
       <li>
         <b>Comments</b> - Allow admins (or end users) to record notes about any
@@ -53,11 +55,10 @@ export const HomeView = () => (
         transactions [double_entry gem]
       </li>
       <li>
-        <b>Versions/Changes</b> - track changes to database records [paper_trail gem]{' '}
+        <b>Versions/Changes</b> - track changes to database records [paper_trail
+        gem]{' '}
       </li>
-      <li>
-        Auth - FE components
-      </li>
+      <li>Auth - FE components</li>
     </ul>
 
     <h3>CORE Stack</h3>

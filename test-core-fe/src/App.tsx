@@ -1,11 +1,20 @@
-import { Admin, EditGuesser, ListGuesser, ReferenceField, Resource, SelectArrayInput, TextField, useRecordContext } from 'react-admin'
+import {
+  Admin,
+  EditGuesser,
+  ListGuesser,
+  ReferenceField,
+  Resource,
+  SelectArrayInput,
+  TextField,
+  useRecordContext,
+} from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
 
 // Source Code import
 import { CoreJobs } from 'core-jobs-fe'
-import { CoreAccounting} from 'core-accounting-fe'
+import { CoreAccounting } from 'core-accounting-fe'
 
 const Jobs = CoreJobs.Resource
 
@@ -94,7 +103,7 @@ function AdminApp() {
         show={<CoreAccounting.Lines.Show />}
         list={
           <CoreAccounting.Lines.List
-            // tableProps={{filters: lineFilters}}
+          // tableProps={{filters: lineFilters}}
           >
             {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
