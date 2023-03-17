@@ -1,26 +1,25 @@
-var q = Object.defineProperty;
-var B = (r, t, o) => t in r ? q(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
-var u = (r, t, o) => (B(r, typeof t != "symbol" ? t + "" : t, o), o);
-import * as k from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react@18.2.0/node_modules/react/jsx-runtime.js";
-import { Chart as O } from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react-google-charts@4.0.0_biqbaboplfbrettd7655fr4n2y/node_modules/react-google-charts/dist/index.js";
-import $ from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@mui+icons-material@5.11.11_ao76n7r2cajsoyr3cbwrn7geoi/node_modules/@mui/icons-material/PlaylistAddCheck.js";
-import { useRecordContext as g, Edit as Y, SimpleShowLayout as Q, TextField as c, Labeled as d, useDataProvider as N, useResourceContext as j, useNotify as I, List as U, Datagrid as K, FunctionField as S, NumberField as G, SearchInput as H, SelectInput as V, DeleteWithConfirmButton as X, useRefresh as Z, Button as ee } from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react-admin@4.8.2_zula6vjvt3wdocc4mwcxqa6nzi/node_modules/react-admin/dist/esm/index.js";
-import C from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/dayjs@1.11.7/node_modules/dayjs/dayjs.min.js";
-import re from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/dayjs@1.11.7/node_modules/dayjs/plugin/relativeTime.js";
-import w from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@mui+material@5.11.12_dl5meo57oqikomakll4aynjcye/node_modules/@mui/material/Grid/index.js";
-import { Box as D, Card as P, CardContent as J, Typography as L, Skeleton as T, Chip as b, CircularProgress as te } from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@mui+material@5.11.12_dl5meo57oqikomakll4aynjcye/node_modules/@mui/material/index.js";
-import { useState as ne, useEffect as ie } from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react@18.2.0/node_modules/react/index.js";
-import { faker as a } from "/Users/darren/Code/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@faker-js+faker@7.6.0/node_modules/@faker-js/faker/dist/esm/index.mjs";
-const F = k.Fragment, e = k.jsx, i = k.jsxs, ae = [
+var z = Object.defineProperty;
+var q = (t, r, i) => r in t ? z(t, r, { enumerable: !0, configurable: !0, writable: !0, value: i }) : t[r] = i;
+var d = (t, r, i) => (q(t, typeof r != "symbol" ? r + "" : r, i), i);
+import * as R from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react@18.2.0/node_modules/react/jsx-runtime.js";
+import { Chart as B } from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react-google-charts@4.0.0_react-dom@18.2.0+react@18.2.0/node_modules/react-google-charts/dist/index.js";
+import O from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@mui+icons-material@5.11.11_e2f19213392100bddfc99878d46bd6fd/node_modules/@mui/icons-material/PlaylistAddCheck.js";
+import { useRecordContext as f, Edit as $, SimpleShowLayout as Y, TextField as s, Labeled as c, useDataProvider as W, useResourceContext as N, useNotify as j, List as Q, Datagrid as U, FunctionField as E, NumberField as K, SearchInput as G, SelectInput as H, DeleteWithConfirmButton as V, useRefresh as X, Button as Z } from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react-admin@4.8.4_cd160f55359eec37085c65857803cdca/node_modules/react-admin/dist/esm/index.js";
+import T from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/dayjs@1.11.7/node_modules/dayjs/dayjs.min.js";
+import ee from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/dayjs@1.11.7/node_modules/dayjs/plugin/relativeTime.js";
+import v from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@mui+material@5.11.13_cd160f55359eec37085c65857803cdca/node_modules/@mui/material/Grid/index.js";
+import { Box as S, Card as D, CardContent as P, Typography as J, Skeleton as k, Chip as p, CircularProgress as re } from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@mui+material@5.11.13_cd160f55359eec37085c65857803cdca/node_modules/@mui/material/index.js";
+import { useState as te, useEffect as ne } from "/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/react@18.2.0/node_modules/react/index.js";
+const I = R.Fragment, e = R.jsx, a = R.jsxs, ae = [
   { label: "Jobs", value: "1.45", unit: "MM" },
   { label: "Latency", value: "32", unit: "min" },
   { label: "Workers", value: "16" },
   { label: "Running", value: "42" }
-], oe = () => /* @__PURE__ */ e(
+], ie = () => /* @__PURE__ */ e(
   "div",
   {
     style: { display: "flex", justifyContent: "space-between", width: "100%" },
-    children: ae.map((r) => /* @__PURE__ */ i("div", { children: [
+    children: ae.map((t) => /* @__PURE__ */ a("div", { children: [
       /* @__PURE__ */ e(
         "small",
         {
@@ -29,10 +28,10 @@ const F = k.Fragment, e = k.jsx, i = k.jsxs, ae = [
             fontWeight: "bold",
             color: "#999"
           },
-          children: r.label
+          children: t.label
         }
       ),
-      /* @__PURE__ */ i(
+      /* @__PURE__ */ a(
         "div",
         {
           style: {
@@ -42,36 +41,36 @@ const F = k.Fragment, e = k.jsx, i = k.jsxs, ae = [
             lineHeight: "100%<"
           },
           children: [
-            r.value,
-            r.unit && /* @__PURE__ */ e("span", { style: { marginLeft: 4, fontWeight: 100, fontSize: "50%" }, children: r.unit })
+            t.value,
+            t.unit && /* @__PURE__ */ e("span", { style: { marginLeft: 4, fontWeight: 100, fontSize: "50%" }, children: t.unit })
           ]
         }
       )
     ] }))
   }
-), le = () => /* @__PURE__ */ i("div", { children: [
+), oe = () => /* @__PURE__ */ a("div", { children: [
   "Pivot Table",
   /* @__PURE__ */ e("br", {}),
   "props=",
   ["data"]
-] }), se = ({ data: r }) => {
-  const t = new Date(Math.ceil(new Date().getTime() / 6e4) * 6e4), o = [
+] }), le = ({ data: t }) => {
+  const r = new Date(Math.ceil(new Date().getTime() / 6e4) * 6e4), i = [
     ["Period", "Jobs"],
-    [new Date(t.getTime() - 1e3 * 60 * 60), 1],
-    [new Date(t.getTime() - 800 * 60 * 60), 2],
-    [new Date(t.getTime() - 600 * 60 * 60), 7],
-    [new Date(t.getTime() - 400 * 60 * 60), 2],
-    [new Date(t.getTime() - 200 * 60 * 60), 3],
-    [t, 4]
+    [new Date(r.getTime() - 1e3 * 60 * 60), 1],
+    [new Date(r.getTime() - 800 * 60 * 60), 2],
+    [new Date(r.getTime() - 600 * 60 * 60), 7],
+    [new Date(r.getTime() - 400 * 60 * 60), 2],
+    [new Date(r.getTime() - 200 * 60 * 60), 3],
+    [r, 4]
   ];
   return /* @__PURE__ */ e(
-    O,
+    B,
     {
       width: "100%",
       height: "64px",
       chartType: "ColumnChart",
       loader: /* @__PURE__ */ e("div", { children: "Loading..." }),
-      data: r || o,
+      data: t || i,
       options: {
         title: "Job RPM",
         bar: { groupWidth: "100%" },
@@ -85,8 +84,8 @@ const F = k.Fragment, e = k.jsx, i = k.jsxs, ae = [
         // chartArea: { left: 40, top: 20, right: 20 },
         hAxis: {
           viewWindow: {
-            min: new Date(t.getTime() - 1e3 * 60 * 60),
-            max: t
+            min: new Date(r.getTime() - 1e3 * 60 * 60),
+            max: r
           }
         },
         vAxis: {
@@ -97,140 +96,152 @@ const F = k.Fragment, e = k.jsx, i = k.jsxs, ae = [
     }
   );
 };
-class x {
+class w {
 }
-u(x, "RPM", se), u(x, "PivotTable", le), u(x, "KPIs", oe);
-C.extend(re);
-const ce = (r) => {
-  if (!r)
+d(w, "RPM", le), d(w, "PivotTable", oe), d(w, "KPIs", ie);
+T.extend(ee);
+const se = (t) => {
+  if (!t)
     return null;
-  const t = C(r);
-  return /* @__PURE__ */ e("span", { title: t.format("dddd, MMMM Do YYYY, h:mm a"), children: t.fromNow() });
-}, A = ({
-  source: r
+  const r = T(t);
+  return /* @__PURE__ */ e("span", { title: r.format("dddd, MMMM Do YYYY, h:mm a"), children: r.fromNow() });
+}, x = ({
+  source: t
 }) => {
-  const t = g();
-  return t ? ce(t[r]) : null;
-}, de = () => {
-  const r = g();
-  return !r || !r.errorCount ? null : (console.log(r), /* @__PURE__ */ i(F, { children: [
-    /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Error Count", children: /* @__PURE__ */ e(c, { source: "errorCount" }) }) }),
-    /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Last Error Message", children: /* @__PURE__ */ e(c, { source: "lastErrorMessage" }) }) }),
-    /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Error Stacktrace", children: /* @__PURE__ */ e(c, { source: "lastErrorBacktrace" }) }) })
+  const r = f();
+  return r ? se(r[t]) : null;
+}, ce = () => {
+  const t = f();
+  return !t || !t.errorCount ? null : (console.log(t), /* @__PURE__ */ a(I, { children: [
+    /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Error Count", children: /* @__PURE__ */ e(s, { source: "errorCount" }) }) }),
+    /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Last Error Message", children: /* @__PURE__ */ e(s, { source: "lastErrorMessage" }) }) }),
+    /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Error Stacktrace", children: /* @__PURE__ */ e(s, { source: "lastErrorBacktrace" }) }) })
   ] }));
-}, ue = (r) => /* @__PURE__ */ e(Y, { children: /* @__PURE__ */ i(Q, { children: [
-  /* @__PURE__ */ e(c, { source: "type", label: "Job" }),
-  /* @__PURE__ */ i(w, { container: !0, spacing: 2, children: [
-    /* @__PURE__ */ i(w, { item: !0, xs: 4, children: [
-      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "ID", children: /* @__PURE__ */ e(c, { source: "id" }) }) }),
-      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Status", children: /* @__PURE__ */ e(c, { source: "status" }) }) })
+}, de = (t) => /* @__PURE__ */ e($, { children: /* @__PURE__ */ a(Y, { children: [
+  /* @__PURE__ */ e(s, { source: "type", label: "Job" }),
+  /* @__PURE__ */ a(v, { container: !0, spacing: 2, children: [
+    /* @__PURE__ */ a(v, { item: !0, xs: 4, children: [
+      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "ID", children: /* @__PURE__ */ e(s, { source: "id" }) }) }),
+      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Status", children: /* @__PURE__ */ e(s, { source: "status" }) }) })
     ] }),
-    /* @__PURE__ */ i(w, { item: !0, xs: 4, children: [
-      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Queue", children: /* @__PURE__ */ e(c, { source: "queue" }) }) }),
-      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Priority", children: /* @__PURE__ */ e(c, { source: "priority" }) }) })
+    /* @__PURE__ */ a(v, { item: !0, xs: 4, children: [
+      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Queue", children: /* @__PURE__ */ e(s, { source: "queue" }) }) }),
+      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Priority", children: /* @__PURE__ */ e(s, { source: "priority" }) }) })
     ] }),
-    /* @__PURE__ */ i(w, { item: !0, xs: 4, children: [
-      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Run At", children: /* @__PURE__ */ e(A, { source: "runAt" }) }) }),
-      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Finished At", children: /* @__PURE__ */ e(A, { source: "finishedAt" }) }) }),
-      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(d, { label: "Expired At", children: /* @__PURE__ */ e(A, { source: "expiredAt" }) }) })
+    /* @__PURE__ */ a(v, { item: !0, xs: 4, children: [
+      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Run At", children: /* @__PURE__ */ e(x, { source: "runAt" }) }) }),
+      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Finished At", children: /* @__PURE__ */ e(x, { source: "finishedAt" }) }) }),
+      /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(c, { label: "Expired At", children: /* @__PURE__ */ e(x, { source: "expiredAt" }) }) })
     ] })
   ] }),
-  /* @__PURE__ */ e(c, { source: "args" }),
-  /* @__PURE__ */ e(c, { source: "data" }),
-  /* @__PURE__ */ e(de, {})
-] }) }), M = ({
-  columns: r,
-  emptyContent: t,
-  refreshData: o,
-  refreshInterval: p,
-  transform: f,
-  rowTotals: l = !1
+  /* @__PURE__ */ e(s, { source: "args" }),
+  /* @__PURE__ */ e(s, { source: "data" }),
+  /* @__PURE__ */ e(ce, {})
+] }) }), L = ({
+  columns: t,
+  emptyContent: r,
+  refreshData: i,
+  refreshInterval: m,
+  transform: b,
+  rowTotals: o = !1
 }) => {
-  const [s, y] = ne([]), E = async () => {
+  const [l, g] = te([]), C = async () => {
     console.log("LiveTable: fetching data...");
     try {
-      const n = await o();
-      console.log("LiveTable: fetched data", n), y(f ? f(n) : n);
+      const n = await i();
+      console.log("LiveTable: fetched data", n), g(b ? b(n) : n);
     } catch (n) {
       console.error(n);
     }
-  }, _ = () => s.length == 0 && t ? t : /* @__PURE__ */ i(F, { children: [
-    s.map((n, h) => /* @__PURE__ */ e("tr", { children: r.map(({ key: m, render: v }, z) => /* @__PURE__ */ e("td", { title: n[m], children: v ? v(n[m]) : n[m] }, `${h}-${z}`)) }, h)),
-    l && s.length > 0 ? /* @__PURE__ */ e("tr", { children: r.map(({ key: n }, h) => /* @__PURE__ */ e("td", { style: { fontWeight: "bold" }, children: isNaN(Number(s[0][n])) ? null : s.reduce((m, v) => m + Number(v[n]), 0) }, `total-${h}`)) }) : null
+  }, F = () => l.length == 0 && r ? r : /* @__PURE__ */ a(I, { children: [
+    l.map((n, u) => /* @__PURE__ */ e("tr", { children: t.map(({ key: h, render: y }, _) => /* @__PURE__ */ e("td", { title: n[h], children: y ? y(n[h]) : n[h] }, `${u}-${_}`)) }, u)),
+    o && l.length > 0 ? /* @__PURE__ */ e("tr", { children: t.map(({ key: n }, u) => /* @__PURE__ */ e("td", { style: { fontWeight: "bold" }, children: isNaN(Number(l[0][n])) ? null : l.reduce((h, y) => h + Number(y[n]), 0) }, `total-${u}`)) }) : null
   ] });
-  return ie(() => {
-    E();
+  return ne(() => {
+    C();
     let n;
-    return p && p != 0 && (n = setInterval(E, 1e3 * p)), () => {
+    return m && m != 0 && (n = setInterval(C, 1e3 * m)), () => {
       n && clearInterval(n);
     };
-  }, []), /* @__PURE__ */ i("table", { className: "pivot-table", style: { width: "100%" }, children: [
-    /* @__PURE__ */ e("thead", { children: /* @__PURE__ */ e("tr", { children: r.map(({ key: n, label: h }, m) => /* @__PURE__ */ e("th", { children: h ? h.toUpperCase() : n.toUpperCase() }, m)) }) }),
-    /* @__PURE__ */ e("tbody", { children: _() })
+  }, []), /* @__PURE__ */ a("table", { className: "pivot-table", style: { width: "100%" }, children: [
+    /* @__PURE__ */ e("thead", { children: /* @__PURE__ */ e("tr", { children: t.map(({ key: n, label: u }, h) => /* @__PURE__ */ e("th", { children: u ? u.toUpperCase() : n.toUpperCase() }, h)) }) }),
+    /* @__PURE__ */ e("tbody", { children: F() })
   ] });
 };
-const he = () => {
-  const r = N(), t = j();
-  return /* @__PURE__ */ i(D, { sx: { minWidth: "33%", marginLeft: "1em", marginRight: "1em", mt: 8, gap: 3 }, children: [
-    /* @__PURE__ */ e(P, { sx: { mb: 3 }, children: /* @__PURE__ */ i(J, { children: [
-      /* @__PURE__ */ e(L, { variant: "h6", children: "Jobs by Type" }),
-      /* @__PURE__ */ e(
-        M,
-        {
-          columns: [
-            { key: "sub_class", label: "type" },
-            { key: "count", label: "queued" },
-            { key: "count_working", label: "working" },
-            { key: "count_errored", label: "errors" }
-          ],
-          emptyContent: /* @__PURE__ */ e("tr", { children: /* @__PURE__ */ e("td", { colSpan: 4, children: /* @__PURE__ */ i(D, { style: { width: "100%" }, children: [
-            /* @__PURE__ */ e(T, { animation: !1 }),
-            /* @__PURE__ */ e(T, { animation: !1 }),
-            /* @__PURE__ */ e(T, { animation: !1 }),
-            /* @__PURE__ */ e("div", { style: { textAlign: "center" }, children: "No jobs in the queue" })
-          ] }) }) }),
-          refreshData: () => {
-            const l = t.split("/"), s = l.length > 1 ? `${l[0]}/JobReport` : "JobReport";
-            return r.getList(s, {
-              filter: { reportName: "job_stats" },
-              pagination: { page: 0, perPage: 10 },
-              sort: { field: "", order: "" }
-            });
-          },
-          refreshInterval: 30,
-          transform: ({ data: l }) => l[0].data,
-          rowTotals: !0
-        }
-      )
-    ] }) }),
-    /* @__PURE__ */ e(P, { children: /* @__PURE__ */ i(J, { children: [
-      /* @__PURE__ */ e(L, { variant: "h6", children: "Workers" }),
-      /* @__PURE__ */ e(
-        M,
-        {
-          columns: [
-            { key: "host", render: (l) => l.substring(0, 6) },
-            { key: "pid" },
-            { key: "workers" }
-          ],
-          refreshData: () => {
-            const l = t.split("/"), s = l.length > 1 ? `${l[0]}/locker` : "locker";
-            return r.getList(s, {
-              filter: {},
-              pagination: { page: 1, perPage: 100 },
-              sort: { field: "", order: "" }
-            });
-          },
-          refreshInterval: 30,
-          transform: ({ data: l }) => l
-        }
-      )
-    ] }) })
-  ] });
-}, me = [
-  /* @__PURE__ */ e(H, { alwaysOn: !0, source: "q" }, "q"),
+const ue = () => {
+  const t = W(), r = N();
+  return /* @__PURE__ */ a(
+    S,
+    {
+      sx: {
+        minWidth: "33%",
+        marginLeft: "1em",
+        marginRight: "1em",
+        mt: 8,
+        gap: 3
+      },
+      children: [
+        /* @__PURE__ */ e(D, { sx: { mb: 3 }, children: /* @__PURE__ */ a(P, { children: [
+          /* @__PURE__ */ e(J, { variant: "h6", children: "Jobs by Type" }),
+          /* @__PURE__ */ e(
+            L,
+            {
+              columns: [
+                { key: "sub_class", label: "type" },
+                { key: "count", label: "queued" },
+                { key: "count_working", label: "working" },
+                { key: "count_errored", label: "errors" }
+              ],
+              emptyContent: /* @__PURE__ */ e("tr", { children: /* @__PURE__ */ e("td", { colSpan: 4, children: /* @__PURE__ */ a(S, { style: { width: "100%" }, children: [
+                /* @__PURE__ */ e(k, { animation: !1 }),
+                /* @__PURE__ */ e(k, { animation: !1 }),
+                /* @__PURE__ */ e(k, { animation: !1 }),
+                /* @__PURE__ */ e("div", { style: { textAlign: "center" }, children: "No jobs in the queue" })
+              ] }) }) }),
+              refreshData: () => {
+                const o = r.split("/"), l = o.length > 1 ? `${o[0]}/JobReport` : "JobReport";
+                return t.getList(l, {
+                  filter: { reportName: "job_stats" },
+                  pagination: { page: 0, perPage: 10 },
+                  sort: { field: "", order: "" }
+                });
+              },
+              refreshInterval: 30,
+              transform: ({ data: o }) => o[0].data,
+              rowTotals: !0
+            }
+          )
+        ] }) }),
+        /* @__PURE__ */ e(D, { children: /* @__PURE__ */ a(P, { children: [
+          /* @__PURE__ */ e(J, { variant: "h6", children: "Workers" }),
+          /* @__PURE__ */ e(
+            L,
+            {
+              columns: [
+                { key: "host", render: (o) => o.substring(0, 6) },
+                { key: "pid" },
+                { key: "workers" }
+              ],
+              refreshData: () => {
+                const o = r.split("/"), l = o.length > 1 ? `${o[0]}/locker` : "locker";
+                return t.getList(l, {
+                  filter: {},
+                  pagination: { page: 1, perPage: 100 },
+                  sort: { field: "", order: "" }
+                });
+              },
+              refreshInterval: 30,
+              transform: ({ data: o }) => o
+            }
+          )
+        ] }) })
+      ]
+    }
+  );
+}, he = [
+  /* @__PURE__ */ e(G, { alwaysOn: !0, source: "q" }, "q"),
   /* @__PURE__ */ e(
-    V,
+    H,
     {
       alwaysOn: !0,
       source: "status",
@@ -245,16 +256,16 @@ const he = () => {
     },
     "status"
   )
-], pe = () => {
-  const r = g(), t = /* @__PURE__ */ e(te, { size: "0.75em" });
-  switch (r.status) {
+], me = () => {
+  const t = f(), r = /* @__PURE__ */ e(re, { size: "0.75em" });
+  switch (t.status) {
     case "running":
-      return /* @__PURE__ */ e(b, { label: "Running", color: "info", size: "small", icon: t });
+      return /* @__PURE__ */ e(p, { label: "Running", color: "info", size: "small", icon: r });
     case "failed":
-      return /* @__PURE__ */ e(b, { label: "Failed", variant: "outlined", color: "error", size: "small" });
+      return /* @__PURE__ */ e(p, { label: "Failed", variant: "outlined", color: "error", size: "small" });
     case "error":
       return /* @__PURE__ */ e(
-        b,
+        p,
         {
           label: "Error: 3/5 retries",
           variant: "outlined",
@@ -263,121 +274,133 @@ const he = () => {
         }
       );
     case "scheduled":
-      return /* @__PURE__ */ e(b, { label: "Scheduled", size: "small" });
+      return /* @__PURE__ */ e(p, { label: "Scheduled", size: "small" });
     case "complete":
-      return /* @__PURE__ */ e(b, { label: "Complete", size: "small" });
+      return /* @__PURE__ */ e(p, { label: "Complete", size: "small" });
   }
-  return /* @__PURE__ */ e(b, { label: r.status, size: "small" });
-}, be = () => {
-  const r = N(), t = I(), o = g(), p = Z(), f = j();
-  return o ? /* @__PURE__ */ e(ee, { label: "Retry", color: "secondary", onClick: async (s) => {
-    s.preventDefault();
+  return /* @__PURE__ */ e(p, { label: t.status, size: "small" });
+}, pe = () => {
+  const t = W(), r = j(), i = f(), m = X(), b = N();
+  return i ? /* @__PURE__ */ e(Z, { label: "Retry", color: "secondary", onClick: async (l) => {
+    l.preventDefault();
     try {
-      await r.update(f, {
-        id: o.id,
-        previousData: o,
-        data: { expiredAt: null, runAt: C().toISOString() }
-      }), t("Retry triggered!", { type: "success" }), p();
-    } catch (y) {
-      console.error(y), t(JSON.stringify(y), { type: "error" });
+      await t.update(b, {
+        id: i.id,
+        previousData: i,
+        data: { expiredAt: null, runAt: T().toISOString() }
+      }), r("Retry triggered!", { type: "success" }), m();
+    } catch (g) {
+      console.error(g), r(JSON.stringify(g), { type: "error" });
     }
   } }) : null;
-}, fe = ({ label: r }) => {
-  const t = g();
-  return t ? /* @__PURE__ */ i(
+}, be = ({ label: t }) => {
+  const r = f();
+  return r ? /* @__PURE__ */ a(
     "div",
     {
       style: { display: "flex", alignItems: "center", justifyContent: "end" },
       children: [
-        t.actions.includes("retry") && /* @__PURE__ */ e(be, {}),
-        /* @__PURE__ */ e(X, { label: "" })
+        r.actions.includes("retry") && /* @__PURE__ */ e(pe, {}),
+        /* @__PURE__ */ e(V, { label: "" })
       ]
     }
   ) : null;
-}, ge = () => (I(), /* @__PURE__ */ e(U, { exporter: !1, filters: me, aside: /* @__PURE__ */ e(he, {}), children: /* @__PURE__ */ i(K, { sort: { field: "priority", order: "ASC" }, rowClick: "edit", children: [
+}, fe = () => (j(), /* @__PURE__ */ e(Q, { exporter: !1, filters: he, aside: /* @__PURE__ */ e(ue, {}), children: /* @__PURE__ */ a(U, { sort: { field: "priority", order: "ASC" }, rowClick: "edit", children: [
   /* @__PURE__ */ e(
-    S,
+    E,
     {
       label: "Job",
-      render: (r) => /* @__PURE__ */ i("div", { children: [
-        /* @__PURE__ */ e("div", { children: r.type }),
-        /* @__PURE__ */ e("small", { style: { marginRight: 5 }, children: r.id.substring(0, 6) })
+      render: (t) => /* @__PURE__ */ a("div", { children: [
+        /* @__PURE__ */ e("div", { children: t.type }),
+        /* @__PURE__ */ e("small", { style: { marginRight: 5 }, children: t.id.substring(0, 6) })
       ] })
     }
   ),
-  /* @__PURE__ */ e(c, { source: "queue", sortable: !1 }),
-  /* @__PURE__ */ e(G, { source: "priority" }),
-  /* @__PURE__ */ e(S, { label: "Status", render: pe }),
-  /* @__PURE__ */ e(A, { label: "Scheduled", source: "runAt" }),
-  /* @__PURE__ */ e(fe, { label: "Actions" })
+  /* @__PURE__ */ e(s, { source: "queue", sortable: !1 }),
+  /* @__PURE__ */ e(K, { source: "priority" }),
+  /* @__PURE__ */ e(E, { label: "Status", render: me }),
+  /* @__PURE__ */ e(x, { label: "Scheduled", source: "runAt" }),
+  /* @__PURE__ */ e(be, { label: "Actions" })
 ] }) }));
-class R {
+class A {
 }
-u(R, "List", ge), u(R, "Edit", ue), // static Show = ShowSession
-u(R, "Icon", $);
-const Se = ({ count: r = 15 }) => Array.from(
-  { length: r },
-  () => ({
-    id: a.datatype.uuid(),
-    host: a.word.adjective() + "_" + a.word.noun(),
-    pid: 12332,
-    wokers: a.random.numeric()
-  })
-), De = ({ count: r = 15 }) => Array.from({ length: r }, () => ({
-  // standard attributes
-  id: a.datatype.uuid(),
-  createdAt: a.date.recent(),
-  updatedAt: a.date.recent(),
-  // Creation attributes
-  type: a.helpers.arrayElement([
-    "Mailer::Welcome",
-    "Notify::Slack",
-    "Reports::EndOfMonth",
-    "Payment:ProcessRefund"
-  ]),
-  jobClass: a.helpers.arrayElement([
-    "ActiveJob::QueueAdapters::QueAdapter::JobWrapper"
-  ]),
-  // arguments: {},
-  // "kwargs": {},
-  runAt: a.date.future(),
-  // job options
-  queue: a.helpers.arrayElement([
-    "default",
-    "high",
-    "low",
-    "long-running"
-  ]),
-  priority: a.helpers.arrayElement([1, 50, 100]),
-  status: a.helpers.arrayElement([
-    "scheduled",
-    "running",
-    "error",
-    "failed",
-    "complete"
-  ]),
-  expiredAt: a.date.recent(),
-  // error metadata
-  errorCount: a.helpers.arrayElement([0, 0, 0, 3]),
-  lastError: {},
-  lastErrorBacktrace: "/app/vendor/bundle/ruby/3.0.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:431:in `find_with_ids'\n/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:69:in `find'",
-  lastErrorMessage: "ActiveRecord::RecordNotFound: Couldn't find User without an ID",
-  // completion metadata
-  finishedAt: a.date.future(),
-  actions: a.helpers.arrayElement([["retry"], [], []]),
-  // que-specific
-  data: {},
-  args: [
-    {
-      job_id: "2f11a80b-069f-4570-9a24-c3142acf8a87"
-    }
-  ]
-}));
-class W {
+d(A, "List", fe), d(A, "Edit", de), // static Show = ShowSession
+d(A, "Icon", O);
+async function Ce(t = 15) {
+  try {
+    const { faker: r } = await import("/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@faker-js+faker@7.6.0/node_modules/@faker-js/faker/dist/esm/index.mjs");
+    return Array.from({ length: t }, () => ({
+      id: r.datatype.uuid(),
+      host: r.word.adjective() + "_" + r.word.noun(),
+      pid: 12332,
+      wokers: r.random.numeric()
+    }));
+  } catch (r) {
+    return console.error(r), [];
+  }
 }
-u(W, "Charts", x), u(W, "Resource", R);
+async function Ee(t = 15) {
+  try {
+    const { faker: r } = await import("/Users/maxschridde/dev/moonlight-labs/core/core-jobs-fe/node_modules/.pnpm/@faker-js+faker@7.6.0/node_modules/@faker-js/faker/dist/esm/index.mjs");
+    return Array.from({ length: t }, () => ({
+      // standard attributes
+      id: r.datatype.uuid(),
+      createdAt: r.date.recent(),
+      updatedAt: r.date.recent(),
+      // Creation attributes
+      type: r.helpers.arrayElement([
+        "Mailer::Welcome",
+        "Notify::Slack",
+        "Reports::EndOfMonth",
+        "Payment:ProcessRefund"
+      ]),
+      jobClass: r.helpers.arrayElement([
+        "ActiveJob::QueueAdapters::QueAdapter::JobWrapper"
+      ]),
+      // arguments: {},
+      // "kwargs": {},
+      runAt: r.date.future(),
+      // job options
+      queue: r.helpers.arrayElement([
+        "default",
+        "high",
+        "low",
+        "long-running"
+      ]),
+      priority: r.helpers.arrayElement([1, 50, 100]),
+      status: r.helpers.arrayElement([
+        "scheduled",
+        "running",
+        "error",
+        "failed",
+        "complete"
+      ]),
+      expiredAt: r.date.recent(),
+      // error metadata
+      errorCount: r.helpers.arrayElement([0, 0, 0, 3]),
+      lastError: {},
+      lastErrorBacktrace: "/app/vendor/bundle/ruby/3.0.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:431:in `find_with_ids'\n/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:69:in `find'",
+      lastErrorMessage: "ActiveRecord::RecordNotFound: Couldn't find User without an ID",
+      // completion metadata
+      finishedAt: r.date.future(),
+      actions: r.helpers.arrayElement([["retry"], [], []]),
+      // que-specific
+      data: {},
+      args: [
+        {
+          job_id: "2f11a80b-069f-4570-9a24-c3142acf8a87"
+        }
+      ]
+    }));
+  } catch (r) {
+    return console.error(r), [];
+  }
+}
+class M {
+}
+d(M, "Charts", w), d(M, "Resource", A);
 export {
-  W as CoreJobs,
-  De as mockJobs,
-  Se as mockLockers
+  M as CoreJobs,
+  Ee as mockJobs,
+  Ce as mockLockers
 };
