@@ -12,6 +12,8 @@ const Jobs = CoreJobs.Resource
 import { CoreComments } from 'core-comments-fe'
 const Comments = CoreComments.Resource
 
+import { CoreVersions } from 'core-versions-fe'
+const Versions = CoreVersions.Resource
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
@@ -90,7 +92,7 @@ function AdminApp() {
         // name="lines"
         name="Line"
         // icon={Jobs.Icon}
-        options={[{ label: 'Lines', menu: 'admin' }]}
+        options={{ label: 'Ledger Lines', menu: 'admin' }}
         show={<CoreAccounting.Lines.Show />}
         list={
           <CoreAccounting.Lines.List
@@ -102,25 +104,27 @@ function AdminApp() {
           </CoreAccounting.Lines.List>
         }
       />
+
+      <Resource name="Version" icon={Versions.Icon} list={Versions.List} />
+
       {/* <Resource key="org-unit" name="OrgUnit" /> */}
 
       <Resource name="webhooks" list={ListGuesser} />
       <Resource name="Lookups" list={ListGuesser} />
-      <Resource name="Accounts" list={ListGuesser} />
-      <Resource name="Account Transactions" list={ListGuesser} />
-      <Resource name="versions" list={ListGuesser} />
 
       <Resource
         name="User"
         edit={EditGuesser}
         list={ListGuesser}
         recordRepresentation="name"
+        options={{ label: 'Users (Test)' }}
       />
 
       <Resource
         name="Company"
         edit={Company.Edit}
         list={Company.List}
+        options={{ label: 'Companies (Test)' }}
         recordRepresentation="name"
       />
     </Admin>
