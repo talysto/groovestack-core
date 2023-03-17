@@ -2,6 +2,9 @@
   "name": "core-jobs-fe",
   "private": true,
   "version": "0.1.0",
+  "description": "Async job processing with reliable retries, and real-time job monitoring.",
+  "homepage": "https://moonlight-labs.com/core/jobs",
+  "keywords": ["background jobs", "async jobs"],
   "type": "module",
   "files": [
     "dist"
