@@ -37,8 +37,8 @@ const versions = mockVersions(20)
 export const mockDataProvider = fakeDataProvider(
   {
     // CORE Modules
-    jobs: mockJobs(15),
-    lockers: mockLockers(3),
+    jobs: await mockJobs(15),
+    lockers: await mockLockers(3),
 
     Comments: comments,
     Line: await mockLines({count: 20}),
