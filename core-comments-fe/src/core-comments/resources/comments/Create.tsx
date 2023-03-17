@@ -26,12 +26,6 @@ export const CommentCreate = () => {
     updated_at: Date.now(),
   }
 
-  // console.log(defaults)
-
-  const inlineLayout = {
-    sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
-  }
-
   return (
     <Create
       // redirect={false}

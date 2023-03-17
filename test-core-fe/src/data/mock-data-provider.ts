@@ -33,12 +33,14 @@ const comments = mockComments(50).map((comment) => {
 
 const lines = Array.from({ length: 15 }, () => mockLine.asAdmin())
 
-export default fakeDataProvider(
+export const mockDataProvider = fakeDataProvider(
   {
     // CORE Modules
     jobs: mockJobs(15),
     lockers: mockLockers(3),
-    Comment: comments,
+
+
+    Comments: comments,
     Line: lines,
     // For Testing Integrations
     User: users,
@@ -46,5 +48,8 @@ export default fakeDataProvider(
   },
   true
 )
+
+console.log(users)
+console.log(comments)
 
 // Comment

@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-export const mockLockers = ({ count = 15 }) =>
+export const mockLockers = (count = 15) =>
   Array.from({ length: count }, () => ({
     id: faker.datatype.uuid(),
     host: faker.word.adjective() + '_' + faker.word.noun(),
@@ -8,7 +8,7 @@ export const mockLockers = ({ count = 15 }) =>
     wokers: faker.random.numeric(),
   }))
 
-export const mockJobs = ({ count = 15 }) =>
+export const mockJobs = (count = 15) =>
   Array.from({ length: count }, () => ({
     // standard attributes
     id: faker.datatype.uuid(),

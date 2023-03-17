@@ -1,13 +1,4 @@
-import {
-  Admin,
-  EditGuesser,
-  ListGuesser,
-  ReferenceField,
-  Resource,
-  SelectArrayInput,
-  TextField,
-  useRecordContext,
-} from 'react-admin'
+import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -25,7 +16,7 @@ const Comments = CoreComments.Resource
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
 
-import dataProvider from './data/mock-data-provider'
+import { mockDataProvider } from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
 
@@ -72,7 +63,7 @@ function AdminApp() {
   return (
     <Admin
       disableTelemetry
-      dataProvider={dataProvider}
+      dataProvider={mockDataProvider}
       // authProvider={config.authProvider}
       // loginPage={LoginPage}
       // theme={darkTheme}
@@ -88,7 +79,7 @@ function AdminApp() {
       />
 
       <Resource
-        name="Comment"
+        name="Comments"
         icon={Comments.Icon}
         list={Comments.List}
         edit={Comments.Edit}

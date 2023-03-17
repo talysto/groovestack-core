@@ -1,6 +1,6 @@
 import { FieldProps, Identifier, RaRecord } from 'react-admin'
 
-export interface Comment extends RaRecord {}
+// export interface Comment extends RaRecord {}
 
 export interface CardListProps extends FieldProps {
   resourceId: Identifier | undefined

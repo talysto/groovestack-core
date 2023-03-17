@@ -30,7 +30,7 @@ export const CompanyAside = () => (
 
     <Typography variant="h6">Comments</Typography>
     <SimpleShowLayout>
-      <CoreComments.CommentStream label={false} />
+      <CoreComments.CommentStream />
     </SimpleShowLayout>
   </Paper>
 )

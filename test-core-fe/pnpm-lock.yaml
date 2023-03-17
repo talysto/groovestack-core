@@ -7,6 +7,7 @@ specifiers:
   '@types/react': ^18.0.28
   '@types/react-copy-to-clipboard': ^5.0.4
   '@types/react-dom': ^18.0.11
+  '@types/uuid': ^9.0.1
   '@vitejs/plugin-react': ^3.1.0
   dayjs: ^1.11.7
   import: ^0.0.6
@@ -36,6 +37,7 @@ devDependencies:
   '@types/react': 18.0.28
   '@types/react-copy-to-clipboard': 5.0.4
   '@types/react-dom': 18.0.11
+  '@types/uuid': 9.0.1
   '@vitejs/plugin-react': 3.1.0_vite@4.2.0
   import: 0.0.6
   typescript: 4.9.5
@@ -953,6 +955,10 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
+
+  /@types/uuid/9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
+    dev: true
 
   /@vitejs/plugin-react/3.1.0_vite@4.2.0:
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
