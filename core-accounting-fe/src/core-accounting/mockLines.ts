@@ -1,3 +1,13 @@
+declare global {
+  interface Array<T> {
+    sample(): T
+  }
+}
+
+Array.prototype.sample = function () {
+  return this[Math.floor(Math.random() * this.length)]
+}
+
 export async function mockLines({count = 15}): Promise<any> {
   try {
     const { faker } = await import('@faker-js/faker')
@@ -34,6 +44,7 @@ export async function mockLines({count = 15}): Promise<any> {
       updatedAt: faker.date.recent(),
     }))
   } catch (e) {
+    console.error(e)
     return []
   }
 }
