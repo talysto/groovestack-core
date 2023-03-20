@@ -1,0 +1,41 @@
+PATH
+  remote: .
+  specs:
+    core-comments (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (7.0.4.3)
+      activesupport (= 7.0.4.3)
+    activerecord (7.0.4.3)
+      activemodel (= 7.0.4.3)
+      activesupport (= 7.0.4.3)
+    activesupport (7.0.4.3)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+    concurrent-ruby (1.2.2)
+    graphql (2.0.19)
+    i18n (1.12.0)
+      concurrent-ruby (~> 1.0)
+    minitest (5.18.0)
+    pg (1.4.6)
+    rake (12.3.3)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord
+  core-comments!
+  graphql
+  minitest (~> 5.0)
+  pg
+  rake (~> 12.0)
+
+BUNDLED WITH
+   2.1.4

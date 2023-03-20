@@ -25,8 +25,6 @@ class String
   def reverse_color;  "\e[7m#{self}\e[27m" end
 end
 
-
-
 if defined?(Rails)
   module Core
     module Jobs

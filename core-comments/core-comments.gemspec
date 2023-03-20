@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'lib/core/jobs/version'
+require_relative 'lib/core/comments/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'core-jobs'
-  spec.version = Core::Jobs::VERSION
-  spec.authors = ['Darren Rush']
-  spec.email = ['dlrush@gmail.com']
+  spec.name = 'core-comments'
+  spec.version = Core::Comments::VERSION
+  spec.authors = ['Max Schridde']
+  spec.email = ['maxjschridde@gmail.com']
 
-  spec.summary = 'CORE extension for full-stack background job management'
-  spec.description = 'CORE::Jobs is a high-performance background-job processing extension for the CORE Platform.'
-  spec.post_install_message = 'CORE::Jobs installed'
+  spec.summary = 'CORE extension for comments backend'
+  spec.description = 'CORE::Comments is a comments extension for the CORE Platform.'
+  spec.post_install_message = 'CORE::Comments installed'
 
   spec.homepage = 'https://moonlight-labs.com/core/'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.7.2')
@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://moonlight-labs.com/core/'
-  spec.metadata['changelog_uri'] = 'https://moonlight-labs.com/core/core-jobs#changelog'
+  spec.metadata['changelog_uri'] = 'https://moonlight-labs.com/core/core-comments#changelog'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -31,15 +31,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # spec.add_dependency 'activerecord', '~> 6.0'
-  spec.add_dependency 'puma'
-  spec.add_dependency 'que', '~> 2.0.0.beta1'
 
   spec.add_development_dependency 'graphql'
   spec.add_development_dependency 'pg'
 
-  spec.add_development_dependency 'combustion', '~> 1.3'  # Test engines without a full 'dummy' app https://github.com/pat/combustion
-  spec.add_development_dependency 'racksh'                # get a console without a full Rails application
-  spec.add_development_dependency 'sinatra-activerecord'  # ActiveRecord without rails
+  spec.add_development_dependency 'combustion', '~> 1.3' # for smaller test app
+  spec.add_development_dependency 'racksh'
+  spec.add_development_dependency 'sinatra-activerecord'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

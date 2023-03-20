@@ -5,32 +5,27 @@
 # or possible moved to environment-specific rb files
 # require 'sinatra/activerecord'
 
-require 'double_entry'
-require 'core/accounting/version'
+require 'core/comments/version'
 require 'active_record'
-# require 'que/active_record/model'
 
 # require 'core/graphql/providers/react_admin/types'
 # require 'core/graphql/providers/react_admin/resource'
 
-# require 'core/jobs/puma/plugin/que'
-require 'core/accounting/railtie' if defined?(Rails::Railtie)
-# require 'core/jobs/job'
-# require 'core/jobs/locker'
-require 'core/accounting/graphql/types'
-require 'core/accounting/graphql/filters'
-# require 'core/accounting/graphql/mutations'
-require 'core/accounting/graphql/queries'
+require 'core/comments/railtie' if defined?(Rails::Railtie)
+
+# require 'core/comments/graphql/types'
+# require 'core/comments/graphql/filters'
+# require 'core/comments/graphql/mutations'
+# require 'core/comments/graphql/queries'
 
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
 module Core
-  module Accounting
+  module Comments
     class Error < StandardError; end
-    class WrongSchemaFormat < Core::Accounting::Error; end
-    # class DepPostgresRequired < Core::Accounting::Error; end
-    # class WrongActiveJobQueueAdapter < Core::Accounting::Error; end
+    class WrongSchemaFormat < Core::Comments::Error; end
+    # class DepPostgresRequired < Core::Comments::Error; end
 
     # Your code goes here...
   end
