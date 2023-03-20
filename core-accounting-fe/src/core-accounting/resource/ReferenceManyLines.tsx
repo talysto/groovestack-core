@@ -3,7 +3,7 @@ import { ReferenceManyField, TextField, Datagrid } from "react-admin"
 import { MoneyField } from "./MoneyField"
 import { TimeAgoField } from "./TimeAgoField"
 
-export const ReferenceManyLines: FC<{children?: any}> = ({children}) => {
+export const ReferenceManyLines: FC<{children?: any}> = ({children = []}) => {
   return (
     <ReferenceManyField
       reference="Line"
