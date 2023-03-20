@@ -1,4 +1,4 @@
-import { FC } from "react"
+import React, { FC } from "react"
 import { ReferenceManyField, TextField, Datagrid } from "react-admin"
 import { MoneyField } from "./MoneyField"
 import { TimeAgoField } from "./TimeAgoField"
