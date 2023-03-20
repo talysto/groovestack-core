@@ -37,7 +37,7 @@ export const CommentStream = () => {
       <Comments.Create />
 
       <ReferenceManyField
-        reference="Comments"
+        reference="Comment"
         target="resource_id"
         record={record}
       >

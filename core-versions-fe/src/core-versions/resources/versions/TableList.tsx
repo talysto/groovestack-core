@@ -13,6 +13,8 @@ import {
   SelectInput,
   ReferenceField,
   AutocompleteInput,
+  useRecordContext,
+  WrapperField,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 
@@ -25,7 +27,7 @@ const ActionsField = (props: any) => {
   )
 }
 
-const commentFilters = [
+const versionFilters = [
   <SearchInput source="q" alwaysOn />,
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
@@ -40,17 +42,44 @@ const commentFilters = [
   </ReferenceInput>,
 ]
 
+export const ChangesTable = () => {
+  const record = useRecordContext();
+  if (!record) return null;
+  return (
+    <table>
+      <tbody>
+        {record.changes.map((change) => (
+          <tr key={change.field}>
+            <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change.field}</td>
+            <td>
+              {change.newValue} (
+              <span style={{ textDecoration: 'line-through' }}>
+                {change.oldValue}
+              </span>
+              )
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
+
 export const VersionsTable = () => {
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      filters={commentFilters}
+      filters={versionFilters}
     >
-      <Datagrid rowClick="edit">
+      <Datagrid>
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
 
-        <TextField source="change" sortable={false} />
+        {/* <TextField source="changes" sortable={false} /> */}
+        <WrapperField label="Changes">
+          <ChangesTable />
+        </WrapperField>
 
         <DateField source="created_at" label="Date" />
         <ActionsField source="actions" />

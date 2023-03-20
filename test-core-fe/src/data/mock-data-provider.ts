@@ -32,7 +32,26 @@ const comments = mockComments(50).map((comment) => {
   }
 })
 
-const versions = mockVersions(20)
+const versions = mockVersions(20).map((comment) => {
+  const user = faker.helpers.arrayElement(users)
+  const resource = faker.helpers.arrayElement([
+    faker.helpers.arrayElement(users),
+    faker.helpers.arrayElement(companies),
+  ])
+
+  return {
+    ...comment,
+
+    actor_id: user.id,
+    actor_type: user.type,
+
+    resource_id: resource.id,
+    resource_type: resource.type,
+
+    // author: user,
+    // resource: resource
+  }
+})
 
 export const mockDataProvider = fakeDataProvider(
   {
