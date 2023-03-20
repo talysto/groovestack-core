@@ -11,7 +11,7 @@ import { mockCompanies } from './mockCompanies'
 const users = mockUsers(10)
 const companies = mockCompanies(5)
 
-const comments = mockComments(50).map((comment) => {
+const comments = (await mockComments({count: 50})).map((comment) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
@@ -32,8 +32,6 @@ const comments = mockComments(50).map((comment) => {
   }
 })
 
-const versions = mockVersions(20)
-
 export const mockDataProvider = fakeDataProvider(
   {
     // CORE Modules
@@ -42,7 +40,7 @@ export const mockDataProvider = fakeDataProvider(
 
     Comment: comments,
     Line: await mockLines({count: 20}),
-    Version: versions,
+    Version: await mockVersions(20),
     // For Testing Integrations
     User: users,
     Company: companies,
