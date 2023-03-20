@@ -9,7 +9,7 @@ tasks:
 
   tidy-check:
     cmds:
-      - cmd: rubocop **/*.rb **/*.gemspec **/Gemfile 1
+      - cmd: rubocop **/*.rb **/*.gemspec **/Gemfile
         ignore_error: true
       - npx prettier -c .
 
