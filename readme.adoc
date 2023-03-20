@@ -30,6 +30,40 @@ end
 - extend the DoubleEntry::Line model (particularly for configuring the metadata jsonb_accessor)
 - extend the Core::Accounting::GraphQL::Types::Line 
 
+== SETUP for Core-Accounting-FE
+* add core-accounting-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-accounting-fe?main`
+* ensure peer dependencies are installed
+* add Jobs RA Resource (which can be customized as shown below)
+```
+const AccountScopeReferenceField: React.FC<{source: string}> = ({source}) => {
+  const record = useRecordContext()
+  if (!record) return null
+  return (
+    <ReferenceField
+      label="Scope"
+      reference={record.scopeDetail.model}
+      source="scopeDetail.id"
+    >
+      <TextField source="name" />
+    </ReferenceField>
+  )
+}
+
+<Resource 
+  key="admin-lines-resource"
+  name="line"
+  options={[{ label: 'Ledger Lines', menu: 'admin' }]}
+  show={<CoreAccounting.Lines.Show />}
+  list={
+    <CoreAccounting.Lines.List
+    tableProps={{filters: lineFilters}}
+    >
+      <TextField label="Account" source="accountIdentifier" sortable={false} />
+      <AccountScopeReferenceField source="Scope" />
+      <TextField source="scope" sortable={false} />
+    </CoreAccounting.Lines.List>
+  }
+/>
 == SETUP for Core-Jobs
 * add the core gem to your Gemfile
 ```
