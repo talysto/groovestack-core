@@ -28,7 +28,7 @@ const ActionsField = (props: any) => {
 }
 
 const versionFilters = [
-  <SearchInput source="q" alwaysOn />,
+  // <SearchInput source="q" alwaysOn />,
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
   <ReferenceInput
@@ -80,9 +80,9 @@ export const VersionsTable = () => {
         <WrapperField label="Changes">
           <ChangesTable />
         </WrapperField>
-
-        <DateField source="created_at" label="Date" />
-        <ActionsField source="actions" />
+        <TextField source="timestamp"/>
+        {/* <DateField source="created_at" label="Date" /> */}
+        {/* <ActionsField source="actions" /> */}
       </Datagrid>
     </List>
   )
