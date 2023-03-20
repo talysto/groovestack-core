@@ -64,6 +64,8 @@ const AccountScopeReferenceField: React.FC<{source: string}> = ({source}) => {
     </CoreAccounting.Lines.List>
   }
 />
+```
+
 == SETUP for Core-Jobs
 * add the core gem to your Gemfile
 ```
