@@ -1,7 +1,7 @@
 import fakeDataProvider from 'ra-data-fakerest'
 import { mockJobs, mockLockers } from 'core-jobs-fe'
 import { mockComments } from 'core-comments-fe'
-import { mockLine } from 'core-accounting-fe'
+import { mockLines } from 'core-accounting-fe'
 import { mockVersions } from 'core-versions-fe'
 
 import { faker } from '@faker-js/faker'
@@ -34,16 +34,14 @@ const comments = mockComments(50).map((comment) => {
 
 const versions = mockVersions(20)
 
-const lines = Array.from({ length: 15 }, () => mockLine.asAdmin())
-
 export const mockDataProvider = fakeDataProvider(
   {
     // CORE Modules
-    jobs: mockJobs(15),
-    lockers: mockLockers(3),
+    jobs: await mockJobs(15),
+    lockers: await mockLockers(3),
 
-    Comments: comments,
-    Line: lines,
+    Comment: comments,
+    Line: await mockLines({count: 20}),
     Version: versions,
     // For Testing Integrations
     User: users,
