@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # CORE API Reference
 
+## Backend Features
+
+## Frontend Components
+
 <ExportList />
 
 import jobs from '../../core-jobs-fe/src/core-jobs/index.ts'

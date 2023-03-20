@@ -40,7 +40,7 @@ export const mockDataProvider = fakeDataProvider(
     jobs: await mockJobs(15),
     lockers: await mockLockers(3),
 
-    Comments: comments,
+    Comment: comments,
     Line: await mockLines({count: 20}),
     Version: versions,
     // For Testing Integrations

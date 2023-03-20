@@ -81,7 +81,7 @@ function AdminApp() {
       />
 
       <Resource
-        name="Comments"
+        name="Comment"
         icon={Comments.Icon}
         list={Comments.List}
         edit={Comments.Edit}
