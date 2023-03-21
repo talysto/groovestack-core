@@ -32,10 +32,6 @@ module Core
 
           scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
         end
-
-        def comments_meta(page: nil, per_page: nil, **attrs)
-          { count: comments_scope(attrs).count }
-        end
       end
     end
   end
