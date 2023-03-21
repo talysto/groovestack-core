@@ -27,7 +27,7 @@ end
 
 if defined?(Rails)
   module Core
-    module Accounting
+    module Comments
       class Railtie < Rails::Engine
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
@@ -60,12 +60,8 @@ if defined?(Rails)
                 message: "Error: 'core-base' gem is required, add it your your gemfile" 
               },
               {
-                eval: Proc.new { raise Core::Accounting::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
+                eval: Proc.new { raise Core::Comments::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
                 message: 'Error: Must change your schema format to :sql'
-              },
-              {
-                eval: Proc.new { DoubleEntry::Line.count },
-                message: 'Error: Must run migration for double entry.'
               }
             ]
 
@@ -83,10 +79,10 @@ if defined?(Rails)
 
             if errors.length > 0
               print '⚠️'.brown
-              puts "  CORE::Accounting\t#{Core::Accounting::VERSION}\t#{errors[0]}"
+              puts "  CORE::Comments\t#{Core::Comments::VERSION}\t#{errors[0]}"
             else
               print '✔'.green
-              puts "  CORE::Accounting\t#{Core::Accounting::VERSION}"
+              puts "  CORE::Comments\t#{Core::Comments::VERSION}"
             end
           end
         end
