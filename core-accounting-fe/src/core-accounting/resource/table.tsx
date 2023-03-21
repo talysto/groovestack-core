@@ -2,15 +2,8 @@ import React from 'react'
 
 import { List, Datagrid, TextField, NumberField, useRecordContext} from 'react-admin'
 
+import { MoneyField } from './MoneyField'
 import { TimeAgoField } from './TimeAgoField'
-
-const MoneyField: React.FC<{source: string}> = ({source}) => {
-  const record = useRecordContext()
-
-  if (!record) return null
-
-  return <span>{record[source].formatted_amount} {record[source].currency.code}</span>
-}
 
 export const Table: React.FC<{datagridProps?: any; tableProps?: any, children?: any}> = ({datagridProps, tableProps, children}) => {
   return (

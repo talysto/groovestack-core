@@ -6,20 +6,20 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.6'
 
 gem 'awesome_print'
+gem 'closure_tree' # Performant tree relationships for models
+gem 'graphql'
+gem 'jsonb_accessor'
 gem 'net-smtp'
 gem 'pg', '~> 1.1' # Use postgresql as the database for Active Record
 gem 'puma', '~> 5.0' # Use Puma as the app server
 gem 'racksh'
 gem 'rails', '~> 6.1.6' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'graphql'
-gem "jsonb_accessor"
-gem 'closure_tree' # Performant tree relationships for models
 
 gem 'rack-cors' # enable CORS request for specific APIs
 
 git 'https://github.com/moonlight-labs/core.git', branch: 'sprint/core-1.0' do # TODO: update branch name to main
-  gem 'core-base'
   gem 'core-accounting'
+  gem 'core-base'
 end
 
 # Use SCSS for stylesheets
@@ -66,5 +66,5 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'graphiql-rails', group: :development
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

@@ -2,7 +2,7 @@
 import { CommentStream } from './resources/comments/StreamList'
 import { Comments } from './resources/comments'
 
-export { mockComments } from './mock-comments'
+export { mockComments } from './mockComments'
 
 export class CoreComments {
   // static Charts = Charts

@@ -10,8 +10,15 @@
 # See https://docs.rubocop.org/rubocop/configuration
 # require: rubocop-rake
 
+require:
+  - rubocop-graphql
+  - rubocop-rails
+
+
 AllCops:
   TargetRubyVersion: 2.7.2
+  NewCops: enable
+
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true

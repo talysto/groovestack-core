@@ -75,7 +75,6 @@ export const VersionsTable = () => {
       <Datagrid>
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
-
         {/* <TextField source="changes" sortable={false} /> */}
         <WrapperField label="Changes">
           <ChangesTable />

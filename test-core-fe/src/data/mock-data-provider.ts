@@ -11,7 +11,7 @@ import { mockCompanies } from './mockCompanies'
 const users = mockUsers(10)
 const companies = mockCompanies(5)
 
-const comments = mockComments(50).map((comment) => {
+const comments = (await mockComments({count: 50})).map((comment) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
@@ -32,7 +32,7 @@ const comments = mockComments(50).map((comment) => {
   }
 })
 
-const versions = mockVersions(20).map((comment) => {
+const versions = (await mockVersions({count: 20})).map((comment) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
