@@ -6,6 +6,7 @@ import {
   TextField,
   WrapperField,
   useRecordContext,
+  SingleFieldList,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Typography, Avatar, Box } from '@mui/material'
@@ -39,11 +40,10 @@ const ActorField = () => {
 }
 
 
-export const VersionTimelineItem = ({
-  actor,
-  changes,
-  timestamp,
-}: VersionProps) => {
+export const VersionTimelineItem = () => {
+
+  const record = useRecordContext();
+  if (!record) return null;
   return (
     <TimelineItem>
       <TimelineOppositeContent
@@ -52,7 +52,7 @@ export const VersionTimelineItem = ({
         variant="body2"
         color="text.secondary"
       >
-        {timestamp}
+        {record.timestamp}
       </TimelineOppositeContent>
 
       <TimelineSeparator>
@@ -62,33 +62,16 @@ export const VersionTimelineItem = ({
       </TimelineSeparator>
 
       <TimelineContent sx={{ py: '12px', px: 2 }}>
-        <Link href={actor.url} underline="hover">
-          {actor.name}
-        </Link>{' '}
+        <PolymorphicReferenceField source="actor" />
+        {' '}
         changed
         <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-          {/* ALTERNATIVE This is a sentence per change version */}
-          {/* {changes.map((change) => (
-            <Typography
-              key={change.field}
-              variant="body2"
-              color="textSecondary"
-            >
-              {change.field} from{' '}
-              <span style={{ textDecoration: 'line-through' }}>
-                {change.oldValue}
-              </span>{' '}
-              {' to '}
-              {change.newValue}
-            </Typography>
-          ))} */}
-
           <Typography variant="body2" color="textSecondary">
             <table>
               <tbody>
-                {changes.map((change) => (
+                {record.changes.map((change) => (
                   <tr key={change.field}>
-                    <td style={{textTransform: 'uppercase', fontSize: '80%'}}>{change.field}</td>
+                    <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change.field}</td>
                     <td>
                       {change.newValue} (
                       <span style={{ textDecoration: 'line-through' }}>
@@ -107,18 +90,6 @@ export const VersionTimelineItem = ({
   )
 }
 
-export const ChangeTimeline = ({ changes }) => {
-  // const classes = useStyles();
-
-  return (
-    <Timeline>
-      {changes.map((change, idx) => (
-        <VersionTimelineItem key={idx} {...change} />
-      ))}
-    </Timeline>
-  )
-}
-
 export const VersionStream = () => {
   const record = useRecordContext()
 
@@ -129,14 +100,9 @@ export const VersionStream = () => {
         target="resource_id"
         record={record}
       >
-        <Datagrid bulkActionButtons={false}>
-          <WrapperField>
-            <ActorField />
-
-            <Typography>{/* <TextField source="body" /> */}</Typography>
-          </WrapperField>
-          <DeleteWithConfirmButton label="" />
-        </Datagrid>
+        <SingleFieldList sx={{ display: 'inline-block' }}>
+          <VersionTimelineItem />
+        </SingleFieldList>
       </ReferenceManyField>
     </>
   )
