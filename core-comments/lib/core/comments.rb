@@ -5,18 +5,14 @@
 # or possible moved to environment-specific rb files
 # require 'sinatra/activerecord'
 
-require 'core/comments/version'
 require 'active_record'
 
-# require 'core/graphql/providers/react_admin/types'
-# require 'core/graphql/providers/react_admin/resource'
-
 require 'core/comments/railtie' if defined?(Rails::Railtie)
-
-# require 'core/comments/graphql/types'
-# require 'core/comments/graphql/filters'
-# require 'core/comments/graphql/mutations'
-# require 'core/comments/graphql/queries'
+require 'core/comments/version'
+require 'core/comments/graphql/types'
+require 'core/comments/graphql/filters'
+require 'core/comments/graphql/mutations'
+require 'core/comments/graphql/queries'
 
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }

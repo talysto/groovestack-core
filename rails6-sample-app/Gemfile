@@ -20,6 +20,7 @@ gem 'rack-cors' # enable CORS request for specific APIs
 git 'https://github.com/moonlight-labs/core.git', branch: 'sprint/core-1.0' do # TODO: update branch name to main
   gem 'core-accounting'
   gem 'core-base'
+  gem 'core-comments'
 end
 
 # Use SCSS for stylesheets
