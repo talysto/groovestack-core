@@ -1,12 +1,13 @@
 import fakeDataProvider from 'ra-data-fakerest'
 import { mockJobs, mockLockers } from 'core-jobs-fe'
 import { mockComments } from 'core-comments-fe'
-import { mockLines } from 'core-accounting-fe'
+import { mockLines, mockTransfers } from 'core-accounting-fe'
 import { mockVersions } from 'core-versions-fe'
 
 import { faker } from '@faker-js/faker'
 import { mockUsers } from './mockUsers'
 import { mockCompanies } from './mockCompanies'
+
 
 const users = mockUsers(10)
 const companies = mockCompanies(5)
@@ -53,45 +54,72 @@ const versions = (await mockVersions({ count: 20 })).map((version) => {
   }
 })
 
-
-const transfers = (await mockVersions({ count: 20 })).map((transfer) => {
+//let allTransfers = [];
+const lines = (await mockTransfers({ count: 8 })).map((line, idx) => {
+  console.log("asdf")
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
     faker.helpers.arrayElement(companies),
   ])
-
-  return {
-
-    const line1 = {
-      ...transfer,
-
-      id: user.id,
-      account: "aqd_tokens", //faker.datatype.uuid(),
-      scope: faker.datatype.uuid(),
-      code: ['buy_aqd', 'spend_aqd', 'transfer_aqd?'].sample(),
-
-      partnerId: resource.id,
-      partnerAccount: "aqd_treasury",
-      partnerScope: faker.datatype.uuid(),
-    }
-      const line2 = { //line 2 (FLIP)
-
-      partnerId: line1.id,
-      account: line1.partnerAccount,
-      scope: line1.partnerScope,
-    }
-
-    actor_id: user.id,
-    actor_type: user.type,
-
-    resource_id: resource.id,
-    resource_type: resource.type,
-
-    // author: user,
-    // resource: resource
+  let scope, partnerScope
+  if (!(idx % 2)) { //line 1
+    scope = user.id
+    partnerScope = resource.id
   }
+  else { //line 2
+    scope = resource.id
+    partnerScope = user.id
+  }
+  return {
+    ...line,
+    scope: scope,
+    partnerScope: partnerScope
+  }
+  // const line1 = {
+  //   ...transfer,
+
+  //   // userId: user.id, //doesnt match payload
+  //   id: faker.datatype.uuid(), // not sure
+  //   account: "aqd_tokens", //faker.datatype.uuid(),
+  //   scope: user.id //faker.datatype.uuid(),
+  //   code: ['buy_aqd', 'spend_aqd', 'transfer_aqd?'].sample(),
+
+  //   partnerId: resource.id,
+  //   partnerAccount: "aqd_treasury",
+  //   partnerScope: resource.id //faker.datatype.uuid(),
+  // }
+
+  // const line2 = { //line 2 (FLIP)
+
+  //   ...transfer,
+  //   amount: (-1 * line1.amount),
+  //   //balance?
+  //   id: faker.datatype.uuid(), // not sure
+  //   userId: line1.partnerId, //doesnt match payload
+  //   account: line1.partnerAccount,
+  //   scope: line1.partnerScope,
+  //   code: "",//oppsite of line 1 code (make a func for this)
+
+  //   partnerId: line1.id,
+  //   partnerAccount: "aqd_treasury",
+  //   partnerScope: faker.datatype.uuid(),
+
+  // }
+  // allTransfers.push(line1, line2)
+
+  // actor_id: user.id,
+  // actor_type: user.type,
+
+  // resource_id: resource.id,
+  // resource_type: resource.type,
+
+  // author: user,
+  // resource: resource
 })
+
+//export const transfers = allTransfers;
+
 // - Define types of Accounts that exist and scope to user / unit(ie type of bank and a user is the scope)
 //   - And specify the transfers that can exist between accounts
 
@@ -109,8 +137,9 @@ export const mockDataProvider = fakeDataProvider(
     lockers: await mockLockers(3),
 
     Comment: comments,
-    Line: await mockLines({ count: 20 }),
-    Transfer: transfers,
+    // Line: await mockLines({ count: 20 }),
+    Line: lines,
+    //Transfer: transfers,
     Version: versions,
     // For Testing Integrations
     User: users,

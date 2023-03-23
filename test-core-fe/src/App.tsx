@@ -9,11 +9,14 @@ import { CoreAccounting } from 'core-accounting-fe'
 
 const Jobs = CoreJobs.Resource
 
+
+
 import { CoreComments } from 'core-comments-fe'
 const Comments = CoreComments.Resource
 
 import { CoreVersions } from 'core-versions-fe'
 const Versions = CoreVersions.Resource
+const Accounting = CoreAccounting.Resource
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
@@ -21,6 +24,7 @@ const Versions = CoreVersions.Resource
 import { mockDataProvider } from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
+import { User } from './resources/user'
 
 // export default {
 //   title: 'CORE/React Admin',
@@ -70,7 +74,7 @@ function AdminApp() {
       // loginPage={LoginPage}
       // theme={darkTheme}
       dashboard={HomeView}
-      // layout={CustomLayout}
+    // layout={CustomLayout}
     >
       <Resource
         name="jobs"
@@ -87,12 +91,17 @@ function AdminApp() {
         edit={Comments.Edit}
       />
 
+      {/* <Resource
+        name="Transfer"
+        list={Accounting.List}
+      /> */}
+
       <Resource
-        key="admin-lines-resource"
+        // key="admin-lines-resource"
         // name="lines"
         name="Line"
         // icon={Jobs.Icon}
-        options={{ label: 'Ledger Lines', menu: 'admin' }}
+        options={{ label: 'Ledger Lines'}}
         show={<CoreAccounting.Lines.Show />}
         list={
           <CoreAccounting.Lines.List
@@ -114,8 +123,8 @@ function AdminApp() {
 
       <Resource
         name="User"
-        edit={EditGuesser}
-        list={ListGuesser}
+        edit={User.Edit}
+        list={User.List}
         recordRepresentation="name"
         options={{ label: 'Users (Test)' }}
       />

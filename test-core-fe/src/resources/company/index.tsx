@@ -14,8 +14,10 @@ import {
 import { Paper, Typography } from '@mui/material'
 import { CoreComments } from 'core-comments-fe'
 import { CoreVersions } from 'core-versions-fe'
+import { CoreAccounting } from 'core-accounting-fe'
 
 const Comments = CoreComments.Resource
+const ReferenceManyLines = CoreAccounting.Resource.ReferenceManyLines
 
 const inlineLayout = {
   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
@@ -39,6 +41,7 @@ export const CompanyAside = () => (
     <SimpleShowLayout>
       <CoreVersions.VersionStream />
     </SimpleShowLayout>
+    <CoreAccounting.Resource.ReferenceManyLines />
   </Paper>
 )
 
