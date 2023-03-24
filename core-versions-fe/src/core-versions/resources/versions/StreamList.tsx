@@ -40,9 +40,11 @@ const ActorField = () => {
 }
 
 
-export const VersionTimelineItem = () => {
+export const VersionTimelineItem = ({ target }) => {
 
   const record = useRecordContext();
+  // console.log("record ", record)
+  console.log(target)
   if (!record) return null;
   return (
     <TimelineItem>
@@ -62,9 +64,13 @@ export const VersionTimelineItem = () => {
       </TimelineSeparator>
 
       <TimelineContent sx={{ py: '12px', px: 2 }}>
-        <PolymorphicReferenceField source="actor" />
-        {' '}
-        changed
+        {target == 'resource_id' &&
+          <>
+            <PolymorphicReferenceField source="actor" />
+            {' '}
+            changed
+          </>
+        }
         <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
           <Typography variant="body2" color="textSecondary">
             <table>
@@ -90,18 +96,18 @@ export const VersionTimelineItem = () => {
   )
 }
 
-export const VersionStream = () => {
+export const VersionStream = ({ target }) => {
   const record = useRecordContext()
-
+  // console.log("target = ", target)
   return (
     <>
       <ReferenceManyField
         reference="Version"
-        target="resource_id"
+        target={target}
         record={record}
       >
         <SingleFieldList sx={{ display: 'inline-block' }}>
-          <VersionTimelineItem />
+          <VersionTimelineItem target={target} />
         </SingleFieldList>
       </ReferenceManyField>
     </>

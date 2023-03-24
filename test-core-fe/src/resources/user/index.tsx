@@ -21,11 +21,17 @@ import {
   //   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
   // }
   
-  export const CompanyAside = () => (
+  export const UserAside = () => (
+    <>
     <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
       <Typography variant="h6">Transactions</Typography>
       <CoreAccounting.ReferenceManyLines />
+      <Typography variant="h6">Versions</Typography>
+      <SimpleShowLayout>
+      <CoreVersions.VersionStream target="actor_id"/>
+      </SimpleShowLayout>
     </Paper>
+    </>
   )
 
 export const UserList = () => (
@@ -41,7 +47,7 @@ export const UserList = () => (
 );
 
 export const UserEdit = () => (
-    <Edit aside={<CompanyAside />}>
+    <Edit aside={<UserAside />}>
         <SimpleForm>
             <TextInput disabled source="name" fullWidth />
             {/* <TextInput source="type" />
