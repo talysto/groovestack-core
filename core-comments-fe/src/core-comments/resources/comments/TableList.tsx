@@ -31,7 +31,10 @@ const commentFilters = [
   <DateInput source="created_at_gte" label="After" />,
   <ReferenceInput alwaysOn label="Author" source="author_id" reference="User" perPage={10}>
     <AutocompleteInput />
-  </ReferenceInput>
+  </ReferenceInput>,
+    <ReferenceInput alwaysOn label="Resource" source="resource_id" reference="User" perPage={10}>
+    <AutocompleteInput />
+  </ReferenceInput>,
 ]
 
 export const CommentsTable = () => {
