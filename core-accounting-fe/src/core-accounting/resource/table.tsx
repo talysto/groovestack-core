@@ -1,16 +1,29 @@
 import React from 'react'
 
-import { List, Datagrid, TextField, NumberField, useRecordContext, ReferenceField, DateField } from 'react-admin'
+import { List, Datagrid, TextField, NumberField, useRecordContext, ReferenceField, DateField, SearchInput, SavedQueriesList, FilterLiveSearch, FilterList, FilterListItem } from 'react-admin'
 
 import { MoneyField } from './MoneyField'
 import { TimeAgoField } from './TimeAgoField'
 
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+import { Card, CardContent } from '@mui/material'
+import MailIcon from '@mui/icons-material/MailOutline';
+
+export const PostFilterSidebar = () => (
+  <Card sx={{ order: -1, mr: 2, mt: 9, width: 200 }}>
+    <CardContent>
+      <FilterList label="account" icon={<MailIcon />}>
+        <FilterListItem label="aqd_treasury" value={{ account: 'aqd_treasury' }} />
+        <FilterListItem label="aqd_tokens" value={{ account: 'aqd_tokens' }} />
+      </FilterList>
+    </CardContent>
+  </Card>
+)
 
 export const Table: React.FC<{ datagridProps?: any; tableProps?: any, children?: any }> = ({ datagridProps, tableProps, children }) => {
   return (
-    <List exporter={false} {...tableProps}>
-      <Datagrid sort={{ field: 'createdAt', order: 'DESC' }} rowClick="show">
+    <List aside={<PostFilterSidebar/>} exporter={false} {...tableProps}>
+      <Datagrid bulkActionButtons={false} sort={{ field: 'createdAt', order: 'DESC' }} rowClick="show">
         {/* <TextField source="id" sortable={false} /> */}
         {/* <TextField source="account" sortable={false} />
         <TextField source="scope" sortable={false} /> */}

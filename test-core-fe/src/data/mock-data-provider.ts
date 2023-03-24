@@ -54,8 +54,8 @@ const versions = (await mockVersions({ count: 20 })).map((version) => {
   }
 })
 
-//let allTransfers = [];
-const lines = (await mockTransfers({ count: 8 })).map((line, idx) => {
+//a transfer is 2 lines, so 8 mock transfers returns 16 lines
+const lines = (await mockTransfers({ count: 150 })).map((line, idx) => {
   console.log("asdf")
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
@@ -150,5 +150,6 @@ export const mockDataProvider = fakeDataProvider(
 
 console.log(users)
 console.log(comments)
+console.log(lines)
 
 // Comment

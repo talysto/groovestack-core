@@ -26,7 +26,7 @@ import {
   
   export const CompanyAside = () => (
     <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
-      <Typography variant="h6">Details - reference many lines</Typography>
+      <Typography variant="h6">Transactions</Typography>
       <CoreAccounting.ReferenceManyLines />
     </Paper>
   )

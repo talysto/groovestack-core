@@ -97,11 +97,11 @@ function AdminApp() {
       /> */}
 
       <Resource
-        // key="admin-lines-resource"
+        key="admin-lines-resource"
         // name="lines"
         name="Line"
         // icon={Jobs.Icon}
-        options={{ label: 'Ledger Lines'}}
+        options={{ label: 'Ledger Lines', menu: 'admin' }}
         show={<CoreAccounting.Lines.Show />}
         list={
           <CoreAccounting.Lines.List
