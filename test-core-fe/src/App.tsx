@@ -76,6 +76,7 @@ function AdminApp() {
       dashboard={HomeView}
     // layout={CustomLayout}
     >
+
       <Resource
         name="jobs"
         icon={Jobs.Icon}

@@ -17,12 +17,9 @@ import {
   import { CoreVersions } from 'core-versions-fe'
   import { CoreAccounting } from 'core-accounting-fe'
   
-  // const Comments = CoreComments.Resource
-  // const ReferenceManyLines = CoreAccounting.Resource.ReferenceManyLines
-  
-  const inlineLayout = {
-    sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
-  }
+  // const inlineLayout = {
+  //   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
+  // }
   
   export const CompanyAside = () => (
     <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>

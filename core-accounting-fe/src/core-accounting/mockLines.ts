@@ -7,31 +7,15 @@ declare global {
 Array.prototype.sample = function () {
   return this[Math.floor(Math.random() * this.length)]
 }
-
-
-//   #<DoubleEntry::Line:0x000000010f3103e8> {
-//     "id" => "6dd32946-f212-41a8-b9d2-065c89737c1f",
-// "account" => "aqd_tokens",
-//  "scope" => "10beb7bc-d420-4eae-afb5-43124044bd25",
-//   "code" => "buy_aqd",
-// "amount" => 1500,
-// "balance" => 1500,
-// "partner_id" => "b4e6133a-3ba6-46f7-9f98-92238f975f48",
-// "partner_account" => "aqd_treasury",
-// "partner_scope" => "7dcdd3c5-1943-424d-bd62-8a214924b996",
-// "detail_type" => nil,
-// "detail_id" => nil,
-// "metadata" => {},
-// "created_at" => Thu, 16 Mar 2023 23:00:51.747097000 UTC +00:00,
-// "updated_at" => Thu, 16 Mar 2023 23:00:51.747097000 UTC +00:00,
-//   "key1" => [],
-//   "key2" => nil
-
 // count.times do {
 //   create line 1
 //   creatre line 2
 //   transfers += [line 1, line 2]
 // }
+// for each pair of credit / debit lines
+//   grab a user & a company
+//   line 1 has user as account / scope and company as partner account / scope
+//   line 2 has company as account / scope and user as partner account / scope
 
 //assuming they can both buy and spend from each other
 //what about transfers?
@@ -45,134 +29,16 @@ else { //line 2
   partnerCode = 'buy_aqd'
 }
 
-  export async function mockTransfers({ count = 8 }): Promise<any> {
-    try {
-      const { faker } = await import('@faker-js/faker')
-      let lines = []
-      for (let i = count; i--;) {
-        const line1 = {
-          id: faker.datatype.uuid(),
-          account: "aqd_tokens", //faker.datatype.uuid(),
-          // balance: faker.commerce.price(1, 10000, 0),
-
-          amount: {
-            amount: faker.commerce.price(1, 1000, 0),
-            formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
-            currency: {
-              code: 'EQD',
-              symbol: '$',
-            },
-          },
-          balance: {
-            amount: faker.commerce.price(1, 1000, 0),
-            formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
-            currency: {
-              code: 'EQD',
-              symbol: '$',
-            },
-          },
-
-          code: code,
-          // amount: faker.commerce.price(1, 1500, 0),
-
-          partnerId: faker.datatype.uuid(), //
-          partnerAccount: "aqd_treasury",
-
-          detailId: faker.datatype.uuid(),
-          detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
-          metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
-          createdAt: faker.date.recent(),
-          updatedAt: faker.date.recent(),
-        }
-
-        const line2 = { //line 2 (FLIP)
-          id: line1.partnerId,
-          account: line1.partnerAccount,
-
-          // amount: (-1 * line1.amount),
-          // balance: faker.commerce.price(1, 10000, 0),
-
-          amount: {
-            amount: faker.commerce.price(1, 1000, 0),
-            formatted_amount: line1.amount.formatted_amount, // *-1?
-            currency: {
-              code: 'EQD',
-              symbol: '$',
-            },
-          },
-          balance: {
-            amount: faker.commerce.price(1, 1000, 0),
-            formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
-            currency: {
-              code: 'EQD',
-              symbol: '$',
-            },
-          },
-
-          code: partnerCode,
-
-          partnerId: line1.id,
-          partnerAccount: line1.id,
-
-          detailId: faker.datatype.uuid(),
-          detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
-          metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
-          createdAt: faker.date.recent(),
-          updatedAt: faker.date.recent(),
-        }
-        lines.push(line1, line2)
-      }
-      return lines
-
-
-      // return Array.from({ length: count }, () => ({
-      //   // account: ["aqd_tokens", "aqd_treasury"].sample() //faker.datatype.uuid(),
-      //   // scope: faker.datatype.uuid(),
-      //   // code: ['buy_aqd', 'spend_aqd', 'transfer_aqd?'].sample(),
-      //   // //----------------------
-      //   amount: faker.commerce.price(1, 1500, 0),
-      //   balance: faker.commerce.price(1, 1500, 0),
-
-      //   detailId: faker.datatype.uuid(),
-      //   detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
-      //   metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
-      //   createdAt: faker.date.recent(),
-      //   updatedAt: faker.date.recent(),
-      //   //   "key1" => [],
-      //   //   "key2" => nil
-      //   //----------------------
-      //   // partnerId: faker.datatype.uuid(),
-      //   // partnerAccount: "aqd_treasury",
-      //   // partnerScope: faker.datatype.uuid(),
-      // }))
-    } catch (e) {
-      console.error(e)
-      return []
-    }
-
-    // 8.times do 
-    //   create line 
-    //     credit amount
-
-    //   create partner line
-    //     debit amount
-
-    // for each pair of credit / debit lines
-    //   grab a user & a company
-    //   line 1 has user as account / scope and company as partner account / scope
-    //   line 2 has company as account / scope and user as partner account / scope
-
-
-  }
-  export async function mockLines({ count = 15 }): Promise<any> {
-    try {
-      const { faker } = await import('@faker-js/faker')
-      return Array.from({ length: count }, () => ({
-        // standard attributes
+export async function mockTransfers({ count = 8 }): Promise<any> {
+  try {
+    const { faker } = await import('@faker-js/faker')
+    let lines = []
+    for (let i = count; i--;) {
+      const line1 = {
         id: faker.datatype.uuid(),
-        account: faker.datatype.uuid(),
-        scope: faker.datatype.uuid(),
-        code: ['payment', 'transfer', 'spend'].sample(),
+        account: "aqd_tokens",
+        // amount: faker.commerce.price(1, 1500, 0),
+        // balance: faker.commerce.price(1, 10000, 0),
         amount: {
           amount: faker.commerce.price(1, 1000, 0),
           formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
@@ -189,18 +55,96 @@ else { //line 2
             symbol: '$',
           },
         },
-        partnerAccount: faker.datatype.uuid(),
-        partnerScope: faker.datatype.uuid(),
-        partnerId: faker.datatype.uuid(),
+        code: code,
+        partnerId: faker.datatype.uuid(), //
+        partnerAccount: "aqd_treasury",
         detailId: faker.datatype.uuid(),
         detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
-        // TODO improve metadata fake data
-        metadata: { key1: ['value 1', 'value 2'], key2: 'value 3' },
+        metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent(),
-      }))
-    } catch (e) {
-      console.error(e)
-      return []
+      }
+
+      const line2 = { //line 2 (FLIP)
+        id: line1.partnerId,
+        account: line1.partnerAccount,
+        // amount: (-1 * line1.amount)?
+        // balance: faker.commerce.price(1, 10000, 0),
+        amount: {
+          amount: faker.commerce.price(1, 1000, 0),
+          formatted_amount: line1.amount.formatted_amount, // *-1?
+          currency: {
+            code: 'EQD',
+            symbol: '$',
+          },
+        },
+        balance: {
+          amount: faker.commerce.price(1, 1000, 0),
+          formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
+          currency: {
+            code: 'EQD',
+            symbol: '$',
+          },
+        },
+        code: partnerCode,
+        partnerId: line1.id,
+        partnerAccount: line1.id,
+        detailId: faker.datatype.uuid(),
+        detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
+        metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
+        createdAt: faker.date.recent(),
+        updatedAt: faker.date.recent(),
+      }
+      lines.push(line1, line2)
     }
+    return lines
+
+
+   
+  } catch (e) {
+    console.error(e)
+    return []
   }
+}
+
+// }
+// export async function mockLines({ count = 15 }): Promise<any> {
+//   try {
+//     const { faker } = await import('@faker-js/faker')
+//     return Array.from({ length: count }, () => ({
+//       // standard attributes
+//       id: faker.datatype.uuid(),
+//       account: faker.datatype.uuid(),
+//       scope: faker.datatype.uuid(),
+//       code: ['payment', 'transfer', 'spend'].sample(),
+//       amount: {
+//         amount: faker.commerce.price(1, 1000, 0),
+//         formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
+//         currency: {
+//           code: 'EQD',
+//           symbol: '$',
+//         },
+//       },
+//       balance: {
+//         amount: faker.commerce.price(1, 1000, 0),
+//         formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
+//         currency: {
+//           code: 'EQD',
+//           symbol: '$',
+//         },
+//       },
+//       partnerAccount: faker.datatype.uuid(),
+//       partnerScope: faker.datatype.uuid(),
+//       partnerId: faker.datatype.uuid(),
+//       detailId: faker.datatype.uuid(),
+//       detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
+//       // TODO improve metadata fake data
+//       metadata: { key1: ['value 1', 'value 2'], key2: 'value 3' },
+//       createdAt: faker.date.recent(),
+//       updatedAt: faker.date.recent(),
+//     }))
+//   } catch (e) {
+//     console.error(e)
+//     return []
+//   }
+// }

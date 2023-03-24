@@ -24,9 +24,7 @@ export const Table: React.FC<{ datagridProps?: any; tableProps?: any, children?:
   return (
     <List aside={<PostFilterSidebar/>} exporter={false} {...tableProps}>
       <Datagrid bulkActionButtons={false} sort={{ field: 'createdAt', order: 'DESC' }} rowClick="show">
-        {/* <TextField source="id" sortable={false} /> */}
-        {/* <TextField source="account" sortable={false} />
-        <TextField source="scope" sortable={false} /> */}
+
         {children}
         <TextField source="code" sortable={false} />
         <MoneyField source="amount" />
