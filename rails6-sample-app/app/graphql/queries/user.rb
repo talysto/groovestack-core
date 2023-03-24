@@ -29,7 +29,7 @@ module Queries
     end
 
     def users_meta(page: nil, per_page: nil, **attrs)
-      { count: org_units_scope(attrs).size }
+      { count: org_units_scope(**attrs).size }
     end
 
     def users_base_scope
@@ -47,6 +47,5 @@ module Queries
 
       scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
     end
-
   end
 end

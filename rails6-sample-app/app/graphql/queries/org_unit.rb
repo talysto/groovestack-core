@@ -47,6 +47,5 @@ module Queries
 
       scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
     end
-
   end
 end
