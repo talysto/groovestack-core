@@ -28,12 +28,6 @@ module Queries
       org_units_base_scope.find(id)
     end
 
-    def org_units(page: nil, per_page: nil, **attrs)
-      scope = org_units_scope(**attrs)
-      scope = scope.offset(page * per_page).limit(per_page) if page.present?
-      scope
-    end
-
     def org_units_meta(page: nil, per_page: nil, **attrs)
       { count: org_units_scope(**attrs).size }
     end
