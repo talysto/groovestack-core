@@ -34,7 +34,6 @@ module Core
 
     # Your code goes here...
   end
-
 end
 
 
@@ -43,4 +42,3 @@ end
 #     puts "Custom message here"
 #   end
 # end
-

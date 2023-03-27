@@ -34,7 +34,7 @@ module Core
     
                 unless except.include?(:collection)
                   define_method entity do |page: nil, per_page: nil, **attrs|
-                    scope = send("#{entity}_scope", attrs)
+                    scope = send("#{entity}_scope", **attrs)
                     scope = scope.page(page + 1).per(per_page) if page.present?
                     scope
                   end
@@ -44,7 +44,7 @@ module Core
     
                 unless except.include?(:collection_meta)
                   define_method "#{entity}_meta".to_sym do |page: nil, per_page: nil, **attrs| # rubocop:disable Lint/UnusedBlockArgument
-                    { count: send("#{entity}_scope", attrs).size }
+                    { count: send("#{entity}_scope", **attrs).size }
                   end
                 end
     

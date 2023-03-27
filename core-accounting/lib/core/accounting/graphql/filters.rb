@@ -6,6 +6,7 @@ module Core
           argument_class ::GraphQL::Schema::Argument
 
           description 'line filter props'
+
           argument :q, String, required: false
           argument :ids, [ID], required: false
           argument :code, [String], required: false
