@@ -7,5 +7,4 @@ export class CoreAccounting {
   static Lines = Lines
   static Resource = Lines
   static ReferenceManyLines = ReferenceManyLines
-  // static Resource = Transfers
 }

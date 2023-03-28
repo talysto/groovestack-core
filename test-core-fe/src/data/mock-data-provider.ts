@@ -56,7 +56,7 @@ const versions = (await mockVersions({ count: 20 })).map((version) => {
 
 //a transfer is 2 lines, so 8 mock transfers returns 16 lines
 let user, resource;
-const lines = (await mockLines({ count: 100 })).map((line, idx) => {
+const lines = (await mockLines({ count: 10 })).map((line, idx) => {
   // console.log("asdf")
   let scope, partnerScope
   // const { user, resource } = userAndResource(idx)

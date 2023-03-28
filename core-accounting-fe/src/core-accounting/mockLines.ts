@@ -13,8 +13,9 @@ export async function mockLines({ count = 8 }): Promise<any> {
   try {
     const { faker } = await import('@faker-js/faker')
     let lines = []
-    let code = ['buy_aqd','spend_aqd'].sample()
     for (let i = count; i--;) {
+      let code = faker.helpers.arrayElement(['buy_aqd','spend_aqd'])
+    console.log("code = ", code)
       const line1 = {
         id: faker.datatype.uuid(),
         account: "aqd_tokens",
