@@ -8,7 +8,7 @@ module Core
           include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
           react_admin_resource :lines, core_namespace: 'Accounting'
-        end if defined?(::Core::Base)
+        end
 
         def lines_base_scope
           ::DoubleEntry::Line.all

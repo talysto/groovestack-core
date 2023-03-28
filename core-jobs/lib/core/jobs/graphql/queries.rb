@@ -10,7 +10,7 @@ module Core
           react_admin_resource :jobs, core_namespace: 'Jobs'
           react_admin_resource :lockers, core_namespace: 'Jobs'
           react_admin_resource :job_reports, core_namespace: 'Jobs', except: [:find]
-        end if defined?(::Core::Base)
+        end
 
         def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
           scope = ::Core::Jobs::Job.unscoped
