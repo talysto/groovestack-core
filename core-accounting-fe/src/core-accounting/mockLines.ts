@@ -7,23 +7,32 @@ declare global {
 Array.prototype.sample = function () {
   return this[Math.floor(Math.random() * this.length)]
 }
-//assuming they can both buy and spend from each other
-//what about transfers?
-export async function mockLines({ count = 8 }): Promise<any> {
+
+const defaultDEntryTransferTypes = [
+  { code: 'buy_token', credit_account: 'tokens', debit_account: 'treasury'}, 
+  { code: 'spend_token', credit_account: 'treasury', debit_account: 'tokens'}
+]
+
+type MockLinesArgs = {
+  count: number;
+  dEntryTransferTypes: {code: string; credit_account: string; debit_account: string}[]}
+
+export async function mockLines({ count = 8, dEntryTransferTypes = defaultDEntryTransferTypes }: MockLinesArgs): Promise<any> {
   try {
     const { faker } = await import('@faker-js/faker')
+    
     let lines = []
     for (let i = count; i--;) {
-      let code = faker.helpers.arrayElement(['buy_aqd','spend_aqd'])
-    console.log("code = ", code)
+      const transfer = faker.helpers.arrayElement(defaultDEntryTransferTypes)
+      const amount = parseFloat(faker.commerce.price(1, 1000))
+      const formatted_amount = `$${amount}`
+
       const line1 = {
         id: faker.datatype.uuid(),
-        account: "aqd_tokens",
-        // amount: faker.commerce.price(1, 1500, 0),
-        // balance: faker.commerce.price(1, 10000, 0),
+        account: transfer.credit_account,
         amount: {
-          amount: faker.commerce.price(1, 1000, 0),
-          formatted_amount: faker.commerce.price(1, 1000, 0, '$'),
+          amount,
+          formatted_amount,
           currency: {
             code: 'EQD',
             symbol: '$',
@@ -37,25 +46,24 @@ export async function mockLines({ count = 8 }): Promise<any> {
             symbol: '$',
           },
         },
-        code: code,
+        code: transfer.code,
         partnerId: faker.datatype.uuid(), //
-        partnerAccount: "aqd_treasury",
-        detailId: faker.datatype.uuid(),
-        detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
+        partnerAccount: transfer.debit_account,
+        // detailId: faker.datatype.uuid(),
+        // detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
         metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent(),
       }
 
-      const amount = -1 * line1.amount.amount
       const line2 = { //line 2 (FLIP)
         id: line1.partnerId,
-        account: line1.partnerAccount,
+        account: transfer.debit_account,
         // amount: (-1 * line1.amount)?
         // balance: faker.commerce.price(1, 10000, 0),
         amount: {
-          amount: amount,
-          formatted_amount: line1.amount.formatted_amount, // *-1?
+          amount: amount * -1,
+          formatted_amount: `-${formatted_amount}`, // *-1?
           currency: {
             code: 'EQD',
             symbol: '$',
@@ -69,14 +77,14 @@ export async function mockLines({ count = 8 }): Promise<any> {
             symbol: '$',
           },
         },
-        code: code,
+        code: transfer.code,
         partnerId: line1.id,
-        partnerAccount: line1.id,
-        detailId: faker.datatype.uuid(),
-        detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
+        partnerAccount: transfer.credit_account,
+        // detailId: faker.datatype.uuid(),
+        // detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
         metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
-        createdAt: faker.date.recent(),
-        updatedAt: faker.date.recent(),
+        createdAt: line1.createdAt,
+        updatedAt: line1.updatedAt,
       }
       lines.push(line1, line2)
     }
