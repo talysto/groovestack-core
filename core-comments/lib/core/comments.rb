@@ -8,6 +8,7 @@
 require 'active_record'
 
 require 'core/comments/railtie' if defined?(Rails::Railtie)
+require 'core/comments/comment'
 require 'core/comments/version'
 require 'core/comments/graphql/types'
 require 'core/comments/graphql/filters'
