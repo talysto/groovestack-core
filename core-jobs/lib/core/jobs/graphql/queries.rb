@@ -29,6 +29,7 @@ module Core
 
         def lockers_scope(sort_field: nil, sort_order: nil, filter: {})
           scope = ::Core::Jobs::Locker.unscoped
+          scope = scope.where(id: filter.ids) unless filter.ids.nil?
 
           return scope unless sort_field.present?
 
