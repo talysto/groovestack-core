@@ -19,6 +19,7 @@ module Core
           scope = scope.where(id: filter.ids) unless filter.ids.nil?
           scope = scope.where(code: filter.code) unless filter.code.nil?
           scope = scope.where(scope: filter.scope) unless filter.scope.nil?
+          scope = scope.where(scope: filter.account) unless filter.account.nil?
 
           return scope unless sort_field.present?
 

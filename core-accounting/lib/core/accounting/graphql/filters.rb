@@ -9,6 +9,7 @@ module Core
 
           argument :q, String, required: false
           argument :ids, [ID], required: false
+          argument :account, [String], required: false
           argument :code, [String], required: false
           argument :scope, [String], required: false
         end
