@@ -26,6 +26,8 @@ module Core
           argument_class ::GraphQL::Schema::Argument
 
           description 'que locker filter props'
+          
+          argument :ids, [ID], required: false
         end
       end
     end
