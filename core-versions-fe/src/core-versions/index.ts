@@ -2,7 +2,7 @@
 import { VersionStream } from './resources/versions/StreamList'
 import { Versions } from './resources/versions'
 
-export { mockVersions } from './mock-versions'
+export { mockVersions } from './mockVersions'
 
 export class CoreVersions {
   // static Charts = Charts

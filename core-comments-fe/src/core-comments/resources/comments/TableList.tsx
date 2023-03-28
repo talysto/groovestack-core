@@ -13,8 +13,13 @@ import {
   SelectInput,
   ReferenceField,
   AutocompleteInput,
+  RecordContext,
+  useListContext,
+  useRecordContext,
+  FilterForm,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+import { PolymorphicReferenceInput } from './PolymorphicReferenceInput'
 
 const ActionsField = (props: any) => {
   return (
@@ -24,26 +29,26 @@ const ActionsField = (props: any) => {
     />
   )
 }
-
+const dog = 2;
 const commentFilters = [
-  <SearchInput source="q" alwaysOn />,
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
-  <ReferenceInput alwaysOn label="Author" source="author_id" reference="User" perPage={10}>
-    <AutocompleteInput />
-  </ReferenceInput>
+  <PolymorphicReferenceInput source="author" />,
+  <PolymorphicReferenceInput source="resource" />,
 ]
 
 export const CommentsTable = () => {
+  const record = useRecordContext();
+  console.log("RRR", record)
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
       filters={commentFilters}
     >
+      {/* <ListToolbar record={record} /> */}
       <Datagrid rowClick="edit">
         <PolymorphicReferenceField source="author" />
         <PolymorphicReferenceField source="resource" />
-
         <TextField source="body" label="Comment" sortable={false} />
         <DateField source="created_at" label="Date" />
         <ActionsField source="actions" />

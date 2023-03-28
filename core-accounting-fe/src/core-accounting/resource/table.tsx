@@ -1,17 +1,15 @@
 import React from 'react'
 
-import { List, Datagrid, TextField, NumberField, useRecordContext} from 'react-admin'
+import { List, Datagrid, TextField } from 'react-admin'
 
 import { MoneyField } from './MoneyField'
 import { TimeAgoField } from './TimeAgoField'
 
-export const Table: React.FC<{datagridProps?: any; tableProps?: any, children?: any}> = ({datagridProps, tableProps, children}) => {
+export const Table: React.FC<{ datagridProps?: any; tableProps?: any, children?: any }> = ({ datagridProps, tableProps, children }) => {
   return (
     <List exporter={false} {...tableProps}>
-      <Datagrid sort={{ field: 'createdAt', order: 'DESC' }} rowClick="show">
-        {/* <TextField source="id" sortable={false} /> */}
-        {/* <TextField source="account" sortable={false} />
-        <TextField source="scope" sortable={false} /> */}
+      <Datagrid bulkActionButtons={false} sort={{ field: 'createdAt', order: 'DESC' }} rowClick="show" {...datagridProps}>
+
         {children}
         <TextField source="code" sortable={false} />
         <MoneyField source="amount" />

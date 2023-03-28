@@ -1,4 +1,4 @@
-import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin'
+import { Admin, EditGuesser, ListGuesser, Resource, SelectInput } from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -9,11 +9,14 @@ import { CoreAccounting } from 'core-accounting-fe'
 
 const Jobs = CoreJobs.Resource
 
+
+
 import { CoreComments } from 'core-comments-fe'
 const Comments = CoreComments.Resource
 
 import { CoreVersions } from 'core-versions-fe'
 const Versions = CoreVersions.Resource
+const Accounting = CoreAccounting.Resource
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
@@ -21,6 +24,7 @@ const Versions = CoreVersions.Resource
 import { mockDataProvider } from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
+import { User } from './resources/user'
 
 // export default {
 //   title: 'CORE/React Admin',
@@ -62,6 +66,17 @@ function AdminApp() {
 
   // if (!dataProvider) return <div>Loading</div>
 
+
+  const lineFilters = [
+    <SelectInput
+      source="account"
+      choices={[
+        { id: 'aqd_treasury', name: 'AQD Treasury' },
+        { id: 'aqd_tokens', name: 'AQD Tokens' },
+      ]}
+    />
+  ];
+
   return (
     <Admin
       disableTelemetry
@@ -70,8 +85,9 @@ function AdminApp() {
       // loginPage={LoginPage}
       // theme={darkTheme}
       dashboard={HomeView}
-      // layout={CustomLayout}
+    // layout={CustomLayout}
     >
+
       <Resource
         name="jobs"
         icon={Jobs.Icon}
@@ -96,7 +112,7 @@ function AdminApp() {
         show={<CoreAccounting.Lines.Show />}
         list={
           <CoreAccounting.Lines.List
-          // tableProps={{filters: lineFilters}}
+          tableProps={{filters: lineFilters}}
           >
             {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
@@ -114,8 +130,8 @@ function AdminApp() {
 
       <Resource
         name="User"
-        edit={EditGuesser}
-        list={ListGuesser}
+        edit={User.Edit}
+        list={User.List}
         recordRepresentation="name"
         options={{ label: 'Users (Test)' }}
       />
