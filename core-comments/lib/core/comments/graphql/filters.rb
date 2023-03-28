@@ -7,6 +7,7 @@ module Core
 
           description 'comment filter props'
 
+          argument :q, String, required: false
           argument :ids, [ID], required: false
           argument :created_at_lte, String, required: false
           argument :created_at_gte, String, required: false
