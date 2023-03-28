@@ -7,6 +7,7 @@ module Core
 
           description 'comment filter props'
 
+          argument :ids, [ID], required: false
           argument :created_at_lte, String, required: false
           argument :created_at_gte, String, required: false
           argument :resource_id, ID, required: false
