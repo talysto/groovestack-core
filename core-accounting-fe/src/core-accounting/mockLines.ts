@@ -23,7 +23,7 @@ export async function mockLines({ count = 8, dEntryTransferTypes = defaultDEntry
     
     let lines = []
     for (let i = count; i--;) {
-      const transfer = faker.helpers.arrayElement(defaultDEntryTransferTypes)
+      const transfer = faker.helpers.arrayElement(dEntryTransferTypes)
       const amount = parseFloat(faker.commerce.price(1, 1000))
       const formatted_amount = `$${amount}`
 

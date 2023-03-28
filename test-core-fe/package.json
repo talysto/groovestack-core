@@ -12,6 +12,7 @@
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "@mui/icons-material": "^5.11.11",
+    "@mui/lab": "^5.0.0-alpha.124",
     "@mui/material": "^5.11.12",
     "dayjs": "^1.11.7",
     "ra-data-fakerest": "^4.8.2",
