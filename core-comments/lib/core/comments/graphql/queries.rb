@@ -8,7 +8,7 @@ module Core
           include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
           react_admin_resource :comments, core_namespace: 'Comments'
-        end if defined?(::Core::Base)
+        end
 
         def comments_base_scope
           ::Core::Comments::Comment.all
