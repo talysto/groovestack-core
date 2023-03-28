@@ -18,8 +18,8 @@ gem 'rails', '~> 6.1.6' # Bundle edge Rails instead: gem 'rails', github: 'rails
 gem 'rack-cors' # enable CORS request for specific APIs
 
 git 'https://github.com/moonlight-labs/core.git', branch: 'sprint/core-1.0' do # TODO: update branch name to main
+  gem 'core-base' # must be first gem
   gem 'core-accounting'
-  gem 'core-base'
   gem 'core-comments'
   gem 'core-jobs'
 end
