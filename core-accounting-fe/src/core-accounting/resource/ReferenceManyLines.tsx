@@ -3,20 +3,8 @@ import { ReferenceManyField, TextField, Datagrid, useRecordContext, SelectInput,
 import { MoneyField } from "./MoneyField"
 import { TimeAgoField } from "./TimeAgoField"
 
-export const ReferenceManyLines: FC<{ children?: any }> = ({ children }) => {
+export const ReferenceManyLines: FC<{ children?: any, tableProps?: any, datagridProps?: any }> = ({ children, tableProps, datagridProps }) => {
   const record = useRecordContext()
-
-  const lineFilters = [
-    <SelectInput
-      alwaysOn
-      source="code"
-      choices={[
-        { id: 'buy_aqd', name: 'Buy AQD' },
-        { id: 'spend_aqd', name: 'Spend AQD' },
-      ]}
-    />
-  ];
-
   return (
     <ReferenceManyField
       key={record.id}
@@ -25,9 +13,9 @@ export const ReferenceManyLines: FC<{ children?: any }> = ({ children }) => {
       // record={record}
     >
       {/* A list within a reference field doesnt normally work (it ignores the target, but you can reset the target w/ filter, and filter for values where the scope is equal to the current record id (user.id)) */}
-      <List exporter={false} filter={{ scope: record.id }} filters={lineFilters} >
+      <List exporter={false} filter={{ scope: record.id }} {...tableProps} >
 
-        <Datagrid bulkActionButtons={false}>
+        <Datagrid bulkActionButtons={false}  >
           <TextField source="code" sortable={false} />
           <MoneyField source="amount" />
           <MoneyField source="balance" />

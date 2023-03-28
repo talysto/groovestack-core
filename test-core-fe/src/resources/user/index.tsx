@@ -6,6 +6,7 @@ import {
     List,
     ReferenceManyCount,
     ReferenceManyField,
+    SelectInput,
     SimpleForm,
     SimpleShowLayout,
     TextField,
@@ -21,18 +22,32 @@ import {
   //   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
   // }
   
-  export const UserAside = () => (
+
+
+  export const UserAside = () => {
+    const lineFilters = [
+      <SelectInput
+        alwaysOn
+        source="code"
+        choices={[
+          { id: 'buy_aqd', name: 'Buy AQD' },
+          { id: 'spend_aqd', name: 'Spend AQD' },
+        ]}
+      />
+    ];
+    return(
     <>
     <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
       <Typography variant="h6">Transactions</Typography>
-      <CoreAccounting.ReferenceManyLines />
+      <CoreAccounting.ReferenceManyLines tableProps={{filters: lineFilters}} />
       <Typography variant="h6">Versions</Typography>
       <SimpleShowLayout>
       <CoreVersions.VersionStream target="actor_id"/>
       </SimpleShowLayout>
     </Paper>
     </>
-  )
+  
+  )}
 
 export const UserList = () => (
     <List>

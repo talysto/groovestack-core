@@ -1,6 +1,6 @@
 import {ReferenceManyLines} from './ReferenceManyLines'
 import { LineShow } from './show'
-import { Table, TransferList } from "./table"
+import { Table } from "./table"
 import HistoryIcon from '@mui/icons-material/History'
 
 export class Lines {
@@ -8,19 +8,6 @@ export class Lines {
   static List = Table
   static ReferenceManyLines = ReferenceManyLines
   static Show = LineShow
-  // // static Show = ShowSession
-  // static Icon = PlaylistAddCheckIcon
-}
-
-
-
-export class Transfers {
-  static Icon = HistoryIcon
-  static List = TransferList
-  
-  // static ReferenceManyLines = ReferenceManyLines
-  // static Show = LineShow
-
   // // static Show = ShowSession
   // static Icon = PlaylistAddCheckIcon
 }

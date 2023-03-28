@@ -1,4 +1,4 @@
-import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin'
+import { Admin, EditGuesser, ListGuesser, Resource, SelectInput } from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -66,6 +66,17 @@ function AdminApp() {
 
   // if (!dataProvider) return <div>Loading</div>
 
+
+  const lineFilters = [
+    <SelectInput
+      source="account"
+      choices={[
+        { id: 'aqd_treasury', name: 'AQD Treasury' },
+        { id: 'aqd_tokens', name: 'AQD Tokens' },
+      ]}
+    />
+  ];
+
   return (
     <Admin
       disableTelemetry
@@ -92,11 +103,6 @@ function AdminApp() {
         edit={Comments.Edit}
       />
 
-      {/* <Resource
-        name="Transfer"
-        list={Accounting.List}
-      /> */}
-
       <Resource
         key="admin-lines-resource"
         // name="lines"
@@ -106,7 +112,7 @@ function AdminApp() {
         show={<CoreAccounting.Lines.Show />}
         list={
           <CoreAccounting.Lines.List
-          // tableProps={{filters: lineFilters}}
+          tableProps={{filters: lineFilters}}
           >
             {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />

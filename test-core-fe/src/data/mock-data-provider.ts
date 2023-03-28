@@ -1,7 +1,7 @@
 import fakeDataProvider from 'ra-data-fakerest'
 import { mockJobs, mockLockers } from 'core-jobs-fe'
 import { mockComments } from 'core-comments-fe'
-import { mockLines, mockTransfers } from 'core-accounting-fe'
+import { mockLines, mockLines } from 'core-accounting-fe'
 import { mockVersions } from 'core-versions-fe'
 
 import { faker } from '@faker-js/faker'
@@ -55,15 +55,17 @@ const versions = (await mockVersions({ count: 20 })).map((version) => {
 })
 
 //a transfer is 2 lines, so 8 mock transfers returns 16 lines
-const lines = (await mockTransfers({ count: 150 })).map((line, idx) => {
-  console.log("asdf")
-  const user = faker.helpers.arrayElement(users)
-  const resource = faker.helpers.arrayElement([
-    faker.helpers.arrayElement(users),
-    faker.helpers.arrayElement(companies),
-  ])
+let user, resource;
+const lines = (await mockLines({ count: 100 })).map((line, idx) => {
+  // console.log("asdf")
   let scope, partnerScope
+  // const { user, resource } = userAndResource(idx)
   if (!(idx % 2)) { //line 1
+    user = faker.helpers.arrayElement(users)
+    resource = faker.helpers.arrayElement([
+      faker.helpers.arrayElement(users),
+      faker.helpers.arrayElement(companies),
+    ])
     scope = user.id
     partnerScope = resource.id
   }

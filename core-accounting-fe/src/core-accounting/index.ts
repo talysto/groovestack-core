@@ -1,7 +1,7 @@
-import { Lines, Transfers } from './resource'
+import { Lines } from './resource'
 import { ReferenceManyLines } from './resource/ReferenceManyLines'
 
-export { mockTransfers } from './mockLines'
+export { mockLines } from './mockLines'
 
 export class CoreAccounting {
   static Lines = Lines
