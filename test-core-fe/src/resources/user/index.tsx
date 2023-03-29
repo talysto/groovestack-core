@@ -38,11 +38,13 @@ import {
     return(
     <>
     <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
+    <Typography variant="h6">Comments</Typography>
+      <CoreComments.Comments.Stream />
       <Typography variant="h6">Transactions</Typography>
-      <CoreAccounting.ReferenceManyLines tableProps={{filters: lineFilters}} />
+      <CoreAccounting.Lines.ReferenceManyLines tableProps={{filters: lineFilters}} />
       <Typography variant="h6">Versions</Typography>
       <SimpleShowLayout>
-      <CoreVersions.VersionStream target="actor_id"/>
+      <CoreVersions.Versions.Stream target="actor_id"/>
       </SimpleShowLayout>
     </Paper>
     </>
