@@ -5,10 +5,13 @@
 # or possible moved to environment-specific rb files
 # require 'sinatra/activerecord'
 
+require 'paper_trail'
 require 'active_record'
+
 require 'core/versions/railtie' if defined?(Rails::Railtie)
+require 'core/versions/core_version'
 require 'core/versions/version'
-require 'core/versions/engine'
+
 
 # Dir["core/versions/graphql/**/*.rb"].each { |file| require file }
 

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/moonlight-labs/core.git
-  revision: 94753ef5f9c6083c93612fd71954312c37bb8b49
+  revision: 69ae44e637a0e15bbcdb4a1366043ebbea89cca4
   branch: sprint/core-1.0
   specs:
     core-accounting (0.1.0)
@@ -12,6 +12,12 @@ GIT
     core-jobs (0.1.0)
       puma
       que (~> 2.0.0.beta1)
+
+PATH
+  remote: /users/adam/dev/core/core-versions
+  specs:
+    core-versions (0.1.0)
+      paper_trail
 
 GEM
   remote: https://rubygems.org/
@@ -154,6 +160,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
+    paper_trail (14.0.0)
+      activerecord (>= 6.0)
+      request_store (~> 1.4)
     pg (1.4.6)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -201,6 +210,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.7.0)
+    request_store (1.5.1)
+      rack (>= 1.4)
     rexml (3.2.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.8.1)
@@ -251,6 +262,7 @@ DEPENDENCIES
   core-base!
   core-comments!
   core-jobs!
+  core-versions!
   faker
   graphiql-rails
   graphql
