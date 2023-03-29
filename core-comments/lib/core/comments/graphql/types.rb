@@ -2,7 +2,15 @@ module Core
   module Comments
     module GraphQL
       module Types
-        class Comment < ::GraphQL::Schema::Object
+        class BaseObject < ::GraphQL::Schema::Object
+          field_class ::Core::Base::GraphQL::Types::BaseField
+        end
+
+        class BaseInputObject < ::GraphQL::Schema::InputObject
+          argument_class ::Core::Base::GraphQL::Types::BaseArgument
+        end
+
+        class Comment < BaseObject
           description 'A comment'
 
           field :id, ID, null: false
@@ -20,7 +28,7 @@ module Core
           field :author_type, String, null: false
         end
 
-        class CommentListMetadata < ::GraphQL::Schema::Object
+        class CommentListMetadata < BaseObject
           field :count, Int, null: false
         end
       end

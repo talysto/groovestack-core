@@ -2,9 +2,7 @@ module Core
   module Comments
     module GraphQL
       module Filters
-        class CommentFilter < ::GraphQL::Schema::InputObject
-          argument_class ::GraphQL::Schema::Argument
-
+        class CommentFilter < Types::BaseInputObject
           description 'comment filter props'
 
           argument :q, String, required: false

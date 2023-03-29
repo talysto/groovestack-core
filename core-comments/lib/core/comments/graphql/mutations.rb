@@ -2,8 +2,12 @@ module Core
   module Comments
     module GraphQL
       module Mutations
+        class BaseMutation < ::GraphQL::Schema::Mutation
+          argument_class ::Core::Base::GraphQL::Types::BaseArgument
+        end
+
         module Comment
-          class Create < ::GraphQL::Schema::Mutation
+          class Create < BaseMutation
             argument :body, String, required: true
             argument :resource_id, ID, required: true
             argument :resource_type, String, required: true
@@ -18,7 +22,7 @@ module Core
             end
           end
 
-          class Delete < ::GraphQL::Schema::Mutation
+          class Delete < BaseMutation
             argument :id, ID, required: true
 
             type ::Core::Comments::GraphQL::Types::Comment
@@ -29,7 +33,7 @@ module Core
             end
           end
 
-          class Update < ::GraphQL::Schema::Mutation
+          class Update < BaseMutation
             argument :id, ID, required: true
             argument :body, String, required: false
 
