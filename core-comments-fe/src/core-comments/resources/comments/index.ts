@@ -4,6 +4,7 @@ import { CommentEdit } from './Edit'
 import { CommentCreate } from './Create'
 import { CommentsTable } from './TableList'
 import { CommentShow } from './Show'
+import { CommentStream } from './StreamList'
 
 export class Comments {
   static Icon = CommentOutlinedIcon
@@ -11,4 +12,5 @@ export class Comments {
   static Edit = CommentEdit
   static Show = CommentShow
   static Create = CommentCreate
+  static Stream = CommentStream
 }

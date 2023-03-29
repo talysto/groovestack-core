@@ -7,16 +7,16 @@ import { Admin, EditGuesser, ListGuesser, Resource, SelectInput } from 'react-ad
 import { CoreJobs } from 'core-jobs-fe'
 import { CoreAccounting } from 'core-accounting-fe'
 
-const Jobs = CoreJobs.Resource
+const Jobs = CoreJobs.Jobs
 
 
 
 import { CoreComments } from 'core-comments-fe'
-const Comments = CoreComments.Resource
+const Comments = CoreComments.Comments
 
 import { CoreVersions } from 'core-versions-fe'
-const Versions = CoreVersions.Resource
-const Accounting = CoreAccounting.Resource
+const Versions = CoreVersions.Versions
+const Lines = CoreAccounting.Lines
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
@@ -109,15 +109,15 @@ function AdminApp() {
         name="Line"
         // icon={Jobs.Icon}
         options={{ label: 'Ledger Lines', menu: 'admin' }}
-        show={<CoreAccounting.Lines.Show />}
+        show={Lines.Show}
         list={
-          <CoreAccounting.Lines.List
+          <Lines.List
           tableProps={{filters: lineFilters}}
           >
             {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
             <TextField source="scope" sortable={false} /> */}
-          </CoreAccounting.Lines.List>
+          </Lines.List>
         }
       />
 

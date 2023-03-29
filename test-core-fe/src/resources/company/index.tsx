@@ -17,8 +17,8 @@ import { CoreComments } from 'core-comments-fe'
 import { CoreVersions } from 'core-versions-fe'
 import { CoreAccounting } from 'core-accounting-fe'
 
-const Comments = CoreComments.Resource
-const ReferenceManyLines = CoreAccounting.Resource.ReferenceManyLines
+const Comments = CoreComments.Comments
+const Versions = CoreVersions.Versions 
 
 const inlineLayout = {
   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
@@ -39,13 +39,13 @@ export const CompanyAside = () => {
         </SimpleShowLayout>
         <Typography variant="h6">Comments</Typography>
         <SimpleShowLayout>
-          <CoreComments.CommentStream />
+          <Comments.Stream />
         </SimpleShowLayout>
       </Paper>
       <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
         <Typography variant="h6">Versions</Typography>
         <SimpleShowLayout>
-          <CoreVersions.VersionStream target="resource_id"/>
+          <Versions.Stream target="resource_id"/>
         </SimpleShowLayout>
       </Paper>
     </>
