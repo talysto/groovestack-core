@@ -7,6 +7,8 @@ require 'sinatra/activerecord'
 
 require 'active_record'
 require 'core/versions/railtie' if defined?(Rails::Railtie)
+require 'core/versions/version'
+require 'core/versions/engine'
 
 # Dir["core/versions/graphql/**/*.rb"].each { |file| require file }
 
