@@ -1,7 +1,7 @@
 import fakeDataProvider from 'ra-data-fakerest'
 import { mockJobs, mockLockers } from 'core-jobs-fe'
 import { mockComments } from 'core-comments-fe'
-import { mockLines, mockLines } from 'core-accounting-fe'
+import { mockLines } from 'core-accounting-fe'
 import { mockVersions } from 'core-versions-fe'
 
 import { faker } from '@faker-js/faker'
@@ -69,7 +69,7 @@ let user: any
 let resource: any;
 
 const lines = (await mockLines({ count: 10, dEntryTransferTypes })).map((line, idx) => {
-  let scope, partnerScope
+  let scope, partner_scope
 
   if (idx % 2 == 0) { //line 1
     user = faker.helpers.arrayElement(users)
@@ -78,16 +78,16 @@ const lines = (await mockLines({ count: 10, dEntryTransferTypes })).map((line, i
       faker.helpers.arrayElement(companies),
     ])
     scope = user.id
-    partnerScope = resource.id
+    partner_scope = resource.id
   }
   else { //line 2
     scope = resource.id
-    partnerScope = user.id
+    partner_scope = user.id
   }
   return {
     ...line,
-    scope: scope,
-    partnerScope: partnerScope
+    scope,
+    partner_scope
   }
 })
 

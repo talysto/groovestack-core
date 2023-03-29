@@ -16,7 +16,7 @@ export const Table: React.FC<{ datagridProps?: any; tableProps?: any, children?:
         <MoneyField source="balance" />
         {/* <NumberField label="Amount" source="amount.formatted_amount" sortable={false} />
         <NumberField label="Balance" source="balance.formatted_amount" sortable={false} /> */}
-        <TimeAgoField label="Created" source="createdAt" />
+        <TimeAgoField label="Created" source="created_at" />
       </Datagrid>
     </List>
   )

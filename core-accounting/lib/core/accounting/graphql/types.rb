@@ -2,7 +2,15 @@ module Core
   module Accounting
     module GraphQL
       module Types
-        class Line < ::GraphQL::Schema::Object
+        class BaseObject < ::GraphQL::Schema::Object
+          field_class ::Core::Base::GraphQL::Types::BaseField
+        end
+
+        class BaseInputObject < ::GraphQL::Schema::InputObject
+          argument_class ::Core::Base::GraphQL::Types::BaseArgument
+        end
+
+        class Line < BaseObject
           description 'A double entry line'
 
           # model reference:
@@ -26,7 +34,7 @@ module Core
           field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
         end
 
-        class LineListMetadata < ::GraphQL::Schema::Object
+        class LineListMetadata < BaseObject
           field :count, Int, null: false
         end
       end

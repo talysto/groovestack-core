@@ -2,9 +2,7 @@ module Core
   module Accounting
     module GraphQL
       module Filters
-        class LineFilter < ::GraphQL::Schema::InputObject
-          argument_class ::GraphQL::Schema::Argument
-
+        class LineFilter < Types::BaseInputObject
           description 'line filter props'
 
           argument :q, String, required: false
