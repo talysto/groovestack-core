@@ -1,4 +1,4 @@
-require "sinatra/activerecord"
+# require "sinatra/activerecord"
 
 module Core
   module Versions
