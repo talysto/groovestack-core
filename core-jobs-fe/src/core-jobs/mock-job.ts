@@ -20,8 +20,8 @@ export async function mockJobs(count = 15){
     return Array.from({ length: count }, () => ({
       // standard attributes
       id: faker.datatype.uuid(),
-      createdAt: faker.date.recent(),
-      updatedAt: faker.date.recent(),
+      created_at: faker.date.recent(),
+      updated_at: faker.date.recent(),
   
       // Creation attributes
       type: faker.helpers.arrayElement([
@@ -30,13 +30,13 @@ export async function mockJobs(count = 15){
         'Reports::EndOfMonth',
         'Payment:ProcessRefund',
       ]),
-      jobClass: faker.helpers.arrayElement([
+      job_class: faker.helpers.arrayElement([
         'ActiveJob::QueueAdapters::QueAdapter::JobWrapper',
       ]),
   
       // arguments: {},
       // "kwargs": {},
-      runAt: faker.date.future(),
+      run_at: faker.date.future(),
   
       // job options
       queue: faker.helpers.arrayElement([
@@ -54,18 +54,18 @@ export async function mockJobs(count = 15){
         'complete',
       ]),
   
-      expiredAt: faker.date.recent(),
+      expired_at: faker.date.recent(),
   
       // error metadata
-      errorCount: faker.helpers.arrayElement([0, 0, 0, 3]),
-      lastError: {},
-      lastErrorBacktrace:
+      error_count: faker.helpers.arrayElement([0, 0, 0, 3]),
+      last_error: {},
+      last_error_backtrace:
         "/app/vendor/bundle/ruby/3.0.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:431:in `find_with_ids'\n/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:69:in `find'",
-      lastErrorMessage:
+      last_error_message:
         "ActiveRecord::RecordNotFound: Couldn't find User without an ID",
   
       // completion metadata
-      finishedAt: faker.date.future(),
+      finished_at: faker.date.future(),
   
       actions: faker.helpers.arrayElement([['retry'], [], []]),
   
