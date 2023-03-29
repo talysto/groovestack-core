@@ -6,9 +6,8 @@ module Core
       self.table_name = 'versions'
 
       def self.has_core_versions
-        return PaperTrail::Model::ClassMethods.instance_methods[0]
+        return has_paper_trail
       end
-
     end
   end
 end
