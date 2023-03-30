@@ -17,6 +17,9 @@ import { CoreComments } from 'core-comments-fe'
 import { CoreVersions } from 'core-versions-fe'
 import { CoreAccounting } from 'core-accounting-fe'
 
+import { users } from '../../data/mock-data-provider'
+import {faker} from '@faker-js/faker'
+
 const Comments = CoreComments.Comments
 const Versions = CoreVersions.Versions 
 
@@ -39,7 +42,7 @@ export const CompanyAside = () => {
         </SimpleShowLayout>
         <Typography variant="h6">Comments</Typography>
         <SimpleShowLayout>
-          <Comments.Stream />
+          <Comments.Stream createProps={{authorResolver: () => (faker.helpers.arrayElement(users))}} />
         </SimpleShowLayout>
       </Paper>
       <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>

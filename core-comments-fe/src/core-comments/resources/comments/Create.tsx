@@ -10,21 +10,28 @@ import {
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Avatar, Box, Typography } from '@mui/material'
+import { Comment } from '../../mockComments'
 
-import { v4 as uuidv4 } from 'uuid'
+type Author = {
+  id: string;
+  type: string;
+}
 
-export const CommentCreate = () => {
+export type CommentCreateProps = {
+  authorResolver: () => Author;
+  defaultValues?: Comment;
+}
+
+export const CommentCreate = ({authorResolver, defaultValues}: CommentCreateProps) => {
   const record = useRecordContext()
+  const author = authorResolver()
 
-  const defaults = {
-    // id: uuidv4(),
-    resource_type: record._typename || 'Company',
+  const defaults = Object.assign({
+    resource_type: record.type,
     resource_id: record.id,
-    author_type: 'User', // TODO figure out how to pass in
-    author_id: uuidv4(), // TODO figure out how to pass in
-    created_at: Date.now(),
-    updated_at: Date.now(),
-  }
+    author_type: author.type,
+    author_id: author.id,
+  }, (defaultValues && defaultValues))
 
   return (
     <Create

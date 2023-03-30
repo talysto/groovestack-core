@@ -9,9 +9,12 @@ import {
   WrapperField,
   useRecordContext,
 } from 'react-admin'
+import { v4 as uuidv4 } from 'uuid'
+
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Typography, Avatar, Box } from '@mui/material'
 import { Comments } from '.'
+import { CommentCreateProps } from './Create'
 
 const AuthorField = () => {
   return (
@@ -31,12 +34,22 @@ const AuthorField = () => {
   )
 }
 
-export const CommentStream = () => {
+type CommentStreamProps = {
+  createProps: CommentCreateProps
+}
+
+export const CommentStream = ({createProps}: CommentStreamProps) => {
   const record = useRecordContext()
+  const mockCommentAttrs = {
+    id: uuidv4(),
+    body: '',
+    created_at: new Date().toDateString(),
+    updated_at: new Date().toDateString(),
+  }
 
   return (
     <>
-      <Comments.Create />
+      <Comments.Create {...createProps} defaultValues={mockCommentAttrs} />
 
       <ReferenceManyField
         reference="Comment"
