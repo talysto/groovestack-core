@@ -139,7 +139,7 @@ end
 ```
 
 == SETUP for Core-Comments-FE
-* add core-jobs-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-comments-fe?main`
+* add core-comments-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-comments-fe?main`
 * ensure peer dependencies are installed
 * add Comments RA Resource
 ```
