@@ -7,10 +7,14 @@ import {
   Create,
   SaveButton,
   useRecordContext,
+  CreateButton,
+  useNotify,
+  Toolbar,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Avatar, Box, Typography } from '@mui/material'
 import { Comment } from '../../mockComments'
+import { useFormContext } from 'react-hook-form';
 
 type Author = {
   id: string;
@@ -21,6 +25,38 @@ export type CommentCreateProps = {
   authorResolver: () => Author;
   defaultValues?: Comment;
 }
+
+// const onSuccess = (data) => {
+//   notify(`Changes saved`);
+//   // redirect(`/posts/${data.id}`);
+// };
+
+const PostCreateToolbar = () => {
+  const notify = useNotify();
+  const { reset } = useFormContext();
+
+  return (
+      <Toolbar>
+          <SaveButton
+              type="button"
+              label="Comment"
+              // label="post.action.save_and_add"
+              variant="text"
+              mutationOptions={{
+                  onSuccess: () => {
+                      // reset();
+                      window.scrollTo(0, 0);
+                      notify("changes saved")
+                      // notify('ra.notification.created', {
+                      //     type: 'info',
+                      //     messageArgs: { smart_count: 1 },
+                      // });
+                  },
+              }}
+          />
+      </Toolbar>
+  );
+};
 
 export const CommentCreate = ({authorResolver, defaultValues}: CommentCreateProps) => {
   const record = useRecordContext()
@@ -34,16 +70,18 @@ export const CommentCreate = ({authorResolver, defaultValues}: CommentCreateProp
   }, (defaultValues && defaultValues))
 
   return (
-    <Create
+    <Create 
       // redirect={false}
+
       // mutationOptions={}
+      // mutationOptions={{ onSuccess }
       resource='Comment'
       sx={{
         '& .RaCreate-card': { boxShadow: 'none' },
         '& .RaCreate-main': { mt: 0 },
       }}
     >
-      <SimpleForm toolbar={false} defaultValues={defaults}>
+      <SimpleForm toolbar={<PostCreateToolbar />} defaultValues={defaults}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box>
             <Avatar />
@@ -60,8 +98,13 @@ export const CommentCreate = ({authorResolver, defaultValues}: CommentCreateProp
           fullWidth
           label="Comment"
         />
-        <SaveButton label="Comment" />
+        {/* <CreateButton redirect={false} to={{ state: { skipFormReset: true } }} /> */}
+        {/* <SaveButton label="Comment" /> */}
       </SimpleForm>
     </Create>
   )
 }
+// function useFormContext(): { reset: any } {
+//   throw new Error('Function not implemented.')
+// }
+
