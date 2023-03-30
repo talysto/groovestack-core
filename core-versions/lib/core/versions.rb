@@ -9,9 +9,9 @@ require 'paper_trail'
 require 'active_record'
 
 require 'core/versions/railtie' if defined?(Rails::Railtie)
+require 'core/versions/has_core_versions'
 require 'core/versions/model/version'
 require 'core/versions/version'
-
 
 # Dir["core/versions/graphql/**/*.rb"].each { |file| require file }
 
@@ -22,6 +22,9 @@ module Core
   end
 end
 
+ActiveSupport.on_load(:active_record) do
+  ActiveRecord::Base.send :extend, Core::Versions::HasCoreVersions
+end
 
 # if Rails.env.development?
 #   Rails.application.console do

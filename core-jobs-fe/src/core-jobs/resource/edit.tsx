@@ -17,7 +17,7 @@ import Grid from '@mui/material/Grid'
 const ErrorPanel: React.FC = () => {
   const record = useRecordContext()
 
-  if (!record || !record.errorCount) return null
+  if (!record || !record.error_count) return null
 
   console.log(record)
 
@@ -25,17 +25,17 @@ const ErrorPanel: React.FC = () => {
     <>
       <div>
         <Labeled label="Error Count">
-          <TextField source="errorCount" />
+          <TextField source="error_count" />
         </Labeled>
       </div>
       <div>
         <Labeled label="Last Error Message">
-          <TextField source="lastErrorMessage" />
+          <TextField source="last_error_message" />
         </Labeled>
       </div>
       <div>
         <Labeled label="Error Stacktrace">
-          <TextField source="lastErrorBacktrace" />
+          <TextField source="last_error_backtrace" />
         </Labeled>
       </div>
     </>
@@ -83,17 +83,17 @@ export const EditJob = (props: any) => {
           <Grid item xs={4}>
             <div>
               <Labeled label="Run At">
-                <TimeAgoField source="runAt" />
+                <TimeAgoField source="run_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Finished At">
-                <TimeAgoField source="finishedAt" />
+                <TimeAgoField source="finished_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Expired At">
-                <TimeAgoField source="expiredAt" />
+                <TimeAgoField source="expired_at" />
               </Labeled>
             </div>
           </Grid>

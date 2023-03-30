@@ -2,10 +2,8 @@ module Core
   module Jobs
     module GraphQL
       module Filters
-        class JobFilter < ::GraphQL::Schema::InputObject
+        class JobFilter < Types::BaseInputObject
           # graphql_name "CORE-Job-filter"
-
-          argument_class ::GraphQL::Schema::Argument
 
           description 'job filter props'
 
@@ -14,17 +12,13 @@ module Core
           argument :status, String, required: false
         end
 
-        class JobReportFilter < ::GraphQL::Schema::InputObject
-          argument_class ::GraphQL::Schema::Argument
-
+        class JobReportFilter < Types::BaseInputObject
           description 'job report filters'
 
           argument :report_name, String, required: true
         end
 
-        class LockerFilter < ::GraphQL::Schema::InputObject
-          argument_class ::GraphQL::Schema::Argument
-
+        class LockerFilter < Types::BaseInputObject
           description 'que locker filter props'
           
           argument :ids, [ID], required: false

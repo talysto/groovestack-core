@@ -19,7 +19,6 @@ require 'core/jobs/graphql/filters'
 require 'core/jobs/graphql/mutations'
 require 'core/jobs/graphql/queries'
 
-
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
 module Core
@@ -28,11 +27,8 @@ module Core
     class WrongSchemaFormat < Core::Jobs::Error; end
     class DepPostgresRequired < Core::Jobs::Error; end
     class WrongActiveJobQueueAdapter < Core::Jobs::Error; end
-
-    # Your code goes here...
   end
 end
-
 
 # if Rails.env.development?
 #   Rails.application.console do

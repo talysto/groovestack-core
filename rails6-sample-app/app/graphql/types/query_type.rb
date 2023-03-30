@@ -8,5 +8,6 @@ module Types
     include Queries::User
 
     include ::Core::Accounting::GraphQL::Queries
+    include ::Core::Comments::GraphQL::Queries
   end
 end

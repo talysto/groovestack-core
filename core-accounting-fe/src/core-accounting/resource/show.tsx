@@ -13,7 +13,7 @@ export const LineShow = () => (
       <TextField source="code" sortable={false} />
       <NumberField label="Amount" source="amount.formatted_amount" sortable={false} />
       <NumberField label="Balance" source="balance.formatted_amount" sortable={false} />
-      <TimeAgoField label="Created" source="createdAt" />
+      <TimeAgoField label="Created" source="created_at" />
     </SimpleShowLayout>
   </Show>
 );
