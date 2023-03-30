@@ -9,7 +9,7 @@ import { mockUsers } from './mockUsers'
 import { mockCompanies } from './mockCompanies'
 
 
-const users = mockUsers(10)
+export const users = mockUsers(10)
 const companies = mockCompanies(5)
 
 const comments = (await mockComments({ count: 50 })).map((comment) => {

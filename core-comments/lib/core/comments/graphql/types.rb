@@ -3,6 +3,8 @@ module Core
     module GraphQL
       module Types
         module Commentable 
+          # TODO potentially move this into core base and generalize
+          
           extend ActiveSupport::Concern
 
           included do
