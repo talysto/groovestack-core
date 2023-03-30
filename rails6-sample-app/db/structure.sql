@@ -475,6 +475,7 @@ CREATE TABLE public.versions (
     event character varying NOT NULL,
     whodunnit character varying,
     object text,
+    object_changes json,
     created_at timestamp without time zone
 );
 
