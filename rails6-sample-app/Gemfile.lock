@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/moonlight-labs/core.git
-  revision: 69ae44e637a0e15bbcdb4a1366043ebbea89cca4
+  revision: f9ebd92bf9e72b4666d0a536b1f3da62590d678a
   branch: sprint/core-1.0
   specs:
     core-accounting (0.1.0)
@@ -13,7 +13,7 @@ GIT
       puma
       que (~> 2.0.0.beta1)
     core-versions (0.1.0)
-      papertrail
+      paper_trail
 
 GEM
   remote: https://rubygems.org/
@@ -79,7 +79,6 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
-    ansi (1.5.0)
     awesome_print (1.9.2)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -95,7 +94,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    chronic (0.10.2)
     closure_tree (7.4.0)
       activerecord (>= 4.2.10)
       with_advisory_lock (>= 4.0.0)
@@ -158,9 +156,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
-    papertrail (0.11.1)
-      ansi (~> 1.5)
-      chronic (~> 0.10)
+    paper_trail (14.0.0)
+      activerecord (>= 6.0)
+      request_store (~> 1.4)
     pg (1.4.6)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -208,6 +206,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.7.0)
+    request_store (1.5.1)
+      rack (>= 1.4)
     rexml (3.2.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.8.1)
