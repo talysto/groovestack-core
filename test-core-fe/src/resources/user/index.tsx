@@ -18,12 +18,6 @@ import {
   import { CoreVersions } from 'core-versions-fe'
   import { CoreAccounting } from 'core-accounting-fe'
   
-  // const inlineLayout = {
-  //   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
-  // }
-  
-
-
   export const UserAside = () => {
     const lineFilters = [
       <SelectInput
@@ -67,10 +61,6 @@ export const UserEdit = () => (
     <Edit aside={<UserAside />}>
         <SimpleForm>
             <TextInput disabled source="name" fullWidth />
-            {/* <TextInput source="type" />
-            <TextInput source="id" />
-            <DateInput source="created_at" />
-            <DateInput source="updated_at" /> */}
         </SimpleForm>
     </Edit>
 );

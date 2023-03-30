@@ -45,7 +45,6 @@ export const CommentsTable = () => {
       sort={{ field: 'created_at', order: 'DESC' }}
       filters={commentFilters}
     >
-      {/* <ListToolbar record={record} /> */}
       <Datagrid rowClick="edit">
         <PolymorphicReferenceField source="author" />
         <PolymorphicReferenceField source="resource" />

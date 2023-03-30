@@ -100,7 +100,6 @@ export const VersionTimelineItem = ({ target }) => {
 
 export const VersionStream = ({ target }) => {
   const record = useRecordContext()
-  // console.log("target = ", target)
   return (
     <>
       <ReferenceManyField

@@ -1,9 +1,6 @@
-// import { faker } from '@faker-js/faker'
-
 export async function mockVersions({ count = 15 }): Promise<any> {
   try {
     const { faker } = await import('@faker-js/faker')
-    // return await Array.from({length: count}, () => (
     let mockData = [];
     for (let i = 0; count > i; i++) {
       mockData.push({
@@ -39,25 +36,3 @@ async function generateChanges(numChanges: number): Promise<any> {
     return []
   }
 }
-
-// export const mockChange = () => {
-//   // const actor = {
-//   //   id: faker.datatype.uuid(),
-//   //   name: faker.name.fullName(),
-//   //   url: `/users/id`
-//   // }
-//   const numChanges = faker.datatype.number({ min: 1, max: 5 })
-//   const changes = generateChanges(numChanges)
-//   const timestamp = faker.date.past().toLocaleString()
-//   return {
-//     // actor,
-//     changes,
-//     timestamp
-//   }
-// }
-
-// interface VersionProps {
-//   actor: any
-//   changes: any[]
-//   timestamp: any
-// }

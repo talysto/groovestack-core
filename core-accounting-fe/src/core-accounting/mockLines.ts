@@ -1,13 +1,3 @@
-declare global {
-  interface Array<T> {
-    sample(): T
-  }
-}
-
-Array.prototype.sample = function () {
-  return this[Math.floor(Math.random() * this.length)]
-}
-
 const defaultDEntryTransferTypes = [
   { code: 'buy_token', credit_account: 'tokens', debit_account: 'treasury'}, 
   { code: 'spend_token', credit_account: 'treasury', debit_account: 'tokens'}
@@ -49,8 +39,9 @@ export async function mockLines({ count = 8, dEntryTransferTypes = defaultDEntry
         code: transfer.code,
         partner_id: faker.datatype.uuid(), //
         partner_account: transfer.debit_account,
+
         // detailId: faker.datatype.uuid(),
-        // detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
+        // detailType: faker.helpers.arrayElement(['PaymentItem::1', 'PaymentItem::2']
         metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
         created_at: faker.date.recent(),
         updated_at: faker.date.recent(),
@@ -81,7 +72,7 @@ export async function mockLines({ count = 8, dEntryTransferTypes = defaultDEntry
         partner_id: line1.id,
         partner_account: transfer.credit_account,
         // detailId: faker.datatype.uuid(),
-        // detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
+        // detailType: faker.helpers.arrayElement(['PaymentItem::1', 'PaymentItem::2']),
         metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
         created_at: line1.created_at,
         updated_at: line1.updated_at,
@@ -89,9 +80,6 @@ export async function mockLines({ count = 8, dEntryTransferTypes = defaultDEntry
       lines.push(line1, line2)
     }
     return lines
-
-
-   
   } catch (e) {
     console.error(e)
     return []

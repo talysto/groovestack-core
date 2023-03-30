@@ -28,7 +28,6 @@ const ActionsField = (props: any) => {
 }
 
 const versionFilters = [
-  // <SearchInput source="q" alwaysOn />,
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
   <ReferenceInput
@@ -65,7 +64,6 @@ export const ChangesTable = () => {
   )
 }
 
-
 export const VersionsTable = () => {
   return (
     <List
@@ -75,13 +73,10 @@ export const VersionsTable = () => {
       <Datagrid>
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
-        {/* <TextField source="changes" sortable={false} /> */}
         <WrapperField label="Changes">
           <ChangesTable />
         </WrapperField>
         <TextField source="timestamp"/>
-        {/* <DateField source="created_at" label="Date" /> */}
-        {/* <ActionsField source="actions" /> */}
       </Datagrid>
     </List>
   )

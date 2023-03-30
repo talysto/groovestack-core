@@ -31,7 +31,6 @@ export const CompanyAside = () => {
   const record = useRecordContext()
   
   return (
-    // <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
     <>
       <Paper sx={{ minWidth: 300, maxWidth: 500, p: 2, ml: 2 }}>
         <Typography variant="h6">Details</Typography>
@@ -52,7 +51,6 @@ export const CompanyAside = () => {
         </SimpleShowLayout>
       </Paper>
     </>
-    // </Paper >
   )
 }
 
