@@ -1,6 +1,5 @@
 = CORE Platform from Moonlight Labs
 
-
 == CONTENTS
 
 * .prettier.yml - `npx prettier -c .` or `npx prettier -w` to check or format many code files
@@ -8,7 +7,7 @@
 * Taskfile.yml - `task` to see tasks that can run across full repo
 
 == SETUP for Core-Accounting
-* add the core gem to your Gemfile
+* add the core gems to your Gemfile
 ```
 git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
   gem 'core-base'
@@ -67,7 +66,7 @@ const AccountScopeReferenceField: React.FC<{source: string}> = ({source}) => {
 ```
 
 == SETUP for Core-Jobs
-* add the core gem to your Gemfile
+* add the core gems to your Gemfile
 ```
 git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
   gem 'core-base'
@@ -83,7 +82,7 @@ class Types::Query < GraphQL::Schema::Object
   include Core::Jobs::GraphQL::Queries
 end
 ```
-* include `include Core::Jobs::GraphQL::Mutations` in `Types::Mutation`. ex: 
+* include `include Core::Jobs::GraphQL::Mutations` in `Types::Mutation`. ex:
 ```
 class Types::Mutation < GraphQL::Schema::Object
   include Core::Jobs::GraphQL::Mutations
@@ -116,7 +115,42 @@ plugin :que
 />
 ```
 
+== SETUP for Core-Comments
+* add the core gems to your Gemfile
+```
+git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
+  gem 'core-base'
+  gem 'core-comments'
+end
+```
+* run `bundle`
+* run `rails db:migrate`
+* include `include Core::Comments::GraphQL::Queries` in `Types::Query`. ex:
+```
+class Types::Query < GraphQL::Schema::Object
+  include Core::Comments::GraphQL::Queries
+end
+```
+* include `include Core::Comments::GraphQL::Mutations` in `Types::Mutation`. ex:
+```
+class Types::Mutation < GraphQL::Schema::Object
+  include Core::Comments::GraphQL::Mutations
+end
+```
 
+== SETUP for Core-Comments-FE
+* add core-jobs-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-comments-fe?main`
+* ensure peer dependencies are installed
+* add Comments RA Resource
+```
+<Resource
+  key="admin-comments-resource"
+  name="Comment"
+  options={[{ label: 'Comments', menu: 'admin' }]}
+  list={<CoreComments.Comments.List />}
+  edit={<CoreComments.Comments.Edit />}
+/>
+```
 
 == SAMPLES
 
