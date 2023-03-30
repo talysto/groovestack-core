@@ -9,6 +9,10 @@ class CreateVersions < ActiveRecord::Migration[6.0]
       t.string    :whodunnit
       t.text      :object, limit: TEXT_BYTES
 
+      t.references :resource, polymorphic: true, type: :uuid, null: false
+      t.references :author, polymorphic: true, type: :uuid, null: false
+      t.text :body, null: false
+
       # Known issue in MySQL: fractional second precision
       # -------------------------------------------------
       #

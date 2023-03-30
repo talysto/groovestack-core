@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: que_validate_tags(jsonb); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -475,6 +468,7 @@ CREATE TABLE public.versions (
     event character varying NOT NULL,
     whodunnit character varying,
     object text,
+    object_changes json,
     created_at timestamp without time zone
 );
 
