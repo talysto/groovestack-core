@@ -90,7 +90,11 @@ module Core
   module Accounting
     module GraphQL
       module Types
-        class Line < ::GraphQL::Schema::Object
+        class BaseObject < ::GraphQL::Schema::Object
+          field_class ::Core::Base::GraphQL::Types::BaseField
+        end
+
+        class Line < BaseObject
           field :account_identifier, String, null: false
           field :scope_detail, ::GraphQL::Types::JSON, null: false
           field :key1, [String], null: false 
