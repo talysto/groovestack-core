@@ -22,20 +22,14 @@ require 'core/accounting/graphql/filters'
 # require 'core/accounting/graphql/mutations'
 require 'core/accounting/graphql/queries'
 
-
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
 module Core
   module Accounting
     class Error < StandardError; end
     class WrongSchemaFormat < Core::Accounting::Error; end
-    # class DepPostgresRequired < Core::Accounting::Error; end
-    # class WrongActiveJobQueueAdapter < Core::Accounting::Error; end
-
-    # Your code goes here...
   end
 end
-
 
 # if Rails.env.development?
 #   Rails.application.console do

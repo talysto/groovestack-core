@@ -15,19 +15,14 @@ require 'core/comments/graphql/filters'
 require 'core/comments/graphql/mutations'
 require 'core/comments/graphql/queries'
 
-
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
 module Core
   module Comments
     class Error < StandardError; end
     class WrongSchemaFormat < Core::Comments::Error; end
-    # class DepPostgresRequired < Core::Comments::Error; end
-
-    # Your code goes here...
   end
 end
-
 
 # if Rails.env.development?
 #   Rails.application.console do

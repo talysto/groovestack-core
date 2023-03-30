@@ -27,7 +27,7 @@ end
 
 if defined?(Rails)
   module Core
-    module Comments
+    module Versions
       class Railtie < Rails::Engine
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
@@ -60,7 +60,7 @@ if defined?(Rails)
                 message: "Error: 'core-base' gem is required, add it your your gemfile" 
               },
               {
-                eval: Proc.new { raise Core::Comments::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
+                eval: Proc.new { raise Core::Versions::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
                 message: 'Error: Must change your schema format to :sql'
               }
             ]

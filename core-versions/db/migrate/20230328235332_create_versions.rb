@@ -1,4 +1,4 @@
-class CreateVersions < ActiveRecord::Migration[7.0]
+class CreateVersions < ActiveRecord::Migration[6.0]
   TEXT_BYTES = 1_073_741_823
 
   def change
@@ -24,6 +24,7 @@ class CreateVersions < ActiveRecord::Migration[7.0]
       #
       t.datetime :created_at
     end
+
     add_index :versions, %i[item_type item_id]
   end
 end

@@ -465,6 +465,21 @@ CREATE TABLE public.users (
 
 
 --
+-- Name: versions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.versions (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    item_type character varying NOT NULL,
+    item_id uuid NOT NULL,
+    event character varying NOT NULL,
+    whodunnit character varying,
+    object text,
+    created_at timestamp without time zone
+);
+
+
+--
 -- Name: que_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -568,6 +583,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.versions
+    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: index_account_balances_on_account; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -600,6 +623,13 @@ CREATE INDEX index_core_comments_on_namespace ON public.core_comments USING btre
 --
 
 CREATE INDEX index_core_comments_on_resource_type_and_resource_id ON public.core_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
 
 
 --
@@ -715,6 +745,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230203214505'),
 ('20230206231054'),
 ('20230209165828'),
-('20230209171357');
+('20230209171357'),
+('20230328235332');
 
 
