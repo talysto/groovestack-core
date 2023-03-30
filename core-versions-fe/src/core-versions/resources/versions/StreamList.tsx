@@ -47,6 +47,7 @@ export const VersionTimelineItem = ({ target }) => {
   console.log(target)
   if (!record) return null;
   return (
+
     <TimelineItem>
       <TimelineOppositeContent
         sx={{ m: 'auto 0' }}
@@ -64,7 +65,7 @@ export const VersionTimelineItem = ({ target }) => {
       </TimelineSeparator>
 
       <TimelineContent sx={{ py: '12px', px: 2 }}>
-        {target == 'resource_id' &&
+      {target == 'resource_id' &&
           <>
             <PolymorphicReferenceField source="actor" />
             {' '}
@@ -72,14 +73,14 @@ export const VersionTimelineItem = ({ target }) => {
           </>
         }
         <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textSecondary" variantMapping= {{body2: 'div'}}>
             <table>
               <tbody>
                 {record.changes.map((change) => (
                   <tr key={change.field}>
                     <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change.field}</td>
                     <td>
-                      {change.newValue} (
+                      {change.newValue} ( 
                       <span style={{ textDecoration: 'line-through' }}>
                         {change.oldValue}
                       </span>
@@ -93,6 +94,7 @@ export const VersionTimelineItem = ({ target }) => {
         </Box>
       </TimelineContent>
     </TimelineItem>
+    
   )
 }
 
@@ -106,7 +108,7 @@ export const VersionStream = ({ target }) => {
         target={target}
         record={record}
       >
-        <SingleFieldList sx={{ display: 'inline-block' }}>
+        <SingleFieldList sx={{ display: 'inline-block' }} linkType={false}>
           <VersionTimelineItem target={target} />
         </SingleFieldList>
       </ReferenceManyField>
