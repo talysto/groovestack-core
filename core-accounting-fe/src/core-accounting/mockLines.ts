@@ -47,17 +47,17 @@ export async function mockLines({ count = 8, dEntryTransferTypes = defaultDEntry
           },
         },
         code: transfer.code,
-        partnerId: faker.datatype.uuid(), //
-        partnerAccount: transfer.debit_account,
+        partner_id: faker.datatype.uuid(), //
+        partner_account: transfer.debit_account,
         // detailId: faker.datatype.uuid(),
         // detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
         metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
-        createdAt: faker.date.recent(),
-        updatedAt: faker.date.recent(),
+        created_at: faker.date.recent(),
+        updated_at: faker.date.recent(),
       }
 
       const line2 = { //line 2 (FLIP)
-        id: line1.partnerId,
+        id: line1.partner_id,
         account: transfer.debit_account,
         // amount: (-1 * line1.amount)?
         // balance: faker.commerce.price(1, 10000, 0),
@@ -78,13 +78,13 @@ export async function mockLines({ count = 8, dEntryTransferTypes = defaultDEntry
           },
         },
         code: transfer.code,
-        partnerId: line1.id,
-        partnerAccount: transfer.credit_account,
+        partner_id: line1.id,
+        partner_account: transfer.credit_account,
         // detailId: faker.datatype.uuid(),
         // detailType: ['PaymentItem::1', 'PaymentItem::2'].sample(),
         metadata: {},// { key1: ['value 1', 'value 2'], key2: 'value 3' },
-        createdAt: line1.createdAt,
-        updatedAt: line1.updatedAt,
+        created_at: line1.created_at,
+        updated_at: line1.updated_at,
       }
       lines.push(line1, line2)
     }

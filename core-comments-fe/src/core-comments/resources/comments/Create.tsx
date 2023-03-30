@@ -17,11 +17,11 @@ export const CommentCreate = () => {
   const record = useRecordContext()
 
   const defaults = {
-    id: uuidv4(),
-    resource_type: 'Company',
+    // id: uuidv4(),
+    resource_type: record._typename || 'Company',
     resource_id: record.id,
-    author_type: 'User',
-    author_id: '1233',
+    author_type: 'User', // TODO figure out how to pass in
+    author_id: uuidv4(), // TODO figure out how to pass in
     created_at: Date.now(),
     updated_at: Date.now(),
   }
@@ -30,7 +30,7 @@ export const CommentCreate = () => {
     <Create
       // redirect={false}
       // mutationOptions={}
-
+      resource='Comment'
       sx={{
         '& .RaCreate-card': { boxShadow: 'none' },
         '& .RaCreate-main': { mt: 0 },

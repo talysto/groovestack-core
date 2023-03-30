@@ -101,7 +101,7 @@ export const RetryButton: React.FC = () => {
       await dataProvider.update(resource, {
         id: record.id,
         previousData: record,
-        data: { expiredAt: null, runAt: dayjs().toISOString() },
+        data: { expired_at: null, runAt: dayjs().toISOString() },
       })
       notify('Retry triggered!', { type: 'success' })
       refresh()
@@ -150,9 +150,9 @@ export const Table = () => {
         <TextField source="queue" sortable={false} />
         <NumberField source="priority" />
         <FunctionField label="Status" render={enhancedStatus} />
-        <TimeAgoField label="Scheduled" source="runAt" />
+        <TimeAgoField label="Scheduled" source="run_at" />
         {/* <NumberField source="errorCount" label="Errors" />
-        <TimeAgoField label="Expired" source="expiredAt" /> */}
+        <TimeAgoField label="Expired" source="expired_at" /> */}
         <JobActions label="Actions" />
       </Datagrid>
     </List>

@@ -2,7 +2,15 @@ module Core
   module Jobs
     module GraphQL
       module Types
-        class Job < ::GraphQL::Schema::Object
+        class BaseObject < ::GraphQL::Schema::Object
+          field_class ::Core::Base::GraphQL::Types::BaseField
+        end
+
+        class BaseInputObject < ::GraphQL::Schema::InputObject
+          argument_class ::Core::Base::GraphQL::Types::BaseArgument
+        end
+
+        class Job < BaseObject
           description 'A background job'
 
           field :id, ID, null: false
@@ -35,22 +43,22 @@ module Core
           end
         end
 
-        class JobListMetadata < ::GraphQL::Schema::Object
+        class JobListMetadata < BaseObject
           field :count, Int, null: false
         end
 
-        class JobReport < ::GraphQL::Schema::Object 
+        class JobReport < BaseObject 
           description 'a job report'
 
           field :id, String, null: false
           field :data, ::GraphQL::Types::JSON, null: false
         end
 
-        class JobReportMetadata < ::GraphQL::Schema::Object
+        class JobReportMetadata < BaseObject
           field :count, Int, null: false
         end
 
-        class Locker < ::GraphQL::Schema::Object
+        class Locker < BaseObject
           description 'A queue locker'
 
           field :id, String, null: false
@@ -76,7 +84,7 @@ module Core
           end
         end
 
-        class LockerMetadata < ::GraphQL::Schema::Object
+        class LockerMetadata < BaseObject
           field :count, Int, null: false
         end
       end
