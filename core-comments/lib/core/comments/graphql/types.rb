@@ -2,6 +2,18 @@ module Core
   module Comments
     module GraphQL
       module Types
+        module Commentable 
+          extend ActiveSupport::Concern
+
+          included do
+            field :type, String, null: true, resolver_method: :object_type
+
+            def object_type
+              object.class.to_s if object.respond_to?(:class)
+            end
+          end
+        end
+
         class BaseObject < ::GraphQL::Schema::Object
           field_class ::Core::Base::GraphQL::Types::BaseField
         end
