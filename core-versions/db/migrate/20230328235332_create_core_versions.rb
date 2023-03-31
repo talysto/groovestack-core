@@ -26,7 +26,7 @@ class CreateCoreVersions < ActiveRecord::Migration[6.0]
       t.datetime :created_at
     end
 
-    add_index :versions, %i[item_type item_id]
+    add_index :versions, %i[item_type item_id], if_not_exists: true
   end
 end
 
