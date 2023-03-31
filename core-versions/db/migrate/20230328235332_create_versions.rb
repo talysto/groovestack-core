@@ -10,10 +10,6 @@ class CreateVersions < ActiveRecord::Migration[6.0]
       t.text      :object, limit: TEXT_BYTES
       t.json      :object_changes
 
-      t.references :resource, polymorphic: true, type: :uuid, null: false
-      t.references :author, polymorphic: true, type: :uuid, null: false
-      t.text :body, null: false
-
       # Known issue in MySQL: fractional second precision
       # -------------------------------------------------
       #
@@ -33,3 +29,6 @@ class CreateVersions < ActiveRecord::Migration[6.0]
     add_index :versions, %i[item_type item_id]
   end
 end
+
+
+

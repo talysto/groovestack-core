@@ -12,10 +12,10 @@ require 'core/versions/railtie' if defined?(Rails::Railtie)
 require 'core/versions/has_core_versions'
 require 'core/versions/model/version'
 require 'core/versions/version'
+require 'core/versions/graphql/types'
 require 'core/versions/graphql/filters'
 require 'core/versions/graphql/mutations'
 require 'core/versions/graphql/queries'
-require 'core/versions/graphql/types'
 
 # Dir["core/versions/graphql/**/*.rb"].each { |file| require file }
 
