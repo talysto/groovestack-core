@@ -1,4 +1,4 @@
-class CreateVersions < ActiveRecord::Migration[6.0]
+class CreateCoreVersions < ActiveRecord::Migration[6.0]
   TEXT_BYTES = 1_073_741_823
 
   def change

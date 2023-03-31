@@ -26,6 +26,22 @@ module Core
           field :resource_type, String, null: false
           field :author_id, ID, null: false
           field :author_type, String, null: false
+
+          def author_id
+            object[:whodunnit]
+          end
+
+          def author_type
+            "User"
+          end
+
+          def resource_id
+            object[:item_id]
+          end
+
+          def resource_type
+            object[:item_type]
+          end
         end
 
         class VersionListMetadata < BaseObject
