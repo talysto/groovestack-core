@@ -65,7 +65,7 @@ export const VersionTimelineItem = ({ target }) => {
       </TimelineSeparator>
 
       <TimelineContent sx={{ py: '12px', px: 2 }}>
-        {target == 'resource_id' &&
+        {target == 'item_id' &&
           <>
             <PolymorphicReferenceField source="actor" />
             {' '}

@@ -48,18 +48,18 @@ export const ChangesTable = () => {
   return (
     <table>
       <tbody>
-        {record.changes.map((change) => (
-          <tr key={change.field}>
-            <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change.field}</td>
-            <td>
-              {change.newValue} (
-              <span style={{ textDecoration: 'line-through' }}>
-                {change.oldValue}
-              </span>
-              )
-            </td>
-          </tr>
-        ))}
+      {record && record.changes && record.changes.map((change) => (
+        <tr key={change[0]}>
+          <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
+          <td>
+            {change[1][1]} (
+            <span style={{ textDecoration: 'line-through' }}>
+              {change[1][0]}
+            </span>
+            )
+          </td>
+        </tr>
+      ))}
       </tbody>
     </table>
   )
