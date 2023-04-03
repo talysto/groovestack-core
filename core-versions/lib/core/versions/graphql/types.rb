@@ -36,7 +36,7 @@ module Core
           end
 
           def actor_type
-            "User"
+            'User'
           end
 
           def resource_id
