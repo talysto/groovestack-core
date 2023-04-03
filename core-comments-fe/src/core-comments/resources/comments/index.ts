@@ -1,16 +1,16 @@
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined'
 
-import { CommentEdit } from './Edit'
-import { CommentCreate } from './Create'
-import { CommentsTable } from './TableList'
 import { CommentShow } from './Show'
+import { CommentCreate } from './Create'
+import { CommentEdit } from './Edit'
+import { CommentsTable } from './TableList'
 import { CommentStream } from './StreamList'
 
 export class Comments {
   static Icon = CommentOutlinedIcon
-  static List = CommentsTable
-  static Edit = CommentEdit
   static Show = CommentShow
   static Create = CommentCreate
+  static Edit = CommentEdit
+  static List = CommentsTable
   static Stream = CommentStream
 }
