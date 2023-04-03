@@ -16,8 +16,8 @@ module Core
             type ::Core::Versions::GraphQL::Types::Version
 
             def resolve(**attrs)
-              attrs[:author_id] = context[:current_user].id
-              attrs[:author_type] = 'User' # TODO make author_type dynamic
+              attrs[:actor_id] = context[:current_user].id
+              attrs[:actor_type] = 'User' # TODO make author_type dynamic
               ::Core::Versions::Version.create!(attrs)
             end
           end

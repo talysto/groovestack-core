@@ -24,14 +24,14 @@ module Core
           # relations
           field :resource_id, ID, null: false
           field :resource_type, String, null: false
-          field :author_id, ID, null: false
-          field :author_type, String, null: false
+          field :actor_id, ID, null: false
+          field :actor_type, String, null: false
 
-          def author_id
+          def actor_id
             object[:whodunnit]
           end
 
-          def author_type
+          def actor_type
             "User"
           end
 

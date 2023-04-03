@@ -11,8 +11,8 @@ module Core
           argument :created_at_gte, String, required: false
           argument :resource_id, ID, required: false
           argument :resource_type, String, required: false
-          argument :author_id, ID, required: false
-          argument :author_type, String, required: false
+          argument :actor_id, ID, required: false
+          argument :actor_type, String, required: false
         end
       end
     end
