@@ -77,12 +77,12 @@ export const VersionTimelineItem = ({ target }) => {
             <table>
               <tbody>
                 {record && record.changes && record.changes.map((change) => (
-                  <tr key={change.field}>
+                  <tr key={change[0]}>
                     <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change.field}</td>
                     <td>
-                      {change.newValue} (
+                      {change[1][0]} (
                       <span style={{ textDecoration: 'line-through' }}>
-                        {change.oldValue}
+                        {change[1][1]}
                       </span>
                       )
                     </td>

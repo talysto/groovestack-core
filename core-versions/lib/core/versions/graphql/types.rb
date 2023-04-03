@@ -30,9 +30,9 @@ module Core
           end
 
           def changes
-            object[:object_changes]
+            object[:object_changes].to_a
           end
-          
+
           def actor_type
             "User"
           end

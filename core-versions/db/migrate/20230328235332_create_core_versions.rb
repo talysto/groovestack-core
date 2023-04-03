@@ -7,8 +7,8 @@ class CreateCoreVersions < ActiveRecord::Migration[6.0]
       t.uuid      :item_id,     null: false
       t.string    :event,       null: false
       t.string    :whodunnit
-      t.text      :object, limit: TEXT_BYTES
-      t.json      :object_changes
+      t.jsonb      :object
+      t.jsonb      :object_changes
 
       # Known issue in MySQL: fractional second precision
       # -------------------------------------------------
