@@ -76,14 +76,13 @@ export const VersionTimelineItem = ({ target }) => {
             <table>
               <tbody>
                 {record && record.changes && record.changes.map((change) => {
-                  console.log('change', change)
                   return (
                     <tr key={change[0]}>
                       <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
                       <td>
-                        {change[1][1]} (
+                        {change[0].includes('password') || change[0].includes('token')  ? '*' : change[1][1]} (
                         <span style={{ textDecoration: 'line-through' }}>
-                          {change[1][0]}
+                          {change[0].includes('password') || change[0].includes('token') ? '*' : change[1][0]}
                         </span>
                         )
                       </td>

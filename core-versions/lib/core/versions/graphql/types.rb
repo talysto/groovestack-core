@@ -32,7 +32,14 @@ module Core
           end
 
           def changes
-            object[:object_changes].to_a
+            changes = []
+            object.changeset.each do |attribute, values|
+              next if attribute === 'updated_at'
+
+              changes.push([attribute, [object.changeset[attribute][0], object.changeset[attribute][1]]])
+            end
+
+            return changes
           end
 
           def actor_type
