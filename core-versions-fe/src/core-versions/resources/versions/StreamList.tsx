@@ -44,8 +44,7 @@ const ActorField = () => {
 export const VersionTimelineItem = ({ target }) => {
 
   const record = useRecordContext();
-  console.log("record ", record)
-  console.log(target)
+
   if (!record) return null;
   return (
     <TimelineItem>
@@ -55,7 +54,7 @@ export const VersionTimelineItem = ({ target }) => {
         variant="body2"
         color="text.secondary"
       >
-        {record.created_at}
+        {record && record.timestamp}
       </TimelineOppositeContent>
 
       <TimelineSeparator>
@@ -76,18 +75,21 @@ export const VersionTimelineItem = ({ target }) => {
           <Typography variant="body2" color="textSecondary">
             <table>
               <tbody>
-                {record && record.changes && record.changes.map((change) => (
-                  <tr key={change[0]}>
-                    <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
-                    <td>
-                      {change[1][1]} (
-                      <span style={{ textDecoration: 'line-through' }}>
-                        {change[1][0]}
-                      </span>
-                      )
-                    </td>
-                  </tr>
-                ))}
+                {record && record.changes && record.changes.map((change) => {
+                  console.log('change', change)
+                  return (
+                    <tr key={change[0]}>
+                      <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
+                      <td>
+                        {change[1][1]} (
+                        <span style={{ textDecoration: 'line-through' }}>
+                          {change[1][0]}
+                        </span>
+                        )
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </Typography>

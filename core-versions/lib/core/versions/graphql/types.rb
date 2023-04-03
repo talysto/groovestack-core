@@ -25,6 +25,8 @@ module Core
           field :actor_id, ID, null: true
           field :actor_type, String, null: true
 
+          field :timestamp, String, null: false
+
           def actor_id
             object[:whodunnit]
           end
@@ -43,6 +45,10 @@ module Core
 
           def resource_type
             object[:item_type]
+          end
+
+          def timestamp
+            object[:created_at]
           end
         end
 
