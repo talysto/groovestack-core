@@ -7,7 +7,7 @@ module Core
             class_name: 'Core::Versions::Version'
           }
         }
-        
+
         has_paper_trail opts.merge(versions)
       end
     end
