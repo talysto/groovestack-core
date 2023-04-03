@@ -76,7 +76,7 @@ export const VersionTimelineItem = ({ target }) => {
           <Typography variant="body2" color="textSecondary">
             <table>
               <tbody>
-                {record.changes.map((change) => (
+                {record && record.changes && record.changes.map((change) => (
                   <tr key={change.field}>
                     <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change.field}</td>
                     <td>

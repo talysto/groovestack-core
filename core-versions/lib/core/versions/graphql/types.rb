@@ -16,6 +16,7 @@ module Core
           field :id, ID, null: false
 
           field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
+          field :changes, ::GraphQL::Types::JSON, null: true
           # field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
 
           # relations
@@ -28,6 +29,10 @@ module Core
             object[:whodunnit]
           end
 
+          def changes
+            object[:object_changes]
+          end
+          
           def actor_type
             "User"
           end
