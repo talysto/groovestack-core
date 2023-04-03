@@ -6,11 +6,13 @@ import {
   List,
   ReferenceManyCount,
   ReferenceManyField,
+  SaveButton,
   SelectInput,
   SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
+  Toolbar,
 } from 'react-admin'
 
 import { Paper, Typography } from '@mui/material'
@@ -20,6 +22,8 @@ import { CoreAccounting } from 'core-accounting-fe'
 
 import { users } from '../../data/mock-data-provider'
 import { faker } from '@faker-js/faker'
+import { useFormContext } from 'react-hook-form';
+
 
 const Comments = CoreComments.Comments
 const Versions = CoreVersions.Versions
@@ -68,8 +72,8 @@ export const UserList = () => (
 
 export const UserEdit = () => (
   <Edit aside={<UserAside />}>
-    <SimpleForm>
-      <TextInput disabled source="name" fullWidth />
+    <SimpleForm toolbar={<EditToolbar/>}>
+      <TextInput  source="name" fullWidth />
     </SimpleForm>
   </Edit>
 );
@@ -78,3 +82,35 @@ export class User {
   static List = UserList
   static Edit = UserEdit
 }
+
+
+const EditToolbar = () => {
+  // const notify = useNotify();
+  const formContext = useFormContext();
+  // console.log("formContext EDIT = ", formContext)
+  // const formState = useFormState();
+  // console.log("formState = ", formState)
+
+  // const refresh = useRefresh();
+  return (
+      <Toolbar>
+          <SaveButton
+              type="button"
+              label="Comment"
+              variant="text"
+              mutationOptions={{
+                  onSuccess: () => {
+                      //formContext?.reset();
+                      window.scrollTo(0, 0);
+                      // notify("changes saved")
+                      // refresh();
+                      // notify('ra.notification.created', {
+                      //     type: 'info',
+                      //     messageArgs: { smart_count: 1 },
+                      // });
+                  },
+              }}
+          />
+      </Toolbar>
+  );
+};
