@@ -17,7 +17,7 @@ module Core
         def versions_scope(sort_field: nil, sort_order: nil, filter: {})
           scope = versions_base_scope
           scope = scope.where(id: filter.ids) if filter.ids.present?
-          scope = scope.where(whodunnit: filter.author_id) if filter.author_id.present?
+          scope = scope.where(whodunnit: filter.actor_id) if filter.actor_id.present?
           scope = scope.where(author_type: filter.author_type) if filter.author_type.present?
           scope = scope.where(resource_id: filter.resource_id) if filter.resource_id.present?
           scope = scope.where(resource_type: filter.resource_type) if filter.resource_type.present?
