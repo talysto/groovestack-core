@@ -15,7 +15,6 @@ require 'core/versions/set_core_versions_whodunnit'
 require 'core/versions/version'
 require 'core/versions/graphql/types'
 require 'core/versions/graphql/filters'
-require 'core/versions/graphql/mutations'
 require 'core/versions/graphql/queries'
 
 # Dir["core/versions/graphql/**/*.rb"].each { |file| require file }
