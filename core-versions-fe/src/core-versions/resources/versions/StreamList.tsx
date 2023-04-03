@@ -55,7 +55,7 @@ export const VersionTimelineItem = ({ target }) => {
         variant="body2"
         color="text.secondary"
       >
-        {record.timestamp}
+        {record.created_at}
       </TimelineOppositeContent>
 
       <TimelineSeparator>
