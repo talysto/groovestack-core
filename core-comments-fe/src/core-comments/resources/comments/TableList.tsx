@@ -29,7 +29,7 @@ const ActionsField = (props: any) => {
     />
   )
 }
-const dog = 2;
+
 const commentFilters = [
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
@@ -39,7 +39,6 @@ const commentFilters = [
 
 export const CommentsTable = () => {
   const record = useRecordContext();
-  console.log("RRR", record)
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
