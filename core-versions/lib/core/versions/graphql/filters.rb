@@ -9,8 +9,8 @@ module Core
           argument :ids, [ID], required: false
           argument :created_at_lte, String, required: false
           argument :created_at_gte, String, required: false
-          argument :resource_id, ID, required: false
-          argument :resource_type, String, required: false
+          argument :item_id, ID, required: false
+          argument :item_type, String, required: false
           argument :actor_id, ID, required: false
           argument :actor_type, String, required: false
         end

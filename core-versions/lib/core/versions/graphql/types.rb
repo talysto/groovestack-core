@@ -15,17 +15,14 @@ module Core
 
           field :id, ID, null: false
 
-          field :body, String, null: false
-          field :namespace, String, null: true
-
           field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
-          field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
+          # field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
 
           # relations
-          field :resource_id, ID, null: false
-          field :resource_type, String, null: false
-          field :actor_id, ID, null: false
-          field :actor_type, String, null: false
+          field :resource_id, ID, null: true
+          field :resource_type, String, null: true
+          field :actor_id, ID, null: true
+          field :actor_type, String, null: true
 
           def actor_id
             object[:whodunnit]
