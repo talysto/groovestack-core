@@ -65,7 +65,6 @@ export const ChangesTable = () => {
   )
 }
 
-
 export const VersionsTable = () => {
   return (
     <List
