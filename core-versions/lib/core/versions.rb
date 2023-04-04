@@ -11,7 +11,7 @@ require 'active_record'
 require 'core/versions/railtie' if defined?(Rails::Railtie)
 require 'core/versions/model/version'
 require 'core/versions/has_core_versions'
-require 'core/versions/set_core_versions_whodunnit'
+require 'core/versions/set_core_versions_actor'
 require 'core/versions/version'
 require 'core/versions/graphql/types'
 require 'core/versions/graphql/filters'

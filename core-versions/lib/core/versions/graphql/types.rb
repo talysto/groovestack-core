@@ -27,10 +27,6 @@ module Core
 
           field :timestamp, String, null: false
 
-          def actor_id
-            object[:whodunnit]
-          end
-
           def changes
             changes = []
             object.changeset.each do |attribute, values|
@@ -40,6 +36,10 @@ module Core
             end
 
             return changes
+          end
+
+          def actor_id
+            object[:whodunnit]
           end
 
           def actor_type
