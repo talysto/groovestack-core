@@ -48,14 +48,14 @@ export const VersionTimelineItem = ({ target }) => {
   if (!record) return null;
   return (
     <TimelineItem>
-      <TimelineOppositeContent
-        sx={{ m: 'auto 0' }}
-        align="right"
-        variant="body2"
-        color="text.secondary"
-      >
-        {record && record.timestamp}
-      </TimelineOppositeContent>
+        <TimelineOppositeContent 
+          sx={{ m: 'auto 0', padding: 'none', margin: 'none' }}
+          align="right"
+          variant="body2"
+          color="text.secondary"
+        >
+          {record && record.timestamp}
+        </TimelineOppositeContent>
 
       <TimelineSeparator>
         <TimelineConnector />
@@ -71,7 +71,7 @@ export const VersionTimelineItem = ({ target }) => {
             changed
           </>
         }
-        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 250, width: 250 }}>
           <Typography variant="body2" color="textSecondary">
             <table>
               <tbody>

@@ -14,7 +14,7 @@ import {
   ReferenceField,
   AutocompleteInput,
   useRecordContext,
-  WrapperField,
+  WrapperField
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 
@@ -35,7 +35,7 @@ const versionFilters = [
     alwaysOn
     label="Actor"
     source="actor_id"
-    reference="User"
+    reference="User" // to do: make parametric
     perPage={10}
   >
     <AutocompleteInput />
@@ -48,7 +48,7 @@ export const ChangesTable = () => {
   return (
     <table>
       <tbody>
-      {record && record.changes && record.changes.map((change) => (
+      {record && record.changes && record.changes.map((change: any) => (
         <tr key={change[0]}>
           <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
           <td>
