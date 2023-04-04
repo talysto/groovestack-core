@@ -1,18 +1,12 @@
 import React from 'react'
 import {
-  Datagrid,
-  DateField,
-  DeleteWithConfirmButton,
   ReferenceManyField,
-  TextField,
-  WrapperField,
   useRecordContext,
   SingleFieldList,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
-import { Typography, Avatar, Box } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import {
-  Timeline,
   TimelineConnector,
   TimelineContent,
   TimelineDot,
@@ -20,26 +14,6 @@ import {
   TimelineOppositeContent,
   TimelineSeparator,
 } from '@mui/lab'
-import { Versions } from '.'
-
-const ActorField = () => {
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box>
-        <Avatar />
-      </Box>
-      <Box sx={{ flexGrow: 1, m: 1 }}>
-        <Typography>
-          <PolymorphicReferenceField source="actor" />
-        </Typography>
-        <Typography>
-          <DateField source="created_at" />
-        </Typography>
-      </Box>
-    </Box>
-  )
-}
-
 
 export const VersionTimelineItem = ({ target }) => {
 
@@ -75,7 +49,7 @@ export const VersionTimelineItem = ({ target }) => {
           <Typography variant="body2" color="textSecondary">
             <table>
               <tbody>
-                {record && record.changes && record.changes.map((change) => {
+                {record && record.changes && record.changes.map((change: any) => {
                   return (
                     <tr key={change[0]}>
                       <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
@@ -102,7 +76,7 @@ export const VersionTimelineItem = ({ target }) => {
 
 export const VersionStream = ({ target }) => {
   const record = useRecordContext()
-  // console.log("target = ", target)
+
   return (
     <>
       <ReferenceManyField
