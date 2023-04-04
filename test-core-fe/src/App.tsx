@@ -105,9 +105,8 @@ function AdminApp() {
 
       <Resource
         key="admin-lines-resource"
-        // name="lines"
         name="Line"
-        // icon={Jobs.Icon}
+        icon={Lines.Icon}
         options={{ label: 'Ledger Lines', menu: 'admin' }}
         show={Lines.Show}
         list={
@@ -121,7 +120,12 @@ function AdminApp() {
         }
       />
 
-      <Resource name="Version" icon={Versions.Icon} list={Versions.List} />
+      <Resource
+        name="Version"
+        icon={Versions.Icon}
+        list={Versions.List}
+        show={Versions.Show}
+      />
 
       {/* <Resource key="org-unit" name="OrgUnit" /> */}
 

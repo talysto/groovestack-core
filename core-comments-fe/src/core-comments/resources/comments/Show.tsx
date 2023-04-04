@@ -3,8 +3,6 @@ import React from 'react'
 import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 
-// import { AuthorField } from './AuthorField'
-
 const CommentsTitle = (props: any) => {
   const { record } = props
   return record ? <span>{'Comments'}</span> : null
@@ -24,7 +22,6 @@ export const CommentShow: React.FC<CommentsShowProps> = ({
   const renderLayout = () => (
     <SimpleShowLayout>
       <TextField source="id" />
-      {/* <AuthorField source="author" addLabel /> */}
       <PolymorphicReferenceField source="resource" />
       <TextField source="body" />
     </SimpleShowLayout>

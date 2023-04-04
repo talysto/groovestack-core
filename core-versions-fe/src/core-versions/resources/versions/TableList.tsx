@@ -71,7 +71,7 @@ export const VersionsTable = () => {
       sort={{ field: 'created_at', order: 'DESC' }}
       filters={versionFilters}
     >
-      <Datagrid>
+      <Datagrid rowClick="show">
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
         {/* <TextField source="changes" sortable={false} /> */}
