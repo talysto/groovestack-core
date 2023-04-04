@@ -80,7 +80,9 @@ export const VersionTimelineItem = ({ target }) => {
                     <tr key={change[0]}>
                       <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
                       <td>
-                        {change[0].includes('password') || change[0].includes('token') || change[0].includes('id')  ? '***' : change[1][1]} (
+                        {change[0].includes('password') || change[0].includes('token') || change[0].includes('id')  ? '***' : change[1][1]} 
+                        <br />
+                        (
                         <span style={{ textDecoration: 'line-through' }}>
                           {change[0].includes('password') || change[0].includes('token') || change[0].includes('id') ? '**' : change[1][0]}
                         </span>
