@@ -120,7 +120,7 @@ function AdminApp() {
         icon={Comments.Icon}
         list={
           <Comments.List
-            {/* tableProps={{ filters: versionFilters }} */}
+            //  tableProps={{ filters: versionFilters }} 
           >
           </Comments.List>
         }
