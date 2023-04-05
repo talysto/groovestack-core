@@ -1,5 +1,5 @@
 {
-  "name": "core-versions-fe",
+  "name": "core-base-fe",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -13,8 +13,8 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.124",
     "@mui/material": "^5.11.13",
-    "@mui/styles": "^5.11.16",
     "@types/react": "^18.0.27",
+    "@mui/styles": "^5.11.16",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "react": "^18.2.0",
@@ -31,8 +31,5 @@
     "react": "^18.2.0",
     "react-admin": "^4.8.3",
     "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "uuid": "^9.0.0"
   }
 }

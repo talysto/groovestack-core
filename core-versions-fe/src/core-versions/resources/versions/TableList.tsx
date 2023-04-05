@@ -17,6 +17,9 @@ import {
   WrapperField
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+import { CoreBase } from 'core-base-fe'
+
+const CoreDateComponent = CoreBase.CoreDateComponent
 
 const ActionsField = (props: any) => {
   return (
@@ -77,7 +80,7 @@ export const VersionsTable = () => {
         <WrapperField label="Changes">
           <ChangesTable />
         </WrapperField>
-        <DateField source="timestamp" label="Date" />
+        <CoreDateComponent source="timestamp" showTime="true" />
       </Datagrid>
     </List>
   )

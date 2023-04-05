@@ -16,6 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
+      "core-base-fe": ["../core-base-fe/src/core-base"],
       "core-accounting-fe": ["../core-accounting-fe/src/core-accounting"],
       "core-jobs-fe": ["../core-jobs-fe/src/core-jobs"],
       "core-comments-fe": ["../core-comments-fe/src/core-comments"],

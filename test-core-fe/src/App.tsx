@@ -4,6 +4,7 @@ import { Admin, EditGuesser, ListGuesser, Resource, SelectInput } from 'react-ad
 // import { CoreJobs } from '@core/jobs'
 
 // Source Code import
+import { CoreBase } from 'core-base-fe'
 import { CoreJobs } from 'core-jobs-fe'
 import { CoreAccounting } from 'core-accounting-fe'
 import { CoreComments } from 'core-comments-fe'
