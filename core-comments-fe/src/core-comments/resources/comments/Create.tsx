@@ -49,8 +49,9 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
     // console.log("formContext = ", formContext)
     const refresh = useRefresh();
     return (
-      <Toolbar>
+      <Toolbar sx={{p: "0!important"}}>
         <SaveButton
+        sx={{p: 1}}
           type="button"
           label="Comment"
           variant="text"
@@ -75,7 +76,7 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
         '& .RaCreate-main': { mt: 0 },
       }}
     >
-      <SimpleForm toolbar={<PostCreateToolbar />} defaultValues={defaults()}  >
+      <SimpleForm toolbar={<PostCreateToolbar />} defaultValues={defaults()} sx={{ p: 0, pt: 2 }}  >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box>
             <Avatar />
