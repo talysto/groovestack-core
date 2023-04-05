@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/moonlight-labs/core.git
-  revision: a726da032700baccd5530af3e249a237f14c44a3
+  revision: 333850f2347a5e16303720db01ce282b829e51bb
   branch: sprint/core-1.0
   specs:
     core-accounting (0.1.0)

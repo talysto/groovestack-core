@@ -12,7 +12,7 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: User.find('4863c095-3d73-4736-aa72-319bf4a332b8'),
     }
     result = CoreRails6SampleAppSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
