@@ -11,7 +11,6 @@ module Core
             argument :body, String, required: true
             argument :resource_id, ID, required: true
             argument :resource_type, String, required: true
-            argument :namespace, String, required: false
 
             type ::Core::Comments::GraphQL::Types::Comment
 
