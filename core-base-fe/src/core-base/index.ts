@@ -1,5 +1,5 @@
-import { CoreDateComponent } from './components/CoreDateComponent'
+import { CoreDateField } from './components/CoreDateField'
 
 export class CoreBase {
-  static CoreDateComponent = CoreDateComponent
+  static CoreDateField = CoreDateField
 }
