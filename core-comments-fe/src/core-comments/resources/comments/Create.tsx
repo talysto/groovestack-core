@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 
 import {
   SimpleForm,
@@ -7,49 +7,85 @@ import {
   Create,
   SaveButton,
   useRecordContext,
+  CreateButton,
+  useNotify,
+  Toolbar,
+  useRefresh,
+  ReferenceField,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Avatar, Box, Typography } from '@mui/material'
 import { Comment } from '../../mockComments'
+import { useFormContext } from 'react-hook-form';
 
 type Author = {
   id: string;
   type: string;
+  name: string;
 }
 
 export type CommentCreateProps = {
   authorResolver: () => Author;
-  defaultValues?: Comment;
+  defaultValues: () => Comment;
 }
 
-export const CommentCreate = ({authorResolver, defaultValues}: CommentCreateProps) => {
+export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreateProps) => {
   const record = useRecordContext()
   const author = authorResolver()
 
-  const defaults = Object.assign({
-    resource_type: record.type,
-    resource_id: record.id,
-    author_type: author.type,
-    author_id: author.id,
-  }, (defaultValues && defaultValues))
+  function defaults() {
+    console.log("running defaults again")
+    return Object.assign({
+      resource_type: record.type,
+      resource_id: record.id,
+      author_type: author.type,
+      author_id: author.id,
+    }, (defaultValues()))
+  }
+
+  const PostCreateToolbar = () => {
+    const notify = useNotify();
+    const formContext = useFormContext();
+    // console.log("formContext = ", formContext)
+    const refresh = useRefresh();
+    return (
+      <Toolbar sx={{p: "0!important"}}>
+        <SaveButton
+        sx={{p: 1}}
+          type="button"
+          label="Comment"
+          variant="text"
+          mutationOptions={{
+            onSuccess: () => {
+              refresh();
+              formContext.reset(defaults());
+              window.scrollTo(0, 0);
+              notify("changes saved")
+            },
+          }}
+        />
+      </Toolbar>
+    );
+  };
 
   return (
     <Create
-      // redirect={false}
-      // mutationOptions={}
       resource='Comment'
       sx={{
         '& .RaCreate-card': { boxShadow: 'none' },
         '& .RaCreate-main': { mt: 0 },
       }}
     >
-      <SimpleForm toolbar={false} defaultValues={defaults}>
+      <SimpleForm toolbar={<PostCreateToolbar />} defaultValues={defaults()} sx={{ p: 0, pt: 2 }}  >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box>
             <Avatar />
           </Box>
           <Box sx={{ flexGrow: 1, m: 1 }}>
-            <Typography>Current user name</Typography>
+            <Typography>
+              {author.name}
+              {/* <ReferenceField resource="Comment" source={author.id} reference="User" /> */}
+            </Typography>
           </Box>
         </Box>
         <TextInput
@@ -60,7 +96,6 @@ export const CommentCreate = ({authorResolver, defaultValues}: CommentCreateProp
           fullWidth
           label="Comment"
         />
-        <SaveButton label="Comment" />
       </SimpleForm>
     </Create>
   )

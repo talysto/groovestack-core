@@ -42,8 +42,7 @@ const JobsFilters = [
   />,
 ]
 
-const enhancedStatus = () => {
-  const record = useRecordContext()
+const enhancedStatus = (record) => {
   // var extended = null;
 
   const runningIcon = <CircularProgress size="0.75em" />
@@ -131,7 +130,6 @@ const JobActions = ({ label }: { label?: string }) => {
 
 export const Table = () => {
   const notify = useNotify()
-
   return (
     <List exporter={false} filters={JobsFilters} aside={<JobsAside />}>
       <Datagrid sort={{ field: 'priority', order: 'ASC' }} rowClick="edit">

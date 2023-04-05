@@ -18,6 +18,7 @@ specifiers:
   react-copy-to-clipboard: ^5.1.0
   react-dom: ^18.2.0
   react-google-charts: ^4.0.0
+  react-hook-form: 7.43.9
   typescript: ^4.9.5
   vite: ^4.1.4
   vite-tsconfig-paths: ^4.0.5
@@ -34,6 +35,7 @@ dependencies:
   react-copy-to-clipboard: 5.1.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-google-charts: 4.0.0_biqbaboplfbrettd7655fr4n2y
+  react-hook-form: 7.43.9_react@18.2.0
 
 devDependencies:
   '@types/react': 18.0.28
@@ -1850,7 +1852,7 @@ packages:
       strict-uri-encode: 2.0.0
     dev: false
 
-  /ra-core/4.8.3_cleekwqu2sc2ha24a4gjhujn4m:
+  /ra-core/4.8.3_jgy3tfvpej7eeh3oc6m3gc235m:
     resolution: {integrity: sha512-rlLWI346PtO6pgj3i9PUjHd6Murlff96xnu+GRImZRIMNpFdHSiU2iClG80s6a4gEzciBjFIZDi/w01cO0DN3w==}
     peerDependencies:
       history: ^5.1.0
@@ -1871,7 +1873,7 @@ packages:
       query-string: 7.1.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.40.0_react@18.2.0
+      react-hook-form: 7.43.9_react@18.2.0
       react-is: 17.0.2
       react-query: 3.39.2_biqbaboplfbrettd7655fr4n2y
       react-router: 6.4.5_react@18.2.0
@@ -1888,11 +1890,11 @@ packages:
       fakerest: 3.3.0
     dev: false
 
-  /ra-i18n-polyglot/4.8.3_cleekwqu2sc2ha24a4gjhujn4m:
+  /ra-i18n-polyglot/4.8.3_jgy3tfvpej7eeh3oc6m3gc235m:
     resolution: {integrity: sha512-hR/S+deqd9KG00xCBnVzadyxt3Mi2Fj+a4JsjsPQ7g5+NYcCPSCKT7mLalhWoTNzU3k250H+7g9nSSnPiAZ/7w==}
     dependencies:
       node-polyglot: 2.4.2
-      ra-core: 4.8.3_cleekwqu2sc2ha24a4gjhujn4m
+      ra-core: 4.8.3_jgy3tfvpej7eeh3oc6m3gc235m
     transitivePeerDependencies:
       - history
       - react
@@ -1903,10 +1905,10 @@ packages:
       - react-router-dom
     dev: false
 
-  /ra-language-english/4.8.3_cleekwqu2sc2ha24a4gjhujn4m:
+  /ra-language-english/4.8.3_jgy3tfvpej7eeh3oc6m3gc235m:
     resolution: {integrity: sha512-Usmgrh/NKZqv5DTLOVkSvJZbDFb/ij5OnCZoXWQEFBZmwIa5nOKnJNSkKICjdbTsKyh02aMBi89DqLwdcMDXaQ==}
     dependencies:
-      ra-core: 4.8.3_cleekwqu2sc2ha24a4gjhujn4m
+      ra-core: 4.8.3_jgy3tfvpej7eeh3oc6m3gc235m
     transitivePeerDependencies:
       - history
       - react
@@ -1917,7 +1919,7 @@ packages:
       - react-router-dom
     dev: false
 
-  /ra-ui-materialui/4.8.3_5j7rvb64bnnaxq6zg5o7b2ok4y:
+  /ra-ui-materialui/4.8.3_2ui4uzgkgaoxj3m6ft2eodzknu:
     resolution: {integrity: sha512-WVe8zkaQ1W/UZ1LZzkiRoKtoDpxBdQo/Uwju5Jj3vdSBPU+yLWKFVx7ccQlNX2mrIt0jOLPeNs6TJWniAowtrQ==}
     peerDependencies:
       '@mui/icons-material': ^5.0.1
@@ -1940,12 +1942,12 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       query-string: 7.1.3
-      ra-core: 4.8.3_cleekwqu2sc2ha24a4gjhujn4m
+      ra-core: 4.8.3_jgy3tfvpej7eeh3oc6m3gc235m
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-dropzone: 12.1.0_react@18.2.0
       react-error-boundary: 3.1.4_react@18.2.0
-      react-hook-form: 7.40.0_react@18.2.0
+      react-hook-form: 7.43.9_react@18.2.0
       react-query: 3.39.2_biqbaboplfbrettd7655fr4n2y
       react-router: 6.4.5_react@18.2.0
       react-router-dom: 6.4.5_biqbaboplfbrettd7655fr4n2y
@@ -1965,13 +1967,13 @@ packages:
       '@mui/icons-material': 5.11.11_4lyzeezzeeal3x6jtb4ni26w7u
       '@mui/material': 5.11.13_acl7mc3llczqccvmbrsweq6vga
       history: 5.3.0
-      ra-core: 4.8.3_cleekwqu2sc2ha24a4gjhujn4m
-      ra-i18n-polyglot: 4.8.3_cleekwqu2sc2ha24a4gjhujn4m
-      ra-language-english: 4.8.3_cleekwqu2sc2ha24a4gjhujn4m
-      ra-ui-materialui: 4.8.3_5j7rvb64bnnaxq6zg5o7b2ok4y
+      ra-core: 4.8.3_jgy3tfvpej7eeh3oc6m3gc235m
+      ra-i18n-polyglot: 4.8.3_jgy3tfvpej7eeh3oc6m3gc235m
+      ra-language-english: 4.8.3_jgy3tfvpej7eeh3oc6m3gc235m
+      ra-ui-materialui: 4.8.3_2ui4uzgkgaoxj3m6ft2eodzknu
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.40.0_react@18.2.0
+      react-hook-form: 7.43.9_react@18.2.0
       react-router: 6.4.5_react@18.2.0
       react-router-dom: 6.4.5_biqbaboplfbrettd7655fr4n2y
     transitivePeerDependencies:
@@ -2032,8 +2034,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-hook-form/7.40.0_react@18.2.0:
-    resolution: {integrity: sha512-0rokdxMPJs0k9bvFtY6dbcSydyNhnZNXCR49jgDr/aR03FDHFOK6gfh8ccqB3fl696Mk7lqh04xdm+agqWXKSw==}
+  /react-hook-form/7.43.9_react@18.2.0:
+    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18

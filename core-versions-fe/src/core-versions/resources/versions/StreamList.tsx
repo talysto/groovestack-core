@@ -18,9 +18,11 @@ import {
 export const VersionTimelineItem = ({ target }) => {
 
   const record = useRecordContext();
-
+  // console.log("record ", record)
+  // console.log(target)
   if (!record) return null;
   return (
+
     <TimelineItem>
         <TimelineOppositeContent 
           sx={{ m: 'auto 0', padding: 'none', margin: 'none' }}
@@ -71,12 +73,12 @@ export const VersionTimelineItem = ({ target }) => {
         </Box>
       </TimelineContent>
     </TimelineItem>
+    
   )
 }
 
 export const VersionStream = ({ target }) => {
   const record = useRecordContext()
-
   return (
     <>
       <ReferenceManyField
@@ -84,7 +86,7 @@ export const VersionStream = ({ target }) => {
         target={target}
         record={record}
       >
-        <SingleFieldList sx={{ display: 'inline-block' }}>
+        <SingleFieldList sx={{ display: 'inline-block' }} linkType={false}>
           <VersionTimelineItem target={target} />
         </SingleFieldList>
       </ReferenceManyField>

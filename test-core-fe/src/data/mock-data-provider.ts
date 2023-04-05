@@ -53,13 +53,6 @@ const versions = (await mockVersions({ count: 20 })).map((version) => {
     // resource: resource
   }
 })
-
-//a transfer is 2 lines, so 8 mock transfers returns 16 lines
-// for each pair of credit / debit lines
-//   grab a user & a company
-//   line 1 has user as account / scope and company as partner account / scope
-//   line 2 has company as account / scope and user as partner account / scope
-
 const dEntryTransferTypes = [
   { code: 'buy_aqd', credit_account: 'aqd_tokens', debit_account: 'aqd_treasury'}, 
   { code: 'spend_aqd', credit_account: 'aqd_treasury', debit_account: 'aqd_tokens'}

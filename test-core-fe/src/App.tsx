@@ -1,4 +1,4 @@
-import { Admin, EditGuesser, ListGuesser, Resource, SelectInput } from 'react-admin'
+import { Admin, AutocompleteInput, DateInput, EditGuesser, ListGuesser, ReferenceInput, Resource, SelectInput } from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -81,6 +81,20 @@ function AdminApp() {
     />
   ];
 
+  const versionFilters = [
+    <DateInput source="created_at_lte" label="Before" />,
+    <DateInput source="created_at_gte" label="After" />,
+    <ReferenceInput
+      alwaysOn
+      label="Actor"
+      source="actor_id"
+      reference="User" // to do: make parametric
+      perPage={10}
+    >
+      <AutocompleteInput />
+    </ReferenceInput>,
+  ]
+
   return (
     <Admin
       disableTelemetry
@@ -103,7 +117,7 @@ function AdminApp() {
       <Resource
         name="Comment"
         icon={Comments.Icon}
-        list={Comments.List}
+        list={<Comments.List />}
         edit={Comments.Edit}
       />
 
@@ -115,7 +129,7 @@ function AdminApp() {
         show={Lines.Show}
         list={
           <Lines.List
-          tableProps={{filters: lineFilters}}
+            tableProps={{ filters: lineFilters }}
           >
             {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
@@ -128,7 +142,7 @@ function AdminApp() {
         name="Version"
         // icon={normalizeIcon(CoreVersions.Versions.Icon)}
         icon={Versions.Icon}
-        list={Versions.List}
+        list={<Versions.List tableProps={{ filters: versionFilters }} />}
         show={Versions.Show}
       />
 

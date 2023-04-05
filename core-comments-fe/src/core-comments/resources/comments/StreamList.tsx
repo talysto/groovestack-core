@@ -38,15 +38,16 @@ type CommentStreamProps = {
   createProps: CommentCreateProps
 }
 
-export const CommentStream = ({createProps}: CommentStreamProps) => {
+export const CommentStream = ({ createProps }: CommentStreamProps) => {
   const record = useRecordContext()
-  const mockCommentAttrs = {
-    id: uuidv4(),
-    body: '',
-    created_at: new Date().toDateString(),
-    updated_at: new Date().toDateString(),
+  const mockCommentAttrs = () => {
+    return {
+      id: uuidv4(),
+      body: '',
+      created_at: new Date().toDateString(),
+      updated_at: new Date().toDateString(),
+    }
   }
-
   return (
     <>
       <Comments.Create {...createProps} defaultValues={mockCommentAttrs} />
@@ -55,15 +56,17 @@ export const CommentStream = ({createProps}: CommentStreamProps) => {
         reference="Comment"
         target="resource_id"
         record={record}
+        sort={{ field: 'created_at', order: 'DESC' }}
       >
         <Datagrid bulkActionButtons={false}>
-          <WrapperField>
+          {/* toISOString() */}
+          <WrapperField sx={{p:"0!important"}}>
             <AuthorField />
-
-            <Typography>
+            <Typography >
               <TextField source="body" />
             </Typography>
           </WrapperField>
+          {/* <TextField source="created_at" /> */}
           <DeleteWithConfirmButton label="" />
         </Datagrid>
       </ReferenceManyField>

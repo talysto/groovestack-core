@@ -31,18 +31,8 @@ const ActionsField = (props: any) => {
 }
 
 const versionFilters = [
-  // <SearchInput source="q" alwaysOn />,
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
-  <ReferenceInput
-    alwaysOn
-    label="Actor"
-    source="actor_id"
-    reference="User" // to do: make parametric
-    perPage={10}
-  >
-    <AutocompleteInput />
-  </ReferenceInput>,
 ]
 
 export const ChangesTable = () => {
@@ -68,11 +58,12 @@ export const ChangesTable = () => {
   )
 }
 
-export const VersionsTable = () => {
+export const VersionsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => {
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      filters={versionFilters}
+      filters={versionFilters} 
+      {...tableProps}  
     >
       <Datagrid rowClick="show">
         <PolymorphicReferenceField source="actor" />
