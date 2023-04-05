@@ -23,6 +23,12 @@ import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
 import { User } from './resources/user'
 
+import SvgIcon from '@mui/material/SvgIcon/SvgIcon';
+
+const normalizeIcon = (Icon: typeof SvgIcon) => {
+  return ((Icon as any).default ? (Icon as any).default : Icon['default']) as typeof SvgIcon;
+}
+
 // export default {
 //   title: 'CORE/React Admin',
 // }
@@ -119,6 +125,7 @@ function AdminApp() {
 
       <Resource
         name="Version"
+        // icon={normalizeIcon(CoreVersions.Versions.Icon)}
         icon={Versions.Icon}
         list={Versions.List}
         show={Versions.Show}
