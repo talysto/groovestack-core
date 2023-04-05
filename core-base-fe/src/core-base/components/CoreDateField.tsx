@@ -8,7 +8,7 @@ export const CoreDateField: React.FC<{ source: string; showTime: boolean }> = ({
   const date = new Date(record[source])
 
   return (
-    <span title={source}>
+    <span title={record[source]}>
       {showTime ? `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}` : `${date.toLocaleDateString()}`}
     </span>
   )

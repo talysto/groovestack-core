@@ -33,7 +33,6 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "core-base-fe": "https://gitpkg.now.sh/moonlight-labs/core/core-base-fe?7c78eb5",
     "uuid": "^9.0.0"
   }
 }

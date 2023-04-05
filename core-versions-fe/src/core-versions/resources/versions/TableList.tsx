@@ -17,7 +17,7 @@ import {
   WrapperField
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
-import { CoreBase } from 'core-base-fe'
+import { CoreBase } from '../../../../../core-base-fe/src/core-base'
 
 const CoreDateField = CoreBase.CoreDateField
 
@@ -71,7 +71,7 @@ export const VersionsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => 
         <WrapperField label="Changes">
           <ChangesTable />
         </WrapperField>
-        <CoreDateField source="timestamp" showTime="true" />
+        <CoreDateField source="timestamp" showTime={true} />
       </Datagrid>
     </List>
   )
