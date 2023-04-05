@@ -40,14 +40,14 @@ type CommentStreamProps = {
 
 export const CommentStream = ({ createProps }: CommentStreamProps) => {
   const record = useRecordContext()
-  const mockCommentAttrs = () => (
-    {
+  const mockCommentAttrs = () => {
+    return {
       id: uuidv4(),
       body: '',
       created_at: new Date().toDateString(),
       updated_at: new Date().toDateString(),
     }
-  )
+  }
   return (
     <>
       <Comments.Create {...createProps} defaultValues={mockCommentAttrs} />
