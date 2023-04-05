@@ -23,7 +23,9 @@ import {
 } from 'react-admin'
 
 import { JobsAside } from './JobsAside'
-import { TimeAgoField } from './TimeAgoField'
+
+import { CoreBase } from '../../../../core-base-fe/src/core-base'
+const CoreTimeAgoField = CoreBase.CoreTimeAgoField
 
 const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" />,
@@ -148,7 +150,8 @@ export const Table = () => {
         <TextField source="queue" sortable={false} />
         <NumberField source="priority" />
         <FunctionField label="Status" render={enhancedStatus} />
-        <TimeAgoField label="Scheduled" source="run_at" />
+
+        <CoreTimeAgoField label="Scheduled" source="run_at" />
         {/* <NumberField source="errorCount" label="Errors" />
         <TimeAgoField label="Expired" source="expired_at" /> */}
         <JobActions label="Actions" />

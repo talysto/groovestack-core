@@ -15,7 +15,7 @@ export const timeAgo = (timestamp: string) => {
   )
 }
 
-export const TimeAgoField: React.FC<{ label?: string; source: string }> = ({
+export const CoreTimeAgoField: React.FC<{ label?: string; source: string }> = ({
   source,
 }) => {
   const record = useRecordContext()
