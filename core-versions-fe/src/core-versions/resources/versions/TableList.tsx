@@ -17,8 +17,7 @@ import {
   WrapperField
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
-import { CoreBase } from '../../../../../core-base-fe/src/core-base'
-
+import { CoreBase } from '../../../../../core-base-fe/src/core-base' // TODO make core-base-fe a proper peer dep
 const CoreDateField = CoreBase.CoreDateField
 
 const ActionsField = (props: any) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecordContext } from 'react-admin'
 
-export const CoreDateField: React.FC<{ source: string; showTime: boolean }> = ({
+export const CoreDateField: React.FC<{ source: string; showTime: boolean, label?: string }> = ({
   source, showTime
 }) => {
   const record = useRecordContext()
