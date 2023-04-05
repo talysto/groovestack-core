@@ -78,22 +78,22 @@ function AdminApp() {
   const versionFilters = [
     <DateInput source="created_at_lte" label="Before" />,
     <DateInput source="created_at_gte" label="After" />,
-    // <ReferenceInput
-    //   alwaysOn
-    //   label="Actor"
-    //   source="actor_id"
-    //   reference="User" // to do: make parametric
-    //   perPage={10}
-    // >
-    //   <AutocompleteInput />
-    // </ReferenceInput>,
+    <ReferenceInput
+      alwaysOn
+      label="Actor"
+      source="actor_id"
+      reference="User" // to do: make parametric
+      perPage={10}
+    >
+      <AutocompleteInput />
+    </ReferenceInput>,
   ]
 
   const commentFilters = [
     <DateInput source="created_at_lte" label="Before" />,
     <DateInput source="created_at_gte" label="After" />,
-    // <PolymorphicReferenceInput source="author" />,
-    // <PolymorphicReferenceInput source="resource" />,
+    <PolymorphicReferenceInput source="author" />,
+    <PolymorphicReferenceInput source="resource" />,
   ]
 
   return (
@@ -120,7 +120,7 @@ function AdminApp() {
         icon={Comments.Icon}
         list={
           <Comments.List
-            //  tableProps={{ filters: versionFilters }} 
+             tableProps={{ filters: commentFilters }} 
           >
           </Comments.List>
         }
@@ -149,7 +149,7 @@ function AdminApp() {
         icon={Versions.Icon}
         list={
           <Versions.List 
-          // tableProps={{ filters: versionFilters }} >
+          tableProps={{ filters: versionFilters }} 
           >
           </Versions.List>
         }

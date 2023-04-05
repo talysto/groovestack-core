@@ -30,15 +30,15 @@ const ActionsField = (props: any) => {
 const versionFilters = [
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
-  <ReferenceInput
-    alwaysOn
-    label="Actor"
-    source="actor_id"
-    reference="User"
-    perPage={10}
-  >
-    <AutocompleteInput />
-  </ReferenceInput>,
+  // <ReferenceInput
+  //   alwaysOn
+  //   label="Actor"
+  //   source="actor_id"
+  //   reference="User"
+  //   perPage={10}
+  // >
+  //   <AutocompleteInput />
+  // </ReferenceInput>,
 ]
 
 export const ChangesTable = () => {

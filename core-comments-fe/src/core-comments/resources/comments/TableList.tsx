@@ -32,8 +32,8 @@ const ActionsField = (props: any) => {
 const commentFilters = [
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
-  <PolymorphicReferenceInput source="author" />,
-  <PolymorphicReferenceInput source="resource" />,
+  // <PolymorphicReferenceInput source="author" />,
+  // <PolymorphicReferenceInput source="resource" />,
 ]
 
 export const CommentsTable: React.FC<{ tableProps?: any }> = ({ tableProps }) => {
