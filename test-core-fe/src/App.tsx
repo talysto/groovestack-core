@@ -6,17 +6,14 @@ import { Admin, EditGuesser, ListGuesser, Resource, SelectInput } from 'react-ad
 // Source Code import
 import { CoreJobs } from 'core-jobs-fe'
 import { CoreAccounting } from 'core-accounting-fe'
+import { CoreComments } from 'core-comments-fe'
+import { CoreVersions } from 'core-versions-fe'
 
 const Jobs = CoreJobs.Jobs
-
-
-
-import { CoreComments } from 'core-comments-fe'
-const Comments = CoreComments.Comments
-
-import { CoreVersions } from 'core-versions-fe'
-const Versions = CoreVersions.Versions
 const Lines = CoreAccounting.Lines
+const Comments = CoreComments.Comments
+const Versions = CoreVersions.Versions
+
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
@@ -105,9 +102,8 @@ function AdminApp() {
 
       <Resource
         key="admin-lines-resource"
-        // name="lines"
         name="Line"
-        // icon={Jobs.Icon}
+        icon={Lines.Icon}
         options={{ label: 'Ledger Lines', menu: 'admin' }}
         show={Lines.Show}
         list={
@@ -121,7 +117,12 @@ function AdminApp() {
         }
       />
 
-      <Resource name="Version" icon={Versions.Icon} list={Versions.List} />
+      <Resource
+        name="Version"
+        icon={Versions.Icon}
+        list={Versions.List}
+        show={Versions.Show}
+      />
 
       {/* <Resource key="org-unit" name="OrgUnit" /> */}
 

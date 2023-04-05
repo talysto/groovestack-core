@@ -2,35 +2,38 @@ import React from 'react'
 
 import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+import { ChangesTable } from './TableList'
 
-const CommentsTitle = (props: any) => {
+const VersionsTitle = (props: any) => {
   const { record } = props
-  return record ? <span>{'Comments'}</span> : null
+  return record ? <span>{'Versions'}</span> : null
 }
 
-type CommentsShowProps = ShowProps & {
+type VersionsShowProps = ShowProps & {
   showLayoutWrapper?: {
     component: any
     props: { [key: string]: any }
   }
 }
 
-export const CommentShow: React.FC<CommentsShowProps> = ({
+export const VersionShow: React.FC<VersionsShowProps> = ({
   showLayoutWrapper = { component: null, props: null },
   ...props
 }) => {
   const renderLayout = () => (
     <SimpleShowLayout>
       <TextField source="id" />
+      <PolymorphicReferenceField source="actor" />
       <PolymorphicReferenceField source="resource" />
-      <TextField source="body" />
+      <ChangesTable label="Changes" />
+      <TextField source="timestamp" />
     </SimpleShowLayout>
   )
 
   const { component: WrapperComponent, props: wrapperProps } = showLayoutWrapper
 
   return (
-    <Show title={<CommentsTitle />} {...props}>
+    <Show title={<VersionsTitle />} {...props}>
       {!!WrapperComponent ? (
         <WrapperComponent {...wrapperProps}>{renderLayout()}</WrapperComponent>
       ) : (

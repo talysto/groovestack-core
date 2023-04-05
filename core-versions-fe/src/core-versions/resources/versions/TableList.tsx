@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 
 import {
   List,
@@ -14,7 +14,7 @@ import {
   ReferenceField,
   AutocompleteInput,
   useRecordContext,
-  WrapperField,
+  WrapperField
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 
@@ -34,7 +34,7 @@ const versionFilters = [
     alwaysOn
     label="Actor"
     source="actor_id"
-    reference="User"
+    reference="User" // to do: make parametric
     perPage={10}
   >
     <AutocompleteInput />
@@ -47,18 +47,18 @@ export const ChangesTable = () => {
   return (
     <table>
       <tbody>
-        {record.changes.map((change) => (
-          <tr key={change.field}>
-            <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change.field}</td>
-            <td>
-              {change.newValue} (
-              <span style={{ textDecoration: 'line-through' }}>
-                {change.oldValue}
-              </span>
-              )
-            </td>
-          </tr>
-        ))}
+      {record && record.changes && record.changes.map((change: any) => (
+        <tr key={change[0]}>
+          <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
+          <td>
+            {change[1][1]} (
+            <span style={{ textDecoration: 'line-through' }}>
+              {change[1][0]}
+            </span>
+            )
+          </td>
+        </tr>
+      ))}
       </tbody>
     </table>
   )
@@ -70,13 +70,13 @@ export const VersionsTable = () => {
       sort={{ field: 'created_at', order: 'DESC' }}
       filters={versionFilters}
     >
-      <Datagrid>
+      <Datagrid rowClick="show">
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
         <WrapperField label="Changes">
           <ChangesTable />
         </WrapperField>
-        <TextField source="timestamp"/>
+        <DateField source="timestamp" label="Date" />
       </Datagrid>
     </List>
   )

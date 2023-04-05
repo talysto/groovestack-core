@@ -28,7 +28,7 @@ async function generateChanges(numChanges: number): Promise<any> {
       const field = faker.lorem.word()
       const oldValue = faker.random.words()
       const newValue = faker.random.words()
-      changes.push({ field, oldValue, newValue })
+      changes.push([field, [oldValue, newValue]])
     }
     return changes
   } catch (e) {
