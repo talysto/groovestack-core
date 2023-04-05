@@ -3,17 +3,13 @@ import React from 'react'
 import {
   SimpleForm,
   TextInput,
-  SimpleShowLayout,
   Create,
   SaveButton,
   useRecordContext,
-  CreateButton,
   useNotify,
   Toolbar,
   useRefresh,
-  ReferenceField,
 } from 'react-admin'
-import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Avatar, Box, Typography } from '@mui/material'
 import { Comment } from '../../mockComments'
 import { useFormContext } from 'react-hook-form';
@@ -26,7 +22,7 @@ type Author = {
 
 export type CommentCreateProps = {
   authorResolver: () => Author;
-  defaultValues: () => Comment;
+  defaultValues?: () => Comment;
 }
 
 export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreateProps) => {
@@ -34,13 +30,10 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
   const author = authorResolver()
 
   function defaults() {
-    console.log("running defaults again")
     return Object.assign({
       resource_type: record.type,
       resource_id: record.id,
-      author_type: author.type,
-      author_id: author.id,
-    }, (defaultValues()))
+    }, (defaultValues ? defaultValues() : {}))
   }
 
   const PostCreateToolbar = () => {

@@ -21,7 +21,8 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0",
-    "react-hook-form": "7.43.9"
+    "react-hook-form": "7.43.9",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

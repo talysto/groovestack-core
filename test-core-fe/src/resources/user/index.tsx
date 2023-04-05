@@ -23,12 +23,20 @@ import { CoreAccounting } from 'core-accounting-fe'
 import { users } from '../../data/mock-data-provider'
 import { faker } from '@faker-js/faker'
 import { useFormContext } from 'react-hook-form';
-
+import { v4 as uuidv4 } from 'uuid'
 
 const Comments = CoreComments.Comments
 const Versions = CoreVersions.Versions
 const Lines = CoreAccounting.Lines
 
+const mockCommentDefaults = () => {
+  return {
+    id: uuidv4(),
+    body: '',
+    created_at: new Date().toDateString(),
+    updated_at: new Date().toDateString(),
+  }
+}
 
 export const UserAside = () => {
   const lineFilters = [
@@ -45,7 +53,7 @@ export const UserAside = () => {
     <>
       <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
         <Typography variant="h6">Comments</Typography>
-        <Comments.Stream createProps={{ authorResolver: () => (faker.helpers.arrayElement(users)) }} />
+        <Comments.Stream createProps={{ authorResolver: () => (faker.helpers.arrayElement(users)), defaultValues: mockCommentDefaults }} />
         <Typography variant="h6">Transactions</Typography>
         <Lines.ReferenceManyLines tableProps={{ filters: lineFilters }} />
         <Typography variant="h6">Versions</Typography>
