@@ -34,7 +34,7 @@ const versionFilters = [
     alwaysOn
     label="Actor"
     source="actor_id"
-    reference="User" // to do: make parametric
+    reference="User"
     perPage={10}
   >
     <AutocompleteInput />
@@ -64,11 +64,11 @@ export const ChangesTable = () => {
   )
 }
 
-export const VersionsTable = () => {
+export const VersionsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => {
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      filters={versionFilters}
+      filters={tableProps.filters ? tableProps.filters : versionFilters}
     >
       <Datagrid rowClick="show">
         <PolymorphicReferenceField source="actor" />

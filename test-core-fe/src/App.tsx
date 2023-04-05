@@ -1,4 +1,4 @@
-import { Admin, EditGuesser, ListGuesser, Resource, SelectInput } from 'react-admin'
+import { Admin, AutocompleteInput, DateInput, EditGuesser, ListGuesser, ReferenceInput, Resource, SelectInput } from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -22,6 +22,7 @@ import { mockDataProvider } from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
 import { User } from './resources/user'
+import { PolymorphicReferenceInput } from '../../core-comments-fe/src/core-comments/resources/comments/PolymorphicReferenceInput'
 
 // export default {
 //   title: 'CORE/React Admin',
@@ -74,6 +75,27 @@ function AdminApp() {
     />
   ];
 
+  const versionFilters = [
+    <DateInput source="created_at_lte" label="Before" />,
+    <DateInput source="created_at_gte" label="After" />,
+    // <ReferenceInput
+    //   alwaysOn
+    //   label="Actor"
+    //   source="actor_id"
+    //   reference="User" // to do: make parametric
+    //   perPage={10}
+    // >
+    //   <AutocompleteInput />
+    // </ReferenceInput>,
+  ]
+
+  const commentFilters = [
+    <DateInput source="created_at_lte" label="Before" />,
+    <DateInput source="created_at_gte" label="After" />,
+    // <PolymorphicReferenceInput source="author" />,
+    // <PolymorphicReferenceInput source="resource" />,
+  ]
+
   return (
     <Admin
       disableTelemetry
@@ -96,7 +118,10 @@ function AdminApp() {
       <Resource
         name="Comment"
         icon={Comments.Icon}
-        list={Comments.List}
+        list={
+          <Comments.List tableProps={{ filters: commentFilters }} >
+          </Comments.List>
+        }
         edit={Comments.Edit}
       />
 
@@ -108,7 +133,7 @@ function AdminApp() {
         show={Lines.Show}
         list={
           <Lines.List
-          tableProps={{filters: lineFilters}}
+            tableProps={{ filters: lineFilters }}
           >
             {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
@@ -120,7 +145,10 @@ function AdminApp() {
       <Resource
         name="Version"
         icon={Versions.Icon}
-        list={Versions.List}
+        list={
+          <Versions.List tableProps={{ filters: versionFilters }} >
+          </Versions.List>
+        }
         show={Versions.Show}
       />
 

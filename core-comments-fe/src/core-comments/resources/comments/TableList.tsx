@@ -29,18 +29,18 @@ const ActionsField = (props: any) => {
     />
   )
 }
-// const commentFilters = [
-//   <DateInput source="created_at_lte" label="Before" />,
-//   <DateInput source="created_at_gte" label="After" />,
-//   <PolymorphicReferenceInput source="author" />,
-//   <PolymorphicReferenceInput source="resource" />,
-// ]
+const commentFilters = [
+  <DateInput source="created_at_lte" label="Before" />,
+  <DateInput source="created_at_gte" label="After" />,
+  <PolymorphicReferenceInput source="author" />,
+  <PolymorphicReferenceInput source="resource" />,
+]
 
-export const CommentsTable = () => {
+export const CommentsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => {
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      // filters={commentFilters}
+      filters={tableProps.filters ? tableProps.filters : commentFilters}
     >
       <Datagrid rowClick="edit">
         <PolymorphicReferenceField source="author" />

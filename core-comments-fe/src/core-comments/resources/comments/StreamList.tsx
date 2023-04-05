@@ -56,17 +56,17 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
         reference="Comment"
         target="resource_id"
         record={record}
-
+        sort={{ field: 'created_at', order: 'DESC' }}
       >
-        <Datagrid bulkActionButtons={false} sort={{ field: 'created_at', order: 'DESC' }}>
+        <Datagrid bulkActionButtons={false}>
           {/* toISOString() */}
-          <WrapperField sortBy='record.created_at'>
+          <WrapperField sx={{p:"0!important"}}>
             <AuthorField />
-            <Typography>
+            <Typography >
               <TextField source="body" />
             </Typography>
           </WrapperField>
-          {/* <TextField source="created_at" /> */}
+          <TextField source="created_at" />
           <DeleteWithConfirmButton label="" />
         </Datagrid>
       </ReferenceManyField>
