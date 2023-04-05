@@ -22,7 +22,6 @@ import { mockDataProvider } from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
 import { User } from './resources/user'
-import { PolymorphicReferenceInput } from '../../core-comments-fe/src/core-comments/resources/comments/PolymorphicReferenceInput'
 
 // export default {
 //   title: 'CORE/React Admin',
@@ -89,13 +88,6 @@ function AdminApp() {
     </ReferenceInput>,
   ]
 
-  const commentFilters = [
-    <DateInput source="created_at_lte" label="Before" />,
-    <DateInput source="created_at_gte" label="After" />,
-    <PolymorphicReferenceInput source="author" />,
-    <PolymorphicReferenceInput source="resource" />,
-  ]
-
   return (
     <Admin
       disableTelemetry
@@ -118,12 +110,7 @@ function AdminApp() {
       <Resource
         name="Comment"
         icon={Comments.Icon}
-        list={
-          <Comments.List
-             tableProps={{ filters: commentFilters }} 
-          >
-          </Comments.List>
-        }
+        list={<Comments.List />}
         edit={Comments.Edit}
       />
 
@@ -147,12 +134,7 @@ function AdminApp() {
       <Resource
         name="Version"
         icon={Versions.Icon}
-        list={
-          <Versions.List 
-          tableProps={{ filters: versionFilters }} 
-          >
-          </Versions.List>
-        }
+        list={<Versions.List tableProps={{ filters: versionFilters }} />}
         show={Versions.Show}
       />
 

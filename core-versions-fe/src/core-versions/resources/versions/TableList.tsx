@@ -30,15 +30,6 @@ const ActionsField = (props: any) => {
 const versionFilters = [
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
-  // <ReferenceInput
-  //   alwaysOn
-  //   label="Actor"
-  //   source="actor_id"
-  //   reference="User"
-  //   perPage={10}
-  // >
-  //   <AutocompleteInput />
-  // </ReferenceInput>,
 ]
 
 export const ChangesTable = () => {
@@ -68,9 +59,9 @@ export const VersionsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => 
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      filters={typeof tableProps !== 'undefined' ?
-        ("filters" in tableProps ? tableProps.filters : versionFilters)
-        : versionFilters}    >
+      filters={versionFilters} 
+      {...tableProps}  
+    >
       <Datagrid rowClick="show">
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />

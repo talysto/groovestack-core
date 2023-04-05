@@ -66,7 +66,7 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
               <TextField source="body" />
             </Typography>
           </WrapperField>
-          <TextField source="created_at" />
+          {/* <TextField source="created_at" /> */}
           <DeleteWithConfirmButton label="" />
         </Datagrid>
       </ReferenceManyField>

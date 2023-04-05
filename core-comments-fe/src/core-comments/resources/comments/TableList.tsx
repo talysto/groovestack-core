@@ -19,7 +19,6 @@ import {
   FilterForm,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
-import { PolymorphicReferenceInput } from './PolymorphicReferenceInput'
 
 const ActionsField = (props: any) => {
   return (
@@ -32,18 +31,15 @@ const ActionsField = (props: any) => {
 const commentFilters = [
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
-  // <PolymorphicReferenceInput source="author" />,
-  // <PolymorphicReferenceInput source="resource" />,
 ]
 
 export const CommentsTable: React.FC<{ tableProps?: any }> = ({ tableProps }) => {
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      filters={typeof tableProps !== 'undefined' ?
-        ("filters" in tableProps ? tableProps.filters : commentFilters)
-        : commentFilters}
-    >
+      filters={commentFilters}
+      {...tableProps}
+      >
       <Datagrid rowClick="edit">
         <PolymorphicReferenceField source="author" />
         <PolymorphicReferenceField source="resource" />
