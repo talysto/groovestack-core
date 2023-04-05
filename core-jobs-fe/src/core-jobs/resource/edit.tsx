@@ -11,7 +11,9 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import { TimeAgoField } from './TimeAgoField'
+import { CoreBase } from '../../../../core-base-fe/src/core-base'
+const CoreTimeAgoField = CoreBase.CoreTimeAgoField
+
 import Grid from '@mui/material/Grid'
 
 const ErrorPanel: React.FC = () => {
@@ -83,17 +85,17 @@ export const EditJob = (props: any) => {
           <Grid item xs={4}>
             <div>
               <Labeled label="Run At">
-                <TimeAgoField source="run_at" />
+                <CoreTimeAgoField source="run_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Finished At">
-                <TimeAgoField source="finished_at" />
+                <CoreTimeAgoField source="finished_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Expired At">
-                <TimeAgoField source="expired_at" />
+                <CoreTimeAgoField source="expired_at" />
               </Labeled>
             </div>
           </Grid>

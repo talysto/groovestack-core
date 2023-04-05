@@ -1,7 +1,9 @@
 import React, { FC } from "react"
 import { ReferenceManyField, TextField, Datagrid, useRecordContext, SelectInput, List, Filter, TextInput, ResourceContextProvider, ListBase, ListToolbar } from "react-admin"
 import { MoneyField } from "./MoneyField"
-import { TimeAgoField } from "./TimeAgoField"
+
+import { CoreBase } from '../../../../core-base-fe/src/core-base'
+const CoreTimeAgoField = CoreBase.CoreTimeAgoField
 
 export const ReferenceManyLines: FC<{ children?: any, tableProps?: any, datagridProps?: any }> = ({ children, tableProps, datagridProps }) => {
   const record = useRecordContext()
@@ -20,7 +22,7 @@ export const ReferenceManyLines: FC<{ children?: any, tableProps?: any, datagrid
           <MoneyField source="amount" />
           <MoneyField source="balance" />
           {children}
-          <TimeAgoField label="Created" source="createdAt" />
+          <CoreTimeAgoField label="Created" source="createdAt" />
         </Datagrid>
       </List>
     </ReferenceManyField>
