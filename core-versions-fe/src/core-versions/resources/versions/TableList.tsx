@@ -19,7 +19,7 @@ import {
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { CoreBase } from 'core-base-fe'
 
-const CoreDateComponent = CoreBase.CoreDateComponent
+const CoreDateField = CoreBase.CoreDateField
 
 const ActionsField = (props: any) => {
   return (
@@ -80,7 +80,7 @@ export const VersionsTable = () => {
         <WrapperField label="Changes">
           <ChangesTable />
         </WrapperField>
-        <CoreDateComponent source="timestamp" showTime="true" />
+        <CoreDateField source="timestamp" showTime="true" />
       </Datagrid>
     </List>
   )
