@@ -15,6 +15,8 @@ import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Typography, Avatar, Box } from '@mui/material'
 import { Comments } from '.'
 import { CommentCreateProps } from './Create'
+import { CoreBase } from '../../../../../core-base-fe/src/core-base'
+const CoreDateField = CoreBase.CoreDateField
 
 const AuthorField = () => {
   return (
@@ -27,7 +29,7 @@ const AuthorField = () => {
           <PolymorphicReferenceField source="author" />
         </Typography>
         <Typography>
-          <DateField source="created_at" />
+          <CoreDateField source='created_at' showTime={false} />
         </Typography>
       </Box>
     </Box>

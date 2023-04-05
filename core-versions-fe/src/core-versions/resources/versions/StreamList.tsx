@@ -15,6 +15,9 @@ import {
   TimelineSeparator,
 } from '@mui/lab'
 
+import { CoreBase } from '../../../../../core-base-fe/src/core-base' // TODO make core-base-fe a proper peer dep
+const CoreDateField = CoreBase.CoreDateField
+
 export const VersionTimelineItem = ({ target }) => {
 
   const record = useRecordContext();
@@ -30,7 +33,7 @@ export const VersionTimelineItem = ({ target }) => {
           variant="body2"
           color="text.secondary"
         >
-          {record && record.timestamp}
+          <CoreDateField source="timestamp" showTime={true} />
         </TimelineOppositeContent>
 
       <TimelineSeparator>

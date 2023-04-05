@@ -19,6 +19,8 @@ import {
   FilterForm,
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+import { CoreBase } from '../../../../../core-base-fe/src/core-base'
+const CoreDateField = CoreBase.CoreDateField
 
 const ActionsField = (props: any) => {
   return (
@@ -44,7 +46,7 @@ export const CommentsTable: React.FC<{ tableProps?: any }> = ({ tableProps }) =>
         <PolymorphicReferenceField source="author" />
         <PolymorphicReferenceField source="resource" />
         <TextField source="body" label="Comment" sortable={false} />
-        <DateField source="created_at" label="Date" />
+        <CoreDateField source="created_at" showTime={false} label="Date" />
         <ActionsField source="actions" />
       </Datagrid>
     </List>
