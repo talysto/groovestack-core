@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: que_validate_tags(jsonb); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -740,6 +747,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230206231054'),
 ('20230209165828'),
 ('20230209171357'),
-('20230328235332');
+('20230328235332'),
+('20230403212443');
 
 
