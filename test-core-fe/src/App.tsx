@@ -119,7 +119,9 @@ function AdminApp() {
         name="Comment"
         icon={Comments.Icon}
         list={
-          <Comments.List tableProps={{ filters: commentFilters }} >
+          <Comments.List
+            {/* tableProps={{ filters: versionFilters }} */}
+          >
           </Comments.List>
         }
         edit={Comments.Edit}
@@ -146,7 +148,9 @@ function AdminApp() {
         name="Version"
         icon={Versions.Icon}
         list={
-          <Versions.List tableProps={{ filters: versionFilters }} >
+          <Versions.List 
+          // tableProps={{ filters: versionFilters }} >
+          >
           </Versions.List>
         }
         show={Versions.Show}

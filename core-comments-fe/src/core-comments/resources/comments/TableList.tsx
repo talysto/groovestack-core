@@ -36,11 +36,13 @@ const commentFilters = [
   <PolymorphicReferenceInput source="resource" />,
 ]
 
-export const CommentsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => {
+export const CommentsTable: React.FC<{ tableProps?: any }> = ({ tableProps }) => {
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      filters={tableProps.filters ? tableProps.filters : commentFilters}
+      filters={typeof tableProps !== 'undefined' ?
+        ("filters" in tableProps ? tableProps.filters : commentFilters)
+        : commentFilters}
     >
       <Datagrid rowClick="edit">
         <PolymorphicReferenceField source="author" />

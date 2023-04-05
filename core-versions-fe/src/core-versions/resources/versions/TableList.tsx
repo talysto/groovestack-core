@@ -68,8 +68,9 @@ export const VersionsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => 
   return (
     <List
       sort={{ field: 'created_at', order: 'DESC' }}
-      filters={tableProps.filters ? tableProps.filters : versionFilters}
-    >
+      filters={typeof tableProps !== 'undefined' ?
+        ("filters" in tableProps ? tableProps.filters : versionFilters)
+        : versionFilters}    >
       <Datagrid rowClick="show">
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
