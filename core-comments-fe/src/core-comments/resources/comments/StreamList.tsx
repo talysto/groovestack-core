@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
   Datagrid,
   DeleteWithConfirmButton,
   ReferenceManyField,
   TextField,
+  TextInput,
   WrapperField,
-  useRecordContext
+  useUpdate,
+  Edit,
+  Toolbar,
+  useEditController,
+  useRedirect,
+  SaveButton,
+  useRecordContext,
+  SimpleForm
 } from 'react-admin'
 
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
@@ -21,10 +29,7 @@ const AuthorField = () => {
   return (
     <Box sx={{ 
       display: 'flex', 
-      alignItems: 'center', 
-      "&:hover .showDelete": {
-        display: 'block'
-      }
+      alignItems: 'center'
     }}>
       <Box>
         <Avatar />
@@ -37,11 +42,6 @@ const AuthorField = () => {
           <CoreDateField source='created_at' showTime={false} />
         </Typography>
       </Box>
-      <Box className={'showDelete'} sx={{
-        display: 'none'
-      }}>
-        <DeleteWithConfirmButton label="" sx={{ paddingLeft: '14px', marginRight: '15px' }} />
-      </Box>
     </Box>
   )
 }
@@ -52,6 +52,57 @@ type CommentStreamProps = {
 
 export const CommentStream = ({ createProps }: CommentStreamProps) => {
   const record = useRecordContext()
+  const [toggleEditView, setToggleEditView] = useState<any>(null)
+
+  const toggleEdit = (id: any, resource: any, record: any) => {
+    setToggleEditView(id)
+    
+    return false
+  }
+
+  const UpdateCommentToolbar = () => {
+    const redirect = useRedirect()
+  
+    return (
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+      <SaveButton
+        type="button"
+        label="Update"
+        mutationOptions={{
+          onSuccess: () => {
+            console.log('updated record successfully!')
+            setToggleEditView(null)
+            redirect(false)
+          },
+        }}
+      />
+      <DeleteWithConfirmButton label="" sx={{ paddingLeft: '14px' }} />
+    </Toolbar>
+    );
+  };
+
+  const EditCommentForm = () => {
+    const record = useRecordContext()
+  
+    if (record.id === toggleEditView) {
+      return (
+        <Edit redirect={false} id={record.id}>
+          <SimpleForm toolbar={<UpdateCommentToolbar />}>
+            <AuthorField />
+            <TextInput source="body" multiline sx={{ width: 350 }}/>
+          </SimpleForm>
+        </Edit>
+      )
+    }
+    return (
+      <WrapperField>
+        <AuthorField />
+        <Typography>
+          <TextField source="body" />
+        </Typography>
+      </WrapperField>
+    )
+  }
 
   return (
     <>
@@ -63,19 +114,12 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
         record={record}
         sort={{ field: 'created_at', order: 'DESC' }}
       >
-        <Datagrid rowClick={'edit'} bulkActionButtons={false} sx={{
+        <Datagrid rowClick={toggleEdit} bulkActionButtons={false} sx={{
           '& .RaDatagrid-rowCell': {
-              padding: 0,
-              paddingBottom: '5px',
-              paddingTop: '5px'
+              padding: '5px'
           },
         }}>
-          <WrapperField>
-            <AuthorField />
-            <Typography>
-              <TextField source="body" />
-            </Typography>
-          </WrapperField>
+          <EditCommentForm />
         </Datagrid>
       </ReferenceManyField>
     </>

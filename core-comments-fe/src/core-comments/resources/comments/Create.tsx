@@ -44,7 +44,7 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
     const refresh = useRefresh()
 
     return (
-      <Toolbar>
+      <Toolbar sx={{ justifyContent: 'flex-end', background: 'transparent', padding: 0 }}>
         <SaveButton
           type="button"
           label="Comment"
