@@ -18,11 +18,10 @@ import {
 import { CoreBase } from '../../../../../core-base-fe/src/core-base' // TODO make core-base-fe a proper peer dep
 const CoreDateField = CoreBase.CoreDateField
 
-export const VersionTimelineItem = ({ target }) => {
+export const VersionTimelineItem = () => {
 
   const record = useRecordContext();
-  // console.log("record ", record)
-  // console.log(target)
+
   if (!record) return null;
   return (
 
@@ -43,13 +42,9 @@ export const VersionTimelineItem = ({ target }) => {
       </TimelineSeparator>
 
       <TimelineContent sx={{ py: '12px', px: 2 }}>
-        {target == 'item_id' &&
-          <>
-            <PolymorphicReferenceField source="item" />
+        <PolymorphicReferenceField source="actor" />
             {' '}
             changed
-          </>
-        }
         <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 250, width: 250 }}>
           <Typography variant="body2" color="textSecondary">
             <table>
@@ -80,17 +75,18 @@ export const VersionTimelineItem = ({ target }) => {
   )
 }
 
-export const VersionStream = ({ target }) => {
+export const VersionStream = () => {
   const record = useRecordContext()
   return (
     <>
       <ReferenceManyField
         reference="Version"
-        target={target}
+        target="resource_id"
         record={record}
+        sort={{ field: 'created_at', order: 'DESC' }}
       >
         <SingleFieldList sx={{ display: 'inline-block' }} linkType={false}>
-          <VersionTimelineItem target={target} />
+          <VersionTimelineItem />
         </SingleFieldList>
       </ReferenceManyField>
     </>

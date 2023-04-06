@@ -16,8 +16,8 @@ export async function mockComments({count = 15}): Promise<Comment[]> {
       // standard attributes
       id: faker.datatype.uuid(),
       body: faker.lorem.paragraph(),
-      created_at: faker.date.past().toDateString(),
-      updated_at: faker.date.past().toDateString(),
+      created_at: faker.date.past().toLocaleString(),
+      updated_at: faker.date.past().toLocaleString(),
     }))
   } catch (e) {
     console.error(e)

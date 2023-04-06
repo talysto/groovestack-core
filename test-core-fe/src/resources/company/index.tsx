@@ -47,7 +47,7 @@ export const CompanyAside = () => {
       <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
         <Typography variant="h6">Versions</Typography>
         <SimpleShowLayout>
-          <Versions.Stream target="resource_id"/>
+          <Versions.Stream />
         </SimpleShowLayout>
       </Paper>
     </>
