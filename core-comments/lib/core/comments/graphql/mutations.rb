@@ -15,7 +15,9 @@ module Core
             type ::Core::Comments::GraphQL::Types::Comment
 
             def resolve(**attrs)
-              attrs[:author] = context[:current_user]
+              attrs[:author_id] = context[:current_user].id
+              attrs[:author_type] = 'User' # TODO make author_type dynamic
+
               ::Core::Comments::Comment.create!(attrs)
             end
           end
