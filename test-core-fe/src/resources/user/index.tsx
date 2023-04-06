@@ -54,15 +54,14 @@ export const UserAside = () => {
       <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
         <Typography variant="h6">Comments</Typography>
         <Comments.Stream createProps={{ authorResolver: () => (faker.helpers.arrayElement(users)), defaultValues: mockCommentDefaults }} />
-        <Typography variant="h6">Transactions</Typography>
+        <Typography variant="h6" sx={{ pt: 5 }}>Transactions</Typography>
         <Lines.ReferenceManyLines tableProps={{ filters: lineFilters }} />
-        <Typography variant="h6">Versions</Typography>
+        <Typography variant="h6" sx={{ pt: 5 }}>Versions</Typography>
         <SimpleShowLayout>
           <Versions.Stream target="actor_id" />
         </SimpleShowLayout>
       </Paper>
     </>
-
   )
 }
 
