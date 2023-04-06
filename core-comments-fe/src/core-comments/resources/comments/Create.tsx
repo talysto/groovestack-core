@@ -23,15 +23,14 @@ type Author = {
 export type CommentCreateProps = {
   authorResolver: () => Author;
   defaultValues?: () => Comment;
+  recordProp?: any;
 }
 
-export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreateProps) => {
-  const record = useRecordContext()
+export const CommentCreate = ({ authorResolver, defaultValues, recordProp }: CommentCreateProps) => {
+  const record = useRecordContext(recordProp)
   const author = authorResolver()
 
   if (!record) return null
-
-  console.log(record)
 
   function defaults() {
     return Object.assign({
@@ -40,13 +39,13 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
     }, (defaultValues ? defaultValues() : {}))
   }
 
-  const PostCreateToolbar = () => {
+  const CommentCreateToolbar = () => {
     const notify = useNotify()
     const formContext = useFormContext()
     const refresh = useRefresh()
 
     return (
-      <Toolbar sx={{ justifyContent: 'flex-end', background: 'transparent', padding: 0 }}>
+      <Toolbar sx={{ justifyContent: 'flex-end', background: 'transparent', p: 0, m: 0 }}>
         <SaveButton
           type="button"
           label="Comment"
@@ -71,7 +70,7 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
         '& .RaCreate-main': { mt: 0 },
       }}
     >
-      <SimpleForm toolbar={<PostCreateToolbar />} defaultValues={defaults()} sx={{ p: 0, pt: 2 }}  >
+      <SimpleForm toolbar={<CommentCreateToolbar />} defaultValues={defaults()} sx={{ p: 0, pt: 2 }}  >
         <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
           <Box>
             <Avatar />
