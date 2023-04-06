@@ -104,7 +104,7 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
 
   return (
     <>
-      <Comments.Create {...createProps} recordProp={record} />
+      <Comments.Create {...createProps} />
 
       <ReferenceManyField
         reference="Comment"

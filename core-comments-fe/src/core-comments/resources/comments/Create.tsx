@@ -23,14 +23,15 @@ type Author = {
 export type CommentCreateProps = {
   authorResolver: () => Author;
   defaultValues?: () => Comment;
-  recordProp?: any;
 }
 
-export const CommentCreate = ({ authorResolver, defaultValues, recordProp }: CommentCreateProps) => {
-  const record = recordProp
+export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreateProps) => {
+  const record = useRecordContext()
   const author = authorResolver()
 
   if (!record) return null
+
+  console.log(record)
 
   function defaults() {
     return Object.assign({
