@@ -29,6 +29,8 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
   const record = useRecordContext()
   const author = authorResolver()
 
+  if (!record) return null
+
   function defaults() {
     return Object.assign({
       resource_type: record.type,

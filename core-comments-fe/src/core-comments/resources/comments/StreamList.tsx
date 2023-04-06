@@ -46,24 +46,22 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
     <>
       <Comments.Create {...createProps} />
 
-      <ReferenceManyField
+      {/* <ReferenceManyField
         reference="Comment"
         target="resource_id"
         record={record}
         sort={{ field: 'created_at', order: 'DESC' }}
       >
         <Datagrid bulkActionButtons={false}>
-          {/* toISOString() */}
           <WrapperField sx={{p:"0!important"}}>
             <AuthorField />
             <Typography >
               <TextField source="body" />
             </Typography>
           </WrapperField>
-          {/* <TextField source="created_at" /> */}
           <DeleteWithConfirmButton label="" />
         </Datagrid>
-      </ReferenceManyField>
+      </ReferenceManyField> */}
     </>
   )
 }
