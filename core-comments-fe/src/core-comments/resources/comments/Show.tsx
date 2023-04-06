@@ -22,8 +22,9 @@ export const CommentShow: React.FC<CommentsShowProps> = ({
   const renderLayout = () => (
     <SimpleShowLayout>
       <TextField source="id" />
+      <PolymorphicReferenceField source="author" />
       <PolymorphicReferenceField source="resource" />
-      <TextField source="body" />
+      <TextField source="body" multiline sx={{ width: 350 }} />
     </SimpleShowLayout>
   )
 
