@@ -81,7 +81,7 @@ export const VersionStream = () => {
     <>
       <ReferenceManyField
         reference="Version"
-        target="resource_id"
+        target="item_id"
         record={record}
         sort={{ field: 'created_at', order: 'DESC' }}
       >
