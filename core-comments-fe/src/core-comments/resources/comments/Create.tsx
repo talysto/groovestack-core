@@ -31,6 +31,8 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
 
   if (!record) return null
 
+  console.log(record)
+
   function defaults() {
     return Object.assign({
       resource_type: record.type,
