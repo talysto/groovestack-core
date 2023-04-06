@@ -46,7 +46,7 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
     <>
       <Comments.Create {...createProps} />
 
-      {/* <ReferenceManyField
+      <ReferenceManyField
         reference="Comment"
         target="resource_id"
         record={record}
@@ -61,7 +61,7 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
           </WrapperField>
           <DeleteWithConfirmButton label="" />
         </Datagrid>
-      </ReferenceManyField> */}
+      </ReferenceManyField>
     </>
   )
 }
