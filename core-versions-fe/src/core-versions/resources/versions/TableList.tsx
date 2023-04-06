@@ -70,7 +70,7 @@ export const VersionsTable: React.FC<{ tableProps?: any}> = ({ tableProps }) => 
         <WrapperField label="Changes">
           <ChangesTable />
         </WrapperField>
-        <CoreDateField source="timestamp" showTime={true} />
+        <CoreDateField source="timestamp" showTime={false} />
       </Datagrid>
     </List>
   )
