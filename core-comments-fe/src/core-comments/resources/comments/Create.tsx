@@ -70,7 +70,7 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
       }}
     >
       <SimpleForm toolbar={<PostCreateToolbar />} defaultValues={defaults()} sx={{ p: 0, pt: 2 }}  >
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
           <Box>
             <Avatar />
           </Box>

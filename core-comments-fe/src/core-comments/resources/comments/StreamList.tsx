@@ -2,12 +2,11 @@ import React from 'react'
 
 import {
   Datagrid,
-  DateField,
   DeleteWithConfirmButton,
   ReferenceManyField,
   TextField,
   WrapperField,
-  useRecordContext,
+  useRecordContext
 } from 'react-admin'
 
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
@@ -15,6 +14,7 @@ import { Typography, Avatar, Box } from '@mui/material'
 import { Comments } from '.'
 import { CommentCreateProps } from './Create'
 import { CoreBase } from '../../../../../core-base-fe/src/core-base'
+
 const CoreDateField = CoreBase.CoreDateField
 
 const AuthorField = () => {
@@ -52,7 +52,7 @@ type CommentStreamProps = {
 
 export const CommentStream = ({ createProps }: CommentStreamProps) => {
   const record = useRecordContext()
-  
+
   return (
     <>
       <Comments.Create {...createProps} />
@@ -63,7 +63,7 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
         record={record}
         sort={{ field: 'created_at', order: 'DESC' }}
       >
-        <Datagrid bulkActionButtons={false} sx={{
+        <Datagrid rowClick={'edit'} bulkActionButtons={false} sx={{
           '& .RaDatagrid-rowCell': {
               padding: 0,
               paddingBottom: '5px',
