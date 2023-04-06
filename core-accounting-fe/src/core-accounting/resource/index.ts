@@ -1,4 +1,4 @@
-import {ReferenceManyLines} from './ReferenceManyLines'
+import { ReferenceManyLines } from './ReferenceManyLines'
 import { LineShow } from './show'
 import { Table } from "./table"
 import HistoryIcon from '@mui/icons-material/History'
