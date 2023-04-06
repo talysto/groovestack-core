@@ -7,10 +7,8 @@ import {
   TextField,
   TextInput,
   WrapperField,
-  useUpdate,
   Edit,
   Toolbar,
-  useEditController,
   useRedirect,
   SaveButton,
   useRecordContext,
@@ -52,6 +50,7 @@ type CommentStreamProps = {
 
 export const CommentStream = ({ createProps }: CommentStreamProps) => {
   const record = useRecordContext()
+
   const [toggleEditView, setToggleEditView] = useState<any>(null)
 
   const toggleEdit = (id: any, resource: any, record: any) => {
@@ -70,7 +69,6 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
         label="Update"
         mutationOptions={{
           onSuccess: () => {
-            console.log('updated record successfully!')
             setToggleEditView(null)
             redirect(false)
           },
