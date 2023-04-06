@@ -34,13 +34,13 @@ export const CompanyAside = () => {
     <>
       <Paper sx={{ minWidth: 300, maxWidth: 500, p: 2, ml: 2 }}>
         <Typography variant="h6">Details</Typography>
-        <SimpleShowLayout {...inlineLayout}>
+        <SimpleShowLayout {...inlineLayout} sx={{ padding: 0, marginBottom: 5 }}>
           <TextField source="id" />
           <DateField source="created_at" />
           <DateField source="updated_at" />
         </SimpleShowLayout>
         <Typography variant="h6">Comments</Typography>
-        <SimpleShowLayout>
+        <SimpleShowLayout sx={{ padding: 0 }}>
           <Comments.Stream createProps={{authorResolver: () => (faker.helpers.arrayElement(users))}} />
         </SimpleShowLayout>
       </Paper>

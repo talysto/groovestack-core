@@ -27,12 +27,12 @@ export const VersionTimelineItem = () => {
 
     <TimelineItem>
         <TimelineOppositeContent 
-          sx={{ m: 'auto 0', padding: 'none', margin: 'none' }}
+          sx={{ m: 'auto 0', padding: 'none', margin: 'auto' }}
           align="right"
           variant="body2"
           color="text.secondary"
         >
-          <CoreDateField source="timestamp" showTime={true} />
+          <CoreDateField source="timestamp" showTime={false} />
         </TimelineOppositeContent>
 
       <TimelineSeparator>
@@ -41,7 +41,7 @@ export const VersionTimelineItem = () => {
         <TimelineConnector />
       </TimelineSeparator>
 
-      <TimelineContent sx={{ py: '12px', px: 2 }}>
+      <TimelineContent sx={{ py: '12px', px: 2, verticalAlign: 'top' }}>
         <PolymorphicReferenceField source="actor" />
             {' '}
             changed
@@ -51,8 +51,8 @@ export const VersionTimelineItem = () => {
               <tbody>
                 {record && record.changes && record.changes.map((change: any) => {
                   return (
-                    <tr key={change[0]}>
-                      <td style={{ textTransform: 'uppercase', fontSize: '80%' }}>{change[0]}</td>
+                    <tr key={change[0]} style={{ verticalAlign: 'baseline' }}>
+                      <td style={{ textTransform: 'uppercase', fontSize: '80%', paddingRight: 15 }}>{change[0]}</td>
                       <td>
                         {change[0].includes('password') || change[0].includes('token') || change[0].includes('id')  ? '***' : change[1][1]} 
                         <br />

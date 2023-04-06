@@ -19,7 +19,13 @@ const CoreDateField = CoreBase.CoreDateField
 
 const AuthorField = () => {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      "&:hover .showDelete": {
+        display: 'block'
+      }
+    }}>
       <Box>
         <Avatar />
       </Box>
@@ -30,6 +36,11 @@ const AuthorField = () => {
         <Typography>
           <CoreDateField source='created_at' showTime={false} />
         </Typography>
+      </Box>
+      <Box className={'showDelete'} sx={{
+        display: 'none'
+      }}>
+        <DeleteWithConfirmButton label="" sx={{ paddingLeft: '14px', marginRight: '15px' }} />
       </Box>
     </Box>
   )
@@ -52,14 +63,19 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
         record={record}
         sort={{ field: 'created_at', order: 'DESC' }}
       >
-        <Datagrid bulkActionButtons={false}>
-          <WrapperField sx={{p:"0!important"}}>
+        <Datagrid bulkActionButtons={false} sx={{
+          '& .RaDatagrid-rowCell': {
+              padding: 0,
+              paddingBottom: '5px',
+              paddingTop: '5px'
+          },
+        }}>
+          <WrapperField>
             <AuthorField />
-            <Typography >
+            <Typography>
               <TextField source="body" />
             </Typography>
           </WrapperField>
-          <DeleteWithConfirmButton label="" />
         </Datagrid>
       </ReferenceManyField>
     </>

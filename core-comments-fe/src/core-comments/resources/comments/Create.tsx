@@ -39,17 +39,15 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
   }
 
   const PostCreateToolbar = () => {
-    const notify = useNotify();
-    const formContext = useFormContext();
-    // console.log("formContext = ", formContext)
-    const refresh = useRefresh();
+    const notify = useNotify()
+    const formContext = useFormContext()
+    const refresh = useRefresh()
+
     return (
-      <Toolbar sx={{p: "0!important"}}>
+      <Toolbar>
         <SaveButton
-        sx={{p: 1}}
           type="button"
           label="Comment"
-          variant="text"
           mutationOptions={{
             onSuccess: () => {
               refresh();
