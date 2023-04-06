@@ -27,7 +27,7 @@ export type CommentCreateProps = {
 }
 
 export const CommentCreate = ({ authorResolver, defaultValues, recordProp }: CommentCreateProps) => {
-  const record = useRecordContext(recordProp)
+  const record = recordProp
   const author = authorResolver()
 
   if (!record) return null
