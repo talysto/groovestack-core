@@ -80,18 +80,18 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
   };
 
   const EditCommentForm = () => {
-    const record = useRecordContext()
+    // const record = useRecordContext()
   
-    if (record.id === toggleEditView) {
-      return (
-        <Edit redirect={false} id={record.id}>
-          <SimpleForm toolbar={<UpdateCommentToolbar />}>
-            <AuthorField />
-            <TextInput source="body" multiline sx={{ width: 350 }}/>
-          </SimpleForm>
-        </Edit>
-      )
-    }
+    // if (record.id === toggleEditView) {
+    //   return (
+    //     <Edit redirect={false} id={record.id}>
+    //       <SimpleForm toolbar={<UpdateCommentToolbar />}>
+    //         <AuthorField />
+    //         <TextInput source="body" multiline sx={{ width: 350 }}/>
+    //       </SimpleForm>
+    //     </Edit>
+    //   )
+    // }
     return (
       <WrapperField>
         <AuthorField />
