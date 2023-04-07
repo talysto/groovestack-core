@@ -75,8 +75,6 @@ export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: numbe
   )
 }
 
-
-
 export const VersionStream = ({changesDisplayed = 3}: {changesDisplayed?: number} ) => {
   const record = useRecordContext()
   return (

@@ -134,7 +134,10 @@ function AdminApp() {
       <Resource
         name="Version"
         icon={Versions.Icon}
-        list={<Versions.List tableProps={{ filters: versionFilters }} />}
+        list={<Versions.List
+          tableProps={{filters: versionFilters }}
+          // changesDisplayed={2}
+        />}
         show={Versions.Show}
       />
 
