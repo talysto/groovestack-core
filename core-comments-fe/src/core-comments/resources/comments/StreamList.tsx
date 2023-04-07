@@ -84,8 +84,8 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
   
     if (record.id === toggleEditView) {
       return (
-        <Edit redirect={false} id={record.id}>
-          <SimpleForm toolbar={<UpdateCommentToolbar />}>
+        <Edit resource="Comment" redirect={false} id={record.id}>
+          <SimpleForm record={record} toolbar={<UpdateCommentToolbar />}>
             <AuthorField />
             <TextInput source="body" multiline sx={{ width: 350 }}/>
           </SimpleForm>
