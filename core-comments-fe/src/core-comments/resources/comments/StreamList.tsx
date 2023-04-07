@@ -74,7 +74,7 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
           },
         }}
       />
-      <DeleteWithConfirmButton label="" sx={{ paddingLeft: '14px' }} />
+      <DeleteWithConfirmButton redirect={false} label="" sx={{ paddingLeft: '14px' }} />
     </Toolbar>
     );
   };
