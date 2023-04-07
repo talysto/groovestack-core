@@ -27,17 +27,17 @@ export const VersionTimelineItem = () => {
 
     <TimelineItem>
         <TimelineOppositeContent 
-          sx={{ m: 'auto 0', padding: 'none', margin: 'auto' }}
+          sx={{ m: 0, mt: '10px' }}
           align="right"
           variant="body2"
           color="text.secondary"
         >
-          <CoreDateField source="timestamp" showTime={false} />
+          <CoreDateField source="timestamp" showTime={false} className={{}} />
         </TimelineOppositeContent>
 
-      <TimelineSeparator>
-        <TimelineConnector />
+      <TimelineSeparator sx={{mt:1}}>
         <TimelineDot />
+        <TimelineConnector />
         <TimelineConnector />
       </TimelineSeparator>
 
