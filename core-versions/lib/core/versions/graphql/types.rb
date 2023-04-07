@@ -36,11 +36,11 @@ module Core
               if ::Core::Versions::Version::MASKED_ATTRIBUTE_STRINGS.any? { |string| attribute.include?(string) }
                 changes.push([attribute, ['*****', '*****']])
               else
-                changes.push([attribute, [object.changeset[attribute][0], object.changeset[attribute][1]]])
+                changes.push([attribute, [values[0], values[1]]])
               end
             end
 
-            return changes
+            changes
           end
 
           def actor_id
