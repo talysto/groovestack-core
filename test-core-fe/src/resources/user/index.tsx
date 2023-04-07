@@ -57,9 +57,9 @@ export const UserAside = () => {
         <Typography variant="h6" sx={{ pt: 5 }}>Transactions</Typography>
         <Lines.ReferenceManyLines tableProps={{ filters: lineFilters }} />
         <Typography variant="h6" sx={{ pt: 5 }}>Versions</Typography>
-        <SimpleShowLayout>
-          <Versions.Stream />
-        </SimpleShowLayout>
+        
+          <Versions.Stream /> {/* changesDisplayed={2}/> */}
+        
       </Paper>
     </>
   )

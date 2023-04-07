@@ -18,7 +18,7 @@ import {
 import { CoreBase } from '../../../../../core-base-fe/src/core-base' // TODO make core-base-fe a proper peer dep
 const CoreDateField = CoreBase.CoreDateField
 
-export const VersionTimelineItem = () => {
+export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: number}) => {
 
   const record = useRecordContext();
 
@@ -27,12 +27,12 @@ export const VersionTimelineItem = () => {
 
     <TimelineItem>
         <TimelineOppositeContent 
-          sx={{ m: 0, mt: '10px' }}
+          sx={{ m: 0, mt: '10px', pl: 0  }}
           align="right"
           variant="body2"
           color="text.secondary"
         >
-          <CoreDateField source="timestamp" showTime={false} className={{}} />
+          <CoreDateField source="timestamp" showTime={false} />
         </TimelineOppositeContent>
 
       <TimelineSeparator sx={{mt:1}}>
@@ -45,15 +45,15 @@ export const VersionTimelineItem = () => {
         <PolymorphicReferenceField source="actor" />
             {' '}
             changed
-        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 250, width: 250 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 450, width: 450 }}>
           <Typography variant="body2" color="textSecondary">
             <table>
               <tbody>
-                {record && record.changes && record.changes.map((change: any) => {
+                {record && record.changes && record.changes.filter((item, idx) => idx < changesDisplayed).map((change: any) => {
                   return (
                     <tr key={change[0]} style={{ verticalAlign: 'baseline' }}>
                       <td style={{ textTransform: 'uppercase', fontSize: '80%', paddingRight: 15 }}>{change[0]}</td>
-                      <td>
+                       <td> {/*  style={{inlineSize: '500px', overflowWrap: 'anywhere'}} */}
                         {change[0].includes('password') || change[0].includes('token') || change[0].includes('id')  ? '***' : change[1][1]} 
                         <br />
                         (
@@ -75,7 +75,9 @@ export const VersionTimelineItem = () => {
   )
 }
 
-export const VersionStream = () => {
+
+
+export const VersionStream = ({changesDisplayed = 3}: {changesDisplayed?: number} ) => {
   const record = useRecordContext()
   return (
     <>
@@ -85,8 +87,8 @@ export const VersionStream = () => {
         record={record}
         sort={{ field: 'created_at', order: 'DESC' }}
       >
-        <SingleFieldList sx={{ display: 'inline-block' }} linkType={false}>
-          <VersionTimelineItem />
+        <SingleFieldList sx={{ display: 'inline-block', p:0 }} linkType={false}>
+          <VersionTimelineItem changesDisplayed={changesDisplayed} />
         </SingleFieldList>
       </ReferenceManyField>
     </>
