@@ -16,7 +16,7 @@ module Core
 
             def resolve(**attrs)
               attrs[:author_id] = context[:current_user].id
-              attrs[:author_type] = context[:current_user].type
+              attrs[:author_type] = 'User' # TODO make author_type dynamic
 
               ::Core::Comments::Comment.create!(attrs)
             end
