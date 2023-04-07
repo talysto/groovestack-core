@@ -152,6 +152,39 @@ end
 />
 ```
 
+== SETUP for Core-Versions
+* add the core gems to your Gemfile
+```
+git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
+  gem 'core-base'
+  gem 'core-versions'
+end
+```
+* run `bundle`
+* run `rails db:migrate`
+* include `include Core::Versions::GraphQL::Queries` in `Types::Query`. ex:
+```
+class Types::Query < GraphQL::Schema::Object
+  include Core::Versions::GraphQL::Queries
+end
+```
+* add `before_action :set_core_versions_actor` to your `ApplicationController` or other wanted controllers
+* add `has_core_versions` to any wanted models (this supports options passed in for what to monitor the same as [PaperTrail](https://github.com/paper-trail-gem/paper_trail#2c-choosing-attributes-to-monitor))
+
+== SETUP for Core-Versions-FE
+* add core-versions-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-versions-fe?main`
+* ensure peer dependencies are installed
+* add Versions RA Resource
+```
+<Resource
+  key="admin-versions-resource"
+  name="Version"
+  options={[{ label: 'Versions', menu: 'admin' }]}
+  list={<CoreVersions.Versions.List />}
+  show={<CoreVersions.Versions.Show />}
+/>
+```
+
 == SAMPLES
 
 * core-rails6-sample-app - created with `rails _6.1.6_ new core-rails6-sample-app -d=postgresql -J --skip-turbolinks`
