@@ -169,7 +169,7 @@ class Types::Query < GraphQL::Schema::Object
 end
 ```
 * add `before_action :set_core_versions_actor` to your `ApplicationController` or other wanted controllers
-* add `has_core_versions` to any wanted models (this supports options passed in for what to monitor the same as [PaperTrail](https://github.com/paper-trail-gem/paper_trail#2c-choosing-attributes-to-monitor))
+* add `has_core_versions` to any wanted models (this supports options passed in for what to monitor the same as https://github.com/paper-trail-gem/paper_trail#2c-choosing-attributes-to-monitor[PaperTrail])
 
 == SETUP for Core-Versions-FE
 * add core-versions-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-versions-fe?main`
