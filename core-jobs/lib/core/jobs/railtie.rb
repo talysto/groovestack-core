@@ -62,8 +62,8 @@ if defined?(Rails)
                           raise Core::Jobs::WrongSchemaFormat
                         end
                       end,
-                message: 'Error: Must change your schema format to :sql. In application.rb,'\
-                         ' add \'config.active_record.schema_format = :sql\''
+                message: 'Error: Must change your schema format to :sql. In application.rb, ' \
+                         'add \'config.active_record.schema_format = :sql\''
               },
               {
                 eval: proc { Que::ActiveRecord::Model.count },
@@ -75,7 +75,7 @@ if defined?(Rails)
                           raise Core::Jobs::WrongActiveJobQueueAdapter
                         end
                       end,
-                message: 'Error: Must change your active job queue adapter to :que. '\
+                message: 'Error: Must change your active job queue adapter to :que. ' \
                          'In application.rb, add \'config.active_job.queue_adapter = :que\''
               }
             ]
