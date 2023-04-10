@@ -2,7 +2,7 @@
 
 module Core
   module Jobs
-    class Locker < ApplicationRecord
+    class Locker < ActiveRecord::Base
       self.table_name = 'que_lockers'
     end
   end

@@ -24,7 +24,7 @@ DoubleEntry.configure do |config|
 end
 
 module DoubleEntry
-  class Line < ApplicationRecord
+  class Line < ActiveRecord::Base
     scope :credits, -> { where('amount > 0') }
     scope :debits, -> { where('amount < 0') }
   end

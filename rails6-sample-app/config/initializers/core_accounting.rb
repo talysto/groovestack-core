@@ -81,7 +81,7 @@ end
 # )
 
 module DoubleEntry
-  class Line < ApplicationRecord
+  class Line < ActiveRecord::Base
     jsonb_accessor :metadata,
                    key1: [:string, { array: true, default: [] }],
                    key2: :string
