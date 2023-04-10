@@ -18,13 +18,13 @@ gem 'rails', '~> 6.1.6' # Bundle edge Rails instead: gem 'rails', github: 'rails
 gem 'rack-cors' # enable CORS request for specific APIs
 
 # rubocop:disable Bundler/OrderedGems
-# git 'https://github.com/moonlight-labs/core.git', branch: 'sprint/core-1.0' do # TODO: update branch name to main
-#   gem 'core-base' # must be first gem
-#   gem 'core-accounting'
-#   gem 'core-comments'
-#   gem 'core-jobs'
-#   gem 'core-versions'
-# end
+git 'https://github.com/moonlight-labs/core.git', branch: 'sprint/core-1.0' do # TODO: update branch name to main
+  gem 'core-base' # must be first gem
+  gem 'core-accounting'
+  gem 'core-comments'
+  gem 'core-jobs'
+  gem 'core-versions'
+end
 # rubocop:enable Bundler/OrderedGems
 
 # Use SCSS for stylesheets
