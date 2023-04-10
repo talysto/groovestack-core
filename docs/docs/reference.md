@@ -15,8 +15,9 @@ import jobs from '../../core-jobs-fe/src/core-jobs/index.ts'
 export const coreModules = [jobs]
 
 export const ExportList = () => {
-  console.log(jobs)
-  return(
+console.log(jobs)
+return(
+
 <table>
 <tbody>
   { coreModules.map(mod => (
@@ -31,4 +32,3 @@ export const ExportList = () => {
 </table>
 )
 }
-

@@ -22,7 +22,7 @@ import { CoreAccounting } from 'core-accounting-fe'
 
 import { users } from '../../data/mock-data-provider'
 import { faker } from '@faker-js/faker'
-import { useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form'
 import { v4 as uuidv4 } from 'uuid'
 
 const Comments = CoreComments.Comments
@@ -47,19 +47,26 @@ export const UserAside = () => {
         { id: 'buy_aqd', name: 'Buy AQD' },
         { id: 'spend_aqd', name: 'Spend AQD' },
       ]}
-    />
-  ];
+    />,
+  ]
   return (
     <>
       <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
         <Typography variant="h6">Comments</Typography>
-        <Comments.Stream createProps={{ authorResolver: () => (faker.helpers.arrayElement(users)), defaultValues: mockCommentDefaults }} />
-        <Typography variant="h6" sx={{ pt: 5 }}>Transactions</Typography>
+        <Comments.Stream
+          createProps={{
+            authorResolver: () => faker.helpers.arrayElement(users),
+            defaultValues: mockCommentDefaults,
+          }}
+        />
+        <Typography variant="h6" sx={{ pt: 5 }}>
+          Transactions
+        </Typography>
         <Lines.ReferenceManyLines tableProps={{ filters: lineFilters }} />
-        <Typography variant="h6" sx={{ pt: 5 }}>Versions</Typography>
-        
-          <Versions.Stream /> {/* changesDisplayed={2}/> */}
-        
+        <Typography variant="h6" sx={{ pt: 5 }}>
+          Versions
+        </Typography>
+        <Versions.Stream /> {/* changesDisplayed={2}/> */}
       </Paper>
     </>
   )
@@ -75,49 +82,48 @@ export const UserList = () => (
       <DateField source="updated_at" />
     </Datagrid>
   </List>
-);
+)
 
 export const UserEdit = () => (
   <Edit aside={<UserAside />}>
-    <SimpleForm toolbar={<EditToolbar/>}>
-      <TextInput  source="name" fullWidth />
+    <SimpleForm toolbar={<EditToolbar />}>
+      <TextInput source="name" fullWidth />
     </SimpleForm>
   </Edit>
-);
+)
 
 export class User {
   static List = UserList
   static Edit = UserEdit
 }
 
-
 const EditToolbar = () => {
   // const notify = useNotify();
-  const formContext = useFormContext();
+  const formContext = useFormContext()
   // console.log("formContext EDIT = ", formContext)
   // const formState = useFormState();
   // console.log("formState = ", formState)
 
   // const refresh = useRefresh();
   return (
-      <Toolbar>
-          <SaveButton
-              type="button"
-              label="Comment"
-              variant="text"
-              mutationOptions={{
-                  onSuccess: () => {
-                      //formContext?.reset();
-                      window.scrollTo(0, 0);
-                      // notify("changes saved")
-                      // refresh();
-                      // notify('ra.notification.created', {
-                      //     type: 'info',
-                      //     messageArgs: { smart_count: 1 },
-                      // });
-                  },
-              }}
-          />
-      </Toolbar>
-  );
-};
+    <Toolbar>
+      <SaveButton
+        type="button"
+        label="Comment"
+        variant="text"
+        mutationOptions={{
+          onSuccess: () => {
+            //formContext?.reset();
+            window.scrollTo(0, 0)
+            // notify("changes saved")
+            // refresh();
+            // notify('ra.notification.created', {
+            //     type: 'info',
+            //     messageArgs: { smart_count: 1 },
+            // });
+          },
+        }}
+      />
+    </Toolbar>
+  )
+}

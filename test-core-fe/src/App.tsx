@@ -1,4 +1,13 @@
-import { Admin, AutocompleteInput, DateInput, EditGuesser, ListGuesser, ReferenceInput, Resource, SelectInput } from 'react-admin'
+import {
+  Admin,
+  AutocompleteInput,
+  DateInput,
+  EditGuesser,
+  ListGuesser,
+  ReferenceInput,
+  Resource,
+  SelectInput,
+} from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -63,7 +72,6 @@ function AdminApp() {
 
   // if (!dataProvider) return <div>Loading</div>
 
-
   const lineFilters = [
     <SelectInput
       source="account"
@@ -71,8 +79,8 @@ function AdminApp() {
         { id: 'aqd_treasury', name: 'AQD Treasury' },
         { id: 'aqd_tokens', name: 'AQD Tokens' },
       ]}
-    />
-  ];
+    />,
+  ]
 
   const versionFilters = [
     <DateInput source="created_at_lte" label="Before" />,
@@ -96,9 +104,8 @@ function AdminApp() {
       // loginPage={LoginPage}
       // theme={darkTheme}
       dashboard={HomeView}
-    // layout={CustomLayout}
+      // layout={CustomLayout}
     >
-
       <Resource
         name="jobs"
         icon={Jobs.Icon}
@@ -121,9 +128,7 @@ function AdminApp() {
         options={{ label: 'Ledger Lines', menu: 'admin' }}
         show={Lines.Show}
         list={
-          <Lines.List
-            tableProps={{ filters: lineFilters }}
-          >
+          <Lines.List tableProps={{ filters: lineFilters }}>
             {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
             <AccountScopeReferenceField source="Scope" />
             <TextField source="scope" sortable={false} /> */}
@@ -134,10 +139,12 @@ function AdminApp() {
       <Resource
         name="Version"
         icon={Versions.Icon}
-        list={<Versions.List
-          tableProps={{filters: versionFilters }}
-          // changesDisplayed={2}
-        />}
+        list={
+          <Versions.List
+            tableProps={{ filters: versionFilters }}
+            // changesDisplayed={2}
+          />
+        }
         show={Versions.Show}
       />
 

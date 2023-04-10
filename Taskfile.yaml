@@ -9,10 +9,14 @@ tasks:
 
   tidy:
     cmds:
+      - cmd: bundle exec rubocop '**/*.rb' --format worst
+        ignore_error: true
+      - cmd: bundle exec rubocop '**/*.rb' --format offenses
+        ignore_error: true
       - cmd: npx prettier -c .
         ignore_error: true
-      - cmd: bundle exec rubocop '**/*.rb'
-        ignore_error: true
+      # - cmd: bundle exec rubocop '**/*.rb'
+      #   ignore_error: true
 
   tidy-fix:
     cmds:

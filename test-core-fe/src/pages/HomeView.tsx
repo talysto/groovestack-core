@@ -69,7 +69,7 @@ export const HomeView = () => (
 
     <h3>CORE Stack</h3>
     <List dense>
-      {stack.map((layer,idx) => (
+      {stack.map((layer, idx) => (
         <ListItem key={idx}>
           {/* <ListItemIcon>
                     <FolderIcon />
