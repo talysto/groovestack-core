@@ -33,8 +33,10 @@ module Core
 
           field :body, String, null: false
 
-          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.created_at
-          field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.updated_at
+          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false,
+                                                                description: ::Core::Base::GraphQL::Documentation::Fields.created_at
+          field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false,
+                                                                description: ::Core::Base::GraphQL::Documentation::Fields.updated_at
 
           # relations
           field :author_id, ID, null: false

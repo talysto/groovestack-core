@@ -7,17 +7,17 @@ tasks:
     cmds:
       - task: versions
 
-  tidy-check:
+  tidy:
     cmds:
       - cmd: npx prettier -c .
         ignore_error: true
-      - cmd: bundle exec rubocop **/*.rb **/*.gemspec **/Gemfile
+      - cmd: bundle exec rubocop '**/*.rb'
         ignore_error: true
 
-  tidy:
+  tidy-fix:
     cmds:
       - npx prettier --loglevel warn -w .
-      - bundle exec rubocop -x -a **/*.rb **/*.gemspec **/Gemfile
+      - bundle exec rubocop -a '**/*.rb
 
   versions:
     silent: true
