@@ -30,6 +30,9 @@ Gemspec/RequireMFA: # new in 1.23
 Gemspec/DevelopmentDependencies:
   EnforcedStyle: gemspec
 
+Rails/ApplicationRecord:
+  Enabled: false
+
 Layout/LineContinuationLeadingSpace: # new in 1.31
   Enabled: true
 Layout/LineContinuationSpacing: # new in 1.31
