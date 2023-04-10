@@ -9,21 +9,21 @@ module Core
 
           description 'job filter props'
 
-          argument :ids, [ID], required: false
-          argument :q, String, required: false
-          argument :status, String, required: false
+          argument :ids, [ID], required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.ids
+          argument :q, String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.q
+          argument :status, String, required: false, description: 'current status of job'
         end
 
         class JobReportFilter < Types::BaseInputObject
           description 'job report filters'
 
-          argument :report_name, String, required: true
+          argument :report_name, String, required: true, description: 'name of the report'
         end
 
         class LockerFilter < Types::BaseInputObject
           description 'que locker filter props'
 
-          argument :ids, [ID], required: false
+          argument :ids, [ID], required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.ids
         end
       end
     end
