@@ -2,7 +2,7 @@
 
 module Core
   module Comments
-    class Comment < ApplicationRecord
+    class Comment < ActiveRecord::Base
       self.table_name = 'core_comments'
     end
   end
