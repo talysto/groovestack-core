@@ -31,7 +31,7 @@ module Queries
       users_base_scope.find(id)
     end
 
-    def users_meta(page: nil, per_page: nil, **attrs)
+    def users_meta(_page: nil, _per_page: nil, **attrs)
       { count: org_units_scope(**attrs).size }
     end
 
@@ -46,7 +46,9 @@ module Queries
       return scope if sort_field.blank?
 
       association, sort_field = sort_field.split('.') if sort_field.include?('.') # support sort by association attrs
-      # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
+      # return scope.left_joins(association.to_sym)
+      # .merge(association.camelize.constantize
+      # .order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
 
       scope.order({ sort_field.underscore => sort_order || 'desc' })
     end

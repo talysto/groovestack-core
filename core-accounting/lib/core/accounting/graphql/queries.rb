@@ -25,10 +25,6 @@ module Core
 
           return scope if sort_field.blank?
 
-          # support sort by association attrs
-          association, sort_field = sort_field.split('.') if sort_field.include?('.')
-          # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
-
           scope.order({ sort_field.underscore => sort_order || 'desc' })
         end
       end
