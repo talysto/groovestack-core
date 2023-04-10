@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Jobs
     module GraphQL
@@ -7,8 +9,8 @@ module Core
 
           description 'job filter props'
 
-          argument :q, String, required: false
           argument :ids, [ID], required: false
+          argument :q, String, required: false
           argument :status, String, required: false
         end
 

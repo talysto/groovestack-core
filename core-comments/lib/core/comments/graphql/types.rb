@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Core
   module Comments
     module GraphQL
       module Types
         module Commentable
-          # TODO potentially move this into core base and generalize
+          # TODO: potentially move this into core base and generalize
 
           extend ActiveSupport::Concern
 
@@ -35,10 +37,10 @@ module Core
           field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.updated_at
 
           # relations
-          field :resource_id, ID, null: false
-          field :resource_type, String, null: false
           field :author_id, ID, null: false
           field :author_type, String, null: false
+          field :resource_id, ID, null: false
+          field :resource_type, String, null: false
         end
 
         class CommentListMetadata < BaseObject

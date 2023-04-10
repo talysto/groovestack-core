@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Versions
     module GraphQL
@@ -15,25 +17,25 @@ module Core
 
           field :id, ID, null: false
 
-          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
           field :changes, ::GraphQL::Types::JSON, null: true
+          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
           # field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
 
           # relations
-          field :resource_id, ID, null: true
-          field :resource_type, String, null: true
-          field :actor_id, ID, null: true
+          field :actor_id, ID, null: true, hash_key: :whodunnit
           field :actor_type, String, null: true
+          field :resource_id, ID, null: true, hash_key: :item_id
+          field :resource_type, String, null: true, hash_key: :item_type
 
-          field :timestamp, String, null: false
+          field :timestamp, String, null: false, hash_key: :created_at
 
           def changes
             changes = []
             object.changeset.each do |attribute, values|
               next if attribute == 'updated_at'
-              next if ::Core::Versions::Version::NONSERIALIZED_ATTRIBUTE_STRINGS.any? { |string|
+              next if ::Core::Versions::Version::NONSERIALIZED_ATTRIBUTE_STRINGS.any? do |string|
                         attribute.include?(string)
-                      }
+                      end
 
               if ::Core::Versions::Version::MASKED_ATTRIBUTE_STRINGS.any? { |string| attribute.include?(string) }
                 changes.push([attribute, ['*****', '*****']])
@@ -45,24 +47,8 @@ module Core
             changes
           end
 
-          def actor_id
-            object[:whodunnit]
-          end
-
           def actor_type
             'User'
-          end
-
-          def resource_id
-            object[:item_id]
-          end
-
-          def resource_type
-            object[:item_type]
-          end
-
-          def timestamp
-            object[:created_at]
           end
         end
 

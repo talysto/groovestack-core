@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Comments
     module GraphQL
@@ -16,7 +18,7 @@ module Core
 
             def resolve(**attrs)
               attrs[:author_id] = context[:current_user].id
-              attrs[:author_type] = 'User' # TODO make author_type dynamic
+              attrs[:author_type] = 'User' # TODO: make author_type dynamic
 
               ::Core::Comments::Comment.create!(attrs)
             end
@@ -34,8 +36,8 @@ module Core
           end
 
           class Update < BaseMutation
-            argument :id, ID, required: true
             argument :body, String, required: false
+            argument :id, ID, required: true
 
             type ::Core::Comments::GraphQL::Types::Comment
 
@@ -50,9 +52,9 @@ module Core
         extend ActiveSupport::Concern
 
         included do
-          field :createComment, mutation: Core::Comments::GraphQL::Mutations::Comment::Create
-          field :deleteComment, mutation: Core::Comments::GraphQL::Mutations::Comment::Delete
-          field :updateComment, mutation: Core::Comments::GraphQL::Mutations::Comment::Update
+          field :create_comment, mutation: Core::Comments::GraphQL::Mutations::Comment::Create
+          field :delete_comment, mutation: Core::Comments::GraphQL::Mutations::Comment::Delete
+          field :update_comment, mutation: Core::Comments::GraphQL::Mutations::Comment::Update
         end
       end
     end

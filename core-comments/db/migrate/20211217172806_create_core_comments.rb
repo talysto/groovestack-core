@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCoreComments < ActiveRecord::Migration[6.0]
   def change
     create_table :core_comments, id: :uuid do |t|

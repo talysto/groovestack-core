@@ -77,7 +77,8 @@ module Core
                 return if except.include?(:collection_meta)
 
                 field "_all#{entity.to_s.camelize}Meta".to_sym,
-                      type: ::Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata, camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
+                      type: ::Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata,
+                      camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
                   argument :page, ::GraphQL::Types::Int, required: false
                   argument :per_page, ::GraphQL::Types::Int, required: false
                   argument :sort_field, ::GraphQL::Types::String, required: false
