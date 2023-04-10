@@ -18,10 +18,10 @@ import { CoreVersions } from 'core-versions-fe'
 import { CoreAccounting } from 'core-accounting-fe'
 
 import { users } from '../../data/mock-data-provider'
-import {faker} from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
 
 const Comments = CoreComments.Comments
-const Versions = CoreVersions.Versions 
+const Versions = CoreVersions.Versions
 
 const inlineLayout = {
   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
@@ -29,19 +29,26 @@ const inlineLayout = {
 
 export const CompanyAside = () => {
   const record = useRecordContext()
-  
+
   return (
     <>
       <Paper sx={{ minWidth: 300, maxWidth: 500, p: 2, ml: 2 }}>
         <Typography variant="h6">Details</Typography>
-        <SimpleShowLayout {...inlineLayout} sx={{ padding: 0, marginBottom: 5 }}>
+        <SimpleShowLayout
+          {...inlineLayout}
+          sx={{ padding: 0, marginBottom: 5 }}
+        >
           <TextField source="id" />
           <DateField source="created_at" />
           <DateField source="updated_at" />
         </SimpleShowLayout>
         <Typography variant="h6">Comments</Typography>
         <SimpleShowLayout sx={{ padding: 0 }}>
-          <Comments.Stream createProps={{authorResolver: () => (faker.helpers.arrayElement(users))}} />
+          <Comments.Stream
+            createProps={{
+              authorResolver: () => faker.helpers.arrayElement(users),
+            }}
+          />
         </SimpleShowLayout>
       </Paper>
       <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>

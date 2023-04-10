@@ -27,15 +27,15 @@ module Core
 
     def test_gql_query
       # it "loads jobs by ID" do
-      query_string = <<-GRAPHQL
-        query($id: ID!){
-          node(id: $id) {
-            ... on Job {
-              id
-            }
-          }
-        }
-      GRAPHQL
+      # query_string = <<-GRAPHQL
+      #   query($id: ID!){
+      #     node(id: $id) {
+      #       ... on Job {
+      #         id
+      #       }
+      #     }
+      #   }
+      # GRAPHQL
 
       NativeQueJob.enqueue('one')
       NativeQueJob.enqueue('two')

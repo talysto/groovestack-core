@@ -4,7 +4,6 @@ sidebar_position: 1
 
 # CORE Platform
 
-
 <ModuleList />
 
 import jobs from '../../core-jobs-fe/package.json'
@@ -12,10 +11,10 @@ import accounting from '../../core-accounting-fe/package.json'
 import comments from '../../core-comments-fe/package.json'
 import versions from '../../core-versions-fe/package.json'
 
-
 export const coreModules = [jobs, accounting, comments, versions]
 
 export const ModuleList = () => (
+
 <table>
 <tbody>
   { coreModules.map(mod => (
@@ -30,12 +29,12 @@ export const ModuleList = () => (
 
     </tr>
     ))
-  }
+
+}
+
 </tbody>
 </table>
 )
-
-
 
 Let's discover **Docusaurus in less than 5 minutes**.
 

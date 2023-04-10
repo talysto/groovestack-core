@@ -15,19 +15,19 @@ module Core
         class Version < BaseObject
           description 'A version'
 
-          field :id, ID, null: false
+          field :id, ID, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.id
 
-          field :changes, ::GraphQL::Types::JSON, null: true
-          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
+          field :changes, ::GraphQL::Types::JSON, null: true, description: 'list of changes in the version'
+          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.created_at
           # field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
 
           # relations
-          field :actor_id, ID, null: true, hash_key: :whodunnit
-          field :actor_type, String, null: true
-          field :resource_id, ID, null: true, hash_key: :item_id
-          field :resource_type, String, null: true, hash_key: :item_type
+          field :actor_id, ID, null: true, hash_key: :whodunnit, description: 'id of actor relation'
+          field :actor_type, String, null: true, description: 'class of actor relation'
+          field :resource_id, ID, null: true, hash_key: :item_id, description: 'id of resource relation'
+          field :resource_type, String, null: true, hash_key: :item_type, description: 'class of resource relation'
 
-          field :timestamp, String, null: false, hash_key: :created_at
+          field :timestamp, String, null: false, hash_key: :created_at, description: ::Core::Base::GraphQL::Documentation::Fields.created_at
 
           def changes
             changes = []
@@ -53,7 +53,7 @@ module Core
         end
 
         class VersionListMetadata < BaseObject
-          field :count, Int, null: false
+          field :count, Int, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.relation_count
         end
       end
     end

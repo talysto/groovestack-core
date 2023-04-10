@@ -7,11 +7,11 @@ module Core
         class LineFilter < Types::BaseInputObject
           description 'line filter props'
 
-          argument :account, [String], required: false
-          argument :code, [String], required: false
-          argument :ids, [ID], required: false
-          argument :q, String, required: false
-          argument :scope, [String], required: false
+          argument :account, [String], required: false, description: ''
+          argument :code, [String], required: false, description: ''
+          argument :ids, [ID], required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.ids
+          argument :q, String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.q
+          argument :scope, [String], required: false, description: ''
         end
       end
     end
