@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Jobs
     module GraphQL
@@ -19,8 +21,8 @@ module Core
           end
 
           class Update < BaseMutation
-            argument :id, ID, required: true
             argument :expired_at, ::GraphQL::Types::ISO8601DateTime, required: false
+            argument :id, ID, required: true
             argument :run_at, ::GraphQL::Types::ISO8601DateTime, required: false
 
             type ::Core::Jobs::GraphQL::Types::Job
@@ -36,8 +38,8 @@ module Core
         extend ActiveSupport::Concern
 
         included do
-          field :deleteJob, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Delete
-          field :updateJob, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Update
+          field :delete_job, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Delete
+          field :update_job, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Update
         end
       end
     end

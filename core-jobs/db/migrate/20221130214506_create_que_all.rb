@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CreateQueAll < ActiveRecord::Migration[6.0]
   def change
     reversible do |dir|
       dir.up do
-        execute <<-SQL
+        execute <<-SQL.squish
           CREATE OR REPLACE VIEW public.que_all AS
             SELECT
               que_jobs.*
@@ -30,7 +32,7 @@ class CreateQueAll < ActiveRecord::Migration[6.0]
       end
 
       dir.down do
-        execute <<-SQL
+        execute <<-SQL.squish
           DROP VIEW IF EXISTS public.que_all;
         SQL
       end

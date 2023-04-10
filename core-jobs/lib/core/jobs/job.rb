@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Jobs
     class Job < Que::ActiveRecord::Model

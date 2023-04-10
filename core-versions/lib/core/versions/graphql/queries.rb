@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Versions
     module GraphQL
@@ -23,16 +25,17 @@ module Core
                                                                                  filter.resource_id].compact.present?
           scope = scope.where(item_type: filter.item_type || filter.resource_type) if [filter.item_type,
                                                                                        filter.resource_type].compact.present?
-          scope = scope.where("created_at >= ?", filter.created_at_gte) if filter.created_at_gte.present?
-          scope = scope.where("created_at <= ?", filter.created_at_lte) if filter.created_at_lte.present?
+          scope = scope.where('created_at >= ?', filter.created_at_gte) if filter.created_at_gte.present?
+          scope = scope.where('created_at <= ?', filter.created_at_lte) if filter.created_at_lte.present?
           scope = scope.where('body ilike ?', "%#{filter.q}%") if filter.q.present?
 
-          return scope unless sort_field.present?
+          return scope if sort_field.blank?
 
-          association, sort_field = sort_field.split('.') if sort_field.include?('.') # support sort by association attrs
+          # support sort by association attrs
+          association, sort_field = sort_field.split('.') if sort_field.include?('.')
           # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
 
-          scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
+          scope.order({ sort_field.underscore => sort_order || 'desc' })
         end
       end
     end

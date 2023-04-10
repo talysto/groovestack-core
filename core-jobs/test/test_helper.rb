@@ -3,7 +3,7 @@
 # Combustion-Minitest support:
 # https://github.com/pat/combustion/issues/78
 require 'combustion'
-Combustion.path = "test/internal"
+Combustion.path = 'test/internal'
 Combustion.schema_format = :sql
 Combustion.initialize! :active_record
 

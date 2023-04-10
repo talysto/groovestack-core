@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # See
 # https://graphql-ruby.org/testing/integration_tests.html
 
@@ -42,8 +44,8 @@ module Core
       result = {} # MySchema.execute(query_string, variables: { id: job_id })
 
       job_result = result.dig('data', 'node')
-      refute_nil job_result
-      assert_equal job_id, job_result["id"]
+      assert_not_nil job_result
+      assert_equal job_id, job_result['id']
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Versions
     module HasCoreVersions
@@ -15,5 +17,5 @@ module Core
 end
 
 ActiveSupport.on_load(:active_record) do
-  ActiveRecord::Base.send :extend, Core::Versions::HasCoreVersions
+  ActiveSupport.on_load(:active_record) { extend Core::Versions::HasCoreVersions }
 end
