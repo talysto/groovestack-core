@@ -7,7 +7,7 @@ module Core
         module ReactAdmin
           module Types
             class RAListMetadata < ::GraphQL::Schema::Object
-              field :count, Int, null: false
+              field :count, Int, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.relation_count
             end
           end
         end

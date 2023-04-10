@@ -55,7 +55,7 @@ module Core
                 unless except.include?(:find)
                   field entity_model_name.to_sym, entity_type, null: true, resolver_method: entity_model_name.to_sym,
                                                                description: "Find #{entity_class}." do
-                    argument :id, ::GraphQL::Types::ID, required: true
+                    argument :id, ::GraphQL::Types::ID, required: true, description: ::Core::Base::GraphQL::Documentation::Arguments.id
                   end
                 end
 
@@ -64,11 +64,11 @@ module Core
                 unless except.include?(:collection)
                   field "all#{entity.to_s.camelize}".to_sym, type: [entity_type], null: false,
                                                              resolver_method: entity do
-                    argument :page, ::GraphQL::Types::Int, required: false
-                    argument :per_page, ::GraphQL::Types::Int, required: false
-                    argument :sort_field, ::GraphQL::Types::String, required: false
-                    argument :sort_order, ::GraphQL::Types::String, required: false
-                    argument :filter, entity_filter_type, required: false
+                    argument :page, ::GraphQL::Types::Int, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.page
+                    argument :per_page, ::GraphQL::Types::Int, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.per_page
+                    argument :sort_field, ::GraphQL::Types::String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.sort_field
+                    argument :sort_order, ::GraphQL::Types::String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.sort_order
+                    argument :filter, entity_filter_type, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.filter
                   end
                 end
 
@@ -79,11 +79,11 @@ module Core
                 field "_all#{entity.to_s.camelize}Meta".to_sym,
                       type: ::Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata,
                       camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
-                  argument :page, ::GraphQL::Types::Int, required: false
-                  argument :per_page, ::GraphQL::Types::Int, required: false
-                  argument :sort_field, ::GraphQL::Types::String, required: false
-                  argument :sort_order, ::GraphQL::Types::String, required: false
-                  argument :filter, entity_filter_type, required: false
+                  argument :page, ::GraphQL::Types::Int, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.page
+                  argument :per_page, ::GraphQL::Types::Int, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.per_page
+                  argument :sort_field, ::GraphQL::Types::String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.sort_field
+                  argument :sort_order, ::GraphQL::Types::String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.sort_order
+                  argument :filter, entity_filter_type, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.filter
                 end
               end
             end
