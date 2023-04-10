@@ -27,12 +27,12 @@ module Core
         class Comment < BaseObject
           description 'A comment'
 
-          field :id, ID, null: false
+          field :id, ID, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.id
 
           field :body, String, null: false
 
-          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false
-          field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false
+          field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.created_at
+          field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.updated_at
 
           # relations
           field :resource_id, ID, null: false
@@ -42,7 +42,7 @@ module Core
         end
 
         class CommentListMetadata < BaseObject
-          field :count, Int, null: false
+          field :count, Int, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.relation_count
         end
       end
     end
