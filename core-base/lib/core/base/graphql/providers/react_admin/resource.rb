@@ -65,9 +65,12 @@ module Core
                   field "all#{entity.to_s.camelize}".to_sym, type: [entity_type], null: false,
                                                              resolver_method: entity do
                     argument :page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.page
-                    argument :per_page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.per_page
-                    argument :sort_field, ::GraphQL::Types::String, required: false, description: Documentation::Arguments.sort_field
-                    argument :sort_order, ::GraphQL::Types::String, required: false, description: Documentation::Arguments.sort_order
+                    argument :per_page, ::GraphQL::Types::Int, required: false,
+                                                               description: Documentation::Arguments.per_page
+                    argument :sort_field, ::GraphQL::Types::String, required: false,
+                                                                    description: Documentation::Arguments.sort_field
+                    argument :sort_order, ::GraphQL::Types::String, required: false,
+                                                                    description: Documentation::Arguments.sort_order
                     argument :filter, entity_filter_type, required: false, description: Documentation::Arguments.filter
                   end
                 end
@@ -80,9 +83,12 @@ module Core
                       type: ::Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata,
                       camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
                   argument :page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.page
-                  argument :per_page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.per_page
-                  argument :sort_field, ::GraphQL::Types::String, required: false, description: Documentation::Arguments.sort_field
-                  argument :sort_order, ::GraphQL::Types::String, required: false, description: Documentation::Arguments.sort_order
+                  argument :per_page, ::GraphQL::Types::Int, required: false,
+                                                             description: Documentation::Arguments.per_page
+                  argument :sort_field, ::GraphQL::Types::String, required: false,
+                                                                  description: Documentation::Arguments.sort_field
+                  argument :sort_order, ::GraphQL::Types::String, required: false,
+                                                                  description: Documentation::Arguments.sort_order
                   argument :filter, entity_filter_type, required: false, description: Documentation::Arguments.filter
                 end
               end
