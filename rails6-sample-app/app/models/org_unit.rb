@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrgUnit < ApplicationRecord
   has_closure_tree
   has_core_versions

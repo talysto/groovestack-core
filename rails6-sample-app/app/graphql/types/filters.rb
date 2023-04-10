@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   module Filters
     class OrgUnitFilter < ::GraphQL::Schema::InputObject
@@ -5,8 +7,8 @@ module Types
 
       description 'org unit filter props'
 
-      argument :q, String, required: false
       argument :ids, [ID], required: false
+      argument :q, String, required: false
     end
 
     class UserFilter < ::GraphQL::Schema::InputObject
@@ -14,8 +16,8 @@ module Types
 
       description 'user filter props'
 
-      argument :q, String, required: false
       argument :ids, [ID], required: false
+      argument :q, String, required: false
     end
   end
 end

@@ -20,7 +20,7 @@ module Core
 
         class LockerFilter < Types::BaseInputObject
           description 'que locker filter props'
-          
+
           argument :ids, [ID], required: false
         end
       end

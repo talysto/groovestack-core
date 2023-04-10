@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'double_entry'
 
-AQD ||= {
-  priority:               1,
-  iso_code:               "AQD",
-  iso_numeric:            "888",
-  name:                   "AQD",
-  symbol:                 "$",
-  subunit:                "NA",
-  subunit_to_unit:        1,
-  symbol_first:           true,
-  decimal_mark:           ".",
-  thousands_separator:    ",",
-  smallest_denomination:  1
+AQD = {
+  priority: 1,
+  iso_code: 'AQD',
+  iso_numeric: '888',
+  name: 'AQD',
+  symbol: '$',
+  subunit: 'NA',
+  subunit_to_unit: 1,
+  symbol_first: true,
+  decimal_mark: '.',
+  thousands_separator: ',',
+  smallest_denomination: 1
 }.freeze
 
 Money::Currency.register(AQD)
@@ -52,14 +54,14 @@ end
 # u1 = User.first
 
 # DoubleEntry.lock_accounts(u1.account_savings, u1.account_checking) do
-  # DoubleEntry.transfer(
-  #   Money.new(15_00),
-  #   from: u1.account_savings,
-  #   to:   u1.account_checking,
-  #   code: :withdraw,
-  #   detail: Thing.all.sample,
-  #   metadata: {key1: ['value 1', 'value 2'], key2: 'value 3'}
-  # )
+# DoubleEntry.transfer(
+#   Money.new(15_00),
+#   from: u1.account_savings,
+#   to:   u1.account_checking,
+#   code: :withdraw,
+#   detail: Thing.all.sample,
+#   metadata: {key1: ['value 1', 'value 2'], key2: 'value 3'}
+# )
 # end
 
 # o1 = OrgUnit.first
@@ -79,10 +81,10 @@ end
 # )
 
 module DoubleEntry
-  class Line < ActiveRecord::Base
+  class Line < ApplicationRecord
     jsonb_accessor :metadata,
-      key1: [:string, array: true, default: []],
-      key2: :string
+                   key1: [:string, { array: true, default: [] }],
+                   key2: :string
   end
 end
 
@@ -97,16 +99,16 @@ module Core
         class Line < BaseObject
           field :account_identifier, String, null: false
           field :scope_detail, ::GraphQL::Types::JSON, null: false
-          field :key1, [String], null: false 
+          field :key1, [String], null: false
           field :key2, String, null: true
 
           def account_identifier
             object.account.identifier
           end
-          
+
           def scope_detail
             {
-              model: [:aqd_tokens, :savings, :checking].include?(object.account.identifier) ? 'User' : 'OrgUnit',
+              model: %i[aqd_tokens savings checking].include?(object.account.identifier) ? 'User' : 'OrgUnit',
               id: object.scope
             }
           end

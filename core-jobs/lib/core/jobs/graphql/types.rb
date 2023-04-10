@@ -21,7 +21,6 @@ module Core
           field :status, String, null: false
           field :actions, [String], null: false
 
-
           field :last_error_backtrace, String, null: true
           field :last_error_message, String, null: true
           field :error_count, Integer, null: true
@@ -47,7 +46,7 @@ module Core
           field :count, Int, null: false
         end
 
-        class JobReport < BaseObject 
+        class JobReport < BaseObject
           description 'a job report'
 
           field :id, String, null: false
@@ -69,13 +68,13 @@ module Core
           field :workers, Integer, null: true
           # field :worker_priorities, [Integer], null: true
 
-          field :host, String, null: true 
+          field :host, String, null: true
 
           def id
             object.pid
           end
 
-          def host 
+          def host
             object.ruby_hostname
           end
 

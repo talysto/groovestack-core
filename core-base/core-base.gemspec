@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.post_install_message = 'CORE::Base installed'
 
   spec.homepage = 'https://moonlight-labs.com/core/'
-  spec.required_ruby_version = Gem::Requirement.new('3.1.3')
+  spec.required_ruby_version = '>= 3.1.0'
 
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
@@ -34,6 +34,10 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'graphql'
   spec.add_dependency 'pg'
+
+  spec.add_development_dependency 'activerecord'
+  spec.add_development_dependency 'minitest', '~> 5.0'
+  spec.add_development_dependency 'rake', '~> 12.0'
 
   # spec.add_development_dependency 'combustion', '~> 1.3' # for smaller test app
   # spec.add_development_dependency 'racksh'

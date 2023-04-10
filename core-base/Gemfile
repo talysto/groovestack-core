@@ -4,10 +4,3 @@ source 'https://rubygems.org'
 
 # Specify your gem's dependencies in core-base.gemspec
 gemspec
-
-group :test do
-  gem 'activerecord'
-end
-
-gem 'minitest', '~> 5.0'
-gem 'rake', '~> 12.0'

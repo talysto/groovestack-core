@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'double_entry'
 
 module DoubleEntry
-  class Configuration 
+  class Configuration
     # intended as a hash mapping for account scopes to model names
-    # ex: 
+    # ex:
     #   config.account_scope_identifier_mapping = {
     #     aqd_treasury: 'OrgUnit',
     #     aqd_tokens: 'User'
     #   }
-    # AFAICT scope identifier classes can't be pulled directly 
+    # AFAICT scope identifier classes can't be pulled directly
     # from account.scope_identifier
-    
+
     attr_accessor :account_scope_identifier_mapping
   end
 end
@@ -22,7 +24,7 @@ DoubleEntry.configure do |config|
 end
 
 module DoubleEntry
-  class Line < ActiveRecord::Base
+  class Line < ApplicationRecord
     scope :credits, -> { where('amount > 0') }
     scope :debits, -> { where('amount < 0') }
   end

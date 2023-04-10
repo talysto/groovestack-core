@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 
+# rubocop:disable  Style/SingleLineMethods
 class String
   def black;          "\e[30m#{self}\e[0m" end
   def red;            "\e[31m#{self}\e[0m" end
@@ -24,8 +26,7 @@ class String
   def blink;          "\e[5m#{self}\e[25m" end
   def reverse_color;  "\e[7m#{self}\e[27m" end
 end
-
-
+# rubocop:enable  Style/SingleLineMethods
 
 if defined?(Rails)
   module Core
@@ -50,32 +51,30 @@ if defined?(Rails)
         end
 
         config.after_initialize do
-          if (ENV["RAILS_ENV"] || ENV["RACK_ENV"]) == 'development'
+          if (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
 
             validations = [
               {
-                eval: Proc.new { require 'pg' },
-                message: "Error: 'pg' gem is required, add it your your gemfile" 
+                eval: proc { require 'pg' },
+                message: "Error: 'pg' gem is required, add it your your gemfile"
               },
               {
-                eval: Proc.new { require 'graphql' },
-                message: "Error: 'graphql' gem is required, add it your your gemfile" 
-              },
+                eval: proc { require 'graphql' },
+                message: "Error: 'graphql' gem is required, add it your your gemfile"
+              }
             ]
 
             puts 'CORE Platform DX Mode'.bold
 
             errors = []
             validations.each do |v|
-              begin
-                v[:eval].call
-              rescue
-                errors << v[:message]
-                break
-              end
+              v[:eval].call
+            rescue StandardError
+              errors << v[:message]
+              break
             end
 
-            if errors.length > 0
+            if errors.length.positive?
               print '⚠️'.brown
               puts "  CORE::Base\t#{Core::Base::VERSION}\t#{errors[0]}"
             else

@@ -1,7 +1,6 @@
 # See
 # https://graphql-ruby.org/testing/integration_tests.html
 
-
 require 'test_helper'
 require 'que/active_record/model'
 
@@ -16,7 +15,6 @@ end
 
 module Core
   class GraphQLTest < Minitest::Test
-
     def test_simple_two
       assert_equal '2', '2'
     end

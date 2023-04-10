@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'core/base/version'
 require 'core/base/railtie' if defined?(Rails::Railtie)
 

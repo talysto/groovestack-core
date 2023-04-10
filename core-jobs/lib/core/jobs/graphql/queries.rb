@@ -3,7 +3,7 @@ module Core
     module GraphQL
       module Queries
         extend ActiveSupport::Concern
-        
+
         included do
           include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
@@ -17,7 +17,8 @@ module Core
           scope = scope.where(id: filter.ids) unless filter.ids.nil?
           # scope = scope.where(type: filter.type) if filter.type.present?
           scope = scope.where("(args->0)->>'job_class' ilike ?", "%#{filter.q}%") if filter.q.present?
-          scope = scope.send(filter.status) if filter.status.present? && ['failed', 'scheduled', 'finished', 'running', 'errored', 'expired'].include?(filter.status)
+          scope = scope.send(filter.status) if filter.status.present? && ['failed', 'scheduled', 'finished', 'running',
+                                                                          'errored', 'expired'].include?(filter.status)
 
           return scope unless sort_field.present?
 
@@ -57,8 +58,8 @@ module Core
               min(run_at)                 AS oldest_run_at
 
             FROM public.que_all
-            WHERE 
-              finished_at IS NULL 
+            WHERE#{' '}
+              finished_at IS NULL#{' '}
               AND expired_at IS NULL
             GROUP BY job_class, sub_class
             ORDER BY count(*) DESC

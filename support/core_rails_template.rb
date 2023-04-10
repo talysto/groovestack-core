@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # CORE Applications Template
 # USAGE
 # rails new -m https://raw.githubusercontent.com/moonlight-labs/core/main/support/core-rails-template.rb
@@ -7,10 +9,10 @@
 # starter command:
 #  -d postgresql --skip-turbolinks --skip-jbuilder --skip-webpack-install
 
-gem "pg"
-gem "graphql"
-gem "uuid"
-gem "vite_rails"
+gem 'pg'
+gem 'graphql'
+gem 'uuid'
+gem 'vite_rails'
 
 # generate(:scaffold, "person name:string")
 # route "root to: 'people#index'"

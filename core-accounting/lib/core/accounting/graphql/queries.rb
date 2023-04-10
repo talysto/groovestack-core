@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Accounting
     module GraphQL
@@ -21,12 +23,13 @@ module Core
           scope = scope.where(scope: filter.scope) unless filter.scope.nil?
           scope = scope.where(scope: filter.account) unless filter.account.nil?
 
-          return scope unless sort_field.present?
+          return scope if sort_field.blank?
 
-          association, sort_field = sort_field.split('.') if sort_field.include?('.') # support sort by association attrs
+          # support sort by association attrs
+          association, sort_field = sort_field.split('.') if sort_field.include?('.')
           # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
 
-          scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
+          scope.order({ sort_field.underscore => sort_order || 'desc' })
         end
       end
     end

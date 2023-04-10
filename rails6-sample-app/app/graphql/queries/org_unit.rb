@@ -1,13 +1,15 @@
-module Queries 
-  module OrgUnit 
+# frozen_string_literal: true
+
+module Queries
+  module OrgUnit
     extend ActiveSupport::Concern
 
     included do
-      field :OrgUnit, Types::OrgUnitType, null: true, resolver_method: :OrgUnit, description: "Find OrgUnit." do
+      field :org_unit, Types::OrgUnitType, null: true, resolver_method: :OrgUnit, description: 'Find OrgUnit.' do
         argument :id, ::GraphQL::Types::ID, required: true
       end
 
-      field :allOrgUnits, type: [Types::OrgUnitType], null: false, resolver_method: :org_units do
+      field :all_org_units, type: [Types::OrgUnitType], null: false, resolver_method: :org_units do
         argument :page, ::GraphQL::Types::Int, required: false
         argument :per_page, ::GraphQL::Types::Int, required: false
         argument :sort_field, ::GraphQL::Types::String, required: false
@@ -15,7 +17,8 @@ module Queries
         argument :filter, Types::Filters::OrgUnitFilter, required: false
       end
 
-      field :_allOrgUnitsMeta, type: Types::ListMetadataType, camelize: false, null: true, resolver_method: :org_units_meta do
+      field :_all_org_units_meta, type: Types::ListMetadataType, camelize: false, null: true,
+                                  resolver_method: :org_units_meta do
         argument :page, ::GraphQL::Types::Int, required: false
         argument :per_page, ::GraphQL::Types::Int, required: false
         argument :sort_field, ::GraphQL::Types::String, required: false
@@ -28,7 +31,7 @@ module Queries
       org_units_base_scope.find(id)
     end
 
-    def org_units_meta(page: nil, per_page: nil, **attrs)
+    def org_units_meta(_page: nil, _per_page: nil, **attrs)
       { count: org_units_scope(**attrs).size }
     end
 
@@ -40,12 +43,12 @@ module Queries
       scope = org_units_base_scope
       scope = scope.where(id: filter.ids) unless filter.ids.nil?
 
-      return scope unless sort_field.present?
+      return scope if sort_field.blank?
 
       association, sort_field = sort_field.split('.') if sort_field.include?('.') # support sort by association attrs
       # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
 
-      scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
+      scope.order({ sort_field.underscore => sort_order || 'desc' })
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GraphqlController < ApplicationController
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
@@ -12,12 +14,14 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      current_user: User.find('4863c095-3d73-4736-aa72-319bf4a332b8'),
+      current_user: User.find('4863c095-3d73-4736-aa72-319bf4a332b8')
     }
-    result = CoreRails6SampleAppSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = CoreRails6SampleAppSchema.execute(query, variables:, context:,
+                                                      operation_name:)
     render json: result
   rescue StandardError => e
     raise e unless Rails.env.development?
+
     handle_error_in_development(e)
   end
 
@@ -47,6 +51,6 @@ class GraphqlController < ApplicationController
     logger.error e.message
     logger.error e.backtrace.join("\n")
 
-    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: :internal_server_error
   end
 end

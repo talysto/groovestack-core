@@ -1,13 +1,15 @@
-module Queries 
-  module User 
+# frozen_string_literal: true
+
+module Queries
+  module User
     extend ActiveSupport::Concern
 
     included do
-      field :User, Types::UserType, null: true, resolver_method: :User, description: "Find User." do
+      field :user, Types::UserType, null: true, resolver_method: :User, description: 'Find User.' do
         argument :id, ::GraphQL::Types::ID, required: true
       end
 
-      field :allUsers, type: [Types::UserType], null: false, resolver_method: :users do
+      field :all_users, type: [Types::UserType], null: false, resolver_method: :users do
         argument :page, ::GraphQL::Types::Int, required: false
         argument :per_page, ::GraphQL::Types::Int, required: false
         argument :sort_field, ::GraphQL::Types::String, required: false
@@ -15,7 +17,8 @@ module Queries
         argument :filter, Types::Filters::UserFilter, required: false
       end
 
-      field :_allUsersMeta, type: Types::ListMetadataType, camelize: false, null: true, resolver_method: :users_meta do
+      field :_all_users_meta, type: Types::ListMetadataType, camelize: false, null: true,
+                              resolver_method: :users_meta do
         argument :page, ::GraphQL::Types::Int, required: false
         argument :per_page, ::GraphQL::Types::Int, required: false
         argument :sort_field, ::GraphQL::Types::String, required: false
@@ -40,12 +43,12 @@ module Queries
       scope = users_base_scope
       scope = scope.where(id: filter.ids) unless filter.ids.nil?
 
-      return scope unless sort_field.present?
+      return scope if sort_field.blank?
 
       association, sort_field = sort_field.split('.') if sort_field.include?('.') # support sort by association attrs
       # return scope.left_joins(association.to_sym).merge(association.camelize.constantize.order(Hash[sort_field.underscore, sort_order || 'desc'])) if association.present?
 
-      scope.order(Hash[sort_field.underscore, sort_order || 'desc'])
+      scope.order({ sort_field.underscore => sort_order || 'desc' })
     end
   end
 end

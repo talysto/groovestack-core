@@ -31,7 +31,9 @@ module Core
             changes = []
             object.changeset.each do |attribute, values|
               next if attribute == 'updated_at'
-              next if ::Core::Versions::Version::NONSERIALIZED_ATTRIBUTE_STRINGS.any? { |string| attribute.include?(string) }
+              next if ::Core::Versions::Version::NONSERIALIZED_ATTRIBUTE_STRINGS.any? { |string|
+                        attribute.include?(string)
+                      }
 
               if ::Core::Versions::Version::MASKED_ATTRIBUTE_STRINGS.any? { |string| attribute.include?(string) }
                 changes.push([attribute, ['*****', '*****']])

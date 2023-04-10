@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.post_install_message = 'CORE::Jobs installed'
 
   spec.homepage = 'https://moonlight-labs.com/core/'
-  spec.required_ruby_version = Gem::Requirement.new('3.1.3')
+  spec.required_ruby_version = '>= 3.1.0'
 
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
@@ -40,6 +40,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'combustion', '~> 1.3'  # Test engines without a full 'dummy' app https://github.com/pat/combustion
   spec.add_development_dependency 'racksh'                # get a console without a full Rails application
   spec.add_development_dependency 'sinatra-activerecord'  # ActiveRecord without rails
+
+  spec.add_development_dependency 'activerecord'
+  spec.add_development_dependency 'minitest', '~> 5.0'
+  spec.add_development_dependency 'rake', '~> 12.0'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

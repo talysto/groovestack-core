@@ -1,4 +1,3 @@
-
 class String
   def black;          "\e[30m#{self}\e[0m" end
   def red;            "\e[31m#{self}\e[0m" end
@@ -53,14 +52,16 @@ if defined?(Rails)
             validations = [
               {
                 eval: Proc.new { require 'pg' },
-                message: "Error: 'pg' gem is required, add it your your gemfile" 
+                message: "Error: 'pg' gem is required, add it your your gemfile"
               },
               {
                 eval: Proc.new { raise unless defined?(::Core::Base) },
-                message: "Error: 'core-base' gem is required, add it your your gemfile" 
+                message: "Error: 'core-base' gem is required, add it your your gemfile"
               },
               {
-                eval: Proc.new { raise Core::Versions::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql },
+                eval: Proc.new {
+                        raise Core::Versions::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql
+                      },
                 message: 'Error: Must change your schema format to :sql'
               }
             ]

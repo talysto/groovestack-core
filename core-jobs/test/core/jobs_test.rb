@@ -13,7 +13,7 @@ class NativeQueJob < Que::Job
 end
 
 class FutureJob < Que::Job
-  self.run_at = proc { Time.now + 1  } # 10 seconds
+  self.run_at = proc { Time.now + 1 } # 10 seconds
 
   def run(param1)
     # puts "#{self.class} / #{param1}"
@@ -41,7 +41,6 @@ end
 module Core
   # Main CORE::Jobs test suite
   class JobsTest < Minitest::Test
-
     def setup
       Que::ActiveRecord::Model.destroy_all
     end
@@ -66,6 +65,5 @@ module Core
       assert Que::ActiveRecord::Model.count == 0
       Que::Job.run_synchronously = false
     end
-
   end
 end

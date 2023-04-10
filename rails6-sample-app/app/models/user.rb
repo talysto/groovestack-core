@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   def account_savings
     DoubleEntry.account(:savings, scope: self)
@@ -11,4 +13,3 @@ class User < ApplicationRecord
     DoubleEntry.account(:aqd_tokens, scope: self)
   end
 end
-

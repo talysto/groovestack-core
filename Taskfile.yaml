@@ -9,14 +9,15 @@ tasks:
 
   tidy-check:
     cmds:
-      - cmd: rubocop **/*.rb **/*.gemspec **/Gemfile
+      - cmd: npx prettier -c .
         ignore_error: true
-      - npx prettier -c .
+      - cmd: bundle exec rubocop **/*.rb **/*.gemspec **/Gemfile
+        ignore_error: true
 
   tidy:
     cmds:
-      - rubocop -a **/*.rb **/*.gemspec **/Gemfile
       - npx prettier --loglevel warn -w .
+      - bundle exec rubocop -x -a **/*.rb **/*.gemspec **/Gemfile
 
   versions:
     silent: true
@@ -24,7 +25,7 @@ tasks:
       - task --version
       - ruby -v
       - echo -n 'rubocop '
-      - rubocop --version
+      - bundle exec rubocop --version
       - echo -n 'pnpm '
       - npx pnpm --version
       - echo -n 'prettier '

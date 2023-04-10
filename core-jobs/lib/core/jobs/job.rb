@@ -18,11 +18,10 @@ module Core
       # scope :ready,     -> { not_errored.not_expired.not_finished.not_scheduled }
       # scope :not_ready, -> { where(t[:error_count].gt(0).or(t[:expired_at].not_eq(nil)).or(t[:finished_at].not_eq(nil)).or(t[:run_at].gt(Arel.sql("now()")))) }
 
-
       scope :failed, -> { errored.expired }
       scope :running, -> { not_expired.not_finished.not_scheduled } # should this exclude errored jobs?
 
-      def actions 
+      def actions
         return [:retry] if error_count.positive?
 
         []
@@ -33,8 +32,10 @@ module Core
 
         return :scheduled if run_at > now
         return :finished if finished_at.present?
+
         if expired_at.present?
           return :failed if error_count.positive?
+
           return :expired
         end
 
