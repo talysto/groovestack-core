@@ -54,11 +54,11 @@ export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: numbe
                     <tr key={change[0]} style={{ verticalAlign: 'baseline' }}>
                       <td style={{ textTransform: 'uppercase', fontSize: '80%', paddingRight: 15 }}>{change[0]}</td>
                        <td> {/*  style={{inlineSize: '500px', overflowWrap: 'anywhere'}} */}
-                        {change[0].includes('password') || change[0].includes('token') || change[0].includes('id')  ? '***' : change[1][1]} 
+                        {change[1][1]}
                         <br />
                         (
                         <span style={{ textDecoration: 'line-through' }}>
-                          {change[0].includes('password') || change[0].includes('token') || change[0].includes('id') ? '**' : change[1][0]}
+                          {change[1][0]}
                         </span>
                         )
                       </td>
@@ -71,7 +71,6 @@ export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: numbe
         </Box>
       </TimelineContent>
     </TimelineItem>
-    
   )
 }
 
