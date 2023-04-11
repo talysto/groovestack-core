@@ -35,7 +35,6 @@ const versionFilters = [
   <DateInput source="created_at_gte" label="After" />,
 ]
 
-
 export const ChangesTable = ({changesDisplayed}: {changesDisplayed: number}) => {
   const record = useRecordContext();
   if (!record) return null;
@@ -60,7 +59,7 @@ export const ChangesTable = ({changesDisplayed}: {changesDisplayed: number}) => 
   )
 }
 
-export const VersionsTable: React.FC<{ tableProps?: any, changesDisplayed?: number }> = ({ tableProps, changesDisplayed= 3 }) => {
+export const VersionsTable: React.FC<{ tableProps?: any, changesDisplayed?: number }> = ({ tableProps, changesDisplayed = 3 }) => {
   const rowStyle = (record, index) => ({
     // backgroundColor: record.changes >= 5 ? '#efe' : 'white',
     // height: 2, // Set the row height to 50 pixels
@@ -77,7 +76,7 @@ export const VersionsTable: React.FC<{ tableProps?: any, changesDisplayed?: numb
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
         <WrapperField label="Changes" >
-            <ChangesTable changesDisplayed={changesDisplayed} />
+          <ChangesTable changesDisplayed={changesDisplayed} />
         </WrapperField>
         <CoreDateField source="timestamp" showTime={false} />
       </Datagrid>

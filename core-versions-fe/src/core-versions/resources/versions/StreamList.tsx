@@ -19,12 +19,10 @@ import { CoreBase } from '../../../../../core-base-fe/src/core-base' // TODO mak
 const CoreDateField = CoreBase.CoreDateField
 
 export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: number}) => {
-
   const record = useRecordContext();
 
   if (!record) return null;
   return (
-
     <TimelineItem>
         <TimelineOppositeContent 
           sx={{ m: 0, mt: '10px', pl: 0  }}
