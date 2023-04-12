@@ -9,9 +9,9 @@ module Core
         included do
           include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-          react_admin_resource :jobs, core_namespace: 'Jobs'
-          react_admin_resource :lockers, core_namespace: 'Jobs'
-          react_admin_resource :job_reports, core_namespace: 'Jobs', except: [:find]
+          react_admin_resource :jobs, class_name: "Core::Jobs::Job", graphql_path: "Core::Jobs::GraphQL"
+          react_admin_resource :lockers, class_name: "Core::Jobs::Locker", graphql_path: "Core::Jobs::GraphQL"
+          react_admin_resource :job_reports, graphql_path: "Core::Jobs::GraphQL", except: [:find]
         end
 
         def jobs_scope(sort_field: nil, sort_order: nil, filter: {})

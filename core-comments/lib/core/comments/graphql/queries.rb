@@ -9,7 +9,7 @@ module Core
         included do
           include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-          react_admin_resource :comments, core_namespace: 'Comments'
+          react_admin_resource :comments, graphql_path: "Core::Comments::GraphQL"
         end
 
         def comments_base_scope

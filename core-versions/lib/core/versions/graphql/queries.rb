@@ -9,7 +9,7 @@ module Core
         included do
           include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-          react_admin_resource :versions, core_namespace: 'Versions'
+          react_admin_resource :versions, graphql_path: "Core::Versions::GraphQL"
         end
 
         def versions_base_scope

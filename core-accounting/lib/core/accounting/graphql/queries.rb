@@ -9,7 +9,7 @@ module Core
         included do
           include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-          react_admin_resource :lines, core_namespace: 'Accounting'
+          react_admin_resource :lines, graphql_path: "Core::Accounting::GraphQL"
         end
 
         def lines_base_scope

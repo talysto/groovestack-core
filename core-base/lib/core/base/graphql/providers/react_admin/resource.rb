@@ -8,18 +8,20 @@ module Core
           module Resource
             extend ActiveSupport::Concern
 
-            class_methods do
-              def react_admin_resource(entity, **args)
-                core_namespace = args.delete(:core_namespace)
-                entity_model_name = entity.to_s.classify
-                entity_class = "Core::#{core_namespace}::#{entity_model_name}"
-                entity_type = "Core::#{core_namespace}::GraphQL::Types::#{entity_model_name}".constantize
-                entity_filter_type = "Core::#{core_namespace}::GraphQL::Filters::#{entity_model_name}Filter".constantize
+            class_methods do              
+              def react_admin_resource(entity, class_name: nil, graphql_path: nil, **args)
+                # NOTE class_name is only required if a custom _base_scope is not defined
+                # NOTE graphql_path is only required to override the default graphql path
 
+                graphql_namespace = graphql_path&.dup&.concat("::")
+                entity_model_name = entity.to_s.classify
+                entity_class = class_name || entity_model_name
+                entity_type = "#{graphql_namespace}Types::#{entity_model_name}".constantize
+                entity_filter_type = "#{graphql_namespace}Filters::#{entity_model_name}Filter".constantize
                 except = args.delete(:except) || []
 
                 # resolver_method for Record
-
+                
                 unless except.include?(:find)
                   define_method entity_model_name.to_sym do |id:|
                     scope = begin
