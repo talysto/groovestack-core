@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 module Types
-  class QueryType < Types::BaseObject
+  class Query < Types::BaseObject
+    include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
+    
     # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField

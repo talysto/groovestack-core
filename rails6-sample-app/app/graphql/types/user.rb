@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  class UserType < Types::BaseObject
+  class User < Types::BaseObject
     include ::Core::Comments::GraphQL::Types::Commentable
 
     field :email, String, null: false

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  class MutationType < Types::BaseObject
+  class Mutation < Types::BaseObject
     include ::Core::Comments::GraphQL::Mutations
   end
 end

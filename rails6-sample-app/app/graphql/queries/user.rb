@@ -5,38 +5,7 @@ module Queries
     extend ActiveSupport::Concern
 
     included do
-      field :user, Types::UserType, null: true, resolver_method: :User, description: 'Find User.' do
-        argument :id, ::GraphQL::Types::ID, required: true
-      end
-
-      field :all_users, type: [Types::UserType], null: false, resolver_method: :users do
-        argument :page, ::GraphQL::Types::Int, required: false
-        argument :per_page, ::GraphQL::Types::Int, required: false
-        argument :sort_field, ::GraphQL::Types::String, required: false
-        argument :sort_order, ::GraphQL::Types::String, required: false
-        argument :filter, Types::Filters::UserFilter, required: false
-      end
-
-      field :_all_users_meta, type: Types::ListMetadataType, camelize: false, null: true,
-                              resolver_method: :users_meta do
-        argument :page, ::GraphQL::Types::Int, required: false
-        argument :per_page, ::GraphQL::Types::Int, required: false
-        argument :sort_field, ::GraphQL::Types::String, required: false
-        argument :sort_order, ::GraphQL::Types::String, required: false
-        argument :filter, Types::Filters::UserFilter, required: false
-      end
-    end
-
-    def User(id:)
-      users_base_scope.find(id)
-    end
-
-    def users_meta(_page: nil, _per_page: nil, **attrs)
-      { count: org_units_scope(**attrs).size }
-    end
-
-    def users_base_scope
-      ::User.all
+      react_admin_resource :users
     end
 
     def users_scope(sort_field: nil, sort_order: nil, filter: {})
