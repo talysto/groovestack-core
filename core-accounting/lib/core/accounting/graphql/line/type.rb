@@ -19,10 +19,9 @@ module Core
           field :id, ID, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.id
           field :metadata, ::GraphQL::Types::JSON, null: true, description: 'metadata of record'
           field :partner_account, String, null: false, description: ''
+          field :partner_id, ID, null: false, description: ''
           field :partner_scope, String, null: true, description: ''
           field :scope, String, null: false, description: ''
-
-          field :partner, ::Core::Accounting::GraphQL::Line::Type, null: true, description: ''
 
           field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.created_at
           field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.updated_at

@@ -17,6 +17,8 @@ module CoreRails6SampleApp
 
     config.active_job.queue_adapter = :que
 
+    config.autoload_paths += ["app/"]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -24,6 +26,8 @@ module CoreRails6SampleApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.autoload_paths -= %W(#{Rails.root}/app/graphql)
 
     config.hosts << 'rails6-sample.test'
   end
