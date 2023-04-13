@@ -3,8 +3,8 @@
 module Core
   module Comments
     module GraphQL
-      module Filters
-        class CommentFilter < Types::BaseInputObject
+      module Comment
+        class Filter < ::Core::Base::GraphQL::BaseInputObject
           description 'comment filter props'
 
           argument :author_id, ID, required: false, description: 'id of author relation'

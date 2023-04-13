@@ -9,19 +9,19 @@ module Core
             extend ActiveSupport::Concern
 
             class_methods do              
-              def react_admin_resource(entity, class_name: nil, graphql_path: nil, **args)
+              def react_admin_resource(entity, class_name: nil, graphql_path: nil, graphql_type: nil, graphql_filter: nil, **args)
                 # NOTE class_name is only required if a custom _base_scope is not defined
                 # NOTE graphql_path is only required to override the default graphql path
 
                 graphql_namespace = graphql_path&.dup&.concat("::")
                 entity_model_name = entity.to_s.classify
                 entity_class = class_name || entity_model_name
-                entity_type = "#{graphql_namespace}Types::#{entity_model_name}".constantize
-                entity_filter_type = "#{graphql_namespace}Filters::#{entity_model_name}Filter".constantize
+                entity_type = (graphql_type || "#{graphql_namespace}#{entity_model_name}::Type").constantize
+                entity_filter_type = (graphql_filter || "#{graphql_namespace}#{entity_model_name}::Filter").constantize
                 except = args.delete(:except) || []
 
                 # resolver_method for Record
-                
+
                 unless except.include?(:find)
                   define_method entity_model_name.to_sym do |id:|
                     scope = begin

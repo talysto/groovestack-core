@@ -3,16 +3,8 @@
 module Core
   module Accounting
     module GraphQL
-      module Types
-        class BaseObject < ::GraphQL::Schema::Object
-          field_class ::Core::Base::GraphQL::Types::BaseField
-        end
-
-        class BaseInputObject < ::GraphQL::Schema::InputObject
-          argument_class ::Core::Base::GraphQL::Types::BaseArgument
-        end
-
-        class Line < BaseObject
+      module Line
+        class Type < ::Core::Base::GraphQL::BaseObject
           description 'A double entry line'
 
           # model reference:
@@ -30,14 +22,10 @@ module Core
           field :partner_scope, String, null: true, description: ''
           field :scope, String, null: false, description: ''
 
-          field :partner, ::Core::Accounting::GraphQL::Types::Line, null: true, description: ''
+          field :partner, ::Core::Accounting::GraphQL::Line::Type, null: true, description: ''
 
           field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.created_at
           field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.updated_at
-        end
-
-        class LineListMetadata < BaseObject
-          field :count, Int, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.relation_count
         end
       end
     end

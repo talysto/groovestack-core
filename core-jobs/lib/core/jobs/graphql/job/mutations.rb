@@ -3,16 +3,12 @@
 module Core
   module Jobs
     module GraphQL
-      module Mutations
-        class BaseMutation < ::GraphQL::Schema::Mutation
-          argument_class ::Core::Base::GraphQL::Types::BaseArgument
-        end
-
-        module Job
-          class Delete < BaseMutation
+      module Job
+        module Mutations
+          class Delete < ::Core::Base::GraphQL::BaseMutation
             argument :id, ID, required: true
 
-            type ::Core::Jobs::GraphQL::Types::Job
+            type ::Core::Jobs::GraphQL::Job::Type
 
             def resolve(id:)
               job = ::Core::Jobs::Job.find(id)
@@ -20,12 +16,12 @@ module Core
             end
           end
 
-          class Update < BaseMutation
+          class Update < ::Core::Base::GraphQL::BaseMutation
             argument :expired_at, ::GraphQL::Types::ISO8601DateTime, required: false
             argument :id, ID, required: true
             argument :run_at, ::GraphQL::Types::ISO8601DateTime, required: false
 
-            type ::Core::Jobs::GraphQL::Types::Job
+            type ::Core::Jobs::GraphQL::Job::Type
 
             def resolve(id:, **attrs)
               job = ::Core::Jobs::Job.find(id)
@@ -33,13 +29,13 @@ module Core
               job
             end
           end
-        end
 
-        extend ActiveSupport::Concern
+          extend ActiveSupport::Concern
 
-        included do
-          field :delete_job, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Delete
-          field :update_job, mutation: ::Core::Jobs::GraphQL::Mutations::Job::Update
+          included do
+            field :delete_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Delete
+            field :update_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Update
+          end
         end
       end
     end

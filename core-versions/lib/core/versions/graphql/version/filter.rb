@@ -3,8 +3,8 @@
 module Core
   module Versions
     module GraphQL
-      module Filters
-        class VersionFilter < Types::BaseInputObject
+      module Version
+        class Filter < ::Core::Base::GraphQL::BaseInputObject
           description 'version filter props'
 
           argument :actor_id, ID, required: false, description: 'id of actor relation'

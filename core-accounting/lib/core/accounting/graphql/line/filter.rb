@@ -3,8 +3,8 @@
 module Core
   module Accounting
     module GraphQL
-      module Filters
-        class LineFilter < Types::BaseInputObject
+      module Line
+        class Filter < ::Core::Base::GraphQL::BaseInputObject
           description 'line filter props'
 
           argument :account, [String], required: false, description: ''

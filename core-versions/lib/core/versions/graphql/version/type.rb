@@ -3,16 +3,8 @@
 module Core
   module Versions
     module GraphQL
-      module Types
-        class BaseObject < ::GraphQL::Schema::Object
-          field_class ::Core::Base::GraphQL::Types::BaseField
-        end
-
-        class BaseInputObject < ::GraphQL::Schema::InputObject
-          argument_class ::Core::Base::GraphQL::Types::BaseArgument
-        end
-
-        class Version < BaseObject
+      module Version
+        class Type < ::Core::Base::GraphQL::BaseObject
           description 'A version'
 
           field :id, ID, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.id
@@ -50,10 +42,6 @@ module Core
           def actor_type
             'User'
           end
-        end
-
-        class VersionListMetadata < BaseObject
-          field :count, Int, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.relation_count
         end
       end
     end

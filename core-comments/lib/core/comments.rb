@@ -10,10 +10,11 @@ require 'active_record'
 require 'core/comments/railtie' if defined?(Rails::Railtie)
 require 'core/comments/comment'
 require 'core/comments/version'
-require 'core/comments/graphql/types'
-require 'core/comments/graphql/filters'
-require 'core/comments/graphql/mutations'
-require 'core/comments/graphql/queries'
+require 'core/comments/graphql/comment/types/commentable'
+require 'core/comments/graphql/comment/type'
+require 'core/comments/graphql/comment/filter'
+require 'core/comments/graphql/comment/mutations'
+require 'core/comments/graphql/comment/queries'
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
