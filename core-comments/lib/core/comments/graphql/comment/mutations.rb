@@ -43,14 +43,14 @@ module Core
               obj
             end
           end
-        end
 
-        extend ActiveSupport::Concern
-
-        included do
-          field :create_comment, mutation: Core::Comments::GraphQL::Comment::Mutations::Create
-          field :delete_comment, mutation: Core::Comments::GraphQL::Comment::Mutations::Delete
-          field :update_comment, mutation: Core::Comments::GraphQL::Comment::Mutations::Update
+          extend ActiveSupport::Concern
+  
+          included do
+            field :create_comment, mutation: Core::Comments::GraphQL::Comment::Mutations::Create
+            field :delete_comment, mutation: Core::Comments::GraphQL::Comment::Mutations::Delete
+            field :update_comment, mutation: Core::Comments::GraphQL::Comment::Mutations::Update
+          end
         end
       end
     end
