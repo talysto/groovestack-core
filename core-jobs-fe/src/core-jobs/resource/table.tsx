@@ -23,7 +23,9 @@ import {
 } from 'react-admin'
 
 import { JobsAside } from './JobsAside'
-import { TimeAgoField } from './TimeAgoField'
+
+import { CoreBase } from '../../../../core-base-fe/src/core-base'
+const CoreTimeAgoField = CoreBase.CoreTimeAgoField
 
 const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" />,
@@ -42,38 +44,46 @@ const JobsFilters = [
   />,
 ]
 
-const enhancedStatus = () => {
-  const record = useRecordContext()
+const enhancedStatus = (record) => {
   // var extended = null;
 
-  const runningIcon = <CircularProgress size='0.75em' />
+  const runningIcon = <CircularProgress size="0.75em" />
 
   switch (record.status) {
-    case "running": {
-      return <Chip label={'Running'} color="info" size="small" icon={runningIcon} />
+    case 'running': {
+      return (
+        <Chip label={'Running'} color="info" size="small" icon={runningIcon} />
+      )
     }
 
-    case "failed": {
-      return <Chip label={'Failed'} variant="outlined" color="error" size="small"  />
+    case 'failed': {
+      return (
+        <Chip label={'Failed'} variant="outlined" color="error" size="small" />
+      )
     }
 
-    case "error": {
+    case 'error': {
       // icon={<RunningWithErrorsIcon />
-      return <Chip label={`Error: 3/5 retries`} variant="outlined" color="warning" size="small" />
+      return (
+        <Chip
+          label={`Error: 3/5 retries`}
+          variant="outlined"
+          color="warning"
+          size="small"
+        />
+      )
     }
 
-    case "scheduled": {
-      return <Chip label={'Scheduled'} size="small"  />
+    case 'scheduled': {
+      return <Chip label={'Scheduled'} size="small" />
     }
 
-    case "complete": {
-      return <Chip label={'Complete'} size="small"  />
+    case 'complete': {
+      return <Chip label={'Complete'} size="small" />
     }
   }
 
-  return (
-    <Chip label={record.status} size='small'/>
-  )
+  return <Chip label={record.status} size="small" />
 }
 
 export const RetryButton: React.FC = () => {
@@ -92,7 +102,7 @@ export const RetryButton: React.FC = () => {
       await dataProvider.update(resource, {
         id: record.id,
         previousData: record,
-        data: { expiredAt: null, runAt: dayjs().toISOString() },
+        data: { expired_at: null, runAt: dayjs().toISOString() },
       })
       notify('Retry triggered!', { type: 'success' })
       refresh()
@@ -122,7 +132,6 @@ const JobActions = ({ label }: { label?: string }) => {
 
 export const Table = () => {
   const notify = useNotify()
-
   return (
     <List exporter={false} filters={JobsFilters} aside={<JobsAside />}>
       <Datagrid sort={{ field: 'priority', order: 'ASC' }} rowClick="edit">
@@ -141,9 +150,10 @@ export const Table = () => {
         <TextField source="queue" sortable={false} />
         <NumberField source="priority" />
         <FunctionField label="Status" render={enhancedStatus} />
-        <TimeAgoField label="Scheduled" source="runAt" />
+
+        <CoreTimeAgoField label="Scheduled" source="run_at" />
         {/* <NumberField source="errorCount" label="Errors" />
-        <TimeAgoField label="Expired" source="expiredAt" /> */}
+        <TimeAgoField label="Expired" source="expired_at" /> */}
         <JobActions label="Actions" />
       </Datagrid>
     </List>

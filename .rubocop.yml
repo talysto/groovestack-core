@@ -10,13 +10,29 @@
 # See https://docs.rubocop.org/rubocop/configuration
 # require: rubocop-rake
 
+require:
+  - rubocop-graphql
+  - rubocop-rails
+
+
 AllCops:
-  TargetRubyVersion: 2.7.2
+  TargetRubyVersion: 3.1.3
+  NewCops: enable
+  # Exclude:
+  #   - 'rails6-sample-app/**'
+  # Include:
+  #   - '**/*.rb'
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
 Gemspec/RequireMFA: # new in 1.23
   Enabled: true
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
+Rails/ApplicationRecord:
+  Enabled: false
+
 Layout/LineContinuationLeadingSpace: # new in 1.31
   Enabled: true
 Layout/LineContinuationSpacing: # new in 1.31
@@ -77,6 +93,10 @@ Lint/UnmodifiedReduceAccumulator: # new in 1.1
   Enabled: true
 Lint/UselessRuby2Keywords: # new in 1.23
   Enabled: true
+Metrics/BlockLength:
+  Max: 50
+Metrics/MethodLength:
+  Max: 15
 Naming/BlockForwarding: # new in 1.24
   Enabled: true
 Security/CompoundHash: # new in 1.28
@@ -87,6 +107,8 @@ Style/ArgumentsForwarding: # new in 1.1
   Enabled: true
 Style/CollectionCompact: # new in 1.2
   Enabled: true
+Style/Documentation:
+  Enabled: false
 Style/DocumentDynamicEvalDefinition: # new in 1.1
   Enabled: true
 Style/EmptyHeredoc: # new in 1.32

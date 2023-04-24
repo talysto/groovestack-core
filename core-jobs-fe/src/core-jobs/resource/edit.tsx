@@ -10,15 +10,16 @@ import {
   Toolbar,
   useRecordContext,
 } from 'react-admin'
-// import { JsonField } from 'react-admin-json-view'
 
-import { TimeAgoField } from './TimeAgoField'
+import { CoreBase } from '../../../../core-base-fe/src/core-base'
+const CoreTimeAgoField = CoreBase.CoreTimeAgoField
+
 import Grid from '@mui/material/Grid'
 
 const ErrorPanel: React.FC = () => {
   const record = useRecordContext()
 
-  if (!record || !record.errorCount) return null
+  if (!record || !record.error_count) return null
 
   console.log(record)
 
@@ -26,32 +27,30 @@ const ErrorPanel: React.FC = () => {
     <>
       <div>
         <Labeled label="Error Count">
-          <TextField source="errorCount" />
+          <TextField source="error_count" />
         </Labeled>
       </div>
       <div>
         <Labeled label="Last Error Message">
-          <TextField source="lastErrorMessage" />
+          <TextField source="last_error_message" />
         </Labeled>
       </div>
       <div>
         <Labeled label="Error Stacktrace">
-          <TextField source="lastErrorBacktrace" />
+          <TextField source="last_error_backtrace" />
         </Labeled>
       </div>
     </>
   )
 }
 
+// const EditToolbar = (props: any) => (
+//   <Toolbar {...props}>
+//     <SaveButton />
+//   </Toolbar>
+// )
+
 export const EditJob = (props: any) => {
-  const EditToolbar = (props: any) => (
-    <Toolbar {...props}>
-      <SaveButton />
-    </Toolbar>
-  )
-
-  // const { record } = useShowController({ resource: 'sessions' })
-
   return (
     <Edit>
       <SimpleShowLayout>
@@ -86,17 +85,17 @@ export const EditJob = (props: any) => {
           <Grid item xs={4}>
             <div>
               <Labeled label="Run At">
-                <TimeAgoField source="runAt" />
+                <CoreTimeAgoField source="run_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Finished At">
-                <TimeAgoField source="finishedAt" />
+                <CoreTimeAgoField source="finished_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Expired At">
-                <TimeAgoField source="expiredAt" />
+                <CoreTimeAgoField source="expired_at" />
               </Labeled>
             </div>
           </Grid>
@@ -105,30 +104,6 @@ export const EditJob = (props: any) => {
         <TextField source="args" />
 
         <TextField source="data" />
-
-        {/* <JsonField
-          source="args"
-          jsonString={false} // Set to true if the value is a string, default: false
-          reactJsonOptions={{
-            // Props passed to react-json-view
-            name: null,
-            collapsed: true,
-            enableClipboard: false,
-            displayDataTypes: false,
-          }}
-        />
-
-        <JsonField
-          source="data"
-          jsonString={false} // Set to true if the value is a string, default: false
-          reactJsonOptions={{
-            // Props passed to react-json-view
-            name: null,
-            collapsed: true,
-            enableClipboard: false,
-            displayDataTypes: false,
-          }}
-        /> */}
 
         <ErrorPanel />
       </SimpleShowLayout>

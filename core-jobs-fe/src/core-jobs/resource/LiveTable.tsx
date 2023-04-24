@@ -1,9 +1,7 @@
-import { BottomNavigationClassKey } from '@mui/material'
-import React from 'react'
-import { number } from 'react-admin';
+import React, { useEffect, useState } from 'react'
 
 type LiveTableProps = {
-  columns: { key: string; label?: string, render?: (v: string) => string }[]
+  columns: { key: string; label?: string; render?: (v: string) => string }[]
   emptyContent?: React.ReactElement
   refreshData: () => Promise<any>
   refreshInterval?: number
@@ -21,7 +19,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({
   transform,
   rowTotals = false,
 }) => {
-  const [data, setData] = React.useState<any[]>([])
+  const [data, setData] = useState<any[]>([])
 
   const fetchData = async () => {
     console.log('LiveTable: fetching data...')
@@ -42,14 +40,20 @@ export const LiveTable: React.FC<LiveTableProps> = ({
         {data.map((record, i) => (
           <tr key={i}>
             {columns.map(({ key, render }, k) => (
-              <td key={`${i}-${k}`} title={record[key]}>{render ? render(record[key]) : record[key]}</td>
+              <td key={`${i}-${k}`} title={record[key]}>
+                {render ? render(record[key]) : record[key]}
+              </td>
             ))}
           </tr>
         ))}
         {rowTotals && data.length > 0 ? (
-          <tr> 
+          <tr>
             {columns.map(({ key }, k) => (
-              <td style={{fontWeight: 'bold'}} key={`total-${k}`}>{isNaN(Number(data[0][key])) ? null : data.reduce((prev, curr) => prev + Number(curr[key]), 0)}</td>
+              <td style={{ fontWeight: 'bold' }} key={`total-${k}`}>
+                {isNaN(Number(data[0][key]))
+                  ? null
+                  : data.reduce((prev, curr) => prev + Number(curr[key]), 0)}
+              </td>
             ))}
           </tr>
         ) : null}
@@ -57,7 +61,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({
     )
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData()
 
     let interval: Timeout
@@ -80,9 +84,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({
           ))}
         </tr>
       </thead>
-      <tbody>
-        {renderTableBody()}
-      </tbody>
+      <tbody>{renderTableBody()}</tbody>
     </table>
   )
 }

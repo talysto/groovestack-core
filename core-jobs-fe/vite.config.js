@@ -8,11 +8,11 @@ import { visualizer } from 'rollup-plugin-visualizer'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
     dts({
       rollupTypes: true,
     }),
-    visualizer({ open: true }),
+    react(),
+    visualizer({ open: false }),
   ],
   build: {
     lib: {

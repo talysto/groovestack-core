@@ -9,8 +9,19 @@ tasks:
 
   tidy:
     cmds:
-      - rubocop -A **/*.rb **/*.gemspec **/Gemfile
+      - cmd: bundle exec rubocop '**/*.rb' --format worst
+        ignore_error: true
+      - cmd: bundle exec rubocop '**/*.rb' --format offenses
+        ignore_error: true
+      - cmd: npx prettier -c .
+        ignore_error: true
+      # - cmd: bundle exec rubocop '**/*.rb'
+      #   ignore_error: true
+
+  tidy-fix:
+    cmds:
       - npx prettier --loglevel warn -w .
+      - bundle exec rubocop -a '**/*.rb
 
   versions:
     silent: true
@@ -18,7 +29,7 @@ tasks:
       - task --version
       - ruby -v
       - echo -n 'rubocop '
-      - rubocop --version
+      - bundle exec rubocop --version
       - echo -n 'pnpm '
       - npx pnpm --version
       - echo -n 'prettier '
@@ -47,3 +58,16 @@ tasks:
       - vite.config.js
     generates:
       - dist/core-jobs.js
+
+  create:
+    silent: true
+    cmds:
+      - echo "This will create a new FE module called '{{.CLI_ARGS}}'"
+      - echo "COMMAND-C to cancel or any key to continue"
+      - read
+      - pnpm create vite {{.CLI_ARGS}}-fe --template react-ts
+      - cd {{.CLI_ARGS}}-fe && pnpm add --save-peer react react-dom react-admin @mui/material @mui/icons-material
+      - cd {{.CLI_ARGS}}-fe && pnpm add -D @faker-js/faker vite-plugin-dts
+      - mkdir -p cd {{.CLI_ARGS}}-fe/src/{{.CLI_ARGS}}
+      # - BACKEND
+      - mkdir {{.CLI_ARGS}}

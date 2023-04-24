@@ -3,7 +3,7 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
@@ -14,12 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "core-base-fe": ["../core-base-fe/src/core-base"],
+      "core-accounting-fe": ["../core-accounting-fe/src/core-accounting"],
+      "core-jobs-fe": ["../core-jobs-fe/src/core-jobs"],
+      "core-comments-fe": ["../core-comments-fe/src/core-comments"],
+      "core-versions-fe": ["../core-versions-fe/src/core-versions"]
+    }
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "paths": {
-    // "@core/jobs": ["../core-jobs-fe"],
-    // "@services/*": ["services/*"]
-}
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

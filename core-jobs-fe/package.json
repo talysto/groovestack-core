@@ -2,52 +2,54 @@
   "name": "core-jobs-fe",
   "private": true,
   "version": "0.1.0",
+  "description": "Async job processing with reliable retries, and real-time job monitoring.",
+  "homepage": "https://moonlight-labs.com/core/jobs",
+  "keywords": [
+    "background jobs",
+    "async jobs"
+  ],
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/core-jobs.umd.cjs",
+  "main": "./dist/core-jobs.js",
   "module": "./dist/core-jobs.js",
+  "main-dist": "./dist/core-jobs.js",
   "types": "./dist/core-jobs.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/core-jobs.js",
-      "require": "./dist/core-jobs.umd.cjs"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "preinstall": "npx only-allow pnpm"
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@babel/core": "7",
-    "@mui/icons-material": "^5.10.2",
-    "@mui/material": "^5.10.2",
-    "@types/react": "^18.0.17",
+    "@babel/core": "^7.21.0",
+    "@faker-js/faker": "^7.6.0",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.0.0",
+    "@types/react": "^18.0.28",
     "@types/react-copy-to-clipboard": "^5.0.4",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.0.1",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
     "dayjs": "^1.11.7",
-    "react": "^18.2.0",
-    "react-admin": "^4.3.0",
-    "react-admin-json-view": "^2.0.0",
+    "prettier": ">=2.0",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "react": ">=16.3.0",
+    "react-admin": "^4.8.4",
     "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "^18.2.0",
+    "react-dom": ">=16.3.0",
     "react-google-charts": "^4.0.0",
-    "rollup": "3.0.0-4",
-    "rollup-plugin-visualizer": "^5.8.0",
-    "typescript": "^4.6.4",
-    "vite": "^3.0.7",
-    "vite-plugin-dts": "^1.4.1"
+    "rollup": "^3.19.1",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "vite-plugin-dts": "^2.1.0"
   },
   "peerDependencies": {
-    "@mui/icons-material": "^5.10.2",
+    "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.10.2",
+    "dayjs": "^1.11.7",
     "react": "^18.2.0",
-    "react-admin": "^4.3.0",
-    "react-admin-json-view": "^2.0.0",
+    "react-admin": "^4.8.4",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0"

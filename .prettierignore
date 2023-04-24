@@ -1,0 +1,8 @@
+dist
+pnpm-lock.yaml
+
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store

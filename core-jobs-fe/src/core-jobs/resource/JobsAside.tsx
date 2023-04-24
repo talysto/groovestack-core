@@ -1,11 +1,7 @@
 import React from 'react'
-
-import { Typography, Card, CardContent } from '@mui/material'
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
+import { Typography, Card, CardContent, Box, Skeleton } from '@mui/material'
 import { useDataProvider, useResourceContext } from 'react-admin'
 
-import { Charts } from '../views'
 import { LiveTable } from './LiveTable'
 import './pivot.css'
 
@@ -20,7 +16,7 @@ export const JobsAside = () => {
 
     return dataProvider.getList(namespacedResource, {
       filter: { reportName: 'job_stats' },
-      pagination: { page: null, perPage: null },
+      pagination: { page: 0, perPage: 10 },
       sort: { field: '', order: '' },
     })
   }
@@ -42,66 +38,62 @@ export const JobsAside = () => {
   }
 
   return (
-    <div style={{ minWidth: '33%', marginLeft: '1em', marginRight: '1em' }}>
-      <Typography
-        style={{
-          marginTop: '4em',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 20,
-        }}
-      >
-        {/* <Card>
-          <CardContent>
-            <Charts.KPIs />
+    <Box
+      sx={{
+        minWidth: '33%',
+        marginLeft: '1em',
+        marginRight: '1em',
+        mt: 8,
+        gap: 3,
+      }}
+    >
+      <Card sx={{ mb: 3 }}>
+        <CardContent>
+          <Typography variant="h6">Jobs by Type</Typography>
+          <LiveTable
+            columns={[
+              { key: 'sub_class', label: 'type' },
+              { key: 'count', label: 'queued' },
+              { key: 'count_working', label: 'working' },
+              { key: 'count_errored', label: 'errors' },
+            ]}
+            emptyContent={
+              <tr>
+                <td colSpan={4}>
+                  <Box style={{ width: '100%' }}>
+                    <Skeleton animation={false} />
+                    <Skeleton animation={false} />
+                    <Skeleton animation={false} />
+                    <div style={{ textAlign: 'center' }}>
+                      No jobs in the queue
+                    </div>
+                  </Box>
+                </td>
+              </tr>
+            }
+            refreshData={refreshJobStatsTable}
+            refreshInterval={30}
+            transform={transformJobStatsData}
+            rowTotals
+          />
+        </CardContent>
+      </Card>
 
-            <h3>Job RPM</h3>
-            <Charts.RPM />
-          </CardContent>
-        </Card> */}
-
-        <Card>
-          <CardContent>
-            <h3>Jobs by Type</h3>
-            <LiveTable
-              columns={[
-                { key: 'sub_class', label: 'type' },
-                { key: 'count', label: 'queued' },
-                { key: 'count_working', label: 'working' },
-                { key: 'count_errored', label: 'errors' },
-              ]}
-              emptyContent={
-                <tr>
-                  <td colSpan={4}>
-                    <Box style={{width: '100%'}}>
-                      <Skeleton animation={false} />
-                      <Skeleton animation={false} />
-                      <Skeleton animation={false} />
-                      <div style={{textAlign: 'center'}}>No jobs in the queue</div>
-                    </Box>
-                  </td>
-                </tr>
-              }
-              refreshData={refreshJobStatsTable}
-              refreshInterval={30}
-              transform={transformJobStatsData}
-              rowTotals
-            />
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent>
-            <h3>Workers</h3>
-            <LiveTable
-              columns={[{ key: 'host', render: ((v: string) => v.substring(0, 6)) }, { key: 'pid' }, { key: 'workers' }]}
-              refreshData={refreshWorkersTable}
-              refreshInterval={30}
-              transform={({ data }) => data}
-            />
-          </CardContent>
-        </Card>
-      </Typography>
-    </div>
+      <Card>
+        <CardContent>
+          <Typography variant="h6">Workers</Typography>
+          <LiveTable
+            columns={[
+              { key: 'host', render: (v: string) => v.substring(0, 6) },
+              { key: 'pid' },
+              { key: 'workers' },
+            ]}
+            refreshData={refreshWorkersTable}
+            refreshInterval={30}
+            transform={({ data }) => data}
+          />
+        </CardContent>
+      </Card>
+    </Box>
   )
 }

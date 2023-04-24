@@ -1,7 +1,7 @@
 {
   "name": "test-core-fe",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,20 +11,28 @@
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
-    "@mui/icons-material": "^5.10.16",
-    "@mui/material": "^5.10.17",
-    "ra-data-fakerest": "^4.6.0",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/lab": "^5.0.0-alpha.124",
+    "@mui/material": "^5.11.12",
+    "dayjs": "^1.11.7",
+    "ra-data-fakerest": "^4.8.2",
     "react": "^18.2.0",
-    "react-admin": "^4.6.0",
+    "react-admin": "^4.8.2",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-google-charts": "^4.0.0"
+    "react-google-charts": "^4.0.0",
+    "react-hook-form": "7.43.9",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
-    "@vitejs/plugin-react": "^2.2.0",
-    "typescript": "^4.6.4",
-    "vite": "^3.2.3"
+    "@types/react": "^18.0.28",
+    "@types/react-copy-to-clipboard": "^5.0.4",
+    "@types/react-dom": "^18.0.11",
+    "@types/uuid": "^9.0.1",
+    "@vitejs/plugin-react": "^3.1.0",
+    "import": "^0.0.6",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "vite-tsconfig-paths": "^4.0.5"
   }
 }

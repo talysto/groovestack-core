@@ -10,18 +10,21 @@ require 'core/jobs/version'
 require 'active_record'
 require 'que/active_record/model'
 
-require 'core/graphql/providers/react_admin/types'
-require 'core/graphql/providers/react_admin/resource'
-
 require 'core/jobs/puma/plugin/que'
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/job'
 require 'core/jobs/locker'
-require 'core/jobs/graphql/types'
-require 'core/jobs/graphql/filters'
-require 'core/jobs/graphql/mutations'
-require 'core/jobs/graphql/queries'
 
+require 'core/jobs/graphql/job/type'
+require 'core/jobs/graphql/job/filter'
+require 'core/jobs/graphql/job/queries'
+require 'core/jobs/graphql/job/mutations'
+require 'core/jobs/graphql/job/locker/type'
+require 'core/jobs/graphql/job/locker/filter'
+require 'core/jobs/graphql/job/locker/queries'
+require 'core/jobs/graphql/job/report/type'
+require 'core/jobs/graphql/job/report/filter'
+require 'core/jobs/graphql/job/report/queries'
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
@@ -31,16 +34,11 @@ module Core
     class WrongSchemaFormat < Core::Jobs::Error; end
     class DepPostgresRequired < Core::Jobs::Error; end
     class WrongActiveJobQueueAdapter < Core::Jobs::Error; end
-
-    # Your code goes here...
   end
-
 end
-
 
 # if Rails.env.development?
 #   Rails.application.console do
 #     puts "Custom message here"
 #   end
 # end
-

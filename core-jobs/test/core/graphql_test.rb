@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # See
 # https://graphql-ruby.org/testing/integration_tests.html
-
 
 require 'test_helper'
 require 'que/active_record/model'
@@ -16,7 +17,6 @@ end
 
 module Core
   class GraphQLTest < Minitest::Test
-
     def test_simple_two
       assert_equal '2', '2'
     end
@@ -27,15 +27,15 @@ module Core
 
     def test_gql_query
       # it "loads jobs by ID" do
-      query_string = <<-GRAPHQL
-        query($id: ID!){
-          node(id: $id) {
-            ... on Job {
-              id
-            }
-          }
-        }
-      GRAPHQL
+      # query_string = <<-GRAPHQL
+      #   query($id: ID!){
+      #     node(id: $id) {
+      #       ... on Job {
+      #         id
+      #       }
+      #     }
+      #   }
+      # GRAPHQL
 
       NativeQueJob.enqueue('one')
       NativeQueJob.enqueue('two')
@@ -44,8 +44,8 @@ module Core
       result = {} # MySchema.execute(query_string, variables: { id: job_id })
 
       job_result = result.dig('data', 'node')
-      refute_nil job_result
-      assert_equal job_id, job_result["id"]
+      assert_not_nil job_result
+      assert_equal job_id, job_result['id']
     end
   end
 end
