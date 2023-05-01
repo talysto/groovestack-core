@@ -9,7 +9,7 @@ require 'paper_trail'
 require 'active_record'
 
 require 'core/versions/railtie' if defined?(Rails::Railtie)
-require 'core/versions/model/version'
+require 'core/versions/models/version'
 require 'core/versions/has_core_versions'
 require 'core/versions/set_core_versions_actor'
 require 'core/versions/version'
