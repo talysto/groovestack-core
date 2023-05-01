@@ -1,31 +1,17 @@
-PATH
-  remote: /Users/maxschridde/dev/moonlight-labs/core/core-accounting
+GIT
+  remote: https://github.com/moonlight-labs/core.git
+  revision: 0a887bc8bc61a5fbb5172cccd3d8a926fb819f35
+  branch: dev
   specs:
     core-accounting (0.1.0)
       double_entry (~> 2.0.0.beta5)
-
-PATH
-  remote: /Users/maxschridde/dev/moonlight-labs/core/core-base
-  specs:
     core-base (0.1.0)
       graphql
       pg
-
-PATH
-  remote: /Users/maxschridde/dev/moonlight-labs/core/core-comments
-  specs:
     core-comments (0.1.0)
-
-PATH
-  remote: /Users/maxschridde/dev/moonlight-labs/core/core-jobs
-  specs:
     core-jobs (0.1.0)
       puma
       que (~> 2.0.0.beta1)
-
-PATH
-  remote: /Users/maxschridde/dev/moonlight-labs/core/core-versions
-  specs:
     core-versions (0.1.0)
       paper_trail
 

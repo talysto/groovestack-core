@@ -19,19 +19,13 @@ gem 'rack-cors' # enable CORS request for specific APIs
 
 # rubocop:disable Bundler/OrderedGems
 
-# git 'https://github.com/moonlight-labs/core.git', branch: 'sprint/core-1.0' do
-#   gem 'core-base' # must be first gem
-#   gem 'core-accounting'
-#   gem 'core-comments'
-#   gem 'core-jobs'
-#   gem 'core-versions'
-# end
-
-gem 'core-base', path: '/Users/maxschridde/dev/moonlight-labs/core/core-base'
-gem 'core-accounting', path: '/Users/maxschridde/dev/moonlight-labs/core/core-accounting'
-gem 'core-comments', path: '/Users/maxschridde/dev/moonlight-labs/core/core-comments'
-gem 'core-jobs', path: '/Users/maxschridde/dev/moonlight-labs/core/core-jobs'
-gem 'core-versions', path: '/Users/maxschridde/dev/moonlight-labs/core/core-versions'
+git 'https://github.com/moonlight-labs/core.git', branch: 'dev' do
+  gem 'core-base' # must be first gem
+  gem 'core-accounting'
+  gem 'core-comments'
+  gem 'core-jobs'
+  gem 'core-versions'
+end
 
 # rubocop:enable Bundler/OrderedGems
 
