@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Core::Referrals::HasCoreReferrals
+
   def account_savings
     DoubleEntry.account(:savings, scope: self)
   end
