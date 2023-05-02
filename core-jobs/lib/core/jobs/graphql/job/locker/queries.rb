@@ -11,7 +11,7 @@ module Core
             included do
               include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-              react_admin_resource :lockers, class_name: "Core::Jobs::Locker", graphql_path: "Core::Jobs::GraphQL::Job"
+              react_admin_resource :lockers, class_name: 'Core::Jobs::Locker', graphql_path: 'Core::Jobs::GraphQL::Job'
             end
 
             def lockers_scope(sort_field: nil, sort_order: nil, filter: {})

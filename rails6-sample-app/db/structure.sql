@@ -17,6 +17,20 @@ SET row_security = off;
 
 
 --
+-- Name: citext; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
+
+
+--
 -- Name: que_validate_tags(jsonb); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -276,7 +290,7 @@ CREATE TABLE public.core_referrals (
 
 CREATE TABLE public.core_referrers (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
-    code character varying NOT NULL,
+    code public.citext NOT NULL,
     referrals_count integer DEFAULT 0,
     referrer_type character varying NOT NULL,
     referrer_id uuid NOT NULL,
@@ -820,7 +834,6 @@ ALTER TABLE ONLY public.core_referrals
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20211206180658'),
 ('20211217172806'),
 ('20220822214505'),
 ('20220822215935'),
@@ -830,6 +843,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230209165828'),
 ('20230209171357'),
 ('20230328235332'),
-('20230403212443');
+('20230403212443'),
+('20230502211350'),
+('20230502211749');
 
 

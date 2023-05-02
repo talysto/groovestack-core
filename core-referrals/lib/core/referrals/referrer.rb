@@ -14,7 +14,7 @@ module Core
       validates :referrer, presence: true
 
       def set_defaults
-        self.code ||= SecureRandom.hex
+        self.code ||= Base32H.encode(Random.new.rand(999_999_999_999_999))
       end
     end
   end

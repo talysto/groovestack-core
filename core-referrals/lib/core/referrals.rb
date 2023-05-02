@@ -5,6 +5,8 @@
 # or possible moved to environment-specific rb files
 # require 'sinatra/activerecord'
 
+require 'base32h'
+require 'counter_culture'
 require 'active_record'
 
 require 'core/referrals/railtie' if defined?(Rails::Railtie)

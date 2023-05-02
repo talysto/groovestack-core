@@ -3,7 +3,7 @@
 class CreateCoreReferrersAndReferrals < ActiveRecord::Migration[6.0]
   def change
     create_table :core_referrers, if_not_exists: true, id: :uuid do |t|
-      t.string :code, null: false
+      t.citext :code, null: false
       t.integer :referrals_count, default: 0
       t.references :referrer, polymorphic: true, type: :uuid, null: false
 
