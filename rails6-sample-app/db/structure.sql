@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: que_validate_tags(jsonb); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -250,6 +257,35 @@ CREATE TABLE public.core_comments (
 
 
 --
+-- Name: core_referrals; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.core_referrals (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    core_referrer_id uuid NOT NULL,
+    referred_type character varying NOT NULL,
+    referred_id uuid NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: core_referrers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.core_referrers (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    code character varying NOT NULL,
+    referrals_count integer DEFAULT 0,
+    referrer_type character varying NOT NULL,
+    referrer_id uuid NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: double_entry_account_balances; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -437,30 +473,11 @@ CREATE TABLE public.schema_migrations (
 --
 
 CREATE TABLE public.things (
-    id bigint NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
-
-
---
--- Name: things_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.things_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: things_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.things_id_seq OWNED BY public.things.id;
 
 
 --
@@ -500,13 +517,6 @@ ALTER TABLE ONLY public.que_jobs ALTER COLUMN id SET DEFAULT nextval('public.que
 
 
 --
--- Name: things id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.things ALTER COLUMN id SET DEFAULT nextval('public.things_id_seq'::regclass);
-
-
---
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -520,6 +530,22 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.core_comments
     ADD CONSTRAINT core_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: core_referrals core_referrals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.core_referrals
+    ADD CONSTRAINT core_referrals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: core_referrers core_referrers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.core_referrers
+    ADD CONSTRAINT core_referrers_pkey PRIMARY KEY (id);
 
 
 --
@@ -646,6 +672,34 @@ CREATE INDEX index_core_comments_on_resource_type_and_resource_id ON public.core
 
 
 --
+-- Name: index_core_referrals_on_core_referrer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referrals_on_core_referrer_id ON public.core_referrals USING btree (core_referrer_id);
+
+
+--
+-- Name: index_core_referrals_on_referred_type_and_referred_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referrals_on_referred_type_and_referred_id ON public.core_referrals USING btree (referred_type, referred_id);
+
+
+--
+-- Name: index_core_referrers_on_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_core_referrers_on_code ON public.core_referrers USING btree (code);
+
+
+--
+-- Name: index_core_referrers_on_referrer_type_and_referrer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referrers_on_referrer_type_and_referrer_id ON public.core_referrers USING btree (referrer_type, referrer_id);
+
+
+--
 -- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -752,12 +806,21 @@ ALTER TABLE ONLY public.org_units
 
 
 --
+-- Name: core_referrals fk_rails_89c7e1582b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.core_referrals
+    ADD CONSTRAINT fk_rails_89c7e1582b FOREIGN KEY (core_referrer_id) REFERENCES public.core_referrers(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20211206180658'),
 ('20211217172806'),
 ('20220822214505'),
 ('20220822215935'),
