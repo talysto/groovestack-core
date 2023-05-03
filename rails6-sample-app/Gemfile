@@ -25,7 +25,7 @@ git 'https://github.com/moonlight-labs/core.git', branch: 'dev' do
   gem 'core-comments'
   gem 'core-jobs'
   gem 'core-versions'
-  # gem 'core-referrals'
+  gem 'core-referrals'
 end
 
 # rubocop:enable Bundler/OrderedGems

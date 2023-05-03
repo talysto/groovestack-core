@@ -32,7 +32,6 @@ Gem::Specification.new do |spec|
 
   # spec.add_dependency 'activerecord', '~> 6.0'
   spec.add_dependency 'base32h'
-  spec.add_dependency 'counter_culture'
 
   # spec.add_development_dependency 'graphql'
   spec.add_development_dependency 'pg'
