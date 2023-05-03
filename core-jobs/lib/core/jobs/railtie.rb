@@ -4,13 +4,6 @@ if defined?(Rails)
   module Core
     module Jobs
       class Railtie < Rails::Engine
-        # config.before_initialize do
-        #   puts "BEFORE"
-        # end
-
-        # engine_name 'something'
-        # isolate_namespace SOMETHING
-
         # Enable our puma plugins for the parent app
         initializer :append_puma_plugins do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
@@ -88,57 +81,8 @@ if defined?(Rails)
               print '✔'.green
               puts "  CORE::Jobs\t#{Core::Jobs::VERSION}"
             end
-
-            # begin
-            # Verify deps/env
-            # postgres, graphql (optional), rails (optional)
-            # begin
-            #   require 'pg'
-            # rescue
-            #   raise DepPostgresRequired
-            # end
-
-            # req_graphql = true
-            # begin
-            #   require 'graphql'
-            # rescue LoadError
-            #   req_graphql = false
-            # end
-
-            # raise Core::Jobs::WrongSchemaFormat unless Rails.application.config.active_record.schema_format == :sql
-            # Que::ActiveRecord::Model.count
-
-            # puts "  Warn: Skipping 'graphql' config #{req_graphql}"
-
-            # rescue Core::Jobs::DepPostgresRequired
-            #   puts "⚠️  Error: 'pg' gem is required, add it your your gemfile"
-
-            # rescue Core::Jobs::WrongSchemaFormat
-            #   puts "⚠️  Error: Must change your schema format to :sql."
-
-            # rescue ActiveRecord::StatementInvalid
-            #   puts "⚠️  Error: Have you run the migrations?"
-
-            # rescue StandardError => error
-            #   puts "⚠️  CORE::JOBS configuration error: "
-            #   puts error.class
-            #   puts error
-            # else
-            #   puts '✔'.green
-            # end
-
           end
         end
-
-        # Does the Railtie has tasks?
-        # rake_tasks do
-        #   load "path/to/my_railtie.tasks"
-        # end
-
-        # Does the Railtie have generators?
-        # generators do
-        #   require "path/to/my_railtie_generator"
-        # end
       end
     end
   end
