@@ -185,6 +185,26 @@ end
 />
 ```
 
+== SETUP for Core-Referrals
+* add the core gems to your Gemfile
+```
+git 'https://github.com/moonlight-labs/core.git', branch: 'main' do
+  gem 'core-base'
+  gem 'core-referrals'
+end
+```
+* run `bundle`
+* run `rails db:migrate`
+* add `include Core::Referrals::HasCoreReferrals` to any wanted models
+* those models will now have access to:
+```
+.core_referrers # that record's list of referral code records
+.core_referrals # that record's list of referred records
+.ensure_referrer! # find or create a referral code record
+.create_referral!(referred) # create a new referral
+```
+* if needed, the default behavior of referral code generation can be overridden by overriding the `generate_code` method in the `Referrer` model
+
 == SAMPLES
 
 * core-rails6-sample-app - created with `rails _6.1.6_ new core-rails6-sample-app -d=postgresql -J --skip-turbolinks`
