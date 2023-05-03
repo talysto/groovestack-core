@@ -50,12 +50,7 @@ if defined?(Rails)
 
         config.after_initialize do
           if (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
-
             validations = [
-              {
-                eval: proc { require 'pg' },
-                message: "Error: 'pg' gem is required, add it your your gemfile"
-              },
               {
                 eval: proc { raise unless defined?(::Core::Base) },
                 message: "Error: 'core-base' gem is required, add it your your gemfile"

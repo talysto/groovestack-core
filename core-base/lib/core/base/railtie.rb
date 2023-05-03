@@ -52,7 +52,6 @@ if defined?(Rails)
 
         config.after_initialize do
           if (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
-
             validations = [
               {
                 eval: proc { require 'pg' },
