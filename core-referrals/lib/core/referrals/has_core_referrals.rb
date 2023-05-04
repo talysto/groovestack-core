@@ -7,7 +7,7 @@ module Core
 
       included do
         has_many :referral_codes, as: :referrer, class_name: 'Core::Referrals::ReferralCode'
-        has_many :referrals, as: :referred, class_name: 'Core::Referrals::Referral'
+        has_many :referrals, through: :referral_codes, class_name: 'Core::Referrals::Referral'
 
         def ensure_referral_code!
           referral_codes.first_or_create!

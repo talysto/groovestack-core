@@ -198,10 +198,10 @@ end
 * add `include Core::Referrals::HasCoreReferrals` to any wanted models
 * those models will now have access to:
 ```
-.core_referrers # that record's list of referral code records
-.core_referrals # that record's list of referred records
-.ensure_referrer! # find or create a referral code record
-.create_referral!(referred) # create a new referral
+.referral_codes # that record's list of referral codes
+.referrals # that record's list of referrals from referral codes
+.ensure_referral_code! # find or create a referral code record
+.create_referral!(referred) # create a new referral from that record for the referred (will create a code if needed)
 ```
 * if needed, the default behavior of referral code generation can be overridden by overriding the `generate_code` method in the `Referrer` model
 
