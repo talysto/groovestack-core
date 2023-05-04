@@ -271,29 +271,29 @@ CREATE TABLE public.core_comments (
 
 
 --
--- Name: core_referrals; Type: TABLE; Schema: public; Owner: -
+-- Name: core_referral_codes; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.core_referrals (
+CREATE TABLE public.core_referral_codes (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
-    core_referrer_id uuid NOT NULL,
-    referred_type character varying NOT NULL,
-    referred_id uuid NOT NULL,
+    code public.citext NOT NULL,
+    referrals_count integer DEFAULT 0,
+    referrer_type character varying NOT NULL,
+    referrer_id uuid NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
 
 
 --
--- Name: core_referrers; Type: TABLE; Schema: public; Owner: -
+-- Name: core_referrals; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.core_referrers (
+CREATE TABLE public.core_referrals (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
-    code public.citext NOT NULL,
-    referrals_count integer DEFAULT 0,
-    referrer_type character varying NOT NULL,
-    referrer_id uuid NOT NULL,
+    core_referral_code_id uuid NOT NULL,
+    referred_type character varying NOT NULL,
+    referred_id uuid NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -547,19 +547,19 @@ ALTER TABLE ONLY public.core_comments
 
 
 --
+-- Name: core_referral_codes core_referral_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.core_referral_codes
+    ADD CONSTRAINT core_referral_codes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: core_referrals core_referrals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.core_referrals
     ADD CONSTRAINT core_referrals_pkey PRIMARY KEY (id);
-
-
---
--- Name: core_referrers core_referrers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.core_referrers
-    ADD CONSTRAINT core_referrers_pkey PRIMARY KEY (id);
 
 
 --
@@ -686,10 +686,24 @@ CREATE INDEX index_core_comments_on_resource_type_and_resource_id ON public.core
 
 
 --
--- Name: index_core_referrals_on_core_referrer_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_core_referral_codes_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_core_referrals_on_core_referrer_id ON public.core_referrals USING btree (core_referrer_id);
+CREATE UNIQUE INDEX index_core_referral_codes_on_code ON public.core_referral_codes USING btree (code);
+
+
+--
+-- Name: index_core_referral_codes_on_referrer_type_and_referrer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referral_codes_on_referrer_type_and_referrer_id ON public.core_referral_codes USING btree (referrer_type, referrer_id);
+
+
+--
+-- Name: index_core_referrals_on_core_referral_code_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referrals_on_core_referral_code_id ON public.core_referrals USING btree (core_referral_code_id);
 
 
 --
@@ -697,20 +711,6 @@ CREATE INDEX index_core_referrals_on_core_referrer_id ON public.core_referrals U
 --
 
 CREATE INDEX index_core_referrals_on_referred_type_and_referred_id ON public.core_referrals USING btree (referred_type, referred_id);
-
-
---
--- Name: index_core_referrers_on_code; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_core_referrers_on_code ON public.core_referrers USING btree (code);
-
-
---
--- Name: index_core_referrers_on_referrer_type_and_referrer_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_core_referrers_on_referrer_type_and_referrer_id ON public.core_referrers USING btree (referrer_type, referrer_id);
 
 
 --
@@ -820,11 +820,11 @@ ALTER TABLE ONLY public.org_units
 
 
 --
--- Name: core_referrals fk_rails_89c7e1582b; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: core_referrals fk_rails_84cbf2b26d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.core_referrals
-    ADD CONSTRAINT fk_rails_89c7e1582b FOREIGN KEY (core_referrer_id) REFERENCES public.core_referrers(id);
+    ADD CONSTRAINT fk_rails_84cbf2b26d FOREIGN KEY (core_referral_code_id) REFERENCES public.core_referral_codes(id);
 
 
 --

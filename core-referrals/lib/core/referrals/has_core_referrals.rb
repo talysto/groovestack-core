@@ -6,16 +6,16 @@ module Core
       extend ActiveSupport::Concern
 
       included do
-        has_many :core_referrers, as: :referrer, class_name: 'Core::Referrals::Referrer'
-        has_many :core_referrals, as: :referred, class_name: 'Core::Referrals::Referral'
+        has_many :referral_codes, as: :referrer, class_name: 'Core::Referrals::ReferralCode'
+        has_many :referrals, as: :referred, class_name: 'Core::Referrals::Referral'
 
-        def ensure_referrer!
-          core_referrers.first_or_create!
+        def ensure_referral_code!
+          referral_codes.first_or_create!
         end
 
         def create_referral!(referred)
-          referrer = ensure_referrer!
-          referrer.referrals.create!(referred: referred)
+          referral_code = ensure_referral_code!
+          referral_code.referrals.create!(referred: referred)
         end
       end
     end

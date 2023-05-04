@@ -10,7 +10,7 @@ require 'active_record'
 
 require 'core/referrals/railtie' if defined?(Rails::Railtie)
 require 'core/referrals/referral'
-require 'core/referrals/referrer'
+require 'core/referrals/referral_codes'
 require 'core/referrals/has_core_referrals'
 require 'core/referrals/version'
 

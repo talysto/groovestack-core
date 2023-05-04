@@ -2,11 +2,11 @@
 
 module Core
   module Referrals
-    class Referrer < ActiveRecord::Base
-      self.table_name = 'core_referrers'
+    class ReferralCode < ActiveRecord::Base
+      self.table_name = 'core_referral_codes'
 
       belongs_to :referrer, polymorphic: true
-      has_many :referrals, foreign_key: 'core_referrer_id', class_name: 'Core::Referrals::Referral'
+      has_many :referrals, foreign_key: 'core_referral_code_id', class_name: 'Core::Referrals::Referral'
 
       before_validation :set_defaults, on: :create
 
