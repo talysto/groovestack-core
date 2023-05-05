@@ -2,7 +2,7 @@
 
 class CreateDoubleEntrySchema < ActiveRecord::Migration[6.0]
   def self.up
-    create_table 'double_entry_account_balances', id: :uuid do |t|
+    create_table 'double_entry_account_balances', if_not_exists: true, id: :uuid do |t|
       t.string     'account', null: false
       t.string     'scope'
       t.bigint     'balance', null: false

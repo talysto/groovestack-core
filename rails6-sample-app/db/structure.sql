@@ -10,6 +10,27 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
+-- Name: citext; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
+
+
+--
 -- Name: que_validate_tags(jsonb); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -250,6 +271,35 @@ CREATE TABLE public.core_comments (
 
 
 --
+-- Name: core_referral_codes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.core_referral_codes (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    code public.citext NOT NULL,
+    referrals_count integer DEFAULT 0,
+    referrer_type character varying NOT NULL,
+    referrer_id uuid NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: core_referrals; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.core_referrals (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    core_referral_code_id uuid NOT NULL,
+    referred_type character varying NOT NULL,
+    referred_id uuid NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: double_entry_account_balances; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -437,30 +487,11 @@ CREATE TABLE public.schema_migrations (
 --
 
 CREATE TABLE public.things (
-    id bigint NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
-
-
---
--- Name: things_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.things_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: things_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.things_id_seq OWNED BY public.things.id;
 
 
 --
@@ -500,13 +531,6 @@ ALTER TABLE ONLY public.que_jobs ALTER COLUMN id SET DEFAULT nextval('public.que
 
 
 --
--- Name: things id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.things ALTER COLUMN id SET DEFAULT nextval('public.things_id_seq'::regclass);
-
-
---
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -520,6 +544,22 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.core_comments
     ADD CONSTRAINT core_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: core_referral_codes core_referral_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.core_referral_codes
+    ADD CONSTRAINT core_referral_codes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: core_referrals core_referrals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.core_referrals
+    ADD CONSTRAINT core_referrals_pkey PRIMARY KEY (id);
 
 
 --
@@ -646,6 +686,34 @@ CREATE INDEX index_core_comments_on_resource_type_and_resource_id ON public.core
 
 
 --
+-- Name: index_core_referral_codes_on_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_core_referral_codes_on_code ON public.core_referral_codes USING btree (code);
+
+
+--
+-- Name: index_core_referral_codes_on_referrer_type_and_referrer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referral_codes_on_referrer_type_and_referrer_id ON public.core_referral_codes USING btree (referrer_type, referrer_id);
+
+
+--
+-- Name: index_core_referrals_on_core_referral_code_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referrals_on_core_referral_code_id ON public.core_referrals USING btree (core_referral_code_id);
+
+
+--
+-- Name: index_core_referrals_on_referred_type_and_referred_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_core_referrals_on_referred_type_and_referred_id ON public.core_referrals USING btree (referred_type, referred_id);
+
+
+--
 -- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -752,6 +820,14 @@ ALTER TABLE ONLY public.org_units
 
 
 --
+-- Name: core_referrals fk_rails_84cbf2b26d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.core_referrals
+    ADD CONSTRAINT fk_rails_84cbf2b26d FOREIGN KEY (core_referral_code_id) REFERENCES public.core_referral_codes(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -767,6 +843,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230209165828'),
 ('20230209171357'),
 ('20230328235332'),
-('20230403212443');
+('20230403212443'),
+('20230502211350'),
+('20230502211749');
 
 

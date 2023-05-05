@@ -2,23 +2,23 @@
 
 if defined?(Rails)
   module Core
-    module Base
+    module Referrals
       class Railtie < Rails::Engine
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            # config.paths['db/migrate'].expanded.each do |expanded_path|
-            #   app.config.paths['db/migrate'] << expanded_path
-            # end
+            config.paths['db/migrate'].expanded.each do |expanded_path|
+              app.config.paths['db/migrate'] << expanded_path
+            end
           end
         end
 
         # Enable our new initializers for the parent app
         initializer :append_initializers do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            # config.paths['config/initializers'].expanded.each do |expanded_path|
-            #   app.config.paths['config/initializers'] << expanded_path
-            # end
+            config.paths['config/initializers'].expanded.each do |expanded_path|
+              app.config.paths['config/initializers'] << expanded_path
+            end
           end
         end
 
@@ -26,12 +26,20 @@ if defined?(Rails)
           if (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
             validations = [
               {
-                eval: proc { require 'pg' },
-                message: "Error: 'pg' gem is required, add it your your gemfile"
+                eval: proc { raise unless defined?(::Core::Base) },
+                message: "Error: 'core-base' gem is required, add it your your gemfile"
               },
               {
-                eval: proc { require 'graphql' },
-                message: "Error: 'graphql' gem is required, add it your your gemfile"
+                eval: proc { require 'base32h' },
+                message: "Error: 'base32h' gem is required, add it your your gemfile"
+              },
+              {
+                eval: proc do
+                        unless Rails.application.config.active_record.schema_format == :sql
+                          raise Core::Referrals::WrongSchemaFormat
+                        end
+                      end,
+                message: 'Error: Must change your schema format to :sql'
               }
             ]
 
@@ -47,10 +55,10 @@ if defined?(Rails)
 
             if errors.length.positive?
               print '⚠️'.brown
-              puts "  CORE::Base\t#{Core::Base::VERSION}\t#{errors[0]}"
+              puts "  CORE::Referrals\t#{Core::Referrals::VERSION}\t#{errors[0]}"
             else
               print '✔'.green
-              puts "  CORE::Base\t#{Core::Base::VERSION}"
+              puts "  CORE::Referrals\t#{Core::Referrals::VERSION}"
             end
           end
         end

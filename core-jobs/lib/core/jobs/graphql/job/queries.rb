@@ -12,7 +12,7 @@ module Core
             include ::Core::Jobs::GraphQL::Job::Locker::Queries
             include ::Core::Jobs::GraphQL::Job::Report::Queries 
 
-            react_admin_resource :jobs, class_name: "Core::Jobs::Job", graphql_path: "Core::Jobs::GraphQL"
+            react_admin_resource :jobs, class_name: 'Core::Jobs::Job', graphql_path: 'Core::Jobs::GraphQL'
           end
 
           def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
