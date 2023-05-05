@@ -195,6 +195,7 @@ end
 ```
 * run `bundle`
 * run `rails db:migrate`
+* citext postgres extension is expected
 * add `include Core::Referrals::HasCoreReferrals` to any wanted models
 * those models will now have access to:
 ```
