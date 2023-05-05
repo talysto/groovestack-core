@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/moonlight-labs/core.git
-  revision: 0a887bc8bc61a5fbb5172cccd3d8a926fb819f35
+  revision: 232819349fed5c11f095ed5022dbb0a7d2c61308
   branch: dev
   specs:
     core-accounting (0.1.0)
@@ -12,6 +12,8 @@ GIT
     core-jobs (0.1.0)
       puma
       que (~> 2.0.0.beta1)
+    core-referrals (0.1.0)
+      base32h
     core-versions (0.1.0)
       paper_trail
 
@@ -80,6 +82,7 @@ GEM
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     awesome_print (1.9.2)
+    base32h (0.1.1)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -258,6 +261,7 @@ DEPENDENCIES
   core-base!
   core-comments!
   core-jobs!
+  core-referrals!
   core-versions!
   faker
   graphiql-rails
