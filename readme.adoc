@@ -16,10 +16,10 @@ end
 ```
 * run `bundle`
 * run `rails db:migrate`
-* include `include Core::Accounting::GraphQL::Queries` in `Types::Query`. ex:
+* include `include Core::Accounting::GraphQL::Line::Queries` in `Types::Query`. ex:
 ```
 class Types::Query < GraphQL::Schema::Object
-  include Core::Accounting::GraphQL::Queries
+  include Core::Accounting::GraphQL::Line::Queries
 end
 ```
 * add a core-accounting initializer to 
@@ -76,16 +76,16 @@ end
 * run `bundle`
 * run `rails db:migrate`
 * set `config.active_job.queue_adapter = :que` in `(environment).rb`
-* include `include Core::Jobs::GraphQL::Queries` in `Types::Query`. ex:
+* include `include Core::Jobs::GraphQL::Job::Queries` in `Types::Query`. ex:
 ```
 class Types::Query < GraphQL::Schema::Object
-  include Core::Jobs::GraphQL::Queries
+  include Core::Jobs::GraphQL::Job::Queries
 end
 ```
-* include `include Core::Jobs::GraphQL::Mutations` in `Types::Mutation`. ex:
+* include `include Core::Jobs::GraphQL::Job::Mutations` in `Types::Mutation`. ex:
 ```
 class Types::Mutation < GraphQL::Schema::Object
-  include Core::Jobs::GraphQL::Mutations
+  include Core::Jobs::GraphQL::Job::Mutations
 end
 ```
 * configure the job runner (in Procfile, etc.)
@@ -125,16 +125,16 @@ end
 ```
 * run `bundle`
 * run `rails db:migrate`
-* include `include Core::Comments::GraphQL::Queries` in `Types::Query`. ex:
+* include `include Core::Comments::GraphQL::Comment::Queries` in `Types::Query`. ex:
 ```
 class Types::Query < GraphQL::Schema::Object
-  include Core::Comments::GraphQL::Queries
+  include Core::Comments::GraphQL::Comment::Queries
 end
 ```
-* include `include Core::Comments::GraphQL::Mutations` in `Types::Mutation`. ex:
+* include `include Core::Comments::GraphQL::Comment::Mutations` in `Types::Mutation`. ex:
 ```
 class Types::Mutation < GraphQL::Schema::Object
-  include Core::Comments::GraphQL::Mutations
+  include Core::Comments::GraphQL::Comment::Mutations
 end
 ```
 
@@ -162,10 +162,10 @@ end
 ```
 * run `bundle`
 * run `rails db:migrate`
-* include `include Core::Versions::GraphQL::Queries` in `Types::Query`. ex:
+* include `include Core::Versions::GraphQL::Version::Queries` in `Types::Query`. ex:
 ```
 class Types::Query < GraphQL::Schema::Object
-  include Core::Versions::GraphQL::Queries
+  include Core::Versions::GraphQL::Version::Queries
 end
 ```
 * add `before_action :set_core_versions_actor` to your `ApplicationController` or other wanted controllers
