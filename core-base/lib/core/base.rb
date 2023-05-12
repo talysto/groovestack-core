@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'graphql'
+require 'pg'
+
 require 'core/base/utilities/string'
 
 require 'core/base/version'
