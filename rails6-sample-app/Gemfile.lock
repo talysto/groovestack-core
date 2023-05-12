@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/moonlight-labs/core.git
-  revision: 232819349fed5c11f095ed5022dbb0a7d2c61308
+  revision: fbe2e5a4870029f72ccf6d1ac186d8fe2ec286f8
   branch: dev
   specs:
     core-accounting (0.1.0)
@@ -117,7 +117,7 @@ GEM
     graphiql-rails (1.9.0)
       railties
       sprockets-rails
-    graphql (2.0.19)
+    graphql (2.0.21)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jsonb_accessor (1.3.7)
@@ -265,11 +265,9 @@ DEPENDENCIES
   core-versions!
   faker
   graphiql-rails
-  graphql
   jsonb_accessor
   listen (~> 3.3)
   net-smtp
-  pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
   rack-mini-profiler (~> 2.0)
