@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "main": "./dist/core-base.js",
+  "module": "./dist/core-base.js",
+  "main-dist": "./dist/core-base.js",
+  "types": "./dist/core-base.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
