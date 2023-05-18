@@ -11,7 +11,7 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import { CoreBase } from '../../../../core-base-fe/src/core-base'
+import { CoreBase } from '@moonlight-labs/core-base-fe'
 const CoreTimeAgoField = CoreBase.CoreTimeAgoField
 
 import Grid from '@mui/material/Grid'

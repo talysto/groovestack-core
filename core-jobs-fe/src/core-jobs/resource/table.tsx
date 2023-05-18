@@ -20,11 +20,12 @@ import {
   useDataProvider,
   useResourceContext,
   useRefresh,
+  RaRecord
 } from 'react-admin'
 
 import { JobsAside } from './JobsAside'
 
-import { CoreBase } from '../../../../core-base-fe/src/core-base'
+import { CoreBase } from '@moonlight-labs/core-base-fe'
 const CoreTimeAgoField = CoreBase.CoreTimeAgoField
 
 const JobsFilters = [
@@ -44,7 +45,7 @@ const JobsFilters = [
   />,
 ]
 
-const enhancedStatus = (record) => {
+const enhancedStatus = (record: RaRecord) => {
   // var extended = null;
 
   const runningIcon = <CircularProgress size="0.75em" />

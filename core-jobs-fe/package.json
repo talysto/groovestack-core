@@ -1,6 +1,5 @@
 {
-  "name": "core-jobs-fe",
-  "private": true,
+  "name": "@moonlight-labs/core-jobs-fe",
   "version": "0.1.0",
   "description": "Async job processing with reliable retries, and real-time job monitoring.",
   "homepage": "https://moonlight-labs.com/core/jobs",
@@ -19,7 +18,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preversion": "yarn build",
+    "postversion": "yarn publish && echo \"Successfully released version $npm_package_version!\"",
+    "publish-patch": "yarn version --patch",
+    "publish-minor": "yarn version --minor",
+    "publish-major": "yarn version --major"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
@@ -53,5 +57,8 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0"
+  },
+  "dependencies": {
+    "@moonlight-labs/core-base-fe": "^0.1.3"
   }
 }
