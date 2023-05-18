@@ -1,7 +1,6 @@
 {
-  "name": "core-base-fe",
-  "private": true,
-  "version": "0.1.0",
+  "name": "@moonlight-labs/core-base-fe",
+  "version": "0.1.1",
   "type": "module",
   "main": "./dist/core-base.js",
   "module": "./dist/core-base.js",
