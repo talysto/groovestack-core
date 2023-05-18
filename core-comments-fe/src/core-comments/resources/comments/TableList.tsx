@@ -4,22 +4,11 @@ import {
   List,
   Datagrid,
   TextField,
-  DateField,
   EditButton,
-  ListProps,
-  SearchInput,
-  DateInput,
-  ReferenceInput,
-  SelectInput,
-  ReferenceField,
-  AutocompleteInput,
-  RecordContext,
-  useListContext,
-  useRecordContext,
-  FilterForm,
+  DateInput
 } from 'react-admin'
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
-import { CoreBase } from '../../../../../core-base-fe/src/core-base'
+import { CoreBase } from '@moonlight-labs/core-base-fe'
 const CoreDateField = CoreBase.CoreDateField
 
 const ActionsField = (props: any) => {

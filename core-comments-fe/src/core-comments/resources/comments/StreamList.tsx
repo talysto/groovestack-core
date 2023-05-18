@@ -12,14 +12,17 @@ import {
   useRedirect,
   SaveButton,
   useRecordContext,
-  SimpleForm
+  SimpleForm,
+  RowClickFunction,
+  RaRecord,
+  Identifier
 } from 'react-admin'
 
 import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Typography, Avatar, Box } from '@mui/material'
 import { Comments } from '.'
 import { CommentCreateProps } from './Create'
-import { CoreBase } from '../../../../../core-base-fe/src/core-base'
+import { CoreBase } from '@moonlight-labs/core-base-fe'
 
 const CoreDateField = CoreBase.CoreDateField
 
@@ -53,7 +56,7 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
 
   const [toggleEditView, setToggleEditView] = useState<any>(null)
 
-  const toggleEdit = (id: any, resource: any, record: any) => {
+  const toggleEdit: RowClickFunction = (id: Identifier, resource: string, record: RaRecord) => {
     setToggleEditView(id)
     
     return false

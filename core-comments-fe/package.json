@@ -1,12 +1,23 @@
 {
-  "name": "core-comments-fe",
-  "private": true,
+  "name": "@moonlight-labs/core-comments-fe",
   "version": "0.1.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/core-jobs.js",
+  "module": "./dist/core-jobs.js",
+  "main-dist": "./dist/core-jobs.js",
+  "types": "./dist/core-jobs.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preversion": "yarn build",
+    "postversion": "yarn publish && echo \"Successfully released version $npm_package_version!\"",
+    "publish-patch": "yarn version --patch",
+    "publish-minor": "yarn version --minor",
+    "publish-major": "yarn version --major"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -30,5 +41,8 @@
     "react-admin": "^4.9.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "7.43.9"
+  },
+  "dependencies": {
+    "@moonlight-labs/core-base-fe": "^0.1.3"
   }
 }

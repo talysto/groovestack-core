@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // import { makeStyles, Theme, createStyles } from '@mui/material/styles';
 
-import { useDataProvider, useNotify } from 'react-admin'
+import { DeleteParams, UpdateParams, useDataProvider, useNotify } from 'react-admin'
 import CommentCard from './CommentCard'
 import { CardListProps } from '../types'
 // import { FETCH_COMMENTS } from 'comments/shared/gql'
@@ -36,13 +36,13 @@ const CardList = (props: CardListProps) => {
     }
   }
 
-  const handleDelete = ({ id, previousData, onSuccess }) => {
+  const handleDelete = ({ id, previousData, onSuccess }: DeleteParams & {onSuccess: ()=> void}) => {
     dataProvider
       .delete('admin/comment', { id, previousData })
       .then(async (response) => {
         onSuccess()
         await fetchComments()
-        notify('Deleted successfully', 'success')
+        notify('Deleted successfully', {type: 'success'})
       })
       .catch((error) => console.log(error))
   }
@@ -52,18 +52,18 @@ const CardList = (props: CardListProps) => {
       .create('admin/comment', { data: info })
       .then((response) => {
         fetchComments()
-        notify('Created successfully', 'success')
+        notify('Created successfully', {type: 'success'})
       })
       .catch((error) => console.log(error))
   }
 
-  const handleUpdate = ({ id, data, previousData, onSuccess }) => {
+  const handleUpdate = ({ id, data, previousData, onSuccess }: UpdateParams & {onSuccess: ()=> void}) => {
     dataProvider
       .update('admin/comment', { id, data, previousData })
       .then(async (response) => {
         onSuccess()
         await fetchComments()
-        notify('Updated successfully', 'success')
+        notify('Updated successfully', {type: 'success'})
       })
   }
 
