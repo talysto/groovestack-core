@@ -28,7 +28,7 @@ export default defineConfig({
       // into your library
       // plugins: [autoExternal()],
 
-      external: [/node_modules/],
+      external: ["@mui/icons-material", "@mui/material", "dayjs", "react", "react-admin", "react-copy-to-clipboard", "react-dom", "react-google-charts"],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps

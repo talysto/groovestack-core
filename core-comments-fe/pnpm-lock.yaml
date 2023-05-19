@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@moonlight-labs/core-base-fe':
-    specifier: ^0.1.3
-    version: 0.1.3(dayjs@1.11.7)(react-admin@4.9.1)(react@18.2.0)
+    specifier: ^0.1.4
+    version: 0.1.4(dayjs@1.11.7)(react-admin@4.9.1)(react@18.2.0)
 
 devDependencies:
   '@faker-js/faker':
@@ -663,8 +663,8 @@ packages:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
 
-  /@moonlight-labs/core-base-fe@0.1.3(dayjs@1.11.7)(react-admin@4.9.1)(react@18.2.0):
-    resolution: {integrity: sha512-y22+uQu0tj25HOvUakM7bWPdgBqE72/AOUEpqKZe7U+KqR0Ipat7qotrgf4SQ8nIVy/4Cpa55fqb/k+gpyGXkQ==}
+  /@moonlight-labs/core-base-fe@0.1.4(dayjs@1.11.7)(react-admin@4.9.1)(react@18.2.0):
+    resolution: {integrity: sha512-1k1Kz86wwURNpGX8d0cuO++2HYZkg8g9VtPcFbCrWMiOAnTn4opU2G5EQ51R8u2spM5mH9l2KjJLNnuV+LWt3A==}
     peerDependencies:
       dayjs: ^1.11.7
       react: ^18.2.0
