@@ -64,7 +64,7 @@ module Core
                 # Collection
 
                 unless except.include?(:collection)
-                  field "all#{entity.to_s.camelize}".to_sym, type: [entity_type], null: false,
+                  field "all_#{entity.to_s.underscore}".to_sym, type: [entity_type], null: false, camelize: false,
                                                              resolver_method: entity do
                     argument :page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.page
                     argument :per_page, ::GraphQL::Types::Int, required: false,
@@ -81,7 +81,7 @@ module Core
 
                 return if except.include?(:collection_meta)
 
-                field "_all#{entity.to_s.camelize}Meta".to_sym,
+                field "_all_#{entity.to_s.underscore}_meta".to_sym,
                       type: ::Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata,
                       camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
                   argument :page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.page
