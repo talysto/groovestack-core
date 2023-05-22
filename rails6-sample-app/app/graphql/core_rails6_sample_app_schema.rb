@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CoreRails6SampleAppSchema < GraphQL::Schema
-  mutation(GraphQL::Types::Mutation)
-  query(GraphQL::Types::Query)
+  mutation(GraphQL::AppMutation)
+  query(GraphQL::AppQuery)
 
   # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
   use GraphQL::Dataloader
