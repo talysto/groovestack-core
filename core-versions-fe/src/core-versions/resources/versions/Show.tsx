@@ -1,8 +1,10 @@
 import React from 'react'
 
 import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
-import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+
 import { ChangesTable } from './TableList'
+import { CoreBase } from '@moonlight-labs/core-base-fe'
+const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
 
 const VersionsTitle = (props: any) => {
   const { record } = props

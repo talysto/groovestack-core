@@ -59,6 +59,6 @@
     "react-google-charts": "^4.0.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "^0.1.4"
+    "@moonlight-labs/core-base-fe": "^0.1.5"
   }
 }

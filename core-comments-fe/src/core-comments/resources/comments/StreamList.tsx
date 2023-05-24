@@ -18,12 +18,12 @@ import {
   Identifier
 } from 'react-admin'
 
-import { PolymorphicReferenceField } from './PolymorphicReferenceField'
 import { Typography, Avatar, Box } from '@mui/material'
+
 import { Comments } from '.'
 import { CommentCreateProps } from './Create'
 import { CoreBase } from '@moonlight-labs/core-base-fe'
-
+const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
 const CoreDateField = CoreBase.CoreDateField
 
 const AuthorField = () => {

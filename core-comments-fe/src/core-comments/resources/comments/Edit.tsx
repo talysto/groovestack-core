@@ -8,7 +8,9 @@ import {
   EditProps,
   SimpleShowLayout,
 } from 'react-admin'
-import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+
+import { CoreBase } from '@moonlight-labs/core-base-fe'
+const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
 
 export const CommentEdit = () => {
   return (

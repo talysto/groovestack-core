@@ -16,9 +16,11 @@ import {
   useRecordContext,
   WrapperField
 } from 'react-admin'
-import { PolymorphicReferenceField } from './PolymorphicReferenceField'
-import { CoreBase } from '../../../../../core-base-fe/src/core-base' // TODO make core-base-fe a proper peer dep
+
 import { Box } from '@mui/material'
+
+import { CoreBase } from '@moonlight-labs/core-base-fe'
+const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
 const CoreDateField = CoreBase.CoreDateField
 
 const ActionsField = (props: any) => {

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@moonlight-labs/core-base-fe": "^0.1.0",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.124",
     "@mui/material": "^5.11.13",
@@ -31,5 +32,8 @@
     "react": "^18.2.0",
     "react-admin": "^4.8.3",
     "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@moonlight-labs/core-base-fe": "^0.1.5"
   }
 }
