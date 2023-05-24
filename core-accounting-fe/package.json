@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@babel/core": "7",
-    "@moonlight-labs/core-base-fe": "^0.1.0",
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.10.2",
     "@types/react": "^18.0.17",
