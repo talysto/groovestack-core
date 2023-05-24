@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "@moonlight-labs/core-base-fe": "^0.1.0",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.124",
     "@mui/material": "^5.11.13",
