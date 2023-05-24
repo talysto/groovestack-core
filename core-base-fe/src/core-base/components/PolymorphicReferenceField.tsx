@@ -7,7 +7,7 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-interface PolymorphicReferenceFieldProps extends PublicFieldProps {
+export interface PolymorphicReferenceFieldProps extends PublicFieldProps {
   source: string
 }
 
