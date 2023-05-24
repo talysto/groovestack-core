@@ -7,8 +7,9 @@ import {
   EditButton,
   DateInput
 } from 'react-admin'
-import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+
 import { CoreBase } from '@moonlight-labs/core-base-fe'
+const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
 const CoreDateField = CoreBase.CoreDateField
 
 const ActionsField = (props: any) => {

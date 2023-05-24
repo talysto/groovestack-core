@@ -1,10 +1,11 @@
 import React from 'react'
+
 import {
   ReferenceManyField,
   useRecordContext,
   SingleFieldList,
 } from 'react-admin'
-import { PolymorphicReferenceField } from './PolymorphicReferenceField'
+
 import { Typography, Box } from '@mui/material'
 import {
   TimelineConnector,
@@ -15,7 +16,8 @@ import {
   TimelineSeparator,
 } from '@mui/lab'
 
-import { CoreBase } from '../../../../../core-base-fe/src/core-base' // TODO make core-base-fe a proper peer dep
+import { CoreBase } from '@moonlight-labs/core-base-fe'
+const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
 const CoreDateField = CoreBase.CoreDateField
 
 export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: number}) => {
