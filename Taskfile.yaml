@@ -35,22 +35,43 @@ tasks:
       - echo -n 'prettier '
       - npx prettier --version
 
+  dev:
+    dir: test-core-fe
+    cmds:
+      - pnpm install
+      - pnpm dev
+
   test:
     cmds:
       - task: test-core-jobs
 
   build:
     cmds:
+      - task: build-core-base-fe
       - task: build-core-jobs-fe
+      # - task: build-core-versions-fe
 
   test-core-jobs:
     dir: core-jobs
     cmds:
       - bundle exec rake
 
+  build-core-base-fe:
+    dir: core-base-fe
+    cmds:
+      - pnpm install
+      - npx pnpm build
+    sources:
+      - src/**/*.*
+      - tsconfig.json
+      - vite.config.js
+    generates:
+      - dist/core-base.js
+
   build-core-jobs-fe:
     dir: core-jobs-fe
     cmds:
+      - pnpm install
       - npx pnpm build
     sources:
       - src/**/*.*
@@ -58,6 +79,18 @@ tasks:
       - vite.config.js
     generates:
       - dist/core-jobs.js
+
+  build-core-versions-fe:
+    dir: core-versions-fe
+    cmds:
+      - pnpm install
+      - npx pnpm build
+    sources:
+      - src/**/*.*
+      - tsconfig.json
+      - vite.config.js
+    generates:
+      - dist/core-versions.js
 
   create:
     silent: true
