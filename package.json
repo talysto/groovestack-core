@@ -1,0 +1,17 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@moonlight-labs/core-base-fe": "workspace:^0.1.5",
+    "@moonlight-labs/core-comments-fe": "workspace:^",
+    "@moonlight-labs/core-jobs-fe": "workspace:^"
+  }
+}

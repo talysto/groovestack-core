@@ -94,23 +94,23 @@ const lines = (await mockLines({ count: 10, dEntryTransferTypes })).map(
   }
 )
 
+const data = {
+  // CORE Modules
+  Comment: comments,
+  Line: lines,
+  Version: versions,
+
+  jobs: await mockJobs(15),
+  lockers: await mockLockers(3),
+
+  // For Testing Integrations
+  User: users,
+  Company: companies,
+}
+
 export const mockDataProvider = fakeDataProvider(
-  {
-    // CORE Modules
-    jobs: await mockJobs(15),
-    lockers: await mockLockers(3),
-    Comment: comments,
-    Line: lines,
-    Version: versions,
-    // For Testing Integrations
-    User: users,
-    Company: companies,
-  },
+  data,
   true
 )
 
-console.log(users)
-console.log(comments)
-console.log(lines)
-
-// Comment
+console.log(data)

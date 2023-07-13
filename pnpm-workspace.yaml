@@ -1,0 +1,6 @@
+packages:
+- "core-base-fe"
+- "core-jobs-fe"
+- "core-versions-fe"
+- "core-comments-fe"
+- "core-accounting-fe"
