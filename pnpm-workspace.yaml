@@ -5,3 +5,4 @@ packages:
 - "core-webhooks-fe"
 - "core-comments-fe"
 - "core-accounting-fe"
+- "test-core-fe"
