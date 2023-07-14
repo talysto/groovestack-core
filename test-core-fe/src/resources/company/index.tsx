@@ -27,7 +27,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 import { users } from '../../data/mock-data-provider'
 import { faker } from '@faker-js/faker'
-import { inlineLayout } from './inlineLayout'
+import { inlineLayout } from '../inlineLayout'
 
 const Comments = CoreComments.Comments
 const Versions = CoreVersions.Versions
