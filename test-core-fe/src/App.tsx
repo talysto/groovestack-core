@@ -2,7 +2,6 @@ import {
   Admin,
   AutocompleteInput,
   DateInput,
-  EditGuesser,
   ListGuesser,
   ReferenceInput,
   Resource,
@@ -31,6 +30,9 @@ import { mockDataProvider } from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
 import { User } from './resources/user'
+
+import UserIcon from '@mui/icons-material/PeopleAltTwoTone'
+import CompanyIcon from '@mui/icons-material/ApartmentTwoTone'
 
 // export default {
 //   title: 'CORE/React Admin',
@@ -106,6 +108,25 @@ function AdminApp() {
       dashboard={HomeView}
       // layout={CustomLayout}
     >
+
+      <Resource
+        name="User"
+        icon={UserIcon}
+        edit={User.Edit}
+        list={User.List}
+        recordRepresentation="name"
+        options={{ label: 'Users (Test)' }}
+      />
+
+      <Resource
+        name="Company"
+        icon={CompanyIcon}
+        edit={Company.Edit}
+        list={Company.List}
+        options={{ label: 'Companies (Test)' }}
+        recordRepresentation="name"
+      />
+
       <Resource
         name="jobs"
         icon={Jobs.Icon}
@@ -153,21 +174,7 @@ function AdminApp() {
       <Resource name="webhooks" list={ListGuesser} />
       <Resource name="Lookups" list={ListGuesser} />
 
-      <Resource
-        name="User"
-        edit={User.Edit}
-        list={User.List}
-        recordRepresentation="name"
-        options={{ label: 'Users (Test)' }}
-      />
 
-      <Resource
-        name="Company"
-        edit={Company.Edit}
-        list={Company.List}
-        options={{ label: 'Companies (Test)' }}
-        recordRepresentation="name"
-      />
     </Admin>
   )
 }

@@ -12,52 +12,60 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import { Paper, Typography } from '@mui/material'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Paper,
+  Typography,
+} from '@mui/material'
 import { CoreComments } from 'core-comments-fe'
 import { CoreVersions } from 'core-versions-fe'
 import { CoreAccounting } from 'core-accounting-fe'
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+
 import { users } from '../../data/mock-data-provider'
 import { faker } from '@faker-js/faker'
+import { inlineLayout } from './inlineLayout'
 
 const Comments = CoreComments.Comments
 const Versions = CoreVersions.Versions
 
-const inlineLayout = {
-  sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
-}
-
 export const CompanyAside = () => {
-  const record = useRecordContext()
+  // const record = useRecordContext()
 
   return (
-    <>
-      <Paper sx={{ minWidth: 300, maxWidth: 500, p: 2, ml: 2 }}>
-        <Typography variant="h6">Details</Typography>
-        <SimpleShowLayout
-          {...inlineLayout}
-          sx={{ padding: 0, marginBottom: 5 }}
+    <Paper sx={{ minWidth: 300, maxWidth: 500, p: 0, ml: 2 }}>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          <TextField source="id" />
-          <DateField source="created_at" />
-          <DateField source="updated_at" />
-        </SimpleShowLayout>
-        <Typography variant="h6">Comments</Typography>
-        <SimpleShowLayout sx={{ padding: 0 }}>
+          <Typography>Comments</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
           <Comments.Stream
             createProps={{
               authorResolver: () => faker.helpers.arrayElement(users),
             }}
           />
-        </SimpleShowLayout>
-      </Paper>
-      <Paper sx={{ minWidth: 400, maxWidth: 600, p: 2, ml: 2 }}>
-        <Typography variant="h6">Versions</Typography>
-        <SimpleShowLayout>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>Changes</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
           <Versions.Stream changesDisplayed={1} />
-        </SimpleShowLayout>
-      </Paper>
-    </>
+        </AccordionDetails>
+      </Accordion>
+    </Paper>
   )
 }
 
@@ -82,6 +90,11 @@ export const CompanyEdit = () => (
     <SimpleForm>
       <TextInput source="name" fullWidth />
       <TextInput source="address" fullWidth />
+      <SimpleShowLayout {...inlineLayout} sx={{ padding: 0, marginBottom: 5 }}>
+        <TextField source="id" />
+        <DateField source="created_at" />
+        <DateField source="updated_at" />
+      </SimpleShowLayout>
     </SimpleForm>
   </Edit>
 )
