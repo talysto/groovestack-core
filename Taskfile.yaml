@@ -7,6 +7,13 @@ tasks:
     cmds:
       - task: versions
 
+  outdated:
+    cmds:
+      - cmd: bundle outdated
+        ignore_error: true
+      - cmd: pnpm outdated
+        ignore_error: true
+
   tidy:
     cmds:
       - cmd: bundle exec rubocop '**/*.rb' --format worst

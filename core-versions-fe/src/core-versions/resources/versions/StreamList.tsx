@@ -26,7 +26,7 @@ export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: numbe
   if (!record) return null;
   return (
     <TimelineItem>
-        <TimelineOppositeContent 
+        <TimelineOppositeContent
           sx={{ m: 0, mt: '10px', pl: 0  }}
           align="right"
           variant="body2"
@@ -49,7 +49,7 @@ export const VersionTimelineItem = ({changesDisplayed}: {changesDisplayed: numbe
           <Typography variant="body2" color="textSecondary">
             <table>
               <tbody>
-                {record && record.changes && record.changes.filter((item, idx) => idx < changesDisplayed).map((change: any) => {
+                {record && record.changes && record.changes.filter((item:any, idx:number) => idx < changesDisplayed).map((change: any) => {
                   return (
                     <tr key={change[0]} style={{ verticalAlign: 'baseline' }}>
                       <td style={{ textTransform: 'uppercase', fontSize: '80%', paddingRight: 15 }}>{change[0]}</td>

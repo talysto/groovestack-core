@@ -22,9 +22,9 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
-import { CoreComments } from 'core-comments-fe'
-import { CoreVersions } from 'core-versions-fe'
-import { CoreAccounting } from 'core-accounting-fe'
+import { CoreComments } from '@moonlight-labs/core-comments-fe'
+import { CoreVersions } from '@moonlight-labs/core-versions-fe'
+import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
 
 import { users } from '../../data/mock-data-provider'
 import { faker } from '@faker-js/faker'

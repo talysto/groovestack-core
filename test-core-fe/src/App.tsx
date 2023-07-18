@@ -12,10 +12,10 @@ import {
 // import { CoreJobs } from '@core/jobs'
 
 // Source Code import
-import { CoreJobs } from 'core-jobs-fe'
-import { CoreAccounting } from 'core-accounting-fe'
-import { CoreComments } from 'core-comments-fe'
-import { CoreVersions } from 'core-versions-fe'
+import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
+import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
+import { CoreComments } from '@moonlight-labs/core-comments-fe'
+import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 
 const Jobs = CoreJobs.Jobs
 const Lines = CoreAccounting.Lines

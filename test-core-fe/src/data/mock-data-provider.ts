@@ -1,12 +1,16 @@
 import fakeDataProvider from 'ra-data-fakerest'
-import { mockJobs, mockLockers } from 'core-jobs-fe'
-import { mockComments } from 'core-comments-fe'
-import { mockLines } from 'core-accounting-fe'
-import { mockVersions } from 'core-versions-fe'
-
 import { faker } from '@faker-js/faker'
+
+import { mockJobs, mockLockers } from '@moonlight-labs/core-jobs-fe'
+import { mockComments } from '@moonlight-labs/core-comments-fe'
+import { mockLines } from '@moonlight-labs/core-accounting-fe'
+import { mockVersions } from '@moonlight-labs/core-versions-fe'
+import { mockWebhooks } from '@moonlight-labs/core-webhooks-fe'
+
 import { mockUsers } from './mockUsers'
 import { mockCompanies } from './mockCompanies'
+
+
 
 export const users = mockUsers(10)
 const companies = mockCompanies(5)
@@ -32,7 +36,7 @@ const comments = (await mockComments({ count: 50 })).map((comment) => {
   }
 })
 
-const versions = (await mockVersions({ count: 20 })).map((version) => {
+const versions = (await mockVersions({ count: 20 })).map((version:any) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
@@ -69,7 +73,7 @@ let user: any
 let resource: any
 
 const lines = (await mockLines({ count: 10, dEntryTransferTypes })).map(
-  (line, idx) => {
+  (line:any, idx:number) => {
     let scope, partner_scope
 
     if (idx % 2 == 0) {

@@ -27,7 +27,7 @@ export const VersionShow: React.FC<VersionsShowProps> = ({
       <TextField source="id" />
       <PolymorphicReferenceField source="actor" />
       <PolymorphicReferenceField source="resource" />
-      <ChangesTable label="Changes" changesDisplayed="100" />
+      <ChangesTable changesDisplayed={100} />
       <TextField source="timestamp" />
     </SimpleShowLayout>
   )
