@@ -1,12 +1,11 @@
-
-export async function mockLockers(count = 15){
+export async function mockLockers(count = 15) {
   try {
     const { faker } = await import('@faker-js/faker')
     return Array.from({ length: count }, () => ({
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       host: faker.word.adjective() + '_' + faker.word.noun(),
       pid: 12332,
-      wokers: faker.random.numeric(),
+      workers: faker.number.int({ min: 1, max: 6 }),
     }))
   } catch (e) {
     console.error(e)
@@ -14,15 +13,15 @@ export async function mockLockers(count = 15){
   }
 }
 
-export async function mockJobs(count = 15){
+export async function mockJobs(count = 15) {
   try {
     const { faker } = await import('@faker-js/faker')
     return Array.from({ length: count }, () => ({
       // standard attributes
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       created_at: faker.date.recent(),
       updated_at: faker.date.recent(),
-  
+
       // Creation attributes
       type: faker.helpers.arrayElement([
         'Mailer::Welcome',
@@ -33,11 +32,11 @@ export async function mockJobs(count = 15){
       job_class: faker.helpers.arrayElement([
         'ActiveJob::QueueAdapters::QueAdapter::JobWrapper',
       ]),
-  
+
       // arguments: {},
       // "kwargs": {},
       run_at: faker.date.future(),
-  
+
       // job options
       queue: faker.helpers.arrayElement([
         'default',
@@ -53,9 +52,9 @@ export async function mockJobs(count = 15){
         'failed',
         'complete',
       ]),
-  
+
       expired_at: faker.date.recent(),
-  
+
       // error metadata
       error_count: faker.helpers.arrayElement([0, 0, 0, 3]),
       last_error: {},
@@ -63,12 +62,12 @@ export async function mockJobs(count = 15){
         "/app/vendor/bundle/ruby/3.0.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:431:in `find_with_ids'\n/app/vendor/bundle/ruby/2.7.0/gems/activerecord-6.0.3.6/lib/active_record/relation/finder_methods.rb:69:in `find'",
       last_error_message:
         "ActiveRecord::RecordNotFound: Couldn't find User without an ID",
-  
+
       // completion metadata
       finished_at: faker.date.future(),
-  
+
       actions: faker.helpers.arrayElement([['retry'], [], []]),
-  
+
       // que-specific
       data: {},
       args: [

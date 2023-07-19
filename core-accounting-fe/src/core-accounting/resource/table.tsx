@@ -4,14 +4,22 @@ import { List, Datagrid, TextField } from 'react-admin'
 
 import { MoneyField } from './MoneyField'
 
-import { CoreBase } from '../../../../core-base-fe/src/core-base'
+import { CoreBase } from '@moonlight-labs/core-base-fe'
 const CoreTimeAgoField = CoreBase.CoreTimeAgoField
 
-export const Table: React.FC<{ datagridProps?: any; tableProps?: any, children?: any }> = ({ datagridProps, tableProps, children }) => {
+export const Table: React.FC<{
+  datagridProps?: any
+  tableProps?: any
+  children?: any
+}> = ({ datagridProps, tableProps, children }) => {
   return (
     <List exporter={false} {...tableProps}>
-      <Datagrid bulkActionButtons={false} sort={{ field: 'createdAt', order: 'DESC' }} rowClick="show" {...datagridProps}>
-
+      <Datagrid
+        bulkActionButtons={false}
+        sort={{ field: 'createdAt', order: 'DESC' }}
+        rowClick="show"
+        {...datagridProps}
+      >
         {children}
         <TextField source="code" sortable={false} />
         <MoneyField source="amount" />

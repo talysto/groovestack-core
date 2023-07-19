@@ -25,7 +25,7 @@ export default defineConfig({
       // into your library
       // plugins: [autoExternal()],
 
-      external: ["dayjs", "react", "react-admin"],
+      external: ['dayjs', 'react', 'react-admin'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps

@@ -1,12 +1,4 @@
-import {
-  Admin,
-  AutocompleteInput,
-  DateInput,
-  ListGuesser,
-  ReferenceInput,
-  Resource,
-  SelectInput,
-} from 'react-admin'
+import { Admin, ListGuesser, Resource } from 'react-admin'
 
 // Near-ideal import format
 // import { CoreJobs } from '@core/jobs'
@@ -17,7 +9,6 @@ import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
 import { CoreComments } from '@moonlight-labs/core-comments-fe'
 import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 
-const Jobs = CoreJobs.Jobs
 const Lines = CoreAccounting.Lines
 const Comments = CoreComments.Comments
 const Versions = CoreVersions.Versions
@@ -28,75 +19,34 @@ const Versions = CoreVersions.Versions
 
 import { mockDataProvider } from './data/mock-data-provider'
 import { HomeView } from './pages/HomeView'
-import { Company } from './resources/company'
 import { User } from './resources/user'
-
-import UserIcon from '@mui/icons-material/PeopleAltTwoTone'
-import CompanyIcon from '@mui/icons-material/ApartmentTwoTone'
-
-// export default {
-//   title: 'CORE/React Admin',
-// }
-
-// export const Resources = (args) => <AdminApp {...args} />
-
-// const lineFilters = [
-//   <SelectArrayInput
-//     source="code"
-//     choices={[
-//       { id: 'buy_aqd', name: 'Buy AQD' },
-//       { id: 'spend_aqd', name: 'Spend AQD' },
-//     ]}
-//   />
-// ];
-
-// const AccountScopeReferenceField: React.FC<{source: string}> = ({source}) => {
-//   const record = useRecordContext()
-//   if (!record) return null
-//   return (
-//     <ReferenceField
-//       label="Scope"
-//       reference={record.scopeDetail.model}
-//       source="scopeDetail.id"
-//     >
-//       <TextField source="name" />
-//     </ReferenceField>
-//   )
-// }
+import { Company } from './resources/company'
+// import { Company } from './resources/company'
 
 function AdminApp() {
-  // const [dataProvider, setDataProvider] = React.useState<any>(null);
+  // const lineFilters = [
+  //   <SelectInput
+  //     source="account"
+  //     choices={[
+  //       { id: 'aqd_treasury', name: 'AQD Treasury' },
+  //       { id: 'aqd_tokens', name: 'AQD Tokens' },
+  //     ]}
+  //   />,
+  // ]
 
-  // React.useEffect(() => {
-  //   buildGraphQLProvider({ clientOptions: { uri: 'http://rails6-sample.test/graphql' } })
-  //     .then(graphQlDataProvider => setDataProvider(() => graphQlDataProvider));
-  // }, []);
-
-  // if (!dataProvider) return <div>Loading</div>
-
-  const lineFilters = [
-    <SelectInput
-      source="account"
-      choices={[
-        { id: 'aqd_treasury', name: 'AQD Treasury' },
-        { id: 'aqd_tokens', name: 'AQD Tokens' },
-      ]}
-    />,
-  ]
-
-  const versionFilters = [
-    <DateInput source="created_at_lte" label="Before" />,
-    <DateInput source="created_at_gte" label="After" />,
-    <ReferenceInput
-      alwaysOn
-      label="Actor"
-      source="actor_id"
-      reference="User" // to do: make parametric
-      perPage={10}
-    >
-      <AutocompleteInput />
-    </ReferenceInput>,
-  ]
+  // const versionFilters = [
+  //   <DateInput source="created_at_lte" label="Before" />,
+  //   <DateInput source="created_at_gte" label="After" />,
+  //   <ReferenceInput
+  //     alwaysOn
+  //     label="Actor"
+  //     source="actor_id"
+  //     reference="User" // to do: make parametric
+  //     perPage={10}
+  //   >
+  //     <AutocompleteInput />
+  //   </ReferenceInput>,
+  // ]
 
   return (
     <Admin
@@ -108,10 +58,9 @@ function AdminApp() {
       dashboard={HomeView}
       // layout={CustomLayout}
     >
-
       <Resource
         name="User"
-        icon={UserIcon}
+        icon={User.Icon}
         edit={User.Edit}
         list={User.List}
         recordRepresentation="name"
@@ -120,7 +69,7 @@ function AdminApp() {
 
       <Resource
         name="Company"
-        icon={CompanyIcon}
+        icon={Company.Icon}
         edit={Company.Edit}
         list={Company.List}
         options={{ label: 'Companies (Test)' }}
@@ -129,52 +78,49 @@ function AdminApp() {
 
       <Resource
         name="jobs"
-        icon={Jobs.Icon}
+        icon={CoreJobs.Jobs.Icon}
         // options={{ label: 'CORE::Jobs'}}
-        edit={Jobs.Edit}
-        list={Jobs.List}
+        edit={CoreJobs.Jobs.Edit}
+        list={CoreJobs.Jobs.List}
       />
 
       <Resource
         name="Comment"
         icon={Comments.Icon}
-        list={<Comments.List />}
+        list={Comments.List}
         edit={Comments.Edit}
       />
 
       <Resource
         key="admin-lines-resource"
         name="Line"
-        icon={Lines.Icon}
+        // icon={Lines.Icon}
         options={{ label: 'Ledger Lines', menu: 'admin' }}
         show={Lines.Show}
-        list={
-          <Lines.List tableProps={{ filters: lineFilters }}>
-            {/* <TextField label="Account" source="accountIdentifier" sortable={false} />
-            <AccountScopeReferenceField source="Scope" />
-            <TextField source="scope" sortable={false} /> */}
-          </Lines.List>
-        }
+        list={Lines.List}
+        // list={
+        //   <Lines.List tableProps={{ filters: lineFilters }}>
+        //     // <TextField label="Account" source="accountIdentifier" sortable={false} />
+        //     <AccountScopeReferenceField source="Scope" />
+        //     <TextField source="scope" sortable={false} />
+        //   </Lines.List>
+        // }
       />
 
       <Resource
         name="Version"
         icon={Versions.Icon}
-        list={
-          <Versions.List
-            tableProps={{ filters: versionFilters }}
-            // changesDisplayed={2}
-          />
-        }
+        // list={
+        //   <Versions.List
+        //     tableProps={{ filters: versionFilters }}
+        //     // changesDisplayed={2}
+        //   />
+        // }
         show={Versions.Show}
       />
 
-      {/* <Resource key="org-unit" name="OrgUnit" /> */}
-
-      <Resource name="webhooks" list={ListGuesser} />
-      <Resource name="Lookups" list={ListGuesser} />
-
-
+      <Resource name="Webhook" list={ListGuesser} />
+      {/* <Resource name="Lookups" list={ListGuesser} /> */}
     </Admin>
   )
 }

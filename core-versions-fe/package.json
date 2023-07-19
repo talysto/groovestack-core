@@ -5,39 +5,23 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/core-versions.js",
   "module": "./dist/core-versions.js",
-  "main-dist": "./dist/core-versions.js",
   "types": "./dist/core-versions.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
-    "@mui/icons-material": "^5.11.11",
-    "@mui/lab": "^5.0.0-alpha.124",
-    "@mui/material": "^5.11.13",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react": "^3.1.0",
-    "react": "^18.2.0",
-    "react-admin": "^4.8.3",
-    "react-dom": "^18.2.0",
-    "typescript": "^4.9.3",
-    "vite": "^4.1.0",
-    "vite-plugin-dts": "^2.1.0"
-  },
+  "devDependencies": {},
   "peerDependencies": {
-    "@mui/icons-material": "^5.11.11",
-    "@mui/lab": "^5.0.0-alpha.124",
-    "@mui/material": "^5.11.13",
-    "react": "^18.2.0",
-    "react-admin": "^4.8.3",
-    "react-dom": "^18.2.0"
+    "@mui/icons-material": ">=5.11.11",
+    "@mui/lab": ">=5.0.0-alpha.124",
+    "@mui/material": ">=5.11.13",
+    "react": ">=18.2.0",
+    "react-admin": ">=4.8.3",
+    "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^"
+    "@moonlight-labs/core-base-fe": "workspace:*"
   }
 }

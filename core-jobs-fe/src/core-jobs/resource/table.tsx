@@ -20,7 +20,7 @@ import {
   useDataProvider,
   useResourceContext,
   useRefresh,
-  RaRecord
+  RaRecord,
 } from 'react-admin'
 
 import { JobsAside } from './JobsAside'

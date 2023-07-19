@@ -1,11 +1,27 @@
-import React, { FC } from "react"
-import { ReferenceManyField, TextField, Datagrid, useRecordContext, SelectInput, List, Filter, TextInput, ResourceContextProvider, ListBase, ListToolbar } from "react-admin"
-import { MoneyField } from "./MoneyField"
+import React, { FC } from 'react'
+import {
+  ReferenceManyField,
+  TextField,
+  Datagrid,
+  useRecordContext,
+  SelectInput,
+  List,
+  Filter,
+  TextInput,
+  ResourceContextProvider,
+  ListBase,
+  ListToolbar,
+} from 'react-admin'
+import { MoneyField } from './MoneyField'
 
-import { CoreBase } from '../../../../core-base-fe/src/core-base'
+import { CoreBase } from '@moonlight-labs/core-base-fe'
 const CoreTimeAgoField = CoreBase.CoreTimeAgoField
 
-export const ReferenceManyLines: FC<{ children?: any, tableProps?: any, datagridProps?: any }> = ({ children, tableProps, datagridProps }) => {
+export const ReferenceManyLines: FC<{
+  children?: any
+  tableProps?: any
+  datagridProps?: any
+}> = ({ children, tableProps, datagridProps }) => {
   const record = useRecordContext()
   return (
     <ReferenceManyField
@@ -15,9 +31,8 @@ export const ReferenceManyLines: FC<{ children?: any, tableProps?: any, datagrid
       // record={record}
     >
       {/* A list within a reference field doesnt normally work (it ignores the target, but you can reset the target w/ filter, and filter for values where the scope is equal to the current record id (user.id)) */}
-      <List exporter={false} filter={{ scope: record.id }} {...tableProps} >
-
-        <Datagrid bulkActionButtons={false}  >
+      <List exporter={false} filter={{ scope: record.id }} {...tableProps}>
+        <Datagrid bulkActionButtons={false}>
           <TextField source="code" sortable={false} />
           <MoneyField source="amount" />
           <MoneyField source="balance" />
@@ -26,7 +41,5 @@ export const ReferenceManyLines: FC<{ children?: any, tableProps?: any, datagrid
         </Datagrid>
       </List>
     </ReferenceManyField>
-
   )
-
 }

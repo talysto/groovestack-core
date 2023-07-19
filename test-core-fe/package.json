@@ -10,33 +10,14 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@faker-js/faker": "^7.6.0",
+    "@moonlight-labs/core-accounting-fe": "workspace:^",
+    "@moonlight-labs/core-base-fe": "workspace:^",
     "@moonlight-labs/core-comments-fe": "workspace:^",
     "@moonlight-labs/core-jobs-fe": "workspace:^",
-    "@moonlight-labs/core-webhooks-fe": "workspace:^",
     "@moonlight-labs/core-versions-fe": "workspace:^",
-    "@mui/icons-material": "^5.11.11",
-    "@mui/lab": "^5.0.0-alpha.124",
-    "@mui/material": "^5.11.12",
-    "dayjs": "^1.11.7",
-    "ra-data-fakerest": "^4.8.2",
-    "react": "^18.2.0",
-    "react-admin": "^4.8.2",
-    "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "^18.2.0",
-    "react-google-charts": "^4.0.0",
-    "react-hook-form": "7.43.9",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-copy-to-clipboard": "^5.0.4",
-    "@types/react-dom": "^18.0.11",
-    "@types/uuid": "^9.0.1",
-    "@vitejs/plugin-react": "^3.1.0",
-    "import": "^0.0.6",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.4",
-    "vite-tsconfig-paths": "^4.0.5"
+    "@moonlight-labs/core-webhooks-fe": "workspace:^",
+    "ra-data-fakerest": "^4.12.1",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   }
 }

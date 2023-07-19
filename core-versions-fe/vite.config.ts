@@ -26,7 +26,18 @@ export default defineConfig({
       // into your library
       // plugins: [autoExternal()],
 
-      external: [/node_modules/],
+      // external: [/node_modules/],
+      external: [
+        '@mui/icons-material',
+        '@mui/material',
+        'react',
+        'react/jsx-runtime',
+        'react-admin',
+        'react-dom',
+        'react-hook-form',
+        '@faker-js/faker',
+      ],
+
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps

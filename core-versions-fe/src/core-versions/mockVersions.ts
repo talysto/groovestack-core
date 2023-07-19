@@ -1,19 +1,19 @@
 export async function mockVersions({ count = 15 }): Promise<any> {
   try {
     const { faker } = await import('@faker-js/faker')
-    let mockData = [];
+    let mockData = []
     for (let i = 0; count > i; i++) {
       mockData.push({
         // additional attributes
-        changes: await generateChanges(faker.datatype.number({ min: 1, max: 5 })),
+        changes: await generateChanges(faker.number.int({ min: 1, max: 5 })),
         timestamp: faker.date.past().toLocaleString(),
         // standard attributes
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         created_at: faker.date.past().toLocaleString(),
         updated_at: faker.date.past().toLocaleString(),
       })
     }
-    return mockData;
+    return mockData
   } catch (e) {
     console.error(e)
     return []
@@ -26,8 +26,12 @@ async function generateChanges(numChanges: number): Promise<any> {
     const changes = []
     for (let i = 0; i < numChanges; i++) {
       const field = faker.lorem.word()
-      const oldValue = faker.random.words()
-      const newValue = faker.internet.url()+faker.internet.url()+faker.internet.url()+faker.internet.url()
+      const oldValue = faker.lorem.words()
+      const newValue =
+        faker.internet.url() +
+        faker.internet.url() +
+        faker.internet.url() +
+        faker.internet.url()
       changes.push([field, [oldValue, newValue]])
     }
     return changes

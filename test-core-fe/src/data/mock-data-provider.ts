@@ -10,12 +10,13 @@ import { mockWebhooks } from '@moonlight-labs/core-webhooks-fe'
 import { mockUsers } from './mockUsers'
 import { mockCompanies } from './mockCompanies'
 
-
-
-export const users = mockUsers(10)
+const users = mockUsers(10)
 const companies = mockCompanies(5)
 
-const comments = (await mockComments({ count: 50 })).map((comment) => {
+// console.log(mockComments(2))
+
+const comments = mockComments(50).map((comment) => {
+  // const comments = mockComments({ count: 50 }).map((comment) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
@@ -36,7 +37,7 @@ const comments = (await mockComments({ count: 50 })).map((comment) => {
   }
 })
 
-const versions = (await mockVersions({ count: 20 })).map((version:any) => {
+const versions = (await mockVersions({ count: 20 })).map((version: any) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
@@ -56,6 +57,9 @@ const versions = (await mockVersions({ count: 20 })).map((version:any) => {
     // resource: resource
   }
 })
+
+let user: any
+let resource: any
 const dEntryTransferTypes = [
   {
     code: 'buy_aqd',
@@ -69,11 +73,8 @@ const dEntryTransferTypes = [
   },
 ]
 
-let user: any
-let resource: any
-
 const lines = (await mockLines({ count: 10, dEntryTransferTypes })).map(
-  (line:any, idx:number) => {
+  (line: any, idx: number) => {
     let scope, partner_scope
 
     if (idx % 2 == 0) {
@@ -95,7 +96,7 @@ const lines = (await mockLines({ count: 10, dEntryTransferTypes })).map(
       scope,
       partner_scope,
     }
-  }
+  },
 )
 
 const data = {
@@ -103,6 +104,7 @@ const data = {
   Comment: comments,
   Line: lines,
   Version: versions,
+  Webhook: mockWebhooks,
 
   jobs: await mockJobs(15),
   lockers: await mockLockers(3),
@@ -112,9 +114,6 @@ const data = {
   Company: companies,
 }
 
-export const mockDataProvider = fakeDataProvider(
-  data,
-  true
-)
-
 console.log(data)
+
+export const mockDataProvider = fakeDataProvider(data, true)

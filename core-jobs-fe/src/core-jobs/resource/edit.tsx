@@ -1,13 +1,8 @@
-import React from 'react'
-
 import {
   Edit,
   Labeled,
-  SaveButton,
-  SimpleForm,
   SimpleShowLayout,
   TextField,
-  Toolbar,
   useRecordContext,
 } from 'react-admin'
 

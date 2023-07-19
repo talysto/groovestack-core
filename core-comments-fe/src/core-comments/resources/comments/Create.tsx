@@ -12,20 +12,23 @@ import {
 } from 'react-admin'
 import { Avatar, Box, Typography } from '@mui/material'
 import { Comment } from '../../mockComments'
-import { useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form'
 
 type Author = {
-  id: string;
-  type: string;
-  name: string;
+  id: string
+  type: string
+  name: string
 }
 
 export type CommentCreateProps = {
-  authorResolver: () => Author;
-  defaultValues?: () => Comment;
+  authorResolver: () => Author
+  defaultValues?: () => Comment
 }
 
-export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreateProps) => {
+export const CommentCreate = ({
+  authorResolver,
+  defaultValues,
+}: CommentCreateProps) => {
   const record = useRecordContext()
   const author = authorResolver()
 
@@ -34,10 +37,13 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
   console.log(record)
 
   function defaults() {
-    return Object.assign({
-      resource_type: record.type,
-      resource_id: record.id,
-    }, (defaultValues ? defaultValues() : {}))
+    return Object.assign(
+      {
+        resource_type: record.type,
+        resource_id: record.id,
+      },
+      defaultValues ? defaultValues() : {},
+    )
   }
 
   const CommentCreateToolbar = () => {
@@ -46,33 +52,46 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
     const refresh = useRefresh()
 
     return (
-      <Toolbar sx={{ justifyContent: 'flex-end', background: 'transparent', p: 0, m: 0 }}>
+      <Toolbar
+        sx={{
+          justifyContent: 'flex-end',
+          background: 'transparent',
+          p: 0,
+          m: 0,
+        }}
+      >
         <SaveButton
           type="button"
           label="Comment"
           mutationOptions={{
             onSuccess: () => {
-              refresh();
-              formContext.reset(defaults());
-              window.scrollTo(0, 0);
-              notify("changes saved")
+              refresh()
+              formContext.reset(defaults())
+              window.scrollTo(0, 0)
+              notify('changes saved')
             },
           }}
         />
       </Toolbar>
-    );
-  };
+    )
+  }
 
   return (
     <Create
-      resource='Comment'
+      resource="Comment"
       sx={{
         '& .RaCreate-card': { boxShadow: 'none' },
         '& .RaCreate-main': { mt: 0 },
       }}
     >
-      <SimpleForm toolbar={<CommentCreateToolbar />} defaultValues={defaults()} sx={{ p: 0, pt: 2 }}  >
-        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+      <SimpleForm
+        toolbar={<CommentCreateToolbar />}
+        defaultValues={defaults()}
+        sx={{ p: 0, pt: 2 }}
+      >
+        <Box
+          sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}
+        >
           <Box>
             <Avatar />
           </Box>
