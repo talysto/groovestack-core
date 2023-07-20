@@ -10,11 +10,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "preversion": "yarn build",
-    "postversion": "yarn publish && echo \"Successfully released version $npm_package_version!\"",
-    "publish-patch": "yarn version --patch",
-    "publish-minor": "yarn version --minor",
-    "publish-major": "yarn version --major"
+    "preversion": "pnpm build",
+    "postversion": "pnpm publish && echo \"Successfully released version $npm_package_version!\"",
+    "publish-patch": "pnpm version --patch",
+    "publish-minor": "pnpm version --minor",
+    "publish-major": "pnpm version --major"
   },
   "devDependencies": {},
   "peerDependencies": {
