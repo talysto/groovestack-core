@@ -8,10 +8,12 @@ import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
 import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
 import { CoreComments } from '@moonlight-labs/core-comments-fe'
 import { CoreVersions } from '@moonlight-labs/core-versions-fe'
+import { CoreWebhooks } from '@moonlight-labs/core-webhooks-fe'
 
 const Lines = CoreAccounting.Lines
 const Comments = CoreComments.Comments
 const Versions = CoreVersions.Versions
+const Webhooks = CoreWebhooks.Webhooks
 
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
@@ -119,7 +121,15 @@ function AdminApp() {
         show={Versions.Show}
       />
 
-      <Resource name="Webhook" list={ListGuesser} />
+
+<Resource
+        name="Webhook"
+        icon={Webhooks.Icon}
+        list={Webhooks.List}
+        edit={Webhooks.Show}
+      />
+
+      {/* <Resource name="Webhook" list={ListGuesser} /> */}
       {/* <Resource name="Lookups" list={ListGuesser} /> */}
     </Admin>
   )
