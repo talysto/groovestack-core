@@ -1,11 +1,10 @@
-import React from 'react'
 import { useRecordContext } from 'react-admin'
 
-export const CoreDateField: React.FC<{
+export const DateField = ({source,showTime,label}: {
   source: string
   showTime: boolean
   label?: string
-}> = ({ source, showTime }) => {
+}) => {
   const record = useRecordContext()
   const date = new Date(record[source])
 

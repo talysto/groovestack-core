@@ -4,8 +4,7 @@ import { List, Datagrid, TextField } from 'react-admin'
 
 import { MoneyField } from './MoneyField'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const CoreTimeAgoField = CoreBase.CoreTimeAgoField
+import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 
 export const Table: React.FC<{
   datagridProps?: any
@@ -26,7 +25,7 @@ export const Table: React.FC<{
         <MoneyField source="balance" />
         {/* <NumberField label="Amount" source="amount.formatted_amount" sortable={false} />
         <NumberField label="Balance" source="balance.formatted_amount" sortable={false} /> */}
-        <CoreTimeAgoField label="Created" source="created_at" />
+        <TimeAgoField label="Created" source="created_at" />
       </Datagrid>
     </List>
   )

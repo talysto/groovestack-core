@@ -14,8 +14,7 @@ import {
 } from 'react-admin'
 import { MoneyField } from './MoneyField'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const CoreTimeAgoField = CoreBase.CoreTimeAgoField
+import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 
 export const ReferenceManyLines: FC<{
   children?: any
@@ -37,7 +36,7 @@ export const ReferenceManyLines: FC<{
           <MoneyField source="amount" />
           <MoneyField source="balance" />
           {children}
-          <CoreTimeAgoField label="Created" source="createdAt" />
+          <TimeAgoField label="Created" source="createdAt" />
         </Datagrid>
       </List>
     </ReferenceManyField>

@@ -1,13 +1,10 @@
-import React from 'react'
-
 import {
-  PublicFieldProps,
+  FieldProps,
   ReferenceField,
-  TextField,
   useRecordContext,
 } from 'react-admin'
 
-export interface PolymorphicReferenceFieldProps extends PublicFieldProps {
+export interface PolymorphicReferenceFieldProps extends FieldProps {
   source: string
 }
 

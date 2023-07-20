@@ -14,7 +14,7 @@ export default defineConfig({
   build: {
     lib: {
       // entry: resolve(__dirname, "lib/main.js"),
-      entry: resolve(__dirname, 'src/core-base/index.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es'], // UMD
       name: 'CORE-BASE',
       // the proper extensions will be added

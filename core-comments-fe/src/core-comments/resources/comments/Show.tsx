@@ -2,8 +2,7 @@ import React from 'react'
 
 import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
+import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
 
 const CommentsTitle = (props: any) => {
   const { record } = props

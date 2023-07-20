@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import {
   Datagrid,
@@ -20,11 +20,9 @@ import {
 
 import { Typography, Avatar, Box } from '@mui/material'
 
-import { Comments } from '.'
+// import { Comments } from '.'
 import { CommentCreateProps } from './Create'
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
-const CoreDateField = CoreBase.CoreDateField
+import { PolymorphicReferenceField, DateField } from '@moonlight-labs/core-base-fe'
 
 const AuthorField = () => {
   return (
@@ -42,7 +40,7 @@ const AuthorField = () => {
           <PolymorphicReferenceField source="author" />
         </Typography>
         <Typography>
-          <CoreDateField source="created_at" showTime={false} />
+          <DateField source="created_at" showTime={false} />
         </Typography>
       </Box>
     </Box>

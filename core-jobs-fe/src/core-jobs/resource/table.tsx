@@ -25,8 +25,7 @@ import {
 
 import { JobsAside } from './JobsAside'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const CoreTimeAgoField = CoreBase.CoreTimeAgoField
+import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 
 const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" />,
@@ -152,7 +151,7 @@ export const Table = () => {
         <NumberField source="priority" />
         <FunctionField label="Status" render={enhancedStatus} />
 
-        <CoreTimeAgoField label="Scheduled" source="run_at" />
+        <TimeAgoField label="Scheduled" source="run_at" />
         {/* <NumberField source="errorCount" label="Errors" />
         <TimeAgoField label="Expired" source="expired_at" /> */}
         <JobActions label="Actions" />

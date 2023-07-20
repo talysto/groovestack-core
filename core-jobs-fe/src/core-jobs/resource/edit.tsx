@@ -6,8 +6,7 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const CoreTimeAgoField = CoreBase.CoreTimeAgoField
+import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 
 import Grid from '@mui/material/Grid'
 
@@ -80,17 +79,17 @@ export const EditJob = (props: any) => {
           <Grid item xs={4}>
             <div>
               <Labeled label="Run At">
-                <CoreTimeAgoField source="run_at" />
+                <TimeAgoField source="run_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Finished At">
-                <CoreTimeAgoField source="finished_at" />
+                <TimeAgoField source="finished_at" />
               </Labeled>
             </div>
             <div>
               <Labeled label="Expired At">
-                <CoreTimeAgoField source="expired_at" />
+                <TimeAgoField source="expired_at" />
               </Labeled>
             </div>
           </Grid>

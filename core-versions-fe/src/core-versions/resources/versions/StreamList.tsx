@@ -14,9 +14,7 @@ import {
   TimelineSeparator,
 } from '@mui/lab'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
-const CoreDateField = CoreBase.CoreDateField
+import { PolymorphicReferenceField, DateField } from '@moonlight-labs/core-base-fe'
 
 export const VersionTimelineItem = ({
   changesDisplayed,
@@ -34,7 +32,7 @@ export const VersionTimelineItem = ({
         variant="body2"
         color="text.secondary"
       >
-        <CoreDateField source="timestamp" showTime={false} />
+        <DateField source="timestamp" showTime={false} />
       </TimelineOppositeContent>
 
       <TimelineSeparator sx={{ mt: 1 }}>

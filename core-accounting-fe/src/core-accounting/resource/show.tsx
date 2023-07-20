@@ -2,8 +2,7 @@ import React from 'react'
 
 import { Show, SimpleShowLayout, TextField, NumberField } from 'react-admin'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const CoreTimeAgoField = CoreBase.CoreTimeAgoField
+import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 
 export const LineShow = () => (
   <Show>
@@ -22,7 +21,7 @@ export const LineShow = () => (
         source="balance.formatted_amount"
         sortable={false}
       />
-      <CoreTimeAgoField label="Created" source="created_at" />
+      <TimeAgoField label="Created" source="created_at" />
     </SimpleShowLayout>
   </Show>
 )

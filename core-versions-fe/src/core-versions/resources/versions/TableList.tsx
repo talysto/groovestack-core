@@ -3,25 +3,13 @@ import React from 'react'
 import {
   List,
   Datagrid,
-  TextField,
-  DateField,
   EditButton,
-  ListProps,
-  SearchInput,
   DateInput,
-  ReferenceInput,
-  SelectInput,
-  ReferenceField,
-  AutocompleteInput,
   useRecordContext,
   WrapperField,
 } from 'react-admin'
 
-import { Box } from '@mui/material'
-
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
-const CoreDateField = CoreBase.CoreDateField
+import { PolymorphicReferenceField, DateField } from '@moonlight-labs/core-base-fe'
 
 const ActionsField = (props: any) => {
   return (
@@ -93,7 +81,7 @@ export const VersionsTable: React.FC<{
         <WrapperField label="Changes">
           <ChangesTable changesDisplayed={changesDisplayed} />
         </WrapperField>
-        <CoreDateField source="timestamp" showTime={false} />
+        <DateField source="timestamp" showTime={false} />
       </Datagrid>
     </List>
   )
