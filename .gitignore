@@ -4,3 +4,4 @@ node_modules
 tmp
 .task
 dist
+stats.html
