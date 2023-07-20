@@ -27,6 +27,7 @@ interface NewType {
 
 export const VersionTimelineItem = ({ changesDisplayed }: NewType) => {
   const record = useRecordContext()
+  console.log('VersionTimelineItem')
 
   if (!record) return null
 
