@@ -2,17 +2,17 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
-import { visualizer } from 'rollup-plugin-visualizer'
+// import { visualizer } from 'rollup-plugin-visualizer'
 // import autoExternal from "rollup-plugin-auto-external";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
     dts({
       rollupTypes: true,
     }),
-    visualizer({ open: true }),
+    react(),
+    // visualizer({ open: true }),
   ],
   build: {
     lib: {
@@ -28,7 +28,8 @@ export default defineConfig({
       // into your library
       // plugins: [autoExternal()],
 
-      external: [/node_modules/],
+      // external: [/node_modules/],
+      external: ["@mui/icons-material", "@mui/material", "react", "react/jsx-runtime", "react-admin", "react-dom", "react-hook-form", "@faker-js/faker"],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps

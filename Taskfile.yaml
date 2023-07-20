@@ -7,6 +7,14 @@ tasks:
     cmds:
       - task: versions
 
+  outdated:
+    cmds:
+      - cmd: bundle outdated
+        ignore_error: true
+      - cmd: pnpm outdated
+        ignore_error: true
+
+
   tidy:
     cmds:
       - cmd: bundle exec rubocop '**/*.rb' --format worst
@@ -15,6 +23,7 @@ tasks:
         ignore_error: true
       - cmd: npx prettier -c .
         ignore_error: true
+      - cmd: pnpm dedupe --check
       # - cmd: bundle exec rubocop '**/*.rb'
       #   ignore_error: true
 
@@ -47,8 +56,15 @@ tasks:
 
   build:
     cmds:
-      - task: build-core-base-fe
-      - task: build-core-jobs-fe
+      - pnpm install
+      - pnpm --filter core-base-fe build
+      - pnpm --filter core-jobs-fe build
+      - pnpm --filter core-comments-fe build
+      - pnpm --filter core-versions-fe build
+      - pnpm --filter core-accounting-fe build
+      - pnpm --filter core-webhooks-fe build
+      # - task: build-core-base-fe
+      # - task: build-core-jobs-fe
       # - task: build-core-versions-fe
 
   test-core-jobs:

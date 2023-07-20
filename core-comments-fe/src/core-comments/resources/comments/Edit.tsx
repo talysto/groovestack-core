@@ -9,8 +9,7 @@ import {
   SimpleShowLayout,
 } from 'react-admin'
 
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
+import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
 
 export const CommentEdit = () => {
   return (
@@ -21,7 +20,7 @@ export const CommentEdit = () => {
         <PolymorphicReferenceField source="resource" />
       </SimpleShowLayout>
       <SimpleForm>
-        <TextInput source="body" multiline sx={{ width: 350 }}/>
+        <TextInput source="body" multiline sx={{ width: 350 }} />
       </SimpleForm>
     </Edit>
   )

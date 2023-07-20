@@ -2,9 +2,8 @@ import React from 'react'
 
 import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
 
-import { ChangesTable } from './TableList'
-import { CoreBase } from '@moonlight-labs/core-base-fe'
-const PolymorphicReferenceField = CoreBase.PolymorphicReferenceField
+import { ChangesTable } from './ChangesTable'
+import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
 
 const VersionsTitle = (props: any) => {
   const { record } = props
@@ -27,7 +26,7 @@ export const VersionShow: React.FC<VersionsShowProps> = ({
       <TextField source="id" />
       <PolymorphicReferenceField source="actor" />
       <PolymorphicReferenceField source="resource" />
-      <ChangesTable label="Changes" changesDisplayed="100" />
+      <ChangesTable changesDisplayed={100} />
       <TextField source="timestamp" />
     </SimpleShowLayout>
   )

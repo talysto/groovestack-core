@@ -1,8 +1,12 @@
 {
   "name": "@moonlight-labs/core-webhooks-fe",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/core-webhooks.js",
+  "types": "./dist/core-webhooks.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,32 +14,17 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
-    "@mui/icons-material": "^5.14.0",
-    "@mui/material": "^5.14.0",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
-    "@vitejs/plugin-react": "^4.0.1",
-    "eslint": "^8.44.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.1",
-    "react": "^18.2.0",
-    "react-admin": "^4.12.1",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.0",
-    "vite-plugin-dts": "^3.2.0"
+    "@types/react-syntax-highlighter": "^15.5.6"
   },
   "peerDependencies": {
-    "@mui/icons-material": "^5.14.0",
-    "@mui/material": "^5.14.0",
-    "react": "^18.2.0",
-    "react-admin": "^4.12.1",
-    "react-dom": "^18.2.0"
+    "@mui/icons-material": ">=5.14.0",
+    "@mui/material": ">=5.14.0",
+    "react": ">=18.2.0",
+    "react-admin": ">=4.12.1",
+    "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^"
+    "@moonlight-labs/core-base-fe": "workspace:^",
+    "react-syntax-highlighter": "^15.5.0"
   }
 }

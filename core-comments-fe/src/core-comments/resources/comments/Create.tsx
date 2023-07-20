@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
   SimpleForm,
   TextInput,
@@ -9,35 +7,32 @@ import {
   useNotify,
   Toolbar,
   useRefresh,
+  useGetIdentity,
 } from 'react-admin'
-import { Avatar, Box, Typography } from '@mui/material'
-import { Comment } from '../../mockComments'
-import { useFormContext } from 'react-hook-form';
 
-type Author = {
-  id: string;
-  type: string;
-  name: string;
-}
+import { useFormContext } from 'react-hook-form'
+import { AuthorField } from './AuthorField'
+import { Avatar, Box } from '@mui/material'
 
 export type CommentCreateProps = {
-  authorResolver: () => Author;
-  defaultValues?: () => Comment;
+  // authorResolver: () => Author
+  // defaultValues?: () => Comment
 }
 
-export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreateProps) => {
+export const CommentCreate = ({}: CommentCreateProps) => {
   const record = useRecordContext()
-  const author = authorResolver()
 
   if (!record) return null
 
-  console.log(record)
-
   function defaults() {
-    return Object.assign({
-      resource_type: record.type,
-      resource_id: record.id,
-    }, (defaultValues ? defaultValues() : {}))
+    return Object.assign(
+      {
+        resource_type: record.type,
+        resource_id: record.id,
+      },
+      {},
+      // defaultValues ? defaultValues() : {},
+    )
   }
 
   const CommentCreateToolbar = () => {
@@ -46,52 +41,89 @@ export const CommentCreate = ({ authorResolver, defaultValues }: CommentCreatePr
     const refresh = useRefresh()
 
     return (
-      <Toolbar sx={{ justifyContent: 'flex-end', background: 'transparent', p: 0, m: 0 }}>
+      <Toolbar
+        sx={{
+          justifyContent: 'flex-end',
+          background: 'transparent',
+          p: 0,
+          m: 0,
+        }}
+      >
         <SaveButton
           type="button"
-          label="Comment"
+          label="Leave a Comment"
           mutationOptions={{
             onSuccess: () => {
-              refresh();
-              formContext.reset(defaults());
-              window.scrollTo(0, 0);
-              notify("changes saved")
+              refresh()
+              formContext.reset(defaults())
+              window.scrollTo(0, 0)
+              notify('changes saved')
             },
           }}
         />
       </Toolbar>
-    );
-  };
+    )
+  }
 
   return (
     <Create
-      resource='Comment'
+      resource="Comment"
       sx={{
         '& .RaCreate-card': { boxShadow: 'none' },
         '& .RaCreate-main': { mt: 0 },
       }}
     >
-      <SimpleForm toolbar={<CommentCreateToolbar />} defaultValues={defaults()} sx={{ p: 0, pt: 2 }}  >
-        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-          <Box>
-            <Avatar />
-          </Box>
-          <Box sx={{ flexGrow: 1, m: 1 }}>
-            <Typography>
-              {author.name}
-              {/* <ReferenceField resource="Comment" source={author.id} reference="User" /> */}
-            </Typography>
-          </Box>
-        </Box>
+      <SimpleForm
+        toolbar={<CommentCreateToolbar />}
+        defaultValues={defaults()}
+        sx={{ p: 0, pt: 2 }}
+      >
+        <CurrentUserField />
         <TextInput
           source="body"
           multiline
           minRows={2}
           maxRows={6}
           fullWidth
-          label="Comment"
+          label={'Leave a comment'}
         />
       </SimpleForm>
     </Create>
+  )
+}
+
+const CurrentUserField = () => {
+  const {
+    data: currentUser,
+    isLoading: identityLoading,
+    error,
+  } = useGetIdentity()
+
+  if (!currentUser) return null
+
+  const { id, name } = currentUser || {}
+
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ width: '1em', height: '1em', mr: 1 }} />
+        {name}
+      </Box>
+      {/* <Typography sx={{ color: 'text.secondary', fontSize: '80%' }}>
+    <TimeAgoField source="created_at" />
+  </Typography> */}
+    </Box>
   )
 }

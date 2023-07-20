@@ -1,10 +1,6 @@
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-} from '@mui/material'
+import { List, ListItem, ListItemText, Paper } from '@mui/material'
+
+import pkgComments from '../../../core-comments-fe/package.json'
 
 const stack = [
   { name: 'React Admin' },
@@ -53,6 +49,7 @@ export const HomeView = () => (
       <li>
         <b>Comments</b> - Allow admins (or end users) to record notes about any
         database record
+        {pkgComments.version}
       </li>
     </ul>
 

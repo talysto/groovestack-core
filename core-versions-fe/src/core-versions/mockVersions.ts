@@ -1,34 +1,51 @@
 export async function mockVersions({ count = 15 }): Promise<any> {
   try {
     const { faker } = await import('@faker-js/faker')
-    let mockData = [];
+    let mockData = []
     for (let i = 0; count > i; i++) {
       mockData.push({
         // additional attributes
-        changes: await generateChanges(faker.datatype.number({ min: 1, max: 5 })),
+        changes: await generateChanges(faker.number.int({ min: 1, max: 5 })),
         timestamp: faker.date.past().toLocaleString(),
         // standard attributes
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         created_at: faker.date.past().toLocaleString(),
         updated_at: faker.date.past().toLocaleString(),
       })
     }
-    return mockData;
+    return mockData
   } catch (e) {
     console.error(e)
     return []
   }
 }
 
+
 async function generateChanges(numChanges: number): Promise<any> {
   try {
     const { faker } = await import('@faker-js/faker')
+
+    const changeTypes: {[index: string]:Function} = {
+      "string": () => faker.lorem.words(),
+      "text": () => faker.lorem.sentence(),
+      "number": () => faker.number.int({min:0, max: 100}),
+      "url": () => faker.internet.url(),
+      "email": () => faker.internet.email(),
+      "name": () => faker.person.fullName(),
+      "maybe-nil": () => faker.helpers.arrayElement([faker.lorem.words(), null])
+    }
+
+    function change() {
+      const field = faker.lorem.words({ min: 1, max: 3 })
+      const type = faker.helpers.arrayElement(Object.keys(changeTypes))
+      const fn = changeTypes[type]
+
+      return [field, [fn(), fn()]]
+    }
+
     const changes = []
     for (let i = 0; i < numChanges; i++) {
-      const field = faker.lorem.word()
-      const oldValue = faker.random.words()
-      const newValue = faker.internet.url()+faker.internet.url()+faker.internet.url()+faker.internet.url()
-      changes.push([field, [oldValue, newValue]])
+      changes.push(change())
     }
     return changes
   } catch (e) {

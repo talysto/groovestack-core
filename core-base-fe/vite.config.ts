@@ -14,7 +14,7 @@ export default defineConfig({
   build: {
     lib: {
       // entry: resolve(__dirname, "lib/main.js"),
-      entry: resolve(__dirname, 'src/core-base/index.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es'], // UMD
       name: 'CORE-BASE',
       // the proper extensions will be added
@@ -25,7 +25,7 @@ export default defineConfig({
       // into your library
       // plugins: [autoExternal()],
 
-      external: ["dayjs", "react", "react-admin"],
+      external: ['dayjs', 'react', 'react-admin'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
