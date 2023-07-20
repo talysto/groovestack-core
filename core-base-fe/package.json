@@ -1,6 +1,5 @@
 {
   "name": "@moonlight-labs/core-base-fe",
-  "private": true,
   "version": "0.1.6",
   "type": "module",
   "files": [
