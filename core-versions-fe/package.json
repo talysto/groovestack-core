@@ -1,6 +1,7 @@
 {
   "name": "@moonlight-labs/core-versions-fe",
   "version": "0.1.0",
+  "private": true,
   "type": "module",
   "files": [
     "dist"

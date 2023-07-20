@@ -1,6 +1,7 @@
 {
   "name": "@moonlight-labs/core-comments-fe",
   "version": "0.1.5",
+  "private": true,
   "type": "module",
   "files": [
     "dist"
