@@ -178,19 +178,19 @@ importers:
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
-        specifier: ^5.14.0
-        version: 5.14.0(@mui/material@5.14.0)(@types/react@18.2.15)(react@18.2.0)
+        specifier: '>=5.14.0'
+        version: 5.14.1(@mui/material@5.14.1)(@types/react@18.2.15)(react@18.2.0)
       '@mui/material':
-        specifier: ^5.14.0
-        version: 5.14.0(@emotion/react@11.11.1)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
+        specifier: '>=5.14.0'
+        version: 5.14.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
       react:
-        specifier: ^18.2.0
+        specifier: '>=18.2.0'
         version: 18.2.0
       react-admin:
-        specifier: ^4.12.1
+        specifier: '>=4.12.1'
         version: 4.12.1(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
       react-dom:
-        specifier: ^18.2.0
+        specifier: '>=18.2.0'
         version: 18.2.0(react@18.2.0)
 
   test-core-fe:
