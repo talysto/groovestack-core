@@ -1,8 +1,4 @@
-import {
-  FieldProps,
-  ReferenceField,
-  useRecordContext,
-} from 'react-admin'
+import { FieldProps, ReferenceField, useRecordContext } from 'react-admin'
 
 export interface PolymorphicReferenceFieldProps extends FieldProps {
   source: string

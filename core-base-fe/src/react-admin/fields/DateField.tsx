@@ -1,6 +1,10 @@
 import { useRecordContext } from 'react-admin'
 
-export const DateField = ({source,showTime,label}: {
+export const DateField = ({
+  source,
+  showTime,
+  label,
+}: {
   source: string
   showTime: boolean
   label?: string

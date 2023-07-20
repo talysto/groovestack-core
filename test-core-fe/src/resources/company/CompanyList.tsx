@@ -16,6 +16,11 @@ export const CompanyList = () => (
         reference="Comment"
         target="resource_id"
       />
+      <ReferenceManyCount
+        label="Changes"
+        reference="Version"
+        target="resource_id"
+      />
       <DateField source="created_at" />
       <DateField source="updated_at" />
     </Datagrid>

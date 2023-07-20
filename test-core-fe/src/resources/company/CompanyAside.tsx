@@ -7,8 +7,8 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-// import {CoreComments} from '@moonlight-labs/core-comments-fe'
-// import { CoreVersions } from '@moonlight-labs/core-versions-fe';
+import { Comments } from '@moonlight-labs/core-comments-fe'
+import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 
 export const CompanyAside = () => {
   // const record = useRecordContext()
@@ -23,7 +23,7 @@ export const CompanyAside = () => {
           <Typography>Comments</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {/* <CoreComments.Comments.Stream /> */}
+          <Comments.Stream />
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -35,7 +35,7 @@ export const CompanyAside = () => {
           <Typography>Changes</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {/* <CoreVersions.Versions.Stream changesDisplayed={1} /> */}
+          <CoreVersions.Versions.Stream changesDisplayed={1} />
         </AccordionDetails>
       </Accordion>
     </Paper>

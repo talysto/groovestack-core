@@ -7,8 +7,8 @@ export type Comment = {
   updated_at: String
   author_id?: String
   author_type?: String
-  resource_id?: String
-  resource_type?: String
+  resource_id: String
+  resource_type: String
 }
 
 export function mockComment() {

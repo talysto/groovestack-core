@@ -1,5 +1,6 @@
 import fakeDataProvider from 'ra-data-fakerest'
 import { faker } from '@faker-js/faker'
+import { AuthProvider } from 'react-admin'
 
 import { mockJobs, mockLockers } from '@moonlight-labs/core-jobs-fe'
 import { mockComments } from '@moonlight-labs/core-comments-fe'
@@ -37,7 +38,7 @@ const comments = mockComments(50).map((comment) => {
   }
 })
 
-const versions = (await mockVersions({ count: 20 })).map((version: any) => {
+const versions = (await mockVersions({ count: 40 })).map((version: any) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),
@@ -117,3 +118,31 @@ const data = {
 console.log(data)
 
 export const mockDataProvider = fakeDataProvider(data, true)
+
+
+
+type MockAuthProviderType = () => Promise<AuthProvider>
+
+export const mockAuthProvider: MockAuthProviderType = async () => {
+  // const resources = await import('../../dataProvider/mockData/seeds.json')
+
+  const currentUser = users[0]
+
+  return (
+    {
+      // authentication
+      login: _params => {
+        return Promise.resolve()
+      },
+      checkError: _error => Promise.resolve(),
+      checkAuth: _params => {
+        return Promise.resolve()
+      },
+      logout: () => Promise.resolve(),
+      getIdentity: () => Promise.resolve(currentUser),
+      handleCallback: () => Promise.resolve(), // for third-party authentication only
+      // authorization
+      getPermissions: () => Promise.resolve(['admin']),
+    }
+  )
+}

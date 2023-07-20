@@ -16,7 +16,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 //   }
 // }
 import { CoreVersions } from '@moonlight-labs/core-versions-fe'
-import { CoreComments } from '@moonlight-labs/core-comments-fe'
+import { Comments } from '@moonlight-labs/core-comments-fe'
 
 export const UserAside = () => {
   return (
@@ -31,7 +31,7 @@ export const UserAside = () => {
             <Typography>Comments</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <CoreComments.Comments.Stream />
+            <Comments.Stream />
           </AccordionDetails>
         </Accordion>
         <Accordion>

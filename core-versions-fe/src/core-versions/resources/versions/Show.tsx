@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
 
-import { ChangesTable } from './TableList'
+import { ChangesTable } from './ChangesTable'
 import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
 
 const VersionsTitle = (props: any) => {

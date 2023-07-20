@@ -4,7 +4,7 @@ import {
   SingleFieldList,
 } from 'react-admin'
 
-import { Typography, Box } from '@mui/material'
+import { Box } from '@mui/material'
 import {
   TimelineConnector,
   TimelineContent,
@@ -14,25 +14,40 @@ import {
   TimelineSeparator,
 } from '@mui/lab'
 
-import { PolymorphicReferenceField, DateField } from '@moonlight-labs/core-base-fe'
+import {
+  PolymorphicReferenceField,
+  DateField,
+  TimeAgoField,
+} from '@moonlight-labs/core-base-fe'
+import { ChangesTable } from './ChangesTable'
 
-export const VersionTimelineItem = ({
-  changesDisplayed,
-}: {
+interface NewType {
   changesDisplayed: number
-}) => {
+}
+
+export const VersionTimelineItem = ({ changesDisplayed }: NewType) => {
   const record = useRecordContext()
 
   if (!record) return null
+
   return (
     <TimelineItem>
       <TimelineOppositeContent
-        sx={{ m: 0, mt: '10px', pl: 0 }}
+        sx={{
+          m: 0,
+          mt: '10px',
+          pl: 0,
+          flexBasis: '7em',
+          flexShrink: 0,
+          flexGrow: 0,
+          lineHeight: 1.2,
+        }}
         align="right"
         variant="body2"
         color="text.secondary"
       >
-        <DateField source="timestamp" showTime={false} />
+        {/* <DateField source="timestamp" showTime={false} /> */}
+        <TimeAgoField source="timestamp" />
       </TimelineOppositeContent>
 
       <TimelineSeparator sx={{ mt: 1 }}>
@@ -41,55 +56,18 @@ export const VersionTimelineItem = ({
         <TimelineConnector />
       </TimelineSeparator>
 
-      <TimelineContent sx={{ py: '12px', px: 2, verticalAlign: 'top' }}>
+      <TimelineContent
+        sx={{
+          py: '12px',
+          px: 2,
+          verticalAlign: 'top',
+          flexShrink: 0,
+          flexGrow: 1,
+        }}
+      >
         <PolymorphicReferenceField source="actor" /> changed
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 1,
-            minWidth: 450,
-            width: 450,
-          }}
-        >
-          <Typography variant="body2" color="textSecondary">
-            <table>
-              <tbody>
-                {record &&
-                  record.changes &&
-                  record.changes
-                    .filter((item: any, idx: number) => idx < changesDisplayed)
-                    .map((change: any) => {
-                      return (
-                        <tr
-                          key={change[0]}
-                          style={{ verticalAlign: 'baseline' }}
-                        >
-                          <td
-                            style={{
-                              textTransform: 'uppercase',
-                              fontSize: '80%',
-                              paddingRight: 15,
-                            }}
-                          >
-                            {change[0]}
-                          </td>
-                          <td>
-                            {' '}
-                            {/*  style={{inlineSize: '500px', overflowWrap: 'anywhere'}} */}
-                            {change[1][1]}
-                            <br />(
-                            <span style={{ textDecoration: 'line-through' }}>
-                              {change[1][0]}
-                            </span>
-                            )
-                          </td>
-                        </tr>
-                      )
-                    })}
-              </tbody>
-            </table>
-          </Typography>
+        <Box>
+          <ChangesTable changesDisplayed={changesDisplayed} />
         </Box>
       </TimelineContent>
     </TimelineItem>

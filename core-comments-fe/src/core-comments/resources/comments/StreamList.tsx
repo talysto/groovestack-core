@@ -16,36 +16,11 @@ import {
   RowClickFunction,
   RaRecord,
   Identifier,
+  Button,
 } from 'react-admin'
 
-import { Typography, Avatar, Box } from '@mui/material'
-
-// import { Comments } from '.'
-import { CommentCreateProps } from './Create'
-import { PolymorphicReferenceField, DateField } from '@moonlight-labs/core-base-fe'
-
-const AuthorField = () => {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      <Box>
-        <Avatar />
-      </Box>
-      <Box sx={{ flexGrow: 1, m: 1 }}>
-        <Typography>
-          <PolymorphicReferenceField source="author" />
-        </Typography>
-        <Typography>
-          <DateField source="created_at" showTime={false} />
-        </Typography>
-      </Box>
-    </Box>
-  )
-}
+import { CommentCreate, CommentCreateProps } from './Create'
+import { AuthorField } from './AuthorField'
 
 type CommentStreamProps = {
   createProps?: CommentCreateProps
@@ -70,7 +45,12 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
     const redirect = useRedirect()
 
     return (
-      <Toolbar sx={{ justifyContent: 'space-between' }}>
+      <Toolbar
+        sx={{
+          justifyContent: 'space-between',
+          '& .MuiToolbar-root': { p: 1, minHeight: 0 },
+        }}
+      >
         <SaveButton
           type="button"
           label="Update"
@@ -81,11 +61,9 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
             },
           }}
         />
-        <DeleteWithConfirmButton
-          redirect={false}
-          label=""
-          sx={{ paddingLeft: '14px' }}
-        />
+        <Button label="Cancel" onClick={() => setToggleEditView(null)} />
+
+        <DeleteWithConfirmButton redirect={false} label="" />
       </Toolbar>
     )
   }
@@ -96,9 +74,17 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
     if (record.id === toggleEditView) {
       return (
         <Edit resource="Comment" redirect={false} id={record.id}>
-          <SimpleForm record={record} toolbar={<UpdateCommentToolbar />}>
-            <AuthorField />
-            <TextInput source="body" multiline sx={{ width: 350 }} />
+          <SimpleForm
+            record={record}
+            toolbar={<UpdateCommentToolbar />}
+            sx={{ p: 0 }}
+          >
+            <TextInput
+              source="body"
+              label={<AuthorField />}
+              multiline
+              fullWidth
+            />
           </SimpleForm>
         </Edit>
       )
@@ -106,16 +92,14 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
     return (
       <WrapperField>
         <AuthorField />
-        <Typography>
-          <TextField source="body" />
-        </Typography>
+        <TextField component="div" source="body" sx={{ pl: 4 }} />
       </WrapperField>
     )
   }
 
   return (
     <>
-      {/* {createProps && <Comments.Create {...createProps} /> } */}
+      <CommentCreate />
 
       <ReferenceManyField
         reference="Comment"
@@ -124,13 +108,9 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
         sort={{ field: 'created_at', order: 'DESC' }}
       >
         <Datagrid
-          rowClick={toggleEdit}
+          // rowClick={toggleEdit}
           bulkActionButtons={false}
-          sx={{
-            '& .RaDatagrid-rowCell': {
-              padding: '5px',
-            },
-          }}
+          sx={{ '& .RaDatagrid-rowCell': { p: 1, mb: 2 } }}
         >
           <EditCommentForm />
         </Datagrid>

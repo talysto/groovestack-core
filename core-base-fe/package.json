@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.1.6",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/core-base.js",
   "module": "./dist/core-base.js",
   "types": "./dist/core-base.d.ts",

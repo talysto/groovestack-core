@@ -10,11 +10,17 @@ export const timeAgo = (timestamp: string) => {
   const m = dayjs(timestamp)
 
   return (
-    <span title={m.format('dddd, MMMM Do YYYY, h:mm a')}>{m.fromNow()}</span>
+    <span title={m.format('dddd, MMMM D YYYY, h:mm a')}>{m.fromNow()}</span>
   )
 }
 
-export const TimeAgoField = ({ label, source }:{ label?: string; source: string }) => {
+export const TimeAgoField = ({
+  label,
+  source,
+}: {
+  label?: string
+  source: string
+}) => {
   const record = useRecordContext()
 
   if (!record) return null
