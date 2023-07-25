@@ -203,7 +203,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-base-fe!PolymorphicReferenceField:var",
-          "docComment": "/**\n * React Admin Field that renders a Rails-style polymorphic relationship\n *\n * @component\n *\n * @example\n *\n * const age = 21 const name = 'Jitendra Nirnejak' return ( <PolymorphicReferenceField source='author' /> )\n */\n",
+          "docComment": "/**\n * React Admin Field that renders a Rails-style polymorphic relationship\n *\n * @component\n *\n * @example\n *\n * return ( <PolymorphicReferenceField source='author' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -240,7 +240,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-base-fe!TimeAgoField:var",
-          "docComment": "",
+          "docComment": "/**\n * React Admin Field that renders a timestamp relative to the current time. For example: - 2 hours ago - 12 minutes from now The full timestamp is available as a tooltip.\n *\n * @component\n *\n * @example\n *\n * return ( <TimeAgoField source='created_at' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -248,7 +248,16 @@
             },
             {
               "kind": "Content",
-              "text": "({ label, source, }: {\n    label?: string | undefined;\n    source: string;\n}) => "
+              "text": "(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "FieldProps",
+              "canonicalReference": "ra-ui-materialui!FieldProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
             },
             {
               "kind": "Reference",
@@ -266,7 +275,7 @@
           "name": "TimeAgoField",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         }
       ]
