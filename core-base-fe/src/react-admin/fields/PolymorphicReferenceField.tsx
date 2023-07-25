@@ -4,6 +4,15 @@ export interface PolymorphicReferenceFieldProps extends FieldProps {
   source: string
 }
 
+/**
+ * React Admin Field that renders a Rails-style polymorphic relationship
+ *
+ * @component
+ * @example
+ * return (
+ *   <PolymorphicReferenceField source='author' />
+ * )
+ */
 export const PolymorphicReferenceField = ({
   source,
 }: PolymorphicReferenceFieldProps) => {

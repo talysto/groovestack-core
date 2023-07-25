@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts'
+import dts from '@moonlight-labs/vite-plugin-dts'
 // import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/

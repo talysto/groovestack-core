@@ -16,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "8.0.2",
+    "@moonlight-labs/vite-plugin-dts": "^3.3.1",
     "@mui/icons-material": "5.14.1",
     "@mui/material": "5.14.1",
     "@types/node": "20.4.2",
@@ -33,7 +34,6 @@
     "react-dom": "18.2.0",
     "rollup-plugin-visualizer": "5.9.2",
     "typescript": "5.1.6",
-    "vite": "4.4.4",
-    "vite-plugin-dts": "3.3.1"
+    "vite": "4.4.4"
   }
 }
