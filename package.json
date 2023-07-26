@@ -36,6 +36,7 @@
     "react": "18.2.0",
     "react-admin": "4.12.1",
     "react-dom": "18.2.0",
+    "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-visualizer": "5.9.2",
     "typescript": "5.1.6",
     "vite": "4.4.4"
