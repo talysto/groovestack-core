@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-base-fe",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "files": [
     "dist"
@@ -29,6 +29,5 @@
   "optionalDependencies": {
     "dayjs": ">=1.11.0"
   },
-  "peerDependencies": {
-  }
+  "peerDependencies": {}
 }
