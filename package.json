@@ -9,7 +9,8 @@
     "dev": "pnpm --filter test-core-fe dev",
     "format": "npx prettier -w **/*.{tsx,ts,json}",
     "pre-publish": "pnpm publish -r --dry-run --no-git-checks",
-    "publish-all": "pnpm publish -r"
+    "publish-all": "pnpm publish -r",
+    "beta:docs": "npx @microsoft/api-documenter markdown -i core-base-fe/docs -o docs/docs/api/"
   },
   "keywords": [],
   "author": "",

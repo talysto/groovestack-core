@@ -202,6 +202,84 @@
         },
         {
           "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!MoneyField:var",
+          "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "MoneyField: "
+            },
+            {
+              "kind": "Content",
+              "text": "(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MoneyFieldProps",
+              "canonicalReference": "@moonlight-labs/core-base-fe!~MoneyFieldProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/fields/MoneyField.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "MoneyField",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!MoneyInput:var",
+          "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "MoneyInput: "
+            },
+            {
+              "kind": "Content",
+              "text": "(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "InputProps",
+              "canonicalReference": "ra-core!InputProps:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/inputs/MoneyInput.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "MoneyInput",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-base-fe!PolymorphicReferenceField:var",
           "docComment": "/**\n * React Admin Field that renders a Rails-style polymorphic relationship\n *\n * @component\n *\n * @example\n *\n * return ( <PolymorphicReferenceField source='author' /> )\n */\n",
           "excerptTokens": [
@@ -235,6 +313,84 @@
           "variableTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 5
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!StatusInput:var",
+          "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events.\n *\n * @component\n *\n * @example\n *\n * return ( <StatusInput source='status' /> )\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "StatusInput: "
+            },
+            {
+              "kind": "Content",
+              "text": "(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "FormGroupProps",
+              "canonicalReference": "@mui/material!FormGroupProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommonInputProps",
+              "canonicalReference": "ra-ui-materialui!CommonInputProps:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/inputs/StatusInput.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "StatusInput",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!timeAgo:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "timeAgo: "
+            },
+            {
+              "kind": "Content",
+              "text": "(timestamp: string) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/fields/TimeAgoField.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "timeAgo",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
           }
         },
         {

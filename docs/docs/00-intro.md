@@ -64,7 +64,6 @@ import versions from '../../core-versions-fe/package.json'
 export const coreModules = [jobs, accounting, comments, versions]
 
 export const ModuleList = () => (
-
 <table>
 <tbody>
   { coreModules.map(mod => (

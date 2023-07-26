@@ -17,7 +17,6 @@ export const coreModules = [jobs]
 export const ExportList = () => {
 console.log(jobs)
 return(
-
 <table>
 <tbody>
   { coreModules.map(mod => (

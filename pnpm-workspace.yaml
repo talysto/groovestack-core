@@ -6,3 +6,4 @@ packages:
 - "core-accounting-fe"
 - "core-comments-fe"
 - "test-core-fe"
+- "docs"
