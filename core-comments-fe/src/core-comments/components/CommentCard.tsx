@@ -1,56 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
-// import { makeStyles, Theme, createStyles } from '@mui/material/styles'; // TODO Refactor
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
-import Avatar from '@mui/material/Avatar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import { red } from '@mui/material/colors'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import Divider from '@mui/material/Divider'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import { Button } from 'react-admin'
-import CardActions from '@mui/material/CardActions'
-import TextField from '@mui/material/TextField'
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         root: {
-//             margin: 3,
-//             "& .MuiTextField-root": {
-//                 margin: "0 auto",
-//                 width: "100%",
-//             },
-//             boxShadow: "none"
-//         },
-//         dividerFullWidth: {
-//             margin: `5px 0 0 ${theme.spacing(2)}px`,
-//         },
-//         media: {
-//             height: 0,
-//             paddingTop: '56.25%', // 16:9
-//         },
-//         expand: {
-//             transform: 'rotate(0deg)',
-//             marginLeft: 'auto',
-//             transition: theme.transitions.create('transform', {
-//                 duration: theme.transitions.duration.shortest,
-//             }),
-//         },
-//         expandOpen: {
-//             transform: 'rotate(180deg)',
-//         },
-//         avatar: {
-//             backgroundColor: red[500],
-//         },
-//         actions: {
-//             paddingLeft: 18,
-//         }
-//     }),
-// );
+import { Button, Menu } from 'react-admin'
+import {
+  Card,
+  CardHeader,
+  Avatar,
+  IconButton,
+  CardContent,
+  Typography,
+  TextField,
+  CardActions,
+  Divider,
+  MenuItem,
+} from '@mui/material'
 
 const CommentCard = (props: any) => {
   // const classes = useStyles();

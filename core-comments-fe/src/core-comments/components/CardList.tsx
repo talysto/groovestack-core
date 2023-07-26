@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 
-// import { makeStyles, Theme, createStyles } from '@mui/material/styles';
-
 import {
   DeleteParams,
   UpdateParams,
@@ -12,15 +10,6 @@ import CommentCard from './CommentCard'
 import { CardListProps } from '../types'
 // import { FETCH_COMMENTS } from 'comments/shared/gql'
 // import apolloAdminClient from "clients/apollo/admin";
-
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         listContainer: {
-//             height: "calc(100% - 50px)",
-//             overflow: "auto"
-//         },
-//     }),
-// );
 
 const FETCH_COMMENTS = ''
 
