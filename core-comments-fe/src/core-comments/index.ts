@@ -1,5 +1,6 @@
-import { Comments } from './resources/comments'
-export { Comments }
+export { Comments } from './resources/comments'
+
+export { ShowCommentsButton } from './components/ShowCommentsButton'
 
 export { mockComment, mockComments } from './mockComments'
 

@@ -513,6 +513,34 @@
             }
           ],
           "name": "mockComments"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-comments-fe!ShowCommentsButton:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "ShowCommentsButton: "
+            },
+            {
+              "kind": "Reference",
+              "text": "React.FC",
+              "canonicalReference": "@types/react!React.FC:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<{\n    data: any;\n    resource: string;\n    resourceTransform?: (resource: string) => string;\n}>"
+            }
+          ],
+          "fileUrlPath": "dist/components/ShowCommentsButton.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "ShowCommentsButton",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          }
         }
       ]
     }

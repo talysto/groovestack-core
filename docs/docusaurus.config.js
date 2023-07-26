@@ -72,10 +72,17 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'index',
+            docId: 'intro',
             position: 'left',
             label: 'Docs',
           },
+          {
+            type: 'doc',
+            docId: 'api/index',
+            position: 'left',
+            label: 'API',
+          },
+
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/moonlight-labs/core',

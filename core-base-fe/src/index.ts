@@ -4,9 +4,10 @@ import { PolymorphicReferenceField } from './react-admin/fields/PolymorphicRefer
 import { MoneyField } from './react-admin/fields/MoneyField'
 import { StatusInput } from './react-admin/inputs/StatusInput'
 import { MoneyInput } from './react-admin/inputs/MoneyInput'
+import { generateTimeZoneOptions } from './react-admin/fields/TimezoneSelect'
 
 // Utilities
-export { timeAgo }
+export { timeAgo, generateTimeZoneOptions }
 
 // Fields
 export { DateField, TimeAgoField, PolymorphicReferenceField, MoneyField }

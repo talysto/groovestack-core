@@ -204,7 +204,7 @@
                 {
                   "kind": "Reference",
                   "text": "Lines",
-                  "canonicalReference": "!unknown:member"
+                  "canonicalReference": "@moonlight-labs/core-accounting-fe!~Lines:class"
                 },
                 {
                   "kind": "Content",
