@@ -279,13 +279,8 @@
               "text": "): "
             },
             {
-              "kind": "Reference",
-              "text": "Promise",
-              "canonicalReference": "!Promise:interface"
-            },
-            {
               "kind": "Content",
-              "text": "<{\n    id: string;\n    created_at: "
+              "text": "{\n    id: string;\n    created_at: "
             },
             {
               "kind": "Reference",
@@ -330,7 +325,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    actions: string[];\n    data: {};\n    args: {\n        job_id: string;\n    }[];\n}[]>"
+              "text": ";\n    actions: string[];\n    data: {};\n    args: {\n        job_id: string;\n    }[];\n}[]"
             },
             {
               "kind": "Content",
@@ -340,7 +335,7 @@
           "fileUrlPath": "dist/mock-job.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
-            "endIndex": 15
+            "endIndex": 14
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
@@ -374,13 +369,8 @@
               "text": "): "
             },
             {
-              "kind": "Reference",
-              "text": "Promise",
-              "canonicalReference": "!Promise:interface"
-            },
-            {
               "kind": "Content",
-              "text": "<{\n    id: string;\n    host: string;\n    pid: number;\n    workers: number;\n}[]>"
+              "text": "{\n    id: string;\n    host: string;\n    pid: number;\n    workers: number;\n}[]"
             },
             {
               "kind": "Content",
@@ -390,7 +380,7 @@
           "fileUrlPath": "dist/mock-job.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
-            "endIndex": 5
+            "endIndex": 4
           },
           "releaseTag": "Public",
           "overloadIndex": 1,

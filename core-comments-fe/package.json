@@ -1,10 +1,11 @@
 {
   "name": "@moonlight-labs/core-comments-fe",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "files": [
     "dist"
   ],
+  "main": "./dist/core-comments.js",
   "module": "./dist/core-comments.js",
   "types": "./dist/core-comments.d.ts",
   "scripts": {

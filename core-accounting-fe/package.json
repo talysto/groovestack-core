@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-accounting-fe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Double entry accounting and currency management",
   "homepage": "https://moonlight-labs.com/core",
   "keywords": [
@@ -13,6 +13,7 @@
   "files": [
     "dist"
   ],
+  "main": "./dist/core-accounting.js",
   "module": "./dist/core-accounting.js",
   "types": "./dist/core-accounting.d.ts",
   "scripts": {
