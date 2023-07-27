@@ -1,11 +1,8 @@
-import React from 'react'
-
 import {
   Edit,
   SimpleForm,
   TextInput,
   TextField,
-  EditProps,
   SimpleShowLayout,
 } from 'react-admin'
 

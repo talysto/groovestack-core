@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from '@moonlight-labs/vite-plugin-dts'
 import { visualizer } from 'rollup-plugin-visualizer'
+import autoExternal from 'rollup-plugin-auto-external'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,18 +26,9 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      // plugins: [autoExternal()],
+      plugins: [autoExternal()],
 
-      external: [
-        '@mui/icons-material',
-        '@mui/material',
-        'react',
-        'react/jsx-runtime',
-        'react-admin',
-        'react-dom',
-        'react-hook-form',
-        '@faker-js/faker',
-      ],
+      external: ['react/jsx-runtime', /@mui/, '@faker-js/faker'],
       // external: [/node_modules/],
       output: {
         // Provide global variables to use in the UMD build

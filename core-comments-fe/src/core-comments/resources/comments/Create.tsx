@@ -11,7 +11,6 @@ import {
 } from 'react-admin'
 
 import { useFormContext } from 'react-hook-form'
-import { AuthorField } from './AuthorField'
 import { Avatar, Box } from '@mui/material'
 
 export type CommentCreateProps = {

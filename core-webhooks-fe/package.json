@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "@moonlight-labs/core-base-fe": "workspace:^",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": ">=15.5.0"
   }
 }

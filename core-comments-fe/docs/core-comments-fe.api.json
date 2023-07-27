@@ -360,13 +360,8 @@
                   "text": "static Show: "
                 },
                 {
-                  "kind": "Reference",
-                  "text": "FC",
-                  "canonicalReference": "@types/react!React.FC:type"
-                },
-                {
                   "kind": "Content",
-                  "text": "<"
+                  "text": "({ showLayoutWrapper, ...props }: "
                 },
                 {
                   "kind": "Reference",
@@ -375,7 +370,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<any> & {\n        showLayoutWrapper?: {\n            component: any;\n            props: {\n                [key: string]: any;\n            };\n        } | undefined;\n    }>"
+                  "text": "<any> & {\n        showLayoutWrapper?: {\n            component: any;\n            props: {\n                [key: string]: any;\n            };\n        } | undefined;\n    }) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "JSX.Element",
+                  "canonicalReference": "@types/react!JSX.Element:interface"
                 },
                 {
                   "kind": "Content",

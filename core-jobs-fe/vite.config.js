@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from '@moonlight-labs/vite-plugin-dts'
 import { visualizer } from 'rollup-plugin-visualizer'
-// import autoExternal from "rollup-plugin-auto-external";
+import autoExternal from "rollup-plugin-auto-external"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,7 +12,7 @@ export default defineConfig({
       rollupTypes: true,
     }),
     react(),
-    visualizer({ open: false }),
+    visualizer({ open: true }),
   ],
   build: {
     lib: {
@@ -26,9 +26,17 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      // plugins: [autoExternal()],
+      plugins: [autoExternal()],
+      external: [
+        /@mui/,
+        'react/jsx-runtime',
+        '@faker-js/faker',
+        'react-copy-to-clipboard',
+        'react-google-charts'
+      ],
+      // // plugins: [autoExternal()],
 
-      external: ["dayjs", "react-copy-to-clipboard", "@mui/icons-material", "@mui/material", "react", "react/jsx-runtime", "react-admin", "react-dom", "react-hook-form", "@faker-js/faker", "react-google-charts"],
+      // external: ["dayjs", "react-copy-to-clipboard", "@mui/icons-material", "@mui/material", "react", "react/jsx-runtime", "react-admin", "react-dom", "react-hook-form", "@faker-js/faker", "react-google-charts"],
       // external: [/node_modules/],
 
       output: {

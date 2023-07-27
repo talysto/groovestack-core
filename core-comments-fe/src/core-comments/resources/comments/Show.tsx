@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
 
 import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
@@ -16,10 +14,10 @@ type CommentsShowProps = ShowProps & {
   }
 }
 
-export const CommentShow: React.FC<CommentsShowProps> = ({
-  showLayoutWrapper = { component: null, props: null },
+export const CommentShow = ({
+  showLayoutWrapper = { component: null, props: {} },
   ...props
-}) => {
+}: CommentsShowProps) => {
   const renderLayout = () => (
     <SimpleShowLayout>
       <TextField source="id" />
