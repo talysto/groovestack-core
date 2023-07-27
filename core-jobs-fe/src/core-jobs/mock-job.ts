@@ -1,21 +1,15 @@
+import { faker } from '@faker-js/faker'
+
 export async function mockLockers(count = 15) {
-  try {
-    const { faker } = await import('@faker-js/faker')
-    return Array.from({ length: count }, () => ({
-      id: faker.string.uuid(),
-      host: faker.word.adjective() + '_' + faker.word.noun(),
-      pid: 12332,
-      workers: faker.number.int({ min: 1, max: 6 }),
-    }))
-  } catch (e) {
-    console.error(e)
-    return []
-  }
+  return Array.from({ length: count }, () => ({
+    id: faker.string.uuid(),
+    host: faker.word.adjective() + '_' + faker.word.noun(),
+    pid: 12332,
+    workers: faker.number.int({ min: 1, max: 6 }),
+  }))
 }
 
 export async function mockJobs(count = 15) {
-  try {
-    const { faker } = await import('@faker-js/faker')
     return Array.from({ length: count }, () => ({
       // standard attributes
       id: faker.string.uuid(),
@@ -76,8 +70,4 @@ export async function mockJobs(count = 15) {
         },
       ],
     }))
-  } catch (e) {
-    console.error(e)
-    return []
-  }
 }
