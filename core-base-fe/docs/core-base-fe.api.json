@@ -183,7 +183,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ source, showTime, label, }: {\n    source: string;\n    showTime: boolean;\n    label?: string | undefined;\n}) => "
+              "text": "({ source, showTime, label, }: {\n    source: string;\n    showTime?: boolean | undefined;\n    label?: string | undefined;\n}) => "
             },
             {
               "kind": "Reference",
@@ -383,6 +383,10 @@
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
             }
           ],
           "fileUrlPath": "dist/react-admin/inputs/StatusInput.d.ts",
@@ -391,7 +395,7 @@
           "name": "StatusInput",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 8
           }
         },
         {

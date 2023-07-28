@@ -1,3 +1,4 @@
+import { DateField, SimpleShowLayout, TextField } from 'react-admin'
 import {
   Accordion,
   AccordionDetails,
@@ -5,10 +6,14 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
+import { DateField as CoreDateField } from '@moonlight-labs/core-base-fe'
 import { Comments } from '@moonlight-labs/core-comments-fe'
 import { CoreVersions } from '@moonlight-labs/core-versions-fe'
+
+import { inlineLayout } from '../inlineLayout'
 
 export const CompanyAside = () => {
   // const record = useRecordContext()
@@ -38,6 +43,12 @@ export const CompanyAside = () => {
           <CoreVersions.Versions.Stream changesDisplayed={1} />
         </AccordionDetails>
       </Accordion>
+      <SimpleShowLayout sx={{ ...inlineLayout, m: 2, p: 0, marginBottom: 5 }}>
+        <TextField source="id" />
+        <DateField source="created_at" label="created" />
+        <CoreDateField source="created_at" label="created" />
+        <CoreDateField source="updated_at" label="updated" />
+     </SimpleShowLayout>
     </Paper>
   )
 }

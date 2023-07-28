@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from '@moonlight-labs/vite-plugin-dts'
 import { visualizer } from 'rollup-plugin-visualizer'
-import autoExternal from "rollup-plugin-auto-external"
+import autoExternal from 'rollup-plugin-auto-external'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,16 +12,16 @@ export default defineConfig({
       rollupTypes: true,
     }),
     react(),
-    visualizer({ open: true }),
+    visualizer({ open: false }),
   ],
   build: {
     lib: {
       // entry: resolve(__dirname, "lib/main.js"),
-      entry: resolve(__dirname, 'src/core-jobs/index.ts'),
+      entry: resolve(__dirname, 'src/core-accounting/index.ts'),
       formats: ['es'], // UMD
-      name: 'CORE-JOBS',
+      name: 'CORE-ACCOUNTING',
       // the proper extensions will be added
-      fileName: 'core-jobs',
+      fileName: 'core-accounting',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -32,12 +32,7 @@ export default defineConfig({
         'react/jsx-runtime',
         '@faker-js/faker',
         'react-copy-to-clipboard',
-        'react-google-charts'
       ],
-      // // plugins: [autoExternal()],
-
-      // external: ["dayjs", "react-copy-to-clipboard", "@mui/icons-material", "@mui/material", "react", "react/jsx-runtime", "react-admin", "react-dom", "react-hook-form", "@faker-js/faker", "react-google-charts"],
-      // external: [/node_modules/],
 
       output: {
         // Provide global variables to use in the UMD build

@@ -12,7 +12,7 @@ export default defineConfig({
       rollupTypes: true,
     }),
     react(),
-    visualizer({ open: true }),
+    visualizer({ open: false }),
   ],
   build: {
     lib: {

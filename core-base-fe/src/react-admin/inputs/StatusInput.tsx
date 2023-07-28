@@ -9,12 +9,13 @@ import {
   Menu,
   MenuItem,
 } from '@mui/material'
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   CommonInputProps,
   FieldTitle,
   Labeled,
+  useInput,
   useNotify,
   useRecordContext,
   useResourceContext,
@@ -29,22 +30,26 @@ type StatusEvent = { key: string; enabled: boolean; name: string }
  * @component
  *
  * @example
- * return (
- *   <StatusInput source='status' />
- * )
+ * <StatusInput source='status' />
+ *
+ * @example Usage in a DataGrid as an editable column
+ * <WrapperField label='status'>
+ *   <StatusInput source="status" label={false} />
+ * </WrapperField>
  */
 export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
-  const { source, className, sx, ...rest } = props
+  const { source, label, isRequired, className, sx, ...rest } = props
   // const { id, field, fieldState } = useInput({source})
   const record = useRecordContext()
   const resource = useResourceContext()
-  const notify = useNotify()
+  // const { id, field, fieldState, formState, isRequired } = useInput({ source})
 
+  const notify = useNotify()
   const [openDialog, setOpenDialog] = useState(false)
   const [update, { isLoading, error }] = useUpdate()
   const [statusEvent, setStatusEvent] = useState<StatusEvent>()
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -68,7 +73,7 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
     setAnchorEl(null)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (error)
       notify(
         `There was an error updating the ${resource} status: ${
@@ -78,14 +83,19 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
       )
   }, [error])
 
-  // if (!record) return null
+  if (!record) return null
+
   return (
     // <FormGroup
     //   className={clsx('ra-input', `ra-input-${source}`, className)}
     //   // row={row}
     //   sx={sx}>
-    <>
-      <Labeled sx={sx} label={<FieldTitle source={source} />}>
+    // https://github.com/marmelab/react-admin/blob/dcf8eaf703e9c4d991193cf39c4f5c3a0396d384/packages/ra-ui-materialui/src/input/TextInput.tsx#L70
+      <Labeled label={label !== '' && label !== false ? <FieldTitle
+      label={label}
+      source={source}
+      resource={resource}
+      isRequired={isRequired}/> : false }>
         <>
           <Button
             id="basic-button"
@@ -123,21 +133,21 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
               ),
             )}
           </Menu>
+
+        <Dialog open={openDialog} onClose={handleCloseDialog}>
+          <DialogTitle>{resource} Status Update</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              {`Are you sure you would like to ${statusEvent?.name.toLowerCase()} this ${resource}?`}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDialog}>No</Button>
+            <Button onClick={handleYes}>Yes</Button>
+          </DialogActions>
+        </Dialog>
         </>
       </Labeled>
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>{resource} Status Update</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            {`Are you sure you would like to ${statusEvent?.name.toLowerCase()} this ${resource}?`}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>No</Button>
-          <Button onClick={handleYes}>Yes</Button>
-        </DialogActions>
-      </Dialog>
-    </>
-    // </FormGroup>
+
   )
 }

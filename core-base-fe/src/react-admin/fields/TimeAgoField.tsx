@@ -1,5 +1,5 @@
 import { FieldProps, useRecordContext } from 'react-admin'
-import { get } from 'lodash'
+import get from 'lodash/get'
 
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'

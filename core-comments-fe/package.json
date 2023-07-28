@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-comments-fe",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "type": "module",
   "files": [
     "dist"
@@ -23,6 +23,6 @@
     "react-hook-form": ">=7.43.9"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:*"
+    "@moonlight-labs/core-base-fe": "workspace:^"
   }
 }

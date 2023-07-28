@@ -127,7 +127,7 @@ importers:
   core-comments-fe:
     dependencies:
       '@moonlight-labs/core-base-fe':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
         specifier: '>=5.11.11'
@@ -151,7 +151,7 @@ importers:
   core-jobs-fe:
     dependencies:
       '@moonlight-labs/core-base-fe':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
         specifier: '>=5.11.11'
@@ -185,7 +185,7 @@ importers:
   core-versions-fe:
     dependencies:
       '@moonlight-labs/core-base-fe':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
         specifier: '>=5.11.11'

@@ -1,3 +1,3 @@
 export const inlineLayout = {
-  sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
+   '& .RaLabeled-label': { display: 'inline-block', minWidth: 60, mr: 1, textTransform: 'uppercase' },
 }

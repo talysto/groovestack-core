@@ -10,9 +10,11 @@ import {
 // import { Jobs } from '@core/jobs'
 
 // Source Code import
+import { Comments } from '@moonlight-labs/core-comments-fe'
+
 import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
 import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
-import { Comments } from '@moonlight-labs/core-comments-fe'
+
 import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 import { CoreWebhooks } from '@moonlight-labs/core-webhooks-fe'
 
@@ -83,6 +85,7 @@ function AdminApp() {
         icon={Company.Icon}
         edit={Company.Edit}
         list={Company.List}
+        create={Company.Create}
         options={{ label: 'Companies (Test)' }}
         recordRepresentation="name"
       />

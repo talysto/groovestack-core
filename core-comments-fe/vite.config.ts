@@ -27,7 +27,6 @@ export default defineConfig({
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       plugins: [autoExternal()],
-
       external: ['react/jsx-runtime', /@mui/, '@faker-js/faker'],
       // external: [/node_modules/],
       output: {

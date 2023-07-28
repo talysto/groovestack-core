@@ -6,7 +6,7 @@ export const DateField = ({
   label,
 }: {
   source: string
-  showTime: boolean
+  showTime?: boolean
   label?: string
 }) => {
   const record = useRecordContext()
