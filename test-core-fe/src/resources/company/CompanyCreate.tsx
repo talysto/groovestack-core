@@ -1,6 +1,4 @@
-import {
-  Create,
-} from 'react-admin'
+import { Create } from 'react-admin'
 
 import { CompanyForm } from './CompanyForm'
 
@@ -9,4 +7,3 @@ export const CompanyCreate = () => (
     <CompanyForm />
   </Create>
 )
-

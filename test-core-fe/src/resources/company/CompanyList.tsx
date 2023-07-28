@@ -1,4 +1,8 @@
-import { StatusInput, TimeAgoField } from '@moonlight-labs/core-base-fe'
+import {
+  MoneyField,
+  StatusInput,
+  TimeAgoField,
+} from '@moonlight-labs/core-base-fe'
 import {
   Datagrid,
   List,
@@ -24,12 +28,14 @@ export const CompanyList = () => (
         target="resource_id"
       />
 
-      <WrapperField label='status'>
+      <MoneyField source="share_price" />
+      <MoneyField source="market_cap" />
+
+      <WrapperField label="status">
         <StatusInput source="status" label={false} />
       </WrapperField>
 
       <TimeAgoField source="created_at" />
-
     </Datagrid>
   </List>
 )

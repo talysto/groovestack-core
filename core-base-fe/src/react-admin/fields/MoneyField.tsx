@@ -19,7 +19,7 @@ export const MoneyField = (props: MoneyFieldProps) => {
 
   const sourceValue = get(record, source)
 
-  return <div>sourceValue</div>
+  return <div>{sourceValue}</div>
 }
 
 export interface MoneyFieldProps<

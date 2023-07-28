@@ -34,6 +34,9 @@ export const mockCompanies = (count = 15) =>
       status: status,
       status_events: status_events,
 
+      share_price: faker.finance.amount({min: 0.01, max: 20}),
+      market_cap: faker.finance.amount({min: 25000, max: 2_000_000}),
+
       type: 'Company',
       id: faker.string.uuid(),
       created_at: faker.date.past(),

@@ -183,7 +183,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ source, showTime, label, }: {\n    source: string;\n    showTime?: boolean | undefined;\n    label?: string | undefined;\n}) => "
+              "text": "({ source, className, showTime, label, ...rest }: {\n    source: string;\n    showTime?: boolean | undefined;\n    label?: string | undefined;\n    className?: string | undefined;\n}) => "
             },
             {
               "kind": "Reference",
@@ -351,7 +351,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-base-fe!StatusInput:var",
-          "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events.\n *\n * @component\n *\n * @example\n *\n * return ( <StatusInput source='status' /> )\n */\n",
+          "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events.\n *\n * @component\n *\n * @example\n *\n * <StatusInput source='status' />\n *\n * @example\n *\n * Usage in a DataGrid as an editable column <WrapperField label='status'> <StatusInput source=\"status\" label={false} /> </WrapperField>\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

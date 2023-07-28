@@ -45,10 +45,10 @@ export const CompanyAside = () => {
       </Accordion>
       <SimpleShowLayout sx={{ ...inlineLayout, m: 2, p: 0, marginBottom: 5 }}>
         <TextField source="id" />
-        <DateField source="created_at" label="created" />
+        {/* <DateField source="created_at" label="created" />  // For comparison purposes */}
         <CoreDateField source="created_at" label="created" />
         <CoreDateField source="updated_at" label="updated" />
-     </SimpleShowLayout>
+      </SimpleShowLayout>
     </Paper>
   )
 }

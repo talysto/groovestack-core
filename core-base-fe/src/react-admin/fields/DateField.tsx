@@ -1,22 +1,39 @@
-import { useRecordContext } from 'react-admin'
+import { sanitizeFieldRestProps, useRecordContext } from 'react-admin'
+import get from 'lodash/get'
+import { Typography } from '@mui/material'
 
+// TODO Upgrade to DateFieldProps
 export const DateField = ({
   source,
+  className,
   showTime,
   label,
+  ...rest
 }: {
   source: string
   showTime?: boolean
   label?: string
+  className?: string
 }) => {
   const record = useRecordContext()
-  const date = new Date(record[source])
+
+  const date = get(record, source)
+
+  const dateString = showTime
+    ? `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`
+    : `${date.toLocaleDateString()}`
 
   return (
-    <span title={record[source]}>
-      {showTime
-        ? `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`
-        : `${date.toLocaleDateString()}`}
-    </span>
+    // Alt version might be simpler:
+    // <DateField title={date} {...props} />
+    <Typography
+      component="span"
+      variant="body2"
+      className={className}
+      title={date}
+      {...sanitizeFieldRestProps(rest)}
+    >
+      {dateString}
+    </Typography>
   )
 }

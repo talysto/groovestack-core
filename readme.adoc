@@ -22,12 +22,12 @@ class Types::Query < GraphQL::Schema::Object
   include Core::Accounting::GraphQL::Line::Queries
 end
 ```
-* add a core-accounting initializer to 
+* add a core-accounting initializer to
 - configure double entry
 - define double entry accounts
 - define double entry transfers
 - extend the DoubleEntry::Line model (particularly for configuring the metadata jsonb_accessor)
-- extend the Core::Accounting::GraphQL::Types::Line 
+- extend the Core::Accounting::GraphQL::Types::Line
 
 == SETUP for Core-Accounting-FE
 * add core-accounting-fe pkg `yarn add https://gitpkg.now.sh/moonlight-labs/core/core-accounting-fe?main`
@@ -48,7 +48,7 @@ const AccountScopeReferenceField: React.FC<{source: string}> = ({source}) => {
   )
 }
 
-<Resource 
+<Resource
   key="admin-lines-resource"
   name="line"
   options={[{ label: 'Ledger Lines', menu: 'admin' }]}
@@ -214,6 +214,7 @@ end
 
 - [ ] Setup CLOC ie `cloc --vcs=git`
 - [ ] Code coverage
+
 
 == See also
 * Combustion - simpler dummy apps for testing modules
