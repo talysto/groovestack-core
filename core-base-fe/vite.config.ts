@@ -31,6 +31,7 @@ export default defineConfig({
         'react/jsx-runtime',
         'dayjs/plugin/relativeTime',
         'dayjs/plugin/localizedFormat',
+        /lodash/,
       ],
       output: {
         // Provide global variables to use in the UMD build

@@ -280,52 +280,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    type: string;\n    job_class: string;\n    run_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    queue: string;\n    priority: number;\n    status: string;\n    expired_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    error_count: number;\n    last_error: {};\n    last_error_backtrace: string;\n    last_error_message: string;\n    finished_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    actions: string[];\n    data: {};\n    args: {\n        job_id: string;\n    }[];\n}[]"
+              "text": "{\n    id: any;\n    created_at: any;\n    updated_at: any;\n    type: any;\n    job_class: any;\n    run_at: any;\n    queue: any;\n    priority: any;\n    status: any;\n    expired_at: any;\n    error_count: any;\n    last_error: {};\n    last_error_backtrace: string;\n    last_error_message: string;\n    finished_at: any;\n    actions: any;\n    data: {};\n    args: {\n        job_id: string;\n    }[];\n}[]"
             },
             {
               "kind": "Content",
@@ -335,7 +290,7 @@
           "fileUrlPath": "dist/mock-job.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
-            "endIndex": 14
+            "endIndex": 4
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
@@ -370,7 +325,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    host: string;\n    pid: number;\n    workers: number;\n}[]"
+              "text": "{\n    id: any;\n    host: string;\n    pid: number;\n    workers: any;\n}[]"
             },
             {
               "kind": "Content",

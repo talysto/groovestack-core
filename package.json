@@ -18,7 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "@faker-js/faker": "8.0.2",
+    "@faker-js/faker": ">=8.0.0",
     "@moonlight-labs/vite-plugin-dts": "^3.3.1",
     "@mui/icons-material": "5.14.1",
     "@mui/material": "5.14.1",

@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+import { faker } from '@moonlight-labs/core-base-fe'
 
 export const mockUsers = (count = 15) =>
   Array.from({ length: count }, () => ({

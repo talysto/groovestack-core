@@ -115,8 +115,7 @@ tasks:
       - echo "COMMAND-C to cancel or any key to continue"
       - read
       - pnpm create vite {{.CLI_ARGS}}-fe --template react-ts
-      - cd {{.CLI_ARGS}}-fe && pnpm add --save-peer react react-dom react-admin @mui/material @mui/icons-material
-      - cd {{.CLI_ARGS}}-fe && pnpm add -D @faker-js/faker vite-plugin-dts
+      # - cd {{.CLI_ARGS}}-fe && pnpm add --save-peer react react-dom react-admin @mui/material @mui/icons-material
       - mkdir -p cd {{.CLI_ARGS}}-fe/src/{{.CLI_ARGS}}
       # - BACKEND
       - mkdir {{.CLI_ARGS}}

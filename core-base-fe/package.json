@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-base-fe",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "type": "module",
   "files": [
     "dist"
@@ -27,7 +27,8 @@
     "react-admin": ">=4.8.0"
   },
   "optionalDependencies": {
-    "dayjs": ">=1.11.0"
+    "dayjs": ">=1.11.0",
+    "@faker-js/faker": ">=8.0.0"
   },
   "peerDependencies": {}
 }

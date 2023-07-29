@@ -201,6 +201,29 @@
           }
         },
         {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!faker:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "faker: "
+            },
+            {
+              "kind": "Content",
+              "text": "any"
+            }
+          ],
+          "fileUrlPath": "dist/faker.d.ts",
+          "isReadonly": false,
+          "releaseTag": "Public",
+          "name": "faker",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
           "kind": "Function",
           "canonicalReference": "@moonlight-labs/core-base-fe!generateTimeZoneOptions:function(1)",
           "docComment": "",

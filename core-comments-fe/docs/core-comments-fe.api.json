@@ -452,7 +452,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    body: string;\n    created_at: string;\n    updated_at: string;\n}"
+              "text": "{\n    id: any;\n    body: any;\n    created_at: any;\n    updated_at: any;\n}"
             },
             {
               "kind": "Content",
@@ -488,7 +488,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    body: string;\n    created_at: string;\n    updated_at: string;\n}[]"
+              "text": "{\n    id: any;\n    body: any;\n    created_at: any;\n    updated_at: any;\n}[]"
             },
             {
               "kind": "Content",

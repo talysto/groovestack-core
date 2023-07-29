@@ -1,5 +1,5 @@
 import fakeDataProvider from 'ra-data-fakerest'
-import { faker } from '@faker-js/faker'
+import { faker } from '@moonlight-labs/core-base-fe'
 import { AuthProvider } from 'react-admin'
 
 import { mockJobs, mockLockers } from '@moonlight-labs/core-jobs-fe'

@@ -237,25 +237,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    source: string;\n    event: string;\n    status: string;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: string;\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n}[]"
+              "text": "{\n    source: any;\n    event: any;\n    status: any;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: any;\n    created_at: any;\n    updated_at: any;\n}[]"
             }
           ],
           "fileUrlPath": "dist/mockWebhooks.d.ts",
@@ -264,7 +246,7 @@
           "name": "mockWebhooks",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 6
+            "endIndex": 2
           }
         }
       ]

@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+import { faker } from '@moonlight-labs/core-base-fe'
 
 export function mockLockers(count = 15) {
   return Array.from({ length: count }, () => ({

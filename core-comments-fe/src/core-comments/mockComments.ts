@@ -1,12 +1,14 @@
-import { faker } from '@faker-js/faker'
+// import { faker } from '@moonlight-labs/core-base-fe'
+
+import { faker } from '@moonlight-labs/core-base-fe'
 
 export type Comment = {
   id: String
   body: String
   created_at: String
   updated_at: String
-  author_id?: String
-  author_type?: String
+  author_id: String
+  author_type: String
   resource_id: String
   resource_type: String
 }

@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+import { faker } from '@moonlight-labs/core-base-fe'
 // import {} from './helpers'
 
 export const mockWebhooks = Array.from({ length: 35 }, () => {
