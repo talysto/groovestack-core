@@ -7,14 +7,15 @@ const placeholderStyle = {
   color: '#666',
 }
 
-export const Placeholder = ({ name, props }: { name: any; props?: any }) => (
+export const Placeholder = ({
+  name,
+  children,
+}: {
+  name: string
+  children?: JSX.Element | JSX.Element[]
+}) => (
   <div className="wireframe-placeholder" style={placeholderStyle}>
     <h3>{name}</h3>
-    {props && (
-      <div>
-        <h4>Properties</h4>
-        {props}
-      </div>
-    )}
+    <div>{children}</div>
   </div>
 )

@@ -15,8 +15,8 @@ export const ChangesTable = ({
         {record &&
           record.changes &&
           record.changes
-            .filter((item: any, idx: number) => idx < changesDisplayed)
-            .map((change: any, idx: number) => (
+            .filter((idx: number) => idx < changesDisplayed)
+            .map((change: string[], idx: number) => (
               <tr key={idx}>
                 <td
                   style={{ maxWidth: '25%', minWidth: 80, marginRight: '1em' }}

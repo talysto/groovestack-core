@@ -1,18 +1,16 @@
-import { sanitizeFieldRestProps, useRecordContext } from 'react-admin'
-import get from 'lodash/get'
 import { Typography } from '@mui/material'
+import get from 'lodash/get'
+import { sanitizeFieldRestProps, useRecordContext } from 'react-admin'
 
 // TODO Upgrade to DateFieldProps
 export const DateField = ({
   source,
   className,
   showTime,
-  label,
   ...rest
 }: {
   source: string
   showTime?: boolean
-  label?: string
   className?: string
 }) => {
   const record = useRecordContext()

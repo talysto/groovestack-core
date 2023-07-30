@@ -1,4 +1,4 @@
-import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
+import { Show, ShowProps, SimpleShowLayout, TextField } from 'react-admin'
 
 import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
 
@@ -31,7 +31,7 @@ export const CommentShow = ({
 
   return (
     <Show title={<CommentsTitle />} {...props}>
-      {!!WrapperComponent ? (
+      {WrapperComponent ? (
         <WrapperComponent {...wrapperProps}>{renderLayout()}</WrapperComponent>
       ) : (
         <>{renderLayout()}</>

@@ -1,3 +1,5 @@
+import { faker } from '@moonlight-labs/core-base-fe'
+
 const defaultDEntryTransferTypes = [
   { code: 'buy_token', credit_account: 'tokens', debit_account: 'treasury' },
   { code: 'spend_token', credit_account: 'treasury', debit_account: 'tokens' },
@@ -16,10 +18,8 @@ export async function mockLines({
   count = 8,
   dEntryTransferTypes = defaultDEntryTransferTypes,
 }: MockLinesArgs): Promise<any> {
-  try {
-    const { faker } = await import('@faker-js/faker')
 
-    let lines = []
+    const lines = []
     for (let i = count; i--; ) {
       const transfer = faker.helpers.arrayElement(dEntryTransferTypes)
       const amount = parseFloat(faker.commerce.price({ min: 1, max: 1000 }))
@@ -99,8 +99,4 @@ export async function mockLines({
       lines.push(line1, line2)
     }
     return lines
-  } catch (e) {
-    console.error(e)
-    return []
-  }
 }

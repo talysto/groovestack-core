@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-
 import { Drawer } from '@mui/material'
 
-import CommentTopBar from './DrawerTopBar'
-import CardList from './CardList'
 import { DrawerListProps } from '../types'
+import CardList from './CardList'
+import CommentTopBar from './DrawerTopBar'
 
 const DrawerList = (props: DrawerListProps) => {
   //   const classes = useStyles() // TODO Refactor

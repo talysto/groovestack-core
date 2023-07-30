@@ -1,9 +1,9 @@
-import { FieldProps, useRecordContext } from 'react-admin'
 import get from 'lodash/get'
+import { FieldProps, useRecordContext } from 'react-admin'
 
 import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(localizedFormat)
 dayjs.extend(relativeTime)
@@ -52,7 +52,7 @@ export const timeAgo = (timestamp: string) => {
  */
 export const TimeAgoField = (props: FieldProps) => {
   const record = useRecordContext(props)
-  const { source, ...rest } = props
+  const { source } = props
 
   if (!record || !source) return null
 

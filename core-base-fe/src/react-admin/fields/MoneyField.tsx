@@ -1,5 +1,5 @@
-import { FieldProps, useRecordContext } from 'react-admin'
 import get from 'lodash/get'
+import { FieldProps, useRecordContext } from 'react-admin'
 
 /**
  * React Admin Field that supports editing a currency value.
@@ -13,7 +13,7 @@ import get from 'lodash/get'
  */
 export const MoneyField = (props: MoneyFieldProps) => {
   const record = useRecordContext(props)
-  const { source, ...rest } = props
+  const { source } = props
 
   if (!record || !source) return null
 

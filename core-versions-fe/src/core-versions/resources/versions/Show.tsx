@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
+import { Show, ShowProps, SimpleShowLayout, TextField } from 'react-admin'
 
-import { ChangesTable } from './ChangesTable'
 import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
+import { ChangesTable } from './ChangesTable'
 
 const VersionsTitle = (props: any) => {
   const { record } = props
@@ -35,7 +35,7 @@ export const VersionShow: React.FC<VersionsShowProps> = ({
 
   return (
     <Show title={<VersionsTitle />} {...props}>
-      {!!WrapperComponent ? (
+      {WrapperComponent ? (
         <WrapperComponent {...wrapperProps}>{renderLayout()}</WrapperComponent>
       ) : (
         <>{renderLayout()}</>

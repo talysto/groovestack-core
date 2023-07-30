@@ -12,8 +12,8 @@ import {
 // Source Code import
 import { Comments } from '@moonlight-labs/core-comments-fe'
 
-import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
 import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
+import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
 
 import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 import { CoreWebhooks } from '@moonlight-labs/core-webhooks-fe'
@@ -27,11 +27,11 @@ const Webhooks = CoreWebhooks.Webhooks
 // import { Jobs } from './jobs/resource'
 
 import { mockAuthProvider, mockDataProvider } from './data/mock-providers'
-import { HomeView } from './pages/HomeView'
-import { User } from './resources/user'
-import { Company } from './resources/company'
-import theme from './layout/theme'
 import { CustomLayout } from './layout/CustomLayout'
+import theme from './layout/theme'
+import { HomeView } from './pages/HomeView'
+import { Company } from './resources/company'
+import { User } from './resources/user'
 // import { Company } from './resources/company'
 
 const authProvider = await mockAuthProvider()
@@ -48,9 +48,10 @@ function AdminApp() {
   // ]
 
   const versionFilters = [
-    <DateInput source="created_at_lte" label="Before" />,
-    <DateInput source="created_at_gte" label="After" />,
+    <DateInput key={0} source="created_at_lte" label="Before" />,
+    <DateInput key={1} source="created_at_gte" label="After" />,
     <ReferenceInput
+      key={2}
       alwaysOn
       label="Actor"
       source="actor_id"

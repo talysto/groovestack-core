@@ -10,7 +10,7 @@ SyntaxHighlighter.registerLanguage('json', json)
 
 // import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
-export const CodeField = ({ label, source }: FieldProps) => {
+export const CodeField = ({ source }: FieldProps) => {
   const record = useRecordContext()
   if (!record || !source) return null
 

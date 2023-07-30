@@ -183,7 +183,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ source, className, showTime, label, ...rest }: {\n    source: string;\n    showTime?: boolean | undefined;\n    label?: string | undefined;\n    className?: string | undefined;\n}) => "
+              "text": "({ source, className, showTime, ...rest }: {\n    source: string;\n    showTime?: boolean | undefined;\n    className?: string | undefined;\n}) => "
             },
             {
               "kind": "Reference",

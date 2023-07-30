@@ -1,16 +1,14 @@
-// import { faker } from '@moonlight-labs/core-base-fe'
-
 import { faker } from '@moonlight-labs/core-base-fe'
 
 export type Comment = {
-  id: String
-  body: String
-  created_at: String
-  updated_at: String
-  author_id: String
-  author_type: String
-  resource_id: String
-  resource_type: String
+  id: string
+  body: string
+  created_at: string
+  updated_at: string
+  author_id: string
+  author_type: string
+  resource_id: string
+  resource_type: string
 }
 
 export function mockComment() {

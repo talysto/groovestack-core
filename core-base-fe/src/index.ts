@@ -7,7 +7,7 @@ import { MoneyInput } from './react-admin/inputs/MoneyInput'
 import { generateTimeZoneOptions } from './react-admin/fields/TimezoneSelect'
 
 // Helpers
-export { faker } from './faker'
+export { faker } from './faker'
 
 // Utilities
 export { timeAgo, generateTimeZoneOptions }

@@ -1,3 +1,4 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
   Accordion,
   AccordionDetails,
@@ -5,7 +6,6 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 // const mockCommentDefaults = () => {
 //   return {
@@ -15,8 +15,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 //     updated_at: new Date().toDateString(),
 //   }
 // }
-import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 import { Comments } from '@moonlight-labs/core-comments-fe'
+import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 
 export const UserAside = () => {
   return (

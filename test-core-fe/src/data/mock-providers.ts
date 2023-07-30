@@ -115,29 +115,20 @@ const data = {
   Company: companies,
 }
 
-console.log(data)
-
 export const mockDataProvider = fakeDataProvider(data, true)
-
-
 
 type MockAuthProviderType = () => Promise<AuthProvider>
 
 export const mockAuthProvider: MockAuthProviderType = async () => {
-  // const resources = await import('../../dataProvider/mockData/seeds.json')
 
   const currentUser = users[0]
 
   return (
     {
       // authentication
-      login: _params => {
-        return Promise.resolve()
-      },
-      checkError: _error => Promise.resolve(),
-      checkAuth: _params => {
-        return Promise.resolve()
-      },
+      login: () => Promise.resolve(),
+      checkError: () => Promise.resolve(),
+      checkAuth: () => Promise.resolve(),
       logout: () => Promise.resolve(),
       getIdentity: () => Promise.resolve(currentUser),
       handleCallback: () => Promise.resolve(), // for third-party authentication only

@@ -16,7 +16,7 @@ IdField.defaultProps = { label: 'ID', source: 'id' }
 
 const filters = [
   // <Typography variant="h4" alwaysOn>Web Hooks<br/></Typography>,
-  <TextInput label="Search" source="q" alwaysOn />,
+  <TextInput key={0} label="Search" source="q" alwaysOn />,
 ]
 
 export const WebhookTable = () => (

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Typography, Card, CardContent, Box, Skeleton } from '@mui/material'
+import { Box, Card, CardContent, Skeleton, Typography } from '@mui/material'
 import { useDataProvider, useResourceContext } from 'react-admin'
 
 import { LiveTable } from './LiveTable'

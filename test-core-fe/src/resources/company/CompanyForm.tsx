@@ -1,12 +1,5 @@
-import {
-  DateField,
-  SimpleForm,
-  SimpleShowLayout,
-  TextField,
-  TextInput,
-} from 'react-admin'
-import { inlineLayout } from '../inlineLayout'
 import { MoneyInput, StatusInput } from '@moonlight-labs/core-base-fe'
+import { SimpleForm, TextInput } from 'react-admin'
 
 export const CompanyForm = () => {
   return (

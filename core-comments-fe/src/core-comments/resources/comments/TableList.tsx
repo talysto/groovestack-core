@@ -1,10 +1,4 @@
-import {
-  List,
-  Datagrid,
-  TextField,
-  // EditButton,
-  // DateInput
-} from 'react-admin'
+import { Datagrid, List, TextField } from 'react-admin'
 
 // import { PolymorphicReferenceField, CoreDateField } from '@moonlight-labs/core-base-fe'
 
