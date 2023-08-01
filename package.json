@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx prettier -c **/*.{tsx,ts,json} && pnpm --filter core-base-fe build && pnpm --filter core-comments-fe build && pnpm --filter core-versions-fe build && pnpm --filter core-jobs-fe build && pnpm --filter core-accounting-fe build && pnpm --filter core-webhooks-fe build",
+    "build-old": "npx prettier -c **/*.{tsx,ts,json} && pnpm --filter core-base-fe build && pnpm --filter core-comments-fe build && pnpm --filter core-versions-fe build && pnpm --filter core-jobs-fe build && pnpm --filter core-accounting-fe build && pnpm --filter core-webhooks-fe build",
+    "build": "pnpm -r --workspace-concurrency=-1 --filter './core*' build",
     "dev": "pnpm --filter test-core-fe dev",
     "format": "npx prettier -w **/*.{tsx,ts,json}",
     "pre-publish": "pnpm publish -r --dry-run --no-git-checks",
@@ -22,7 +23,7 @@
     "@moonlight-labs/vite-plugin-dts": "^3.3.1",
     "@mui/icons-material": "5.14.1",
     "@mui/material": "5.14.1",
-    "@types/lodash": "^4.14.195",
+    "@types/lodash": "^4.14.196",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",

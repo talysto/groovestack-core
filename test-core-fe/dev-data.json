@@ -504,27 +504,9 @@
   "Version": [
     {
       "changes": [
-        [
-          "ad",
-          [
-            48,
-            50
-          ]
-        ],
-        [
-          "atque asperiores",
-          [
-            73,
-            73
-          ]
-        ],
-        [
-          "fugit dicta soluta",
-          [
-            "magni quas in",
-            "laudantium modi illum"
-          ]
-        ]
+        ["ad", [48, 50]],
+        ["atque asperiores", [73, 73]],
+        ["fugit dicta soluta", ["magni quas in", "laudantium modi illum"]]
       ],
       "timestamp": "5/26/2023, 7:25:38 AM",
       "id": "1693307a-ac38-46b3-b172-7cde1504f82d",
@@ -539,10 +521,7 @@
       "changes": [
         [
           "suscipit quaerat",
-          [
-            "Frederique.Lubowitz76@gmail.com",
-            "Vada_Haley81@gmail.com"
-          ]
+          ["Frederique.Lubowitz76@gmail.com", "Vada_Haley81@gmail.com"]
         ]
       ],
       "timestamp": "6/13/2023, 12:46:10 AM",
@@ -563,13 +542,7 @@
             "At alias cupiditate incidunt eum."
           ]
         ],
-        [
-          "debitis unde eius",
-          [
-            "consectetur at voluptates",
-            "in enim vero"
-          ]
-        ]
+        ["debitis unde eius", ["consectetur at voluptates", "in enim vero"]]
       ],
       "timestamp": "2/20/2023, 8:50:22 PM",
       "id": "3e94c746-2054-4f1f-afe7-4888aba84169",
@@ -584,10 +557,7 @@
       "changes": [
         [
           "velit autem debitis",
-          [
-            "Allen.Kautzer@hotmail.com",
-            "Lyla_Borer48@yahoo.com"
-          ]
+          ["Allen.Kautzer@hotmail.com", "Lyla_Borer48@yahoo.com"]
         ],
         [
           "magnam blanditiis unde",
@@ -596,13 +566,7 @@
             "Commodi quas saepe deleniti sunt recusandae quae consectetur."
           ]
         ],
-        [
-          "nobis",
-          [
-            null,
-            null
-          ]
-        ],
+        ["nobis", [null, null]],
         [
           "nesciunt",
           [
@@ -624,18 +588,9 @@
       "changes": [
         [
           "similique voluptas",
-          [
-            "https://key-element.name/",
-            "https://stunning-sculpture.biz"
-          ]
+          ["https://key-element.name/", "https://stunning-sculpture.biz"]
         ],
-        [
-          "fuga neque sequi",
-          [
-            99,
-            45
-          ]
-        ]
+        ["fuga neque sequi", [99, 45]]
       ],
       "timestamp": "11/9/2022, 6:59:34 AM",
       "id": "037c3e0e-2a10-4e4e-9e62-3eaa5fa0098f",
@@ -648,26 +603,11 @@
     },
     {
       "changes": [
-        [
-          "sequi",
-          [
-            "Chet_Boyer@yahoo.com",
-            "Tiana.Crona@hotmail.com"
-          ]
-        ],
-        [
-          "officia",
-          [
-            "Ida Stamm",
-            "Dr. Renee Rowe"
-          ]
-        ],
+        ["sequi", ["Chet_Boyer@yahoo.com", "Tiana.Crona@hotmail.com"]],
+        ["officia", ["Ida Stamm", "Dr. Renee Rowe"]],
         [
           "quis occaecati",
-          [
-            "https://exotic-sweatshop.com/",
-            "https://idolized-footrest.biz"
-          ]
+          ["https://exotic-sweatshop.com/", "https://idolized-footrest.biz"]
         ]
       ],
       "timestamp": "9/20/2022, 3:40:56 PM",
@@ -680,15 +620,7 @@
       "resource_type": "User"
     },
     {
-      "changes": [
-        [
-          "esse",
-          [
-            45,
-            44
-          ]
-        ]
-      ],
+      "changes": [["esse", [45, 44]]],
       "timestamp": "7/28/2023, 12:25:38 AM",
       "id": "4fed7805-2eb7-4f04-92dc-7e3ada5a6465",
       "created_at": "11/18/2022, 5:08:50 PM",
@@ -699,15 +631,7 @@
       "resource_type": "Company"
     },
     {
-      "changes": [
-        [
-          "omnis",
-          [
-            "commodi omnis quasi",
-            "alias harum impedit"
-          ]
-        ]
-      ],
+      "changes": [["omnis", ["commodi omnis quasi", "alias harum impedit"]]],
       "timestamp": "6/19/2023, 4:08:48 PM",
       "id": "2fac2f61-74be-4d7d-9f3d-47f0e9c7182f",
       "created_at": "6/7/2023, 9:56:52 AM",
@@ -718,15 +642,7 @@
       "resource_type": "User"
     },
     {
-      "changes": [
-        [
-          "molestiae",
-          [
-            "Barry26@gmail.com",
-            "Earline62@yahoo.com"
-          ]
-        ]
-      ],
+      "changes": [["molestiae", ["Barry26@gmail.com", "Earline62@yahoo.com"]]],
       "timestamp": "9/3/2022, 11:28:15 AM",
       "id": "77433a82-54c1-4a11-9945-f260af490845",
       "created_at": "1/12/2023, 2:09:55 PM",
@@ -740,25 +656,13 @@
       "changes": [
         [
           "cupiditate doloremque nesciunt",
-          [
-            "Fern.Torphy82@gmail.com",
-            "Sabrina_Smitham35@hotmail.com"
-          ]
+          ["Fern.Torphy82@gmail.com", "Sabrina_Smitham35@hotmail.com"]
         ],
         [
           "corporis",
-          [
-            "https://embellished-pine.com",
-            "https://forked-ore.net/"
-          ]
+          ["https://embellished-pine.com", "https://forked-ore.net/"]
         ],
-        [
-          "ea dolorum",
-          [
-            null,
-            "dignissimos dolor explicabo"
-          ]
-        ]
+        ["ea dolorum", [null, "dignissimos dolor explicabo"]]
       ],
       "timestamp": "7/10/2023, 6:00:16 PM",
       "id": "27b7b5bc-a6a7-499e-b4b8-fe947a56735f",
@@ -792,10 +696,7 @@
       "changes": [
         [
           "nulla perspiciatis beatae",
-          [
-            "Ayla.Senger15@gmail.com",
-            "Zion.Nienow@gmail.com"
-          ]
+          ["Ayla.Senger15@gmail.com", "Zion.Nienow@gmail.com"]
         ]
       ],
       "timestamp": "7/5/2023, 7:28:06 PM",
@@ -811,10 +712,7 @@
       "changes": [
         [
           "natus corporis blanditiis",
-          [
-            "Cassie_Collier@gmail.com",
-            "Melvina_Legros@yahoo.com"
-          ]
+          ["Cassie_Collier@gmail.com", "Melvina_Legros@yahoo.com"]
         ],
         [
           "iusto",
@@ -823,13 +721,7 @@
             "Quos accusamus dolorum iure inventore veniam deserunt magnam officiis nam."
           ]
         ],
-        [
-          "quo",
-          [
-            "Stanley.Mayer@hotmail.com",
-            "Corbin_Connelly@hotmail.com"
-          ]
-        ]
+        ["quo", ["Stanley.Mayer@hotmail.com", "Corbin_Connelly@hotmail.com"]]
       ],
       "timestamp": "1/8/2023, 9:17:31 AM",
       "id": "fc7ae4a7-31d4-4e64-beee-a8fc82f0b617",
@@ -844,10 +736,7 @@
       "changes": [
         [
           "saepe",
-          [
-            "https://necessary-eyeglasses.com/",
-            "https://friendly-cabana.info/"
-          ]
+          ["https://necessary-eyeglasses.com/", "https://friendly-cabana.info/"]
         ],
         [
           "repellendus aliquam",
@@ -868,19 +757,10 @@
     },
     {
       "changes": [
-        [
-          "voluptatum dolore cupiditate",
-          [
-            52,
-            96
-          ]
-        ],
+        ["voluptatum dolore cupiditate", [52, 96]],
         [
           "totam quam et",
-          [
-            "Angelina40@gmail.com",
-            "Cassandre_Goodwin82@hotmail.com"
-          ]
+          ["Angelina40@gmail.com", "Cassandre_Goodwin82@hotmail.com"]
         ],
         [
           "minus",
@@ -901,27 +781,9 @@
     },
     {
       "changes": [
-        [
-          "modi",
-          [
-            "accusantium eligendi deserunt",
-            "maxime in fugiat"
-          ]
-        ],
-        [
-          "quaerat quo",
-          [
-            "in quae odio",
-            "aliquid harum laboriosam"
-          ]
-        ],
-        [
-          "rerum",
-          [
-            0,
-            59
-          ]
-        ]
+        ["modi", ["accusantium eligendi deserunt", "maxime in fugiat"]],
+        ["quaerat quo", ["in quae odio", "aliquid harum laboriosam"]],
+        ["rerum", [0, 59]]
       ],
       "timestamp": "9/10/2022, 12:53:48 AM",
       "id": "d0eb47bd-63ed-4c25-9e61-74aff39c3bd4",
@@ -934,27 +796,9 @@
     },
     {
       "changes": [
-        [
-          "similique",
-          [
-            null,
-            "nemo occaecati corrupti"
-          ]
-        ],
-        [
-          "mollitia",
-          [
-            "natus porro ut",
-            "libero culpa sit"
-          ]
-        ],
-        [
-          "perferendis",
-          [
-            95,
-            59
-          ]
-        ],
+        ["similique", [null, "nemo occaecati corrupti"]],
+        ["mollitia", ["natus porro ut", "libero culpa sit"]],
+        ["perferendis", [95, 59]],
         [
           "necessitatibus expedita",
           [
@@ -964,10 +808,7 @@
         ],
         [
           "quisquam eaque",
-          [
-            "Loma_Reynolds4@hotmail.com",
-            "Malachi_Trantow17@hotmail.com"
-          ]
+          ["Loma_Reynolds4@hotmail.com", "Malachi_Trantow17@hotmail.com"]
         ]
       ],
       "timestamp": "2/6/2023, 5:38:12 PM",
@@ -983,18 +824,9 @@
       "changes": [
         [
           "officiis eaque",
-          [
-            "https://celebrated-millimeter.net/",
-            "https://klutzy-metal.com"
-          ]
+          ["https://celebrated-millimeter.net/", "https://klutzy-metal.com"]
         ],
-        [
-          "distinctio",
-          [
-            "James Mitchell",
-            "Leslie Smitham"
-          ]
-        ]
+        ["distinctio", ["James Mitchell", "Leslie Smitham"]]
       ],
       "timestamp": "1/25/2023, 6:36:23 AM",
       "id": "37165991-4df9-4ab5-947a-3cc2ddcff435",
@@ -1026,26 +858,11 @@
     },
     {
       "changes": [
-        [
-          "libero odio",
-          [
-            "Blanca Heathcote",
-            "Katie Connelly"
-          ]
-        ],
-        [
-          "recusandae",
-          [
-            "est ut fuga",
-            "ea porro ratione"
-          ]
-        ],
+        ["libero odio", ["Blanca Heathcote", "Katie Connelly"]],
+        ["recusandae", ["est ut fuga", "ea porro ratione"]],
         [
           "expedita suscipit quibusdam",
-          [
-            "veritatis asperiores natus",
-            "ab ipsum veniam"
-          ]
+          ["veritatis asperiores natus", "ab ipsum veniam"]
         ]
       ],
       "timestamp": "4/4/2023, 11:06:23 AM",
@@ -1059,20 +876,8 @@
     },
     {
       "changes": [
-        [
-          "voluptas facilis veniam",
-          [
-            3,
-            15
-          ]
-        ],
-        [
-          "voluptates sapiente ab",
-          [
-            38,
-            85
-          ]
-        ]
+        ["voluptas facilis veniam", [3, 15]],
+        ["voluptates sapiente ab", [38, 85]]
       ],
       "timestamp": "1/23/2023, 9:05:20 PM",
       "id": "9a41d8ac-b816-4287-80f8-7678f0435089",
@@ -1087,24 +892,12 @@
       "changes": [
         [
           "laudantium",
-          [
-            "https://enormous-cottage.biz",
-            "https://puzzled-picturesque.biz"
-          ]
+          ["https://enormous-cottage.biz", "https://puzzled-picturesque.biz"]
         ],
-        [
-          "enim consequuntur officia",
-          [
-            "Herman Kuhic",
-            "Wm Crist"
-          ]
-        ],
+        ["enim consequuntur officia", ["Herman Kuhic", "Wm Crist"]],
         [
           "voluptatibus",
-          [
-            "https://glittering-appeal.name",
-            "https://innocent-snorer.info/"
-          ]
+          ["https://glittering-appeal.name", "https://innocent-snorer.info/"]
         ],
         [
           "impedit",
@@ -1127,18 +920,9 @@
       "changes": [
         [
           "veniam perspiciatis",
-          [
-            "Kevin_Bechtelar-Weber63@hotmail.com",
-            "Candice.Senger62@gmail.com"
-          ]
+          ["Kevin_Bechtelar-Weber63@hotmail.com", "Candice.Senger62@gmail.com"]
         ],
-        [
-          "quos",
-          [
-            "https://steep-corner.com/",
-            "https://lined-pint.info/"
-          ]
-        ]
+        ["quos", ["https://steep-corner.com/", "https://lined-pint.info/"]]
       ],
       "timestamp": "4/26/2023, 9:58:19 AM",
       "id": "b2199f65-1857-4333-80be-74bbc34063b6",
@@ -1151,19 +935,10 @@
     },
     {
       "changes": [
-        [
-          "vitae fugiat dicta",
-          [
-            "Rodney Grady",
-            "Ann Langworth"
-          ]
-        ],
+        ["vitae fugiat dicta", ["Rodney Grady", "Ann Langworth"]],
         [
           "error omnis accusamus",
-          [
-            "necessitatibus nostrum laborum",
-            "atque earum ipsum"
-          ]
+          ["necessitatibus nostrum laborum", "atque earum ipsum"]
         ]
       ],
       "timestamp": "6/3/2023, 2:40:50 PM",
@@ -1184,20 +959,8 @@
             "Tenetur quo sunt dolores quos rem nam earum."
           ]
         ],
-        [
-          "debitis",
-          [
-            "Lyla_Rice97@yahoo.com",
-            "Zora_Schumm23@gmail.com"
-          ]
-        ],
-        [
-          "dolores",
-          [
-            "quas quas voluptates",
-            "mollitia odio fuga"
-          ]
-        ]
+        ["debitis", ["Lyla_Rice97@yahoo.com", "Zora_Schumm23@gmail.com"]],
+        ["dolores", ["quas quas voluptates", "mollitia odio fuga"]]
       ],
       "timestamp": "8/17/2022, 12:34:33 PM",
       "id": "ae9387e8-47fa-44d5-aa4c-802b08ca512b",
@@ -1210,13 +973,7 @@
     },
     {
       "changes": [
-        [
-          "error accusamus eum",
-          [
-            63,
-            51
-          ]
-        ],
+        ["error accusamus eum", [63, 51]],
         [
           "dolore corporis vel",
           [
@@ -1224,27 +981,9 @@
             "Nulla quae quaerat veniam accusamus deleniti voluptas."
           ]
         ],
-        [
-          "eaque minima",
-          [
-            "error qui similique",
-            "optio aut doloremque"
-          ]
-        ],
-        [
-          "qui",
-          [
-            "deleniti molestias ipsum",
-            null
-          ]
-        ],
-        [
-          "beatae",
-          [
-            "https://vigorous-men.org",
-            "https://flimsy-anchovy.com/"
-          ]
-        ]
+        ["eaque minima", ["error qui similique", "optio aut doloremque"]],
+        ["qui", ["deleniti molestias ipsum", null]],
+        ["beatae", ["https://vigorous-men.org", "https://flimsy-anchovy.com/"]]
       ],
       "timestamp": "11/5/2022, 2:53:09 AM",
       "id": "f48496b1-4e27-4131-a596-f5ad2b67d33e",
@@ -1264,20 +1003,8 @@
             "Iure minus error corporis aliquid vel provident ipsa."
           ]
         ],
-        [
-          "eius nemo nemo",
-          [
-            null,
-            "amet commodi odit"
-          ]
-        ],
-        [
-          "quae eaque",
-          [
-            61,
-            82
-          ]
-        ]
+        ["eius nemo nemo", [null, "amet commodi odit"]],
+        ["quae eaque", [61, 82]]
       ],
       "timestamp": "6/26/2023, 10:39:11 PM",
       "id": "b61a81d1-caa7-4be6-a284-ee7bea3d8ada",
@@ -1290,27 +1017,9 @@
     },
     {
       "changes": [
-        [
-          "architecto deleniti excepturi",
-          [
-            null,
-            null
-          ]
-        ],
-        [
-          "animi",
-          [
-            "Kerry Pouros",
-            "Blanca McClure"
-          ]
-        ],
-        [
-          "a sit dignissimos",
-          [
-            46,
-            36
-          ]
-        ]
+        ["architecto deleniti excepturi", [null, null]],
+        ["animi", ["Kerry Pouros", "Blanca McClure"]],
+        ["a sit dignissimos", [46, 36]]
       ],
       "timestamp": "3/4/2023, 8:40:59 PM",
       "id": "5439e643-e4c4-4fbe-93e9-6c0e4409d2dc",
@@ -1330,20 +1039,8 @@
             "Ipsam beatae quo expedita iure perferendis."
           ]
         ],
-        [
-          "debitis odit",
-          [
-            null,
-            "fugiat at incidunt"
-          ]
-        ],
-        [
-          "harum",
-          [
-            41,
-            96
-          ]
-        ]
+        ["debitis odit", [null, "fugiat at incidunt"]],
+        ["harum", [41, 96]]
       ],
       "timestamp": "6/4/2023, 8:50:39 PM",
       "id": "d125534d-7e4e-456d-b90b-6452b1e88dd4",
@@ -1356,20 +1053,8 @@
     },
     {
       "changes": [
-        [
-          "at occaecati",
-          [
-            "Lance Wiza",
-            "Madeline Daugherty"
-          ]
-        ],
-        [
-          "veritatis",
-          [
-            "Kathryn Marks",
-            "Yolanda Crona"
-          ]
-        ]
+        ["at occaecati", ["Lance Wiza", "Madeline Daugherty"]],
+        ["veritatis", ["Kathryn Marks", "Yolanda Crona"]]
       ],
       "timestamp": "6/9/2023, 1:08:21 PM",
       "id": "072490fd-6514-4aa4-b310-bebc47249493",
@@ -1384,18 +1069,9 @@
       "changes": [
         [
           "velit",
-          [
-            "https://intelligent-option.net",
-            "https://dirty-analogy.net"
-          ]
+          ["https://intelligent-option.net", "https://dirty-analogy.net"]
         ],
-        [
-          "a",
-          [
-            "https://dry-chestnut.net",
-            "https://sure-footed-mare.org"
-          ]
-        ]
+        ["a", ["https://dry-chestnut.net", "https://sure-footed-mare.org"]]
       ],
       "timestamp": "7/12/2023, 3:50:18 AM",
       "id": "e5b632d0-79b5-4724-9af8-f473ffd16f62",
@@ -1408,20 +1084,8 @@
     },
     {
       "changes": [
-        [
-          "fugiat sint",
-          [
-            "nemo tempora deserunt",
-            null
-          ]
-        ],
-        [
-          "minima",
-          [
-            "Tavares8@gmail.com",
-            "Jimmie84@yahoo.com"
-          ]
-        ]
+        ["fugiat sint", ["nemo tempora deserunt", null]],
+        ["minima", ["Tavares8@gmail.com", "Jimmie84@yahoo.com"]]
       ],
       "timestamp": "2/7/2023, 5:23:23 PM",
       "id": "501979ee-81fd-4b1f-8681-f2fcb8249e93",
@@ -1441,34 +1105,13 @@
             "Fugit libero fugiat iusto aspernatur dolorum enim beatae porro."
           ]
         ],
-        [
-          "eveniet",
-          [
-            100,
-            21
-          ]
-        ],
+        ["eveniet", [100, 21]],
         [
           "quas recusandae voluptas",
-          [
-            "Danny McDermott",
-            "Dr. Eugene Langworth"
-          ]
+          ["Danny McDermott", "Dr. Eugene Langworth"]
         ],
-        [
-          "libero",
-          [
-            "Wilbur Sipes",
-            "Michael Smitham"
-          ]
-        ],
-        [
-          "maxime aliquid dolores",
-          [
-            38,
-            18
-          ]
-        ]
+        ["libero", ["Wilbur Sipes", "Michael Smitham"]],
+        ["maxime aliquid dolores", [38, 18]]
       ],
       "timestamp": "7/22/2023, 7:04:11 PM",
       "id": "ef35185e-21c7-41e8-82f1-c30964f7d2b0",
@@ -1481,34 +1124,13 @@
     },
     {
       "changes": [
-        [
-          "illum",
-          [
-            "nemo repellendus quo",
-            "perspiciatis ullam nemo"
-          ]
-        ],
-        [
-          "facere",
-          [
-            "quis eos nobis",
-            "maiores eos officiis"
-          ]
-        ],
+        ["illum", ["nemo repellendus quo", "perspiciatis ullam nemo"]],
+        ["facere", ["quis eos nobis", "maiores eos officiis"]],
         [
           "libero minima assumenda",
-          [
-            "Kenton71@gmail.com",
-            "Lottie5@hotmail.com"
-          ]
+          ["Kenton71@gmail.com", "Lottie5@hotmail.com"]
         ],
-        [
-          "iste",
-          [
-            19,
-            60
-          ]
-        ]
+        ["iste", [19, 60]]
       ],
       "timestamp": "8/19/2022, 4:12:52 PM",
       "id": "ef7c5785-686f-48dc-ae44-45663dbf0910",
@@ -1521,19 +1143,10 @@
     },
     {
       "changes": [
-        [
-          "iure",
-          [
-            "sint assumenda mollitia",
-            null
-          ]
-        ],
+        ["iure", ["sint assumenda mollitia", null]],
         [
           "ratione",
-          [
-            "Eva_Grant-Rogahn43@yahoo.com",
-            "Krystal_Bashirian60@gmail.com"
-          ]
+          ["Eva_Grant-Rogahn43@yahoo.com", "Krystal_Bashirian60@gmail.com"]
         ]
       ],
       "timestamp": "3/29/2023, 6:14:31 PM",
@@ -1561,13 +1174,7 @@
             "Possimus omnis eligendi."
           ]
         ],
-        [
-          "autem",
-          [
-            "Winnifred_Yundt@hotmail.com",
-            "Macy73@gmail.com"
-          ]
-        ]
+        ["autem", ["Winnifred_Yundt@hotmail.com", "Macy73@gmail.com"]]
       ],
       "timestamp": "6/24/2023, 7:01:47 AM",
       "id": "269f4c19-1c43-436d-97c9-b0fa7ddc05f2",
@@ -1589,25 +1196,10 @@
         ],
         [
           "ipsam nesciunt",
-          [
-            "https://hard-to-find-humanity.com",
-            "https://evergreen-flute.com/"
-          ]
+          ["https://hard-to-find-humanity.com", "https://evergreen-flute.com/"]
         ],
-        [
-          "vel amet sint",
-          [
-            "Manuela66@yahoo.com",
-            "Hazel_Mraz73@gmail.com"
-          ]
-        ],
-        [
-          "sapiente eos",
-          [
-            45,
-            36
-          ]
-        ]
+        ["vel amet sint", ["Manuela66@yahoo.com", "Hazel_Mraz73@gmail.com"]],
+        ["sapiente eos", [45, 36]]
       ],
       "timestamp": "11/30/2022, 9:37:55 AM",
       "id": "5fcceefa-69dd-4888-af94-d6441cc1d88b",
@@ -1629,10 +1221,7 @@
         ],
         [
           "maxime",
-          [
-            "https://yummy-haircut.org",
-            "https://concerned-cappelletti.net"
-          ]
+          ["https://yummy-haircut.org", "https://concerned-cappelletti.net"]
         ],
         [
           "deleniti",
@@ -1653,27 +1242,9 @@
     },
     {
       "changes": [
-        [
-          "earum repudiandae ab",
-          [
-            "expedita sunt repudiandae",
-            null
-          ]
-        ],
-        [
-          "tempora provident vitae",
-          [
-            null,
-            "aliquam maxime qui"
-          ]
-        ],
-        [
-          "accusamus quaerat",
-          [
-            64,
-            56
-          ]
-        ]
+        ["earum repudiandae ab", ["expedita sunt repudiandae", null]],
+        ["tempora provident vitae", [null, "aliquam maxime qui"]],
+        ["accusamus quaerat", [64, 56]]
       ],
       "timestamp": "8/5/2022, 3:40:55 AM",
       "id": "694bfffb-efaf-4ffc-b4e3-517bd027ff39",
@@ -1688,38 +1259,17 @@
       "changes": [
         [
           "fugit quibusdam",
-          [
-            "Marjory66@hotmail.com",
-            "Darrel.Russel@yahoo.com"
-          ]
+          ["Marjory66@hotmail.com", "Darrel.Russel@yahoo.com"]
         ],
-        [
-          "aperiam",
-          [
-            "Miss Erica Romaguera",
-            "Maureen Jacobs"
-          ]
-        ],
+        ["aperiam", ["Miss Erica Romaguera", "Maureen Jacobs"]],
         [
           "facilis repudiandae optio",
-          [
-            "Lon_Deckow@hotmail.com",
-            "Tyreek55@yahoo.com"
-          ]
+          ["Lon_Deckow@hotmail.com", "Tyreek55@yahoo.com"]
         ],
-        [
-          "provident totam tempore",
-          [
-            "Amber Swift",
-            "Cameron Rowe"
-          ]
-        ],
+        ["provident totam tempore", ["Amber Swift", "Cameron Rowe"]],
         [
           "ab architecto recusandae",
-          [
-            "https://infantile-ellipse.name",
-            "https://itchy-brand.com/"
-          ]
+          ["https://infantile-ellipse.name", "https://itchy-brand.com/"]
         ]
       ],
       "timestamp": "8/23/2022, 6:06:54 AM",
