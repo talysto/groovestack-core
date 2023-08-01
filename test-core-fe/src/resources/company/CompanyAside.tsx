@@ -1,4 +1,4 @@
-import { DateField, SimpleShowLayout, TextField } from 'react-admin'
+import { SimpleShowLayout, TextField } from 'react-admin'
 import {
   Accordion,
   AccordionDetails,
@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 import { DateField as CoreDateField } from '@moonlight-labs/core-base-fe'
 import { Comments } from '@moonlight-labs/core-comments-fe'
-import { CoreVersions } from '@moonlight-labs/core-versions-fe'
+// import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 
 import { inlineLayout } from '../inlineLayout'
 
@@ -40,7 +40,7 @@ export const CompanyAside = () => {
           <Typography>Changes</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <CoreVersions.Versions.Stream changesDisplayed={1} />
+          {/* <CoreVersions.Versions.Stream changesDisplayed={1} /> */}
         </AccordionDetails>
       </Accordion>
       <SimpleShowLayout sx={{ ...inlineLayout, m: 2, p: 0, marginBottom: 5 }}>

@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker'
+
 const defaultDEntryTransferTypes = [
   { code: 'buy_token', credit_account: 'tokens', debit_account: 'treasury' },
   { code: 'spend_token', credit_account: 'treasury', debit_account: 'tokens' },
@@ -12,12 +14,10 @@ type MockLinesArgs = {
   }[]
 }
 
-export async function mockLines({
+export function mockLines({
   count = 8,
   dEntryTransferTypes = defaultDEntryTransferTypes,
-}: MockLinesArgs): Promise<any> {
-  try {
-    const { faker } = await import('@faker-js/faker')
+}: MockLinesArgs) {
 
     let lines = []
     for (let i = count; i--; ) {
@@ -99,8 +99,4 @@ export async function mockLines({
       lines.push(line1, line2)
     }
     return lines
-  } catch (e) {
-    console.error(e)
-    return []
-  }
 }

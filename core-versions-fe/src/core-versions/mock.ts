@@ -1,11 +1,29 @@
-export async function mockVersions({ count = 15 }): Promise<any> {
-  try {
-    const { faker } = await import('@faker-js/faker')
+import { faker } from '@faker-js/faker'
+
+// export let faker: any = (globalThis as { faker?: any })?.faker
+// if (faker === undefined) {
+//   import('@faker-js/faker')
+//     .then(({ default: _faker }) => {
+//       faker = _faker
+//     })
+//     .catch(() => {
+//       //
+//     })
+// }
+
+
+// async function loadFaker() {
+//   return await import('@faker-js/faker')
+// }
+
+// const faker = await loadFaker()
+
+export function mockVersions({ count = 15 }) {
     let mockData = []
     for (let i = 0; count > i; i++) {
       mockData.push({
         // additional attributes
-        changes: await generateChanges(faker.number.int({ min: 1, max: 5 })),
+        changes: generateChanges(faker.number.int({ min: 1, max: 5 })),
         timestamp: faker.date.past().toLocaleString(),
         // standard attributes
         id: faker.string.uuid(),
@@ -14,17 +32,10 @@ export async function mockVersions({ count = 15 }): Promise<any> {
       })
     }
     return mockData
-  } catch (e) {
-    console.error(e)
-    return []
-  }
 }
 
 
-async function generateChanges(numChanges: number): Promise<any> {
-  try {
-    const { faker } = await import('@faker-js/faker')
-
+function generateChanges(numChanges: number) {
     const changeTypes: {[index: string]:Function} = {
       "string": () => faker.lorem.words(),
       "text": () => faker.lorem.sentence(),
@@ -48,8 +59,4 @@ async function generateChanges(numChanges: number): Promise<any> {
       changes.push(change())
     }
     return changes
-  } catch (e) {
-    console.error(e)
-    return []
-  }
 }

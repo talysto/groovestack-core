@@ -1,13 +1,25 @@
 {
   "name": "@moonlight-labs/core-webhooks-fe",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/core-webhooks.js",
-  "module": "./dist/core-webhooks.js",
-  "types": "./dist/core-webhooks.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./mock": {
+      "import": "./dist/mock.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

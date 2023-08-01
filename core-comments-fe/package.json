@@ -1,13 +1,25 @@
 {
   "name": "@moonlight-labs/core-comments-fe",
-  "version": "0.1.11",
+  "version": "0.2.0",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/core-comments.js",
-  "module": "./dist/core-comments.js",
-  "types": "./dist/core-comments.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./mock": {
+      "import": "./dist/mock.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

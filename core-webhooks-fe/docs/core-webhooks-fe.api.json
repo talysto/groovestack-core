@@ -173,60 +173,6 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "Class",
-          "canonicalReference": "@moonlight-labs/core-webhooks-fe!CoreWebhooks:class",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare class CoreWebhooks "
-            }
-          ],
-          "fileUrlPath": "dist/index.d.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "CoreWebhooks",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-webhooks-fe!CoreWebhooks.Webhooks:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "static Webhooks: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "typeof "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Webhooks",
-                  "canonicalReference": "@moonlight-labs/core-webhooks-fe!~Webhooks:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "Webhooks",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isStatic": true,
-              "isProtected": false,
-              "isAbstract": false
-            }
-          ],
-          "implementsTokenRanges": []
-        },
-        {
           "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-webhooks-fe!mockWebhooks:var",
           "docComment": "",
@@ -258,7 +204,7 @@
               "text": ";\n}[]"
             }
           ],
-          "fileUrlPath": "dist/mockWebhooks.d.ts",
+          "fileUrlPath": "dist/mock.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "mockWebhooks",

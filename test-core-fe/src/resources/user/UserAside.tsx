@@ -6,6 +6,7 @@ import {
   Typography,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { Comments } from '@moonlight-labs/core-comments-fe'
 
 // const mockCommentDefaults = () => {
 //   return {
@@ -15,8 +16,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 //     updated_at: new Date().toDateString(),
 //   }
 // }
-import { CoreVersions } from '@moonlight-labs/core-versions-fe'
-import { Comments } from '@moonlight-labs/core-comments-fe'
+// import { CoreVersions } from '@moonlight-labs/core-versions-fe'
+// import { Comments } from '@moonlight-labs/core-comments-fe'
 
 export const UserAside = () => {
   return (
@@ -43,7 +44,7 @@ export const UserAside = () => {
             <Typography>Changes</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <CoreVersions.Versions.Stream />
+            {/* <CoreVersions.Versions.Stream /> */}
           </AccordionDetails>
         </Accordion>
         <Accordion>

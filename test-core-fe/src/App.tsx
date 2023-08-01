@@ -1,10 +1,4 @@
-import {
-  Admin,
-  AutocompleteInput,
-  DateInput,
-  ReferenceInput,
-  Resource,
-} from 'react-admin'
+import { Admin, Resource } from 'react-admin'
 
 // Near-ideal import format
 // import { Jobs } from '@core/jobs'
@@ -12,15 +6,15 @@ import {
 // Source Code import
 import { Comments } from '@moonlight-labs/core-comments-fe'
 
-import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
-import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
+// import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
+// import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
 
-import { CoreVersions } from '@moonlight-labs/core-versions-fe'
-import { CoreWebhooks } from '@moonlight-labs/core-webhooks-fe'
+// import { CoreVersions } from '@moonlight-labs/core-versions-fe'
+import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 
-const Lines = CoreAccounting.Lines
-const Versions = CoreVersions.Versions
-const Webhooks = CoreWebhooks.Webhooks
+// const Lines = CoreAccounting.Lines
+// const Versions = CoreVersions.Versions
+// const Webhooks = CoreWebhooks.Webhooks
 
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
@@ -47,19 +41,19 @@ function AdminApp() {
   //   />,
   // ]
 
-  const versionFilters = [
-    <DateInput source="created_at_lte" label="Before" />,
-    <DateInput source="created_at_gte" label="After" />,
-    <ReferenceInput
-      alwaysOn
-      label="Actor"
-      source="actor_id"
-      reference="User" // to do: make parametric
-      perPage={10}
-    >
-      <AutocompleteInput />
-    </ReferenceInput>,
-  ]
+  // const versionFilters = [
+  //   <DateInput source="created_at_lte" label="Before" />,
+  //   <DateInput source="created_at_gte" label="After" />,
+  //   <ReferenceInput
+  //     alwaysOn
+  //     label="Actor"
+  //     source="actor_id"
+  //     reference="User" // to do: make parametric
+  //     perPage={10}
+  //   >
+  //     <AutocompleteInput />
+  //   </ReferenceInput>,
+  // ]
 
   return (
     <Admin
@@ -91,46 +85,10 @@ function AdminApp() {
       />
 
       <Resource
-        name="jobs"
-        icon={CoreJobs.Jobs.Icon}
-        // options={{ label: 'CORE::Jobs'}}
-        edit={CoreJobs.Jobs.Edit}
-        list={CoreJobs.Jobs.List}
-      />
-
-      <Resource
         name="Comment"
         icon={Comments.Icon}
         list={Comments.List}
         edit={Comments.Edit}
-      />
-
-      <Resource
-        key="admin-lines-resource"
-        name="Line"
-        // icon={Lines.Icon}
-        options={{ label: 'Ledger Lines', menu: 'admin' }}
-        show={Lines.Show}
-        list={Lines.List}
-        // list={
-        //   <Lines.List tableProps={{ filters: lineFilters }}>
-        //     // <TextField label="Account" source="accountIdentifier" sortable={false} />
-        //     <AccountScopeReferenceField source="Scope" />
-        //     <TextField source="scope" sortable={false} />
-        //   </Lines.List>
-        // }
-      />
-
-      <Resource
-        name="Version"
-        icon={Versions.Icon}
-        list={
-          <Versions.List
-            tableProps={{ filters: versionFilters }}
-            // changesDisplayed={2}
-          />
-        }
-        show={Versions.Show}
       />
 
       <Resource
@@ -139,11 +97,52 @@ function AdminApp() {
         list={Webhooks.List}
         edit={Webhooks.Show}
       />
-
-      {/* <Resource name="Webhook" list={ListGuesser} /> */}
-      {/* <Resource name="Lookups" list={ListGuesser} /> */}
     </Admin>
   )
 }
 
 export default AdminApp
+
+{
+  /* <Resource
+name="jobs"
+icon={CoreJobs.Jobs.Icon}
+// options={{ label: 'CORE::Jobs'}}
+edit={CoreJobs.Jobs.Edit}
+list={CoreJobs.Jobs.List}
+/> */
+}
+// <Resource
+//   key="admin-lines-resource"
+//   name="Line"
+//   // icon={Lines.Icon}
+//   options={{ label: 'Ledger Lines', menu: 'admin' }}
+//   show={Lines.Show}
+//   list={Lines.List}
+//   // list={
+//   //   <Lines.List tableProps={{ filters: lineFilters }}>
+//   //     // <TextField label="Account" source="accountIdentifier" sortable={false} />
+//   //     <AccountScopeReferenceField source="Scope" />
+//   //     <TextField source="scope" sortable={false} />
+//   //   </Lines.List>
+//   // }
+// />
+
+// <Resource
+//   name="Version"
+//   icon={Versions.Icon}
+//   list={
+//     <Versions.List
+//       tableProps={{ filters: versionFilters }}
+//       // changesDisplayed={2}
+//     />
+//   }
+//   show={Versions.Show}
+// />
+
+{
+  /* <Resource name="Webhook" list={ListGuesser} /> */
+}
+{
+  /* <Resource name="Lookups" list={ListGuesser} /> */
+}

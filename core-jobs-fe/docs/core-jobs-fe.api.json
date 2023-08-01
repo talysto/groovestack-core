@@ -173,95 +173,6 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "Class",
-          "canonicalReference": "@moonlight-labs/core-jobs-fe!CoreJobs:class",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare class CoreJobs "
-            }
-          ],
-          "fileUrlPath": "dist/index.d.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "CoreJobs",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-jobs-fe!CoreJobs.Charts:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "static Charts: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "typeof "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Charts",
-                  "canonicalReference": "@moonlight-labs/core-jobs-fe!~Charts:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "Charts",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isStatic": true,
-              "isProtected": false,
-              "isAbstract": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-jobs-fe!CoreJobs.Jobs:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "static Jobs: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "typeof "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Jobs",
-                  "canonicalReference": "@moonlight-labs/core-jobs-fe!~Jobs:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "Jobs",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isStatic": true,
-              "isProtected": false,
-              "isAbstract": false
-            }
-          ],
-          "implementsTokenRanges": []
-        },
-        {
           "kind": "Function",
           "canonicalReference": "@moonlight-labs/core-jobs-fe!mockJobs:function(1)",
           "docComment": "",
@@ -332,7 +243,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/mock-job.d.ts",
+          "fileUrlPath": "dist/mock.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 14
@@ -377,7 +288,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/mock-job.d.ts",
+          "fileUrlPath": "dist/mock.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4

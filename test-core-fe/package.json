@@ -1,23 +1,28 @@
 {
   "name": "test-core-fe",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "broken-postbuild": "grep -q '@faker' dist/assets/* && { echo '🛑 Error: @faker is being imported from your build found'; exit 1; }",
     "preview": "vite preview",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "seed": "tsx ./scripts/data.ts > ./dev-data.json"
   },
   "dependencies": {
-    "@moonlight-labs/core-accounting-fe": "workspace:^",
     "@moonlight-labs/core-base-fe": "workspace:^",
     "@moonlight-labs/core-comments-fe": "workspace:^",
-    "@moonlight-labs/core-jobs-fe": "workspace:^",
-    "@moonlight-labs/core-versions-fe": "workspace:^",
     "@moonlight-labs/core-webhooks-fe": "workspace:^",
+    "@moonlight-labs/core-versions-fe": "workspace:^",
+    "@moonlight-labs/core-jobs-fe": "workspace:^",
+
     "ra-data-fakerest": "^4.12.1",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": ">=8.0.0"
   }
 }

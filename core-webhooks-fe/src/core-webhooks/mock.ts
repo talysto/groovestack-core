@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker'
-// import {} from './helpers'
 
 export const mockWebhooks = Array.from({ length: 35 }, () => {
   return {

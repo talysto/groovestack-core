@@ -1,13 +1,25 @@
 {
   "name": "@moonlight-labs/core-versions-fe",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/core-versions.js",
-  "module": "./dist/core-versions.js",
-  "types": "./dist/core-versions.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./mock": {
+      "import": "./dist/mock.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

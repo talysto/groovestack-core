@@ -15,13 +15,13 @@ export default defineConfig({
     visualizer({ open: false }),
   ],
   build: {
+    sourcemap: true,
     lib: {
-      // entry: resolve(__dirname, "lib/main.js"),
-      entry: resolve(__dirname, 'src/core-accounting/index.ts'),
-      formats: ['es'], // UMD
-      name: 'CORE-ACCOUNTING',
-      // the proper extensions will be added
-      fileName: 'core-accounting',
+      entry: {
+        index: resolve(__dirname, 'src/core-accounting/index.ts'),
+        mock: resolve(__dirname, 'src/core-accounting/mock.ts'),
+      },
+      formats: ['es'],
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

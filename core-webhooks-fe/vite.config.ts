@@ -15,13 +15,13 @@ export default defineConfig({
     visualizer({ open: false }),
   ],
   build: {
+    sourcemap: true,
     lib: {
-      // entry: resolve(__dirname, "lib/main.js"),
-      entry: resolve(__dirname, 'src/core-webhooks/index.ts'),
+      entry: {
+        index: resolve(__dirname, 'src/core-webhooks/index.ts'),
+        mock: resolve(__dirname, 'src/core-webhooks/mock.ts'),
+      },
       formats: ['es'], // UMD
-      name: 'CORE-WEBHOOKS',
-      // the proper extensions will be added
-      fileName: 'core-webhooks',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
