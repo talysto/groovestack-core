@@ -1,4 +1,3 @@
-import { SimpleShowLayout, TextField } from 'react-admin'
 import {
   Accordion,
   AccordionDetails,
@@ -6,6 +5,7 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
+import { SimpleShowLayout, TextField } from 'react-admin'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 

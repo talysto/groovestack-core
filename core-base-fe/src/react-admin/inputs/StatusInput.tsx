@@ -15,7 +15,6 @@ import {
   CommonInputProps,
   FieldTitle,
   Labeled,
-  useInput,
   useNotify,
   useRecordContext,
   useResourceContext,

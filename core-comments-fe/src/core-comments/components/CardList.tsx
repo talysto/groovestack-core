@@ -6,8 +6,8 @@ import {
   useDataProvider,
   useNotify,
 } from 'react-admin'
-import CommentCard from './CommentCard'
 import { CardListProps } from '../types'
+import CommentCard from './CommentCard'
 // import { FETCH_COMMENTS } from 'comments/shared/gql'
 // import apolloAdminClient from "clients/apollo/admin";
 

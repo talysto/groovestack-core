@@ -21,11 +21,11 @@ import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 // import { Jobs } from './jobs/resource'
 
 import { mockAuthProvider, mockDataProvider } from './data/mock-providers'
-import { HomeView } from './pages/HomeView'
-import { User } from './resources/user'
-import { Company } from './resources/company'
-import theme from './layout/theme'
 import { CustomLayout } from './layout/CustomLayout'
+import theme from './layout/theme'
+import { HomeView } from './pages/HomeView'
+import { Company } from './resources/company'
+import { User } from './resources/user'
 // import { Company } from './resources/company'
 
 const authProvider = await mockAuthProvider()

@@ -1,6 +1,6 @@
-import { sanitizeFieldRestProps, useRecordContext } from 'react-admin'
-import get from 'lodash/get'
 import { Typography } from '@mui/material'
+import get from 'lodash/get'
+import { sanitizeFieldRestProps, useRecordContext } from 'react-admin'
 
 // TODO Upgrade to DateFieldProps
 export const DateField = ({

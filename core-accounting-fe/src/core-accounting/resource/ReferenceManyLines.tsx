@@ -1,16 +1,10 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
+  Datagrid,
+  List,
   ReferenceManyField,
   TextField,
-  Datagrid,
   useRecordContext,
-  SelectInput,
-  List,
-  Filter,
-  TextInput,
-  ResourceContextProvider,
-  ListBase,
-  ListToolbar,
 } from 'react-admin'
 import { MoneyField } from './MoneyField'
 

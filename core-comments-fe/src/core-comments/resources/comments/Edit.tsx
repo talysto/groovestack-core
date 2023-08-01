@@ -1,9 +1,9 @@
 import {
   Edit,
   SimpleForm,
-  TextInput,
-  TextField,
   SimpleShowLayout,
+  TextField,
+  TextInput,
 } from 'react-admin'
 
 import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'

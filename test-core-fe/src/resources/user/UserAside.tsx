@@ -1,3 +1,5 @@
+import { Comments } from '@moonlight-labs/core-comments-fe'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
   Accordion,
   AccordionDetails,
@@ -5,8 +7,6 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Comments } from '@moonlight-labs/core-comments-fe'
 
 // const mockCommentDefaults = () => {
 //   return {

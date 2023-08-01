@@ -1,10 +1,9 @@
 import {
   ReferenceManyField,
-  useRecordContext,
   SingleFieldList,
+  useRecordContext,
 } from 'react-admin'
 
-import { Box } from '@mui/material'
 import {
   TimelineConnector,
   TimelineContent,
@@ -13,10 +12,10 @@ import {
   TimelineOppositeContent,
   TimelineSeparator,
 } from '@mui/lab'
+import { Box } from '@mui/material'
 
 import {
   PolymorphicReferenceField,
-  DateField,
   TimeAgoField,
 } from '@moonlight-labs/core-base-fe'
 import { ChangesTable } from './ChangesTable'

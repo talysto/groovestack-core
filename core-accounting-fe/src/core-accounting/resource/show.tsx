@@ -1,6 +1,4 @@
-import React from 'react'
-
-import { Show, SimpleShowLayout, TextField, NumberField } from 'react-admin'
+import { NumberField, Show, SimpleShowLayout, TextField } from 'react-admin'
 
 import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 

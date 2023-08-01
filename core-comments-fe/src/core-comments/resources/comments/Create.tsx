@@ -1,17 +1,17 @@
 import {
-  SimpleForm,
-  TextInput,
   Create,
   SaveButton,
-  useRecordContext,
-  useNotify,
+  SimpleForm,
+  TextInput,
   Toolbar,
-  useRefresh,
   useGetIdentity,
+  useNotify,
+  useRecordContext,
+  useRefresh,
 } from 'react-admin'
 
-import { useFormContext } from 'react-hook-form'
 import { Avatar, Box } from '@mui/material'
+import { useFormContext } from 'react-hook-form'
 
 export type CommentCreateProps = {
   // authorResolver: () => Author

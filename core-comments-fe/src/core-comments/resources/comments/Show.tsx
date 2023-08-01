@@ -1,4 +1,4 @@
-import { ShowProps, Show, SimpleShowLayout, TextField } from 'react-admin'
+import { Show, ShowProps, SimpleShowLayout, TextField } from 'react-admin'
 
 import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
 

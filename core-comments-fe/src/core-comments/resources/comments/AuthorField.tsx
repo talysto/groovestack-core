@@ -1,8 +1,8 @@
-import { Typography, Avatar, Box } from '@mui/material'
 import {
   PolymorphicReferenceField,
   TimeAgoField,
 } from '@moonlight-labs/core-base-fe'
+import { Avatar, Box, Typography } from '@mui/material'
 
 export const AuthorField = () => {
   return (

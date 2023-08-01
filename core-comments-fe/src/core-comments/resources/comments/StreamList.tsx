@@ -1,26 +1,26 @@
 import { useState } from 'react'
 
 import {
+  Button,
   Datagrid,
   DeleteWithConfirmButton,
+  Edit,
+  Identifier,
+  RaRecord,
   ReferenceManyField,
+  RowClickFunction,
+  SaveButton,
+  SimpleForm,
   TextField,
   TextInput,
-  WrapperField,
-  Edit,
   Toolbar,
-  useRedirect,
-  SaveButton,
+  WrapperField,
   useRecordContext,
-  SimpleForm,
-  RowClickFunction,
-  RaRecord,
-  Identifier,
-  Button,
+  useRedirect,
 } from 'react-admin'
 
-import { CommentCreate, CommentCreateProps } from './Create'
 import { AuthorField } from './AuthorField'
+import { CommentCreate, CommentCreateProps } from './Create'
 
 type CommentStreamProps = {
   createProps?: CommentCreateProps
