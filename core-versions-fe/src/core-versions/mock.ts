@@ -19,7 +19,7 @@ import { faker } from '@faker-js/faker'
 // const faker = await loadFaker()
 
 export function mockVersions({ count = 15 }) {
-    let mockData = []
+    const mockData = []
     for (let i = 0; count > i; i++) {
       mockData.push({
         // additional attributes

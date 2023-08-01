@@ -19,7 +19,7 @@ export function mockLines({
   dEntryTransferTypes = defaultDEntryTransferTypes,
 }: MockLinesArgs) {
 
-    let lines = []
+    const lines = []
     for (let i = count; i--; ) {
       const transfer = faker.helpers.arrayElement(dEntryTransferTypes)
       const amount = parseFloat(faker.commerce.price({ min: 1, max: 1000 }))
