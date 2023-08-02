@@ -17,17 +17,12 @@ export const mockAuthProvider: MockAuthProviderType = async () => {
   return (
     {
       // authentication
-      login: _params => {
-        return Promise.resolve()
-      },
-      checkError: _error => Promise.resolve(),
-      checkAuth: _params => {
-        return Promise.resolve()
-      },
+      login: () => Promise.resolve(),
+      checkError: () => Promise.resolve(),
+      checkAuth: () => Promise.resolve(),
       logout: () => Promise.resolve(),
       getIdentity: () => Promise.resolve(currentUser),
-      handleCallback: () => Promise.resolve(), // for third-party authentication only
-      // authorization
+      handleCallback: () => Promise.resolve(), // for 3rd-party auth only
       getPermissions: () => Promise.resolve(['admin']),
     }
   )

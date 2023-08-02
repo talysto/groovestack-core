@@ -22,6 +22,7 @@ export const CompanyList = () => (
         reference="Comment"
         target="resource_id"
       />
+
       <ReferenceManyCount
         label="Changes"
         reference="Version"

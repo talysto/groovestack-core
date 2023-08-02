@@ -183,79 +183,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    body: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    author_id?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    author_type?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    resource_id: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    resource_type: "
-            },
-            {
-              "kind": "Reference",
-              "text": "String",
-              "canonicalReference": "!String:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n}"
+              "text": "{\n    id: string;\n    body: string;\n    created_at: string;\n    updated_at: string;\n    author_id: string;\n    author_type: string;\n    resource_id: string;\n    resource_type: string;\n}"
             },
             {
               "kind": "Content",
@@ -267,7 +195,7 @@
           "name": "Comment_2",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 18
+            "endIndex": 2
           }
         },
         {
@@ -281,7 +209,25 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    body: string;\n    created_at: string;\n    updated_at: string;\n}"
+              "text": "{\n    body: string;\n    author_id: string;\n    author_type: string;\n    resource_id: string;\n    resource_type: string;\n    id: string;\n    created_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    updated_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
             },
             {
               "kind": "Content",
@@ -291,7 +237,7 @@
           "fileUrlPath": "dist/mock/index.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 2
+            "endIndex": 6
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
@@ -317,7 +263,25 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    body: string;\n    created_at: string;\n    updated_at: string;\n}[]"
+              "text": "{\n    body: string;\n    author_id: string;\n    author_type: string;\n    resource_id: string;\n    resource_type: string;\n    id: string;\n    created_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    updated_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}[]"
             },
             {
               "kind": "Content",
@@ -327,7 +291,7 @@
           "fileUrlPath": "dist/mock/index.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
-            "endIndex": 4
+            "endIndex": 8
           },
           "releaseTag": "Public",
           "overloadIndex": 1,

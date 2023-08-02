@@ -72,7 +72,7 @@ const versions = mockVersions({ count: 40 }).map((version: any) => {
 
 // console.log(mockComments(2))
 
-const comments = mockComments(50).map((comment: any) => {
+const comments = mockComments(200).map((comment: any) => {
   // const comments = mockComments({ count: 50 }).map((comment) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([

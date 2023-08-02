@@ -9,7 +9,7 @@
     "build-old": "npx prettier -c **/*.{tsx,ts,json} && pnpm --filter core-base-fe build && pnpm --filter core-comments-fe build && pnpm --filter core-versions-fe build && pnpm --filter core-jobs-fe build && pnpm --filter core-accounting-fe build && pnpm --filter core-webhooks-fe build",
     "build": "pnpm -r --workspace-concurrency=-1 --filter './core*' build",
     "lint": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0 .",
-    "lint:vscode": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --format vscode",
+    "lint:vscode": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --format vscode .",
     "dev": "pnpm --filter test-core-fe dev",
     "format": "npx prettier -w **/*.{tsx,ts,json}",
     "pre-publish": "pnpm publish -r --dry-run --no-git-checks",

@@ -3,6 +3,7 @@ import {
   TimeAgoField,
 } from '@moonlight-labs/core-base-fe'
 import { Avatar, Box, Typography } from '@mui/material'
+import { TextField } from 'react-admin'
 
 export const AuthorField = () => {
   return (
@@ -30,28 +31,11 @@ export const AuthorField = () => {
   )
 }
 
-export const Author = () => {
+export const CommentField = () => {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar sx={{ width: '1em', height: '1em', mr: 1 }} />
-        <PolymorphicReferenceField source="author" />
-      </Box>
-      <Typography sx={{ color: 'text.secondary', fontSize: '80%' }}>
-        <TimeAgoField source="created_at" />
-      </Typography>
+    <Box>
+      <AuthorField />
+      <TextField source="body" />
     </Box>
   )
 }

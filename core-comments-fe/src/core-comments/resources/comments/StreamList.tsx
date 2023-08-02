@@ -2,12 +2,10 @@ import { useState } from 'react'
 
 import {
   Button,
-  Datagrid,
   DeleteWithConfirmButton,
   Edit,
   Identifier,
   RaRecord,
-  ReferenceManyField,
   RowClickFunction,
   SaveButton,
   SimpleForm,
@@ -19,8 +17,10 @@ import {
   useRedirect,
 } from 'react-admin'
 
-import { AuthorField } from './AuthorField'
+import { Box } from '@mui/material'
+import { CommentsTable } from './CommentsTable'
 import { CommentCreate, CommentCreateProps } from './Create'
+import { AuthorField } from './Fields'
 
 type CommentStreamProps = {
   createProps?: CommentCreateProps
@@ -98,23 +98,21 @@ export const CommentStream = ({ createProps }: CommentStreamProps) => {
   }
 
   return (
-    <>
+    <Box sx={{ maxHeight: 400, overflow: 'scroll' }}>
       <CommentCreate />
 
-      <ReferenceManyField
-        reference="Comment"
-        target="resource_id"
-        record={record}
-        sort={{ field: 'created_at', order: 'DESC' }}
+      <CommentsTable
+        infinite
+        listProps={{ exporter: false, children: null }}
+        datagridProps={{ bulkActionButtons: false }}
       >
+        <EditCommentForm />
+      </CommentsTable>
+
+      {/*
         <Datagrid
-          // rowClick={toggleEdit}
-          bulkActionButtons={false}
           sx={{ '& .RaDatagrid-rowCell': { p: 1, mb: 2 } }}
-        >
-          <EditCommentForm />
-        </Datagrid>
-      </ReferenceManyField>
-    </>
+      */}
+    </Box>
   )
 }

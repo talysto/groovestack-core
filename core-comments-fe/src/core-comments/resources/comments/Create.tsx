@@ -3,14 +3,14 @@ import {
   SaveButton,
   SimpleForm,
   TextInput,
-  Toolbar,
   useGetIdentity,
   useNotify,
   useRecordContext,
   useRefresh,
 } from 'react-admin'
 
-import { Avatar, Box } from '@mui/material'
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
+import { Avatar, Box, InputAdornment } from '@mui/material'
 import { useFormContext } from 'react-hook-form'
 
 export type CommentCreateProps = {
@@ -18,8 +18,19 @@ export type CommentCreateProps = {
   // defaultValues?: () => Comment
 }
 
+const CommentButton = () => {
+  return (
+    <SaveButton>
+      <EditNoteOutlinedIcon />
+    </SaveButton>
+  )
+}
+
 export const CommentCreate = ({}: CommentCreateProps) => {
   const record = useRecordContext()
+  const formContext = useFormContext()
+  const notify = useNotify()
+  const refresh = useRefresh()
 
   if (!record) return null
 
@@ -28,39 +39,10 @@ export const CommentCreate = ({}: CommentCreateProps) => {
       {
         resource_type: record.type,
         resource_id: record.id,
+        body: '',
       },
       {},
       // defaultValues ? defaultValues() : {},
-    )
-  }
-
-  const CommentCreateToolbar = () => {
-    const notify = useNotify()
-    const formContext = useFormContext()
-    const refresh = useRefresh()
-
-    return (
-      <Toolbar
-        sx={{
-          justifyContent: 'flex-end',
-          background: 'transparent',
-          p: 0,
-          m: 0,
-        }}
-      >
-        <SaveButton
-          type="button"
-          label="Leave a Comment"
-          mutationOptions={{
-            onSuccess: () => {
-              refresh()
-              formContext.reset(defaults())
-              window.scrollTo(0, 0)
-              notify('changes saved')
-            },
-          }}
-        />
-      </Toolbar>
     )
   }
 
@@ -71,9 +53,22 @@ export const CommentCreate = ({}: CommentCreateProps) => {
         '& .RaCreate-card': { boxShadow: 'none' },
         '& .RaCreate-main': { mt: 0 },
       }}
+      redirect={false}
+      mutationOptions={{
+        onSuccess: () => {
+          // TODO Clear the form
+          // @ts-ignore-line
+          // document.getElementById("commentCreateForm").reset();
+          // formContext.reset(defaults())
+          // refresh()
+          // notify('changes saved')
+        },
+      }}
     >
       <SimpleForm
-        toolbar={<CommentCreateToolbar />}
+        id="commentCreateForm"
+        toolbar={false}
+        // toolbar={<CommentCreateToolbar />}
         defaultValues={defaults()}
         sx={{ p: 0, pt: 2 }}
       >
@@ -85,6 +80,13 @@ export const CommentCreate = ({}: CommentCreateProps) => {
           maxRows={6}
           fullWidth
           label={'Leave a comment'}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <CommentButton />
+              </InputAdornment>
+            ),
+          }}
         />
       </SimpleForm>
     </Create>

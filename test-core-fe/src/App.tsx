@@ -6,15 +6,11 @@ import { Admin, Resource } from 'react-admin'
 // Source Code import
 import { Comments } from '@moonlight-labs/core-comments-fe'
 
-// import { CoreJobs } from '@moonlight-labs/core-jobs-fe'
+import { Jobs } from '@moonlight-labs/core-jobs-fe'
 // import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
 
 // import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
-
-// const Lines = CoreAccounting.Lines
-// const Versions = CoreVersions.Versions
-// const Webhooks = CoreWebhooks.Webhooks
 
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
@@ -92,6 +88,13 @@ function AdminApp() {
       />
 
       <Resource
+        name="Jobs"
+        icon={Jobs.Icon}
+        edit={Jobs.Edit}
+        list={Jobs.List}
+      />
+
+      <Resource
         name="Webhook"
         icon={Webhooks.Icon}
         list={Webhooks.List}
@@ -103,15 +106,6 @@ function AdminApp() {
 
 export default AdminApp
 
-{
-  /* <Resource
-name="jobs"
-icon={CoreJobs.Jobs.Icon}
-// options={{ label: 'CORE::Jobs'}}
-edit={CoreJobs.Jobs.Edit}
-list={CoreJobs.Jobs.List}
-/> */
-}
 // <Resource
 //   key="admin-lines-resource"
 //   name="Line"

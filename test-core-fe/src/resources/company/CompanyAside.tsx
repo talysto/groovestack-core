@@ -28,7 +28,8 @@ export const CompanyAside = () => {
           <Typography>Comments</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Comments.Stream />
+          {/* <Comments.Stream /> */}
+          <Comments.List stream={true} />
         </AccordionDetails>
       </Accordion>
       <Accordion>

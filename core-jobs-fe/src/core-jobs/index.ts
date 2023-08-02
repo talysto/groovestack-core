@@ -1,7 +1,2 @@
-import { Charts } from './views'
-import { Jobs } from './resource'
-
-export class CoreJobs {
-  static Charts = Charts
-  static Jobs = Jobs
-}
+export { Charts } from './views'
+export { Jobs } from './resource'

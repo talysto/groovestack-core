@@ -17,7 +17,7 @@ export const CommentEdit = () => {
         <PolymorphicReferenceField source="resource" />
       </SimpleShowLayout>
       <SimpleForm>
-        <TextInput source="body" multiline sx={{ width: 350 }} />
+        <TextInput source="body" multiline />
       </SimpleForm>
     </Edit>
   )
