@@ -1,8 +1,6 @@
-import React from 'react'
-
 import { Chart as GoogleChart } from 'react-google-charts'
 
-export const RPMChart: React.FC<{ data?: any }> = ({ data }) => {
+export const RPMChart = ({ data }: { data: any }) => {
   // if (!data) return <>No recent data.</>;
 
   const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)

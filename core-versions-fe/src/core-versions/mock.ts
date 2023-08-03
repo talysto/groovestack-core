@@ -1,37 +1,19 @@
 import { faker } from '@faker-js/faker'
 
-// export let faker: any = (globalThis as { faker?: any })?.faker
-// if (faker === undefined) {
-//   import('@faker-js/faker')
-//     .then(({ default: _faker }) => {
-//       faker = _faker
-//     })
-//     .catch(() => {
-//       //
-//     })
-// }
+export const mockVersion = () => (
+  {
+    // additional attributes
+    changes: generateChanges(faker.number.int({ min: 1, max: 5 })),
+    timestamp: faker.date.past(),
+    // standard attributes
+    id: faker.string.uuid(),
+    created_at: faker.date.past(),
+    updated_at: faker.date.past(),
+  }
+)
 
-
-// async function loadFaker() {
-//   return await import('@faker-js/faker')
-// }
-
-// const faker = await loadFaker()
-
-export function mockVersions({ count = 15 }) {
-    const mockData = []
-    for (let i = 0; count > i; i++) {
-      mockData.push({
-        // additional attributes
-        changes: generateChanges(faker.number.int({ min: 1, max: 5 })),
-        timestamp: faker.date.past().toLocaleString(),
-        // standard attributes
-        id: faker.string.uuid(),
-        created_at: faker.date.past().toLocaleString(),
-        updated_at: faker.date.past().toLocaleString(),
-      })
-    }
-    return mockData
+export const mockVersions = (count = 15) => {
+  return Array.from({ length: count }, () => mockVersion())
 }
 
 

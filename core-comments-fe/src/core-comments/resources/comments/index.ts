@@ -4,7 +4,7 @@ import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined'
 // import { CommentCreate } from './Create'
 import { CommentEdit } from './Edit'
 import { CommentsTable } from './CommentsTable'
-import { CommentStream } from './StreamList'
+// import { CommentStream } from './StreamList'
 
 // TODO implement recordReprsentation default
 // @usage
@@ -22,5 +22,5 @@ export class Comments {
 
   // static Show = CommentShow
   // static Create = CommentCreate
-  static Stream = CommentStream
+  // static Stream = CommentStream
 }

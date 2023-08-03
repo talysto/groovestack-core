@@ -4,14 +4,12 @@ import {
   SimpleForm,
   TextInput,
   useGetIdentity,
-  useNotify,
   useRecordContext,
-  useRefresh,
 } from 'react-admin'
 
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
 import { Avatar, Box, InputAdornment } from '@mui/material'
-import { useFormContext } from 'react-hook-form'
+// import { useFormContext } from 'react-hook-form'
 
 export type CommentCreateProps = {
   // authorResolver: () => Author
@@ -26,11 +24,12 @@ const CommentButton = () => {
   )
 }
 
-export const CommentCreate = ({}: CommentCreateProps) => {
+// props: CommentCreateProps
+export const CommentCreate = () => {
   const record = useRecordContext()
-  const formContext = useFormContext()
-  const notify = useNotify()
-  const refresh = useRefresh()
+  // const formContext = useFormContext()
+  // const notify = useNotify()
+  // const refresh = useRefresh()
 
   if (!record) return null
 
@@ -95,14 +94,12 @@ export const CommentCreate = ({}: CommentCreateProps) => {
 
 const CurrentUserField = () => {
   const {
-    data: currentUser,
-    isLoading: identityLoading,
-    error,
+    data: currentUser
   } = useGetIdentity()
 
   if (!currentUser) return null
 
-  const { id, name } = currentUser || {}
+  const { name } = currentUser || {}
 
   return (
     <Box

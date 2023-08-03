@@ -13,7 +13,7 @@ import { FieldProps, useRecordContext } from 'react-admin'
  */
 export const MoneyField = (props: MoneyFieldProps) => {
   const record = useRecordContext(props)
-  const { source, ...rest } = props
+  const { source } = props
 
   if (!record || !source) return null
 

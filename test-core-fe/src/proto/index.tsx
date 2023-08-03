@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react'
+
 const placeholderStyle = {
   border: 'solid 1px #aaa',
   margin: 20,
@@ -7,14 +9,12 @@ const placeholderStyle = {
   color: '#666',
 }
 
-export const Placeholder = ({ name, props }: { name: any; props?: any }) => (
+type PlaceholderProps = {
+  name: string
+}
+export const Placeholder = (props: PropsWithChildren<PlaceholderProps>) => (
   <div className="wireframe-placeholder" style={placeholderStyle}>
-    <h3>{name}</h3>
-    {props && (
-      <div>
-        <h4>Properties</h4>
-        {props}
-      </div>
-    )}
+    <h3>{props.name}</h3>
+    {props.children}
   </div>
 )

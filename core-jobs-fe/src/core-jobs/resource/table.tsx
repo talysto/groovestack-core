@@ -115,7 +115,7 @@ export const RetryButton: React.FC = () => {
   return <Button label="Retry" color="secondary" onClick={triggerRetry} />
 }
 
-const JobActions = ({ label }: { label?: string }) => {
+const JobActions = ({ label = 'Actions' }: { label?: string }) => {
   const record = useRecordContext()
 
   if (!record) return null

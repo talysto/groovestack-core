@@ -20,7 +20,7 @@ import { CommentCreate } from './Create'
 import { CommentField } from './Fields'
 
 const filters = [
-  <TextInput source="q" label="Search" alwaysOn />,
+  <TextInput key={0} source="q" label="Search" alwaysOn />,
   // TODO <DateRangeInput sourcce="created_at" label="Date" alwaysOn />,
 ]
 
@@ -40,11 +40,11 @@ export const CommentsTable = ({
   const record = useRecordContext()
   // const {children as c, ...rest} = listProps
 
-  let mergedListProps = Object.assign(
+  const mergedListProps = Object.assign(
     stream ? { actions: false, children: null } : {},
     listProps || {},
   )
-  let mergedDatagridProps = Object.assign(
+  const mergedDatagridProps = Object.assign(
     stream ? { bulkActionButtons: false } : {},
     datagridProps || {},
   )

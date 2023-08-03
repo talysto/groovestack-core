@@ -1,15 +1,22 @@
-const data = [
+type MetricType = {
+  label: string
+  value: string
+  unit?: string
+}
+
+const data: MetricType[] = [
   { label: 'Jobs', value: '1.45', unit: 'MM' },
   { label: 'Latency', value: '32', unit: 'min' },
   { label: 'Workers', value: '16' },
   { label: 'Running', value: '42' },
 ]
+
 export const KPIs = () => (
   <div
     style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}
   >
-    {data.map((e) => (
-      <div>
+    {data.map((e: MetricType, idx: number) => (
+      <div key={idx}>
         <small
           style={{
             textTransform: 'uppercase',

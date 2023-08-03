@@ -1,27 +1,27 @@
-import { capitalize, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import {
   ChipField,
   DateField,
   Show,
   SimpleShowLayout,
   TextField,
-  useRecordContext,
 } from 'react-admin'
 
 import { CodeField } from '../CodeField'
 
-const Title = () => {
-  const record = useRecordContext()
-  if (!record) return null
-  return (
-    <>
-      {capitalize(record.source)} / {record.event}
-    </>
-  )
-}
+// TODO: Convert to recordRepresentation
+// const Title = () => {
+//   const record = useRecordContext()
+//   if (!record) return null
+//   return (
+//     <>
+//       {capitalize(record.source)} / {record.event}
+//     </>
+//   )
+// }
 
 export const WebhookShow = () => (
-  <Show title={<Title />}>
+  <Show>
     <Grid container spacing={2}>
       <Grid item xs={6}>
         <SimpleShowLayout spacing={3}>
