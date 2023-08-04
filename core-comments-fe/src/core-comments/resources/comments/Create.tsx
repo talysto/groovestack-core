@@ -67,18 +67,16 @@ export const CommentCreate = () => {
       <SimpleForm
         id="commentCreateForm"
         toolbar={false}
-        // toolbar={<CommentCreateToolbar />}
         defaultValues={defaults()}
         sx={{ p: 0, pt: 2 }}
       >
-        <CurrentUserField />
         <TextInput
           source="body"
           multiline
           minRows={2}
           maxRows={6}
           fullWidth
-          label={'Leave a comment'}
+          label={<CurrentUserField />}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

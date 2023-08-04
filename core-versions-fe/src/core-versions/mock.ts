@@ -6,6 +6,12 @@ export const mockVersion = () => (
     changes: generateChanges(faker.number.int({ min: 1, max: 5 })),
     timestamp: faker.date.past(),
     // standard attributes
+
+    // actor_id: user.id,
+    // actor_type: user.type,
+    // resource_id: resource.id,
+    // resource_type: resource.type,
+
     id: faker.string.uuid(),
     created_at: faker.date.past(),
     updated_at: faker.date.past(),

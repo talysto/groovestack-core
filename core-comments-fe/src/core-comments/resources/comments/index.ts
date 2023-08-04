@@ -1,10 +1,7 @@
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined'
 
-// import { CommentShow } from './Show.tsx.legacy'
-// import { CommentCreate } from './Create'
 import { CommentEdit } from './Edit'
 import { CommentsTable } from './CommentsTable'
-// import { CommentStream } from './StreamList'
 
 // TODO implement recordReprsentation default
 // @usage

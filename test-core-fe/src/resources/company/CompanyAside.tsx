@@ -14,6 +14,7 @@ import { Comments } from '@moonlight-labs/core-comments-fe'
 // import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 
 import { inlineLayout } from '../inlineLayout'
+import { Versions } from '@moonlight-labs/core-versions-fe'
 
 export const CompanyAside = () => {
   // const record = useRecordContext()
@@ -41,7 +42,7 @@ export const CompanyAside = () => {
           <Typography>Changes</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {/* <CoreVersions.Versions.Stream changesDisplayed={1} /> */}
+          <Versions.Stream />
         </AccordionDetails>
       </Accordion>
       <SimpleShowLayout sx={{ ...inlineLayout, m: 2, p: 0, marginBottom: 5 }}>

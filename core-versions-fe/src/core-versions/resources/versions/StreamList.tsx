@@ -1,7 +1,10 @@
 import {
-  ReferenceManyField,
-  SingleFieldList,
+  Datagrid,
+  InfiniteList,
   useRecordContext,
+  TextField,
+  List,
+  SingleFieldList
 } from 'react-admin'
 
 import {
@@ -20,6 +23,8 @@ import {
 } from '@moonlight-labs/core-base-fe'
 import { ChangesTable } from './ChangesTable'
 
+
+// TODO: Make sure Comment & Version scopes are namespaced
 interface NewType {
   changesDisplayed: number
 }
@@ -79,21 +84,27 @@ export const VersionStream = ({
   changesDisplayed?: number
 }) => {
   const record = useRecordContext()
+
+  if(!record) return 'Emtpy..'
+
+  console.log('Record: ', record.id)
+
   return (
-    <>
-      <ReferenceManyField
-        reference="Version"
-        target="resource_id"
-        record={record}
-        sort={{ field: 'created_at', order: 'DESC' }}
-      >
+    <InfiniteList
+      resource="Version"
+      filter={record ? { resource_id: record.id } : {}}
+      sort={{ field: 'created_at', order: 'DESC' }}
+      actions={false}
+    >
+      {/* <Datagrid>
+        <TextField source="id" />
+      </Datagrid> */}
         <SingleFieldList
           sx={{ display: 'inline-block', p: 0 }}
           linkType={false}
         >
           <VersionTimelineItem changesDisplayed={changesDisplayed} />
         </SingleFieldList>
-      </ReferenceManyField>
-    </>
+    </InfiniteList>
   )
 }
