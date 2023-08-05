@@ -1,17 +1,13 @@
 {
   "name": "@moonlight-labs/core-versions-fe",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "type": "module",
   "files": [
     "dist"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.js"
-    },
-    "./mock": {
-      "import": "./dist/mock.js"
-    }
+    ".": "./dist/index.js",
+    "./mock": "./dist/mock.js"
   },
   "typesVersions": {
     "*": {

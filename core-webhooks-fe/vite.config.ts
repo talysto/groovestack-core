@@ -1,4 +1,4 @@
-import dts from '@moonlight-labs/vite-plugin-dts'
+import dts from 'vite-plugin-dts'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import autoExternal from 'rollup-plugin-auto-external'
@@ -10,6 +10,12 @@ export default defineConfig({
   plugins: [
     dts({
       rollupTypes: true,
+      rollupConfig: {
+        docModel: {
+          enabled: true,
+          apiJsonFilePath: '../docs/meta/<unscopedPackageName>.api.json'
+        }
+      }
     }),
     react(),
     visualizer({ open: false }),

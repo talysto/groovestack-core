@@ -1,6 +1,7 @@
 import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 import pkgComments from '../../../core-comments-fe/package.json'
+import { useContext } from 'react'
 
 const stack = [
   { name: 'React Admin' },
@@ -10,6 +11,69 @@ const stack = [
   { name: 'Ruby / Rails' },
   { name: 'PostgreSQL' },
 ]
+
+const packagesMeta = import.meta.glob('../../../docs/meta/*.json')
+// let packages = new Map<string, any>();
+const packages: { [key: string]: any } = {}
+
+for (const path in packagesMeta) {
+  packagesMeta[path]().then((mod) => {
+    packages[path] = mod
+  })
+}
+
+
+// Storybook
+// https://github.com/storybookjs/storybook/blob/998926f115259ffe4e9afe03b25daf34556e4756/code/ui/blocks/src/blocks/Controls.tsx#L25
+
+// Reflection
+// https://stackoverflow.com/questions/69724621/react-typescript-reflection-listing-properties-of-an-interface
+const Members = ({members}: {members: []}) => {
+
+  return (
+    <ul>
+      {members.map((member: any, idx: number) => {
+
+        // console.log(argTypes)
+
+        return (
+          <li key={idx}>
+            {member.name} ({member.releaseTag} {member.kind})
+            {member.members && <Members members={member.members} />}
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+
+
+export const Packages = ({packages}: {packages:any}) => {
+
+  return (
+  <ul>
+    {Object.values(packages).map((pkg, idx:number) => (
+      <li key={idx}>
+        <b>{pkg.name}</b> - {pkg.kind} <br/>
+        {/* <small>v{version} - {license}</small> <br/> */}
+        <Members members={pkg.members[0].members} />
+      </li>
+    ))}
+  </ul>
+  )
+}
+
+// export const Components = ({components}) => (
+//   <ul>
+//       {components.members[0].members.map((member: any, idx:number) => (
+//         <li key={idx}>{member.name} ({member.kind})</li>
+//       ))}
+//     </ul>
+// )
+
+
+
 
 export const HomeView = () => (
   <Paper elevation={2} sx={{ minHeight: 600, p: 5, minWidth: 800 }}>
@@ -28,6 +92,9 @@ export const HomeView = () => (
       <li>Minimal Depdendencies</li>
       <li>Green tests on all releases</li>
     </ul>
+
+    <h3>Modules</h3>
+    <Packages packages={packages} />
 
     <h3>CORE Modules</h3>
     <ul>

@@ -1,5 +1,21 @@
 # @moonlight-labs/core-versions-fe
 
+## 0.2.3
+
+### Patch Changes
+
+- Simplify package.exports
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.3
+
+## 0.2.2
+
+### Patch Changes
+
+- 0.2.2 bump
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes

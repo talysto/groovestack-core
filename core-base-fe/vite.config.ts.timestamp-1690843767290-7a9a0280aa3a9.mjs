@@ -1,7 +1,7 @@
 // vite.config.ts
 import { defineConfig } from "file:///Users/darren/Code/moonlight-labs/core/node_modules/.pnpm/vite@4.4.4_@types+node@20.4.2/node_modules/vite/dist/node/index.js";
 import react from "file:///Users/darren/Code/moonlight-labs/core/node_modules/.pnpm/@vitejs+plugin-react@4.0.3_vite@4.4.4/node_modules/@vitejs/plugin-react/dist/index.mjs";
-import dts from "file:///Users/darren/Code/moonlight-labs/core/node_modules/.pnpm/@moonlight-labs+vite-plugin-dts@3.3.1_@types+node@20.4.2_rollup@3.26.3_typescript@5.1.6_vite@4.4.4/node_modules/@moonlight-labs/vite-plugin-dts/dist/index.mjs";
+import dts from "file:///Users/darren/Code/moonlight-labs/core/node_modules/.pnpm/@moonlight-labs+vite-plugin-dts@3.3.1_@types+node@20.4.2_rollup@3.26.3_typescript@5.1.6_vite@4.4.4/node_modules/vite-plugin-dts/dist/index.mjs";
 import { resolve } from "path";
 import { visualizer } from "file:///Users/darren/Code/moonlight-labs/core/node_modules/.pnpm/rollup-plugin-visualizer@5.9.2_rollup@3.26.3/node_modules/rollup-plugin-visualizer/dist/plugin/index.js";
 import autoExternal from "file:///Users/darren/Code/moonlight-labs/core/node_modules/.pnpm/rollup-plugin-auto-external@2.0.0_rollup@3.26.3/node_modules/rollup-plugin-auto-external/index.js";
