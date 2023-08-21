@@ -18,6 +18,8 @@ export const PolymorphicReferenceField = ({
 }: PolymorphicReferenceFieldProps) => {
   const record = useRecordContext()
 
+  if (!record) return null
+
   let refReference = record[`${source}_type`]
   let refSource = `${source}_id`
 

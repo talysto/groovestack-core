@@ -87,8 +87,6 @@ export const VersionStream = ({
 
   if(!record) return 'Emtpy..'
 
-  console.log('Record: ', record.id)
-
   return (
     <InfiniteList
       resource="Version"
