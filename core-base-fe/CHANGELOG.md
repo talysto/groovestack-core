@@ -1,5 +1,11 @@
 # @moonlight-labs/core-base-fe
 
+## 0.2.5
+
+### Patch Changes
+
+- Move to dev branch
+
 ## 0.2.3
 
 ### Patch Changes

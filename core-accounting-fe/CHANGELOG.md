@@ -1,5 +1,13 @@
 # @moonlight-labs/core-accounting-fe
 
+## 0.2.4
+
+### Patch Changes
+
+- Move to dev branch
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.5
+
 ## 0.2.3
 
 ### Patch Changes

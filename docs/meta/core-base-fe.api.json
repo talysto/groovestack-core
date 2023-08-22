@@ -350,6 +350,10 @@
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
             }
           ],
           "fileUrlPath": "dist/react-admin/fields/PolymorphicReferenceField.d.ts",
@@ -358,7 +362,7 @@
           "name": "PolymorphicReferenceField",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 5
+            "endIndex": 6
           }
         },
         {

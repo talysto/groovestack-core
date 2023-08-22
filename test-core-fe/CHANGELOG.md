@@ -1,5 +1,17 @@
 # test-core-fe
 
+## 0.2.5
+
+### Patch Changes
+
+- Move to dev branch
+- Updated dependencies
+  - @moonlight-labs/core-comments-fe@0.2.5
+  - @moonlight-labs/core-versions-fe@0.2.4
+  - @moonlight-labs/core-webhooks-fe@0.2.4
+  - @moonlight-labs/core-base-fe@0.2.5
+  - @moonlight-labs/core-jobs-fe@0.2.4
+
 ## 0.2.4
 
 ### Patch Changes
