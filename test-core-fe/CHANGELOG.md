@@ -1,5 +1,12 @@
 # test-core-fe
 
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-versions-fe@0.2.5
+
 ## 0.2.5
 
 ### Patch Changes

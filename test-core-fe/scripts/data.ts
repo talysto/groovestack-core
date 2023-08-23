@@ -12,7 +12,7 @@ import { mockCompanies } from '../src/data/mockCompanies'
 const users = mockUsers(10)
 const companies = mockCompanies(5)
 
-const versions = mockVersions({ count: 40 }).map((version: any) => {
+const versions = mockVersions(40).map((version: any) => {
   const user = faker.helpers.arrayElement(users)
   const resource = faker.helpers.arrayElement([
     faker.helpers.arrayElement(users),

@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-versions-fe",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "type": "module",
   "files": [
     "dist"
@@ -21,7 +21,6 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "@mui/icons-material": ">=5.11.11",
     "@mui/lab": ">=5.0.0-alpha.124",
@@ -31,6 +30,7 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^"
+    "@moonlight-labs/core-base-fe": "workspace:^",
+    "deep-object-diff": "^1.1.9"
   }
 }

@@ -31,6 +31,7 @@ function generateChanges(numChanges: number) {
       "url": () => faker.internet.url(),
       "email": () => faker.internet.email(),
       "name": () => faker.person.fullName(),
+      "object": () => ({ unchanged: 'unchanged', name: faker.person.fullName(), amount: faker.number.int({min:0, max: 100})}),
       "maybe-nil": () => faker.helpers.arrayElement([faker.lorem.words(), null])
     }
 
