@@ -11,12 +11,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "preversion": "pnpm build",
-    "postversion": "pnpm publish && echo \"Successfully released version $npm_package_version!\"",
-    "publish-patch": "pnpm version --patch",
-    "publish-minor": "pnpm version --minor",
-    "publish-major": "pnpm version --major"
+    "preview": "vite preview"
   },
   "devDependencies": {},
   "dependencies": {

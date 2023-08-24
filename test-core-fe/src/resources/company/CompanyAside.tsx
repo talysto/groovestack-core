@@ -30,7 +30,7 @@ export const CompanyAside = () => {
         </AccordionSummary>
         <AccordionDetails>
           {/* <Comments.Stream /> */}
-          <Comments.List stream={true} />
+          <Comments.List stream />
         </AccordionDetails>
       </Accordion>
       <Accordion>

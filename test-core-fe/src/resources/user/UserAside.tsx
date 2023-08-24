@@ -32,7 +32,7 @@ export const UserAside = () => {
             <Typography>Comments</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Comments.Stream />
+            <Comments.List stream />
           </AccordionDetails>
         </Accordion>
         <Accordion>

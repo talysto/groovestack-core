@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "✨ core",
+			"path": "../../../.."
+		},
+		{
+			"name": "@moonlight-labs/core-base-fe",
+			"path": "../../.."
+		},
+		{
+			"name": "test-core-fe",
+			"path": "../../../../test-core-fe"
+		}
+	],
+	"settings": {}
+}

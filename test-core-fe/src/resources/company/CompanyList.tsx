@@ -6,6 +6,7 @@ import {
 import {
   Datagrid,
   List,
+  NumberField,
   ReferenceManyCount,
   TextField,
   WrapperField,
@@ -28,6 +29,12 @@ export const CompanyList = () => (
         reference="Version"
         target="resource_id"
       />
+
+      <NumberField source={'share_price'} options={{
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 2
+      }} />
 
       <MoneyField source="share_price" />
       <MoneyField source="market_cap" />

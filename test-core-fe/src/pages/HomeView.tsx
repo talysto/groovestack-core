@@ -1,7 +1,7 @@
 import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 import pkgComments from '../../../core-comments-fe/package.json'
-import { useContext } from 'react'
+// import { useContext } from 'react'
 
 const stack = [
   { name: 'React Admin' },
@@ -56,7 +56,7 @@ export const Packages = ({packages}: {packages:any}) => {
     {Object.values(packages).map((pkg, idx:number) => (
       <li key={idx}>
         <b>{pkg.name}</b> - {pkg.kind} <br/>
-        {/* <small>v{version} - {license}</small> <br/> */}
+        <small>v{pkg.version} - {pkg.license}</small> <br/>
         <Members members={pkg.members[0].members} />
       </li>
     ))}

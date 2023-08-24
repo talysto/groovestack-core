@@ -14,7 +14,7 @@ import { PolymorphicReferenceField } from './react-admin/fields/PolymorphicRefer
 import { MoneyField } from './react-admin/fields/MoneyField'
 import { StatusInput } from './react-admin/inputs/StatusInput'
 import { MoneyInput } from './react-admin/inputs/MoneyInput'
-import { generateTimeZoneOptions } from './react-admin/fields/TimezoneSelect'
+import { generateTimeZoneOptions, TimezoneSelectInput } from './react-admin/inputs/TimezoneSelectInput'
 
 
 /**
@@ -33,4 +33,4 @@ export { DateField, TimeAgoField, PolymorphicReferenceField, MoneyField }
  * React Admin Inputs
  * @public
  */
-export { StatusInput, MoneyInput }
+export { StatusInput, MoneyInput, TimezoneSelectInput }

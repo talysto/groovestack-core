@@ -8,7 +8,8 @@ module.exports = {
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:react/recommended",
-      "plugin:react/jsx-runtime"
+      "plugin:react/jsx-runtime",
+      "plugin:storybook/recommended"
   ],
   "overrides": [
       {
