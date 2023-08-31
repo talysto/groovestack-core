@@ -161,29 +161,38 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@moonlight-labs/core-webhooks-fe!",
+  "canonicalReference": "@moonlight-labs/core-notifications-fe!",
   "docComment": "",
-  "name": "@moonlight-labs/core-webhooks-fe",
+  "name": "@moonlight-labs/core-notifications-fe",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@moonlight-labs/core-webhooks-fe!",
+      "canonicalReference": "@moonlight-labs/core-notifications-fe!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-webhooks-fe!mockWebhooks:var",
+          "canonicalReference": "@moonlight-labs/core-notifications-fe!mockNotifications:var",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "mockWebhooks: "
+              "text": "mockNotifications: "
             },
             {
               "kind": "Content",
-              "text": "(count?: number) => {\n    source: string;\n    event: string;\n    status: string;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: string;\n    created_at: "
+              "text": "(count: number | undefined, userFn: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Function",
+              "canonicalReference": "!Function:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => ({\n    id: string;\n    created_at: "
             },
             {
               "kind": "Reference",
@@ -201,16 +210,70 @@
             },
             {
               "kind": "Content",
-              "text": ";\n}[]"
+              "text": ";\n    kind: string;\n    to_id: any;\n    to_type: any;\n    read: boolean;\n    title: string;\n    description: string;\n} | {\n    id: string;\n    created_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    updated_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    kind: string;\n    to_id: any;\n    to_type: any;\n    title: string;\n    description: string;\n    actions: {\n        label: string;\n    }[];\n} | {\n    id: string;\n    created_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    updated_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    kind: string;\n    read_bloom: never[];\n    publish_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null;\n    expire_at: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Date",
+              "canonicalReference": "!Date:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    read: number;\n    title: string;\n    description: string;\n    link: string;\n})[]"
             }
           ],
           "fileUrlPath": "dist/mock.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
-          "name": "mockWebhooks",
+          "name": "mockNotifications",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 6
+            "endIndex": 20
           }
         }
       ]

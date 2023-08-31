@@ -1,5 +1,11 @@
 # @moonlight-labs/core-base-fe
 
+## 0.2.6
+
+### Patch Changes
+
+- TimezonSelectInput and Versions improvements
+
 ## 0.2.5
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-base-fe",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "type": "module",
   "files": [
     "dist"

@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, OutlinedInput, InputAdornment } from '@mui/material'
+import { InputAdornment } from '@mui/material'
 import { InputProps, TextInput, useInput } from 'react-admin'
 
 /**
@@ -23,18 +23,18 @@ export const MoneyInput = (props: InputProps) => {
             {/* {org?.currency?.symbol} */}$
           </InputAdornment>
         ),
-        onInput: (ev) => {
-          const el = ev.target as HTMLInputElement | null
-          if (!el || !el.value) return
+        // onInput: (ev) => {
+        //   const el = ev.target as HTMLInputElement | null
+        //   if (!el || !el.value) return
 
-          // console.log('before <' + el.value + '>')
-          // const regexPat = /^[\d\.\,]+$/g
-          // https://stackoverflow.com/questions/354044/what-is-the-best-u-s-currency-regex
-          // cents required
-          const regexPat = /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*\.[0-9]{2}$/g
+        //   // console.log('before <' + el.value + '>')
+        //   // const regexPat = /^[\d\.\,]+$/g
+        //   // https://stackoverflow.com/questions/354044/what-is-the-best-u-s-currency-regex
+        //   // cents required
+        //   const regexPat = /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*\.[0-9]{2}$/g
 
-          el.value = el.value.match(regexPat)?.join('') ?? ''
-        },
+        //   el.value = el.value.match(regexPat)?.join('') ?? ''
+        // },
         // onKeyDown: (event) => {
         //   if (!ATM_REGEX.test(event.key)) {
         //     event.preventDefault();

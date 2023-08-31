@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-jobs-fe",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Async job processing with reliable retries, and real-time job monitoring.",
   "homepage": "https://moonlight-labs.com/core/jobs",
   "keywords": [

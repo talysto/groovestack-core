@@ -2,6 +2,86 @@ import { Typography } from '@mui/material'
 import { useRecordContext } from 'react-admin'
 import { detailedDiff } from 'deep-object-diff'
 
+const ObjectChanges = ({from, to}: {from:object, to:object}) => {
+  const diff = Object.fromEntries(Object.entries(detailedDiff(from, to)).filter(([_, v]) => v != null && Object.keys(v).length != 0 ))
+
+
+  return <>
+  {diff.added && <Typography
+  component="div"
+  title={'added'}
+  sx={{
+    color: 'text.secondary',
+    fontSize: '90%',
+    lineHeight: 1.25,
+  }}>
+    <pre><code>ADDED {JSON.stringify(diff.added, null, 2)}</code></pre>
+  </Typography>}
+
+  {diff.deleted && <Typography
+  component="div"
+  title={'deleted'}
+  sx={{
+    color: 'text.secondary',
+    fontSize: '90%',
+    lineHeight: 1.25,
+  }}>
+    <pre><code>REMOVED {JSON.stringify(diff.deleted, null, 2)}</code></pre>
+  </Typography>}
+
+  {diff.updated && <Typography
+  component="div"
+  title={'updated'}
+  sx={{
+    color: 'text.secondary',
+    fontSize: '90%',
+    lineHeight: 1.25,
+  }}>
+    <pre><code>UPDATED {JSON.stringify(diff.updated, null, 2)}</code></pre>
+  </Typography>}
+
+  {/* {<Typography
+  component="div"
+  title={'updated'}
+  sx={{
+    color: 'text.secondary',
+    fontSize: '90%',
+    lineHeight: 1.25,
+  }}>
+    <pre><code>{JSON.stringify(diff, null, 2)}</code></pre>
+  </Typography>} */}
+
+  </>
+}
+
+const SimpleChange = ({from, to}:{from:any|undefined, to:any|undefined}) => <>
+{to && (
+  <Typography
+    component="div"
+    sx={{ mr: 1, lineHeight: 1.25 }}
+  >
+    {to?.toString()}
+  </Typography>
+)}
+{from && (
+  <Typography
+    component="div"
+    title={from}
+    sx={{
+      color: 'text.secondary',
+      fontSize: '90%',
+      lineHeight: 1.25,
+    }}
+  >
+    (
+    <span style={{ textDecoration: 'line-through' }}>
+      {from?.toString().substring(0, 120)}
+    </span>
+    )
+  </Typography>
+)}
+</>
+
 export const ChangesTable = ({
   changesDisplayed,
 }: {
@@ -9,26 +89,6 @@ export const ChangesTable = ({
 }) => {
   const record = useRecordContext()
   if (!record) return null
-
-  const objectDiff = (from: any, to: any) => {
-    const diffObject = Object.fromEntries(Object.entries(detailedDiff(from, to)).filter(([_, v]) => v != null && Object.keys(v).length != 0 ))
-
-    // console.debug('from', from)
-    // console.debug('to', to)
-    // console.debug('diffObject', diffObject)
-
-
-    return <Typography
-    component="div"
-    title={'object changes'}
-    sx={{
-      color: 'text.secondary',
-      fontSize: '90%',
-      lineHeight: 1.25,
-    }}>
-      <pre><code>{JSON.stringify(diffObject, null, 2)}</code></pre>
-    </Typography>
-  }
 
   return (
     <table>
@@ -58,33 +118,7 @@ export const ChangesTable = ({
                     alignItems: 'baseline',
                   }}
                 >
-                  {typeof(change[1][1]) === 'object' ? objectDiff(change[1][0], change[1][1]) : <>
-                    {change[1][1] && (
-                      <Typography
-                        component="div"
-                        sx={{ mr: 1, lineHeight: 1.25 }}
-                      >
-                        {change[1][1]?.toString()}
-                      </Typography>
-                    )}
-                    {change[1][0] && (
-                      <Typography
-                        component="div"
-                        title={change[1][0]}
-                        sx={{
-                          color: 'text.secondary',
-                          fontSize: '90%',
-                          lineHeight: 1.25,
-                        }}
-                      >
-                        (
-                        <span style={{ textDecoration: 'line-through' }}>
-                          {change[1][0]?.toString().substring(0, 120)}
-                        </span>
-                        )
-                      </Typography>
-                    )}
-                    </>
+                  {typeof(change[1][1]) === 'object' ? <ObjectChanges from={change[1][0]} to={change[1][1]} /> : <SimpleChange from={change[1][0]} to={change[1][1]}  />
                   }
                 </td>
               </tr>
@@ -92,4 +126,5 @@ export const ChangesTable = ({
       </tbody>
     </table>
   )
+
 }

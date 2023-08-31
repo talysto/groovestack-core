@@ -174,6 +174,47 @@
       "members": [
         {
           "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!clickToCopy:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "clickToCopy: "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    onClick: (element: "
+            },
+            {
+              "kind": "Reference",
+              "text": "React.MouseEvent",
+              "canonicalReference": "@types/react!React.MouseEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLButtonElement",
+              "canonicalReference": "!HTMLButtonElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">) => void;\n    className: string;\n}"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/fields/clickToCopy.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "clickToCopy",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-base-fe!DateField:var",
           "docComment": "",
           "excerptTokens": [
@@ -236,7 +277,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/react-admin/fields/TimezoneSelect.d.ts",
+          "fileUrlPath": "dist/react-admin/inputs/TimezoneSelectInput.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 3
@@ -487,6 +528,237 @@
             "startIndex": 1,
             "endIndex": 6
           }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!TimezoneSelectInput:var",
+          "docComment": "/**\n * React Admin Input that allows user to select a timezone. ' Input provides the current timezone as a first option and autocomplete to quickly find your local timezone.\n *\n * @component\n *\n * @example\n *\n * return ( <TimezoneSelectInput source='timezone' /> )\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "TimezoneSelectInput: "
+            },
+            {
+              "kind": "Content",
+              "text": "(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AutocompleteInputProps",
+              "canonicalReference": "ra-ui-materialui!AutocompleteInputProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/inputs/TimezoneSelectInput.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "TimezoneSelectInput",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@moonlight-labs/core-base-fe!ToggleButtonInput:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function ToggleButtonInput(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ToggleButtonGroupInputProps",
+              "canonicalReference": "@moonlight-labs/core-base-fe!~ToggleButtonGroupInputProps:type"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/inputs/ToggleButtonInput.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "props",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "ToggleButtonInput"
+        },
+        {
+          "kind": "Namespace",
+          "canonicalReference": "@moonlight-labs/core-base-fe!ToggleButtonInput:namespace",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare namespace ToggleButtonInput "
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/inputs/ToggleButtonInput.d.ts",
+          "releaseTag": "Public",
+          "name": "ToggleButtonInput",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Variable",
+              "canonicalReference": "@moonlight-labs/core-base-fe!ToggleButtonInput.propTypes:var",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "propTypes: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{\n        choices: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any[]>;\n        label: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "NonNullable",
+                  "canonicalReference": "!NonNullable:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string | boolean | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.ReactElementLike",
+                  "canonicalReference": "@types/prop-types!ReactElementLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | null | undefined>>;\n        options: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<object>;\n        optionText: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "NonNullable",
+                  "canonicalReference": "!NonNullable:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.ReactElementLike",
+                  "canonicalReference": "@types/prop-types!ReactElementLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | ((...args: any[]) => any) | null | undefined>>;\n        optionValue: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>;\n        resource: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>;\n        source: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>;\n        translateChoice: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PropTypes.Requireable",
+                  "canonicalReference": "@types/prop-types!Requireable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<boolean>;\n    }"
+                }
+              ],
+              "isReadonly": false,
+              "releaseTag": "Public",
+              "name": "propTypes",
+              "variableTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 26
+              }
+            }
+          ]
         }
       ]
     }

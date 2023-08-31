@@ -5,13 +5,9 @@ import { Admin, Resource } from 'react-admin'
 
 // Source Code import
 import { Comments } from '@moonlight-labs/core-comments-fe'
-
 import { Jobs } from '@moonlight-labs/core-jobs-fe'
-// import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
-
-// import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
-
+import { Notifications } from '@moonlight-labs/core-notifications-fe'
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
@@ -99,6 +95,13 @@ function AdminApp() {
         icon={Webhooks.Icon}
         list={Webhooks.List}
         edit={Webhooks.Show}
+      />
+
+      <Resource
+        name="Notification"
+        icon={Notifications.Icon}
+        list={Notifications.List}
+        edit={Notifications.Edit}
       />
     </Admin>
   )

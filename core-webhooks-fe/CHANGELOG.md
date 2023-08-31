@@ -1,5 +1,24 @@
 # @moonlight-labs/core-webhooks-fe
 
+## 0.2.7
+
+### Patch Changes
+
+- FIX mockWebhooks()
+
+## 0.2.6
+
+### Patch Changes
+
+- Mock data pattern follows standard
+
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.6
+
 ## 0.2.4
 
 ### Patch Changes
