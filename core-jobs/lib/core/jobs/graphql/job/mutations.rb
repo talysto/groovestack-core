@@ -6,7 +6,9 @@ module Core
       module Job
         module Mutations
           class Delete < ::Core::Base::GraphQL::BaseMutation
-            argument :id, ID, required: true
+            description 'Delete a job'
+
+            argument :id, ID, required: true, description: 'job id'
 
             type ::Core::Jobs::GraphQL::Job::Type
 
@@ -17,9 +19,12 @@ module Core
           end
 
           class Update < ::Core::Base::GraphQL::BaseMutation
-            argument :expired_at, ::GraphQL::Types::ISO8601DateTime, required: false
-            argument :id, ID, required: true
-            argument :run_at, ::GraphQL::Types::ISO8601DateTime, required: false
+            description 'Update a job'
+
+            argument :expired_at, ::GraphQL::Types::ISO8601DateTime, required: false,
+                                                                     description: 'expiration timestamp'
+            argument :id, ID, required: true, description: 'job id'
+            argument :run_at, ::GraphQL::Types::ISO8601DateTime, required: false, description: 'start running timestamp'
 
             type ::Core::Jobs::GraphQL::Job::Type
 
@@ -33,8 +38,8 @@ module Core
           extend ActiveSupport::Concern
 
           included do
-            field :delete_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Delete
-            field :update_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Update
+            field :delete_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Delete, description: 'Delete a job'
+            field :update_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Update, description: 'Update a job'
           end
         end
       end

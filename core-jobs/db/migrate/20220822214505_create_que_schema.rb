@@ -6,7 +6,7 @@ class CreateQueSchema < ActiveRecord::Migration[6.0]
     # migrating to. If you're unsure what the current version is, check the
     # changelog.
 
-    if Que.db_version == 0 # Que is not installed here so install the highest version
+    if Que.db_version.zero? # Que is not installed here so install the highest version
       Que.migrate!(version: 7)
       return
     end
@@ -19,7 +19,7 @@ class CreateQueSchema < ActiveRecord::Migration[6.0]
 
   def down
     # Migrate to version 0 to remove Que entirely.
-    
+
     Que.migrate!(version: 0)
   end
 end

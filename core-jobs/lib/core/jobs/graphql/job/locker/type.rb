@@ -3,8 +3,8 @@
 module Core
   module Jobs
     module GraphQL
-      module Job 
-        module Locker 
+      module Job
+        module Locker
           class Type < ::Core::Base::GraphQL::BaseObject
             description 'A queue locker'
 

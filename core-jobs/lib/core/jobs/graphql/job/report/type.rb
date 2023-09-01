@@ -3,7 +3,7 @@
 module Core
   module Jobs
     module GraphQL
-      module Job 
+      module Job
         module Report
           class Type < ::Core::Base::GraphQL::BaseObject
             description 'a job report'

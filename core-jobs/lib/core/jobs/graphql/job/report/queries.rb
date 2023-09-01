@@ -3,8 +3,8 @@
 module Core
   module Jobs
     module GraphQL
-      module Job 
-        module Report 
+      module Job
+        module Report
           module Queries
             extend ActiveSupport::Concern
 
@@ -12,16 +12,18 @@ module Core
               include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
               # special case for virtual class. pass custom graphql_type and graphql_filter paths
-              react_admin_resource :job_reports, graphql_type: "Core::Jobs::GraphQL::Job::Report::Type", graphql_filter: "Core::Jobs::GraphQL::Job::Report::Filter", except: [:find]
+              react_admin_resource :job_reports, graphql_type: 'Core::Jobs::GraphQL::Job::Report::Type',
+                                                 graphql_filter: 'Core::Jobs::GraphQL::Job::Report::Filter',
+                                                 except: [:find]
             end
 
-            def job_reports_scope(sort_field: nil, sort_order: nil, filter: {})
+            def job_reports_scope(_sort_field: nil, _sort_order: nil, filter: {})
               return [job_stats] if filter.report_name == 'job_stats'
 
               raise 'unrecognized job report_name'
             end
 
-            def job_stats
+            def job_stats # rubocop:disable Metrics/MethodLength
               sql = <<-SQL.squish
                 SELECT
                   job_class,

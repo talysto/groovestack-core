@@ -15,9 +15,11 @@ module Core
           field :status, String, null: false, description: 'current status of job'
           field :type, String, null: false, description: 'job type'
 
+          # rubocop:disable GraphQL/ExtractType
           field :error_count, Integer, null: true, description: 'error count'
           field :last_error_backtrace, String, null: true, description: 'last error backtrace'
           field :last_error_message, String, null: true, description: 'last error message'
+          # rubocop:enable GraphQL/ExtractType
 
           field :args, ::GraphQL::Types::JSON, null: true, description: 'args'
           field :data, ::GraphQL::Types::JSON, null: true, description: 'data'

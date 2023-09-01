@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CreateOrReplaceQueAllView < ActiveRecord::Migration[6.0]
-  def change
+  def change # rubocop:disable Metrics/MethodLength
     reversible do |dir|
       dir.up do
         safety_assured do # requirement for strong_migrations

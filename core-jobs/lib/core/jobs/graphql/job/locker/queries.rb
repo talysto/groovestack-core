@@ -3,7 +3,7 @@
 module Core
   module Jobs
     module GraphQL
-      module Job 
+      module Job
         module Locker
           module Queries
             extend ActiveSupport::Concern
