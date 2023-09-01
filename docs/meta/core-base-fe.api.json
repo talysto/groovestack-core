@@ -255,6 +255,34 @@
           }
         },
         {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!ExternalLink:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "ExternalLink: "
+            },
+            {
+              "kind": "Content",
+              "text": "({ url, title, hideIcon, sx, }: {\n    url: string;\n    title: string;\n    sx?: object | undefined;\n    hideIcon?: boolean | undefined;\n}) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/components/ExternalLink.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "ExternalLink",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          }
+        },
+        {
           "kind": "Function",
           "canonicalReference": "@moonlight-labs/core-base-fe!generateTimeZoneOptions:function(1)",
           "docComment": "",

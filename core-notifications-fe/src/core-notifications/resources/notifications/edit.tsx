@@ -36,6 +36,8 @@ export const NotificationEdit = () => (
 
       <TextInput source="title" fullWidth />
       <TextInput source="description" fullWidth />
+      <TextInput source="link" fullWidth />
+      <TextInput source="actions" fullWidth />
 
       {/* <ChipInput source="status" /> */}
       <DateInput source="publish_at" />

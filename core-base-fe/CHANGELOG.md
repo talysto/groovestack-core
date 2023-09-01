@@ -1,5 +1,11 @@
 # @moonlight-labs/core-base-fe
 
+## 0.2.7
+
+### Patch Changes
+
+- Base enhancements, Webhooks improvements
+
 ## 0.2.6
 
 ### Patch Changes

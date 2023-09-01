@@ -16,7 +16,9 @@ import { StatusInput } from './react-admin/inputs/StatusInput'
 import { MoneyInput } from './react-admin/inputs/MoneyInput'
 import { generateTimeZoneOptions, TimezoneSelectInput } from './react-admin/inputs/TimezoneSelectInput'
 import { clickToCopy } from './react-admin/fields/clickToCopy'
+import './react-admin/fields/clickToCopy.css'
 import { ToggleButtonInput } from './react-admin/inputs/ToggleButtonInput'
+import { ExternalLink } from './components/ExternalLink'
 
 
 /**
@@ -36,3 +38,9 @@ export { DateField, TimeAgoField, PolymorphicReferenceField, MoneyField }
  * @public
  */
 export { StatusInput, MoneyInput, TimezoneSelectInput, ToggleButtonInput }
+
+/**
+ * MUI Components
+ * @public
+ */
+export { ExternalLink }

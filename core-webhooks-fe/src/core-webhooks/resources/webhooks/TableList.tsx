@@ -2,13 +2,16 @@ import {
   ChipField,
   Datagrid,
   DateField,
+  FieldProps,
   List,
   TextField,
   TextInput,
   useRecordContext,
 } from 'react-admin'
+import { SourceField } from './SourceField'
+import { TimeAgoField, ToggleButtonInput } from '@moonlight-labs/core-base-fe'
 
-const IdField = () => {
+const IdField = (props: FieldProps) => {
   const record = useRecordContext()
   return record ? <>{record.id.toString().slice(0, 6)}</> : <>{'...'}</>
 }
@@ -17,7 +20,9 @@ IdField.defaultProps = { label: 'ID', source: 'id' }
 const filters = [
   // <Typography variant="h4" alwaysOn>Web Hooks<br/></Typography>,
   <TextInput label="Search" source="q" alwaysOn />,
+  <ToggleButtonInput label={false} alwaysOn source="status" choices={[{id: '', name: 'All'},{id: 'processed', name: 'Processed'}, {id: 'received', name: 'Received'}]} />
 ]
+
 
 export const WebhookTable = () => (
   <List
@@ -26,11 +31,11 @@ export const WebhookTable = () => (
     sort={{ field: 'created_at', order: 'DESC' }}
   >
     <Datagrid bulkActionButtons={false} rowClick={'show'}>
-      <IdField />
-      <TextField source="source" />
-      <TextField source="event" />
-      <ChipField source="status" size="small" />
-      <DateField source="created_at" showTime />
+      <IdField sortable={false} />
+      <SourceField source="source" sortable={false} />
+      <TextField source="event" sortable={false} />
+      <ChipField source="status" size="small" sortable={false} />
+      <TimeAgoField source="created_at" label="Created" />
     </Datagrid>
   </List>
 )

@@ -94,7 +94,8 @@ function AdminApp() {
         name="Webhook"
         icon={Webhooks.Icon}
         list={Webhooks.List}
-        edit={Webhooks.Show}
+        show={Webhooks.Show}
+        recordRepresentation={Webhooks.recordRepresentation}
       />
 
       <Resource
