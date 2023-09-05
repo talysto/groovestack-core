@@ -183,7 +183,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    source: string;\n    event: string;\n    status: string;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: string;\n    created_at: "
+              "text": "(count?: number) => {\n    source: string;\n    event: string;\n    status: string;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: string;\n    created_at: "
             },
             {
               "kind": "Reference",

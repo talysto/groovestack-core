@@ -3,14 +3,17 @@ import { faker } from '@faker-js/faker'
 // import { mockJobs, mockLockers } from '@moonlight-labs/core-jobs-fe'
 import { mockWebhooks } from '@moonlight-labs/core-webhooks-fe/mock'
 import { mockComments } from '@moonlight-labs/core-comments-fe/mock'
-// import { mockLines } from '@moonlight-labs/core-accounting-fe'
 import { mockVersions } from '@moonlight-labs/core-versions-fe/mock'
+import { mockNotifications } from '@moonlight-labs/core-notifications-fe/mock'
 
 import { mockUsers } from '../src/data/mockUsers'
 import { mockCompanies } from '../src/data/mockCompanies'
 
 const users = mockUsers(10)
 const companies = mockCompanies(5)
+const webhooks = mockWebhooks()
+
+const notifications = mockNotifications(40, () => faker.helpers.arrayElement(users))
 
 const versions = mockVersions(40).map((version: any) => {
   const user = faker.helpers.arrayElement(users)
@@ -68,8 +71,6 @@ const versions = mockVersions(40).map((version: any) => {
 //   },
 // )
 
-
-
 // console.log(mockComments(2))
 
 const comments = mockComments(200).map((comment: any) => {
@@ -98,7 +99,8 @@ const data = {
   // CORE Modules
   Comment: comments,
   Version: versions,
-  Webhook: mockWebhooks,
+  Webhook: webhooks,
+  Notification: notifications,
   // Line: lines,
   // jobs: mockJobs(15),
   // lockers: mockLockers(3),

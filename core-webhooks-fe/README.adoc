@@ -1,0 +1,18 @@
+## CORE Webhooks
+
+Allows you to build integration with external services by reliably receiving, validating and processing webhooks.
+
+### Admin Features
+
+- Search and filter webhooks
+- View extended details for debugging and review
+
+
+### Developer Features
+
+- Abstract WebhookEvent model can be extended to support any 3rd-party webhooks
+
+- Quick links to webhook documentation
+
+
+

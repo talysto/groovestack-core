@@ -2,12 +2,18 @@ import { Grid } from '@mui/material'
 import {
   ChipField,
   DateField,
+  FunctionField,
+  RaRecord,
   Show,
+  ShowProps,
   SimpleShowLayout,
   TextField,
+  WrapperField,
 } from 'react-admin'
 
+import { ExternalLink, clickToCopy } from '@moonlight-labs/core-base-fe'
 import { CodeField } from '../CodeField'
+import { SourceField } from './SourceField'
 
 // TODO: Convert to recordRepresentation
 // const Title = () => {
@@ -20,21 +26,46 @@ import { CodeField } from '../CodeField'
 //   )
 // }
 
-export const WebhookShow = () => (
-  <Show>
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <SimpleShowLayout spacing={3}>
-          <TextField source="id" label="ID" />
-          <TextField source="source" />
-          <TextField source="event" />
-          <ChipField source="status" />
-          <DateField source="created_at" showTime />
+const inlineLayout = {
+  '& .RaLabeled-label': {
+    display: 'inline-block',
+    minWidth: 70,
+    mr: 1,
+    textTransform: 'uppercase',
+  },
+}
+
+export const WebhookShow = ({ children, ...rest }: ShowProps) => (
+  <Show {...rest}>
+    <Grid container>
+      <Grid item xs={12} md={6}>
+        <SimpleShowLayout sx={{ ...inlineLayout }}>
+          <TextField source="id" noWrap label={false} {...clickToCopy} />
+
+          <SourceField source="source" />
+          <WrapperField label="Event">
+            <TextField source="event" sx={{ mr: 2 }} />
+            <FunctionField
+              label={false}
+              render={(record: RaRecord) => (
+                <ExternalLink
+                  hideIcon
+                  title="search..."
+                  url={`https://google.com/search?q=${record.source}+${record.event}+webhook`}
+                />
+              )}
+            />
+          </WrapperField>
+
+          <ChipField source="status" size="small" />
+          <DateField source="created_at" label="Created" showTime />
+          {children}
         </SimpleShowLayout>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <SimpleShowLayout>
-          <CodeField source="data" />
+          <CodeField source="headers" label="HEADERS" />
+          <CodeField source="data" label="DATA" />
         </SimpleShowLayout>
       </Grid>
     </Grid>

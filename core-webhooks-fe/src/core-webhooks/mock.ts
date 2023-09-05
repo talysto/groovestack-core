@@ -1,18 +1,21 @@
 import { faker } from '@faker-js/faker'
 
-export const mockWebhooks = Array.from({ length: 35 }, () => {
-  return {
-    source: faker.helpers.arrayElement(['stripe', 'slack']),
-    event: faker.helpers.arrayElement(['payout.failed']),
-    status: faker.helpers.arrayElement(['received', 'processed']),
+const mockWebHook = () => ({
+  source: faker.helpers.arrayElement(['stripe', 'slack']),
+  event: faker.helpers.arrayElement(['payout.failed']),
+  status: faker.helpers.arrayElement(['received', 'processed']),
 
-    data: { sample: 'data', id: '_someKey' },
+  data: { sample: 'data', id: '_someKey' },
 
-    id: faker.string.uuid(),
-    created_at: faker.date.recent(),
-    updated_at: faker.date.recent(),
-  }
+  id: faker.string.uuid(),
+  created_at: faker.date.recent(),
+  updated_at: faker.date.recent(),
 })
+
+export const mockWebhooks = (count = 35)  => {
+  return Array.from({length: count}, () => mockWebHook())
+}
+
 
 // {
 //   "id": "evt_1McXPHDzy6aqOKTEJ5LPQJHk",

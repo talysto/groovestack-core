@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react'
 import fakeRestProvider from 'ra-data-fakerest'
 import { Admin, Datagrid, DateField, List, Resource } from 'react-admin'
 import { TimeAgoField } from '../src/react-admin/fields/TimeAgoField'
-import { withFormContext } from './RAStorybookDecorators'
+import { withFormContext } from '../../stories/RAStorybookDecorators'
 import React from 'react'
 
 import { faker } from '@faker-js/faker'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'CORE/React Admin/Fields/TimeAgoField',
+  title: 'React Admin/Fields/TimeAgoField',
   component: TimeAgoField,
   decorators: [withFormContext],
   tags: ['autodocs'], // https://storybook.js.org/docs/react/writing-docs/autodocs,

@@ -9,6 +9,14 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    options: {
+      storySort: {
+        order: ['CORE', 'React Admin', 'Example'],
+      },
+    },
+    docs: {
+      toc: true, // 👈 Enables the table of contents
+    },
   },
 }
 

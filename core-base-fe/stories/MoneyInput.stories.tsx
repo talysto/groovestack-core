@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { withFormContext  } from './RAStorybookDecorators'
+import { withFormContext  } from '../../stories/RAStorybookDecorators'
 import { MoneyInput } from '../src/react-admin/inputs/MoneyInput'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'CORE/React Admin/Inputs/MoneyInput',
+  title: 'React Admin/Inputs/MoneyInput',
   component: MoneyInput,
   decorators: [withFormContext],
   parameters: { layout: 'centered'},
