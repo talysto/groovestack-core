@@ -15,7 +15,8 @@ import {
   WrapperField,
   useRecordContext,
   UpdateButton,
-  BooleanInput
+  BooleanInput,
+  SearchInput
 } from 'react-admin'
 
 // const IdField = () => {
@@ -33,7 +34,7 @@ const adminFilters = [
 
 const userFilters = [
   // <Typography variant="h4" alwaysOn>Web Hooks<br/></Typography>,
-  <TextInput label="Search" source="q" alwaysOn />,
+  <SearchInput label="Search" source="q" alwaysOn />,
 ]
 
 const UserList = () => {

@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-// import { mockJobs, mockLockers } from '@moonlight-labs/core-jobs-fe'
+import { mockJobs, mockLockers, mockStats } from '@moonlight-labs/core-jobs-fe/mock'
 import { mockWebhooks } from '@moonlight-labs/core-webhooks-fe/mock'
 import { mockComments } from '@moonlight-labs/core-comments-fe/mock'
 import { mockVersions } from '@moonlight-labs/core-versions-fe/mock'
@@ -101,9 +101,11 @@ const data = {
   Version: versions,
   Webhook: webhooks,
   Notification: notifications,
+
   // Line: lines,
-  // jobs: mockJobs(15),
-  // lockers: mockLockers(3),
+  Job: mockJobs(15),
+  JobLocker: mockLockers(3),
+  JobStat: mockStats(4),
 
   // For Testing Integrations
   User: users,

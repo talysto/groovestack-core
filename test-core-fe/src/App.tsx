@@ -84,11 +84,15 @@ function AdminApp() {
       />
 
       <Resource
-        name="Jobs"
+        name="Job"
         icon={Jobs.Icon}
         edit={Jobs.Edit}
         list={Jobs.List}
+        recordRepresentation={Jobs.resourceRepresentation}
       />
+
+      <Resource name="JobLocker" />
+      <Resource name="JobStat" />
 
       <Resource
         name="Webhook"

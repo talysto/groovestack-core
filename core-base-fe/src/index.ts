@@ -19,6 +19,7 @@ import { clickToCopy } from './react-admin/fields/clickToCopy'
 import './react-admin/fields/clickToCopy.css'
 import { ToggleButtonInput } from './react-admin/inputs/ToggleButtonInput'
 import { ExternalLink } from './components/ExternalLink'
+import { CodeField } from './react-admin/fields/CodeField'
 
 
 /**
@@ -31,7 +32,7 @@ export { timeAgo, generateTimeZoneOptions, clickToCopy }
  * React Admin Fields
  * @public
  */
-export { DateField, TimeAgoField, PolymorphicReferenceField, MoneyField }
+export { DateField, TimeAgoField, PolymorphicReferenceField, MoneyField, CodeField }
 
 /**
  * React Admin Inputs

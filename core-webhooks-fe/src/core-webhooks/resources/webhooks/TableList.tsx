@@ -1,9 +1,9 @@
 import {
   ChipField,
   Datagrid,
-  DateField,
   FieldProps,
   List,
+  SearchInput,
   TextField,
   TextInput,
   useRecordContext,
@@ -19,7 +19,7 @@ IdField.defaultProps = { label: 'ID', source: 'id' }
 
 const filters = [
   // <Typography variant="h4" alwaysOn>Web Hooks<br/></Typography>,
-  <TextInput label="Search" source="q" alwaysOn />,
+  <SearchInput label="Search" source="q" alwaysOn />,
   <ToggleButtonInput label={false} alwaysOn source="status" choices={[{id: '', name: 'All'},{id: 'processed', name: 'Processed'}, {id: 'received', name: 'Received'}]} />
 ]
 
