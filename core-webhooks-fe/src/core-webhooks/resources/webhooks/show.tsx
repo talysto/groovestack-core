@@ -11,8 +11,7 @@ import {
   WrapperField,
 } from 'react-admin'
 
-import { ExternalLink, clickToCopy } from '@moonlight-labs/core-base-fe'
-import { CodeField } from '../CodeField'
+import { CodeField, ExternalLink, clickToCopy } from '@moonlight-labs/core-base-fe'
 import { SourceField } from './SourceField'
 
 // TODO: Convert to recordRepresentation

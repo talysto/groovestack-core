@@ -228,7 +228,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    kind: string;\n    to_id: any;\n    to_type: any;\n    title: string;\n    description: string;\n    actions: {\n        label: string;\n    }[];\n} | {\n    id: string;\n    created_at: "
+              "text": ";\n    kind: string;\n    to_id: any;\n    to_type: any;\n    title: string;\n    description: string;\n    actions: {\n        label: string;\n        url: string;\n    }[];\n} | {\n    id: string;\n    created_at: "
             },
             {
               "kind": "Reference",
@@ -246,7 +246,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    kind: string;\n    read_bloom: never[];\n    publish_at: "
+              "text": ";\n    kind: string;\n    scope: string | null;\n    read_bloom: never[];\n    publish_at: "
             },
             {
               "kind": "Reference",
@@ -264,7 +264,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    read: number;\n    title: string;\n    description: string;\n    link: string;\n})[]"
+              "text": ";\n    read: number;\n    title: string;\n    description: string;\n    link: string | {\n        url: string;\n        label: string;\n    } | null;\n})[]"
             }
           ],
           "fileUrlPath": "dist/mock.d.ts",

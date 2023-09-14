@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "✨ core",
+			"path": "."
+		},
+		{
+			"name": "@moonlight-labs/core-jobs-fe",
+			"path": "core-jobs-fe"
+		},
+		{
+			"name": "@moonlight-labs/core-notifications-fe",
+			"path": "core-notifications-fe"
+		},
+		{
+			"name": "test-core-fe",
+			"path": "test-core-fe"
+		}
+	],
+	"settings": {}
+}

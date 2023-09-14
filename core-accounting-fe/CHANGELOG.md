@@ -1,5 +1,12 @@
 # @moonlight-labs/core-accounting-fe
 
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.8
+
 ## 0.2.6
 
 ### Patch Changes

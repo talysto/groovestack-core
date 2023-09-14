@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-accounting-fe",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Double entry accounting and currency management",
   "homepage": "https://moonlight-labs.com/core",
   "keywords": [

@@ -12,6 +12,8 @@ Allows you to build integration with external services by reliably receiving, va
 
 - Abstract WebhookEvent model can be extended to support any 3rd-party webhooks
 
+- Extend details views with custom UI panels
+
 - Quick links to webhook documentation
 
 

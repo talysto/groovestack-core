@@ -20,8 +20,6 @@ export const NotificationMenuButton = (props:any) => {
     setAnchorEl(null)
   }
 
-  console.debug('user', user)
-
   return (
     <>
       <Badge

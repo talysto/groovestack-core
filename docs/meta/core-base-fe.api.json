@@ -215,6 +215,47 @@
         },
         {
           "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!CodeField:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "CodeField: "
+            },
+            {
+              "kind": "Content",
+              "text": "({ label, source }: "
+            },
+            {
+              "kind": "Reference",
+              "text": "FieldProps",
+              "canonicalReference": "ra-ui-materialui!FieldProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/fields/CodeField.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "CodeField",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-base-fe!DateField:var",
           "docComment": "",
           "excerptTokens": [

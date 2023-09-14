@@ -26,6 +26,8 @@ export const CodeField = ({ label, source }: FieldProps) => {
         language="javascript"
         style={docco}
         customStyle={{ margin: 0, borderRadius: '6px' }}
+        lineProps={{style: {wordBreak: 'break-all', whiteSpace: 'pre-wrap'}}}
+        wrapLines
       >
         {code}
       </SyntaxHighlighter>

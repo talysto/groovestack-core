@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Chip, CircularProgress } from '@mui/material'
 // import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors'
 
@@ -23,7 +21,7 @@ import {
   useResourceContext,
 } from 'react-admin'
 
-import { JobsAside } from './JobsAside'
+import { JobsAside } from '../JobsAside'
 
 import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 
@@ -86,7 +84,7 @@ const enhancedStatus = (record: RaRecord) => {
   return <Chip label={record.status} size="small" />
 }
 
-export const RetryButton: React.FC = () => {
+export const RetryButton = () => {
   const dataProvider = useDataProvider()
   const notify = useNotify()
   const record = useRecordContext()
@@ -140,7 +138,7 @@ export const Table = () => {
           render={(record: any) => (
             <div>
               <div>{record.type}</div>
-              <small style={{ marginRight: 5 }}>
+              <small style={{ marginRight: 5 }} title={record.id}>
                 {record.id.substring(0, 6)}
               </small>
             </div>
