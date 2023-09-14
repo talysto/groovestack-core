@@ -9,7 +9,8 @@ module Core
 
           argument :ids, [ID], required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.ids
           argument :q, String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.q
-          argument :status, String, required: false, description: 'current status of job'
+          argument :status, [String], required: false, description: 'Statuses to include'
+          argument :type, [String], required: false, description: 'Types to include'
         end
       end
     end

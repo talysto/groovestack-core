@@ -20,7 +20,25 @@ module Core
             def job_reports_scope(_sort_field: nil, _sort_order: nil, filter: {})
               return [job_stats] if filter.report_name == 'job_stats'
 
+              return [jobs_by_period(filter)] if filter.report_name == 'jobs_by_period'
+
               raise 'unrecognized job report_name'
+            end
+
+            def jobs_by_period(filter)
+              scope = Core::Jobs::Job.unscoped
+
+              scope = scope.where(updated_at: filter.start_at..filter.end_at) if filter.start_at.present?
+              scope = scope.where(status: filter.status) if filter.status.present?
+              if filter.group_by_period.present?
+                scope = scope.group([:status, "date_trunc('#{filter.group_by_period}', updated_at) as period"])
+                scope = scope.order('period desc')
+              end
+
+              {
+                id: :custom,
+                data: scope.count.to_a
+              }
             end
 
             def job_stats # rubocop:disable Metrics/MethodLength

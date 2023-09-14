@@ -14,7 +14,8 @@ module Core
 
             def resolve(id:)
               job = ::Core::Jobs::Job.find(id)
-              job.destroy!
+              QueJob.destroy(id)
+              job
             end
           end
 
@@ -30,7 +31,7 @@ module Core
 
             def resolve(id:, **attrs)
               job = ::Core::Jobs::Job.find(id)
-              job.update!(attrs)
+              QueJob.update!(id, **attrs)
               job
             end
           end

@@ -23,19 +23,13 @@ module Core
 
           field :args, ::GraphQL::Types::JSON, null: true, description: 'args'
           field :data, ::GraphQL::Types::JSON, null: true, description: 'data'
+          field :job_schema_version, Integer, null: true, description: 'job schema version'
           field :kwargs, ::GraphQL::Types::JSON, null: true, description: 'keyword args'
 
           field :expired_at, ::GraphQL::Types::ISO8601DateTime, null: true, description: 'expiration timestamp'
           field :finished_at, ::GraphQL::Types::ISO8601DateTime, null: true, description: 'finished timestamp'
           field :run_at, ::GraphQL::Types::ISO8601DateTime, null: true, description: 'start running timestamp'
-
-          def queue
-            object.args[0]['queue_name']
-          end
-
-          def type
-            object.args[0]['job_class']
-          end
+          field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: true, description: 'last touched'
         end
       end
     end
