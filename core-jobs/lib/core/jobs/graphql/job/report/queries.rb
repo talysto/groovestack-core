@@ -26,18 +26,22 @@ module Core
             end
 
             def jobs_by_period(filter)
-              scope = Core::Jobs::Job.unscoped
+              scope = ::Core::Jobs::Job.unscoped
 
               scope = scope.where(updated_at: filter.start_at..filter.end_at) if filter.start_at.present?
               scope = scope.where(status: filter.status) if filter.status.present?
-              if filter.group_by_period.present?
-                scope = scope.group([:status, "date_trunc('#{filter.group_by_period}', updated_at) as period"])
-                scope = scope.order('period desc')
+              data = if filter.group_by_period.present?
+                scope = scope.select("count(*) as count, status, date_trunc('#{filter.group_by_period}', updated_at) as period")
+                scope = scope.group(:status, :period)
+                scope = scope.order(period: :desc)
+                ActiveRecord::Base.connection.execute(scope.to_sql)
+              else
+                scope.count
               end
 
               {
-                id: :custom,
-                data: scope.count.to_a
+                id: :jobs_by_period,
+                data: data
               }
             end
 
@@ -45,18 +49,18 @@ module Core
               sql = <<-SQL.squish
                 SELECT
                   job_class,
-                  sub_class,
+                  subclass,
                   count(*)                    AS count,
                   count(lock_id)              AS count_working,
                   sum((error_count > 0)::int) AS count_errored,
                   max(error_count)            AS highest_error_count,
                   min(run_at)                 AS oldest_run_at
 
-                FROM public.que_all
+                FROM public.que_jobs_ext
                 WHERE#{' '}
                   finished_at IS NULL#{' '}
                   AND expired_at IS NULL
-                GROUP BY job_class, sub_class
+                GROUP BY job_class, subclass
                 ORDER BY count(*) DESC
               SQL
 
