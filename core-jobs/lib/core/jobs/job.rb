@@ -10,7 +10,7 @@ module Core
       end
 
       def run_now!
-        retry
+        retry!
       end
 
       def actions
@@ -20,6 +20,6 @@ module Core
         actions << :delete if status != :running
         actions
       end
-
+    end
   end
 end

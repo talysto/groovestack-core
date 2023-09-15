@@ -12,6 +12,7 @@ require 'que/active_record/model'
 
 require 'core/jobs/puma/plugin/que'
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
+require 'core/jobs/que_job_ext'
 require 'core/jobs/job'
 require 'core/jobs/locker'
 
