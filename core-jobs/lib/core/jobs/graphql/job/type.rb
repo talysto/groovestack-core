@@ -13,6 +13,7 @@ module Core
           field :priority, Integer, null: false, description: 'job priority'
           field :queue, String, null: false, description: 'job queue'
           field :status, String, null: false, description: 'current status of job'
+          field :sub_class, String, null: true, description: 'sub class of job'
           field :type, String, null: false, description: 'job type'
 
           # rubocop:disable GraphQL/ExtractType

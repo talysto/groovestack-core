@@ -11,7 +11,7 @@ class CreateQueJobsExt < ActiveRecord::Migration[6.0]
             SELECT
                 locks.id AS lock_id,
                 locks.pid as que_locker_pid,
-                (que_jobs.args -> 0) ->> 'job_class'::text AS subclass,
+                (que_jobs.args -> 0) ->> 'job_class'::text AS sub_class,
                 greatest(run_at, expired_at, finished_at) as updated_at,
 
                 case
