@@ -19,7 +19,7 @@ IdField.defaultProps = { label: 'ID', source: 'id' }
 
 const filters = [
   // <Typography variant="h4" alwaysOn>Web Hooks<br/></Typography>,
-  <SearchInput label="Search" source="q" alwaysOn />,
+  <SearchInput source="q" alwaysOn />,
   <ToggleButtonInput label={false} alwaysOn source="status" choices={[{id: '', name: 'All'},{id: 'processed', name: 'Processed'}, {id: 'received', name: 'Received'}]} />
 ]
 

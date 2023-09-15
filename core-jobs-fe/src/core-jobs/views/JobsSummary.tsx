@@ -1,4 +1,4 @@
-import { Datagrid, InfiniteList, NumberField, RefreshButton, TextField } from 'react-admin'
+import { Datagrid, InfiniteList, NumberField, RefreshButton, TextField, TopToolbar } from 'react-admin'
 import { TypographyInput } from './TypographyInput'
 
 // columns={[
@@ -7,11 +7,17 @@ import { TypographyInput } from './TypographyInput'
 //   { key: 'count_working', label: 'working' },
 //   { key: 'count_errored', label: 'errors' },
 // ]}
+const ListActions = () => (
+  <TopToolbar>
+      <RefreshButton />
+  </TopToolbar>
+)
+
 export const JobsSummary = () => {
   return (
     <InfiniteList
-      filters={[<TypographyInput alwaysOn>Jobs by Type</TypographyInput>]}
-      actions={<RefreshButton />}
+      filters={[<TypographyInput key="title" source="title" alwaysOn>Jobs by Type</TypographyInput>]}
+      actions={<ListActions />}
       exporter={false}
       resource="JobStat"
     >

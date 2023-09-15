@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 
 import {
   Button,
+  CheckboxGroupInput,
   Datagrid,
   DeleteWithConfirmButton,
   FunctionField,
@@ -24,21 +25,15 @@ import {
 import { JobsAside } from '../JobsAside'
 
 import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { jobStatuses } from './jobsStatuses'
 
 const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" />,
-  <SelectInput
+  <CheckboxGroupInput
     key="status"
     alwaysOn
     source="status"
-    choices={[
-      { id: 'scheduled', name: 'Scheduled' },
-      { id: 'running', name: 'Running' },
-      { id: 'complete', name: 'Complete' },
-      { id: 'errored', name: 'Errored' },
-      { id: 'failed', name: 'Failed' },
-      { id: 'expired', name: 'Expired' },
-    ]}
+    choices={jobStatuses}
   />,
 ]
 

@@ -34,7 +34,7 @@ const adminFilters = [
 
 const userFilters = [
   // <Typography variant="h4" alwaysOn>Web Hooks<br/></Typography>,
-  <SearchInput label="Search" source="q" alwaysOn />,
+  <SearchInput source="q" alwaysOn />,
 ]
 
 const UserList = () => {
