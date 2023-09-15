@@ -3,17 +3,18 @@ import { CheckboxGroupInput, List, Loading, RefreshButton, TopToolbar, WithListC
 import { Chart as GoogleChart } from 'react-google-charts'
 import { TypographyInput } from './TypographyInput'
 import { jobStatuses } from '../resource/jobs/jobsStatuses'
+import dayjs from 'dayjs'
 
 const chartFilters = [
   <TypographyInput key={'na_title'} source={'title'} alwaysOn>RPM Chart</TypographyInput>,
-  <CheckboxGroupInput
-    key={'statuses'}
-    alwaysOn
-    source="status"
-    label={false}
-    size="small"
-    choices={jobStatuses}
-  />,
+  // <CheckboxGroupInput
+  //   key={'statuses'}
+  //   alwaysOn
+  //   source="status"
+  //   label={false}
+  //   size="small"
+  //   choices={jobStatuses}
+  // />,
   // <DateRangeFilter key={'range'}
   //   defaultValue={CommonDateRanges.Today.getValue()}
   //   // namedFilters={cashFlowShortcuts}
@@ -49,7 +50,8 @@ export const RPMChart = () => {
   return (
     <List
       resource="JobReport"
-      // filter={{ group_by: 'minute' }}
+      // Enable this when live:
+      // filter={{ group_by_period: 'minute', start_at: dayjs().subtract(1, 'hour'), end_at:  dayjs().add(1, 'hour') }}
       exporter={false}
       disableSyncWithLocation
       filters={chartFilters}
@@ -66,7 +68,7 @@ export const RPMChart = () => {
               <GoogleChart
                 width={'100%'}
                 height={'64px'}
-                chartType="ColumnChart"
+                chartType="AreaChart"
                 loader={<Loading />}
                 data={processedData}
                 options={{
