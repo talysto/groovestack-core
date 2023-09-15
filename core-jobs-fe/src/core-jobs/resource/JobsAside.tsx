@@ -39,15 +39,10 @@ export const JobsAside = () => {
 
   return (
     <Paper
-      // elevation={0}
       sx={{
         minWidth: '33%',
         m: 2,
-        p: 2,
-        // mt: 2,
-        // gap: 3,
-        // marginLeft: '1em',
-        // marginRight: '1em',
+        p: 2
       }}
     >
       {/* <KPIs /> */}

@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-import { mockJobs, mockLockers, mockStats } from '@moonlight-labs/core-jobs-fe/mock'
+import { mockJobs, mockLockers, mockStats, mockReportByPeriod } from '@moonlight-labs/core-jobs-fe/mock'
 import { mockWebhooks } from '@moonlight-labs/core-webhooks-fe/mock'
 import { mockComments } from '@moonlight-labs/core-comments-fe/mock'
 import { mockVersions } from '@moonlight-labs/core-versions-fe/mock'
@@ -106,6 +106,7 @@ const data = {
   Job: mockJobs(15),
   JobLocker: mockLockers(3),
   JobStat: mockStats(4),
+  JobReport: mockReportByPeriod(),
 
   // For Testing Integrations
   User: users,

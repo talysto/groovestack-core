@@ -43,6 +43,19 @@ export function mockStats(count = 3) {
   }))
 }
 
+export function mockReportByPeriod() {
+  const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
+  return [{id: 'report', data: [
+    ['Period', 'Scheduled', 'Queued'],
+    [new Date(roundedNow.getTime() - 1000 * 60 * 60), 1, 2],
+    [new Date(roundedNow.getTime() - 800 * 60 * 60), 2, 4],
+    [new Date(roundedNow.getTime() - 600 * 60 * 60), 7, 6],
+    [new Date(roundedNow.getTime() - 400 * 60 * 60), 2, 0],
+    [new Date(roundedNow.getTime() - 200 * 60 * 60), 3, 1],
+    [roundedNow, 4, 2],
+  ]}]
+}
+
 export function mockJobs(count = 15) {
   return Array.from({ length: count }, () => ({
     // standard attributes

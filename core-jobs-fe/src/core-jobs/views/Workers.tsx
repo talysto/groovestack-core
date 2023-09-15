@@ -1,4 +1,4 @@
-import { Datagrid, InfiniteList, NumberField, RefreshButton, TextField } from 'react-admin'
+import { Datagrid, InfiniteList, NumberField, RefreshButton, TextField, TopToolbar } from 'react-admin'
 import { TypographyInput } from './TypographyInput'
 
 /* <LiveTable
@@ -12,17 +12,17 @@ refreshInterval={30}
 transform={({ data }) => data}
 /> */
 
-// const Actions = () => (
-//   <CardActions>
-//     <RefreshButton />
-//   </CardActions>
-// )
+const ListActions = () => (
+  <TopToolbar>
+      <RefreshButton />
+  </TopToolbar>
+)
 
 export const Workers = () => {
   return (
     <InfiniteList
-      filters={[<TypographyInput alwaysOn>Workers</TypographyInput>]}
-      actions={<RefreshButton />}
+      filters={[<TypographyInput key='title' source='title' alwaysOn>Workers</TypographyInput>]}
+      actions={<ListActions />}
       exporter={false}
       resource="JobLocker"
     >
