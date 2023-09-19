@@ -35,7 +35,7 @@ export const NotificationEdit = () => (
     <SimpleForm>
 
       <TextInput source="title" fullWidth />
-      <TextInput source="description" fullWidth />
+      <TextInput source="description" multiline fullWidth />
       <TextInput source="link" fullWidth />
       <TextInput source="actions" fullWidth />
 
