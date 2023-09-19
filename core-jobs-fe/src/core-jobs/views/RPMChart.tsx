@@ -1,12 +1,18 @@
-import { DateRangeFilter, CommonDateRanges } from '@moonlight-labs/core-base-fe'
-import { CheckboxGroupInput, List, Loading, RefreshButton, TopToolbar, WithListContext } from 'react-admin'
-import { Chart as GoogleChart } from 'react-google-charts'
+import dayjs, { Dayjs, ManipulateType } from 'dayjs'
+import * as echarts from 'echarts'
+import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
+import { random } from 'lodash'
+import { List, RefreshButton, TopToolbar, WithListContext } from 'react-admin'
 import { TypographyInput } from './TypographyInput'
-import { jobStatuses } from '../resource/jobs/jobsStatuses'
-import dayjs from 'dayjs'
+import { echartsThemeFromMui } from './echartsThemeFromMui'
+import { useTheme } from '@mui/material'
 
-const chartFilters = [
-  <TypographyInput key={'na_title'} source={'title'} alwaysOn>RPM Chart</TypographyInput>,
+
+
+const ChartFilters = ({ title }: { title: string }) => [
+  <TypographyInput key={'na_title'} source={'title'} alwaysOn>
+    {title}
+  </TypographyInput>,
   // <CheckboxGroupInput
   //   key={'statuses'}
   //   alwaysOn
@@ -22,81 +28,156 @@ const chartFilters = [
 
   // formatValueForSearchParams: formatDateRangeForSearchParams,
   // transformSearchParamsToVal: transformSearchParamsToDateRange,
-
 ]
 
-const ListActions = () => (
-  <TopToolbar>
-      <RefreshButton />
-  </TopToolbar>
-)
-
-export const RPMChart = () => {
-  // if (!data) return <>No recent data.</>;
-
-  const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
-  // const sampleData = [
-  //   ['Period', 'Scheduled', 'Queued'],
-  //   [new Date(roundedNow.getTime() - 1000 * 60 * 60), 1, 2],
-  //   [new Date(roundedNow.getTime() - 800 * 60 * 60), 2, 4],
-  //   [new Date(roundedNow.getTime() - 600 * 60 * 60), 7, 6],
-  //   [new Date(roundedNow.getTime() - 400 * 60 * 60), 2, 0],
-  //   [new Date(roundedNow.getTime() - 200 * 60 * 60), 3, 1],
-  //   [roundedNow, 4, 2],
-  // ]
-
-  // data = sampleData
-
+export const JobReportChart = ({
+  title,
+  filter,
+  children,
+}: {
+  title: string
+  filter: any
+  children: any
+}) => {
   return (
     <List
       resource="JobReport"
-      // Enable this when live:
-      // filter={{ group_by_period: 'minute', start_at: dayjs().subtract(1, 'hour'), end_at:  dayjs().add(1, 'hour') }}
       exporter={false}
       disableSyncWithLocation
-      filters={chartFilters}
-      actions={<ListActions />}
-      empty={<>No data</>}
+      actions={
+        <TopToolbar>
+          <RefreshButton />
+        </TopToolbar>
+      }
+      // empty={<>No data</>}
+      empty={false}
       pagination={false}
       perPage={100}
+      sx={{ '& .RaList-content': { boxShadow: 'none' } }}
+      filters={<ChartFilters title={title} />}
+      filter={filter}
     >
+      {children}
+    </List>
+  )
+}
+
+const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
+const rpmChartOptions = {
+  bar: { groupWidth: '100%' },
+  animation: {
+    startup: true,
+    easing: 'out',
+    duration: 500,
+  },
+  isStacked: true,
+  legend: 'none',
+  hAxis: {
+    viewWindow: {
+      min: new Date(roundedNow.getTime() - 1000 * 60 * 60),
+      max: roundedNow,
+    },
+  },
+  vAxis: {
+    format: '#',
+    viewWindow: { min: 0 },
+  },
+}
+
+export const rpmChartFilter = {
+  group_by_period: 'minute',
+  start_at: dayjs().subtract(1, 'hour'),
+  end_at: dayjs().add(1, 'hour'),
+}
+
+const statusesPast = ['queued', 'running', 'complete', 'failed', 'errored']
+export const statuses = ['scheduled', ...statusesPast]
+
+function dayjsRange(start: Dayjs, end: Dayjs, unit: ManipulateType) {
+  const range = []
+  let current = start
+  while (!current.isAfter(end)) {
+    range.push(current)
+    current = current.add(1, unit)
+  }
+  return range
+}
+
+const rpmMockData = [
+  ['Period', ...statusesPast],
+  // ...(dayjsRange(dayjs().subtract(1, 'hour'), dayjs().add(1,'hour'), 'minute').map((d: Dayjs) => [d.toDate(), ...statuses.map(() => random(1, 50))]))
+  ...dayjsRange(
+    dayjs(roundedNow).subtract(1, 'hour'),
+    dayjs(roundedNow),
+    'minute',
+  ).map((d: Dayjs) => [
+    d.toISOString(),
+    ...statusesPast.map(() => random(1, 50)),
+  ]),
+]
+
+export const RPMChart = () => {
+
+  const theme = useTheme();
+  echarts.registerTheme('custom', echartsThemeFromMui(theme.palette.primary.main))
+
+  return (
+    <JobReportChart title="Performance" filter={rpmChartFilter}>
       <WithListContext
         render={({ data }) => {
-            const processedData = data && data[0]?.data //.map((row: any) => {
-
-            return (
-              <GoogleChart
-                width={'100%'}
-                height={'64px'}
-                chartType="AreaChart"
-                loader={<Loading />}
-                data={processedData}
-                options={{
-                  title: 'Job RPM',
-                  bar: { groupWidth: '100%' },
-                  animation: {
-                    startup: true,
-                    easing: 'out',
-                    duration: 500,
+          // const processedData = data && data[0]?.data; //.map((row: any) => {
+          const processedData = rpmMockData.map((row: any) => [
+            dayjs(row[0]).format('h:mm'),
+            ...row.slice(1),
+          ])
+          return (
+            <ReactECharts
+              theme="custom"
+              style={{
+                height: '100%',
+                width: '100%',
+              }}
+              option={{
+                dataset: { source: processedData },
+                grid: {
+                  left: 40,
+                  top: 10,
+                  right: 20,
+                  bottom: 20,
+                },
+                tooltip: {
+                  trigger: 'axis',
+                  axisPointer: {
+                    type: 'shadow',
                   },
-                  isStacked: true,
-                  // enableInteractivity: false,
-                  legend: 'none',
-                  // chartArea: { left: 40, top: 20, right: 20 },
-                  hAxis: {
-                    viewWindow: {
-                      min: new Date(roundedNow.getTime() - 1000 * 60 * 60),
-                      max: roundedNow,
-                    },
-                  },
-                  vAxis: {
-                    format: '#',
-                    viewWindow: { min: 0 },
-                  },
-                }} />
-            )
-          }}
-      />
-    </List>
+                },
+                xAxis: {
+                  type: 'category',
+                  // axisLabel: {
+                  //   formatter: '{HH}:{mm}'
+                  // },
+                  // data: processedData.map((row: any) => row[0]).slice(1)
+                  // show: true
+                  // axisLabel: { interval: 0, rotate: 30 }
+                },
+                yAxis: {
+                  // show: true,
+                  type: 'value',
+                  // axisLabel: {inside: true}
+                },
+                series: [
+                  // { type: 'time' },
+                  { type: 'bar', stack: 'jobs' },
+                  { type: 'bar', stack: 'jobs' },
+                  { type: 'bar', stack: 'jobs' },
+                  { type: 'bar', stack: 'jobs' },
+                  { type: 'bar', stack: 'jobs' },
+                ],
+              }}
+              notMerge={true}
+              lazyUpdate={true} />
+          )
+        } } />
+    </JobReportChart>
   )
 }

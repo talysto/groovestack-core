@@ -18,7 +18,7 @@ const ListActions = () => (
   </TopToolbar>
 )
 
-export const Workers = () => {
+export const WorkersTable = () => {
   return (
     <InfiniteList
       filters={[<TypographyInput key='title' source='title' alwaysOn>Workers</TypographyInput>]}

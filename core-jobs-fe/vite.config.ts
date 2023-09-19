@@ -8,17 +8,17 @@ import dts from 'vite-plugin-dts'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    dts({
-      rollupTypes: true,
-      rollupConfig: {
-        docModel: {
-          enabled: true,
-          apiJsonFilePath: '../docs/meta/<unscopedPackageName>.api.json',
-        },
-      },
-    }),
+    // dts({
+    //   rollupTypes: true,
+    //   rollupConfig: {
+    //     docModel: {
+    //       enabled: true,
+    //       apiJsonFilePath: '../docs/meta/<unscopedPackageName>.api.json',
+    //     },
+    //   },
+    // }),
     react(),
-    visualizer({ open: false }),
+    // visualizer({ open: false }),
   ],
   build: {
     sourcemap: true,
@@ -38,7 +38,6 @@ export default defineConfig({
         'react/jsx-runtime',
         '@faker-js/faker',
         'react-copy-to-clipboard',
-        'react-google-charts',
       ],
       // // plugins: [autoExternal()],
 

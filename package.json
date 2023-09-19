@@ -18,7 +18,6 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:watch": "npx onchange -f change '**/*' -e '**/dist/**' -e 'docs/**' -e '**/stats.html' -- echo {{event}} {{changed}}"
-
   },
   "keywords": [],
   "author": "",
