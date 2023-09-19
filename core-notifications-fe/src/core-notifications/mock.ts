@@ -21,16 +21,26 @@ const taskNotification = (userFn: Function) => {
 
   return {
     kind: 'Task',
+    // handler_type: 'LeaderInviteNotificationService',
 
-    to_id: user.id,
+    to_id: user.id,  // required
     to_type: user.type,
+
+    from_id: user.id,  // optional
+    from_type: user.type,
+
+    object_id: user.id,
+    object_type: user.type, // 'Leadership'
+    // object_task: 'Invite',
 
     title: faker.lorem.sentence(),
     description: faker.lorem.sentences(2),
     actions: [
-      { label: 'Accept', url: '#accept' },
-      { label: 'Decline', url: '#decline' },
+      { label: 'Accept', response: 'invite=accept' },
+      { label: 'Decline', response: 'invite=decline' },
     ],
+
+    action_response: null, // 'accept' | 'decline'
   }
 }
 
@@ -50,7 +60,7 @@ const globalNotification = (_userFn: Function) => {
     read_bloom: [],
     publish_at: publish_at,
     expire_at: expire_at,
-    read: faker.number.int({ max: 2000000 }),
+    read_count: faker.number.int({ max: 2000000 }),
     title: faker.lorem.sentence(),
     description: faker.lorem.sentences(2),
     link: faker.helpers.arrayElement([

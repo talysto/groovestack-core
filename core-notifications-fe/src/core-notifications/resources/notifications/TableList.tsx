@@ -27,7 +27,7 @@ import {
 
 const adminFilters = [
   // <Typography variant="h4" alwaysOn>Web Hooks<br/></Typography>,
-  <TextInput label="Search" source="q" alwaysOn />,
+  // <SearchInput label="Search" source="q" alwaysOn />,
   <ToggleButtonInput alwaysOn source="kind" choices={[{id: 'Global', name: 'Global'}, {id: 'Task', name: 'Task'}, {id: 'Simple', name: 'Simple'}]} />,
   <ToggleButtonInput alwaysOn source="status" choices={[{id: 'draft', name: 'Draft'}, {id: 'upcoming', name: 'Upcoming'}, {id: 'Live', name: 'Live'}, {id: 'expired', name: 'Expired'}]} />,
 ]
