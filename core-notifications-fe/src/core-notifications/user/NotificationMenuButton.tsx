@@ -1,11 +1,19 @@
 // import { Notifications } from "@mui/icons-material"
-import { Badge, Menu, IconButton, Box, Typography } from "@mui/material"
-import { useState } from "react"
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
-import { Notifications } from "../resources/notifications"
-import { RecordContextProvider, useGetIdentity } from "react-admin"
+import {
+  Alert,
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  Menu,
+  Typography,
+} from '@mui/material'
+import { useState } from 'react'
+import { RecordContextProvider, useGetIdentity } from 'react-admin'
+import { Notifications } from '../resources/notifications'
 
-export const NotificationMenuButton = (props:any) => {
+export const NotificationMenuButton = (props: any) => {
   const { data: user, isLoading: identityLoading } = useGetIdentity()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -27,10 +35,10 @@ export const NotificationMenuButton = (props:any) => {
         color="error"
         overlap="circular"
         // style={{  transform: 'translate(30px, -20px)'}}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
+        // anchorOrigin={{
+        //   vertical: 'bottom',
+        //   horizontal: 'right',
+        // }}
       >
         <IconButton onClick={handleClick} color="inherit" {...props}>
           <NotificationsNoneIcon />
@@ -46,14 +54,11 @@ export const NotificationMenuButton = (props:any) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <Box sx={{ m: 2 }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box sx={{ m: 2, width: 600 }}>
+          <Typography id="modal-notification-title" variant="h6" component="h2">
             Notifications
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-          <RecordContextProvider value={ user }>
+          <RecordContextProvider value={user}>
             <Notifications.List />
           </RecordContextProvider>
         </Box>
