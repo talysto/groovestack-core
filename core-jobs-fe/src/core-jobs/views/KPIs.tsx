@@ -1,9 +1,7 @@
-import { Button, Paper, Popover, Stack, Typography } from "@mui/material"
-import { useState } from "react"
-import { WorkersTable } from "./Workers"
-import { Metric, MetricType } from "../Metric"
-
-
+import { Button, Paper, Popover, Stack } from '@mui/material'
+import { useState } from 'react'
+import { Metric, MetricType } from '../Metric'
+import { WorkersTable } from './Workers'
 
 // const data: MetricType[] = [
 //   { label: 'Workers', value: '16', onClick:{handleClick} },
@@ -12,33 +10,39 @@ import { Metric, MetricType } from "../Metric"
 
 export const KPIs = () => (
   <Stack spacing={2}>
-    <Metric label="Running" value='12' units ='Jobs' />
-    <MetricPopover metricProps={{label:'Workers', value:'16'}}>
-      <Paper sx={{p:3 }}><WorkersTable /></Paper>
+    <Metric label="Running" value="12" units="Jobs" />
+    <MetricPopover metricProps={{ label: 'Workers', value: '16' }}>
+      <Paper sx={{ p: 3 }}>
+        <WorkersTable />
+      </Paper>
     </MetricPopover>
-  {/* <BasicPopover /> */}
+    {/* <BasicPopover /> */}
   </Stack>
 )
 
-const MetricPopover = ({metricProps, children}: {metricProps: MetricType, children: any}) => {
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+const MetricPopover = ({
+  metricProps,
+  children,
+}: {
+  metricProps: MetricType
+  children: any
+}) => {
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
 
   return (
     <div>
-      <Metric
-       aria-describedby={id}
-        onClick={handleClick} {...metricProps} />
+      <Metric aria-describedby={id} onClick={handleClick} {...metricProps} />
       <Popover
         id={id}
         open={open}
@@ -52,22 +56,22 @@ const MetricPopover = ({metricProps, children}: {metricProps: MetricType, childr
         {children}
       </Popover>
     </div>
-  );
+  )
 }
 
 const BasicPopover = () => {
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
 
   return (
     <div>
@@ -85,8 +89,10 @@ const BasicPopover = () => {
         }}
       >
         {/* <Typography sx={{ p: 2 }}>The content of the Popover.</Typography> */}
-        <Paper sx={{p:3 }}><WorkersTable /></Paper>
+        <Paper sx={{ p: 3 }}>
+          <WorkersTable />
+        </Paper>
       </Popover>
     </div>
-  );
+  )
 }

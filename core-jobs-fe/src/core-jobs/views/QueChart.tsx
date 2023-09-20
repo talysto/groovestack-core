@@ -1,18 +1,15 @@
-import { Loading, WithListContext } from 'react-admin';
-import { Chart as GoogleChart } from 'react-google-charts';
-import { random } from 'lodash';
+import { WithListContext } from 'react-admin'
 
-import { statuses, JobReportChart } from './RPMChart';
-import ReactECharts from 'echarts-for-react';  // or var ReactECharts = require('echarts-for-react');
-import * as echarts from 'echarts';
-
+import * as echarts from 'echarts'
+import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
+import { JobReportChart } from './RPMChart'
 
 import romaTheme from './roma.project.json'
-echarts.registerTheme('roma', romaTheme.theme);
+echarts.registerTheme('roma', romaTheme.theme)
 
 echarts.registerTheme('custom', {
-  backgroundColor: '#f4cccc'
-});
+  backgroundColor: '#f4cccc',
+})
 
 // TODO
 // Reduce size: https://www.npmjs.com/package/echarts-for-react
@@ -20,42 +17,42 @@ export const QueChart = () => (
   <JobReportChart title="Jobs by Status" filter={queChartFilter}>
     <WithListContext
       render={({ data }) => {
-        const processedData = data && data[0]?.data; //.map((row: any) => {
+        const processedData = data && data[0]?.data //.map((row: any) => {
         return (
           <ReactECharts
-            theme='roma'
+            theme="roma"
             option={{
-              dataset: {source:  queMockData},
+              dataset: { source: queMockData },
               tooltip: {
                 trigger: 'axis',
                 axisPointer: {
-                  type: 'shadow'
-                }
+                  type: 'shadow',
+                },
               },
               xAxis: {
                 type: 'value',
-                show: false
+                show: false,
                 // axisLabel: { interval: 0, rotate: 30 }
               },
               yAxis: {
                 show: false,
                 type: 'category',
-                inverse: true
+                inverse: true,
                 // axisLabel: {inside: true}
               },
               series: {
                 type: 'bar',
                 encode: {
                   x: 'Jobs',
-                  y: 'Status'
+                  y: 'Status',
                 },
                 label: {
                   show: true,
                   formatter: '{b}',
                   position: 'right',
-                  valueAnimation: true
-                }
-              }
+                  valueAnimation: true,
+                },
+              },
             }}
             notMerge={true}
             lazyUpdate={true}
@@ -63,10 +60,12 @@ export const QueChart = () => (
             // onChartReady={this.onChartReadyCallback}
             // onEvents={EventsDict}
             // opts={}
-          />)}}
-      />
-    </JobReportChart>)
-
+          />
+        )
+      }}
+    />
+  </JobReportChart>
+)
 
 // const queChartOptions = {
 //   // bar: { groupWidth: '100%' },
@@ -79,18 +78,18 @@ export const QueChart = () => (
 //   bars: 'horizontal'
 // };
 const queChartFilter = {
-  group_by: 'status'
+  group_by: 'status',
   // group_by_period: 'minute',
   // start_at: dayjs().subtract(1, 'hour'),
   // end_at: dayjs().add(1, 'hour'),
-};
+}
 const queMockData = [
   ['Status', 'Jobs'],
   ['scheduled', 250_000],
   ['queued', 4503],
   ['running', 24],
   ['failed', 12],
-  ['errored',234],
+  ['errored', 234],
   ['completed', 65000],
 ]
 // console.log('queMockData', queMockData);

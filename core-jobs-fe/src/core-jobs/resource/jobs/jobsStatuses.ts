@@ -4,5 +4,5 @@ export const jobStatuses = [
   { id: 'running', name: 'Running' },
   { id: 'complete', name: 'Complete' },
   { id: 'errored', name: 'Errored' },
-  { id: 'failed', name: 'Failed' }
-];
+  { id: 'failed', name: 'Failed' },
+]

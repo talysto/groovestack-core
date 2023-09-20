@@ -11,8 +11,11 @@ import { echartsThemeFromMui } from './echartsThemeFromMui'
 // echarts.registerTheme('custom', echartsThemeFromMui())
 
 export const UtilizationChart = () => {
-  const theme = useTheme();
-  echarts.registerTheme('custom', echartsThemeFromMui(theme.palette.primary.main))
+  const theme = useTheme()
+  echarts.registerTheme(
+    'custom',
+    echartsThemeFromMui(theme.palette.primary.main),
+  )
 
   return (
     <JobReportChart title="Utilization" filter={rpmChartFilter}>
@@ -35,7 +38,8 @@ export const UtilizationChart = () => {
                     height: '100%',
                     width: '100%',
                   }}
-                  option={utilizationOptions} />
+                  option={utilizationOptions}
+                />
               </Box>
 
               <Box sx={{ flexBasis: '100%' }}>
@@ -45,7 +49,8 @@ export const UtilizationChart = () => {
               {/* <KPIs /> */}
             </Stack>
           )
-        } } />
+        }}
+      />
     </JobReportChart>
   )
 }

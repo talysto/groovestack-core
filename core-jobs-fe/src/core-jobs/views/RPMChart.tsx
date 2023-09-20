@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material'
 import dayjs, { Dayjs, ManipulateType } from 'dayjs'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
@@ -5,9 +6,6 @@ import { random } from 'lodash'
 import { List, RefreshButton, TopToolbar, WithListContext } from 'react-admin'
 import { TypographyInput } from './TypographyInput'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
-import { useTheme } from '@mui/material'
-
-
 
 const ChartFilters = ({ title }: { title: string }) => [
   <TypographyInput key={'na_title'} source={'title'} alwaysOn>
@@ -103,8 +101,10 @@ function dayjsRange(start: Dayjs, end: Dayjs, unit: ManipulateType) {
   return range
 }
 
+const historyStatuses = ['queued', 'running', 'complete', 'failed']
+
 const rpmMockData = [
-  ['Period', ...statusesPast],
+  ['Period', ...historyStatuses],
   // ...(dayjsRange(dayjs().subtract(1, 'hour'), dayjs().add(1,'hour'), 'minute').map((d: Dayjs) => [d.toDate(), ...statuses.map(() => random(1, 50))]))
   ...dayjsRange(
     dayjs(roundedNow).subtract(1, 'hour'),
@@ -112,14 +112,16 @@ const rpmMockData = [
     'minute',
   ).map((d: Dayjs) => [
     d.toISOString(),
-    ...statusesPast.map(() => random(1, 50)),
+    ...historyStatuses.map(() => random(1, 50)),
   ]),
 ]
 
 export const RPMChart = () => {
-
-  const theme = useTheme();
-  echarts.registerTheme('custom', echartsThemeFromMui(theme.palette.primary.main))
+  const theme = useTheme()
+  echarts.registerTheme(
+    'custom',
+    echartsThemeFromMui(theme.palette.primary.main),
+  )
 
   return (
     <JobReportChart title="Performance" filter={rpmChartFilter}>
@@ -162,6 +164,7 @@ export const RPMChart = () => {
                 },
                 yAxis: {
                   // show: true,
+                  // inverse: true,
                   type: 'value',
                   // axisLabel: {inside: true}
                 },
@@ -171,13 +174,15 @@ export const RPMChart = () => {
                   { type: 'bar', stack: 'jobs' },
                   { type: 'bar', stack: 'jobs' },
                   { type: 'bar', stack: 'jobs' },
-                  { type: 'bar', stack: 'jobs' },
                 ],
+                barCategoryGap: '0%',
               }}
               notMerge={true}
-              lazyUpdate={true} />
+              lazyUpdate={true}
+            />
           )
-        } } />
+        }}
+      />
     </JobReportChart>
   )
 }

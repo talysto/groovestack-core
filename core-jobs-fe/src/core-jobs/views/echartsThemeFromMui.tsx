@@ -1,8 +1,5 @@
-import { useTheme } from '@mui/material';
-import { purple } from '@mui/material/colors';
-import { shadeColor } from './shadeColor';
+import { shadeColor } from './shadeColor'
 // import { shadeColor } from './shadeColor.js';
-
 
 // import romaTheme from './roma.project.json'
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
@@ -46,7 +43,6 @@ import { shadeColor } from './shadeColor';
 // const baseColor = "#3498db"; // You can change this to any other color
 // console.log(showShadedColors(baseColor));
 
-
 export function echartsThemeFromMui(baseColor: string = '#3498db') {
   // const theme = useTheme();
 
@@ -57,15 +53,16 @@ export function echartsThemeFromMui(baseColor: string = '#3498db') {
 
     color: [
       baseColor,
-      shadeColor(baseColor, .8),
-      shadeColor(baseColor, .6),
-      shadeColor(baseColor, .4),
-      shadeColor(baseColor, .2),
-      // shadeColor(baseColor, .6),
-      // shadeColor(baseColor, .4),
-      // shadeColor(baseColor, .3),
-
-
+      shadeColor(baseColor, 0.8),
+      shadeColor(baseColor, 0.6),
+      shadeColor(baseColor, 0.4),
+      shadeColor(baseColor, 0.2),
+      shadeColor(baseColor, 1.8),
+      shadeColor(baseColor, 1.6),
+      shadeColor(baseColor, 1.4),
+      shadeColor(baseColor, 1.2),
+      shadeColor(baseColor, 0.4),
+      shadeColor(baseColor, 0.2),
 
       // baseColor[900],
       // baseColor[700],
@@ -78,7 +75,7 @@ export function echartsThemeFromMui(baseColor: string = '#3498db') {
       // baseColor[200],
       // baseColor[50],
     ],
-  };
+  }
 
   console.debug('theme', theme)
 
