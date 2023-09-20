@@ -36,7 +36,8 @@ const SortFilterButton = ({
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
-        color="primary"
+        // color="primary"
+        sx={{color: 'grey'}}
         // startIcon={<SortIcon />}
         // endIcon={<ArrowDropDownIcon />}
         size="small"

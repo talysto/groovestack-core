@@ -3,15 +3,11 @@ import {
   Chip,
   CircularProgress,
   Stack,
-  ToggleButton,
-  ToggleButtonGroup,
   Typography,
 } from '@mui/material'
 // import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import SummaryIcon from '@mui/icons-material/GridView'
-import ListIcon from '@mui/icons-material/List'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 
 import dayjs from 'dayjs'
 
@@ -39,8 +35,8 @@ import { JobsAside } from '../JobsAside'
 
 import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 import { Metric } from '../../Metric'
-import SortFilterButton from '../../SortFilterButton'
 import { JobsSummaryPivot } from '../../views/JobsSummary'
+import { ListViewToggleButtons } from './ListViewToggleButtons'
 
 const JobsFilters = [
   // <FauxInput key="title" alwaysOn source="any">
@@ -117,6 +113,37 @@ export const RetryButton = () => {
   return <Button label="Retry" onClick={triggerRetry} />
 }
 
+const sortfilterToggles = [
+  {
+    label: 'Summary',
+    value: 'summary',
+    icon: <SummaryIcon fontSize="small" />,
+    filterSpec: { view: 'summary' },
+    sortSpec: { field: 'run_at', order: 'ASC' },
+  },
+  {
+    label: 'Errors',
+    value: 'errors',
+    icon: <SummaryIcon fontSize="small" />,
+    filterSpec: { status: ['errored', 'failed'] },
+    sortSpec: { field: 'priority', order: 'ASC' },
+  },
+  {
+    label: 'Scheduled',
+    value: 'scheduled',
+    icon: <AccessTimeIcon fontSize="small" />,
+    filterSpec: { status: ['scheduled'] },
+    sortSpec: { field: 'run_at', order: 'ASC' },
+  },
+  {
+    label: 'Reset',
+    value: 'reset',
+    icon: <SummaryIcon fontSize="small" />,
+    filterSpec: {},
+    sortSpec: { field: 'run_at', order: 'ASC' },
+  },
+]
+
 const ListActions = () => (
   <TopToolbar>
     {/* <>
@@ -129,46 +156,52 @@ const ListActions = () => (
         value={{ status: ['scheduled'] }} />
     </FilterList>
   </> */}
-    <ToggleButtonGroup size="small">
+    <ListViewToggleButtons sortfilterToggles={sortfilterToggles} />
+    {/* <ToggleButtonGroup size="small">
       <ToggleButton value="summary" key="error">
         <SummaryIcon fontSize="small" />
-        <span style={{ marginLeft: 4 }}>Summary</span>
-      </ToggleButton>
-      ,
-      <ToggleButton defaultChecked value="list" key="all">
+        <SortFilterButton
+          label="Summary"
+          sortSpec={{ field: 'run_at', order: 'ASC' }}
+          filterSpec={{ view: 'summary' }}
+        />
+      </ToggleButton> */}
+    ,
+    {/* <ToggleButton defaultChecked value="list" key="all">
         <ListIcon fontSize="small" />
-        <span style={{ marginLeft: 4 }}>List</span>
+        <SortFilterButton
+          label="Reset"
+          sortSpec={{ field: 'run_at', order: 'ASC' }}
+          filterSpec={{}}
+        />
       </ToggleButton>
       ,
       <ToggleButton value="errors" key="error">
         <WarningAmberIcon fontSize="small" />
-        <span style={{ marginLeft: 4 }}>Errors</span>
+        <SortFilterButton
+          label="Errors"
+          sortSpec={{ field: 'priority', order: 'ASC' }}
+          filterSpec={{ status: ['errored', 'failed'] }}
+        />
       </ToggleButton>
       ,
       <ToggleButton value="scheduled" key="error">
         <AccessTimeIcon fontSize="small" />
         <span style={{ marginLeft: 4 }}>Scheduled</span>
       </ToggleButton>
-    </ToggleButtonGroup>
-
-    <SortFilterButton
-      label="Summary"
-      sortSpec={{ field: 'run_at', order: 'ASC' }}
-      filterSpec={{ view: 'summary' }}
-    />
-    <SortFilterButton
+    </ToggleButtonGroup> */}
+    {/* <SortFilterButton
       label="Reset"
       sortSpec={{ field: 'run_at', order: 'ASC' }}
       filterSpec={{}}
-    />
+    /> */}
     {/* <SortFilterButton label='14m Latency' sortSpec={{field: 'run_at', order: 'ASC'}} filterSpec={{status: ['queued']}} /> */}
-    <SortFilterButton
+    {/* <SortFilterButton
       label="Errors"
       sortSpec={{ field: 'priority', order: 'ASC' }}
       filterSpec={{ status: ['errored', 'failed'] }}
-    />
+    /> */}
     {/* <SortFilterButton label='14,000 Scheduled' sortSpec={{field: 'run_at', order: 'DESC'}} filterSpec={{status: ['scheduled', 'queued']}} />  */}
-
     {/* <Button href="?sort=run_at" label="14 Queued" onClick={() => {}} /> */}
     {/* <Button label="32 min Latency"   onClick={() => {}} /> */}
     {/* <FilterListItem
@@ -259,11 +292,11 @@ export const Table = () => {
   // const notify = useNotify()
   return (
     <Box sx={{ pt: 1 }}>
-       <Title title="Jobs" />
+      <Title title="Jobs" />
       <Header />
 
       <List
-        title=' '
+        title=" "
         actions={<ListActions />}
         exporter={false}
         filters={JobsFilters}
