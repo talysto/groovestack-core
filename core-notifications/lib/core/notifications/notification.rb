@@ -12,10 +12,6 @@ module Core
 
       belongs_to :from, polymorphic: true, optional: true
       belongs_to :object, polymorphic: true, optional: true
-
-      def permitted_update!(**attrs)
-        raise "subclass must define this method"
-      end
     end
   end
 end

@@ -34,15 +34,39 @@ module Core
 
             argument :id, ID, required: true, description: 'notification id'
             argument :type, String, required: true, description: 'notification type'
-            argument :action_response, String, required: false, description: 'notification action response'
-            argument :read_at, ::GraphQL::Types::ISO8601DateTime, required: false, description: 'notification read timestamp'
-            argument :to_id, ID, required: false, description: 'notification to id to add to read_bloom (only for global notifications))'
+
+            argument :instance_method, String, required: false, description: 'instance method to trigger on a notification'
+            argument :instance_method_args, ::GraphQL::Types::JSON, required: false, description: 'instance method args to trigger on a notification'
 
             type ::Core::Notifications::GraphQL::Notification::Type
 
-            def resolve(id:, type:, **attrs)
+            def self.whitelisted_instance_methods
+              simple = [:mark_as_read!, :mark_as_unread!].freeze
+              task = [].freeze
+              global = [:add_to_read_bloom!].freeze
+
+              {
+                'Core::Notifications::Simple' => simple,
+                'Core::Notifications::Task' => simple + task,
+                'Core::Notifications::Global' => global
+              }.freeze
+            end
+
+            def resolve(id:, type:, instance_method:, instance_method_args:, **attrs)
               notification = type.constantize.find(id)
-              notification.permitted_update!(**attrs)
+              
+              if instance_method.present? 
+                raise ::GraphQL::ExecutionError, "#{instance_method} is not a valid instance method for #{type}" unless self.class.whitelisted_instance_methods[type].include?(instance_method.to_sym)
+                
+                if instance_method_args.present?
+                  notification.send(instance_method, **instance_method_args.symbolize_keys!)
+                else
+                  notification.send(instance_method)
+                end
+              else
+                notification = notification.update!(**attrs)
+              end
+
               notification
             end
           end

@@ -7,8 +7,12 @@ module Core
 
       belongs_to :to,  polymorphic: true
 
-      def permitted_update!(**attrs)
-        update!(attrs.slice(:read_at))
+      def mark_as_read!
+        update!(read_at: Time.zone.now)
+      end
+
+      def mark_as_unread!
+        update!(read_at: nil)
       end
     end
   end

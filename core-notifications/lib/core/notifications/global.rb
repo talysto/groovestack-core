@@ -8,9 +8,10 @@ module Core
       validates :actions, absence: true
       validates :action_response, absence: true
 
-      def permitted_update!(**attrs)
-        to_id = attrs[:to_id]
-        read_bloom = [*read_bloom, to_id]
+      def add_to_read_bloom!(id)
+        return false if read_bloom.include?(id)
+
+        read_bloom = [*read_bloom, id]
         update!(read_bloom: read_bloom)
       end
     end
