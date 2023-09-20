@@ -25,6 +25,7 @@ import {
   RaRecord,
   SearchInput,
   TextField,
+  Title,
   TopToolbar,
   useDataProvider,
   useListContext,
@@ -258,9 +259,11 @@ export const Table = () => {
   // const notify = useNotify()
   return (
     <Box sx={{ pt: 1 }}>
+       <Title title="Jobs" />
       <Header />
 
       <List
+        title=' '
         actions={<ListActions />}
         exporter={false}
         filters={JobsFilters}

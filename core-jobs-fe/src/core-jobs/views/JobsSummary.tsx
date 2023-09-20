@@ -34,6 +34,7 @@ export const JobsSummary = () => {
       exporter={false}
       resource="JobStat"
       disableSyncWithLocation
+      
     >
       <Datagrid bulkActionButtons={false}>
         <TextField source="sub_class" label="type" />
@@ -59,6 +60,7 @@ export const JobsSummaryPivot = () => {
       actions={<ListActions />}
       exporter={false}
       resource="JobStat"
+      title=" "
       sx={{
         border: 'solid 1px #ccc',
         borderRadius: 4,

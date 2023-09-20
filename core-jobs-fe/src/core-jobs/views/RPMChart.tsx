@@ -39,6 +39,7 @@ export const JobReportChart = ({
 }) => {
   return (
     <List
+      title=' '
       resource="JobReport"
       exporter={false}
       disableSyncWithLocation
