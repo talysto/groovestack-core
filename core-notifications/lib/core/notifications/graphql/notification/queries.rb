@@ -16,6 +16,9 @@ module Core
           def notifications_scope(sort_field: nil, sort_order: nil, filter: {})
             scope = ::Core::Notifications::Notification.unscoped
             scope = scope.where(id: filter.ids) unless filter.ids.nil?
+            scope = scope.where(type: filter.type) unless filter.type.nil?
+            scope = scope.where(to_id: filter.to_id) unless filter.to_id.nil?
+            # scope = scope.where(ids: filter.ids) unless filter.q.nil? # TODO
 
             return scope if sort_field.blank?
 
