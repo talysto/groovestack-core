@@ -1,4 +1,3 @@
-
 import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
 import {
   DateField,
@@ -15,25 +14,24 @@ import {
 
 export const NotificationEdit = () => (
   <Edit>
-      <SimpleShowLayout>
-        <TextField source="id" label="ID" />
-        <DateField source="created_at" showTime />
-        <TextField source="kind" />
-        <PolymorphicReferenceField source="to" />
-        <FunctionField
-          label="Read"
-          render={(record: RaRecord) => {
-            return Number.isInteger(record.read) ? (
-              <NumberField source="read" />
-            ) : (
-              record.read && <>TRUE</>
-            )
-          }}
-        />
-      </SimpleShowLayout>
+    <SimpleShowLayout>
+      <TextField source="id" label="ID" />
+      <DateField source="created_at" showTime />
+      <TextField source="kind" />
+      <PolymorphicReferenceField source="to" />
+      <FunctionField
+        label="Read"
+        render={(record: RaRecord) => {
+          return Number.isInteger(record.read) ? (
+            <NumberField source="read" />
+          ) : (
+            record.read && <>TRUE</>
+          )
+        }}
+      />
+    </SimpleShowLayout>
 
     <SimpleForm>
-
       <TextInput source="title" fullWidth />
       <TextInput source="description" multiline fullWidth />
       <TextInput source="link" fullWidth />
@@ -42,7 +40,6 @@ export const NotificationEdit = () => (
       {/* <ChipInput source="status" /> */}
       <DateInput source="publish_at" />
       <DateInput source="expire_at" />
-
     </SimpleForm>
   </Edit>
 )

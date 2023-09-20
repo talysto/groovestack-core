@@ -23,10 +23,10 @@ const taskNotification = (userFn: Function) => {
     kind: 'Task',
     // handler_type: 'LeaderInviteNotificationService',
 
-    to_id: user.id,  // required
+    to_id: user.id, // required
     to_type: user.type,
 
-    from_id: user.id,  // optional
+    from_id: user.id, // optional
     from_type: user.type,
 
     object_id: user.id,
@@ -52,10 +52,14 @@ const globalNotification = (_userFn: Function) => {
 
   return {
     kind: 'Global',
-    scope: faker.helpers.arrayElement([
+
+    to_type: 'User',
+    to_scope: faker.helpers.arrayElement([
       null,
       'active',
+      // ['leaders_of_org(:org_id)', 'XXXXXXX']
       ".joins(:leaderships).where(leaderships: {status: 'active', org_unit_id: OrgUnit.where(state: 'GA')})",
+      ".joins(:leaderships).where(leaderships: {status: 'active', org_unit_id: 'XXXXXXX'})",
     ]),
     read_bloom: [],
     publish_at: publish_at,
