@@ -35,10 +35,10 @@ export const NotificationMenuButton = (props: any) => {
         color="error"
         overlap="circular"
         // style={{  transform: 'translate(30px, -20px)'}}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
+        // anchorOrigin={{
+        //   vertical: 'bottom',
+        //   horizontal: 'right',
+        // }}
       >
         <IconButton onClick={handleClick} color="inherit" {...props}>
           <NotificationsNoneIcon />
@@ -54,34 +54,10 @@ export const NotificationMenuButton = (props: any) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <Box sx={{ m: 2 }}>
+        <Box sx={{ m: 2, width: 600 }}>
           <Typography id="modal-notification-title" variant="h6" component="h2">
             Notifications
           </Typography>
-          <Alert
-            action={
-              <>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  size="small"
-                  onClick={handleClose}
-                >
-                  Accept
-                </Button>
-                <Button color="secondary" size="small" onClick={handleClose}>
-                  Decline
-                </Button>
-              </>
-            }
-          >
-            You have been invited as the <strong>President</strong> of{' '}
-            <strong>XYZ PTA</strong>. Lorem ipsum this is a long text title that
-            might go with the item.
-          </Alert>
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
           <RecordContextProvider value={user}>
             <Notifications.List />
           </RecordContextProvider>
