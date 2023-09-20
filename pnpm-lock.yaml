@@ -149,9 +149,15 @@ importers:
       '@types/react-syntax-highlighter':
         specifier: '>=15.5.6'
         version: 15.5.6
+      clsx:
+        specifier: '>=2.0.0'
+        version: 2.0.0
       lodash:
         specifier: '>=4.0.0'
         version: 4.17.21
+      prop-types:
+        specifier: ^15.8.1
+        version: 15.8.1
       react:
         specifier: '>=18.0.0'
         version: 18.2.0
@@ -171,6 +177,10 @@ importers:
       react-syntax-highlighter:
         specifier: '>=15.5.0'
         version: 15.5.0(react@18.2.0)
+    devDependencies:
+      '@types/prop-types':
+        specifier: ^15.7.6
+        version: 15.7.6
 
   core-comments-fe:
     dependencies:
@@ -6341,6 +6351,10 @@ packages:
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+
+  /@types/prop-types@15.7.6:
+    resolution: {integrity: sha512-RK/kBbYOQQHLYj9Z95eh7S6t7gq4Ojt/NT8HTk8bWVhA5DaF+5SMnxHKkP4gPNN3wAZkKP+VjAf0ebtYzf+fxg==}
+    dev: true
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -13592,6 +13606,7 @@ packages:
 
   /regenerator-runtime@0.14.0:
     resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
+    requiresBuild: true
 
   /regenerator-transform@0.15.1:
     resolution: {integrity: sha512-knzmNAcuyxV+gQCufkYcvOqX/qIIfHLv0u5x79kRxuGojfYVky1f15TzZEu2Avte8QGepvUNTnLskf8E6X6Vyg==}
