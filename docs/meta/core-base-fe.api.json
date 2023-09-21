@@ -678,6 +678,43 @@
         },
         {
           "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-base-fe!CustomButtonDrawer:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "CustomButtonDrawer: "
+            },
+            {
+              "kind": "Content",
+              "text": "({ mode, icon, drawerProps, createProps, buttonProps, children, drawerWidth, label, footer, }: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ButtonDrawerProps",
+              "canonicalReference": "@moonlight-labs/core-base-fe!~ButtonDrawerProps:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/CustomButtonDrawer.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "CustomButtonDrawer",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Variable",
           "canonicalReference": "@moonlight-labs/core-base-fe!DateField:var",
           "docComment": "",
           "excerptTokens": [
@@ -753,6 +790,86 @@
             "startIndex": 1,
             "endIndex": 5
           }
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth:enum",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare enum DrawerWidth "
+            }
+          ],
+          "fileUrlPath": "dist/react-admin/CustomButtonDrawer.d.ts",
+          "releaseTag": "Public",
+          "name": "DrawerWidth",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth.Large:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Large = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"80%\""
+                }
+              ],
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "name": "Large"
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth.Medium:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Medium = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"50%\""
+                }
+              ],
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "name": "Medium"
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth.Small:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Small = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"30%\""
+                }
+              ],
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "name": "Small"
+            }
+          ]
         },
         {
           "kind": "Variable",

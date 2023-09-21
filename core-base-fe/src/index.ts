@@ -21,6 +21,7 @@ import { ToggleButtonInput } from './react-admin/inputs/ToggleButtonInput'
 import { ExternalLink } from './components/ExternalLink'
 import { CodeField } from './react-admin/fields/CodeField'
 import { DateRangeFilter, CommonDateRanges } from './components/DateRangeFilter'
+import { CustomButtonDrawer, DrawerWidth } from './react-admin/CustomButtonDrawer'
 
 
 /**
@@ -40,6 +41,13 @@ export { DateField, TimeAgoField, PolymorphicReferenceField, MoneyField, CodeFie
  * @public
  */
 export { StatusInput, MoneyInput, TimezoneSelectInput, ToggleButtonInput }
+
+/**
+ * React Admin Components
+ * @public
+ */
+ export { CustomButtonDrawer, DrawerWidth }
+
 
 /**
  * MUI Components

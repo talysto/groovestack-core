@@ -7,7 +7,7 @@ import { TimeAgoField } from '@moonlight-labs/core-base-fe';
 import { JobActions } from './JobsList';
 
 export const JobDatagrid = () => (
-  <Datagrid sort={{ field: 'priority', order: 'ASC' }} rowClick="edit">
+  <Datagrid sort={{ field: 'priority', order: 'ASC' }} >
     <FunctionField
       label="Job"
       render={(record: any) => (

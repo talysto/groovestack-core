@@ -15,6 +15,11 @@ import {
   useRecordContext,
 } from 'react-admin'
 
+import {
+  CustomButtonDrawer,
+  DrawerWidth
+} from '@moonlight-labs/core-base-fe'
+
 import { JobsAside } from './JobsAside'
 
 import { ListPresetButtonGroup } from '../../react-admin/ListPresetButtonGroup'
@@ -22,6 +27,7 @@ import { MultiViewList } from '../../react-admin/MultiViewList'
 import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { Header } from '../Header'
 import { JobDatagrid } from './JobsDatagrid'
+import { EditJob } from './edit'
 
 const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" placeholder="Filter or search..." />,
@@ -33,6 +39,13 @@ const sortfilterToggles = [
     value: 'summary',
     icon: <SummaryIcon fontSize="small" />,
     filterSpec: { view: 'summary' },
+    sortSpec: { field: 'run_at', order: 'ASC' },
+  },
+  {
+    label: 'List',
+    value: 'list',
+    icon: <RestartAltIcon fontSize="small" />,
+    filterSpec: {},
     sortSpec: { field: 'run_at', order: 'ASC' },
   },
   {
@@ -48,14 +61,7 @@ const sortfilterToggles = [
     icon: <AccessTimeIcon fontSize="small" />,
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
-  },
-  {
-    label: 'Reset',
-    value: 'reset',
-    icon: <RestartAltIcon fontSize="small" />,
-    filterSpec: {},
-    sortSpec: { field: 'run_at', order: 'ASC' },
-  },
+  }
 ]
 
 const ListActions = () => (
@@ -77,6 +83,15 @@ export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
       {record.actions.includes('retry') && (
         <UpdateButton label="Retry" data={{}} />
       )}
+      <CustomButtonDrawer
+        label=" "
+        drawerProps={{ title: 'Edit Jobs' }}
+        // sx={{ display: 'inline-flex' }}
+        mode="edit"
+        drawerWidth={DrawerWidth.Medium}
+      >
+        <EditJob />
+      </CustomButtonDrawer>
       <DeleteWithConfirmButton color="primary" label="" />
     </Box>
   )
@@ -84,6 +99,7 @@ export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
 
 export const JobsList = () => {
   // const notify = useNotify()
+
   return (
     <Box sx={{ pt: 1 }}>
       <Title title="Jobs" />

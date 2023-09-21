@@ -2,6 +2,7 @@ import {
   Edit,
   SimpleShowLayout,
   TextField,
+  useRecordContext,
 } from 'react-admin'
 
 import {
@@ -21,7 +22,6 @@ import { ErrorPanelField } from '../../react-admin/fields/ErrorPanelField'
 
 export const EditJob = (props: any) => {
   return (
-    <Edit>
       <Grid container>
         <Grid item xs={12} md={9}>
           <SimpleShowLayout>
@@ -53,6 +53,5 @@ export const EditJob = (props: any) => {
           </SimpleShowLayout>
         </Grid>
       </Grid>
-    </Edit>
   )
 }
