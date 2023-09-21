@@ -4,9 +4,7 @@ import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
 import { JobReportChart } from './RPMChart'
 
-import romaTheme from './roma.project.json'
-echarts.registerTheme('roma', romaTheme.theme)
-
+// TODO refactor to pull theme color
 echarts.registerTheme('custom', {
   backgroundColor: '#f4cccc',
 })

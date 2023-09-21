@@ -8,7 +8,7 @@ import {
   TextField,
   TopToolbar,
 } from 'react-admin'
-import { TypographyInput } from './TypographyInput'
+import { TypographyInput } from '../react-admin/inputs/TypographyInput'
 
 // columns={[
 //   { key: 'sub_class', label: 'type' },
@@ -22,29 +22,29 @@ const ListActions = () => (
   </TopToolbar>
 )
 
-export const JobsSummary = () => {
-  return (
-    <InfiniteList
-      filters={[
-        <TypographyInput key="title" source="title" alwaysOn>
-          Jobs by Type
-        </TypographyInput>,
-      ]}
-      actions={<ListActions />}
-      exporter={false}
-      resource="JobStat"
-      disableSyncWithLocation
+// export const JobsSummary = () => {
+//   return (
+//     <InfiniteList
+//       filters={[
+//         <TypographyInput key="title" source="title" alwaysOn>
+//           Jobs by Type
+//         </TypographyInput>,
+//       ]}
+//       actions={<ListActions />}
+//       exporter={false}
+//       resource="JobStat"
+//       disableSyncWithLocation
       
-    >
-      <Datagrid bulkActionButtons={false}>
-        <TextField source="sub_class" label="type" />
-        <NumberField source="count" label="queued" />
-        <NumberField source="count_working" label="working" />
-        <NumberField source="count_errored" label="errors" />
-      </Datagrid>
-    </InfiniteList>
-  )
-}
+//     >
+//       <Datagrid bulkActionButtons={false}>
+//         <TextField source="sub_class" label="type" />
+//         <NumberField source="count" label="queued" />
+//         <NumberField source="count_working" label="working" />
+//         <NumberField source="count_errored" label="errors" />
+//       </Datagrid>
+//     </InfiniteList>
+//   )
+// }
 
 export const JobsSummaryPivot = () => {
   const theme = useTheme()

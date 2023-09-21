@@ -4,7 +4,7 @@ import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
 import { random } from 'lodash'
 import { List, RefreshButton, TopToolbar, WithListContext } from 'react-admin'
-import { TypographyInput } from './TypographyInput'
+import { TypographyInput } from '../react-admin/inputs/TypographyInput'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
 
 const ChartFilters = ({ title }: { title: string }) => [

@@ -17,6 +17,7 @@ export const JobsAside = () => {
       elevation={0}
       sx={{
         minWidth: '33%',
+        flexShrink: 0,
         ml: 2,
         mt: 2,
         pr: 2,

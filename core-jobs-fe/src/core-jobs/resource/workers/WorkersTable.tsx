@@ -6,7 +6,7 @@ import {
   TextField,
   TopToolbar,
 } from 'react-admin'
-import { TypographyInput } from './TypographyInput'
+import { TypographyInput } from '../../react-admin/inputs/TypographyInput'
 
 /* <LiveTable
 columns={[

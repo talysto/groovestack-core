@@ -9,16 +9,30 @@ export function mockLockers(count = 15) {
   }))
 }
 
+// export function mockStats(count = 3) {
+//   return Array.from({ length: count }, () => ({
+//     id: faker.string.uuid(),
+//     job_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
+//     sub_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
+//     count: faker.number.int({ min: 1, max: 100_000 }),
+//     count_working: faker.number.int({ min: 1, max: 24 }),
+//     count_errored: faker.number.int({ min: 1, max: 24 }),
+//     highest_error_count: faker.number.int({ min: 1, max: 24 }),
+//     oldest_run_at: faker.date.past(),
+//   }))
+// }
+
 export function mockStats(count = 3) {
   return Array.from({ length: count }, () => ({
     id: faker.string.uuid(),
     job_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
     sub_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
-    count: faker.number.int({ min: 1, max: 100_000 }),
-    count_working: faker.number.int({ min: 1, max: 24 }),
-    count_errored: faker.number.int({ min: 1, max: 24 }),
-    highest_error_count: faker.number.int({ min: 1, max: 24 }),
-    oldest_run_at: faker.date.past(),
+    scheduled: faker.number.int({ min: 1, max: 100_000 }),
+    queued: faker.number.int({ min: 1, max: 24 }),
+    running: faker.number.int({ min: 1, max: 24 }),
+    errored: faker.number.int({ min: 1, max: 24 }),
+    failed: faker.number.int({ min: 1, max: 24 }),
+    complete: faker.number.int({ min: 1, max: 24 }),
   }))
 }
 
