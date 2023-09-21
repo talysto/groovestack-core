@@ -1,9 +1,7 @@
 import {
   Edit,
-  FieldProps,
   SimpleShowLayout,
   TextField,
-  useRecordContext,
 } from 'react-admin'
 
 import {
@@ -13,20 +11,7 @@ import {
 } from '@moonlight-labs/core-base-fe'
 
 import Grid from '@mui/material/Grid'
-
-const ErrorPanel = (props: FieldProps) => {
-  const record = useRecordContext()
-
-  if (!record || !record.error_count) return null
-
-  return (
-    <SimpleShowLayout>
-      <TextField source="error_count" />
-      <TextField source="last_error_message" />
-      <CodeField source="last_error_backtrace" />
-    </SimpleShowLayout>
-  )
-}
+import { ErrorPanelField } from '../../react-admin/fields/ErrorPanelField'
 
 // const EditToolbar = (props: any) => (
 //   <Toolbar {...props}>
@@ -49,7 +34,7 @@ export const EditJob = (props: any) => {
           </SimpleShowLayout>
 
           {/* // This needs it's own ShowLayout */}
-          <ErrorPanel />
+          <ErrorPanelField />
 
           <SimpleShowLayout>
             <CodeField source="args" />

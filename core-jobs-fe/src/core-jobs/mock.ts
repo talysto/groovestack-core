@@ -9,27 +9,6 @@ export function mockLockers(count = 15) {
   }))
 }
 
-// "data": [
-//   {
-//       "id": "ActiveJob::QueueAdapters::QueAdapter::JobWrapper/ActionMailer::MailDeliveryJob",
-//       "type": "que/view/stats",
-//       "attributes": {
-//           "job_class": "ActiveJob::QueueAdapters::QueAdapter::JobWrapper",
-//           "sub_class": "ActionMailer::MailDeliveryJob",
-//           "count": 1,
-//           "count_working": 0,
-//           "count_errored": 1,
-//           "highest_error_count": 8,
-//           "oldest_run_at": "2023-09-05T22:46:24.544Z"
-//       },
-//       "links": {
-//           "self": {
-//               "name": "self",
-//               "options": {},
-//               "block": {}
-//           }
-//       }
-//   },
 export function mockStats(count = 3) {
   return Array.from({ length: count }, () => ({
     id: faker.string.uuid(),

@@ -1,19 +1,19 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { useState } from 'react'
 import { FilterPayload, SortPayload, useRecordContext } from 'react-admin'
-import SortFilterButton from '../../SortFilterButton'
+import ListPresetButton from './ListPresetButton'
 
 export interface ListViewToggleButtonsProps {
   sortfilterToggles: Array<{
     label: string
     value: string
-    icon: JSX.Element // You can use JSX.Element type for icon
+    icon: JSX.Element 
     filterSpec: FilterPayload
     sortSpec: SortPayload
   }>
 }
 
-export const ListViewToggleButtons = ({
+export const ListPresetButtonGroup = ({
   sortfilterToggles,
 }: ListViewToggleButtonsProps) => {
   const [selected, setSelected] = useState<string | null>('reset')
@@ -35,7 +35,7 @@ export const ListViewToggleButtons = ({
       {sortfilterToggles.map(({ label, value, icon, filterSpec, sortSpec }) => (
         <ToggleButton value={value} key={value}>
           {icon}
-          <SortFilterButton
+          <ListPresetButton
             label={label}
             sortSpec={sortSpec}
             filterSpec={filterSpec}

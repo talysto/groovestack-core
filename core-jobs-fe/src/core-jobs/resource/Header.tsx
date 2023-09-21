@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material';
-import { Metric } from '../Metric';
+import { Metric } from '../components/Metric';
 
 export const Header = () => (
   <>

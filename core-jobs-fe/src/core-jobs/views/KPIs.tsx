@@ -1,6 +1,6 @@
 import { Button, Paper, Popover, Stack } from '@mui/material'
 import { useState } from 'react'
-import { Metric, MetricType } from '../Metric'
+import { Metric, MetricType } from '../components/Metric'
 import { WorkersTable } from './Workers'
 
 // const data: MetricType[] = [

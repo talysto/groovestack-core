@@ -1,8 +1,7 @@
 import { Paper, Stack, styled } from '@mui/material'
 
-import { RPMChart } from '../views/RPMChart'
-import { UtilizationChart } from '../views/UtilizationChart'
-import './pivot.css'
+import { RPMChart } from '../../views/RPMChart'
+import { UtilizationChart } from '../../views/UtilizationChart'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

@@ -4,9 +4,8 @@ import { ReactNode } from 'react'
 import { FilterPayload, SortPayload, useDataProvider, useListContext, useRecordContext, useRefresh, useTranslate } from 'react-admin'
 import { BrowserRouter, Link, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
-// pnpm add -F core-jobs
 
-const SortFilterButton = ({
+const ListPresetButton = ({
   sortSpec,
   label,
   filterSpec,
@@ -25,7 +24,7 @@ const SortFilterButton = ({
     // setSort(field, (field === sort.field ? inverseOrder(sort.order) : 'ASC'));
     setFilters(filterSpec, [], true)
     setSort(sortSpec)
-   
+    
     // setSort(
     //     field,
     //     field === sort.field
@@ -114,4 +113,4 @@ const SortFilterButton = ({
 // };
 
 
-export default SortFilterButton
+export default ListPresetButton
