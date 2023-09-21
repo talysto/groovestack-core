@@ -17,8 +17,24 @@ module Core
             scope = ::Core::Notifications::Notification.unscoped
             scope = scope.where(id: filter.ids) unless filter.ids.nil?
             scope = scope.where(type: filter.type) unless filter.type.nil?
-            scope = scope.where(to_id: filter.to_id) unless filter.to_id.nil?
-            # scope = scope.where(ids: filter.ids) unless filter.q.nil? # TODO
+
+            unless filter.expired
+              # default
+              scope = scope.active
+            else
+              scope = scope.expired 
+            end
+
+            scope = scope.where(id: ::Core::Notifications::Notification.to(filter.to_id)) if filter.to_id.present?
+            
+            unless filter.read 
+              # default is unread 
+              scope = scope.unread(filter.to_id)
+            else
+              scope = scope.read_by(filter.to_id)
+            end
+
+            # TODO add support for filter.q
 
             return scope if sort_field.blank?
 
