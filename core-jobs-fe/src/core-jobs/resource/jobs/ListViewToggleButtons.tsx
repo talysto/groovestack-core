@@ -1,6 +1,6 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { useState } from 'react'
-import { FilterPayload, SortPayload } from 'react-admin'
+import { FilterPayload, SortPayload, useRecordContext } from 'react-admin'
 import SortFilterButton from '../../SortFilterButton'
 
 export interface ListViewToggleButtonsProps {

@@ -1,12 +1,10 @@
-import { Box, Chip, CircularProgress, Stack, Typography } from '@mui/material'
+import { Box, Chip, CircularProgress } from '@mui/material'
 // import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import SummaryIcon from '@mui/icons-material/GridView'
 
-import dayjs from 'dayjs'
 
 import {
-  Button,
   Datagrid,
   DeleteWithConfirmButton,
   FunctionField,
@@ -17,20 +15,17 @@ import {
   TextField,
   Title,
   TopToolbar,
-  useDataProvider,
-  useListContext,
-  useNotify,
   useRecordContext,
-  useRefresh,
-  useResourceContext,
 } from 'react-admin'
 
 import { JobsAside } from '../JobsAside'
 
 import { TimeAgoField } from '@moonlight-labs/core-base-fe'
-import { Metric } from '../../Metric'
 import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { ListViewToggleButtons } from './ListViewToggleButtons'
+import { MultiViewList } from './MultiViewList'
+import { Header } from '../Header'
+import { RetryButton } from './RetryButton'
 
 const JobsFilters = [
   <SearchInput key="q" alwaysOn source="q" placeholder="Filter or search..." />,
@@ -52,35 +47,6 @@ const enhancedStatus = (record: RaRecord) => {
   }
 
   return statusMap[record.status] || <Chip label={record.status} size="small" />
-}
-
-export const RetryButton = () => {
-  const dataProvider = useDataProvider()
-  const notify = useNotify()
-  const record = useRecordContext()
-  const refresh = useRefresh()
-  const resource = useResourceContext()
-
-  if (!record) return null
-
-  const triggerRetry = async (e: { preventDefault: () => void }) => {
-    e.preventDefault()
-
-    try {
-      await dataProvider.update(resource, {
-        id: record.id,
-        previousData: record,
-        data: { expired_at: null, runAt: dayjs().toISOString() },
-      })
-      notify('Retry triggered!', { type: 'success' })
-      refresh()
-    } catch (e) {
-      console.error(e)
-      notify(JSON.stringify(e), { type: 'error' })
-    }
-  }
-
-  return <Button label="Retry" onClick={triggerRetry} />
 }
 
 const sortfilterToggles = [
@@ -116,7 +82,7 @@ const sortfilterToggles = [
 
 const ListActions = () => (
   <TopToolbar>
-    <ListViewToggleButtons sortfilterToggles={sortfilterToggles} />
+    {/* <ListViewToggleButtons sortfilterToggles={sortfilterToggles} /> */}
   </TopToolbar>
 )
 // import * as style from "./show-on-hover.css"
@@ -137,58 +103,6 @@ const JobActions = ({ label = 'Actions' }: { label?: string }) => {
   )
 }
 
-const Header = () => (
-  <>
-    <style>
-      {`
-tr > td > .show-on-hover {
-  visibility: hidden;
-}
-
-tr:hover > td > .show-on-hover {
-  visibility: visible;
-}
-`}
-    </style>
-    <Stack
-      direction="row"
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
-        alignItems: 'center',
-      }}
-    >
-      <Typography variant="h4" sx={{}}>
-        <span style={{ fontWeight: 700 }}>CORE</span>
-        <span style={{ fontWeight: 200 }}>Jobs</span>
-      </Typography>
-
-      <Stack
-        direction="row"
-        spacing={2}
-        sx={{
-          justifyContent: 'space-between',
-          minWidth: '33%',
-          m: 2,
-          pr: 2,
-          pl: 2,
-        }}
-      >
-        <Box sx={{ flexBasis: '100%' }}>
-          <Metric value="14" label="Queued" units="k" />
-        </Box>
-        <Box sx={{ flexBasis: '100%' }}>
-          <Metric value="32" label="Latency" units="min" />
-        </Box>
-        <Box sx={{ flexBasis: '100%' }}>
-          <Metric value="4" label="Errors" />
-        </Box>
-      </Stack>
-    </Stack>
-  </>
-)
-
 export const Table = () => {
   // const notify = useNotify()
   return (
@@ -204,11 +118,11 @@ export const Table = () => {
         aside={<JobsAside />}
         sx={{ '& .RaList-content': { boxShadow: 'none' } }}
       >
+        <ListViewToggleButtons sortfilterToggles={sortfilterToggles} />
         <MultiViewList
           views={{
             summary: (
               <>
-                {/* <JobsSummary /> */}
                 <JobsSummaryPivot />
               </>
             ),
@@ -243,18 +157,3 @@ const JobDatagrid = () => (
     <JobActions label="" />
   </Datagrid>
 )
-
-const MultiViewList = ({
-  children,
-  views,
-}: {
-  children: React.ReactNode
-  views: { [key: string]: JSX.Element }
-}) => {
-  const { filterValues } = useListContext()
-
-  if (filterValues.view && views[filterValues.view])
-    return views[filterValues.view]
-
-  return children
-}

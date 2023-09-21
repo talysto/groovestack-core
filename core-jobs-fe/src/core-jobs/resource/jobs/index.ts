@@ -2,7 +2,7 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck'
 
 import { RaRecord } from 'react-admin'
 import { EditJob } from './edit'
-import { Table } from './table'
+import { Table } from './JobsTable'
 
 export class Jobs {
   static Name = 'Job'
