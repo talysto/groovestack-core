@@ -2,7 +2,8 @@ import { Box } from '@mui/material'
 // import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import SummaryIcon from '@mui/icons-material/GridView'
-
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 
 import {
   DeleteWithConfirmButton,
@@ -10,16 +11,16 @@ import {
   SearchInput,
   Title,
   TopToolbar,
+  UpdateButton,
   useRecordContext,
 } from 'react-admin'
 
 import { JobsAside } from './JobsAside'
 
-import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { ListPresetButtonGroup } from '../../react-admin/ListPresetButtonGroup'
 import { MultiViewList } from '../../react-admin/MultiViewList'
+import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { Header } from '../Header'
-import { RetryButton } from '../../unused/RetryButton'
 import { JobDatagrid } from './JobsDatagrid'
 
 const JobsFilters = [
@@ -37,7 +38,7 @@ const sortfilterToggles = [
   {
     label: 'Errors',
     value: 'errors',
-    icon: <SummaryIcon fontSize="small" />,
+    icon: <WarningAmberIcon fontSize="small" />,
     filterSpec: { status: ['errored', 'failed'] },
     sortSpec: { field: 'priority', order: 'ASC' },
   },
@@ -51,7 +52,7 @@ const sortfilterToggles = [
   {
     label: 'Reset',
     value: 'reset',
-    icon: <SummaryIcon fontSize="small" />,
+    icon: <RestartAltIcon fontSize="small" />,
     filterSpec: {},
     sortSpec: { field: 'run_at', order: 'ASC' },
   },
@@ -62,7 +63,6 @@ const ListActions = () => (
     <ListPresetButtonGroup sortfilterToggles={sortfilterToggles} />
   </TopToolbar>
 )
-// import * as style from "./show-on-hover.css"
 
 export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
   const record = useRecordContext()
@@ -74,7 +74,9 @@ export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
       className="show-on-hover"
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
     >
-      {record.actions.includes('retry') && <RetryButton />}
+      {record.actions.includes('retry') && (
+        <UpdateButton label="Retry" data={{}} />
+      )}
       <DeleteWithConfirmButton color="primary" label="" />
     </Box>
   )
@@ -110,5 +112,3 @@ export const JobsList = () => {
     </Box>
   )
 }
-
-
