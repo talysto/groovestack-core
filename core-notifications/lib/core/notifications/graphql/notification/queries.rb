@@ -25,16 +25,21 @@ module Core
               scope = scope.expired 
             end
 
-            scope = scope.where(id: ::Core::Notifications::Notification.to(filter.to_id)) if filter.to_id.present?
+            scope = scope.where(id: ::Core::Notifications::Notification.to(filter.to_ids)) if filter.to_ids.present?
             
-            unless filter.read 
-              # default is unread 
-              scope = scope.unread(filter.to_id)
-            else
-              scope = scope.read_by(filter.to_id)
+            # 3 cases
+            # 1. read is nil => return all
+            # 2. read is true => return read
+            # 3. read is false => return unread
+            unless filter.read.nil?
+              if filter.read
+                scope = scope.read(filter.to_ids)
+              else
+                scope = scope.unread(filter.to_ids)
+              end
             end
 
-            # TODO add support for filter.q
+            scope = scope.search_q(filter.q) if filter.q.present?
 
             return scope if sort_field.blank?
 
@@ -47,3 +52,4 @@ module Core
     end
   end
 end
+

@@ -33,7 +33,6 @@ module Core
             description 'Update a notification'
 
             argument :id, ID, required: true, description: 'notification id'
-            argument :type, String, required: true, description: 'notification type'
 
             argument :instance_method, String, required: false, description: 'instance method to trigger on a notification'
             argument :instance_method_args, ::GraphQL::Types::JSON, required: false, description: 'instance method args to trigger on a notification'
@@ -52,11 +51,11 @@ module Core
               }.freeze
             end
 
-            def resolve(id:, type:, instance_method:, instance_method_args:, **attrs)
-              notification = type.constantize.find(id)
+            def resolve(id:, instance_method:, instance_method_args:, **attrs)
+              notification = ::Core::Notifications::Notification.find(id)
               
               if instance_method.present? 
-                raise ::GraphQL::ExecutionError, "#{instance_method} is not a valid instance method for #{type}" unless self.class.whitelisted_instance_methods[type].include?(instance_method.to_sym)
+                raise ::GraphQL::ExecutionError, "#{instance_method} is not a valid instance method for #{notification.type}" unless self.class.whitelisted_instance_methods[notification.type].include?(instance_method.to_sym)
                 
                 if instance_method_args.present?
                   notification.send(instance_method, **instance_method_args.symbolize_keys!)
