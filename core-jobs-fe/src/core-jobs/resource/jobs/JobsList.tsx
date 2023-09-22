@@ -78,7 +78,7 @@ export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
   return (
     <Box
       className="show-on-hover"
-      style={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
+      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
     >
       {record.actions.includes('retry') && (
         <UpdateButton label="Retry" data={{}} />
@@ -101,7 +101,7 @@ export const JobsList = () => {
   // const notify = useNotify()
 
   return (
-    <Box sx={{ pt: 1 }}>
+    <Box>
       <Title title="Jobs" />
       <Header />
 
@@ -115,11 +115,7 @@ export const JobsList = () => {
       >
         <MultiViewList
           views={{
-            summary: (
-              <>
-                <JobsSummaryPivot />
-              </>
-            ),
+            summary: <JobsSummaryPivot />,
           }}
         >
           <JobDatagrid />

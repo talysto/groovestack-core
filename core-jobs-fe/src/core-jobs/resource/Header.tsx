@@ -34,9 +34,9 @@ tr:hover > td > .show-on-hover {
         sx={{
           justifyContent: 'space-between',
           minWidth: '33%',
-          m: 2,
-          pr: 2,
-          pl: 2,
+          // m: 2,
+          // pr: 2,
+          // pl: 2,
         }}
       >
         <Box sx={{ flexBasis: '100%' }}>

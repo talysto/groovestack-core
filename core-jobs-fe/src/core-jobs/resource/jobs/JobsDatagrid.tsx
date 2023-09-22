@@ -27,6 +27,7 @@ export const JobDatagrid = () => (
     <JobActions label="" />
   </Datagrid>
 );
+
 const enhancedStatus = (record: RaRecord) => {
   // var extended = null;
   const runningIcon = <CircularProgress size="0.75em" />;
