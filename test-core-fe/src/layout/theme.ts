@@ -12,6 +12,7 @@ export const theme = {
   ...defaultTheme,
   components: {
     ...defaultTheme.components,
+
     // MuiTextField: {
     //   defaultProps: {
     //       variant: 'outlined',
@@ -47,13 +48,15 @@ export const theme = {
     RaLayout: {
       styleOverrides: {
         root: {
-          // backgroundColor: "white",
           '& .RaLayout-content': {
             backgroundColor: 'white',
+            padding: 20,
+            // paddingLeft: 20,
+            // paddingRight: 20
             // padding: 0
           },
           '& .RaLayout-appFrame': {
-            marginTop: '48px',
+            // marginTop: '48px',
           },
         },
       },
@@ -94,7 +97,7 @@ export const theme = {
   palette: {
     type: 'light',
     primary: {
-      main: '#0a568f',
+      main: '#8f0a3f',
     },
     secondary: {
       main: '#d90522',
