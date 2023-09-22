@@ -29,9 +29,6 @@ import { Header } from '../Header'
 import { JobDatagrid } from './JobsDatagrid'
 import { EditJob } from './edit'
 
-const JobsFilters = [
-  <SearchInput key="q" alwaysOn source="q" placeholder="Filter or search..." />,
-]
 
 const sortfilterToggles = [
   {
@@ -62,6 +59,11 @@ const sortfilterToggles = [
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
   }
+]
+
+const JobsFilters = [
+  // <FauxInput key='views' source='views'><ListPresetButtonGroup sortfilterToggles={sortfilterToggles} /></FauxInput>,
+  <SearchInput key="q" alwaysOn source="q" placeholder="Filter or search..." />,
 ]
 
 const ListActions = () => (
