@@ -1,9 +1,8 @@
-import { Box } from '@mui/material'
-// import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import SummaryIcon from '@mui/icons-material/GridView'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import { Box, Grid, useTheme } from '@mui/material'
 
 import {
   DeleteWithConfirmButton,
@@ -15,17 +14,12 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import {
-  CustomButtonDrawer,
-  DrawerWidth
-} from '@moonlight-labs/core-base-fe'
-
-import { JobsAside } from './JobsAside'
-
+import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
 import { ListPresetButtonGroup } from '../../react-admin/ListPresetButtonGroup'
 import { MultiViewList } from '../../react-admin/MultiViewList'
 import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { Header } from '../Header'
+import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
 import { EditJob } from './edit'
 
@@ -58,7 +52,7 @@ const sortfilterToggles = [
     icon: <AccessTimeIcon fontSize="small" />,
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
-  }
+  },
 ]
 
 const JobsFilters = [
@@ -101,28 +95,51 @@ export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
 
 export const JobsList = () => {
   // const notify = useNotify()
-
+  const theme = useTheme()
   return (
     <Box>
       <Title title="Jobs" />
       <Header />
-
-      <List
-        title=" "
-        actions={<ListActions />}
-        exporter={false}
-        filters={JobsFilters}
-        aside={<JobsAside />}
-        sx={{ '& .RaList-content': { boxShadow: 'none' } }}
-      >
-        <MultiViewList
-          views={{
-            summary: <JobsSummaryPivot />,
+      <Grid container>
+        {/* <Grid container> */}
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          order={{ xs: 2, sm: 1 }}
+          sx={{
+            overflowX: 'auto', // Enable horizontal scrolling
+            whiteSpace: 'nowrap',
           }}
         >
-          <JobDatagrid />
-        </MultiViewList>
-      </List>
+          <List
+            className="MuiGrid-root MuiGrid-container"
+            title=" "
+            actions={<ListActions />}
+            exporter={false}
+            filters={JobsFilters}
+            // aside={<JobsAside />}
+            sx={{
+              '& .RaList-content': { boxShadow: 'none' },
+            }}
+          >
+            <MultiViewList
+              views={{
+                summary: (
+                  <>
+                    <JobsSummaryPivot />
+                  </>
+                ),
+              }}
+            >
+              <JobDatagrid />
+            </MultiViewList>
+          </List>
+        </Grid>
+        <Grid item xs={12} sm={4} order={{ xs: 1, sm: 2 }}>
+          <JobsAside />
+        </Grid>
+      </Grid>
     </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { Typography, useTheme } from '@mui/material'
+import { Typography, useMediaQuery, useTheme } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import {
   Datagrid,
@@ -17,9 +17,33 @@ const ListActions = () => (
   </TopToolbar>
 )
 
+// export const JobsSummary = () => {
+//   return (
+//     <InfiniteList
+//       filters={[
+//         <TypographyInput key="title" source="title" alwaysOn>
+//           Jobs by Type
+//         </TypographyInput>,
+//       ]}
+//       actions={<ListActions />}
+//       exporter={false}
+//       resource="JobStat"
+//       disableSyncWithLocation
+
+//     >
+//       <Datagrid bulkActionButtons={false}>
+//         <TextField source="sub_class" label="type" />
+//         <NumberField source="count" label="queued" />
+//         <NumberField source="count_working" label="working" />
+//         <NumberField source="count_errored" label="errors" />
+//       </Datagrid>
+//     </InfiniteList>
+//   )
+// }
 
 export const JobsSummaryPivot = () => {
   const theme = useTheme()
+  const moreThanSmall = useMediaQuery(theme.breakpoints.up('md'))
   return (
     <List
       disableSyncWithLocation
@@ -62,11 +86,12 @@ export const JobsSummaryPivot = () => {
       >
         <TextField source="sub_class" label="type" />
         <NumberField source="scheduled" label="scheduled" />
-        <NumberField source="queued" label="queued" />
-        <NumberField source="running" label="running" />
-        <NumberField source="error" label="error" />
-        <NumberField source="failed" label="failed" />
-        <NumberField source="complete" label="complete" />
+
+        {moreThanSmall && <NumberField source="queued" label="queued" />}
+        {moreThanSmall && <NumberField source="running" label="running" />}
+        {moreThanSmall && <NumberField source="error" label="error" />}
+        {moreThanSmall && <NumberField source="failed" label="failed" />}
+        {moreThanSmall && <NumberField source="complete" label="complete" />}
       </Datagrid>
     </List>
   )

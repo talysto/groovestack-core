@@ -1,4 +1,4 @@
-import { Paper, Stack, styled } from '@mui/material'
+import { Box, Grid, Paper, Stack, styled } from '@mui/material'
 
 import { RPMChart } from '../../views/RPMChart'
 import { UtilizationChart } from '../../views/UtilizationChart'
@@ -13,11 +13,16 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export const JobsAside = () => {
   return (
-    <Paper
-      elevation={0}
+    <Box 
+      // item
+      // elevation={0}
+      // xs={12}
+      // sm={4}
       sx={{
-        minWidth: '33%',
-        flexShrink: 0,
+        // width: '360px',
+        // minWidth: '33%',
+        // flexShrink: 0,
+        // minWidth: '250px',
         ml: 2,
         mt: 2,
         pr: 2,
@@ -32,6 +37,6 @@ export const JobsAside = () => {
           <UtilizationChart />
         </Item>
       </Stack>
-    </Paper>
+    </Box>
   )
 }
