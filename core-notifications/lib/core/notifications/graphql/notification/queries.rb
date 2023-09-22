@@ -25,7 +25,7 @@ module Core
               scope = scope.expired 
             end
 
-            scope = scope.where(id: ::Core::Notifications::Notification.to(filter.to_ids)) if filter.to_ids.present?
+            scope = scope.to(filter.to_ids) if filter.to_ids.present?
             
             # 3 cases
             # 1. read is nil => return all
@@ -33,9 +33,9 @@ module Core
             # 3. read is false => return unread
             unless filter.read.nil?
               if filter.read
-                scope = scope.read(filter.to_ids)
+                scope = scope.read
               else
-                scope = scope.unread(filter.to_ids)
+                scope = scope.unread
               end
             end
 

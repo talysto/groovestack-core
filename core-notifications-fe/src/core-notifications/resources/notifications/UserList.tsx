@@ -25,14 +25,16 @@ import {
 export const UserList = () => {
   const to = useRecordContext()
 
-  // console.debug('to', to)
   return (
     <InfiniteList
       resource="Notification"
-      sort={{ field: 'created_at', order: 'ASC' }}
+      sort={{ field: 'type', order: 'DESC' }}
       // TODO: Enable for production
-      // filter={{ to_id: to.id }}
-      // perPage={10}
+      filter={{ 
+        to_ids: [to.id],
+        read: false,
+      }}
+      perPage={10}
       exporter={false}
       actions={false}
       // filters={false}
@@ -65,7 +67,7 @@ const NotificationItem = () => {
     >
       {/* <ListItemButton> */}
       <ListItemAvatar>
-        {task.kind ==='Task' ? <TaskAltOutlinedIcon color="warning" /> : (task.read ? <RadioButtonCheckedOutlinedIcon /> : <CircleOutlinedIcon />)}
+        {task.type.includes('Task') ? <TaskAltOutlinedIcon color="warning" /> : (task.read_at ? <RadioButtonCheckedOutlinedIcon /> : <CircleOutlinedIcon />)}
       </ListItemAvatar>
       <ListItemText primary={task.title} secondary={task.description} />
 
@@ -78,7 +80,7 @@ const NotificationItem = () => {
 const ActionButtons = () => {
   const task = useRecordContext()
 
-  if (task.kind === 'Task')
+  if (task.type.includes('Task'))
     return (
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, ml:2}}>
         <UpdateButton
