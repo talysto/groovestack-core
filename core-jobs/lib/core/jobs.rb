@@ -20,12 +20,14 @@ require 'core/jobs/graphql/job/type'
 require 'core/jobs/graphql/job/filter'
 require 'core/jobs/graphql/job/queries'
 require 'core/jobs/graphql/job/mutations'
+require 'core/jobs/graphql/job/subscriptions'
 require 'core/jobs/graphql/job/locker/type'
 require 'core/jobs/graphql/job/locker/filter'
 require 'core/jobs/graphql/job/locker/queries'
 require 'core/jobs/graphql/job/report/type'
 require 'core/jobs/graphql/job/report/filter'
 require 'core/jobs/graphql/job/report/queries'
+require 'core/jobs/graphql/job/report/subscriptions'
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
