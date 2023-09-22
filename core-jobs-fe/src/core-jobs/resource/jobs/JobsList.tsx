@@ -66,6 +66,21 @@ const ListActions = () => (
   </TopToolbar>
 )
 
+import React from 'react'
+
+export const JobsEditActions = () => {
+  const record = useRecordContext()
+  return (
+    <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
+    {record.actions.includes('retry') && (
+        <UpdateButton label="Retry" data={{}} />
+      )}
+      <DeleteWithConfirmButton color="primary" label="" />
+    </Box>
+  )
+}
+
+
 export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
   const record = useRecordContext()
 
@@ -85,6 +100,7 @@ export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
         // sx={{ display: 'inline-flex' }}
         mode="edit"
         drawerWidth={DrawerWidth.Medium}
+        editProps={{actions: <JobsEditActions/>}}
       >
         <EditJob />
       </CustomButtonDrawer>
