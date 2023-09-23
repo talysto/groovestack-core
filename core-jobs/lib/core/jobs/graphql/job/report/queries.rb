@@ -18,11 +18,39 @@ module Core
             end
 
             def job_reports_scope(_sort_field: nil, _sort_order: nil, filter: {})
+              return [jobs_kpis(filter)] if filter.report_name == 'jobs_kpis'
+              return [jobs_by_period(filter)] if filter.report_name == 'jobs_by_period'
+              return [jobs_by_type(filter)] if filter.report_name == 'jobs_by_type'
               return [job_stats] if filter.report_name == 'job_stats'
 
-              return [jobs_by_period(filter)] if filter.report_name == 'jobs_by_period'
-
               raise 'unrecognized job report_name'
+            end
+
+            def jobs_kpis(filter)
+              sql = <<-SQL.squish
+                SELECT
+                  count(*) FILTER(where status='scheduled') as scheduled
+                  , count(*) FILTER(where status='queued') as queued
+                  , count(*) FILTER(where status='running') as running
+                  , count(*) FILTER(where status='failed') as failed
+                  , count(*) FILTER(where status='errored') as errored
+                  , count(*) FILTER(where status='complete') as complete
+                  , min(run_at) FILTER(where status in ('queued', 'running')) as oldest_queued
+                  , ( SELECT sum(worker_count) FROM que_lockers ) as workers
+                                  
+                FROM que_jobs_ext jobs 
+              SQL
+
+              sanitized_sql = ActiveRecord::Base.sanitize_sql_array([
+                sql, 
+                {}
+              ])
+              data = ActiveRecord::Base.connection.execute(sanitized_sql)
+
+              {
+                id: :jobs_kpis,
+                data: data.to_a
+              }
             end
 
             def jobs_by_period(filter)
@@ -76,6 +104,36 @@ module Core
               }
             end
 
+            def jobs_by_type(filter)
+              sql = <<-SQL.squish
+                select 
+                  job_class   
+                  , sub_class           
+                  , count(*) FILTER(where status='scheduled') as scheduled
+                  , count(*) FILTER(where status='queued') as queued
+                  , count(*) FILTER(where status='running') as running
+                  , count(*) FILTER(where status='failed') as failed
+                  , count(*) FILTER(where status='errored') as errored
+                  , count(*) FILTER(where status='complete') as complete
+                                  
+                FROM que_jobs_ext jobs 
+                
+                GROUP BY job_class, sub_class
+                ORDER BY job_class, sub_class -- TODO: make parametric
+              SQL
+              
+              sanitized_sql = ActiveRecord::Base.sanitize_sql_array([
+                sql, 
+                {}
+              ])
+              data = ActiveRecord::Base.connection.execute(sanitized_sql)
+
+              {
+                id: :jobs_by_type,
+                data: data.to_a
+              }
+            end
+
             def job_stats # rubocop:disable Metrics/MethodLength
               sql = <<-SQL.squish
                 SELECT
@@ -87,9 +145,9 @@ module Core
                   max(error_count)            AS highest_error_count,
                   min(run_at)                 AS oldest_run_at
 
-                FROM public.que_jobs_ext
-                WHERE#{' '}
-                  finished_at IS NULL#{' '}
+                FROM que_jobs_ext
+                WHERE
+                  finished_at IS NULL
                   AND expired_at IS NULL
                 GROUP BY job_class, sub_class
                 ORDER BY count(*) DESC

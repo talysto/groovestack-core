@@ -16,6 +16,7 @@ import {
   ButtonProps,
   Create,
   CreateProps,
+  EditProps,
   Edit,
   RecordContextProvider,
   useEditContext,
@@ -32,6 +33,7 @@ export type ButtonDrawerProps = {
     title?: string | React.ReactNode
   } & DrawerProps & { onSuccess?: () => void }
   createProps?: CreateProps
+  editProps?: EditProps
   buttonProps?: ButtonProps
   drawerWidth?: DrawerWidth
   footer?: React.ReactNode
@@ -43,6 +45,8 @@ export type CustomDrawerProps = {
   mode?: 'static' | 'create' | 'edit'
   children: ButtonDrawerProps['children']
   open: boolean
+  editProps?: EditProps
+  createProps?: CreateProps
   drawerWidth: DrawerWidth
   onClose: () => void
   title?: ButtonDrawerProps['drawerProps']['title']
@@ -62,6 +66,7 @@ export const CustomButtonDrawer = ({
   icon = <EditOutlinedIcon />,
   drawerProps,
   createProps,
+  editProps,
   buttonProps,
   children,
   drawerWidth = DrawerWidth.Small,
@@ -89,6 +94,8 @@ export const CustomButtonDrawer = ({
         {...drawerProps}
         onClose={closeDrawer}
         footer={footer}
+        createProps={createProps}
+        editProps={editProps}
       >
         {children}
       </CustomDrawer>
@@ -105,6 +112,8 @@ const CustomDrawer = ({
   mode,
   drawerWidth,
   footer,
+  editProps,
+  createProps,
   ...drawerProps
 }: CustomDrawerProps) => {
   const notify = useNotify()
@@ -186,6 +195,7 @@ const CustomDrawer = ({
             resource={resource}
             redirect={false}
             mutationOptions={{ onSuccess }}
+            {...createProps}
           >
             <RecordContextProvider value={record}>
               {children}
@@ -201,6 +211,8 @@ const CustomDrawer = ({
             id={record.id}
             sx={{ '& .RaEdit-noActions': { mt: '3px' } }}
             actions={false}
+            {...editProps}
+            
           >
             {children}
           </Edit>

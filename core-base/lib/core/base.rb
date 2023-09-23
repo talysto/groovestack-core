@@ -13,6 +13,7 @@ require 'core/base/graphql/base_input_object'
 require 'core/base/graphql/base_mutation'
 require 'core/base/graphql/base_object'
 require 'core/base/graphql/documentation'
+require 'core/base/graphql/base_subscription'
 
 require 'core/base/graphql/providers/react_admin/resource'
 require 'core/base/graphql/providers/react_admin/types'

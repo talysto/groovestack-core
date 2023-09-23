@@ -1,18 +1,13 @@
-import {
-  Edit,
-  SimpleShowLayout,
-  TextField,
-  useRecordContext,
-} from 'react-admin'
-
+import { Edit, Show, SimpleShowLayout, TextField } from 'react-admin'
 import {
   CodeField,
   TimeAgoField,
   clickToCopy,
 } from '@moonlight-labs/core-base-fe'
 
-import Grid from '@mui/material/Grid'
+import { Box } from '@mui/material'
 import { ErrorPanelField } from '../../react-admin/fields/ErrorPanelField'
+// import { clickToCopy } from './clickToCopy'
 
 // const EditToolbar = (props: any) => (
 //   <Toolbar {...props}>
@@ -22,36 +17,21 @@ import { ErrorPanelField } from '../../react-admin/fields/ErrorPanelField'
 
 export const EditJob = (props: any) => {
   return (
-      <Grid container>
-        <Grid item xs={12} md={9}>
-          <SimpleShowLayout>
-            {/* <TextField source="jobClass" /> */}
-            <TextField source="type" label="Job" />
-
-            <TextField source="id" {...clickToCopy} />
-
-            <TextField source="status" />
-          </SimpleShowLayout>
-
-          {/* // This needs it's own ShowLayout */}
-          <ErrorPanelField />
-
-          <SimpleShowLayout>
-            <CodeField source="args" />
-            <CodeField source="data" />
-          </SimpleShowLayout>
-        </Grid>
-
-        <Grid item xs={12} md={3}>
-          <SimpleShowLayout>
-            <TextField source="queue" />
-            <TextField source="priority" />
-
-            <TimeAgoField source="run_at" />
-            <TimeAgoField source="finished_at" />
-            <TimeAgoField source="expired_at" />
-          </SimpleShowLayout>
-        </Grid>
-      </Grid>
+    <Box>
+      
+      <SimpleShowLayout>
+        <TextField source="type" label="Job" />
+        <TextField source="id" noWrap {...clickToCopy} />
+        <TextField source="status" />
+        <ErrorPanelField />
+        <CodeField source="args" />
+        <CodeField source="data" />
+        <TextField source="queue" />
+        <TextField source="priority" />
+        <TimeAgoField source="run_at" />
+        <TimeAgoField source="finished_at" />
+        <TimeAgoField source="expired_at" />
+      </SimpleShowLayout>
+    </Box>
   )
 }
