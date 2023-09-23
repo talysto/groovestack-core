@@ -1,7 +1,7 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import SummaryIcon from '@mui/icons-material/GridView'
-import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import { Box, Grid, useTheme } from '@mui/material'
 
 import {
@@ -35,7 +35,7 @@ const sortfilterToggles = [
   {
     label: 'List',
     value: 'list',
-    icon: <RestartAltIcon fontSize="small" />,
+    icon: <FormatListNumberedIcon fontSize="small" />,
     filterSpec: {},
     sortSpec: { field: 'run_at', order: 'ASC' },
   },
@@ -76,7 +76,7 @@ export const JobsEditActions = () => {
         <UpdateButton label="Retry" data={{}} />
       )}
       <DeleteWithConfirmButton color="primary" label="" />
-    </Box>
+    </Box>  
   )
 }
 
@@ -126,6 +126,7 @@ export const JobsList = () => {
           sx={{
             overflowX: 'auto', // Enable horizontal scrolling
             whiteSpace: 'nowrap',
+            // maxWidth: '100vh'
           }}
         >
           <List
