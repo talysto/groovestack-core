@@ -1,9 +1,60 @@
+import { timeAgo } from '@moonlight-labs/core-base-fe'
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { WithListContext } from 'react-admin'
 import { Metric } from '../components/Metric'
+import { JobReportChart } from '../views/JobReportChart'
 
-export const Header = () => {
+const JobReportKPIs = () => {
   const theme = useTheme()
   const moreThanSmall = useMediaQuery(theme.breakpoints.up('sm'))
+
+  return (
+    <JobReportChart title={''} filter={{ id: 'jobs_kpis' }}>
+      <WithListContext
+        render={({ data }) => {
+          if (!data) return <div>No data</div>
+
+          const record = data[0].data[0]
+          // console.debug('jobs_kpis', record)
+
+          const errors = record.errored + record.failed
+          const queued = record.queued
+          const oldest = timeAgo(record.oldest_queued_at)
+
+          return (
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 2,
+                ...(moreThanSmall ? { m: 2, px: 2 } : { mt: 2, mr: 2 }),
+              }}
+            >
+              {queued && (
+                <Box sx={{ width: '100%' }}>
+                  <Metric value={queued} label="Queued" />
+                </Box>
+              )}
+
+              {oldest && (
+                <Box sx={{ width: '100%' }}>
+                  <Metric value={oldest} label="Latency" />
+                </Box>
+              )}
+
+              {errors && (
+                <Box sx={{ width: '100%' }}>
+                  <Metric value={errors} label="Errors" />
+                </Box>
+              )}
+            </Box>
+          )
+        }}
+      />
+    </JobReportChart>
+  )
+}
+
+export const Header = () => {
   return (
     <>
       <style>
@@ -26,24 +77,7 @@ tr:hover > td > .show-on-hover {
         </Grid>
 
         <Grid item xs={12} sm={4}>
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 2,
-              
-              ...(moreThanSmall ? { m: 2, px: 2 } : { mt: 2, mr: 2 })
-            }}
-          >
-            <Box sx={{ width: '100%' }}>
-              <Metric value="14" label="Queued" units="k" />
-            </Box>
-            <Box sx={{ width: '100%' }}>
-              <Metric value="32" label="Latency" units="min" />
-            </Box>
-            <Box sx={{ width: '100%' }}>
-              <Metric value="4" label="Errors" />
-            </Box>
-          </Box>
+          <JobReportKPIs />
         </Grid>
       </Grid>
 

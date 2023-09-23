@@ -8,7 +8,7 @@ import {
 
 export type MetricType = {
   label: string
-  value: string
+  value: string | JSX.Element
   units?: string
   onClick?: any
 }

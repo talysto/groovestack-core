@@ -7,9 +7,9 @@ import {
   RefreshButton,
   TextField,
   TopToolbar,
+  WithListContext,
 } from 'react-admin'
 import { FauxInput } from '../react-admin/inputs/TypographyInput'
-
 
 const ListActions = () => (
   <TopToolbar>
@@ -57,7 +57,8 @@ export const JobsSummaryPivot = () => {
       ]}
       // actions={<ListActions />}
       exporter={false}
-      resource="JobStat"
+      resource="JobReport"
+      filter={{ id: 'jobs_by_type' }}
       title=" "
       pagination={false}
       sx={{
@@ -74,25 +75,41 @@ export const JobsSummaryPivot = () => {
         },
       }}
     >
-      <Datagrid
-        bulkActionButtons={false}
-        sx={{
-          '& .RaDatagrid-headerCell': {
-            background: blueGrey[50],
-            color: theme.palette.primary.main,
-            borderRadius: '0px !important',
-          },
-        }}
-      >
-        <TextField source="sub_class" label="type" />
-        <NumberField source="scheduled" label="scheduled" />
+      <WithListContext
+        render={({ data }) => {
+          // if (!data) return <div>No data</div>
+          console.debug('jobs_by_type', data)
 
-        {moreThanSmall && <NumberField source="queued" label="queued" />}
-        {moreThanSmall && <NumberField source="running" label="running" />}
-        {moreThanSmall && <NumberField source="error" label="error" />}
-        {moreThanSmall && <NumberField source="failed" label="failed" />}
-        {moreThanSmall && <NumberField source="complete" label="complete" />}
-      </Datagrid>
+          const processedData = data && data[0]?.data
+
+          return (
+            <Datagrid
+              data={processedData || data}
+              bulkActionButtons={false}
+              sx={{
+                '& .RaDatagrid-headerCell': {
+                  background: blueGrey[50],
+                  color: theme.palette.primary.main,
+                  borderRadius: '0px !important',
+                },
+              }}
+            >
+              <TextField source="sub_class" label="type" />
+              <NumberField source="scheduled" label="scheduled" />
+
+              {moreThanSmall && <NumberField source="queued" label="queued" />}
+              {moreThanSmall && (
+                <NumberField source="running" label="running" />
+              )}
+              {moreThanSmall && <NumberField source="error" label="error" />}
+              {moreThanSmall && <NumberField source="failed" label="failed" />}
+              {moreThanSmall && (
+                <NumberField source="complete" label="complete" />
+              )}
+            </Datagrid>
+          )
+        }}
+      />
     </List>
   )
 }

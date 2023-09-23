@@ -1,4 +1,15 @@
 import { faker } from '@faker-js/faker'
+import dayjs, { Dayjs, ManipulateType } from 'dayjs'
+
+function dayjsRange(start: Dayjs, end: Dayjs, unit: ManipulateType) {
+  const range = []
+  let current = start
+  while (!current.isAfter(end)) {
+    range.push(current)
+    current = current.add(1, unit)
+  }
+  return range
+}
 
 export function mockLockers(count = 15) {
   return Array.from({ length: count }, () => ({
@@ -22,7 +33,7 @@ export function mockLockers(count = 15) {
 //   }))
 // }
 
-export function mockStats(count = 3) {
+function mockStats(count = 3) {
   return Array.from({ length: count }, () => ({
     id: faker.string.uuid(),
     job_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
@@ -36,22 +47,86 @@ export function mockStats(count = 3) {
   }))
 }
 
-export function mockReportByPeriod() {
-  const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
+function mockReportByType(count = 3) {
+  return {
+    id: 'jobs_by_type',
+    data: Array.from({ length: count }, () => ({
+      id: faker.string.uuid(),
+      job_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
+      sub_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
+      scheduled: faker.number.int({ min: 1, max: 100_000 }),
+      queued: faker.number.int({ min: 1, max: 24 }),
+      running: faker.number.int({ min: 1, max: 24 }),
+      errored: faker.number.int({ min: 1, max: 24 }),
+      failed: faker.number.int({ min: 1, max: 24 }),
+      complete: faker.number.int({ min: 1, max: 24 })
+    }))
+  }
+}
+
+function mockReportKPIs() {
+  const workers = faker.number.int({ min: 1, max: 24 })
+
+  return {
+    id: 'jobs_kpis',
+    data: [
+      {
+        scheduled: faker.number.int({ min: 1, max: 100_000 }),
+        queued: faker.number.int({ min: 1, max: 24 }),
+        running: faker.number.int({ min: 1, max: workers }),
+        errored: faker.number.int({ min: 1, max: 24 }),
+        failed: faker.number.int({ min: 1, max: 24 }),
+        complete: faker.number.int({ min: 1, max: 24 }),
+        workers: workers,
+        oldest_queued_at: faker.date.recent()
+      }
+    ]
+  }
+}
+
+export function mockJobReports() {
   return [
-    {
-      id: 'report',
-      data: [
-        ['Period', 'Scheduled', 'Queued'],
-        [new Date(roundedNow.getTime() - 1000 * 60 * 60), 1, 2],
-        [new Date(roundedNow.getTime() - 800 * 60 * 60), 2, 4],
-        [new Date(roundedNow.getTime() - 600 * 60 * 60), 7, 6],
-        [new Date(roundedNow.getTime() - 400 * 60 * 60), 2, 0],
-        [new Date(roundedNow.getTime() - 200 * 60 * 60), 3, 1],
-        [roundedNow, 4, 2],
-      ],
-    },
+    mockReportByPeriod(),
+    mockReportByType(),
+    mockReportKPIs(),
   ]
+}
+
+const statusesMap = ['scheduled', 'queued', 'running', 'errored', 'failed', 'complete']
+
+// const rpmMockData = [
+//   ['Period', ...historyStatuses],
+//   ...dayjsRange(
+//     dayjs(roundedNow).subtract(1, 'hour'),
+//     dayjs(roundedNow),
+//     'minute',
+//   ).map((d: Dayjs) => [
+//     d.toISOString(),
+//     ...historyStatuses.map(() => random(1, 50)),
+//   ]),
+// ]
+
+// var result = arr.reduce(function(map, obj) {
+//   map[obj.key] = obj.val;
+//   return map;
+// }, {});
+
+function mockReportByPeriod() {
+  const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
+  return {
+      id: 'jobs_by_period',
+      data: dayjsRange(
+            dayjs(roundedNow).subtract(1, 'hour'),
+            dayjs(roundedNow),
+            'minute',
+          ).map((d: Dayjs) => {
+            const base = { period: d.toISOString() }
+            // @ts-ignore-line
+            const statuses = statusesMap.reduce((map, status) => (map[status] = faker.number.int({min:0, max:400}), map), {})
+
+            return {...base, ...statuses}
+          })
+  }
 }
 
 export function mockJobs(count = 15) {
@@ -86,6 +161,7 @@ export function mockJobs(count = 15) {
     priority: faker.helpers.arrayElement([1, 50, 100]),
     status: faker.helpers.arrayElement([
       'scheduled',
+      'queued',
       'running',
       'error',
       'failed',

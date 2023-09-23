@@ -8,19 +8,8 @@ import { WorkersTable } from '../resource/workers/WorkersTable'
 //   { label: 'Running', value: '42' },
 // ]
 
-export const KPIs = () => (
-  <Stack spacing={2}>
-    <Metric label="Running" value="12" units="Jobs" />
-    <MetricPopover metricProps={{ label: 'Workers', value: '16' }}>
-      <Paper sx={{ p: 3 }}>
-        <WorkersTable />
-      </Paper>
-    </MetricPopover>
-    {/* <BasicPopover /> */}
-  </Stack>
-)
 
-const MetricPopover = ({
+export  const MetricPopover = ({
   metricProps,
   children,
 }: {

@@ -1,11 +1,13 @@
-import { Box, Stack, useTheme } from '@mui/material'
+import { Box, Paper, Stack, useTheme } from '@mui/material'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import { random } from 'lodash'
 import { WithListContext } from 'react-admin'
-import { KPIs } from './KPIs'
-import { JobReportChart, rpmChartFilter } from './RPMChart'
+import { MetricPopover } from './KPIs'
+import { JobReportChart } from './JobReportChart'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
+import { Metric } from '../components/Metric'
+import { WorkersTable } from '../resource/workers/WorkersTable'
 
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
 // echarts.registerTheme('custom', echartsThemeFromMui())
@@ -17,12 +19,24 @@ export const UtilizationChart = () => {
     echartsThemeFromMui(theme.palette.primary.main),
   )
 
+
   return (
-    <JobReportChart title="Utilization" filter={rpmChartFilter}>
+    <JobReportChart title="Utilization" filter={{id: 'jobs_kpis'}}>
       <WithListContext
         render={({ data }) => {
-          // const processedData = data && data[0]?.data; //.map((row: any) => {
-          // const processedData = rpmMockData.map((row: any) => [dayjs(row[0]).format('h:mm'), ...row.slice(1)])
+
+          if(!data) return (<div>No data</div>)
+
+          const record = data[0].data[0]
+          // console.debug('jobs_kpis', record)
+
+          const workers = record.workers
+          const running = record.running
+          const utilization = Math.round(100.0 * running / workers)
+
+          const config = utilizationOptions
+          config.series[0].data[0].value = utilization
+
           return (
             <Stack
               direction="row"
@@ -43,7 +57,15 @@ export const UtilizationChart = () => {
               </Box>
 
               <Box sx={{ flexBasis: '100%' }}>
-                <KPIs />
+              <Stack spacing={2}>
+                <Metric label="Running" value={running} units="Jobs" />
+                <MetricPopover metricProps={{ label: 'Workers', value: workers }}>
+                  <Paper sx={{ p: 3 }}>
+                    <WorkersTable />
+                  </Paper>
+                </MetricPopover>
+                {/* <BasicPopover /> */}
+              </Stack>
               </Box>
 
               {/* <KPIs /> */}
@@ -55,6 +77,7 @@ export const UtilizationChart = () => {
   )
 }
 
+
 const utilizationOptions = {
   tooltip: {
     formatter: '{a} <br/>{b} : {c}%',
@@ -63,25 +86,8 @@ const utilizationOptions = {
     {
       name: 'Pressure',
       type: 'gauge',
-      // theme: 'custom',
-      // radius: ['90%', '100%'],
-      // grid: {
-      //   left: 0,
-      //   top: 0,
-      //   right: 0,
-      //   bottom: 0
-      // },
-      // detail: {
-      //   formatter: '{value}'
-      // },
       detail: {
-        // width: 50,
-        // height: 14,
-        // fontSize: 14,
         color: 'inherit',
-        // borderColor: 'inherit',
-        // borderRadius: 20,
-        // borderWidth: 1,
         formatter: '{value}%',
       },
       data: [
@@ -91,11 +97,8 @@ const utilizationOptions = {
             offsetCenter: ['0%', '0%'],
             valueAnimation: true,
           },
-          // name: 'Utilization',
         },
       ],
-      // startAngle: -180,
-      // endAngle: 0,
       pointer: {
         show: false,
       },
@@ -106,29 +109,17 @@ const utilizationOptions = {
         clip: false,
         itemStyle: {
           borderWidth: 1,
-          // borderColor: '#464646',
         },
       },
-      // axisLine: {
-      //   lineStyle: {
-      //     width: 40,
-      //   },
-      // },
       splitLine: {
         show: false,
-        //   distance: 0,
-        //   length: 10,
       },
       axisTick: {
         show: false,
       },
       axisLabel: {
-        show: false,
-        // distance: 50,
+        show: false
       },
-      // title: {
-      //   fontSize: 14,
-      // },
     },
   ],
 }

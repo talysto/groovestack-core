@@ -2,7 +2,7 @@ import { WithListContext } from 'react-admin'
 
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
-import { JobReportChart } from './RPMChart'
+import { JobReportChart } from './JobReportChart'
 
 // TODO refactor to pull theme color
 echarts.registerTheme('custom', {

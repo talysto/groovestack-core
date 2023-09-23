@@ -77,7 +77,7 @@ export function echartsThemeFromMui(baseColor: string = '#3498db') {
     ],
   }
 
-  console.debug('theme', theme)
+  // console.debug('theme', theme)
 
   return theme
 }
