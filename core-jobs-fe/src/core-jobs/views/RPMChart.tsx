@@ -1,33 +1,11 @@
 import { useTheme } from '@mui/material'
-import dayjs, { Dayjs, ManipulateType } from 'dayjs'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
 import { WithListContext } from 'react-admin'
-import { echartsThemeFromMui } from './echartsThemeFromMui'
 import { JobReportChart } from './JobReportChart'
+import { echartsThemeFromMui } from './echartsThemeFromMui'
 
-
-const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
-const rpmChartOptions = {
-  bar: { groupWidth: '100%' },
-  animation: {
-    startup: true,
-    easing: 'out',
-    duration: 500,
-  },
-  isStacked: true,
-  legend: 'none',
-  hAxis: {
-    viewWindow: {
-      min: new Date(roundedNow.getTime() - 1000 * 60 * 60),
-      max: roundedNow,
-    },
-  },
-  vAxis: {
-    format: '#',
-    viewWindow: { min: 0 },
-  },
-}
+// const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
 
 // export const rpmChartFilter = {
 //   id: 'jobs_by_period',
@@ -36,23 +14,9 @@ const rpmChartOptions = {
 //   // end_at: dayjs().add(1, 'hour'),
 // }
 
-const statusesPast = ['queued', 'running', 'complete', 'failed', 'errored']
-export const statuses = ['scheduled', ...statusesPast]
-
-// function dayjsRange(start: Dayjs, end: Dayjs, unit: ManipulateType) {
-//   const range = []
-//   let current = start
-//   while (!current.isAfter(end)) {
-//     range.push(current)
-//     current = current.add(1, unit)
-//   }
-//   return range
-// }
-
-const historyStatuses = ['queued', 'running', 'complete', 'failed']
-
-
-
+// const statusesPast = ['queued', 'running', 'complete', 'failed', 'errored']
+// const statuses = ['scheduled', ...statusesPast]
+// const historyStatuses = ['queued', 'running', 'complete', 'failed']
 
 export const RPMChart = () => {
   const theme = useTheme()
@@ -62,20 +26,21 @@ export const RPMChart = () => {
   )
 
   return (
-    <JobReportChart title="Performance"
-    filter={{id: 'jobs_by_period'}}
-    // filter={{}}
+    <JobReportChart
+      title="Performance"
+      filter={{ id: 'jobs_by_period' }}
+      // filter={{}}
     >
       <WithListContext
         render={({ data }) => {
-          if(!data) return (<div>No data</div>)
+          if (!data) return <div>No data</div>
 
           console.debug('rpm_data', data)
 
           const config = chartOptions
-          config.dataset.source =  data[0].data
+          config.dataset.source = data[0].data
 
-          const processedData = data[0]?.data[0];
+          const processedData = data[0]?.data[0]
           console.debug('rpm', processedData)
 
           // dimensions: ['product', '2015', '2016', '2017'],
@@ -91,7 +56,6 @@ export const RPMChart = () => {
           //   dayjs(row[0]).format('h:mm'),
           //   ...row.slice(1),
           // ])
-
 
           return (
             <ReactECharts
@@ -111,7 +75,6 @@ export const RPMChart = () => {
   )
 }
 
-
 const chartOptions = {
   dataset: { source: null },
   grid: {
@@ -127,26 +90,24 @@ const chartOptions = {
     },
   },
   xAxis: {
-    type: 'category',
+    // type: 'time',
     // axisLabel: {
     //   formatter: '{HH}:{mm}'
     // },
-    // data: processedData.map((row: any) => row[0]).slice(1)
-    // show: true
-    // axisLabel: { interval: 0, rotate: 30 }
+    type: 'category',
   },
   yAxis: {
-    // show: true,
-    // inverse: true,
     type: 'value',
     // axisLabel: {inside: true}
   },
   series: [
     // { type: 'time' },
-    { type: 'bar', stack: 'jobs' },
-    { type: 'bar', stack: 'jobs' },
-    { type: 'bar', stack: 'jobs' },
-    { type: 'bar', stack: 'jobs' },
+    { type: 'bar', stack: 'jobs' }, // scheduled
+    { type: 'bar', stack: 'jobs' }, // queued
+    { type: 'bar', stack: 'jobs' }, // running
+    { type: 'bar', stack: 'jobs' }, // complete
+    { type: 'bar', stack: 'jobs' }, // errored
+    { type: 'bar', stack: 'jobs' }, // failed
   ],
   barCategoryGap: '0%',
 }

@@ -1,28 +1,21 @@
-import { Edit, Show, SimpleShowLayout, TextField } from 'react-admin'
 import {
   CodeField,
   TimeAgoField,
   clickToCopy,
 } from '@moonlight-labs/core-base-fe'
+import { SimpleShowLayout, TextField } from 'react-admin'
 
 import { Box } from '@mui/material'
 import { ErrorPanelField } from '../../react-admin/fields/ErrorPanelField'
-// import { clickToCopy } from './clickToCopy'
-
-// const EditToolbar = (props: any) => (
-//   <Toolbar {...props}>
-//     <SaveButton />
-//   </Toolbar>
-// )
+import { JobStatusField } from '../../react-admin/fields/JobStatusField'
 
 export const EditJob = (props: any) => {
   return (
     <Box>
-      
       <SimpleShowLayout>
         <TextField source="type" label="Job" />
         <TextField source="id" noWrap {...clickToCopy} />
-        <TextField source="status" />
+        <JobStatusField />
         <ErrorPanelField />
         <CodeField source="args" />
         <CodeField source="data" />

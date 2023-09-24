@@ -1,16 +1,15 @@
+import { CodeField } from '@moonlight-labs/core-base-fe'
 import {
   FieldProps,
   SimpleShowLayout,
   TextField,
-  useRecordContext
-} from 'react-admin';
-import { CodeField } from '@moonlight-labs/core-base-fe';
+  useRecordContext,
+} from 'react-admin'
 
 export const ErrorPanelField = (props: FieldProps) => {
-  const record = useRecordContext();
+  const record = useRecordContext()
 
-  if (!record || !record.error_count)
-    return null;
+  if (!record || !record.error_count) return null
 
   return (
     <SimpleShowLayout>
@@ -18,5 +17,5 @@ export const ErrorPanelField = (props: FieldProps) => {
       <TextField source="last_error_message" />
       <CodeField source="last_error_backtrace" />
     </SimpleShowLayout>
-  );
-};
+  )
+}

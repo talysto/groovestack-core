@@ -1,13 +1,19 @@
-import { ToggleButton, ToggleButtonGroup } from '@mui/material'
+import {
+  Box,
+  Theme,
+  ToggleButton,
+  ToggleButtonGroup,
+  useMediaQuery,
+} from '@mui/material'
 import { useState } from 'react'
-import { FilterPayload, SortPayload, useRecordContext } from 'react-admin'
-import ListPresetButton from './ListPresetButton'
+import { FilterPayload, SortPayload, useListContext } from 'react-admin'
 
 export interface ListViewToggleButtonsProps {
   sortfilterToggles: Array<{
     label: string
     value: string
-    icon: JSX.Element 
+    icon: any
+    collapsable?: boolean
     filterSpec: FilterPayload
     sortSpec: SortPayload
   }>
@@ -16,14 +22,24 @@ export interface ListViewToggleButtonsProps {
 export const ListPresetButtonGroup = ({
   sortfilterToggles,
 }: ListViewToggleButtonsProps) => {
-  const [selected, setSelected] = useState<string | null>('reset')
+  const [selected, setSelected] = useState<string | null>('summary')
+
+  const { setSort, setFilters } = useListContext()
 
   const handleSelected = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newSelected: string | null,
   ) => {
+    const config = sortfilterToggles.find((t) => t.value === newSelected)
+    if (config) {
+      setFilters(config.filterSpec, [], false)
+      setSort(config.sortSpec)
+    }
     setSelected(newSelected)
   }
+  const moreThanSmall = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.up('sm'),
+  )
 
   return (
     <ToggleButtonGroup
@@ -32,16 +48,17 @@ export const ListPresetButtonGroup = ({
       exclusive
       onChange={handleSelected}
     >
-      {sortfilterToggles.map(({ label, value, icon, filterSpec, sortSpec }) => (
-        <ToggleButton value={value} key={value}>
-          {icon}
-          <ListPresetButton
-            label={label}
-            sortSpec={sortSpec}
-            filterSpec={filterSpec}
-          />
-        </ToggleButton>
-      ))}
+      {sortfilterToggles.map(({ label, value, icon, collapsable }) => {
+        const ButtonIcon = icon
+        return (
+          <ToggleButton value={value} key={value} aria-label={label}>
+            <ButtonIcon fontSize="small" />
+            {(moreThanSmall || !collapsable) && (
+              <Box sx={{ mx: 1 }}>{label}</Box>
+            )}
+          </ToggleButton>
+        )
+      })}
     </ToggleButtonGroup>
   )
 }

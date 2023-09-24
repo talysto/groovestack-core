@@ -1,4 +1,4 @@
-import { Button, Paper, Popover, Stack } from '@mui/material'
+import { Button, Paper, Popover } from '@mui/material'
 import { useState } from 'react'
 import { Metric, MetricType } from '../components/Metric'
 import { WorkersTable } from '../resource/workers/WorkersTable'
@@ -8,8 +8,7 @@ import { WorkersTable } from '../resource/workers/WorkersTable'
 //   { label: 'Running', value: '42' },
 // ]
 
-
-export  const MetricPopover = ({
+export const MetricPopover = ({
   metricProps,
   children,
 }: {

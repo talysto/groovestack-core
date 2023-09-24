@@ -1,12 +1,14 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered'
 import SummaryIcon from '@mui/icons-material/GridView'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import { Box, Grid, useTheme } from '@mui/material'
+import { Box, Card, Grid, Stack, Typography, useTheme } from '@mui/material'
 
 import {
   DeleteWithConfirmButton,
-  List,
+  ListBase,
+  ListToolbar,
+  Pagination,
   SearchInput,
   Title,
   TopToolbar,
@@ -14,96 +16,70 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
 import { ListPresetButtonGroup } from '../../react-admin/ListPresetButtonGroup'
 import { MultiViewList } from '../../react-admin/MultiViewList'
 import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { Header } from '../Header'
 import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
-import { EditJob } from './edit'
-
 
 const sortfilterToggles = [
   {
     label: 'Summary',
     value: 'summary',
-    icon: <SummaryIcon fontSize="small" />,
+    icon: SummaryIcon,
     filterSpec: { view: 'summary' },
     sortSpec: { field: 'run_at', order: 'ASC' },
   },
   {
     label: 'List',
     value: 'list',
-    icon: <FormatListNumberedIcon fontSize="small" />,
+    icon: FormatListNumberedIcon,
     filterSpec: {},
     sortSpec: { field: 'run_at', order: 'ASC' },
   },
   {
     label: 'Errors',
     value: 'errors',
-    icon: <WarningAmberIcon fontSize="small" />,
+    icon: WarningAmberIcon,
     filterSpec: { status: ['errored', 'failed'] },
     sortSpec: { field: 'priority', order: 'ASC' },
+    collapsable: true,
   },
   {
     label: 'Scheduled',
     value: 'scheduled',
-    icon: <AccessTimeIcon fontSize="small" />,
+    icon: AccessTimeIcon,
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
+    collapsable: true,
   },
 ]
 
 const JobsFilters = [
   // <FauxInput key='views' source='views'><ListPresetButtonGroup sortfilterToggles={sortfilterToggles} /></FauxInput>,
-  <SearchInput key="q" alwaysOn source="q" placeholder="Filter or search..." />,
+  <SearchInput
+    sx={{ ml: 2 }}
+    key="q"
+    alwaysOn
+    source="q"
+    placeholder="Filter or search..."
+  />,
 ]
 
 const ListActions = () => (
-  <TopToolbar>
+  <TopToolbar sx={{ justifyContent: 'flex-start' }}>
     <ListPresetButtonGroup sortfilterToggles={sortfilterToggles} />
   </TopToolbar>
 )
 
-import React from 'react'
-
 export const JobsEditActions = () => {
   const record = useRecordContext()
   return (
-    <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
-    {record.actions.includes('retry') && (
-        <UpdateButton label="Retry" data={{}} />
-      )}
-      <DeleteWithConfirmButton color="primary" label="" />
-    </Box>  
-  )
-}
-
-
-export const JobActions = ({ label = 'Actions' }: { label?: string }) => {
-  const record = useRecordContext()
-
-  if (!record) return null
-
-  return (
-    <Box
-      className="show-on-hover"
-      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
-    >
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
       {record.actions.includes('retry') && (
         <UpdateButton label="Retry" data={{}} />
       )}
-      <CustomButtonDrawer
-        label=" "
-        drawerProps={{ title: 'Edit Jobs' }}
-        // sx={{ display: 'inline-flex' }}
-        mode="edit"
-        drawerWidth={DrawerWidth.Medium}
-        editProps={{actions: <JobsEditActions/>}}
-      >
-        <EditJob />
-      </CustomButtonDrawer>
       <DeleteWithConfirmButton color="primary" label="" />
     </Box>
   )
@@ -113,50 +89,47 @@ export const JobsList = () => {
   // const notify = useNotify()
   const theme = useTheme()
   return (
-    <Box>
+    <ListBase>
       <Title title="Jobs" />
       <Header />
+      <ListActions />
       <Grid container>
-        {/* <Grid container> */}
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          order={{ xs: 2, sm: 1 }}
-          sx={{
-            overflowX: 'auto', // Enable horizontal scrolling
-            whiteSpace: 'nowrap',
-            // maxWidth: '100vh'
-          }}
-        >
-          <List
-            className="MuiGrid-root MuiGrid-container"
-            title=" "
-            actions={<ListActions />}
-            exporter={false}
-            filters={JobsFilters}
-            // aside={<JobsAside />}
-            sx={{
-              '& .RaList-content': { boxShadow: 'none' },
+        <Grid item xs={12} sm={8} order={{ xs: 2, sm: 1 }}>
+          <MultiViewList
+            views={{
+              summary: <JobsSummaryPivot />,
             }}
           >
-            <MultiViewList
-              views={{
-                summary: (
-                  <>
-                    <JobsSummaryPivot />
-                  </>
-                ),
-              }}
-            >
+            <Card sx={{ maxWidth: '100vw' }}>
+              <Stack
+                sx={{
+                  flexDirection: 'row',
+                  background: `color-mix(in srgb, ${theme.palette.primary.main} 20%, white)`,
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    flex: 1,
+                    p: 2,
+                    // color: 'white',
+                    // background: theme.palette.primary.main,
+                    color: theme.palette.primary.main,
+                  }}
+                >
+                  All Jobs
+                </Typography>
+              </Stack>
+              <ListToolbar filters={JobsFilters} />
               <JobDatagrid />
-            </MultiViewList>
-          </List>
+              <Pagination />
+            </Card>
+          </MultiViewList>
         </Grid>
         <Grid item xs={12} sm={4} order={{ xs: 1, sm: 2 }}>
           <JobsAside />
         </Grid>
       </Grid>
-    </Box>
+    </ListBase>
   )
 }

@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import dayjs, { Dayjs, ManipulateType } from 'dayjs'
+import { jobStatuses } from './resource/jobs/jobsStatuses'
 
 function dayjsRange(start: Dayjs, end: Dayjs, unit: ManipulateType) {
   const range = []
@@ -43,7 +44,7 @@ function mockStats(count = 3) {
     running: faker.number.int({ min: 1, max: 24 }),
     errored: faker.number.int({ min: 1, max: 24 }),
     failed: faker.number.int({ min: 1, max: 24 }),
-    complete: faker.number.int({ min: 1, max: 24 }),
+    completed: faker.number.int({ min: 1, max: 24 }),
   }))
 }
 
@@ -59,8 +60,8 @@ function mockReportByType(count = 3) {
       running: faker.number.int({ min: 1, max: 24 }),
       errored: faker.number.int({ min: 1, max: 24 }),
       failed: faker.number.int({ min: 1, max: 24 }),
-      complete: faker.number.int({ min: 1, max: 24 })
-    }))
+      completed: faker.number.int({ min: 1, max: 24 }),
+    })),
   }
 }
 
@@ -76,23 +77,17 @@ function mockReportKPIs() {
         running: faker.number.int({ min: 1, max: workers }),
         errored: faker.number.int({ min: 1, max: 24 }),
         failed: faker.number.int({ min: 1, max: 24 }),
-        complete: faker.number.int({ min: 1, max: 24 }),
+        completed: faker.number.int({ min: 1, max: 24 }),
         workers: workers,
-        oldest_queued_at: faker.date.recent()
-      }
-    ]
+        oldest_queued_at: faker.date.recent(),
+      },
+    ],
   }
 }
 
 export function mockJobReports() {
-  return [
-    mockReportByPeriod(),
-    mockReportByType(),
-    mockReportKPIs(),
-  ]
+  return [mockReportByPeriod(), mockReportByType(), mockReportKPIs()]
 }
-
-const statusesMap = ['scheduled', 'queued', 'running', 'errored', 'failed', 'complete']
 
 // const rpmMockData = [
 //   ['Period', ...historyStatuses],
@@ -113,19 +108,25 @@ const statusesMap = ['scheduled', 'queued', 'running', 'errored', 'failed', 'com
 
 function mockReportByPeriod() {
   const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
-  return {
-      id: 'jobs_by_period',
-      data: dayjsRange(
-            dayjs(roundedNow).subtract(1, 'hour'),
-            dayjs(roundedNow),
-            'minute',
-          ).map((d: Dayjs) => {
-            const base = { period: d.toISOString() }
-            // @ts-ignore-line
-            const statuses = statusesMap.reduce((map, status) => (map[status] = faker.number.int({min:0, max:400}), map), {})
 
-            return {...base, ...statuses}
-          })
+  return {
+    id: 'jobs_by_period',
+    data: dayjsRange(
+      dayjs(roundedNow).subtract(1, 'hour'),
+      dayjs(roundedNow),
+      'minute',
+    ).map((d: Dayjs) => {
+      const base = { period: d.toISOString() }
+      // @ts-ignore-line
+      const statuses = Object.keys(jobStatuses).reduce(
+        (map, status) => (
+          (map[status] = faker.number.int({ min: 0, max: 400 })), map
+        ),
+        {},
+      )
+
+      return { ...base, ...statuses }
+    }),
   }
 }
 
@@ -159,14 +160,7 @@ export function mockJobs(count = 15) {
       'long-running',
     ]),
     priority: faker.helpers.arrayElement([1, 50, 100]),
-    status: faker.helpers.arrayElement([
-      'scheduled',
-      'queued',
-      'running',
-      'error',
-      'failed',
-      'complete',
-    ]),
+    status: faker.helpers.arrayElement(Object.keys(jobStatuses)),
 
     expired_at: faker.date.recent(),
 

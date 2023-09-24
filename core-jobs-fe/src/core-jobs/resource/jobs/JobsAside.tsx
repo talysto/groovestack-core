@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Stack, styled } from '@mui/material'
+import { Box, Paper, Stack, styled } from '@mui/material'
 
 import { RPMChart } from '../../views/RPMChart'
 import { UtilizationChart } from '../../views/UtilizationChart'
@@ -13,7 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export const JobsAside = () => {
   return (
-    <Box 
+    <Box
       // item
       // elevation={0}
       // xs={12}

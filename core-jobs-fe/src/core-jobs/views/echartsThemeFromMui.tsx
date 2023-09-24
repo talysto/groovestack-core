@@ -43,6 +43,13 @@ import { shadeColor } from './shadeColor'
 // const baseColor = "#3498db"; // You can change this to any other color
 // console.log(showShadedColors(baseColor));
 
+// function colorMixer(rgbA, rgbB, amountToMix){
+//   var r = colorChannelMixer(rgbA[0],rgbB[0],amountToMix);
+//   var g = colorChannelMixer(rgbA[1],rgbB[1],amountToMix);
+//   var b = colorChannelMixer(rgbA[2],rgbB[2],amountToMix);
+//   return "rgb("+r+","+g+","+b+")";
+// }
+
 export function echartsThemeFromMui(baseColor: string = '#3498db') {
   // const theme = useTheme();
 
@@ -53,16 +60,18 @@ export function echartsThemeFromMui(baseColor: string = '#3498db') {
 
     color: [
       baseColor,
+
+      // `color-mix(in srgb, ${baseColor} 80%, white)`,
+
       shadeColor(baseColor, 0.8),
       shadeColor(baseColor, 0.6),
       shadeColor(baseColor, 0.4),
       shadeColor(baseColor, 0.2),
+
       shadeColor(baseColor, 1.8),
       shadeColor(baseColor, 1.6),
       shadeColor(baseColor, 1.4),
       shadeColor(baseColor, 1.2),
-      shadeColor(baseColor, 0.4),
-      shadeColor(baseColor, 0.2),
 
       // baseColor[900],
       // baseColor[700],
