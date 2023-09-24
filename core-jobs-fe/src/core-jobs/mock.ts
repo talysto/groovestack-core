@@ -119,9 +119,11 @@ function mockReportByPeriod() {
       const base = { period: d.toISOString() }
       // @ts-ignore-line
       const statuses = Object.keys(jobStatuses).reduce(
-        (map, status) => (
-          (map[status] = faker.number.int({ min: 0, max: 400 })), map
-        ),
+        (map, status) =>
+          (
+            // @ts-ignore-line
+            (map[status] = faker.number.int({ min: 0, max: 400 })), map
+          ),
         {},
       )
 

@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 import {
@@ -18,7 +18,7 @@ const triggerDrawer: RowClickFunction = (props) => {
 
 export const JobDatagrid = () => {
   const theme = useTheme()
-  // const moreThanSmall = useMediaQuery(theme.breakpoints.up('sm'))
+  const moreThanSmall = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Datagrid
       // rowClick={triggerDrawer}
@@ -37,9 +37,8 @@ export const JobDatagrid = () => {
         )}
       />
 
-      <TextField source="queue" sortable={false} />
-      {/* {moreThanSmall && <NumberField source="priority" />} */}
-      <NumberField source="priority" />
+      {moreThanSmall && <TextField source="queue" sortable={false} />}
+      {moreThanSmall && <NumberField source="priority" />}
 
       <JobStatusField source="status" />
 

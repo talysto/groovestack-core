@@ -19,12 +19,13 @@ refreshInterval={30}
 transform={({ data }) => data}
 /> */
 
-const ListActions = () => (
-  <TopToolbar>
-    <RefreshButton />
-  </TopToolbar>
-)
+// const ListActions = () => (
+//   <TopToolbar>
+//     <RefreshButton />
+//   </TopToolbar>
+// )
 
+// TODO: this list gets filtered when the Jobs list is filtered (ie Errored)
 export const WorkersTable = () => {
   return (
     <InfiniteList
@@ -33,7 +34,8 @@ export const WorkersTable = () => {
           Workers
         </TypographyInput>,
       ]}
-      actions={<ListActions />}
+      // actions={<ListActions />}
+      // filter={{}}
       exporter={false}
       resource="JobLocker"
     >

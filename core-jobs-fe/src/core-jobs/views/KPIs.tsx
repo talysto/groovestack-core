@@ -47,7 +47,7 @@ export const MetricPopover = ({
   )
 }
 
-const BasicPopover = () => {
+export const ButtonPopover = ({label, children}: {label: string, children: any}) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -63,8 +63,8 @@ const BasicPopover = () => {
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-        Workers
+      <Button aria-describedby={id} onClick={handleClick}>
+        {label}
       </Button>
       <Popover
         id={id}
@@ -78,7 +78,7 @@ const BasicPopover = () => {
       >
         {/* <Typography sx={{ p: 2 }}>The content of the Popover.</Typography> */}
         <Paper sx={{ p: 3 }}>
-          <WorkersTable />
+          {children}
         </Paper>
       </Popover>
     </div>

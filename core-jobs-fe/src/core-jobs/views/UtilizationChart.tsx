@@ -1,10 +1,8 @@
 import WorkerIcon from '@mui/icons-material/SettingsSuggest'
 import {
   Box,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
+  Button,
+  ButtonGroup,
   Stack,
   useTheme,
 } from '@mui/material'
@@ -14,6 +12,8 @@ import { random } from 'lodash'
 import { WithListContext } from 'react-admin'
 import { JobReportChart } from './JobReportChart'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
+import { ButtonPopover } from './KPIs'
+import { WorkersTable } from '../resource/workers/WorkersTable'
 
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
 // echarts.registerTheme('custom', echartsThemeFromMui())
@@ -61,38 +61,12 @@ export const UtilizationChart = () => {
               </Box>
 
               <Box sx={{ flexBasis: '60%' }}>
-                <List disablePadding>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="show">
-                        <WorkerIcon fontSize="small" />
-                      </IconButton>
-                    }
-                  >
-                    {/* <ListItemAvatar>
-                     <Typography variant="h6">{workers}</Typography>
-                  </ListItemAvatar> */}
-                    <ListItemText
-                      primary={`${workers} Workers`}
-                      // secondary="Workers"
-                    />
-                  </ListItem>
-                  <ListItem
-                  // secondaryAction={
-                  //   <IconButton edge="end" aria-label="show">
-                  //      <WorkerIcon />
-                  //   </IconButton>
-                  // }
-                  >
-                    {/* <ListItemAvatar>
-                     <Typography variant="h6">{running}</Typography>
-                  </ListItemAvatar> */}
-                    <ListItemText
-                      primary={`${running} Running Jobs`}
-                      // secondary="Running Jobs"
-                    />
-                  </ListItem>
-                </List>
+                <ButtonGroup variant='text'  size="large" aria-label="large button group">
+                  <ButtonPopover label={`${workers} Workers`}>
+                    <WorkersTable />
+                  </ButtonPopover>
+                  <Button disabled>{`${running} Running Jobs`}</Button>
+                </ButtonGroup>
                 {/* <Stack spacing={2}>
                   <Metric label="Running" value={running} units="Jobs" />
                   <MetricPopover
