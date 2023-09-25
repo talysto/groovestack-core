@@ -4902,6 +4902,7 @@ packages:
 
   /@react-admin/ra-realtime@4.5.1(lodash@4.17.21)(react-admin@4.13.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-eEikBlpNbRWcipg5gkIw4pEnBBGFIMVnQa4Erop3b0rr5n+s8UVt8LPR+Dm0ORSvfF02rjRM/v05soPVOtVvqQ==, tarball: https://registry.marmelab.com/download/@react-admin/ra-realtime/4.5.1/fb72efedc16a21c683d9447444ba2ede545baea6}
+    requiresBuild: true
     peerDependencies:
       lodash: ^4.17.20
       react: ^16.9.0 || ^17.0.0 || ^18.0.0
@@ -9214,6 +9215,7 @@ packages:
 
   /event-source-polyfill@1.0.31:
     resolution: {integrity: sha512-4IJSItgS/41IxN5UVAVuAyczwZF7ZIEsM1XAoUzIHA6A+xzusEZUutdXz2Nr+MQPLxfTiCvqE79/C8HT8fKFvA==}
+    requiresBuild: true
     dev: false
 
   /eventemitter3@4.0.7:
@@ -12783,6 +12785,7 @@ packages:
     resolution: {integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==}
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+    requiresBuild: true
     dev: false
 
   /queue-microtask@1.2.3:
@@ -15720,6 +15723,7 @@ packages:
 
   /whatwg-fetch@3.6.19:
     resolution: {integrity: sha512-d67JP4dHSbm2TrpFj8AbO8DnL1JXL5J9u0Kq2xW6d0TFDbCA3Muhdt8orXC22utleTVj7Prqt82baN6RBvnEgw==}
+    requiresBuild: true
     dev: false
 
   /whatwg-url@5.0.0:

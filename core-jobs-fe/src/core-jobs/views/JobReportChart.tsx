@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material'
-import { ListBase } from 'react-admin'
-import { ListLive } from '@react-admin/ra-realtime'
+import { ListBase, useDataProvider } from 'react-admin'
+
+const ReactAdminRealtime = await import('@react-admin/ra-realtime')
 
 export const JobReportChart = ({
   title,
@@ -11,8 +12,16 @@ export const JobReportChart = ({
   filter: any
   children: any
 }) => {
+
+  const dataProvider = useDataProvider()
+  // debugger
+
+  // console.log('has subscribe', typeof dataProvider['subscribe'] === 'function')
+  // const ListComponent =  (typeof dataProvider['subscribe'] === 'function') ? ReactAdminRealtime.ListLive : ListBase
+  const ListComponent = ListBase
+
   return (
-    <ListLive
+    <ListComponent
     // <ListBase
       resource="JobReport"
       filter={filter}
@@ -24,6 +33,6 @@ export const JobReportChart = ({
         {title && <Typography variant="h6">{title}</Typography>}
         {children}
       </Stack>
-    </ListLive>
+    </ListComponent>
   )
 }

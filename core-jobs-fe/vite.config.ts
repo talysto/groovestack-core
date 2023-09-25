@@ -21,6 +21,7 @@ export default defineConfig({
     // visualizer({ open: false }),
   ],
   build: {
+    target: 'esnext',
     sourcemap: true,
     lib: {
       entry: {
