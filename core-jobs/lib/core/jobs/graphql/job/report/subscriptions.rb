@@ -6,53 +6,64 @@ module Core
           module Subscriptions
             extend ActiveSupport::Concern
 
-            class Update < ::Core::Base::GraphQL::BaseSubscription
-              argument :report_name, String, required: true
+            class Instance < ::Core::Base::GraphQL::BaseSubscription
+              argument :id, String, required: true
 
-              type ::Core::Jobs::GraphQL::Job::Report::Type, null: false
+              # type ::Core::Jobs::GraphQL::Job::Report::Type, null: false
               # field :payload, ::GraphQL::Types::JSON, null: false
+              field :topic, String, null: false
+              field :event, ::GraphQL::Types::JSON, null: false
 
-              QUERY_STRING = <<-GRAPHQL
-                query all_job_reports($filter: JobReportFilter) {
-                  all_job_reports(filter: $filter){
-                    id
-                    data
-                  }
-                }
-              GRAPHQL
+              # QUERY_STRING = <<-GRAPHQL
+              #   query JobReport($id: String!, $meta: JobReportBuildParamsType) {
+              #     JobReport(id: $id, meta:$meta){
+              #       id
+              #       data
+              #     }
+              #   }
+              # GRAPHQL
 
-              def authorized?(report_name:)
+              def authorized?(id:)
                 return true if context[:current_user].admin?
 
                 raise ::GraphQL::ExecutionError, 'only admin can subscript to job reports'
               end
 
-              def subscribe(report_name:)
-                payload(report_name: report_name)
+              def subscribe(id:)
+                # payload(id: id)
+                # super # no response
+                payload(id: id, object: { crud_action: :subscribe, record: nil })
               end
 
-              def update(report_name:)
-                payload(report_name: report_name)
+              def update(id:)
+                payload(id: id, object: object)
               end
 
               # HELPER METHODS
 
-              def generate_report(report_name:)
-                variables = {"filter": { "report_name": report_name }}
+              # def generate_report(id:)
+              #   variables = { meta: { params: { "filter": { "report_name": id } } } }
 
                 
-                context[:schema].execute self.class::QUERY_STRING, variables: variables
-              end
+              #   context[:schema].execute self.class::QUERY_STRING, variables: variables
+              # end
 
-              def payload(report_name:)
-                result = generate_report(report_name: report_name)
+              def payload(id:, object:)
+                # result = generate_report(id: id)
 
-                result.to_h["data"]["all_job_reports"].first
+                # result.to_h["data"]["JobReport"].first
+                {
+                  topic: "resource/JobReport/id",
+                  event: {
+                    type: object[:crud_action],
+                    payload: { ids: [id], record: object[:record]},
+                  },
+                }
               end
             end
 
             included do
-              field :jobs_reports_update, subscription: ::Core::Jobs::GraphQL::Job::Report::Subscriptions::Update
+              field :JobReport_instance, subscription: ::Core::Jobs::GraphQL::Job::Report::Subscriptions::Instance
             end
           end
         end
@@ -60,4 +71,3 @@ module Core
     end
   end
 end
-          
