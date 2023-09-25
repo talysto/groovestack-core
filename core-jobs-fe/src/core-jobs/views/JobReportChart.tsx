@@ -1,5 +1,6 @@
 import { Stack, Typography } from '@mui/material'
 import { ListBase } from 'react-admin'
+import { ListLive } from '@react-admin/ra-realtime'
 
 export const JobReportChart = ({
   title,
@@ -11,7 +12,8 @@ export const JobReportChart = ({
   children: any
 }) => {
   return (
-    <ListBase
+    <ListLive
+    // <ListBase
       resource="JobReport"
       filter={filter}
       exporter={false}
@@ -22,6 +24,6 @@ export const JobReportChart = ({
         {title && <Typography variant="h6">{title}</Typography>}
         {children}
       </Stack>
-    </ListBase>
+    </ListLive>
   )
 }

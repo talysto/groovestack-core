@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@moonlight-labs/core-base-fe": "workspace:^",
+    "@react-admin/ra-realtime": "^4.5.1",
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
     "query-string": "^8.1.0",
