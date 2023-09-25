@@ -223,12 +223,18 @@ importers:
       '@types/prop-types':
         specifier: ^15.7.6
         version: 15.7.6
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
       echarts:
         specifier: ^5.4.3
         version: 5.4.3
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.2(echarts@5.4.3)(react@18.2.0)
+      inflection:
+        specifier: ^3.0.0
+        version: 3.0.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -10397,6 +10403,11 @@ packages:
   /inflection@1.12.0:
     resolution: {integrity: sha512-lRy4DxuIFWXlJU7ed8UiTJOSTqStqYdEb4CEbtXfNbkdj3nH1L+reUWiE10VWcJS2yR7tge8Z74pJjtBjNwj0w==}
     engines: {'0': node >= 0.4.0}
+
+  /inflection@3.0.0:
+    resolution: {integrity: sha512-1zEJU1l19SgJlmwqsEyFTbScw/tkMHFenUo//Y0i+XEP83gDFdMvPizAD/WGcE+l1ku12PcTVHQhO6g5E0UCMw==}
+    engines: {node: '>=18.0.0'}
+    dev: false
 
   /inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}

@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 import { FieldProps } from 'react-admin'
 import { UpdateMenuItem } from './UpdateMenuItem'
+import { DeleteMenuItem } from './DeleteMenuItem'
 
 // export const JobActions = ({ label = 'Actions' }: { label?: string; }) => {
 //   const record = useRecordContext();
@@ -95,9 +96,7 @@ export const JobActions = (props: FieldProps) => {
           View
         </MenuItem>
         <UpdateMenuItem label="Retry" data={{status: 'retry!'}} onClick={handleClose}/>
-        <MenuItem key={'delete'} onClick={deleteJob}>
-          Delete
-        </MenuItem>
+        <DeleteMenuItem title='test' label="Delete" onClick={handleClose}/>
       </Menu>
     </div>
   )
