@@ -15,18 +15,34 @@ module Core
               react_admin_resource :job_reports, graphql_type: 'Core::Jobs::GraphQL::Job::Report::Type',
                                                  graphql_filter: 'Core::Jobs::GraphQL::Job::Report::Filter',
                                                  except: [:find]
+
+              field :JobReport, ::Core::Jobs::GraphQL::Job::Report::Type, null: true, resolver_method: :show_job_report, description: 'Build job report' do
+                argument :id, String, required: true
+                argument :meta, ::Core::Jobs::GraphQL::Job::Report::BuildParamsType, required: false
+              end
+            end
+    
+            def show_job_report(id:, meta: nil)
+              filter = meta&.dig(:params, :filter)
+
+              return jobs_kpis if id == 'jobs_kpis'
+              return jobs_by_period(filter) if id == 'jobs_by_period'
+              return jobs_by_type if id == 'jobs_by_type'
+              return job_stats if id == 'job_stats'
+
+              raise 'unrecognized job report_name'
             end
 
             def job_reports_scope(_sort_field: nil, _sort_order: nil, filter: {})
-              return [jobs_kpis(filter)] if filter.report_name == 'jobs_kpis'
+              return [jobs_kpis] if filter.report_name == 'jobs_kpis'
               return [jobs_by_period(filter)] if filter.report_name == 'jobs_by_period'
-              return [jobs_by_type(filter)] if filter.report_name == 'jobs_by_type'
+              return [jobs_by_type] if filter.report_name == 'jobs_by_type'
               return [job_stats] if filter.report_name == 'job_stats'
 
               raise 'unrecognized job report_name'
             end
 
-            def jobs_kpis(filter)
+            def jobs_kpis
               sql = <<-SQL.squish
                 SELECT
                   count(*) FILTER(where status='scheduled') as scheduled
@@ -104,7 +120,7 @@ module Core
               }
             end
 
-            def jobs_by_type(filter)
+            def jobs_by_type
               sql = <<-SQL.squish
                 select 
                   job_class   
