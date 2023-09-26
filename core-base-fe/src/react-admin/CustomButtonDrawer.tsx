@@ -10,7 +10,7 @@ import {
   DrawerProps,
   IconButton,
 } from '@mui/material'
-import React, { JSXElementConstructor, ReactElement, useState } from 'react'
+import { JSXElementConstructor, ReactElement, cloneElement, useState } from 'react'
 import {
   Button,
   ButtonProps,
@@ -39,7 +39,7 @@ export type ButtonDrawerProps = {
   footer?: React.ReactNode
   label?: string
   icon?: React.ReactElement
-  onClickableComponentClick?: () => void ,
+  onClickableComponentClick?: () => void
   clickableComponent?: ReactElement<
     { onClick: () => void },
     string | JSXElementConstructor<any>
@@ -91,15 +91,26 @@ export const CustomButtonDrawer = ({
   const [open, setOpen] = useState(false)
 
   const closeDrawer = () => setOpen(false)
-  const openDrawer = () => { setOpen(true) }
+  const openDrawer = () => {
+    setOpen(true)
+  }
+
+  const clickHandler = () => {
+      // if (typeof onClickableComponentClick === 'function') {
+      //   onClickableComponentClick()
+      // }
+      setTimeout(() => openDrawer())
+      setTimeout(() => clickableComponent?.props?.onClick())
+      // event.stopPropagation()
+      
+  }
 
   return (
     <>
-      {React.cloneElement({ ...clickableComponent }, { onClick: () => {
-            // if (typeof onClickableComponentClick === 'function') {
-            //   onClickableComponentClick(e)
-            // }
-        openDrawer() } })}
+      {cloneElement(
+        { ...clickableComponent },
+        { onClick: clickHandler},
+      )}
       <CustomDrawer
         mode={mode}
         open={open}

@@ -1,6 +1,6 @@
 import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { ListItem } from '@mui/material'
+import { MenuItem } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import { useState } from 'react'
@@ -104,7 +104,9 @@ export const JobActions = (props: FieldProps) => {
           mode="edit"
           // onClickableComponentClick={handleClose}
           drawerWidth={DrawerWidth.Medium}
-          clickableComponent={<ListItem>View</ListItem>}
+          clickableComponent={<MenuItem 
+            onClick={handleClose}
+            >View</MenuItem>}
         >
           <EditJob />
         </CustomButtonDrawer>
