@@ -6,6 +6,7 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
+// TLA Review
 export default defineConfig({
   plugins: [
     dts({
@@ -18,10 +19,9 @@ export default defineConfig({
       },
     }),
     react(),
-    // visualizer({ open: false }),
+    visualizer({ open: true }),
   ],
   build: {
-    target: 'esnext',
     sourcemap: true,
     lib: {
       entry: {

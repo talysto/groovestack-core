@@ -2,7 +2,11 @@ import { JSXElementConstructor, ReactElement, cloneElement } from 'react'
 import { ShowProps, useDataProvider, useShowController } from 'react-admin'
 
 // import { ShowLive } from '@react-admin/ra-realtime'
-const ReactAdminRealtime = await import('@react-admin/ra-realtime')
+// const ReactAdminRealtime = await import('@react-admin/ra-realtime')
+
+// ( async function() {
+import  {useSubscribeToRecord} from '@react-admin/ra-realtime'
+// })()
 
 // export const JobReportChart = ({
 //   title,
@@ -54,7 +58,7 @@ export const JobReportShow = (
   }
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  ReactAdminRealtime.useSubscribeToRecord(
+  useSubscribeToRecord(
     handleEventReceived,
     'JobReport',
     props.id,
