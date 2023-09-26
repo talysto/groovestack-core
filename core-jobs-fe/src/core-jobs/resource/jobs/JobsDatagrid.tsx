@@ -44,15 +44,6 @@ export const JobDatagrid = () => {
       <JobStatusField source="status" />
 
       <TimeAgoField label="Scheduled" source="run_at" />
-      <CustomButtonDrawer
-        label="Edit"
-        drawerProps={{ title: 'Edit Jobs' }}
-        // sx={{ display: 'inline-flex' }}
-        mode="edit"
-        drawerWidth={DrawerWidth.Medium}
-      >
-        <EditJob />
-      </CustomButtonDrawer>
       <JobActions label="Actions" />
       {/* <CustomButtonDrawer
         label=" "

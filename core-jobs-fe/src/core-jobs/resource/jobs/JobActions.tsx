@@ -1,6 +1,6 @@
 import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { MenuItem } from '@mui/material'
+import { Box, MenuItem } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import { useState } from 'react'
@@ -8,6 +8,7 @@ import { FieldProps } from 'react-admin'
 import { DeleteMenuItem } from './DeleteMenuItem'
 import { UpdateMenuItem } from './UpdateMenuItem'
 import { EditJob } from './edit'
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 // export const JobActions = ({ label = 'Actions' }: { label?: string; }) => {
 //   const record = useRecordContext();
@@ -68,7 +69,7 @@ export const JobActions = (props: FieldProps) => {
   }
 
   return (
-    <div>
+    <Box display='flex'>
       <IconButton
         aria-label="more"
         id="long-button"
@@ -97,7 +98,7 @@ export const JobActions = (props: FieldProps) => {
         {/* <MenuItem key={'view'} onClick={viewJob}>
           View
         </MenuItem> */}
-        <CustomButtonDrawer
+        {/* <CustomButtonDrawer
           label=" "
           drawerProps={{ title: 'Edit Jobs' }}
           // sx={{ display: 'inline-flex' }}
@@ -109,14 +110,24 @@ export const JobActions = (props: FieldProps) => {
             >View</MenuItem>}
         >
           <EditJob />
-        </CustomButtonDrawer>
+        </CustomButtonDrawer> */}
         <UpdateMenuItem
-          label="Retry"
+          label="Retry" 
           data={{ status: 'retry!' }}
           onClick={handleClose}
         />
         <DeleteMenuItem title="test" label="Delete" onClick={handleClose} />
       </Menu>
-    </div>
+      <CustomButtonDrawer
+        label="Edit"
+        drawerProps={{ title: 'Edit Jobs' }}
+        icon={<VisibilityOutlinedIcon/>}
+        // sx={{ display: 'inline-flex' }}
+        mode="edit"
+        drawerWidth={DrawerWidth.Medium}
+      >
+        <EditJob />
+      </CustomButtonDrawer>
+    </Box>
   )
 }
