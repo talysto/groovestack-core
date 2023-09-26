@@ -1,5 +1,13 @@
 # @moonlight-labs/core-webhooks-fe
 
+## 0.2.10
+
+### Patch Changes
+
+- Core Jobs and Notifications focus
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.9
+
 ## 0.2.9
 
 ### Patch Changes
