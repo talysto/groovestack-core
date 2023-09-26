@@ -687,7 +687,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ mode, icon, drawerProps, createProps, editProps, buttonProps, children, drawerWidth, label, footer, }: "
+              "text": "({ mode, icon, drawerProps, createProps, editProps, onClickableComponentClick, clickableComponent, children, drawerWidth, label, footer, }: "
             },
             {
               "kind": "Reference",
