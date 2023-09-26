@@ -2,10 +2,10 @@ import { Box, Button, ButtonGroup, Stack, useTheme } from '@mui/material'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import { random } from 'lodash'
-import { WithListContext } from 'react-admin'
+import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { WorkersTable } from '../resource/workers/WorkersTable'
 import { ButtonPopover } from './ButtonPopover'
-import { JobReportChart } from './JobReportChart'
+import { JobReportShow } from './JobReportChart'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
 
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
@@ -19,69 +19,60 @@ export const UtilizationChart = () => {
   )
 
   return (
-    <JobReportChart title="Utilization" filter={{ id: 'jobs_kpis' }}>
-      <WithListContext
-        render={({ data }) => {
-          if (!data) return <div>No data</div>
+    <JobReportShow id="jobs_kpis">
+      <SimpleShowLayout>
+        <FunctionField
+          render={(data: RaRecord) => {
+            if (!data) return <div>No data</div>
 
-          const record = data[0].data[0]
-          // console.debug('jobs_kpis', record)
+            const record = data.data[0]
 
-          const workers = record.workers
-          const running = record.running
-          const utilization = Math.round((100.0 * running) / workers)
+            const workers = record.workers
+            const running = record.running
+            const utilization = Math.round((100.0 * running) / workers)
 
-          const config = utilizationOptions
-          config.series[0].data[0].value = utilization
+            const config = utilizationOptions
+            config.series[0].data[0].value = utilization
 
-          return (
-            <Stack
-              direction="row"
-              spacing={2}
-              justifyContent="space-around"
-              alignItems="stretch"
-            >
-              <Box sx={{ flexBasis: '40%' }}>
-                <ReactECharts
-                  theme="custom"
-                  style={{
-                    // flexBasis: '100%',
-                    height: '100%',
-                    width: '100%',
-                  }}
-                  option={utilizationOptions}
-                />
-              </Box>
+            return (
+              <Stack
+                direction="row"
+                spacing={2}
+                justifyContent="space-around"
+                alignItems="stretch"
+              >
+                <Box sx={{ flexBasis: '40%' }}>
+                  <ReactECharts
+                    theme="custom"
+                    style={{
+                      // flexBasis: '100%',
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    option={utilizationOptions}
+                  />
+                </Box>
 
-              <Box sx={{ flexBasis: '60%' }}>
-                <ButtonGroup
-                  variant="text"
-                  size="large"
-                  aria-label="large button group"
-                >
-                  <ButtonPopover label={`${workers} Workers`}>
-                    <WorkersTable />
-                  </ButtonPopover>
-                  <Button disabled>{`${running} Running Jobs`}</Button>
-                </ButtonGroup>
-                {/* <Stack spacing={2}>
-                  <Metric label="Running" value={running} units="Jobs" />
-                  <MetricPopover
-                    metricProps={{ label: 'Workers', value: workers }}
+                <Box sx={{ flexBasis: '60%' }}>
+                  <ButtonGroup
+                    variant="text"
+                    size="large"
+                    aria-label="large button group"
                   >
-                    <Paper sx={{ p: 3 }}>
+                    <ButtonPopover label={`${workers} Workers`}>
                       <WorkersTable />
-                    </Paper>
-                  </MetricPopover>
-                </Stack> */}
-              </Box>
+                    </ButtonPopover>
+                    <Button disabled>{`${running} Running Jobs`}</Button>
+                  </ButtonGroup>
+                </Box>
 
-              {/* <KPIs /> */}
-            </Stack>
-          )
-        }}
-      />
-    </JobReportChart>
+                {/* <KPIs /> */}
+              </Stack>
+            )
+          }}
+        />
+      </SimpleShowLayout>
+    </JobReportShow>
   )
 }
 

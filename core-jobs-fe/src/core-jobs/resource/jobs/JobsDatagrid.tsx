@@ -1,6 +1,6 @@
-import { ListItem, useMediaQuery, useTheme } from '@mui/material'
+import { useMediaQuery, useTheme } from '@mui/material'
 
-import { CustomButtonDrawer, DrawerWidth, TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 import {
   Datagrid,
   FunctionField,
@@ -10,7 +10,6 @@ import {
 } from 'react-admin'
 import { JobStatusField } from '../../react-admin/fields/JobStatusField'
 import { JobActions } from './JobActions'
-import { EditJob } from './edit'
 
 const triggerDrawer: RowClickFunction = (props) => {
   alert(`TODO: open the drawer.`)
@@ -30,7 +29,7 @@ export const JobDatagrid = () => {
         label="Job"
         render={(record: any) => (
           <div>
-            <div>{record.type}</div>
+            <div>{record.sub_class}</div>
             <small style={{ marginRight: 5 }} title={record.id}>
               {record.id.substring(0, 6)}
             </small>
@@ -55,7 +54,6 @@ export const JobDatagrid = () => {
       >
         <EditJob />
       </CustomButtonDrawer> */}
-
     </Datagrid>
   )
 }

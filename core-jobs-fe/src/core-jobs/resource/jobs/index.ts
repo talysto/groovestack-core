@@ -10,5 +10,5 @@ export class Jobs {
   static Edit = EditJob
   static Icon = PlaylistAddCheckIcon
   static resourceRepresentation = (job: RaRecord) =>
-    `${job.type} [${job.status}]`
+    `${job.job_class} ${job.sub_class} [${job.status}]`
 }

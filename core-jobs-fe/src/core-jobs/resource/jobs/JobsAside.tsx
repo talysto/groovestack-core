@@ -31,10 +31,10 @@ export const JobsAside = () => {
     >
       <Stack spacing={3}>
         <Item sx={{ height: 160 }} elevation={0}>
-          {/* <RPMChart /> */}
+          <RPMChart />
         </Item>
         <Item sx={{ height: 200 }} elevation={0}>
-          {/* <UtilizationChart /> */}
+          <UtilizationChart />
         </Item>
       </Stack>
     </Box>

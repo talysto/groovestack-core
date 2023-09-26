@@ -1,51 +1,41 @@
-import { Stack, Typography } from '@mui/material'
-import { JSXElementConstructor, ReactElement, cloneElement, useState } from 'react'
-import {
-  ListBase,
-  RecordContextProvider,
-  Show,
-  ShowBase,
-  ShowProps,
-  useDataProvider,
-  useRefresh,
-  useShowController,
-} from 'react-admin'
+import { JSXElementConstructor, ReactElement, cloneElement } from 'react'
+import { ShowProps, useDataProvider, useShowController } from 'react-admin'
 
 // import { ShowLive } from '@react-admin/ra-realtime'
 const ReactAdminRealtime = await import('@react-admin/ra-realtime')
 
-export const JobReportChart = ({
-  title,
-  filter,
-  children,
-}: {
-  title: string
-  filter: any
-  children: any
-}) => {
-  // const dataProvider = useDataProvider()
-  // debugger
+// export const JobReportChart = ({
+//   title,
+//   filter,
+//   children,
+// }: {
+//   title: string
+//   filter: any
+//   children: any
+// }) => {
+//   // const dataProvider = useDataProvider()
+//   // debugger
 
-  // console.log('has subscribe', typeof dataProvider['subscribe'] === 'function')
-  // const ListComponent =  (typeof dataProvider['subscribe'] === 'function') ? ReactAdminRealtime.ListLive : ListBase
-  const ListComponent = ListBase
+//   // console.log('has subscribe', typeof dataProvider['subscribe'] === 'function')
+//   // const ListComponent =  (typeof dataProvider['subscribe'] === 'function') ? ReactAdminRealtime.ListLive : ListBase
+//   const ListComponent = ListBase
 
-  return (
-    <ListComponent
-      // <ListBase
-      resource="JobReport"
-      filter={filter}
-      exporter={false}
-      disableSyncWithLocation
-      perPage={100}
-    >
-      <Stack sx={{ textAlign: 'left' }}>
-        {title && <Typography variant="h6">{title}</Typography>}
-        {children}
-      </Stack>
-    </ListComponent>
-  )
-}
+//   return (
+//     <ListComponent
+//       // <ListBase
+//       resource="JobReport"
+//       filter={filter}
+//       exporter={false}
+//       disableSyncWithLocation
+//       perPage={100}
+//     >
+//       <Stack sx={{ textAlign: 'left' }}>
+//         {title && <Typography variant="h6">{title}</Typography>}
+//         {children}
+//       </Stack>
+//     </ListComponent>
+//   )
+// }
 
 export const JobReportShow = (
   props: ShowProps & {
@@ -53,7 +43,10 @@ export const JobReportShow = (
   },
 ) => {
   const dataProvider = useDataProvider()
-  const { refetch, record } = useShowController({ resource: 'JobReport', id: props.id })
+  const { refetch, record } = useShowController({
+    resource: 'JobReport',
+    id: props.id,
+  })
 
   const handleEventReceived = (e: any) => {
     console.log('event received', e)
@@ -61,12 +54,12 @@ export const JobReportShow = (
   }
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  ReactAdminRealtime.useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
-
-  return (
-    <>
-      {cloneElement(props.children, { record })}
-    </>
+  ReactAdminRealtime.useSubscribeToRecord(
+    handleEventReceived,
+    'JobReport',
+    props.id,
+    { enabled },
   )
-}
 
+  return <>{cloneElement(props.children, { record })}</>
+}

@@ -1,8 +1,8 @@
 import { useTheme } from '@mui/material'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
-import { WithListContext } from 'react-admin'
-import { JobReportChart } from './JobReportChart'
+import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
+import { JobReportShow } from './JobReportChart'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
 
 // const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
@@ -26,52 +26,52 @@ export const RPMChart = () => {
   )
 
   return (
-    <JobReportChart
+    <JobReportShow
       title="Performance"
-      filter={{ id: 'jobs_by_period' }}
+      id="jobs_by_period"
       // filter={{}}
     >
-      <WithListContext
-        render={({ data }) => {
-          if (!data) return <div>No data</div>
+      <SimpleShowLayout>
+        <FunctionField
+          render={(data: RaRecord) => {
+            if (!data) return <div>No data</div>
 
-          console.debug('rpm_data', data)
+            const config = chartOptions
+            config.dataset.source = data.data
 
-          const config = chartOptions
-          config.dataset.source = data[0].data
+            // const processedData = data[0]?.data[0]
+            // console.debug('rpm', processedData)
 
-          const processedData = data[0]?.data[0]
-          console.debug('rpm', processedData)
+            // dimensions: ['product', '2015', '2016', '2017'],
+            // source: [
+            //   { product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7 },
+            //   { product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1 },
+            //   { product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5 },
+            //   { product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1 }
+            // ]
 
-          // dimensions: ['product', '2015', '2016', '2017'],
-          // source: [
-          //   { product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7 },
-          //   { product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1 },
-          //   { product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5 },
-          //   { product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1 }
-          // ]
+            //.map((row: any) => {
+            // const processedData = rpmMockData.map((row: any) => [
+            //   dayjs(row[0]).format('h:mm'),
+            //   ...row.slice(1),
+            // ])
 
-          //.map((row: any) => {
-          // const processedData = rpmMockData.map((row: any) => [
-          //   dayjs(row[0]).format('h:mm'),
-          //   ...row.slice(1),
-          // ])
-
-          return (
-            <ReactECharts
-              theme="custom"
-              style={{
-                height: '100%',
-                width: '100%',
-              }}
-              option={config}
-              notMerge={true}
-              lazyUpdate={true}
-            />
-          )
-        }}
-      />
-    </JobReportChart>
+            return (
+              <ReactECharts
+                theme="custom"
+                style={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                option={config}
+                notMerge={true}
+                lazyUpdate={true}
+              />
+            )
+          }}
+        />
+      </SimpleShowLayout>
+    </JobReportShow>
   )
 }
 

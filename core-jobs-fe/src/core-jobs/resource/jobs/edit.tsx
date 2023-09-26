@@ -13,7 +13,8 @@ export const EditJob = (props: any) => {
   return (
     <Box>
       <SimpleShowLayout>
-        <TextField source="type" label="Job" />
+        <TextField source="job_class" />
+        <TextField source="sub_class" />
         <TextField source="id" noWrap {...clickToCopy} />
         <JobStatusField />
         <ErrorPanelField />

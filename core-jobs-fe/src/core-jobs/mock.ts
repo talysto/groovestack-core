@@ -139,15 +139,15 @@ export function mockJobs(count = 15) {
     created_at: faker.date.recent(),
     updated_at: faker.date.recent(),
 
+    job_class: faker.helpers.arrayElement([
+      'ActiveJob::QueueAdapters::QueAdapter::JobWrapper',
+    ]),
     // Creation attributes
-    type: faker.helpers.arrayElement([
+    sub_class: faker.helpers.arrayElement([
       'Mailer::Welcome',
       'Notify::Slack',
       'Reports::EndOfMonth',
       'Payment:ProcessRefund',
-    ]),
-    job_class: faker.helpers.arrayElement([
-      'ActiveJob::QueueAdapters::QueAdapter::JobWrapper',
     ]),
 
     // arguments: {},
