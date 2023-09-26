@@ -10,14 +10,14 @@ import {
   DrawerProps,
   IconButton,
 } from '@mui/material'
-import { useState } from 'react'
+import React, { JSXElementConstructor, ReactElement, useState } from 'react'
 import {
   Button,
   ButtonProps,
   Create,
   CreateProps,
-  EditProps,
   Edit,
+  EditProps,
   RecordContextProvider,
   useEditContext,
   useNotify,
@@ -38,7 +38,19 @@ export type ButtonDrawerProps = {
   drawerWidth?: DrawerWidth
   footer?: React.ReactNode
   label?: string
-  icon?: React.ReactElement;
+  icon?: React.ReactElement
+  onClickableComponentClick?: () => void ,
+  clickableComponent?: ReactElement<
+    { onClick: () => void },
+    string | JSXElementConstructor<any>
+  >
+}
+
+export enum DrawerWidth {
+  // ExtraSmall
+  Small = '30%',
+  Medium = '50%',
+  Large = '80%',
 }
 
 export type CustomDrawerProps = {
@@ -54,20 +66,23 @@ export type CustomDrawerProps = {
   footer?: React.ReactNode
 }
 
-export enum DrawerWidth {
-  // ExtraSmall
-  Small = '30%',
-  Medium = '50%',
-  Large = '80%',
-}
-
 export const CustomButtonDrawer = ({
   mode = 'static',
   icon = <EditOutlinedIcon />,
   drawerProps,
   createProps,
   editProps,
-  buttonProps,
+  onClickableComponentClick,
+  clickableComponent = (
+    <Button
+      startIcon={icon}
+      label="Edit"
+      // onClick={openDrawer}
+      // {...buttonProps}
+    >
+      {icon}
+    </Button>
+  ),
   children,
   drawerWidth = DrawerWidth.Small,
   label,
@@ -76,17 +91,15 @@ export const CustomButtonDrawer = ({
   const [open, setOpen] = useState(false)
 
   const closeDrawer = () => setOpen(false)
-  const openDrawer = () => setOpen(true)
+  const openDrawer = () => { setOpen(true) }
 
   return (
     <>
-      <Button
-        // startIcon={icon}
-        label={label || 'Edit'}
-        onClick={openDrawer}
-        {...buttonProps}
-        //TODO turn off label without changing name? maybe drop in MUI button?
-      >{icon}</Button>
+      {React.cloneElement({ ...clickableComponent }, { onClick: () => {
+            // if (typeof onClickableComponentClick === 'function') {
+            //   onClickableComponentClick(e)
+            // }
+        openDrawer() } })}
       <CustomDrawer
         mode={mode}
         open={open}
@@ -212,7 +225,6 @@ const CustomDrawer = ({
             sx={{ '& .RaEdit-noActions': { mt: '3px' } }}
             actions={false}
             {...editProps}
-            
           >
             {children}
           </Edit>

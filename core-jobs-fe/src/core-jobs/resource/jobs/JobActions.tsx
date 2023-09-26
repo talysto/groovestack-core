@@ -1,11 +1,13 @@
+import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { ListItem } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 import { FieldProps } from 'react-admin'
 import { DeleteMenuItem } from './DeleteMenuItem'
 import { UpdateMenuItem } from './UpdateMenuItem'
+import { EditJob } from './edit'
 
 // export const JobActions = ({ label = 'Actions' }: { label?: string; }) => {
 //   const record = useRecordContext();
@@ -92,9 +94,20 @@ export const JobActions = (props: FieldProps) => {
           },
         }}
       >
-        <MenuItem key={'view'} onClick={viewJob}>
+        {/* <MenuItem key={'view'} onClick={viewJob}>
           View
-        </MenuItem>
+        </MenuItem> */}
+        <CustomButtonDrawer
+          label=" "
+          drawerProps={{ title: 'Edit Jobs' }}
+          // sx={{ display: 'inline-flex' }}
+          mode="edit"
+          // onClickableComponentClick={handleClose}
+          drawerWidth={DrawerWidth.Medium}
+          clickableComponent={<ListItem>View</ListItem>}
+        >
+          <EditJob />
+        </CustomButtonDrawer>
         <UpdateMenuItem
           label="Retry"
           data={{ status: 'retry!' }}
