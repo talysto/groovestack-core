@@ -1,5 +1,5 @@
 import get from 'lodash/get'
-import { FieldProps, useRecordContext } from 'react-admin'
+import { FieldProps, TextField, useRecordContext } from 'react-admin'
 
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
@@ -16,9 +16,12 @@ export const timeAgo = (timestamp: string) => {
 
   const m = dayjs(timestamp)
 
-  return <span title={m.format('LLLL')}>{m.fromNow()}</span>
+  return (
+    <span title={m.format('LLLL')}>
+      <TextField record={{ time: m.fromNow() }} source="time" />
+    </span>
+  )
 }
-
 // export interface ImageFieldProps<
 //     RecordType extends Record<string, unknown> = Record<string, any>
 // > extends FieldProps<RecordType> {

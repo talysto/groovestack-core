@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { Fragment, ReactElement, ReactEventHandler } from 'react'
 // import inflection from 'inflection';
-import { ListItem, ListItemProps } from '@mui/material'
+import { MenuItem, MenuItemProps } from '@mui/material'
 import {
   Confirm,
   DeleteParams,
@@ -53,7 +53,7 @@ export const DeleteMenuItem = <RecordType extends RaRecord = any>(
 
   return (
     <Fragment>
-      <ListItem
+      <MenuItem
         onClick={handleDialogOpen}
         className={clsx('ra-delete-button', className)} //TODO replace with listitem?
         // key="button"
@@ -62,7 +62,7 @@ export const DeleteMenuItem = <RecordType extends RaRecord = any>(
       >
         {/* {icon} //TODO: put in icon */}
         {label}
-      </ListItem>
+      </MenuItem>
       <Confirm
         isOpen={open}
         loading={isLoading}
@@ -96,13 +96,13 @@ const defaultIcon = <ActionDelete />
 export interface DeleteMenuItemProps<
   RecordType extends RaRecord = any,
   MutationOptionsError = unknown,
-> extends ListItemProps {
+> extends MenuItemProps {
   confirmTitle?: React.ReactNode
   confirmContent?: React.ReactNode
   icon?: ReactElement
   mutationMode?: MutationMode
   onClick?: ReactEventHandler<any>
-  // May be injected by Toolbar - sanitized in ListItem
+  // May be injected by Toolbar - sanitized in MenuItem
   translateOptions?: object
   mutationOptions?: UseMutationOptions<
     RecordType,
