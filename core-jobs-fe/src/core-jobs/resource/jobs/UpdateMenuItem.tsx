@@ -1,7 +1,6 @@
+import ActionUpdate from '@mui/icons-material/Update'
 import { ListItemProps, MenuItem } from '@mui/material'
-import PropTypes from 'prop-types'
 import { ReactElement } from 'react'
-import ActionUpdate from '@mui/icons-material/Update';
 import {
   BulkActionProps,
   RaRecord,
@@ -17,22 +16,21 @@ import { UseMutationOptions } from 'react-query'
 // import { Button, ButtonProps } from './Button';
 // import { BulkActionProps } from '../types';
 
-
-//TODO: this is a copy of UpdateWithUndoListItem.tsx, but with the Button component replaced with MenuItem. 
+//TODO: this is a copy of UpdateWithUndoListItem.tsx, but with the Button component replaced with MenuItem.
 //1. replace props: any with an appropriate version of props: UpdateWithUndoButtonProps
 //2. decide if we want to use icons and support that appropriately
-//3. update the prop types for the list item instead of the button 
+//3. update the prop types for the list item instead of the button
 //4. confirm functionality is appropriate
 //5. NTH - add props undoable and confirm?
 
 export const UpdateMenuItem = (props: any) => {
-// (props : UpdateWithUndoButtonProps) => {
+  // (props : UpdateWithUndoButtonProps) => {
   const record = useRecordContext(props)
   const notify = useNotify()
   const resource = useResourceContext(props)
   const refresh = useRefresh()
 
-  const defaultIcon = <ActionUpdate />;
+  const defaultIcon = <ActionUpdate />
 
   const {
     data,

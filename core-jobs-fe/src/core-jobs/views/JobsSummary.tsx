@@ -45,8 +45,8 @@ export const JobsSummaryPivot = () => {
     >
       <WithListContext
         render={({ data }) => {
-          // if (!data) return <div>No data</div>
-          console.debug('jobs_by_type', data)
+          if (!data) return <div>No data</div>
+          // console.debug('jobs_by_type', data)
 
           const processedData = data && data[0]?.data
 
@@ -76,10 +76,11 @@ export const JobsSummaryPivot = () => {
                 }}
               >
                 <TextField source="sub_class" label="type" />
-                {Object.keys(jobStatuses).map((status) => {
+                {Object.keys(jobStatuses).map((status, idx) => {
                   const AltIcon = jobStatuses[status].icon
                   return (
                     <NumberField
+                      key={idx}
                       source={status}
                       label={
                         moreThanSmall ? jobStatuses[status].label : <AltIcon />

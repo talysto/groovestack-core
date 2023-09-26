@@ -41,6 +41,7 @@
   "peerDependencies": {
     "@mui/icons-material": ">=5.11.11",
     "@mui/material": ">=5.10.2",
+    "@react-admin/ra-realtime": ">=4.5.1",
     "dayjs": ">=1.11.7",
     "react": ">=18.2.0",
     "react-admin": ">=4.13.1",
@@ -48,9 +49,11 @@
     "react-dom": ">=18.2.0",
     "react-google-charts": ">=4.0.0"
   },
+  "peerDependenciesMeta": {
+    "@react-admin/ra-realtime": {"optional": true}
+  },
   "dependencies": {
     "@moonlight-labs/core-base-fe": "workspace:^",
-    "@react-admin/ra-realtime": "^4.5.1",
     "@types/prop-types": "^15.7.6",
     "clsx": "^2.0.0",
     "echarts": "^5.4.3",

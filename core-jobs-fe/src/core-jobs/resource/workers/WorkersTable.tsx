@@ -1,11 +1,4 @@
-import {
-  Datagrid,
-  InfiniteList,
-  NumberField,
-  RefreshButton,
-  TextField,
-  TopToolbar,
-} from 'react-admin'
+import { Datagrid, InfiniteList, NumberField, TextField } from 'react-admin'
 import { TypographyInput } from '../../react-admin/inputs/TypographyInput'
 
 /* <LiveTable

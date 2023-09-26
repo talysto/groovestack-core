@@ -25,13 +25,13 @@ export const theme = {
     // },
     MuiToolbar: {
       styleOverrides: {
-        root: { alignItems: 'center !important' }
-      }
+        root: { alignItems: 'center !important' },
+      },
     },
     RaFilterForm: {
       styleOverrides: {
-        root: { alignItems: 'center' }
-      }
+        root: { alignItems: 'center' },
+      },
     },
     RaDatagrid: {
       styleOverrides: {
@@ -66,7 +66,7 @@ export const theme = {
         root: {
           // backgroundColor: "white",
           '& .RaShow-card': { boxShadow: 'none' },
-          '& .RaShow-main': {flexWrap: 'wrap'},
+          '& .RaShow-main': { flexWrap: 'wrap' },
           // '& .MuiTabs-flexContainer': { flexWrap: 'wrap' }
         },
       },
@@ -123,7 +123,6 @@ export const theme = {
 }
 
 export default theme
-
 
 // import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 

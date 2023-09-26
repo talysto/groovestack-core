@@ -13,8 +13,8 @@ import { DateField as CoreDateField } from '@moonlight-labs/core-base-fe'
 import { Comments } from '@moonlight-labs/core-comments-fe'
 // import { CoreVersions } from '@moonlight-labs/core-versions-fe'
 
-import { inlineLayout } from '../inlineLayout'
 import { Versions } from '@moonlight-labs/core-versions-fe'
+import { inlineLayout } from '../inlineLayout'
 
 export const CompanyAside = () => {
   // const record = useRecordContext()

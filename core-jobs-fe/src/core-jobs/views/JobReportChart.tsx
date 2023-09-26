@@ -1,6 +1,17 @@
 import { Stack, Typography } from '@mui/material'
-import { ListBase, useDataProvider } from 'react-admin'
+import { JSXElementConstructor, ReactElement, cloneElement, useState } from 'react'
+import {
+  ListBase,
+  RecordContextProvider,
+  Show,
+  ShowBase,
+  ShowProps,
+  useDataProvider,
+  useRefresh,
+  useShowController,
+} from 'react-admin'
 
+// import { ShowLive } from '@react-admin/ra-realtime'
 const ReactAdminRealtime = await import('@react-admin/ra-realtime')
 
 export const JobReportChart = ({
@@ -12,8 +23,7 @@ export const JobReportChart = ({
   filter: any
   children: any
 }) => {
-
-  const dataProvider = useDataProvider()
+  // const dataProvider = useDataProvider()
   // debugger
 
   // console.log('has subscribe', typeof dataProvider['subscribe'] === 'function')
@@ -22,7 +32,7 @@ export const JobReportChart = ({
 
   return (
     <ListComponent
-    // <ListBase
+      // <ListBase
       resource="JobReport"
       filter={filter}
       exporter={false}
@@ -36,3 +46,27 @@ export const JobReportChart = ({
     </ListComponent>
   )
 }
+
+export const JobReportShow = (
+  props: ShowProps & {
+    children: ReactElement<any, string | JSXElementConstructor<any>>
+  },
+) => {
+  const dataProvider = useDataProvider()
+  const { refetch, record } = useShowController({ resource: 'JobReport', id: props.id })
+
+  const handleEventReceived = (e: any) => {
+    console.log('event received', e)
+    refetch()
+  }
+
+  const enabled = !!Object.assign({}, dataProvider)?.subscribe
+  ReactAdminRealtime.useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
+
+  return (
+    <>
+      {cloneElement(props.children, { record })}
+    </>
+  )
+}
+

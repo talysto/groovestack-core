@@ -218,7 +218,7 @@ importers:
         specifier: '>=5.10.2'
         version: 5.14.0(@emotion/react@11.11.1)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
       '@react-admin/ra-realtime':
-        specifier: ^4.5.1
+        specifier: '>=4.5.1'
         version: 4.5.1(lodash@4.17.21)(react-admin@4.13.1)(react-dom@18.2.0)(react@18.2.0)
       '@types/prop-types':
         specifier: ^15.7.6

@@ -1,5 +1,5 @@
 import { Breadcrumbs, Grid, Link, Typography } from '@mui/material'
-import { JobReportKPIs } from './JobReportKPIs'
+import { JobReportKPIsLive } from './JobReportKPIs'
 
 export const Header = () => {
   return (
@@ -11,7 +11,13 @@ export const Header = () => {
           <span style={{ fontWeight: 200 }}>CORE Jobs</span>
         </Typography> */}
         <Breadcrumbs aria-label="breadcrumb">
-          <Link underline="hover" color="inherit" style={{ fontWeight: 700 }} target='ext' href="https://talysto.com/groovestack">
+          <Link
+            underline="hover"
+            color="inherit"
+            style={{ fontWeight: 700 }}
+            target="ext"
+            href="https://talysto.com/groovestack"
+          >
             GROOVESTACK
           </Link>
           <Link
@@ -26,7 +32,8 @@ export const Header = () => {
       </Grid>
 
       <Grid item xs={12} sm={4}>
-        <JobReportKPIs />
+        {/* <JobReportKPIs /> */}
+        <JobReportKPIsLive />
       </Grid>
     </Grid>
   )

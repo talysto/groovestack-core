@@ -1,19 +1,12 @@
-import WorkerIcon from '@mui/icons-material/SettingsSuggest'
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Stack,
-  useTheme,
-} from '@mui/material'
+import { Box, Button, ButtonGroup, Stack, useTheme } from '@mui/material'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import { random } from 'lodash'
 import { WithListContext } from 'react-admin'
+import { WorkersTable } from '../resource/workers/WorkersTable'
+import { ButtonPopover } from './ButtonPopover'
 import { JobReportChart } from './JobReportChart'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
-import { ButtonPopover } from './KPIs'
-import { WorkersTable } from '../resource/workers/WorkersTable'
 
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
 // echarts.registerTheme('custom', echartsThemeFromMui())
@@ -61,7 +54,11 @@ export const UtilizationChart = () => {
               </Box>
 
               <Box sx={{ flexBasis: '60%' }}>
-                <ButtonGroup variant='text'  size="large" aria-label="large button group">
+                <ButtonGroup
+                  variant="text"
+                  size="large"
+                  aria-label="large button group"
+                >
                   <ButtonPopover label={`${workers} Workers`}>
                     <WorkersTable />
                   </ButtonPopover>
