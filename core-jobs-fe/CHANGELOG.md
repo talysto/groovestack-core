@@ -1,5 +1,13 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.10
+
+### Patch Changes
+
+- Re-enable types
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.10
+
 ## 0.2.9
 
 ### Patch Changes

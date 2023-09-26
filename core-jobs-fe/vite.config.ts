@@ -8,15 +8,15 @@ import dts from 'vite-plugin-dts'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    // dts({
-    //   rollupTypes: true,
-    //   rollupConfig: {
-    //     docModel: {
-    //       enabled: true,
-    //       apiJsonFilePath: '../docs/meta/<unscopedPackageName>.api.json',
-    //     },
-    //   },
-    // }),
+    dts({
+      rollupTypes: true,
+      rollupConfig: {
+        docModel: {
+          enabled: true,
+          apiJsonFilePath: '../docs/meta/<unscopedPackageName>.api.json',
+        },
+      },
+    }),
     react(),
     // visualizer({ open: false }),
   ],

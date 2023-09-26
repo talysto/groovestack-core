@@ -1,5 +1,17 @@
 # test-core-fe
 
+## 0.2.14
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.10
+  - @moonlight-labs/core-jobs-fe@0.2.10
+  - @moonlight-labs/core-comments-fe@0.2.10
+  - @moonlight-labs/core-notifications-fe@0.2.11
+  - @moonlight-labs/core-versions-fe@0.2.10
+  - @moonlight-labs/core-webhooks-fe@0.2.11
+
 ## 0.2.13
 
 ### Patch Changes
