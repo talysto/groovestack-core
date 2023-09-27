@@ -35,8 +35,7 @@
   "devDependencies": {
     "@types/react-copy-to-clipboard": "^5.0.4",
     "dayjs": "^1.11.9",
-    "react-copy-to-clipboard": "^5.1.0",
-    "react-google-charts": "^4.0.0"
+    "react-copy-to-clipboard": "^5.1.0"
   },
   "peerDependencies": {
     "@mui/icons-material": ">=5.11.11",
@@ -46,8 +45,7 @@
     "react": ">=18.2.0",
     "react-admin": ">=4.13.1",
     "react-copy-to-clipboard": ">=5.1.0",
-    "react-dom": ">=18.2.0",
-    "react-google-charts": ">=4.0.0"
+    "react-dom": ">=18.2.0"
   },
   "peerDependenciesMeta": {
     "@react-admin/ra-realtime": {
@@ -56,6 +54,7 @@
   },
   "dependencies": {
     "@moonlight-labs/core-base-fe": "workspace:^",
+    "@mui/lab": "5.0.0-alpha.146",
     "@types/prop-types": "^15.7.6",
     "clsx": "^2.0.0",
     "echarts": "^5.4.3",

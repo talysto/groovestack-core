@@ -19,7 +19,7 @@ export default defineConfig({
       },
     }),
     react(),
-    visualizer({ open: true }),
+    // visualizer({ open: false }),
   ],
   build: {
     sourcemap: true,
@@ -39,6 +39,7 @@ export default defineConfig({
         'react/jsx-runtime',
         '@faker-js/faker',
         'react-copy-to-clipboard',
+        'lodash'
       ],
       // // plugins: [autoExternal()],
 

@@ -1,6 +1,7 @@
 import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { Box, MenuItem } from '@mui/material'
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
+import { Box } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import { useState } from 'react'
@@ -8,7 +9,6 @@ import { FieldProps } from 'react-admin'
 import { DeleteMenuItem } from './DeleteMenuItem'
 import { UpdateMenuItem } from './UpdateMenuItem'
 import { EditJob } from './edit'
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 // export const JobActions = ({ label = 'Actions' }: { label?: string; }) => {
 //   const record = useRecordContext();
@@ -69,7 +69,23 @@ export const JobActions = (props: FieldProps) => {
   }
 
   return (
-    <Box display='flex'>
+    <Box display="flex">
+      <CustomButtonDrawer
+        mode="edit"
+        drawerProps={{ title: 'Job Details' }}
+        // icon={<VisibilityOutlinedIcon/>}
+        // sx={{ display: 'inline-flex' }}
+        label={'View'}
+        drawerWidth={DrawerWidth.Medium}
+        clickableComponent={
+          <IconButton aria-label="view" id="view-button">
+            <VisibilityOutlinedIcon />
+          </IconButton>
+        }
+      >
+        <EditJob />
+      </CustomButtonDrawer>
+
       <IconButton
         aria-label="more"
         id="long-button"
@@ -105,29 +121,19 @@ export const JobActions = (props: FieldProps) => {
           mode="edit"
           // onClickableComponentClick={handleClose}
           drawerWidth={DrawerWidth.Medium}
-          clickableComponent={<MenuItem 
+          clickableComponent={<MenuItem
             onClick={handleClose}
             >View</MenuItem>}
         >
           <EditJob />
         </CustomButtonDrawer> */}
         <UpdateMenuItem
-          label="Retry" 
+          label="Retry"
           data={{ status: 'retry!' }}
           onClick={handleClose}
         />
         <DeleteMenuItem title="test" label="Delete" onClick={handleClose} />
       </Menu>
-      <CustomButtonDrawer
-        label="Edit"
-        drawerProps={{ title: 'Edit Jobs' }}
-        icon={<VisibilityOutlinedIcon/>}
-        // sx={{ display: 'inline-flex' }}
-        mode="edit"
-        drawerWidth={DrawerWidth.Medium}
-      >
-        <EditJob />
-      </CustomButtonDrawer>
     </Box>
   )
 }

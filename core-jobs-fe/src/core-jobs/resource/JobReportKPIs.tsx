@@ -1,12 +1,12 @@
 import { Stack } from '@mui/material'
 import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { Metric } from '../components/Metric'
-import { JobReportShow } from '../views/JobReportChart'
+import { JobReportShow } from '../views/JobReportShow'
 
 export const JobReportKPIsLive = () => {
   return (
     <JobReportShow id="jobs_kpis">
-      <SimpleShowLayout>
+      <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(data: RaRecord) => {
             if (!data) return <div>No data</div>

@@ -5,7 +5,7 @@ import { random } from 'lodash'
 import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { WorkersTable } from '../resource/workers/WorkersTable'
 import { ButtonPopover } from './ButtonPopover'
-import { JobReportShow } from './JobReportChart'
+import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
 
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
@@ -19,8 +19,8 @@ export const UtilizationChart = () => {
   )
 
   return (
-    <JobReportShow id="jobs_kpis">
-      <SimpleShowLayout>
+    <JobReportShow id="jobs_kpis" title="Utilization">
+      <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(data: RaRecord) => {
             if (!data) return <div>No data</div>
@@ -40,6 +40,7 @@ export const UtilizationChart = () => {
                 spacing={2}
                 justifyContent="space-around"
                 alignItems="stretch"
+                p={0}
               >
                 <Box sx={{ flexBasis: '40%' }}>
                   <ReactECharts

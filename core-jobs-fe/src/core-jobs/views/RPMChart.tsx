@@ -2,7 +2,7 @@ import { useTheme } from '@mui/material'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
 import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
-import { JobReportShow } from './JobReportChart'
+import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
 
 // const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
@@ -31,7 +31,7 @@ export const RPMChart = () => {
       id="jobs_by_period"
       // filter={{}}
     >
-      <SimpleShowLayout>
+      <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(data: RaRecord) => {
             if (!data) return <div>No data</div>

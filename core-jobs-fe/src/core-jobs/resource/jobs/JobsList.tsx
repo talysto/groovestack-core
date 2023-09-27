@@ -91,10 +91,11 @@ export const JobsList = () => {
   return (
     <ListBase>
       <Title title="Jobs" />
-      <Header />
-      <ListActions />
+
       <Grid container>
         <Grid item xs={12} sm={8} order={{ xs: 2, sm: 1 }}>
+          <Header />
+          <ListActions />
           <MultiViewList
             views={{
               summary: <JobsSummaryPivot />,

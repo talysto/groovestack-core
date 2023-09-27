@@ -1,5 +1,4 @@
 import { Breadcrumbs, Grid, Link, Typography } from '@mui/material'
-import { JobReportKPIsLive } from './JobReportKPIs'
 
 export const Header = () => {
   return (
@@ -31,10 +30,9 @@ export const Header = () => {
         </Breadcrumbs>
       </Grid>
 
-      <Grid item xs={12} sm={4}>
-        {/* <JobReportKPIs /> */}
+      {/* <Grid item xs={12} sm={4}>
         <JobReportKPIsLive />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }

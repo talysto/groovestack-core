@@ -1,33 +1,65 @@
-import {
-  CodeField,
-  TimeAgoField,
-  clickToCopy,
-} from '@moonlight-labs/core-base-fe'
-import { Edit, SimpleForm, SimpleShowLayout, TextField } from 'react-admin'
+import { CodeField, clickToCopy } from '@moonlight-labs/core-base-fe'
+import { Form, SimpleShowLayout, TextField } from 'react-admin'
 
-import { ErrorPanelField } from '../../react-admin/fields/ErrorPanelField'
+import { Grid } from '@mui/material'
 import { JobStatusField } from '../../react-admin/fields/JobStatusField'
+import { JobTimelineField } from '../../react-admin/fields/JobTimelineField'
 
 export const EditJob = (props: any) => {
   return (
-      <SimpleForm>
-        <SimpleShowLayout>
-          {/* Meta: */}
-          <TextField source="job_class" />
-          <TextField source="sub_class" />
-          <TextField source="id" noWrap {...clickToCopy} />
-          <JobStatusField />
-          <ErrorPanelField />
-          {/* Job Info: */}
-          <TextField source="queue" />
-          <TextField source="priority" />
-          <CodeField source="args" />
-          <CodeField source="data" />
-          {/* Timeline: */}
-          <TimeAgoField source="run_at" />
-          <TimeAgoField source="finished_at" />
-          <TimeAgoField source="expired_at" />
-        </SimpleShowLayout>
-      </SimpleForm>
+    <Form>
+      <Grid container>
+        <Grid item xs={4}>
+          <SimpleShowLayout>
+            <JobStatusField source="status" />
+          </SimpleShowLayout>
+        </Grid>
+
+        <Grid item xs={4}>
+          <SimpleShowLayout>
+            <TextField source="queue" />
+          </SimpleShowLayout>
+        </Grid>
+
+        <Grid item xs={4}>
+          <SimpleShowLayout>
+            <TextField source="priority" />
+          </SimpleShowLayout>
+        </Grid>
+
+        <Grid item xs={12}>
+          <SimpleShowLayout>
+            <TextField source="job_class" />
+            <TextField source="sub_class" />
+            <TextField source="id" label="ID" noWrap {...clickToCopy} />
+          </SimpleShowLayout>
+        </Grid>
+
+        <Grid item xs={12}>
+          <SimpleShowLayout>
+            <TextField source="error_count" />
+            <TextField source="last_error_message" />
+            <CodeField source="last_error_backtrace" />
+          </SimpleShowLayout>
+        </Grid>
+
+        <Grid item xs={12}>
+          <SimpleShowLayout>
+            <CodeField source="args" />
+            <CodeField source="data" />
+          </SimpleShowLayout>
+        </Grid>
+
+        <Grid item xs={12}>
+          <SimpleShowLayout>
+            {/* <TimeAgoField source="run_at" />
+            <TimeAgoField source="finished_at" />
+            <TimeAgoField source="expired_at" /> */}
+
+            <JobTimelineField label="Timeline" />
+          </SimpleShowLayout>
+        </Grid>
+      </Grid>
+    </Form>
   )
 }
