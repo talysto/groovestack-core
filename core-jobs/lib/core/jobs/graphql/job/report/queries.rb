@@ -23,7 +23,7 @@ module Core
             end
     
             def show_job_report(id:, meta: nil)
-              filter = meta&.dig(:params, :filter)
+              filter = meta&.dig(:params, :filter) || OpenStruct.new
 
               return jobs_kpis if id == 'jobs_kpis'
               return jobs_by_period(filter) if id == 'jobs_by_period'
