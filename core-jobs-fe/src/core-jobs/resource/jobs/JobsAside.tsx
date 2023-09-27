@@ -20,7 +20,7 @@ export const JobsAside = () => {
       // xs={12}
       // sm={4}
       sx={{
-        pl: { xs: 0, sm: 3 },
+        pl: { xs: 0, sm: 5 },
         // width: '360px',
         // minWidth: '33%',
         // flexShrink: 0,
