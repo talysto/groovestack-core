@@ -31,6 +31,7 @@ export const WorkersTable = () => {
       // filter={{}}
       exporter={false}
       resource="JobLocker"
+      disableSyncWithLocation
     >
       <Datagrid bulkActionButtons={false}>
         <TextField source="host" />
