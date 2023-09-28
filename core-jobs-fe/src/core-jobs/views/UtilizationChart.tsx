@@ -31,7 +31,7 @@ export const UtilizationChart = () => {
             const running = record.running
             const utilization = Math.round((100.0 * running) / workers)
 
-            const config = utilizationOptions
+            let config = {...utilizationOptions} // make a copy
             config.series[0].data[0].value = utilization
 
             return (
@@ -50,7 +50,7 @@ export const UtilizationChart = () => {
                       height: '100%',
                       width: '100%',
                     }}
-                    option={utilizationOptions}
+                    option={config}
                   />
                 </Box>
 

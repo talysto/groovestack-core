@@ -36,7 +36,7 @@ export const RPMChart = () => {
           render={(data: RaRecord) => {
             if (!data) return <div>No data</div>
 
-            const config = chartOptions
+            let config = {...chartOptions} // make a copy
             config.dataset.source = data.data
 
             // const processedData = data[0]?.data[0]
