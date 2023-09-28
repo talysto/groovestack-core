@@ -1,11 +1,29 @@
 module Core
   module Jobs
     module Listener
-      def self.init_all 
-        [init_que_state_db_listener]
+      def self.init_all(throttle_seconds: 3)
+        [init_que_state_db_listener(throttle_seconds: throttle_seconds)]
       end
 
-      def self.init_que_state_db_listener
+      def self.throttle(seconds)
+        wait = false 
+
+        return Proc.new do |&block|
+          unless wait
+            wait = true 
+            
+            Thread.new do 
+              block.call
+              
+              sleep(seconds)
+
+              wait = false
+            end
+          end
+        end
+      end
+
+      def self.init_que_state_db_listener(throttle_seconds: 3)
         que_state_publisher = ::Core::Jobs::Publishers::QueState.new
         que_state_db_listener = ::Core::Base::Listeners::Database.new('que_state')
         subscriptions = [
@@ -14,6 +32,8 @@ module Core
             ids: [:jobs_by_type, :jobs_kpis, :jobs_by_period],
           }
         ]
+
+        notify_event_handler = throttle(throttle_seconds)
 
         que_state_db_listener.listen do |payload| 
           # ex event
@@ -28,12 +48,13 @@ module Core
             #   "previous_state":"errored",
             #   "current_state":"nonexistent"
             # }
+          notify_event_handler.call do |args|
+            event = { crud_action: :update, payload: JSON.parse(payload) }
 
-          event = { crud_action: :update, payload: JSON.parse(payload) }
-
-          subscriptions.each do |subscription|
-            subscription[:ids].each do |id|
-              que_state_publisher.notify_event(subscription[:name], id, event)
+            subscriptions.each do |subscription|
+              subscription[:ids].each do |id|
+                que_state_publisher.notify_event(subscription[:name], id, event)
+              end
             end
           end
         end
