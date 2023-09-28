@@ -29,6 +29,12 @@ require 'core/jobs/graphql/job/report/filter'
 require 'core/jobs/graphql/job/report/queries'
 require 'core/jobs/graphql/job/report/subscriptions'
 
+if defined?(Wisper)
+  require 'core/jobs/publishers/que_state'
+  require 'core/jobs/subscribers/que_state'
+  require 'core/jobs/listener'
+end
+
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 
 module Core

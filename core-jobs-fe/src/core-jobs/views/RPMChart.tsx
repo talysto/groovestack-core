@@ -5,6 +5,7 @@ import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
 import dayjs from 'dayjs'
+import { useRef } from 'react'
 
 // const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
 
@@ -26,6 +27,8 @@ export const RPMChart = () => {
     echartsThemeFromMui(theme.palette.primary.main),
   )
 
+  const chart = useRef<ReactECharts>(null)
+
   return (
     <JobReportShow
       title="Performance"
@@ -39,11 +42,14 @@ export const RPMChart = () => {
 
             const processedData = data.data.map((row: any) => ({ ...row, period: dayjs(row.period).format('h:mm') }))
 
-            const config = chartOptions
-            config.dataset.source = processedData
+            let config = {...chartOptions} // make a copy
+            config.dataset.source =processedData
+
+            chart?.current?.getEchartsInstance().setOption(config)
 
             return (
               <ReactECharts
+                ref={chart}
                 theme="custom"
                 style={{
                   height: '100%',

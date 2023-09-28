@@ -7,6 +7,7 @@ import { WorkersTable } from '../resource/workers/WorkersTable'
 import { ButtonPopover } from './ButtonPopover'
 import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
+import { useRef } from 'react'
 
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
 // echarts.registerTheme('custom', echartsThemeFromMui())
@@ -17,6 +18,8 @@ export const UtilizationChart = () => {
     'custom',
     echartsThemeFromMui(theme.palette.primary.main),
   )
+
+  const chart = useRef<ReactECharts>(null)
 
   return (
     <JobReportShow id="jobs_kpis" title="Utilization">
@@ -31,8 +34,10 @@ export const UtilizationChart = () => {
             const running = record.running
             const utilization = Math.round((100.0 * running) / workers)
 
-            const config = utilizationOptions
+            let config = {...utilizationOptions} // make a copy
             config.series[0].data[0].value = utilization
+
+            chart?.current?.getEchartsInstance().setOption(config)
 
             return (
               <Stack
@@ -44,13 +49,14 @@ export const UtilizationChart = () => {
               >
                 <Box sx={{ flexBasis: '40%' }}>
                   <ReactECharts
+                    ref={chart}
                     theme="custom"
                     style={{
                       // flexBasis: '100%',
                       height: '100%',
                       width: '100%',
                     }}
-                    option={utilizationOptions}
+                    option={config}
                   />
                 </Box>
 

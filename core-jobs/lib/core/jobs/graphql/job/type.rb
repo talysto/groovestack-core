@@ -14,7 +14,6 @@ module Core
           field :queue, String, null: false, description: 'job queue'
           field :status, String, null: false, description: 'current status of job'
           field :sub_class, String, null: true, description: 'sub class of job'
-          field :type, String, null: false, description: 'job type'
 
           # rubocop:disable GraphQL/ExtractType
           field :error_count, Integer, null: true, description: 'error count'

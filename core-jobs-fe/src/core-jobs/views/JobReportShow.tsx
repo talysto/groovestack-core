@@ -12,10 +12,13 @@ export const JobReportShow = (
   const { refetch, record } = useShowController({
     resource: 'JobReport',
     id: props.id,
+    queryOptions: {
+      staleTime: 0, // disable cache
+    }
   })
 
   const handleEventReceived = (e: any) => {
-    console.log('event received', e)
+    console.log(`event received for ${props.id}`, e)
     refetch()
   }
 

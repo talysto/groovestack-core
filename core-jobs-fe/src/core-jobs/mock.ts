@@ -106,7 +106,7 @@ export function mockJobReports() {
 //   return map;
 // }, {});
 
-function mockReportByPeriod() {
+export function mockReportByPeriod() {
   const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
 
   return {

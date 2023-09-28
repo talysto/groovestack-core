@@ -1,10 +1,28 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.15
+
+### Patch Changes
+
+- live chart updates
+
+## 0.2.14
+
+### Patch Changes
+
+- build
+
+## 0.2.13
+
+### Patch Changes
+
+- force version bump
+
 ## 0.2.12
 
 ### Patch Changes
 
-- Layout
+- live updates for job charts
 
 ## 0.2.11
 
