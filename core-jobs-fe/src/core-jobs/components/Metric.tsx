@@ -26,7 +26,7 @@ export const Metric = ({ value, label, units }: MetricType) => {
           component="div"
           sx={{ lineHeight: '1.0em', fontWeight: 'bold', fontSize: '150%' }}
         >
-          {value}
+          {value == '0' ? '-' : value}
           {units && (
             <Typography component="span" sx={{ fontSize: '60%' }}>
               {units}

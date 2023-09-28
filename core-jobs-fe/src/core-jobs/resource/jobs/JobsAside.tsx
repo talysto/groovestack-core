@@ -4,13 +4,13 @@ import { RPMChart } from '../../views/RPMChart'
 import { UtilizationChart } from '../../views/UtilizationChart'
 import { JobReportKPIsLive } from '../JobReportKPIs'
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(0),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+//   ...theme.typography.body2,
+//   padding: theme.spacing(0),
+//   textAlign: 'center',
+//   color: theme.palette.text.secondary,
+// }))
 
 export const JobsAside = () => {
   return (
@@ -32,14 +32,17 @@ export const JobsAside = () => {
       }}
     >
       <Stack spacing={3}>
-        <JobReportKPIsLive />
-
-        <Item sx={{ height: 160 }} elevation={0}>
+        <RPMChart />
+        <UtilizationChart />
+        {/* <Item sx={{ minHeight: 240 }} elevation={0}>
           <RPMChart />
         </Item>
-        <Item sx={{ height: 200 }} elevation={0}>
+        <Item sx={{ minHeight: 240 }} elevation={0}>
           <UtilizationChart />
-        </Item>
+        </Item> */}
+        {/* <Item sx={{ minHeight: 240 }} elevation={0}> */}
+          <JobReportKPIsLive />
+        {/* </Item> */}
       </Stack>
     </Box>
   )

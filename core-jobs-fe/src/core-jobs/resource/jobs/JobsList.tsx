@@ -45,6 +45,7 @@ const sortfilterToggles = [
     filterSpec: { status: ['errored', 'failed'] },
     sortSpec: { field: 'priority', order: 'ASC' },
     collapsable: true,
+    count:  16
   },
   {
     label: 'Scheduled',
@@ -53,6 +54,7 @@ const sortfilterToggles = [
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
     collapsable: true,
+    count: 230403
   },
 ]
 

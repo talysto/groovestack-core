@@ -13,17 +13,12 @@ export const JobReportKPIsLive = () => {
 
             const record = data.data[0]
 
-            const errors = record.errored + record.failed
-            const queued = record.queued
-
             return (
               <Stack sx={{ flexDirection: 'row', gap: 2 }}>
-                {queued && (
-                  <Metric value={queued} label="Queued" key="queued" />
-                )}
-                {errors && (
-                  <Metric value={errors} label="Errors" key="errors" />
-                )}
+                <Metric value={record.scheduled} label="Queued" key="scheduled" />
+                <Metric value={record.queued} label="Queued" key="queued" />
+                <Metric value={record.errored + record.failed} label="Errors" key="errors" />
+                <Metric value={record.completed} label="Errors" key="complete" />
               </Stack>
             )
           }}

@@ -1,5 +1,6 @@
 import {
   Box,
+  Chip,
   Theme,
   ToggleButton,
   ToggleButtonGroup,
@@ -15,7 +16,8 @@ export interface ListViewToggleButtonsProps {
     icon: any
     collapsable?: boolean
     filterSpec: FilterPayload
-    sortSpec: SortPayload
+    sortSpec: SortPayload,
+    count?: number
   }>
 }
 
@@ -48,7 +50,7 @@ export const ListPresetButtonGroup = ({
       exclusive
       onChange={handleSelected}
     >
-      {sortfilterToggles.map(({ label, value, icon, collapsable }) => {
+      {sortfilterToggles.map(({ label, value, icon, collapsable, count }) => {
         const ButtonIcon = icon
         return (
           <ToggleButton value={value} key={value} aria-label={label}>
@@ -56,6 +58,7 @@ export const ListPresetButtonGroup = ({
             {(moreThanSmall || !collapsable) && (
               <Box sx={{ mx: 1 }}>{label}</Box>
             )}
+            {count && <Chip label={count} variant="outlined" size="small" />}
           </ToggleButton>
         )
       })}
