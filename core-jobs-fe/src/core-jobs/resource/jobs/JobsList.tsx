@@ -45,7 +45,7 @@ const sortfilterToggles = [
     filterSpec: { status: ['errored', 'failed'] },
     sortSpec: { field: 'priority', order: 'ASC' },
     collapsable: true,
-    count:  16
+    count: 16,
   },
   {
     label: 'Scheduled',
@@ -54,7 +54,7 @@ const sortfilterToggles = [
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
     collapsable: true,
-    count: 230403
+    count: 230403,
   },
 ]
 
@@ -95,8 +95,10 @@ export const JobsList = () => {
       <Title title="Jobs" />
 
       <Grid container>
-        <Grid item xs={12} sm={8} order={{ xs: 2, sm: 1 }}>
+        <Grid item xs={12} order={1}>
           <Header />
+        </Grid>
+        <Grid item xs={12} sm={8} order={{ xs: 3, sm: 2 }}>
           <ListActions />
           <MultiViewList
             views={{
@@ -129,7 +131,7 @@ export const JobsList = () => {
             </Card>
           </MultiViewList>
         </Grid>
-        <Grid item xs={12} sm={4} order={{ xs: 1, sm: 2 }}>
+        <Grid item xs={12} sm={4} order={{ xs: 2, sm: 3 }}>
           <JobsAside />
         </Grid>
       </Grid>

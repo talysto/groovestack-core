@@ -1,11 +1,11 @@
 import { useTheme } from '@mui/material'
+import dayjs from 'dayjs'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
+import { useRef } from 'react'
 import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
-import dayjs from 'dayjs'
-import { useRef } from 'react'
 
 // const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
 
@@ -40,10 +40,13 @@ export const RPMChart = () => {
           render={(data: RaRecord) => {
             if (!data) return <div>No data</div>
 
-            const processedData = data.data.map((row: any) => ({ ...row, period: dayjs(row.period).format('h:mm') }))
+            const processedData = data.data.map((row: any) => ({
+              ...row,
+              period: dayjs(row.period).format('h:mm'),
+            }))
 
-            let config = {...chartOptions} // make a copy
-            config.dataset.source =processedData
+            let config = { ...chartOptions } // make a copy
+            config.dataset.source = processedData
 
             chart?.current?.getEchartsInstance().setOption(config)
 
@@ -54,6 +57,7 @@ export const RPMChart = () => {
                 style={{
                   height: '100%',
                   width: '100%',
+                  minHeight: 200,
                 }}
                 option={config}
                 notMerge={true}

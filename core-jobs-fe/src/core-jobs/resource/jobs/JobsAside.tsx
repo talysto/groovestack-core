@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, styled } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 
 import { RPMChart } from '../../views/RPMChart'
 import { UtilizationChart } from '../../views/UtilizationChart'
@@ -41,7 +41,7 @@ export const JobsAside = () => {
           <UtilizationChart />
         </Item> */}
         {/* <Item sx={{ minHeight: 240 }} elevation={0}> */}
-          <JobReportKPIsLive />
+        <JobReportKPIsLive />
         {/* </Item> */}
       </Stack>
     </Box>

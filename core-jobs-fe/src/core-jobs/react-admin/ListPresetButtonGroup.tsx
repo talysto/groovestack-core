@@ -16,7 +16,7 @@ export interface ListViewToggleButtonsProps {
     icon: any
     collapsable?: boolean
     filterSpec: FilterPayload
-    sortSpec: SortPayload,
+    sortSpec: SortPayload
     count?: number
   }>
 }

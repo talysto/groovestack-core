@@ -15,10 +15,22 @@ export const JobReportKPIsLive = () => {
 
             return (
               <Stack sx={{ flexDirection: 'row', gap: 2 }}>
-                <Metric value={record.scheduled} label="Queued" key="scheduled" />
+                <Metric
+                  value={record.scheduled}
+                  label="Scheduled"
+                  key="scheduled"
+                />
                 <Metric value={record.queued} label="Queued" key="queued" />
-                <Metric value={record.errored + record.failed} label="Errors" key="errors" />
-                <Metric value={record.completed} label="Errors" key="complete" />
+                <Metric
+                  value={record.errored + record.failed}
+                  label="Errors"
+                  key="errors"
+                />
+                <Metric
+                  value={record.completed}
+                  label="Completed"
+                  key="complete"
+                />
               </Stack>
             )
           }}

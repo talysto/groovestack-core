@@ -14,7 +14,7 @@ export const JobReportShow = (
     id: props.id,
     queryOptions: {
       staleTime: 0, // disable cache
-    }
+    },
   })
 
   const handleEventReceived = (e: any) => {
