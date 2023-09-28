@@ -3,8 +3,6 @@ import { useSubscribeToRecord } from '@react-admin/ra-realtime'
 import { JSXElementConstructor, ReactElement, cloneElement } from 'react'
 import { ShowProps, useDataProvider, useShowController } from 'react-admin'
 
-import { UseQueryOptions } from 'react-query'
-
 export const JobReportShow = (
   props: ShowProps & {
     children: ReactElement<any, string | JSXElementConstructor<any>>
