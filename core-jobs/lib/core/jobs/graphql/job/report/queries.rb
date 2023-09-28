@@ -50,7 +50,7 @@ module Core
                   , count(*) FILTER(where status='running') as running
                   , count(*) FILTER(where status='failed') as failed
                   , count(*) FILTER(where status='errored') as errored
-                  , count(*) FILTER(where status='complete') as complete
+                  , count(*) FILTER(where status='completed') as completed
                   , min(run_at) FILTER(where status in ('queued', 'running')) as oldest_queued
                   , ( SELECT sum(worker_count) FROM que_lockers ) as workers
                                   
@@ -75,7 +75,7 @@ module Core
                 with range as (
                   select generate_series(
                     date_trunc(:range_type, :start_at::timestamp) - :look_back_interval::interval,
-                    date_trunc(:range_type, :end_at::timestamp) + :look_forward_interval::interval,
+                    date_trunc(:range_type, :end_at::timestamp),
                     :interval::interval
                   ) as period
                 )
@@ -87,7 +87,7 @@ module Core
                   , count(*) FILTER(where status='running') as running
                   , count(*) FILTER(where status='failed') as failed
                   , count(*) FILTER(where status='errored') as errored
-                  , count(*) FILTER(where status='complete') as complete
+                  , count(*) FILTER(where status='completed') as completed
                   
                 FROM range
                 
@@ -109,7 +109,7 @@ module Core
                   range_type: range_type,
                   interval: "1 #{range_type}",
                   look_back_interval: range_type == 'minute' ? '1 hour' : "1 #{range_type}",
-                  look_forward_interval: range_type == 'minute' ? '1 hour' : "1 #{range_type}",
+                  # look_forward_interval: range_type == 'minute' ? '1 hour' : "1 #{range_type}",
                 }
               ])
               data = ActiveRecord::Base.connection.execute(sanitized_sql)
@@ -130,7 +130,7 @@ module Core
                   , count(*) FILTER(where status='running') as running
                   , count(*) FILTER(where status='failed') as failed
                   , count(*) FILTER(where status='errored') as errored
-                  , count(*) FILTER(where status='complete') as complete
+                  , count(*) FILTER(where status='completed') as completed
                                   
                 FROM que_jobs_ext jobs 
                 
