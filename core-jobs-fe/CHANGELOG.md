@@ -1,5 +1,17 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.24
+
+### Patch Changes
+
+- fix job list summary counts
+
+## 0.2.23
+
+### Patch Changes
+
+- build and publish
+
 ## 0.2.22
 
 ### Patch Changes
