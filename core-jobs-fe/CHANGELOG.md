@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.18
+
+### Patch Changes
+
+- WIP Axis
+
 ## 0.2.17
 
 ### Patch Changes

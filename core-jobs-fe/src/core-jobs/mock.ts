@@ -72,12 +72,12 @@ function mockReportKPIs() {
     id: 'jobs_kpis',
     data: [
       {
-        scheduled: faker.number.int({ min: 1, max: 100_000 }),
-        queued: faker.number.int({ min: 1, max: 24 }),
-        running: faker.number.int({ min: 1, max: workers }),
-        errored: faker.number.int({ min: 1, max: 24 }),
-        failed: faker.number.int({ min: 1, max: 24 }),
-        completed: faker.number.int({ min: 1, max: 24 }),
+        scheduled: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 100_000 })]),
+        queued: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
+        running: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: workers })]),
+        errored: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
+        failed: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
+        completed: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
         workers: workers,
         oldest_queued_at: faker.date.recent(),
       },
@@ -122,7 +122,7 @@ export function mockReportByPeriod() {
         (map, status) =>
           (
             // @ts-ignore-line
-            (map[status] = faker.number.int({ min: 0, max: 400 })), map
+            (map[status] = faker.helpers.arrayElement([0,0,0,faker.number.int({ min: 0, max: 400 })])), map
           ),
         {},
       )
