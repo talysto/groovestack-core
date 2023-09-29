@@ -76,32 +76,33 @@ const JobsFilters = [
 const ListActions = () => {
   const [toggles, setToggles] = useState(sortfilterToggles)
   const dataProvider = useDataProvider()
+
   const { refetch } = useShowController({
     resource: 'JobReport',
     id: 'jobs_kpis',
     queryOptions: {
       staleTime: 0, // disable cache
+      onSuccess(report) {
+        const data = report.data[0]
+
+        const newToggles = toggles.map(t => {
+          if (t.value === 'errors') {
+            t.count = data.errored + data.failed
+          }
+          if (t.value === 'scheduled') {
+            t.count = data.scheduled
+          }
+    
+          return t
+        })
+    
+        setToggles(newToggles)
+      },
     }
   })
 
-  const updateAggCounts = async () => {
-    const { data } = await refetch()
-    const newToggles = toggles.map(t => {
-      if (t.value === 'errors') {
-        t.count = data.errored + data.failed
-      }
-      if (t.value === 'scheduled') {
-        t.count = data.scheduled
-      }
-
-      return t
-    })
-
-    setToggles(newToggles)
-  }
-
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecord(updateAggCounts, 'JobReport', 'jobs_kpis', { enabled })
+  useSubscribeToRecord(() => refetch(), 'JobReport', 'jobs_kpis', { enabled })
 
   return (
     <TopToolbar sx={{ justifyContent: 'flex-start' }}>
