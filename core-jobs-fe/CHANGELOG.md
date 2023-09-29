@@ -1,5 +1,17 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.19
+
+### Patch Changes
+
+- bump version
+
+## 0.2.18
+
+### Patch Changes
+
+- jobs list view aggregates
+
 ## 0.2.17
 
 ### Patch Changes
