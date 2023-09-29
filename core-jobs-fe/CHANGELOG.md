@@ -11,6 +11,7 @@
 ### Patch Changes
 
 - jobs list view aggregates
+- WIP Axis
 
 ## 0.2.17
 

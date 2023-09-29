@@ -93,11 +93,11 @@ const chartOptions = {
     type: 'category',
   },
   yAxis: {
-    min: 'dataMin',
-    max: 'dataMax',
-    type: 'log',
-    logBase: 10,
-    // type: 'value',
+    // min: 'dataMin',
+    // max: 'dataMax',
+    // type: 'log',
+    // logBase: 10,
+    type: 'value',
     // axisLabel: {inside: true}
   },
   series: [
