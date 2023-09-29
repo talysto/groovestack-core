@@ -14,16 +14,19 @@ import {
   TopToolbar,
   UpdateButton,
   useRecordContext,
+  useShowController,
 } from 'react-admin'
 
-import { ListPresetButtonGroup } from '../../react-admin/ListPresetButtonGroup'
+import { ListPresetButtonGroup, ListViewToggleButtonsProps } from '../../react-admin/ListPresetButtonGroup'
 import { MultiViewList } from '../../react-admin/MultiViewList'
 import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { Header } from '../Header'
 import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
+import { useState } from 'react'
+import { useSubscribeToRecord } from '@react-admin/ra-realtime'
 
-const sortfilterToggles = [
+const sortfilterToggles: ListViewToggleButtonsProps['sortfilterToggles'] = [
   {
     label: 'Summary',
     value: 'summary',
@@ -45,7 +48,7 @@ const sortfilterToggles = [
     filterSpec: { status: ['errored', 'failed'] },
     sortSpec: { field: 'priority', order: 'ASC' },
     collapsable: true,
-    count: 16,
+    // count: 16,
   },
   {
     label: 'Scheduled',
@@ -54,7 +57,7 @@ const sortfilterToggles = [
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
     collapsable: true,
-    count: 230403,
+    // count: 230403,
   },
 ]
 
@@ -69,11 +72,41 @@ const JobsFilters = [
   />,
 ]
 
-const ListActions = () => (
-  <TopToolbar sx={{ justifyContent: 'flex-start' }}>
-    <ListPresetButtonGroup sortfilterToggles={sortfilterToggles} />
-  </TopToolbar>
-)
+const ListActions = () => {
+  const [toggles, setToggles] = useState(sortfilterToggles)
+
+  const { refetch } = useShowController({
+    resource: 'JobReport',
+    id: 'job_kpis',
+    queryOptions: {
+      staleTime: 0, // disable cache
+    }
+  })
+  
+  const updateAggCounts = async () => {
+    const { data } = await refetch()
+    const newToggles = toggles.map(t => {
+      if (t.value === 'errors') {
+        t.count = data.errored + data.failed
+      }
+      if (t.value === 'scheduled') {
+        t.count = data.scheduled
+      }
+
+      return t
+    })
+
+    setToggles(newToggles)
+  }
+
+  useSubscribeToRecord(updateAggCounts, 'JobReport', 'job_kpis')
+
+  return (
+    <TopToolbar sx={{ justifyContent: 'flex-start' }}>
+      <ListPresetButtonGroup sortfilterToggles={toggles} />
+    </TopToolbar>
+  )
+}
 
 export const JobsEditActions = () => {
   const record = useRecordContext()
