@@ -26,10 +26,14 @@ export const JobsSummaryPivot = () => {
 
             // Add an extra total row
             const totals = Object.keys(processedData[0]).reduce((acc, key) => {
-              const val = processedData.reduce((prev: any, row: { [x: string]: any} ) => prev + row[key], 0)
-              return ({
-                ...acc, [key]: isNaN(val) ? null : val
-              })
+              const val = processedData.reduce(
+                (prev: any, row: { [x: string]: any }) => prev + row[key],
+                0,
+              )
+              return {
+                ...acc,
+                [key]: isNaN(val) ? null : val,
+              }
             }, {})
 
             processedData.push(totals)
@@ -61,8 +65,8 @@ export const JobsSummaryPivot = () => {
                       borderRadius: '0px !important',
                     },
                     '& .RaDatagrid-rowCell:not(:first-child)': {
-                      textAlign: 'center'
-                    }
+                      textAlign: 'center',
+                    },
                   }}
                 >
                   <TextField source="sub_class" label="type" sortable={false} />

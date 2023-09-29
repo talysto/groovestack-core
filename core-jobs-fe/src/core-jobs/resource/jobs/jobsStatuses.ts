@@ -6,7 +6,6 @@ import RotateRightOutlinedIcon from '@mui/icons-material/RotateRightOutlined'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { JobStatusType } from './JobStatusType'
 
-
 // import RunningWithErrorsOutlinedIcon from '@mui/icons-material/RunningWithErrorsOutlined';
 // import { CircularProgress } from '@mui/material'
 

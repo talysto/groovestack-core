@@ -1,6 +1,6 @@
+import { Typography } from '@mui/material'
 import { Datagrid, InfiniteList, NumberField, TextField } from 'react-admin'
 import { FauxInput } from '../../react-admin/inputs/FauxInput'
-import { Typography } from '@mui/material'
 
 /* <LiveTable
 columns={[

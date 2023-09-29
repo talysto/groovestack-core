@@ -58,7 +58,9 @@ export const ListPresetButtonGroup = ({
             {(moreThanSmall || !collapsable) && (
               <Box sx={{ mx: 1 }}>{label}</Box>
             )}
-            { !!count && count > 0 && <Chip label={count} variant="outlined" size="small" /> }
+            {!!count && count > 0 && (
+              <Chip label={count} variant="outlined" size="small" />
+            )}
           </ToggleButton>
         )
       })}

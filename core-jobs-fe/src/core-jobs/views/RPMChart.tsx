@@ -4,10 +4,9 @@ import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
 import { useRef } from 'react'
 import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
+import { JobStatusConfigs } from '../resource/jobs/JobStatusType'
 import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
-import { JobStatusConfigs } from '../resource/jobs/JobStatusType'
-
 
 const sentinelZero = 0.000001
 
@@ -22,7 +21,7 @@ export const RPMChart = () => {
   const chartOptions = {
     dataset: { source: null },
     legend: {
-      bottom: 0
+      bottom: 0,
     },
     // {
     //   data: ['Evaporation', 'Precipitation', 'Temperature']
@@ -83,21 +82,32 @@ export const RPMChart = () => {
 
             const processedData = data.data.map((row: any) => {
               // convert 0 to sentinelZero to avoid log(0) error
-              const processedRow = Object.keys(row).reduce((acc, key) => ({
-                ...acc,
-                [key]: row[key] === 0 ? sentinelZero : row[key]
-              }), {})
+              const processedRow = Object.keys(row).reduce(
+                (acc, key) => ({
+                  ...acc,
+                  [key]: row[key] === 0 ? sentinelZero : row[key],
+                }),
+                {},
+              )
 
-              const reversedKeys = Object.keys(processedRow).reverse().reduce((acc, key) => ({
-                ...acc,
-                [key]: row[key]
-              }), {})
+              const reversedKeys = Object.keys(processedRow)
+                .reverse()
+                .reduce(
+                  (acc, key) => ({
+                    ...acc,
+                    [key]: row[key],
+                  }),
+                  {},
+                )
 
               console.debug('r1', reversedKeys)
 
 
-              // @ts-ignore-line
-              const reversedKeys2 = {period: reversedKeys.period, ...reversedKeys}
+              const reversedKeys2 = {
+                // @ts-ignore-line
+                period: reversedKeys.period,
+                ...reversedKeys,
+              }
               // const reversedKeys2 = Object.keys(reversedKeys).reduce((acc, key) => ({
               //   ...acc,
               //   period: row.period,
@@ -106,12 +116,10 @@ export const RPMChart = () => {
 
               console.debug('r2', reversedKeys2)
 
-              return (
-                {
-                  ...reversedKeys2, // {period: schedule: completed:} -> {period: completed: scheduled:}
-                  period: dayjs(row.period).format('h:mm'),
-                }
-              )
+              return {
+                ...reversedKeys2, // {period: schedule: completed:} -> {period: completed: scheduled:}
+                period: dayjs(row.period).format('h:mm'),
+              }
             })
 
             let config = { ...chartOptions } // make a copy
@@ -139,8 +147,6 @@ export const RPMChart = () => {
     </JobReportShow>
   )
 }
-
-
 
 // See https://echarts.apache.org/en/option.html#tooltip.formatter
 // const formatter = () => {

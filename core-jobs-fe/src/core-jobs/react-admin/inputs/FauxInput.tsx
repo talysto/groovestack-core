@@ -1,4 +1,4 @@
-import { Box, SxProps, Typography } from '@mui/material'
+import { Box, SxProps } from '@mui/material'
 import { InputProps } from 'react-admin'
 
 export type tProps = InputProps & {

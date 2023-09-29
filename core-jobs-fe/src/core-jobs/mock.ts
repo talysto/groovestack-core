@@ -72,12 +72,42 @@ function mockReportKPIs() {
     id: 'jobs_kpis',
     data: [
       {
-        scheduled: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 100_000 })]),
-        queued: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
-        running: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: workers })]),
-        errored: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
-        failed: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
-        completed: faker.helpers.arrayElement([0,0,0, faker.number.int({ min: 0, max: 24 })]),
+        scheduled: faker.helpers.arrayElement([
+          0,
+          0,
+          0,
+          faker.number.int({ min: 0, max: 100_000 }),
+        ]),
+        queued: faker.helpers.arrayElement([
+          0,
+          0,
+          0,
+          faker.number.int({ min: 0, max: 24 }),
+        ]),
+        running: faker.helpers.arrayElement([
+          0,
+          0,
+          0,
+          faker.number.int({ min: 0, max: workers }),
+        ]),
+        errored: faker.helpers.arrayElement([
+          0,
+          0,
+          0,
+          faker.number.int({ min: 0, max: 24 }),
+        ]),
+        failed: faker.helpers.arrayElement([
+          0,
+          0,
+          0,
+          faker.number.int({ min: 0, max: 24 }),
+        ]),
+        completed: faker.helpers.arrayElement([
+          0,
+          0,
+          0,
+          faker.number.int({ min: 0, max: 24 }),
+        ]),
         workers: workers,
         oldest_queued_at: faker.date.recent(),
       },
@@ -120,11 +150,22 @@ export function mockReportByPeriod() {
 
       const statuses = {
         scheduled: 0,
-        queued: period > dayjs(roundedNow).subtract(5, 'minute') ? faker.helpers.arrayElement([faker.number.int({ min: 4, max: 50 })]) : 0,
+        queued:
+          period > dayjs(roundedNow).subtract(5, 'minute')
+            ? faker.helpers.arrayElement([
+                faker.number.int({ min: 4, max: 50 }),
+              ])
+            : 0,
         running: period > dayjs(roundedNow).subtract(1, 'minute') ? 8 : 0,
-        errored: faker.helpers.arrayElement([faker.number.int({ min: 0, max: 3 })]),
-        failed: faker.helpers.arrayElement([faker.number.int({ min: 0, max: 5 })]),
-        completed: faker.helpers.arrayElement([faker.number.int({ min: 0, max: 24 })])
+        errored: faker.helpers.arrayElement([
+          faker.number.int({ min: 0, max: 3 }),
+        ]),
+        failed: faker.helpers.arrayElement([
+          faker.number.int({ min: 0, max: 5 }),
+        ]),
+        completed: faker.helpers.arrayElement([
+          faker.number.int({ min: 0, max: 24 }),
+        ]),
       }
       // @ts-ignore-line
       // const statuses = Object.keys(jobStatuses).reduce(

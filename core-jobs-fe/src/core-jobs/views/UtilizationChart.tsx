@@ -61,7 +61,11 @@ export const UtilizationChart = () => {
                 {/* </Box> */}
 
                 {/* <Box sx={{ flexBasis: '60%' }}> */}
-                { workers == 0 && <Alert severity="warning">There are no worker processes to process jobs.</Alert> }
+                {workers == 0 && (
+                  <Alert severity="warning">
+                    There are no worker processes to process jobs.
+                  </Alert>
+                )}
                 <ButtonGroup
                   variant="text"
                   size="large"

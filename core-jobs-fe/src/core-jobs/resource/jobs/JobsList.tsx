@@ -19,14 +19,17 @@ import {
   useShowController,
 } from 'react-admin'
 
-import { ListPresetButtonGroup, ListViewToggleButtonsProps } from '../../react-admin/ListPresetButtonGroup'
+import { useSubscribeToRecord } from '@react-admin/ra-realtime'
+import { useState } from 'react'
+import {
+  ListPresetButtonGroup,
+  ListViewToggleButtonsProps,
+} from '../../react-admin/ListPresetButtonGroup'
 import { MultiViewList } from '../../react-admin/MultiViewList'
 import { JobsSummaryPivot } from '../../views/JobsSummary'
 import { Header } from '../Header'
 import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
-import { useState } from 'react'
-import { useSubscribeToRecord } from '@react-admin/ra-realtime'
 import { jobStatuses } from './jobsStatuses'
 
 const sortfilterToggles: ListViewToggleButtonsProps['sortfilterToggles'] = [
@@ -73,8 +76,14 @@ const JobsFilters = [
     source="q"
     placeholder="Filter or search..."
   />,
-  <SelectArrayInput source="status" alwaysOn choices={Object.keys(jobStatuses).map((status) => ({id: status, name: jobStatuses[status].label}) )}/>
-
+  <SelectArrayInput
+    source="status"
+    alwaysOn
+    choices={Object.keys(jobStatuses).map((status) => ({
+      id: status,
+      name: jobStatuses[status].label,
+    }))}
+  />,
 ]
 
 const ListActions = () => {
@@ -89,20 +98,20 @@ const ListActions = () => {
       onSuccess(report) {
         const data = report.data[0]
 
-        const newToggles = toggles.map(t => {
+        const newToggles = toggles.map((t) => {
           if (t.value === 'errors') {
             t.count = data.errored + data.failed
           }
           if (t.value === 'scheduled') {
             t.count = data.scheduled
           }
-    
+
           return t
         })
-    
+
         setToggles(newToggles)
       },
-    }
+    },
   })
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
