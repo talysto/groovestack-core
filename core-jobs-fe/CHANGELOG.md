@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.25
+
+### Patch Changes
+
+- ChartJobs / Charts
+
 ## 0.2.24
 
 ### Patch Changes
