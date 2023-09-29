@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.21
+
+### Patch Changes
+
+- Typo
+
 ## 0.2.20
 
 ### Patch Changes

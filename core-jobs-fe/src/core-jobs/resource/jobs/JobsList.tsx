@@ -82,7 +82,7 @@ const ListActions = () => {
       staleTime: 0, // disable cache
     }
   })
-  
+
   const updateAggCounts = async () => {
     const { data } = await refetch()
     const newToggles = toggles.map(t => {
@@ -99,7 +99,7 @@ const ListActions = () => {
     setToggles(newToggles)
   }
 
-  useSubscribeToRecord(updateAggCounts, 'JobReport', 'job_kpis')
+  useSubscribeToRecord(updateAggCounts, 'JobReport', 'jobs_kpis')
 
   return (
     <TopToolbar sx={{ justifyContent: 'flex-start' }}>
