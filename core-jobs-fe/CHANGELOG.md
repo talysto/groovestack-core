@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.20
+
+### Patch Changes
+
+- layout and live stats
+
 ## 0.2.19
 
 ### Patch Changes
