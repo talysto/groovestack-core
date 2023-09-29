@@ -3,11 +3,11 @@ import { blueGrey } from '@mui/material/colors'
 import {
   Datagrid,
   FunctionField,
-  NumberField,
   RaRecord,
   SimpleShowLayout,
   TextField,
 } from 'react-admin'
+import { numberToHuman } from '../components/util'
 import { jobStatuses } from '../resource/jobs/jobsStatuses'
 import { JobReportShow } from './JobReportShow'
 
@@ -22,10 +22,17 @@ export const JobsSummaryPivot = () => {
           render={(data: RaRecord) => {
             if (!data) return <div>No data</div>
 
-            const processedData = data.data
+            const processedData = structuredClone(data.data)
 
-            console.log('data', data)
-            console.log('processedData', processedData)
+            // Add an extra total row
+            const totals = Object.keys(processedData[0]).reduce((acc, key) => {
+              const val = processedData.reduce((prev: any, row: { [x: string]: any} ) => prev + row[key], 0)
+              return ({
+                ...acc, [key]: isNaN(val) ? null : val
+              })
+            }, {})
+
+            processedData.push(totals)
 
             return (
               <Card>
@@ -53,16 +60,27 @@ export const JobsSummaryPivot = () => {
                       color: theme.palette.primary.main,
                       borderRadius: '0px !important',
                     },
+                    '& .RaDatagrid-rowCell:not(:first-child)': {
+                      textAlign: 'center'
+                    }
                   }}
                 >
                   <TextField source="sub_class" label="type" sortable={false} />
                   {Object.keys(jobStatuses).map((status, idx) => {
                     const AltIcon = jobStatuses[status].icon
                     return (
-                      <NumberField
+                      <FunctionField
                         key={idx}
-                        source={status}
                         sortable={false}
+                        render={(record: any) => (
+                          <span
+                            title={new Intl.NumberFormat().format(
+                              record[status],
+                            )}
+                          >
+                            {numberToHuman(record[status] || 0)}
+                          </span>
+                        )}
                         label={
                           moreThanSmall ? (
                             jobStatuses[status].label
@@ -71,6 +89,19 @@ export const JobsSummaryPivot = () => {
                           )
                         }
                       />
+
+                      // <NumberField
+                      //   key={idx}
+                      //   source={status}
+                      //   sortable={false}
+                      //   label={
+                      //     moreThanSmall ? (
+                      //       jobStatuses[status].label
+                      //     ) : (
+                      //       <AltIcon />
+                      //     )
+                      //   }
+                      // />
                     )
                   })}
                 </Datagrid>

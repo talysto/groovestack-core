@@ -192,7 +192,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    }[];\n} | {\n    id: string;\n    data: {\n        period: string;\n    }[];\n})[]"
+              "text": ";\n    }[];\n} | {\n    id: string;\n    data: {\n        scheduled: number;\n        queued: number;\n        running: number;\n        errored: number;\n        failed: number;\n        completed: number;\n        period: string;\n    }[];\n})[]"
             },
             {
               "kind": "Content",
@@ -355,7 +355,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    data: {\n        period: string;\n    }[];\n}"
+              "text": "{\n    id: string;\n    data: {\n        scheduled: number;\n        queued: number;\n        running: number;\n        errored: number;\n        failed: number;\n        completed: number;\n        period: string;\n    }[];\n}"
             },
             {
               "kind": "Content",

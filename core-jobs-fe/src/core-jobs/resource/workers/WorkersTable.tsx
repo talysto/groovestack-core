@@ -1,5 +1,6 @@
 import { Datagrid, InfiniteList, NumberField, TextField } from 'react-admin'
-import { TypographyInput } from '../../react-admin/inputs/TypographyInput'
+import { FauxInput } from '../../react-admin/inputs/FauxInput'
+import { Typography } from '@mui/material'
 
 /* <LiveTable
 columns={[
@@ -23,9 +24,9 @@ export const WorkersTable = () => {
   return (
     <InfiniteList
       filters={[
-        <TypographyInput key="title" source="title" alwaysOn>
-          Workers
-        </TypographyInput>,
+        <FauxInput key="title" source="title" alwaysOn>
+          <Typography variant="h6">Workers</Typography>
+        </FauxInput>,
       ]}
       // actions={<ListActions />}
       // filter={{}}

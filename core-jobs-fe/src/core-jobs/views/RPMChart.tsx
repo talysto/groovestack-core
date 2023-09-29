@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
+import { JobStatusConfigs } from '../resource/jobs/JobStatusType'
 
 
 const sentinelZero = 0.000001
@@ -16,6 +17,56 @@ export const RPMChart = () => {
     'custom',
     echartsThemeFromMui(theme.palette.primary.main),
   )
+
+  const sConfigs = JobStatusConfigs()
+  const chartOptions = {
+    dataset: { source: null },
+    legend: {
+      bottom: 0
+    },
+    // {
+    //   data: ['Evaporation', 'Precipitation', 'Temperature']
+    // },
+    grid: {
+      // left: 40,
+      top: 10,
+      // right: 20,
+      // bottom: 20,
+    },
+    // Remove until you can handle sentinelZero
+    tooltip: {
+      trigger: 'axis',
+      valueFormatter: (value: number) => value.toFixed(0),
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    xAxis: {
+      // type: 'time',
+      // axisLabel: {
+      //   formatter: '{HH}:{mm}'
+      // },
+      type: 'category',
+    },
+    yAxis: {
+      min: 1,
+      // max: 'dataMax',
+      type: 'log',
+      // logBase: 10,
+      // type: 'value',
+      // axisLabel: {inside: true}
+    },
+    series: [
+      // { type: 'time' },
+      { type: 'bar', stack: 'jobs', color: sConfigs['completed'].color }, // complete
+      { type: 'bar', stack: 'jobs', color: sConfigs['failed'].color }, // failed
+      { type: 'bar', stack: 'jobs', color: sConfigs['errored'].color }, // errored
+      { type: 'bar', stack: 'jobs', color: sConfigs['running'].color }, // running
+      { type: 'bar', stack: 'jobs', color: sConfigs['queued'].color }, // queued
+      { type: 'bar', stack: 'jobs', color: sConfigs['scheduled'].color }, // scheduled
+    ],
+    barCategoryGap: '0%',
+  }
 
   const chart = useRef<ReactECharts>(null)
 
@@ -37,16 +88,31 @@ export const RPMChart = () => {
                 [key]: row[key] === 0 ? sentinelZero : row[key]
               }), {})
 
+              const reversedKeys = Object.keys(processedRow).reverse().reduce((acc, key) => ({
+                ...acc,
+                [key]: row[key]
+              }), {})
+
+              console.debug('r1', reversedKeys)
+
+
+              // @ts-ignore-line
+              const reversedKeys2 = {period: reversedKeys.period, ...reversedKeys}
+              // const reversedKeys2 = Object.keys(reversedKeys).reduce((acc, key) => ({
+              //   ...acc,
+              //   period: row.period,
+
+              // }), {period: row.period})
+
+              console.debug('r2', reversedKeys2)
 
               return (
                 {
-                  ...processedRow,
+                  ...reversedKeys2, // {period: schedule: completed:} -> {period: completed: scheduled:}
                   period: dayjs(row.period).format('h:mm'),
                 }
               )
             })
-
-            console.debug('processedData', processedData)
 
             let config = { ...chartOptions } // make a copy
             config.dataset.source = processedData
@@ -74,48 +140,7 @@ export const RPMChart = () => {
   )
 }
 
-const chartOptions = {
-  dataset: { source: null },
-  grid: {
-    left: 40,
-    top: 10,
-    right: 20,
-    bottom: 20,
-  },
-  // Remove until you can handle sentinelZero
-  tooltip: {
-    trigger: 'axis',
-    valueFormatter: (value: number) => value.toFixed(0),
-    axisPointer: {
-      type: 'shadow',
-    },
-  },
-  xAxis: {
-    // type: 'time',
-    // axisLabel: {
-    //   formatter: '{HH}:{mm}'
-    // },
-    type: 'category',
-  },
-  yAxis: {
-    min: 1,
-    // max: 'dataMax',
-    type: 'log',
-    // logBase: 10,
-    // type: 'value',
-    // axisLabel: {inside: true}
-  },
-  series: [
-    // { type: 'time' },
-    { type: 'bar', stack: 'jobs' }, // scheduled
-    { type: 'bar', stack: 'jobs' }, // queued
-    { type: 'bar', stack: 'jobs' }, // running
-    { type: 'bar', stack: 'jobs' }, // complete
-    { type: 'bar', stack: 'jobs' }, // errored
-    { type: 'bar', stack: 'jobs' }, // failed
-  ],
-  barCategoryGap: '0%',
-}
+
 
 // See https://echarts.apache.org/en/option.html#tooltip.formatter
 // const formatter = () => {

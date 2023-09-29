@@ -94,24 +94,24 @@ export const theme = {
   },
 
   // ...darkTheme,
-  palette: {
-    type: 'light',
-    primary: {
-      main: '#0a568f',
-    },
-    secondary: {
-      main: '#d90522',
-    },
-    warning: {
-      main: '#f7b20e',
-    },
-    info: {
-      main: '#fb5105',
-    },
-    background: {
-      default: '#e5e5ec',
-    },
-  },
+  // palette: {
+  //   type: 'light',
+  //   primary: {
+  //     main: '#0a568f',
+  //   },
+  //   secondary: {
+  //     main: '#d90522',
+  //   },
+  //   warning: {
+  //     main: '#f7b20e',
+  //   },
+  //   info: {
+  //     main: '#fb5105',
+  //   },
+  //   background: {
+  //     default: '#e5e5ec',
+  //   },
+  // },
   typography: {
     h2: {
       fontWeight: 800,

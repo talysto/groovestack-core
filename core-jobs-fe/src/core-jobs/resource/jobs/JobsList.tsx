@@ -10,6 +10,7 @@ import {
   ListToolbar,
   Pagination,
   SearchInput,
+  SelectArrayInput,
   Title,
   TopToolbar,
   UpdateButton,
@@ -26,6 +27,7 @@ import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
 import { useState } from 'react'
 import { useSubscribeToRecord } from '@react-admin/ra-realtime'
+import { jobStatuses } from './jobsStatuses'
 
 const sortfilterToggles: ListViewToggleButtonsProps['sortfilterToggles'] = [
   {
@@ -71,6 +73,8 @@ const JobsFilters = [
     source="q"
     placeholder="Filter or search..."
   />,
+  <SelectArrayInput source="status" alwaysOn choices={Object.keys(jobStatuses).map((status) => ({id: status, name: jobStatuses[status].label}) )}/>
+
 ]
 
 const ListActions = () => {

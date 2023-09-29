@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Stack, useTheme } from '@mui/material'
+import { Alert, Button, ButtonGroup, Stack, useTheme } from '@mui/material'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import { random } from 'lodash'
@@ -32,7 +32,7 @@ export const UtilizationChart = () => {
 
             const workers = record.workers
             const running = record.running
-            const utilization = Math.round((100.0 * running) / workers)
+            const utilization = Math.round((100.0 * running) / workers) || 0
 
             let config = { ...utilizationOptions } // make a copy
             config.series[0].data[0].value = utilization
@@ -61,6 +61,7 @@ export const UtilizationChart = () => {
                 {/* </Box> */}
 
                 {/* <Box sx={{ flexBasis: '60%' }}> */}
+                { workers == 0 && <Alert severity="warning">There are no worker processes to process jobs.</Alert> }
                 <ButtonGroup
                   variant="text"
                   size="large"

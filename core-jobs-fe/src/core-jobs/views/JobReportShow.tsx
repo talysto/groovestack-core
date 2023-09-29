@@ -18,7 +18,7 @@ export const JobReportShow = (
   })
 
   const handleEventReceived = (e: any) => {
-    console.log(`event received for ${props.id}`, e)
+    // console.log(`event received for ${props.id}`, e)
     refetch()
   }
 

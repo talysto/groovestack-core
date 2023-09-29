@@ -115,17 +115,26 @@ export function mockReportByPeriod() {
       dayjs(roundedNow).subtract(1, 'hour'),
       dayjs(roundedNow),
       'minute',
-    ).map((d: Dayjs) => {
-      const base = { period: d.toISOString() }
+    ).map((period: Dayjs) => {
+      const base = { period: period.toISOString() }
+
+      const statuses = {
+        scheduled: 0,
+        queued: period > dayjs(roundedNow).subtract(5, 'minute') ? faker.helpers.arrayElement([faker.number.int({ min: 4, max: 50 })]) : 0,
+        running: period > dayjs(roundedNow).subtract(1, 'minute') ? 8 : 0,
+        errored: faker.helpers.arrayElement([faker.number.int({ min: 0, max: 3 })]),
+        failed: faker.helpers.arrayElement([faker.number.int({ min: 0, max: 5 })]),
+        completed: faker.helpers.arrayElement([faker.number.int({ min: 0, max: 24 })])
+      }
       // @ts-ignore-line
-      const statuses = Object.keys(jobStatuses).reduce(
-        (map, status) =>
-          (
-            // @ts-ignore-line
-            (map[status] = faker.helpers.arrayElement([0,0,0,faker.number.int({ min: 0, max: 400 })])), map
-          ),
-        {},
-      )
+      // const statuses = Object.keys(jobStatuses).reduce(
+      //   (map, status) =>
+      //     (
+      //       // @ts-ignore-line
+      //       (map[status] = faker.helpers.arrayElement([0,0,0,faker.number.int({ min: 0, max: 400 })])), map
+      //     ),
+      //   {},
+      // )
 
       return { ...base, ...statuses }
     }),
