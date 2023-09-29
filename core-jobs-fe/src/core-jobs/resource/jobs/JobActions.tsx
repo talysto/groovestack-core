@@ -5,7 +5,7 @@ import { Box } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import { useState } from 'react'
-import { FieldProps } from 'react-admin'
+import { FieldProps, useRecordContext } from 'react-admin'
 import { DeleteMenuItem } from './DeleteMenuItem'
 import { UpdateMenuItem } from './UpdateMenuItem'
 import { EditJob } from './edit'
@@ -54,6 +54,7 @@ function viewJob() {
 }
 
 export const JobActions = (props: FieldProps) => {
+  const record = useRecordContext()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -128,8 +129,9 @@ export const JobActions = (props: FieldProps) => {
           <EditJob />
         </CustomButtonDrawer> */}
         <UpdateMenuItem
-          label="Retry"
-          data={{ status: 'retry!' }}
+          label={ record.status.includes('scheduled') ? "Run Now" : "Retry"}
+          disabled={record.status.includes('completed')}
+          data={{ status: 'retry!' }} //Change to run now?
           onClick={handleClose}
         />
         <DeleteMenuItem title="test" label="Delete" onClick={handleClose} />
