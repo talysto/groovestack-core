@@ -99,10 +99,6 @@ export const RPMChart = () => {
                   }),
                   {},
                 )
-
-              console.debug('r1', reversedKeys)
-
-
               const reversedKeys2 = {
                 // @ts-ignore-line
                 period: reversedKeys.period,
@@ -113,9 +109,6 @@ export const RPMChart = () => {
               //   period: row.period,
 
               // }), {period: row.period})
-
-              console.debug('r2', reversedKeys2)
-
               return {
                 ...reversedKeys2, // {period: schedule: completed:} -> {period: completed: scheduled:}
                 period: dayjs(row.period).format('h:mm'),
