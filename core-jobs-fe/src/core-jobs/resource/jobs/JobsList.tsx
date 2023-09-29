@@ -77,7 +77,7 @@ const ListActions = () => {
 
   const { refetch } = useShowController({
     resource: 'JobReport',
-    id: 'job_kpis',
+    id: 'jobs_kpis',
     queryOptions: {
       staleTime: 0, // disable cache
     }
