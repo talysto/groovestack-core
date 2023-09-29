@@ -13,6 +13,7 @@ import {
   Title,
   TopToolbar,
   UpdateButton,
+  useDataProvider,
   useRecordContext,
   useShowController,
 } from 'react-admin'
@@ -74,7 +75,7 @@ const JobsFilters = [
 
 const ListActions = () => {
   const [toggles, setToggles] = useState(sortfilterToggles)
-
+  const dataProvider = useDataProvider()
   const { refetch } = useShowController({
     resource: 'JobReport',
     id: 'jobs_kpis',
@@ -99,7 +100,8 @@ const ListActions = () => {
     setToggles(newToggles)
   }
 
-  useSubscribeToRecord(updateAggCounts, 'JobReport', 'jobs_kpis')
+  const enabled = !!Object.assign({}, dataProvider)?.subscribe
+  useSubscribeToRecord(updateAggCounts, 'JobReport', 'jobs_kpis', { enabled })
 
   return (
     <TopToolbar sx={{ justifyContent: 'flex-start' }}>
