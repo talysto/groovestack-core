@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 import { FilterPayload, SortPayload, useListContext } from 'react-admin'
+import { numberToHuman } from '../components/util'
 
 export interface ListViewToggleButtonsProps {
   sortfilterToggles: Array<{
@@ -59,7 +60,7 @@ export const ListPresetButtonGroup = ({
               <Box sx={{ mx: 1 }}>{label}</Box>
             )}
             {!!count && count > 0 && (
-              <Chip label={count} variant="outlined" size="small" />
+              <Chip label={numberToHuman(count)} variant="outlined" size="small" />
             )}
           </ToggleButton>
         )

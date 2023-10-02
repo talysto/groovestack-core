@@ -60,12 +60,19 @@ export const JobsSummaryPivot = () => {
                   bulkActionButtons={false}
                   sx={{
                     '& .RaDatagrid-headerCell': {
-                      background: blueGrey[50],
-                      color: theme.palette.primary.main,
-                      borderRadius: '0px !important',
+                      pt: 3
+                      // background: blueGrey[50],
+                      // color: theme.palette.primary.main,
+                      // borderRadius: '0px !important',
                     },
                     '& .RaDatagrid-rowCell:not(:first-child)': {
                       textAlign: 'center',
+                    },
+                    '& .RaDatagrid-row:last-child': {
+                      background: 'bold',
+                    },
+                    '& .RaDatagrid-row:last-child *': {
+                      fontWeight: 'bold',
                     },
                   }}
                 >

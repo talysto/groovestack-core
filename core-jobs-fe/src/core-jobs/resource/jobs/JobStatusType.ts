@@ -28,31 +28,34 @@ export function JobStatusConfigs() {
       id: 'queued',
       label: 'Queued',
       icon: FormatListNumberedRtlIcon,
-      color: grey[600],
+      color: grey[400],
     },
     running: {
       id: 'running',
       label: 'Running',
       icon: RotateRightOutlinedIcon,
-      color: theme.palette.info.light,
+      color: theme.palette.primary.dark,
+      // color: theme.palette.success.main,
     },
     errored: {
       id: 'errored',
       label: 'Errored',
       icon: WarningAmberIcon,
-      color: theme.palette.warning.main,
+      color: theme.palette.warning.light,
     },
     failed: {
       id: 'failed',
       label: 'Failed',
       icon: HighlightOffIcon,
-      color: theme.palette.error.main,
+      color: theme.palette.warning.main,
     },
     completed: {
       id: 'completed',
       label: 'Completed',
       icon: DoneIcon,
-      color: theme.palette.success.main,
+      color: theme.palette.primary.light,
+      // color: blue[200],
+      // `color-mix(in srgb, ${theme.palette.primary.main} 20%, white)`
     },
   }
 }

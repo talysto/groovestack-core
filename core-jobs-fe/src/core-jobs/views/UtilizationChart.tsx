@@ -54,7 +54,7 @@ export const UtilizationChart = () => {
                     // flexBasis: '100%',
                     height: '100%',
                     width: '100%',
-                    minHeight: 200,
+                    minHeight: 160,
                   }}
                   option={config}
                 />

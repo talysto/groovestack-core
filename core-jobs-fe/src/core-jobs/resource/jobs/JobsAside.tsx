@@ -15,34 +15,14 @@ import { JobReportKPIsLive } from '../JobReportKPIs'
 export const JobsAside = () => {
   return (
     <Box
-      // item
-      // elevation={0}
-      // xs={12}
-      // sm={4}
       sx={{
         pl: { xs: 0, sm: 5 },
-        // width: '360px',
-        // minWidth: '33%',
-        // flexShrink: 0,
-        // minWidth: '250px',
-        // ml: 2,
-        // mt: 2,
-        // pr: 2,
-        // pl: 2,
       }}
     >
       <Stack spacing={3}>
         <RPMChart />
         <UtilizationChart />
-        {/* <Item sx={{ minHeight: 240 }} elevation={0}>
-          <RPMChart />
-        </Item>
-        <Item sx={{ minHeight: 240 }} elevation={0}>
-          <UtilizationChart />
-        </Item> */}
-        {/* <Item sx={{ minHeight: 240 }} elevation={0}> */}
         <JobReportKPIsLive />
-        {/* </Item> */}
       </Stack>
     </Box>
   )

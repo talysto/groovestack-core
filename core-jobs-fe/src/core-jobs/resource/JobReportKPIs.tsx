@@ -14,7 +14,7 @@ export const JobReportKPIsLive = () => {
             const record = data.data[0]
 
             return (
-              <Stack sx={{ flexDirection: 'row', gap: 2 }}>
+              <Stack sx={{ flexDirection: 'row', gap: 1, flexWrap: 'wrap' }}>
                 <Metric
                   value={record.scheduled}
                   label="Scheduled"
