@@ -273,7 +273,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    actions: string[];\n    data: {};\n    args: {\n        job_id: string;\n    }[];\n}[]"
+              "text": ";\n    actions: string[];\n    args: {\n        job_id: string;\n    }[];\n    data: {};\n}[]"
             },
             {
               "kind": "Content",

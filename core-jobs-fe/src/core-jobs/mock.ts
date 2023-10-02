@@ -211,8 +211,8 @@ export function mockJobs(count = 15) {
       'low',
       'long-running',
     ]),
-    priority: faker.helpers.arrayElement([1, 50, 100]),
     status: faker.helpers.arrayElement(Object.keys(jobStatuses)),
+    priority: faker.helpers.arrayElement([1, 50, 100]),
 
     expired_at: faker.date.recent(),
 
@@ -230,11 +230,11 @@ export function mockJobs(count = 15) {
     actions: faker.helpers.arrayElement([['retry'], [], []]),
 
     // que-specific
-    data: {},
     args: [
       {
         job_id: '2f11a80b-069f-4570-9a24-c3142acf8a87',
       },
     ],
+    data: {},
   }))
 }
