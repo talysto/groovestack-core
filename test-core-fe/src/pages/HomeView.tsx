@@ -47,7 +47,7 @@ const Members = ({ members }: { members: [] }) => {
 export const Packages = ({ packages }: { packages: any }) => {
   return (
     <ul>
-      {Object.values(packages).map((pkg, idx: number) => (
+      {Object.values(packages).map((pkg: any, idx: number) => (
         <li key={idx}>
           <b>{pkg.name}</b> - {pkg.kind} <br />
           <small>

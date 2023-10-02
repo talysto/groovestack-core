@@ -20,7 +20,7 @@ import {
 } from 'react-admin'
 
 import { useSubscribeToRecord } from '@react-admin/ra-realtime'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ListPresetButtonGroup,
   ListViewToggleButtonsProps,
@@ -87,35 +87,48 @@ const JobsFilters = [
 ]
 
 const ListActions = () => {
+  const [kpis, setKpis] = useState()
   const [toggles, setToggles] = useState(sortfilterToggles)
   const dataProvider = useDataProvider()
 
-  const { refetch } = useShowController({
+  const handleEventReceived = ({ payload: { data }}: any) => setKpis(data)
+
+  const updateToggles = (data: any) => {
+    const newToggles = toggles.map((t) => {
+      if (t.value === 'errors') {
+        t.count = data.errored + data.failed
+      }
+      if (t.value === 'scheduled') {
+        t.count = data.scheduled
+      }
+
+      return t
+    })
+
+    console.log('setToggles', newToggles)
+
+    setToggles(newToggles)
+  }
+
+  
+  // initial fetch
+  useShowController({
     resource: 'JobReport',
     id: 'jobs_kpis',
     queryOptions: {
-      staleTime: 0, // disable cache
-      onSuccess(report) {
-        const data = report.data[0]
-
-        const newToggles = toggles.map((t) => {
-          if (t.value === 'errors') {
-            t.count = data.errored + data.failed
-          }
-          if (t.value === 'scheduled') {
-            t.count = data.scheduled
-          }
-
-          return t
-        })
-
-        setToggles(newToggles)
+      onSuccess({ data }) {
+        console.log('data received', data)
+        setKpis(data)
       },
     },
   })
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecord(() => refetch(), 'JobReport', 'jobs_kpis', { enabled })
+  useSubscribeToRecord(handleEventReceived, 'JobReport', 'jobs_kpis', { enabled })
+
+  useEffect(() => {
+    if (kpis) updateToggles(kpis[0])
+  }, [kpis])
 
   return (
     <TopToolbar sx={{ justifyContent: 'flex-start' }}>
