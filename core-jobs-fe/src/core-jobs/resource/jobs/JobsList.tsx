@@ -79,6 +79,10 @@ const JobsFilters = [
   <SelectArrayInput
     source="status"
     alwaysOn
+    label={false}
+    // TODO: This pt works but is not scalable
+    sx={{'& .MuiSelect-select': {pt: '12px'}}}
+    placeholder="Status"
     choices={Object.keys(jobStatuses).map((status) => ({
       id: status,
       name: jobStatuses[status].label,

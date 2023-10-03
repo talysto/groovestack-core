@@ -255,7 +255,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    queue: string;\n    priority: number;\n    status: string;\n    expired_at: "
+              "text": ";\n    queue: string;\n    status: string;\n    priority: number;\n    expired_at: "
             },
             {
               "kind": "Reference",

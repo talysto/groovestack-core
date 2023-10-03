@@ -60,12 +60,15 @@ export const JobActions = (props: FieldProps) => {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault()
-    event.stopPropagation
+    event.stopPropagation()
+
     setAnchorEl(event.currentTarget)
     return false
   }
 
-  const handleClose = () => {
+  const handleClose = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault()
+    event.stopPropagation()
     setAnchorEl(null)
   }
 
@@ -74,12 +77,10 @@ export const JobActions = (props: FieldProps) => {
       <CustomButtonDrawer
         mode="edit"
         drawerProps={{ title: 'Job Details' }}
-        // icon={<VisibilityOutlinedIcon/>}
-        // sx={{ display: 'inline-flex' }}
         label={'View'}
         drawerWidth={DrawerWidth.Medium}
         clickableComponent={
-          <IconButton aria-label="view" id="view-button">
+          <IconButton aria-label="view" id="view-button" sx={{visibility: 'hidden'}}>
             <VisibilityOutlinedIcon />
           </IconButton>
         }
@@ -105,12 +106,6 @@ export const JobActions = (props: FieldProps) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            width: '20ch',
-          },
-        }}
       >
         {/* <MenuItem key={'view'} onClick={viewJob}>
           View

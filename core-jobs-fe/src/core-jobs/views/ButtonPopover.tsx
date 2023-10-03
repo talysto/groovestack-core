@@ -4,9 +4,11 @@ import { useState } from 'react'
 export const ButtonPopover = ({
   label,
   children,
+  sx,
 }: {
   label: string
   children: any
+  sx?: any
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
@@ -22,8 +24,8 @@ export const ButtonPopover = ({
   const id = open ? 'simple-popover' : undefined
 
   return (
-    <div>
-      <Button aria-describedby={id} onClick={handleClick}>
+    <>
+      <Button sx={sx} aria-describedby={id} onClick={handleClick}>
         {label}
       </Button>
       <Popover
@@ -39,6 +41,6 @@ export const ButtonPopover = ({
         {/* <Typography sx={{ p: 2 }}>The content of the Popover.</Typography> */}
         <Paper sx={{ p: 3 }}>{children}</Paper>
       </Popover>
-    </div>
+    </>
   )
 }

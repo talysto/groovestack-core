@@ -72,10 +72,10 @@ export const UtilizationChart = () => {
                   aria-label="large button group"
                   sx={{ justifyContent: 'space-around' }}
                 >
-                  <ButtonPopover label={`${workers} Workers`}>
+                  <ButtonPopover sx={{flexGrow: 1}} label={`${workers} Workers`}>
                     <WorkersTable />
                   </ButtonPopover>
-                  <Button disabled>{`${running} Running Jobs`}</Button>
+                  <Button sx={{flexGrow: 1}} disabled>{`${running} Running Jobs`}</Button>
                 </ButtonGroup>
                 {/* </Box> */}
 

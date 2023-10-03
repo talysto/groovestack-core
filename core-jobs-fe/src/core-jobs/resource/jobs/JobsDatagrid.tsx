@@ -5,14 +5,20 @@ import {
   Datagrid,
   FunctionField,
   NumberField,
-  RowClickFunction,
   TextField,
 } from 'react-admin'
 import { JobStatusField } from '../../react-admin/fields/JobStatusField'
 import { JobActions } from './JobActions'
 
-const triggerDrawer: RowClickFunction = (props) => {
-  alert(`TODO: open the drawer.`)
+
+const rowClick = (event: React.MouseEvent<HTMLElement>) => {
+
+  // TODO Resolve this warning
+  // @ts-ignore-line
+  const tr = event.target.closest('tr')
+  if(!tr) return false
+
+  tr.querySelector('button[aria-label="view"]')?.click()
   return false
 }
 
@@ -21,7 +27,8 @@ export const JobDatagrid = () => {
   const moreThanSmall = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Datagrid
-      // rowClick={triggerDrawer}
+      onClick={rowClick}
+      // rowClick='tFunc'
       //  bulkActionButtons={!moreThanSmall && false}
       sort={{ field: 'priority', order: 'ASC' }}
     >
