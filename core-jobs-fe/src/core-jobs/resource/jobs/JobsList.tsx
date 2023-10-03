@@ -91,7 +91,7 @@ const ListActions = () => {
   const [toggles, setToggles] = useState(sortfilterToggles)
   const dataProvider = useDataProvider()
 
-  const handleEventReceived = ({ payload: { data }}: any) => setKpis(data)
+  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis(payload.data)}
 
   const updateToggles = (data: any) => {
     const newToggles = toggles.map((t) => {
@@ -105,8 +105,6 @@ const ListActions = () => {
       return t
     })
 
-    console.log('setToggles', newToggles)
-
     setToggles(newToggles)
   }
 
@@ -115,12 +113,7 @@ const ListActions = () => {
   useShowController({
     resource: 'JobReport',
     id: 'jobs_kpis',
-    queryOptions: {
-      onSuccess({ data }) {
-        console.log('data received', data)
-        setKpis(data)
-      },
-    },
+    queryOptions: { onSuccess({ data }) { setKpis(data) } }
   })
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe

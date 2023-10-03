@@ -15,14 +15,10 @@ export const JobReportShow = (
   useShowController({
     resource: 'JobReport',
     id: props.id,
-    queryOptions: {
-      onSuccess(report) {
-        setData(report)
-      }
-    },
+    queryOptions: { onSuccess(report) { setData(report) } },
   })
 
-  const handleEventReceived = ({ payload: data }: any) => setData(data)
+  const handleEventReceived = ({ type, payload: data }: any) => { if (type != 'subscribe') setData(data) }
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
