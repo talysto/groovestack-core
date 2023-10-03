@@ -31,7 +31,8 @@ export const UtilizationChart = () => {
             const record = data.data[0]
 
             const workers = record.workers
-            const running = record.running
+            // We use min() because Que locks a 'buffer' of jobs for increased performance. We don't know which one is being processed.
+            const running = Math.min(record.running, workers)
             const utilization = Math.round((100.0 * running) / workers) || 0
 
             let config = { ...utilizationOptions } // make a copy

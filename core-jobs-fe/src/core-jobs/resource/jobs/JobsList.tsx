@@ -53,8 +53,7 @@ const sortfilterToggles: ListViewToggleButtonsProps['sortfilterToggles'] = [
     icon: WarningAmberIcon,
     filterSpec: { status: ['errored', 'failed'] },
     sortSpec: { field: 'priority', order: 'ASC' },
-    collapsable: true,
-    // count: 16,
+    collapsable: true
   },
   {
     label: 'Scheduled',
@@ -62,8 +61,7 @@ const sortfilterToggles: ListViewToggleButtonsProps['sortfilterToggles'] = [
     icon: AccessTimeIcon,
     filterSpec: { status: ['scheduled'] },
     sortSpec: { field: 'run_at', order: 'ASC' },
-    collapsable: true,
-    // count: 230403,
+    collapsable: true
   },
 ]
 
@@ -112,7 +110,7 @@ const ListActions = () => {
     setToggles(newToggles)
   }
 
-  
+
   // initial fetch
   useShowController({
     resource: 'JobReport',
