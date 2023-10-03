@@ -1,5 +1,12 @@
 # test-core-fe
 
+## 0.2.34
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.14
+
 ## 0.2.33
 
 ### Patch Changes

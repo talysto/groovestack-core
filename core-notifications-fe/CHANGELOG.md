@@ -1,5 +1,11 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.14
+
+### Patch Changes
+
+- core-notifications-fe build
+
 ## 0.2.13
 
 ### Patch Changes
