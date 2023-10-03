@@ -9,6 +9,8 @@ module Core
             class Instance < ::Core::Base::GraphQL::BaseSubscription
               argument :id, String, required: true
 
+              type ::Core::Base::GraphQL::Types::SubscriptionPayload, null: false
+
               QUERY_STRING = <<-GRAPHQL
                 query JobReport($id: String!, $meta: JobReportBuildParamsType) {
                   JobReport(id: $id, meta:$meta){
@@ -25,8 +27,6 @@ module Core
               end
 
               def subscribe(id:)
-                # payload(id: id)
-                # super # no response
                 payload(id: id, event: { type: :subscribe })
               end
 

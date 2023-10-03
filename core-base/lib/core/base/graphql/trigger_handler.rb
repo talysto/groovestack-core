@@ -2,7 +2,7 @@ module Core
   module Base
     module GraphQL
       class TriggerHandler
-        def self.fire(subscription, args, event)
+        def self.fire(subscription, args, event, kwargs)
           # TODO: this is a hack to get the app schema
           # should be configurable
           # can have multiple schemas per app
@@ -11,7 +11,9 @@ module Core
 
           raise 'app schema not defined' unless app_schema
 
-          app_schema.subscriptions.trigger(subscription, args, event)
+          # ::Rails.logger.info "Triggering subscription #{subscription} with args #{args} and event #{event} and kwargs #{kwargs}"
+
+          app_schema.subscriptions.trigger(subscription, args, event, **kwargs)
         end
       end
     end

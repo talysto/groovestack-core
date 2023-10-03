@@ -8,11 +8,13 @@ module Core
           class Collection < ::Core::Base::GraphQL::BaseSubscription
             subscription_scope :current_user_id # only send notifications to the current user
 
-            def subscribe
+            type ::Core::Base::GraphQL::Types::SubscriptionPayload, null: false
+
+            def subscribe(_attrs = {})
               payload(event: { type: :subscribe })
             end
 
-            def update
+            def update(_attrs = {})
               payload(event: { type: object[:crud_action], ids: object[:notification_ids] })
             end
 

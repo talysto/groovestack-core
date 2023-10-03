@@ -6,10 +6,10 @@ module Core
           return unless notification.active?
 
           if notification.to_id.present?
-            ::Core::Base::Publishers::GraphQLHub.new.trigger_event(:Notification_instance, {}, { crud_action: :create, notification_ids: [subject.id] }, scope: notification.to_id)
+            ::Core::Base::Publishers::GraphQLHub.new.trigger_event(:Notification_collection, {}, { crud_action: :created, notification_ids: [notification.id] }, **{ scope: notification.to_id })
           elsif notification.to_scope.present?
             notification.to_records.each do |record|
-              ::Core::Base::Publishers::GraphQLHub.new.trigger_event(:Notification_instance, {}, { crud_action: :create, notification_ids: [subject.id] }, scope: record.id)
+              ::Core::Base::Publishers::GraphQLHub.new.trigger_event(:Notification_collection, {}, { crud_action: :created, notification_ids: [notification.id] }, **{ scope: record.id })
             end
           end
         end
