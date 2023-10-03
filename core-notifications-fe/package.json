@@ -33,6 +33,7 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^"
+    "@moonlight-labs/core-base-fe": "workspace:^",
+    "@react-admin/ra-realtime": "^4.5.1"
   }
 }

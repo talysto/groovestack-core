@@ -280,6 +280,9 @@ importers:
       '@mui/material':
         specifier: '>=5.14.0'
         version: 5.14.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
+      '@react-admin/ra-realtime':
+        specifier: ^4.5.1
+        version: 4.5.1(lodash@4.17.21)(react-admin@4.13.1)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: '>=18.2.0'
         version: 18.2.0
@@ -399,7 +402,7 @@ importers:
         version: link:../core-webhooks-fe
       '@mui/material':
         specifier: ^5.14.11
-        version: 5.14.11(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
+        version: 5.14.11(@emotion/react@11.11.1)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
       ra-data-fakerest:
         specifier: ^4.12.1
         version: 4.12.1(ra-core@4.13.2)
@@ -4081,7 +4084,7 @@ packages:
       react-is: 18.2.0
       react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
 
-  /@mui/material@5.14.11(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/material@5.14.11(@emotion/react@11.11.1)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-DnSdJzcR7lwG12JA5L2t8JF+RDzMygu5rCNW+logWb/KW2/TRzwLyVWO+CorHTBjBRd38DBxnwOCDiYkDd+N3A==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -4100,7 +4103,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.15
       '@emotion/react': 11.11.1(@types/react@18.2.15)(react@18.2.0)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.15)(react@18.2.0)
       '@mui/base': 5.0.0-beta.17(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
       '@mui/core-downloads-tracker': 5.14.11
       '@mui/system': 5.14.11(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.15)(react@18.2.0)

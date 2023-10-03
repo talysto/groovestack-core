@@ -15,12 +15,32 @@ import {
 } from '@mui/material'
 import {
   InfiniteList,
-  List,
-  SearchInput,
   SingleFieldList,
   UpdateButton,
+  useDataProvider,
+  useListContext,
   useRecordContext,
 } from 'react-admin'
+import { useSubscribeToRecordList } from '@react-admin/ra-realtime'
+
+const NotificationSubscriber = () => {
+  const dataProvider = useDataProvider();
+  const { refetch, resource } = useListContext();
+
+  const enabled = !!Object.assign({}, dataProvider)?.subscribe
+  useSubscribeToRecordList((event) => {
+    console.log('NotificationSubscriber', event)
+
+    switch (event.type) {
+      case "created": {
+        refetch();
+        break;
+      }
+    }
+  }, resource, { enabled });
+
+  return null;
+}
 
 export const UserList = () => {
   const to = useRecordContext()
@@ -43,6 +63,7 @@ export const UserList = () => {
       <SingleFieldList component={MuiList}>
         <NotificationItem />
       </SingleFieldList>
+      <NotificationSubscriber />
     </InfiniteList>
   )
 }
@@ -106,4 +127,4 @@ const ActionButtons = () => {
   return <UpdateButton startIcon={undefined} sx={{whiteSpace: 'nowrap'}} label="Mark as Read" data={{}} />
 }
 
-const userFilters = [<SearchInput key="q" source="q" alwaysOn />]
+// const userFilters = [<SearchInput key="q" source="q" alwaysOn />]

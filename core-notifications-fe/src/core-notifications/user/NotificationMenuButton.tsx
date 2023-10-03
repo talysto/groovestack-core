@@ -10,28 +10,55 @@ import {
   Typography,
 } from '@mui/material'
 import { useState } from 'react'
-import { RecordContextProvider, useGetIdentity } from 'react-admin'
+import { RecordContextProvider, useDataProvider, useGetIdentity, useGetList } from 'react-admin'
+import { useSubscribeToRecordList } from '@react-admin/ra-realtime'
+
 import { Notifications } from '../resources/notifications'
 
 export const NotificationMenuButton = (props: any) => {
   const { data: user, isLoading: identityLoading } = useGetIdentity()
 
+  const dataProvider = useDataProvider()
+  const resource = 'Notification'
+
+  
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-
+  
   const open = Boolean(anchorEl)
-
+  
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
-
+  
   const handleClose = () => {
     setAnchorEl(null)
   }
 
+  const { total, refetch: refetchNotificationCount } = useGetList(
+    resource,
+    {
+      pagination: { page: 0, perPage: 0 },
+      filter: { to_ids: user?.id, read: false },
+    },
+    { enabled: !identityLoading }
+  )
+
+  const enabled = !!Object.assign({}, dataProvider)?.subscribe
+  useSubscribeToRecordList((event) => {
+    switch (event.type) {
+      case "created": {
+        refetchNotificationCount();
+        break;
+      }
+    }
+  }, resource, { enabled });
+
+  if (!user) return null
+
   return (
     <>
       <Badge
-        badgeContent={4}
+        badgeContent={total}
         color="error"
         overlap="circular"
         // style={{  transform: 'translate(30px, -20px)'}}
@@ -59,7 +86,7 @@ export const NotificationMenuButton = (props: any) => {
             Notifications
           </Typography>
           <RecordContextProvider value={user}>
-            <Notifications.List />
+            <Notifications.UserList />
           </RecordContextProvider>
         </Box>
       </Menu>
