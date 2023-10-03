@@ -30,11 +30,14 @@ export const CompanyList = () => (
         target="resource_id"
       />
 
-      <NumberField source={'share_price'} options={{
+      <NumberField
+        source={'share_price'}
+        options={{
           style: 'currency',
           currency: 'USD',
-          minimumFractionDigits: 2
-      }} />
+          minimumFractionDigits: 2,
+        }}
+      />
 
       <MoneyField source="share_price" />
       <MoneyField source="market_cap" />

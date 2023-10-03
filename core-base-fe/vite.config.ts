@@ -39,8 +39,9 @@ export default defineConfig({
         'dayjs/plugin/localizedFormat',
       ],
       output: {
-        // Provide global variables to use in the UMD build
-        // for externalized deps
+        // Some utils have minimal CSS deps
+        intro: 'import "./style.css";',
+        // Provide global variables to use in the UMD build for externalized deps
         globals: {
           // "react-copy-to-clipboard": "react-copy-to-clipboard",
           //  vue: 'Vue'

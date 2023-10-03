@@ -6,17 +6,18 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
+// TLA Review
 export default defineConfig({
   plugins: [
-    // dts({
-    //   rollupTypes: true,
-    //   rollupConfig: {
-    //     docModel: {
-    //       enabled: true,
-    //       apiJsonFilePath: '../docs/meta/<unscopedPackageName>.api.json',
-    //     },
-    //   },
-    // }),
+    dts({
+      rollupTypes: true,
+      rollupConfig: {
+        docModel: {
+          enabled: true,
+          apiJsonFilePath: '../docs/meta/<unscopedPackageName>.api.json',
+        },
+      },
+    }),
     react(),
     // visualizer({ open: false }),
   ],
@@ -38,6 +39,7 @@ export default defineConfig({
         'react/jsx-runtime',
         '@faker-js/faker',
         'react-copy-to-clipboard',
+        'lodash'
       ],
       // // plugins: [autoExternal()],
 

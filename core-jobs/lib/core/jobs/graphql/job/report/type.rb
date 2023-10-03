@@ -5,6 +5,10 @@ module Core
     module GraphQL
       module Job
         module Report
+          class BuildParamsType < ::Core::Base::GraphQL::BaseInputObject
+            argument :params, ::GraphQL::Types::JSON, required: true
+          end
+          
           class Type < ::Core::Base::GraphQL::BaseObject
             description 'a job report'
 

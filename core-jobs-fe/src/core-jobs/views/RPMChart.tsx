@@ -1,183 +1,127 @@
-import dayjs, { Dayjs, ManipulateType } from 'dayjs'
+import { useTheme } from '@mui/material'
+import dayjs from 'dayjs'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
-import { random } from 'lodash'
-import { List, RefreshButton, TopToolbar, WithListContext } from 'react-admin'
-import { TypographyInput } from './TypographyInput'
+import { useRef } from 'react'
+import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
+import { JobStatusConfigs } from '../resource/jobs/JobStatusType'
+import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
-import { useTheme } from '@mui/material'
 
-
-
-const ChartFilters = ({ title }: { title: string }) => [
-  <TypographyInput key={'na_title'} source={'title'} alwaysOn>
-    {title}
-  </TypographyInput>,
-  // <CheckboxGroupInput
-  //   key={'statuses'}
-  //   alwaysOn
-  //   source="status"
-  //   label={false}
-  //   size="small"
-  //   choices={jobStatuses}
-  // />,
-  // <DateRangeFilter key={'range'}
-  //   defaultValue={CommonDateRanges.Today.getValue()}
-  //   // namedFilters={cashFlowShortcuts}
-  //   />
-
-  // formatValueForSearchParams: formatDateRangeForSearchParams,
-  // transformSearchParamsToVal: transformSearchParamsToDateRange,
-]
-
-export const JobReportChart = ({
-  title,
-  filter,
-  children,
-}: {
-  title: string
-  filter: any
-  children: any
-}) => {
-  return (
-    <List
-      resource="JobReport"
-      exporter={false}
-      disableSyncWithLocation
-      actions={
-        <TopToolbar>
-          <RefreshButton />
-        </TopToolbar>
-      }
-      // empty={<>No data</>}
-      empty={false}
-      pagination={false}
-      perPage={100}
-      sx={{ '& .RaList-content': { boxShadow: 'none' } }}
-      filters={<ChartFilters title={title} />}
-      filter={filter}
-    >
-      {children}
-    </List>
-  )
-}
-
-const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
-const rpmChartOptions = {
-  bar: { groupWidth: '100%' },
-  animation: {
-    startup: true,
-    easing: 'out',
-    duration: 500,
-  },
-  isStacked: true,
-  legend: 'none',
-  hAxis: {
-    viewWindow: {
-      min: new Date(roundedNow.getTime() - 1000 * 60 * 60),
-      max: roundedNow,
-    },
-  },
-  vAxis: {
-    format: '#',
-    viewWindow: { min: 0 },
-  },
-}
-
-export const rpmChartFilter = {
-  group_by_period: 'minute',
-  start_at: dayjs().subtract(1, 'hour'),
-  end_at: dayjs().add(1, 'hour'),
-}
-
-const statusesPast = ['queued', 'running', 'complete', 'failed', 'errored']
-export const statuses = ['scheduled', ...statusesPast]
-
-function dayjsRange(start: Dayjs, end: Dayjs, unit: ManipulateType) {
-  const range = []
-  let current = start
-  while (!current.isAfter(end)) {
-    range.push(current)
-    current = current.add(1, unit)
-  }
-  return range
-}
-
-const rpmMockData = [
-  ['Period', ...statusesPast],
-  // ...(dayjsRange(dayjs().subtract(1, 'hour'), dayjs().add(1,'hour'), 'minute').map((d: Dayjs) => [d.toDate(), ...statuses.map(() => random(1, 50))]))
-  ...dayjsRange(
-    dayjs(roundedNow).subtract(1, 'hour'),
-    dayjs(roundedNow),
-    'minute',
-  ).map((d: Dayjs) => [
-    d.toISOString(),
-    ...statusesPast.map(() => random(1, 50)),
-  ]),
-]
+const sentinelZero = 0.000001
 
 export const RPMChart = () => {
+  const theme = useTheme()
+  echarts.registerTheme(
+    'custom',
+    echartsThemeFromMui(theme.palette.primary.main),
+  )
 
-  const theme = useTheme();
-  echarts.registerTheme('custom', echartsThemeFromMui(theme.palette.primary.main))
+  const sConfigs = JobStatusConfigs()
+  const chartOptions = {
+    dataset: { source: null },
+    // legend: { bottom: 0 },
+    grid: {
+      // left: 40,
+      top: 10,
+      // right: 20,
+      // bottom: 20,
+    },
+    // Remove until you can handle sentinelZero
+    tooltip: {
+      trigger: 'axis',
+      valueFormatter: (value: number) => value.toFixed(0),
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    xAxis: {
+      type: 'category',
+    },
+    yAxis: {
+      min: 1,
+      type: 'log',
+    },
+    series: [
+      // { type: 'time' },
+      { type: 'bar', stack: 'jobs', color: sConfigs['completed'].color }, // complete
+      { type: 'bar', stack: 'jobs', color: sConfigs['failed'].color }, // failed
+      { type: 'bar', stack: 'jobs', color: sConfigs['errored'].color }, // errored
+      { type: 'bar', stack: 'jobs', color: sConfigs['running'].color }, // running
+      { type: 'bar', stack: 'jobs', color: sConfigs['queued'].color }, // queued
+      // Hide scheduled from the stack
+      // { type: 'bar', stack: 'jobs', color: sConfigs['scheduled'].color }, // scheduled
+    ],
+    barCategoryGap: '0%',
+  }
+
+  const chart = useRef<ReactECharts>(null)
 
   return (
-    <JobReportChart title="Performance" filter={rpmChartFilter}>
-      <WithListContext
-        render={({ data }) => {
-          // const processedData = data && data[0]?.data; //.map((row: any) => {
-          const processedData = rpmMockData.map((row: any) => [
-            dayjs(row[0]).format('h:mm'),
-            ...row.slice(1),
-          ])
-          return (
-            <ReactECharts
-              theme="custom"
-              style={{
-                height: '100%',
-                width: '100%',
-              }}
-              option={{
-                dataset: { source: processedData },
-                grid: {
-                  left: 40,
-                  top: 10,
-                  right: 20,
-                  bottom: 20,
-                },
-                tooltip: {
-                  trigger: 'axis',
-                  axisPointer: {
-                    type: 'shadow',
-                  },
-                },
-                xAxis: {
-                  type: 'category',
-                  // axisLabel: {
-                  //   formatter: '{HH}:{mm}'
-                  // },
-                  // data: processedData.map((row: any) => row[0]).slice(1)
-                  // show: true
-                  // axisLabel: { interval: 0, rotate: 30 }
-                },
-                yAxis: {
-                  // show: true,
-                  type: 'value',
-                  // axisLabel: {inside: true}
-                },
-                series: [
-                  // { type: 'time' },
-                  { type: 'bar', stack: 'jobs' },
-                  { type: 'bar', stack: 'jobs' },
-                  { type: 'bar', stack: 'jobs' },
-                  { type: 'bar', stack: 'jobs' },
-                  { type: 'bar', stack: 'jobs' },
-                ],
-              }}
-              notMerge={true}
-              lazyUpdate={true} />
-          )
-        } } />
-    </JobReportChart>
+    <JobReportShow
+      title="Performance"
+      id="jobs_by_period"
+      // filter={{}}
+    >
+      <SimpleShowLayout sx={{ p: 0 }}>
+        <FunctionField
+          render={(data: RaRecord) => {
+            if (!data) return <div>No data</div>
+
+            const processedData = data.data.map((row: any) => {
+              // convert 0 to sentinelZero to avoid log(0) error
+              const processedRow = Object.keys(row).reduce(
+                (acc, key) => ({
+                  ...acc,
+                  [key]: row[key] === 0 ? sentinelZero : row[key],
+                }),
+                {},
+              )
+
+              const reversedKeys = Object.keys(processedRow)
+                .reverse()
+                .reduce(
+                  (acc, key) => ({
+                    ...acc,
+                    [key]: row[key],
+                  }),
+                  {},
+                )
+
+              const reversedKeys2 = {
+                // @ts-ignore-line
+                period: reversedKeys.period,
+                ...reversedKeys,
+              }
+
+              return {
+                ...reversedKeys2, // {period: schedule: completed:} -> {period: completed: scheduled:}
+                period: dayjs(row.period).format('h:mm'),
+              }
+            })
+
+            let config = { ...chartOptions } // make a copy
+            config.dataset.source = processedData
+
+            chart?.current?.getEchartsInstance().setOption(config)
+
+            return (
+              <ReactECharts
+                ref={chart}
+                theme="custom"
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  minHeight: 200,
+                }}
+                option={config}
+                notMerge={true}
+                lazyUpdate={true}
+              />
+            )
+          }}
+        />
+      </SimpleShowLayout>
+    </JobReportShow>
   )
 }

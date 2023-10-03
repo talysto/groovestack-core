@@ -17,7 +17,8 @@
     "beta:docs": "npx @microsoft/api-documenter markdown -i core-base-fe/docs -o docs/docs/api/",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build:watch": "npx onchange -f change '**/*' -e '**/dist/**' -e 'docs/**' -e '**/stats.html' -- echo {{event}} {{changed}}"
+    "build:watch": "npx onchange -f change '**/*' -e '**/dist/**' -e 'docs/**' -e '**/stats.html' -- echo {{event}} {{changed}}",
+    "watch": "find $PKG/src | entr pnpm -F $PKG build"
   },
   "keywords": [],
   "author": "",

@@ -16,7 +16,7 @@ class CreateQueJobsExt < ActiveRecord::Migration[6.0]
 
                 case
                   when locks.id is not null then 'running'
-                  when finished_at is not null then 'complete'
+                  when finished_at is not null then 'completed'
                   when expired_at is not null then 'failed'
                   when error_count > 0 then 'errored'
                   when run_at < now() then 'queued'
@@ -48,7 +48,7 @@ class CreateQueJobsExt < ActiveRecord::Migration[6.0]
                       WHERE pg_locks.locktype = 'advisory'::text) locks USING (id);
           SQL
         end
-        
+
         # NOTE: adding index below threw
         # PG::WrongObjectType: ERROR:  "que_jobs_ext" is not a table or materialized view
 
