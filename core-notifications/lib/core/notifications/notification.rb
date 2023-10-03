@@ -4,6 +4,8 @@ module Core
   module Notifications
     class Notification < ActiveRecord::Base
       self.table_name = 'core_notifications'
+
+      include Wisper.model if defined?(Wisper::ActiveRecord)
       
       validates :type, presence: true
       validates :title, presence: true
@@ -59,9 +61,13 @@ module Core
 
         # TODO: can this be scoped better (i.e. pass in a scope, to avoid all global notification evals)
 
-        global_ids = ::Core::Notifications::Global.select { |global| eval("#{global.to_type}.#{global.to_scope}").where(id: to_ids).present? }.map(&:id)
+        global_ids = ::Core::Notifications::Global.select { |global| global.to_records.where(id: to_ids).present? }.map(&:id)
 
         where(id: global_ids)
+      end
+
+      def active?
+        self.class.active.exists?(id)
       end
     end
   end

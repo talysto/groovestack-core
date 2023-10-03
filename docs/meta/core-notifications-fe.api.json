@@ -246,7 +246,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    kind: string;\n    scope: string | null;\n    read_bloom: never[];\n    publish_at: "
+              "text": ";\n    kind: string;\n    to_type: string;\n    to_scope: string | null;\n    read_bloom: never[];\n    publish_at: "
             },
             {
               "kind": "Reference",

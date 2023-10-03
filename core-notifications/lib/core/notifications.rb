@@ -21,16 +21,10 @@ require 'core/notifications/graphql/notification/filter'
 require 'core/notifications/graphql/notification/queries'
 require 'core/notifications/graphql/notification/mutations'
 
-# Dir["core/notifications/graphql/**/*.rb"].each { |file| require file }
+require 'core/notifications/subscribers/notification' if defined?(Wisper::ActiveRecord)
 
 module Core
   module Notifications
     class Error < StandardError; end
   end
 end
-
-# if Rails.env.development?
-#   Rails.application.console do
-#     puts "Custom message here"
-#   end
-# end
