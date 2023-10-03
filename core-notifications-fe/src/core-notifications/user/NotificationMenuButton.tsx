@@ -37,8 +37,8 @@ export const NotificationMenuButton = (props: any) => {
   const { total, refetch: refetchNotificationCount } = useGetList(
     resource,
     {
-      pagination: { page: 0, perPage: 0 },
-      filter: { to_ids: user?.id, read: false },
+      pagination: { page: 1, perPage: 0 },
+      filter: { to_ids: [user?.id], read: false },
     },
     { enabled: !identityLoading }
   )
