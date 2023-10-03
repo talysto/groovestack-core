@@ -1,5 +1,17 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.27
+
+### Patch Changes
+
+- FIX ignore empty ws subscription payloads
+
+## 0.2.26
+
+### Patch Changes
+
+- job report subscriptions expect data to be included
+
 ## 0.2.25
 
 ### Patch Changes

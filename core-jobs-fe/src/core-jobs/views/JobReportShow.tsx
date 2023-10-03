@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { useSubscribeToRecord } from '@react-admin/ra-realtime'
-import { JSXElementConstructor, ReactElement, cloneElement } from 'react'
+import { JSXElementConstructor, ReactElement, cloneElement, useState } from 'react'
 import { ShowProps, useDataProvider, useShowController } from 'react-admin'
 
 export const JobReportShow = (
@@ -8,19 +8,17 @@ export const JobReportShow = (
     children: ReactElement<any, string | JSXElementConstructor<any>>
   },
 ) => {
+  const [data, setData] = useState()
   const dataProvider = useDataProvider()
-  const { refetch, record } = useShowController({
+  
+  // initial call
+  useShowController({
     resource: 'JobReport',
     id: props.id,
-    queryOptions: {
-      staleTime: 0, // disable cache
-    },
+    queryOptions: { onSuccess(report) { setData(report) } },
   })
 
-  const handleEventReceived = (e: any) => {
-    // console.log(`event received for ${props.id}`, e)
-    refetch()
-  }
+  const handleEventReceived = ({ type, payload: data }: any) => { if (type != 'subscribe') setData(data) }
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
@@ -32,7 +30,7 @@ export const JobReportShow = (
           {props.title}
         </Typography>
       )}
-      {cloneElement(props.children, { record })}
+      {cloneElement(props.children, { record: data })}
     </Box>
   )
 }
