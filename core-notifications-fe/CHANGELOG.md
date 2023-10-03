@@ -1,5 +1,11 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.12
+
+### Patch Changes
+
+- publish latest versions of jobs and notifications (realtime integration)
+
 ## 0.2.11
 
 ### Patch Changes
