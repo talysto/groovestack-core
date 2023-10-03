@@ -1,5 +1,11 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.13
+
+### Patch Changes
+
+- typo fix
+
 ## 0.2.12
 
 ### Patch Changes
