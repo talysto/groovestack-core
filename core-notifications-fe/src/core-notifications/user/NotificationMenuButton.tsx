@@ -46,7 +46,8 @@ export const NotificationMenuButton = (props: any) => {
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecordList((event) => {
     switch (event.type) {
-      case "created": {
+      case "created":
+      case "updated": {
         refetchNotificationCount();
         break;
       }

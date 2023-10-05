@@ -1,5 +1,17 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.20
+
+### Patch Changes
+
+- prevent redirects on notification actions
+
+## 0.2.19
+
+### Patch Changes
+
+- custom action update buttons
+
 ## 0.2.18
 
 ### Patch Changes
