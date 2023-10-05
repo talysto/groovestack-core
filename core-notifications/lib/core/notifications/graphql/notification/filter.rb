@@ -11,7 +11,7 @@ module Core
           argument :q, String, required: false, description: ::Core::Base::GraphQL::Documentation::Arguments.q
           argument :expired, Boolean, required: false, default_value: false, description: 'only expired notifications. default value is active (published and not expired)'
           argument :read, Boolean, required: false, description: 'notification read filter. if nil, return all. if true, return read. if false, return unread'
-          argument :to_ids, [ID], required: false, description: 'notification to ids'
+          argument :to_id, [ID], required: false, description: 'notification to ids'
           argument :type, [String], required: false, description: 'notification type'
         end
       end

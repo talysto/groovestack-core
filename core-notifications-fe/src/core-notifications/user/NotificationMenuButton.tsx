@@ -38,7 +38,7 @@ export const NotificationMenuButton = (props: any) => {
     resource,
     {
       pagination: { page: 1, perPage: 0 },
-      filter: { to_ids: [user?.id], read: false },
+      filter: { to_id: [user?.id], read: false },
     },
     { enabled: !identityLoading }
   )

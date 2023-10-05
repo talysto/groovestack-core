@@ -25,7 +25,7 @@ module Core
               scope = scope.expired 
             end
 
-            scope = scope.to(filter.to_ids) if filter.to_ids.present?
+            scope = scope.to(filter.to_id) if filter.to_id.present?
             
             # 3 cases
             # 1. read is nil => return all

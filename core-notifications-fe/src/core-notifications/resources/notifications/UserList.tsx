@@ -18,8 +18,10 @@ import {
   SingleFieldList,
   UpdateButton,
   useDataProvider,
+  useGetIdentity,
   useListContext,
   useRecordContext,
+  useUpdate,
 } from 'react-admin'
 import { useSubscribeToRecordList } from '@react-admin/ra-realtime'
 
@@ -51,7 +53,7 @@ export const UserList = () => {
       sort={{ field: 'type', order: 'DESC' }}
       // TODO: Enable for production
       filter={{ 
-        to_ids: [to.id],
+        to_id: [to.id],
         read: false,
       }}
       perPage={10}
@@ -69,16 +71,9 @@ export const UserList = () => {
 }
 
 const NotificationItem = () => {
-  const task = useRecordContext()
+  const notification = useRecordContext()
 
-  // if (task.kind === 'Task')
-  //   return (
-  //     <Alert action={<ActionButtons />}>
-  //       You have been invited as the <strong>President</strong> of{' '}
-  //       <strong>XYZ PTA</strong>. Lorem ipsum this is a long text title that
-  //       might go with the item.
-  //     </Alert>
-  //   )
+  if (!notification) return null
 
   return (
     <ListItem
@@ -88,9 +83,9 @@ const NotificationItem = () => {
     >
       {/* <ListItemButton> */}
       <ListItemAvatar>
-        {task.type.includes('Task') ? <TaskAltOutlinedIcon color="warning" /> : (task.read_at ? <RadioButtonCheckedOutlinedIcon /> : <CircleOutlinedIcon />)}
+        {notification.type.includes('Task') ? <TaskAltOutlinedIcon color="warning" /> : (notification.read_at ? <RadioButtonCheckedOutlinedIcon /> : <CircleOutlinedIcon />)}
       </ListItemAvatar>
-      <ListItemText primary={task.title} secondary={task.description} />
+      <ListItemText primary={notification.title} secondary={notification.description} />
 
       <ActionButtons />
       {/* </ListItemButton> */}
@@ -99,32 +94,63 @@ const NotificationItem = () => {
 }
 
 const ActionButtons = () => {
-  const task = useRecordContext()
+  const notification = useRecordContext()
+  const { data: currentUser } = useGetIdentity()
+  const [update] = useUpdate()
 
-  if (task.type.includes('Task'))
+  const markAsReadArgs = notification.type.includes('Global') ? { id: currentUser?.id} : null
+
+  const markAsRead = () => {
+    update(
+      'Notification',
+      {
+        id: notification.id,
+        data: {
+          instance_method: 'mark_as_read!',
+          instance_method_args: markAsReadArgs
+
+        },
+        previousData: notification,
+      },
+      // {
+      //   onSuccess: () => {
+      //     console.log('Marked as read')
+      //   },
+      //   onError: () => {
+      //     console.log('Failed to mark as read')
+      //   },
+      // }
+    )
+  }
+
+  if (notification.type.includes('Task'))
     return (
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, ml:2}}>
-        <UpdateButton
-          startIcon={undefined}
-          color="primary"
-          variant="outlined"
-          label="Accept"
-          data={{}}
-        />
-        <UpdateButton
-          startIcon={undefined}
-          variant="outlined"
-          label="Decline"
-          data={{}}
-        />
+        {
+          notification.actions.map((action: {label: string; response: string }, i: number) => (
+            <UpdateButton
+              key={i}
+              startIcon={undefined}
+              color={i == 0 ? "primary" : "secondary"}
+              variant="outlined"
+              label={action.label}
+              data={{ instance_method: 'mark_as_complete!', instance_method_ards: { action_response: action.response } }}
+            />
+          ))
+        }
       </Box>
     )
 
-  if (task.link) return <Button href={task.link.url}>{task.link.label || 'Read More...'}</Button>
+  if (notification.link) return <Link onClick={markAsRead} href={notification.link.url}>{notification.link.label || 'Read More...'}</Link>
 
-  // return false
-
-  return <UpdateButton startIcon={undefined} sx={{whiteSpace: 'nowrap'}} label="Mark as Read" data={{}} />
+  return (
+    <UpdateButton 
+      startIcon={undefined} 
+      sx={{whiteSpace: 'nowrap'}} 
+      label="Mark as Read" 
+      data={{ instance_method: 'mark_as_read!', instance_method_args: markAsReadArgs }} 
+    />
+  )
 }
 
 // const userFilters = [<SearchInput key="q" source="q" alwaysOn />]

@@ -10,7 +10,7 @@ export const mockDataProvider = fakeDataProvider(data, true)
 type MockAuthProviderType = () => Promise<AuthProvider>
 
 export const mockAuthProvider: MockAuthProviderType = async () => {
-  const currentUser = data.User[0]
+  const currentUser: any = data.User[0]
   currentUser.fullName = currentUser.name
 
   return {
