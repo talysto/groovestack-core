@@ -40,9 +40,9 @@ module Core
             type ::Core::Notifications::GraphQL::Notification::Type
 
             def self.whitelisted_instance_methods
-              simple = [:mark_as_read!, :mark_as_unread!].freeze
+              simple = [:mark_as_read!].freeze
               task = [:mark_as_complete!].freeze
-              global = [:add_to_read_bloom!].freeze
+              global = [:mark_as_read!].freeze
 
               {
                 'Core::Notifications::Simple' => simple,

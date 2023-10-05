@@ -33,9 +33,9 @@ module Core
             # 3. read is false => return unread
             unless filter.read.nil?
               if filter.read
-                scope = scope.read
+                scope = scope.read(filter.to_id)
               else
-                scope = scope.unread
+                scope = scope.unread(filter.to_id)
               end
             end
 
