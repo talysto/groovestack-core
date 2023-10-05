@@ -1,5 +1,29 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.18
+
+### Patch Changes
+
+- optimistic updates
+
+## 0.2.17
+
+### Patch Changes
+
+- update doesn't redirect. pessimistic update
+
+## 0.2.16
+
+### Patch Changes
+
+- typo fix
+
+## 0.2.15
+
+### Patch Changes
+
+- wire up actions
+
 ## 0.2.14
 
 ### Patch Changes

@@ -98,6 +98,10 @@ const ActionButtons = () => {
   const { data: currentUser } = useGetIdentity()
   const [update] = useUpdate()
 
+  const onUpdateSuccess = () => {
+    console.log('updateSuccess')
+  }
+
   const markAsReadArgs = notification.type.includes('Global') ? { id: currentUser?.id} : null
 
   const markAsRead = () => {
@@ -112,16 +116,13 @@ const ActionButtons = () => {
         },
         previousData: notification,
       },
-      // {
-      //   onSuccess: () => {
-      //     console.log('Marked as read')
-      //   },
-      //   onError: () => {
-      //     console.log('Failed to mark as read')
-      //   },
-      // }
+      { 
+        mutationMode: 'optimistic',
+        onSuccess: onUpdateSuccess
+      }
     )
   }
+
 
   if (notification.type.includes('Task'))
     return (
@@ -134,7 +135,9 @@ const ActionButtons = () => {
               color={i == 0 ? "primary" : "secondary"}
               variant="outlined"
               label={action.label}
-              data={{ instance_method: 'mark_as_complete!', instance_method_ards: { action_response: action.response } }}
+              data={{ instance_method: 'mark_as_complete!', instance_method_args: { action_response: action.response } }}
+              mutationMode='optimistic'
+              mutationOptions={{ onSuccess: onUpdateSuccess }}
             />
           ))
         }
@@ -149,6 +152,8 @@ const ActionButtons = () => {
       sx={{whiteSpace: 'nowrap'}} 
       label="Mark as Read" 
       data={{ instance_method: 'mark_as_read!', instance_method_args: markAsReadArgs }} 
+      mutationMode='optimistic'
+      mutationOptions={{ onSuccess: onUpdateSuccess }}
     />
   )
 }
