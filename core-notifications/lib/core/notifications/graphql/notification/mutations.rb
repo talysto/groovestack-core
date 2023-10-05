@@ -41,7 +41,7 @@ module Core
 
             def self.whitelisted_instance_methods
               simple = [:mark_as_read!, :mark_as_unread!].freeze
-              task = [].freeze
+              task = [:mark_as_complete!].freeze
               global = [:add_to_read_bloom!].freeze
 
               {

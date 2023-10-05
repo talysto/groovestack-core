@@ -9,14 +9,14 @@ module Core
       validates :actions, absence: true
       validates :action_response, absence: true
 
-      def mark_as_read!(id)
+      def mark_as_read!(id:)
         return false if read_bloom.include?(id)
 
         read_bloom = [*read_bloom, id]
         update!(read_bloom: read_bloom)
       end
 
-      def mark_as_unread!(id)
+      def mark_as_unread!(id:)
         return false unless read_bloom.include?(id)
 
         read_bloom = read_bloom - [id]

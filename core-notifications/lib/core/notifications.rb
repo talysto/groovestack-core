@@ -23,6 +23,7 @@ require 'core/notifications/graphql/notification/mutations'
 
 if defined?(Wisper::ActiveRecord)
   require 'core/notifications/graphql/notification/subscriptions'
+  require 'core/notifications/publishers/notification'
   require 'core/notifications/subscribers/notification'
 end
 

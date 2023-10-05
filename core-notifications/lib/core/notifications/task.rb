@@ -5,7 +5,7 @@ module Core
       # validates :action_response, presence: true, on: :update
       # validates :read_at, presence: true, on: :update
 
-      def mark_as_complete!(action_response)
+      def mark_as_complete!(action_response:)
         update!(action_response: action_response)
         mark_as_read!
       end
