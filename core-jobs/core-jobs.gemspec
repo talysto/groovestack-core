@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   # spec.add_dependency 'activerecord', '~> 6.0'
   spec.add_dependency 'puma'
-  spec.add_dependency 'que', '~> 2.2.1'
+  spec.add_dependency 'que' #, '~> 2.2.1' NOTE: expect talysto/que
 
   spec.add_development_dependency 'graphql'
   spec.add_development_dependency 'pg'

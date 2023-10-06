@@ -7,7 +7,7 @@ class CreateQueSchema < ActiveRecord::Migration[6.0]
     # changelog.
 
     if Que.db_version.zero? # Que is not installed here so install the highest version
-      Que.migrate!(version: 7)
+      Que.migrate!(version: 8)
       return
     end
 
@@ -15,6 +15,7 @@ class CreateQueSchema < ActiveRecord::Migration[6.0]
 
     Que.migrate!(version: 6) if Que.db_version == 5
     Que.migrate!(version: 7) if Que.db_version == 6
+    Que.migrate!(version: 8) if Que.db_version == 7
   end
 
   def down

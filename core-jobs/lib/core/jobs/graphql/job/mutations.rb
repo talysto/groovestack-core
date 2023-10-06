@@ -5,6 +5,20 @@ module Core
     module GraphQL
       module Job
         module Mutations
+          class BulkDelete < ::Core::Base::GraphQL::BaseMutation
+            description 'Delete jobs'
+
+            argument :job_scope, String, required: false, description: 'jobs to bulk delete'
+
+            field :deleted_count, Integer, null: false, description: 'number of jobs deleted', camelize: false
+
+            def resolve(**args)
+              {
+                deleted_count: ::Core::Jobs::Job.purge(*[args[:job_scope]].compact) # splat so that when nil is passed (i.e. job scope isn't defined), purge will use default scope
+              }
+            end
+          end
+
           class Delete < ::Core::Base::GraphQL::BaseMutation
             description 'Delete a job'
 
@@ -41,6 +55,7 @@ module Core
           included do
             field :delete_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Delete, description: 'Delete a job'
             field :update_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Update, description: 'Update a job'
+            field :bulk_delete_jobs, mutation: ::Core::Jobs::GraphQL::Job::Mutations::BulkDelete, description: 'Delete jobs'
           end
         end
       end
