@@ -1,5 +1,65 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.21
+
+### Patch Changes
+
+- one subscription for notifications. event context.
+
+## 0.2.20
+
+### Patch Changes
+
+- prevent redirects on notification actions
+
+## 0.2.19
+
+### Patch Changes
+
+- custom action update buttons
+
+## 0.2.18
+
+### Patch Changes
+
+- optimistic updates
+
+## 0.2.17
+
+### Patch Changes
+
+- update doesn't redirect. pessimistic update
+
+## 0.2.16
+
+### Patch Changes
+
+- typo fix
+
+## 0.2.15
+
+### Patch Changes
+
+- wire up actions
+
+## 0.2.14
+
+### Patch Changes
+
+- core-notifications-fe build
+
+## 0.2.13
+
+### Patch Changes
+
+- typo fix
+
+## 0.2.12
+
+### Patch Changes
+
+- publish latest versions of jobs and notifications (realtime integration)
+
 ## 0.2.11
 
 ### Patch Changes

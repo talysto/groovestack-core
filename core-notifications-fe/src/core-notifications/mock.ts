@@ -4,12 +4,13 @@ const simpleNotification = (userFn: Function) => {
   const user = userFn()
 
   return {
-    kind: 'Simple',
+    type: 'Simple',
 
     to_id: user.id,
     to_type: user.type,
 
-    read: faker.datatype.boolean(),
+    read: false, //faker.datatype.boolean(),
+    read_at: faker.helpers.arrayElement([null, faker.date.recent()]),
 
     title: faker.lorem.sentence(),
     description: faker.lorem.sentences(2),
@@ -20,17 +21,29 @@ const taskNotification = (userFn: Function) => {
   const user = userFn()
 
   return {
-    kind: 'Task',
+    type: 'Task',
+    // handler_type: 'LeaderInviteNotificationService',
 
-    to_id: user.id,
+    to_id: user.id, // required
     to_type: user.type,
+
+    from_id: user.id, // optional
+    from_type: user.type,
+
+    object_id: user.id,
+    object_type: user.type, // 'Leadership'
+    // object_task: 'Invite',
 
     title: faker.lorem.sentence(),
     description: faker.lorem.sentences(2),
     actions: [
-      { label: 'Accept', url: '#accept' },
-      { label: 'Decline', url: '#decline' },
+      { label: 'Accept', response: 'invite=accept' },
+      { label: 'Decline', response: 'invite=decline' },
     ],
+
+    action_response: null, // 'accept' | 'decline'
+    read_at: faker.helpers.arrayElement([null, faker.date.recent()]),
+    read: false,
   }
 }
 
@@ -41,16 +54,21 @@ const globalNotification = (_userFn: Function) => {
     : faker.date.anytime()
 
   return {
-    kind: 'Global',
-    scope: faker.helpers.arrayElement([
+    type: 'Global',
+
+    to_type: 'User',
+    to_scope: faker.helpers.arrayElement([
       null,
       'active',
+      // ['leaders_of_org(:org_id)', 'XXXXXXX']
       ".joins(:leaderships).where(leaderships: {status: 'active', org_unit_id: OrgUnit.where(state: 'GA')})",
+      ".joins(:leaderships).where(leaderships: {status: 'active', org_unit_id: 'XXXXXXX'})",
     ]),
     read_bloom: [],
+    read: false,
     publish_at: publish_at,
     expire_at: expire_at,
-    read: faker.number.int({ max: 2000000 }),
+    read_count: faker.number.int({ max: 2000000 }),
     title: faker.lorem.sentence(),
     description: faker.lorem.sentences(2),
     link: faker.helpers.arrayElement([
@@ -61,12 +79,26 @@ const globalNotification = (_userFn: Function) => {
   }
 }
 
-const mockNotification = (userFn: Function) => {
-  const kind = faker.helpers.arrayElement([
-    globalNotification,
-    simpleNotification,
-    taskNotification,
-  ])
+const mockNotification = (userFn: Function, type: string | undefined) => {
+  let kind: ((userFn: Function) => any)
+
+  switch (type) {
+    case 'Simple':
+      kind = simpleNotification
+      break;
+    case 'Task':
+      kind = taskNotification
+      break;
+    case 'Global':
+      kind = globalNotification
+      break;
+    default:
+      kind = faker.helpers.arrayElement([
+        globalNotification,
+        simpleNotification,
+        taskNotification,
+      ])
+  }
 
   return {
     ...kind(userFn),
@@ -77,6 +109,6 @@ const mockNotification = (userFn: Function) => {
   }
 }
 
-export const mockNotifications = (count = 35, userFn: Function) => {
-  return Array.from({ length: count }, () => mockNotification(userFn))
+export const mockNotifications = (count = 35, userFn: Function, type: string | undefined = undefined) => {
+  return Array.from({ length: count }, () => mockNotification(userFn, type))
 }

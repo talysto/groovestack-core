@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-notifications-fe",
-  "version": "0.2.11",
+  "version": "0.2.21",
   "type": "module",
   "files": [
     "dist"
@@ -33,6 +33,7 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^"
+    "@moonlight-labs/core-base-fe": "workspace:^",
+    "@react-admin/ra-realtime": "^4.5.1"
   }
 }

@@ -10,7 +10,7 @@ export const JobReportShow = (
 ) => {
   const [data, setData] = useState()
   const dataProvider = useDataProvider()
-  
+
   // initial call
   useShowController({
     resource: 'JobReport',

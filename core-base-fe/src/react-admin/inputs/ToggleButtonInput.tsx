@@ -1,7 +1,7 @@
 // Based on
 //https://github.com/marmelab/react-admin/blob/master/packages/ra-ui-materialui/src/input/RadioButtonGroupInput.tsx
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 // import get from 'lodash/get'
 import {
   FormControl,
@@ -180,24 +180,24 @@ export function ToggleButtonInput(props: ToggleButtonGroupInputProps) {
   )
 }
 
-ToggleButtonInput.propTypes = {
-  choices: PropTypes.arrayOf(PropTypes.any),
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.element,
-  ]),
-  options: PropTypes.object,
-  optionText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    PropTypes.element,
-  ]),
-  optionValue: PropTypes.string,
-  resource: PropTypes.string,
-  source: PropTypes.string,
-  translateChoice: PropTypes.bool,
-}
+// ToggleButtonInput.propTypes = {
+//   choices: PropTypes.arrayOf(PropTypes.any),
+//   label: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.bool,
+//     PropTypes.element,
+//   ]),
+//   options: PropTypes.object,
+//   optionText: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.func,
+//     PropTypes.element,
+//   ]),
+//   optionValue: PropTypes.string,
+//   resource: PropTypes.string,
+//   source: PropTypes.string,
+//   translateChoice: PropTypes.bool,
+// }
 
 const sanitizeRestProps = ({
   afterSubmit,

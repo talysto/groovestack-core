@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.28
+
+### Patch Changes
+
+- publish latest versions of jobs and notifications (realtime integration)
+
 ## 0.2.27
 
 ### Patch Changes

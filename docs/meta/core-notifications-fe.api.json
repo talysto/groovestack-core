@@ -192,79 +192,7 @@
             },
             {
               "kind": "Content",
-              "text": ") => ({\n    id: string;\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    kind: string;\n    to_id: any;\n    to_type: any;\n    read: boolean;\n    title: string;\n    description: string;\n} | {\n    id: string;\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    kind: string;\n    to_id: any;\n    to_type: any;\n    title: string;\n    description: string;\n    actions: {\n        label: string;\n        url: string;\n    }[];\n} | {\n    id: string;\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    kind: string;\n    scope: string | null;\n    read_bloom: never[];\n    publish_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " | null;\n    expire_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    read: number;\n    title: string;\n    description: string;\n    link: string | {\n        url: string;\n        label: string;\n    } | null;\n})[]"
+              "text": ", type?: string | undefined) => any[]"
             }
           ],
           "fileUrlPath": "dist/mock.d.ts",
@@ -273,7 +201,7 @@
           "name": "mockNotifications",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 20
+            "endIndex": 4
           }
         }
       ]

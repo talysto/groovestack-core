@@ -1,5 +1,76 @@
 # test-core-fe
 
+## 0.2.41
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.21
+
+## 0.2.40
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.20
+
+## 0.2.39
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.19
+
+## 0.2.38
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.18
+
+## 0.2.37
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.17
+
+## 0.2.36
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.16
+
+## 0.2.35
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.15
+
+## 0.2.34
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.14
+
+## 0.2.33
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.13
+
+## 0.2.32
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.12
+  - @moonlight-labs/core-jobs-fe@0.2.28
+
 ## 0.2.31
 
 ### Patch Changes
