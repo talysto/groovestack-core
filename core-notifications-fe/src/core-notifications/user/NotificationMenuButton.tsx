@@ -9,14 +9,17 @@ import {
   Menu,
   Typography,
 } from '@mui/material'
-import { useState } from 'react'
+import { useState, createContext, useEffect } from 'react'
 import { RecordContextProvider, useDataProvider, useGetIdentity, useGetList } from 'react-admin'
-import { useSubscribeToRecordList } from '@react-admin/ra-realtime'
+import { RecordListEvent, useSubscribeToRecordList } from '@react-admin/ra-realtime'
 
 import { Notifications } from '../resources/notifications'
 
+export const NotificationSubscriberEventContext = createContext<RecordListEvent | null>(null)
+
 export const NotificationMenuButton = (props: any) => {
   const { data: user, isLoading: identityLoading } = useGetIdentity()
+  const [event, setEvent] = useState<RecordListEvent | null>(null)
 
   const dataProvider = useDataProvider()
   const resource = 'Notification'
@@ -44,15 +47,19 @@ export const NotificationMenuButton = (props: any) => {
   )
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecordList((event) => {
-    switch (event.type) {
-      case "created":
-      case "updated": {
-        refetchNotificationCount();
-        break;
+  useSubscribeToRecordList((event) => setEvent(event), resource, { enabled });
+
+  useEffect(() => {
+    if (!!event) {
+      switch (event.type) {
+        case "created":
+        case "updated": {
+          refetchNotificationCount();
+          break;
+        }
       }
     }
-  }, resource, { enabled });
+  }, [event])
 
   if (!user) return null
 
@@ -86,9 +93,11 @@ export const NotificationMenuButton = (props: any) => {
           <Typography id="modal-notification-title" variant="h6" component="h2">
             Notifications
           </Typography>
-          <RecordContextProvider value={user}>
-            <Notifications.UserList />
-          </RecordContextProvider>
+          <NotificationSubscriberEventContext.Provider value={event}>
+            <RecordContextProvider value={user}>
+              <Notifications.UserList />
+            </RecordContextProvider>
+          </NotificationSubscriberEventContext.Provider>
         </Box>
       </Menu>
     </>

@@ -1,5 +1,11 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.21
+
+### Patch Changes
+
+- one subscription for notifications. event context.
+
 ## 0.2.20
 
 ### Patch Changes

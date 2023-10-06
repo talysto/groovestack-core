@@ -1,8 +1,7 @@
-import NoticeIcon from '@mui/icons-material/MarkChatReadOutlined'
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
-
+import { useContext, useEffect } from 'react';
 import {
   Box,
   Link,
@@ -21,22 +20,24 @@ import {
   useRecordContext,
   useUpdate,
 } from 'react-admin'
-import { useSubscribeToRecordList } from '@react-admin/ra-realtime'
+
+import { NotificationSubscriberEventContext } from '../../user/NotificationMenuButton';
 
 const NotificationSubscriber = () => {
-  const dataProvider = useDataProvider();
-  const { refetch, resource } = useListContext();
+  const { refetch } = useListContext();
+  const event = useContext(NotificationSubscriberEventContext);
 
-  const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecordList((event) => {
-    switch (event.type) {
-      case "created":
-      case "updated": {
-        refetch();
-        break;
+  useEffect(() => {
+    if (!!event) {
+      switch (event.type) {
+        case "created":
+        case "updated": {
+          refetch();
+          break;
+        }
       }
     }
-  }, resource, { enabled });
+  }, [event])
 
   return null;
 }
