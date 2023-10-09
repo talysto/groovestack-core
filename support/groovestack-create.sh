@@ -10,6 +10,6 @@ rails -v
 # try --api (does vite still build?)
 rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -c sass -m groovestack-rails-template.rb
 
-echo "⚡️ Groovestack App Setup Complete"
+# echo "⚡️ Groovestack App Setup Complete"
 
 cd $1

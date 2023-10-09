@@ -55,6 +55,89 @@ run "bundle install"
 
 # # gem 'groovestack-rails', github: 'talysto/groovestack-rails'
 
+inject_into_file 'config/application.rb', :before => "  end" do
+  "\n  config.active_record.schema_format = :sql\n\n"
+end
+
+inject_into_file 'app/controllers/application_controller.rb', :before => "  end" do
+  "\n  def index; end\n\n"
+end
+
+create_file "app/frontend/entrypoints/application.js", <<~RUBY
+// To see this message, add the following to the `<head>` section in your
+// views/layouts/application.html.erb
+//
+//    <%= vite_client_tag %>
+//    <%= vite_javascript_tag 'application' %>
+console.log('Vite ⚡️ Rails')
+
+import '~/entrypoints/groovestack-admin.js'
+// If using a TypeScript entrypoint file:
+//     <%= vite_typescript_tag 'application' %>
+//
+// If you want to use .jsx or .tsx, add the extension:
+//     <%= vite_javascript_tag 'application.jsx' %>
+
+console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+
+// Example: Load Rails libraries in Vite.
+//
+// import * as Turbo from '@hotwired/turbo'
+// Turbo.start()
+//
+// import ActiveStorage from '@rails/activestorage'
+// ActiveStorage.start()
+//
+// // Import all channels.
+// const channels = import.meta.globEager('./**/*_channel.js')
+
+// Example: Import a stylesheet in app/frontend/index.css
+// import '~/index.css'
+
+RUBY
+
+create_file "app/views/application/index.html.erb", <<~RUBY
+<header>
+  <a href="https://vite-ruby.netlify.app/guide/rails.html">
+    # <img class="logo smooth" src="<%= vite_asset_path 'images/logo.svg' %>"/>
+    <div id="root"></div>
+  </a>
+</header>
+RUBY
+
+create_file "app/frontend/entrypoints/groovestack-admin.js", <<~RUBY
+import React from 'react'
+
+import { AdminApp } from '~/components/AdminApp.jsx'
+import { createRoot } from 'react-dom/client'
+
+const root = createRoot(document.getElementById('root'))
+
+root.render(React.createElement(AdminApp))
+RUBY
+
+create_file "app/frontend/components/AdminApp.jsx", <<~RUBY
+import React from 'react'
+import { Admin, Resource } from 'react-admin'
+import simpleRestProvider from 'ra-data-simple-rest'
+import { Jobs } from '@moonlight-labs/core-jobs-fe'
+
+export const AdminApp = () => {
+  return (
+    <Admin 
+      dashboard={Jobs.Dashboard}
+      dataProvider={simpleRestProvider('http://path.to.my.api')}>
+      <Resource
+        name="Job"
+        icon={Jobs.Icon}
+        edit={Jobs.Edit}
+        list={Jobs.List}
+        recordRepresentation={Jobs.resourceRepresentation}
+      />
+    </Admin>
+  )
+}
+RUBY
 
 # # Setup the DB
 rails_command "db:create"
@@ -76,7 +159,7 @@ run "bundle exec vite install"
 # "ra-data-fakerest": "^4.12.1",
 # "react": ">=18.0.0",
 # "react-dom": ">=18.0.0"
-run "npm add react react-dom react-admin @mui/material @moonlight-labs/core-jobs-fe"
+run "npm add react react-dom react-admin @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe"
 
 # # generate(:scaffold, "person name:string")
 # # route "root to: 'people#index'"
@@ -89,7 +172,11 @@ run "npm add react react-dom react-admin @mui/material @moonlight-labs/core-jobs
 # # end
 
 after_bundle do
-  # puts "⚡️ Groovestack App Setup Complete"
+  inject_into_file "config/routes.rb", "  root to: 'application#index', as: :home\n", :before => /^end/
+
+  puts "⚡️ Groovestack App Setup Complete"
+
+  run "./bin/dev"
   # puts ARGV.inspect
 end
 
