@@ -5,6 +5,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Box, Card, Grid, Stack, Typography, useTheme } from '@mui/material'
 import {
   Button,
+  Confirm,
   DeleteWithConfirmButton,
   ListBase,
   ListToolbar,
@@ -91,13 +92,53 @@ const JobsFilters = [
   />,
 ]
 
+const PurgeButton = () => {
+  const notify = useNotify()
+  const { refetch } = useListContext()
+  const [deleteMany, {isLoading}] = useDeleteMany()
+  const [open, setOpen] = useState(false)
+
+  const onClose = () => setOpen(false)
+  const onClick = () => setOpen(true)
+  
+  const purgeJobs = async () => {
+    try {
+      // use the default scope from core-jobs purge for now
+      await deleteMany('Job', {
+        ids: [],
+        // meta: { params: { job_scope: "status = 'failed'"}}
+      }, {
+        onSuccess: (ids) => {
+          notify(`${ids.length} jobs purged`, { type: 'info'})
+          refetch()
+          onClose()
+        }
+      })
+    } catch(e) {
+      console.log(e)
+      notify('Error purging jobs', { type: 'error'})
+    }
+  }
+
+  return (
+    <>
+      <Confirm
+        isOpen={open}
+        loading={isLoading}
+        title={"Purge Completed Jobs"}
+        content="Are you sure you want to delete all jobs that completed at least 1 day ago?"
+        onConfirm={purgeJobs}
+        onClose={onClose}
+      />
+      <Button sx={{ ml: 'auto' }} onClick={onClick} label="Purge"/>
+    </>
+  )
+}
+
 const ListActions = () => {
   const [kpis, setKpis] = useState()
   const [toggles, setToggles] = useState(sortfilterToggles)
   const dataProvider = useDataProvider()
-  const notify = useNotify()
-  const { refetch } = useListContext()
-  const [deleteMany] = useDeleteMany()
 
   const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis(payload.data)}
 
@@ -114,24 +155,6 @@ const ListActions = () => {
     })
 
     setToggles(newToggles)
-  }
-
-  const purgeJobs = async () => {
-    try {
-      // use the default scope from core-jobs purge for now
-      await deleteMany('Job', {
-        ids: [],
-        // meta: { params: { job_scope: "status = 'failed'"}}
-      }, {
-        onSuccess: (ids) => {
-          notify(`${ids.length} jobs purged`, { type: 'info'})
-          refetch()
-        }
-      })
-    } catch(e) {
-      console.log(e)
-      notify('Error purging jobs', { type: 'error'})
-    }
   }
 
   // initial fetch
@@ -151,7 +174,7 @@ const ListActions = () => {
   return (
     <TopToolbar sx={{ justifyContent: 'flex-start' }}>
       <ListPresetButtonGroup sortfilterToggles={toggles} />
-      <Button sx={{ ml: 'auto' }} onClick={purgeJobs} label="Purge"/>
+      <PurgeButton />
     </TopToolbar>
   )
 }
