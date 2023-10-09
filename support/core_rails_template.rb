@@ -23,3 +23,6 @@ gem 'vite_rails'
 #   git add: "."
 #   git commit: %Q{ -m 'Initial commit' }
 # end
+
+
+puts ARGV.inspect
