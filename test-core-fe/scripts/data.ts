@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-import { mockJobs, mockLockers, mockStats } from '@moonlight-labs/core-jobs-fe/mock'
+import { mockJobs, mockLockers, mockJobReports } from '@moonlight-labs/core-jobs-fe/mock'
 import { mockWebhooks } from '@moonlight-labs/core-webhooks-fe/mock'
 import { mockComments } from '@moonlight-labs/core-comments-fe/mock'
 import { mockVersions } from '@moonlight-labs/core-versions-fe/mock'
@@ -8,12 +8,19 @@ import { mockNotifications } from '@moonlight-labs/core-notifications-fe/mock'
 
 import { mockUsers } from '../src/data/mockUsers'
 import { mockCompanies } from '../src/data/mockCompanies'
+import { mock } from 'node:test'
 
 const users = mockUsers(10)
 const companies = mockCompanies(5)
 const webhooks = mockWebhooks()
 
-const notifications = mockNotifications(40, () => faker.helpers.arrayElement(users))
+// ensure current user has notifications
+
+let notifications = mockNotifications(1, () => users[0], 'Task')
+notifications = [...notifications, ...mockNotifications(1, () => users[0], 'Simple')]
+notifications = [...notifications, ...mockNotifications(1, () => users[0], 'Global')]
+
+notifications = [...notifications, ...mockNotifications(40, () => faker.helpers.arrayElement(users))]
 
 const versions = mockVersions(40).map((version: any) => {
   const user = faker.helpers.arrayElement(users)
@@ -105,7 +112,8 @@ const data = {
   // Line: lines,
   Job: mockJobs(15),
   JobLocker: mockLockers(3),
-  JobStat: mockStats(4),
+  // JobStat: mockStats(4),
+  JobReport: mockJobReports(),
 
   // For Testing Integrations
   User: users,
@@ -113,3 +121,5 @@ const data = {
 }
 
 console.log(JSON.stringify(data, null, 2))
+
+

@@ -1,2 +1,2 @@
 export { Jobs } from './resource/jobs'
-export { Charts } from './views'
+// export { Charts } from './views'

@@ -3,12 +3,12 @@
 module Core
   module Jobs
     module GraphQL
-      module Job 
-        module Locker 
+      module Job
+        module Locker
           class Type < ::Core::Base::GraphQL::BaseObject
             description 'A queue locker'
 
-            field :id, String, null: false, method: :pid, description: ::Core::Base::GraphQL::Documentation::Fields.id
+            # field :id, String, null: false, method: :pid, description: ::Core::Base::GraphQL::Documentation::Fields.id
             field :listening, Boolean, null: true, description: 'listening'
             field :pid, String, null: true, description: 'process id'
             field :queues, [String], null: true, description: 'queues'

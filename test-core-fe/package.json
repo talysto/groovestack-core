@@ -1,7 +1,7 @@
 {
   "name": "test-core-fe",
   "private": true,
-  "version": "0.2.11",
+  "version": "0.2.43",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,10 +14,11 @@
   "dependencies": {
     "@moonlight-labs/core-base-fe": "workspace:^",
     "@moonlight-labs/core-comments-fe": "workspace:^",
-    "@moonlight-labs/core-webhooks-fe": "workspace:^",
-    "@moonlight-labs/core-versions-fe": "workspace:^",
     "@moonlight-labs/core-jobs-fe": "workspace:^",
     "@moonlight-labs/core-notifications-fe": "workspace:^",
+    "@moonlight-labs/core-versions-fe": "workspace:^",
+    "@moonlight-labs/core-webhooks-fe": "workspace:^",
+    "@mui/material": "^5.14.11",
     "ra-data-fakerest": "^4.12.1",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"

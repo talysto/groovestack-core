@@ -1,81 +1,127 @@
-import { ToggleButtonInput } from '@moonlight-labs/core-base-fe'
-import { List, Loading, RefreshButton, WithListContext } from 'react-admin'
-import { Chart as GoogleChart } from 'react-google-charts'
-import { TypographyInput } from './TypographyInput'
-const chartFilters = [
-  <TypographyInput alwaysOn>RPM Chart</TypographyInput>,
-  <ToggleButtonInput
-    alwaysOn
-    source="status"
-    label={false}
-    size="small"
-    choices={[
-      { id: 'queued', name: 'Queued' },
-      { id: 'errored', name: 'Errored' },
-      { id: 'errored', name: 'Complete' },
-    ]}
-  />,
-]
+import { useTheme } from '@mui/material'
+import dayjs from 'dayjs'
+import * as echarts from 'echarts'
+import ReactECharts from 'echarts-for-react' // or var ReactECharts = require('echarts-for-react');
+import { useRef } from 'react'
+import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
+import { JobStatusConfigs } from '../resource/jobs/JobStatusType'
+import { JobReportShow } from './JobReportShow'
+import { echartsThemeFromMui } from './echartsThemeFromMui'
 
-export const RPMChart = ({ data }: { data?: any }) => {
-  // if (!data) return <>No recent data.</>;
+const sentinelZero = 0.000001
 
-  const roundedNow = new Date(Math.ceil(new Date().getTime() / 60000) * 60000)
-  const sampleData = [
-    ['Period', 'Jobs'],
-    [new Date(roundedNow.getTime() - 1000 * 60 * 60), 1],
-    [new Date(roundedNow.getTime() - 800 * 60 * 60), 2],
-    [new Date(roundedNow.getTime() - 600 * 60 * 60), 7],
-    [new Date(roundedNow.getTime() - 400 * 60 * 60), 2],
-    [new Date(roundedNow.getTime() - 200 * 60 * 60), 3],
-    [roundedNow, 4],
-  ]
+export const RPMChart = () => {
+  const theme = useTheme()
+  echarts.registerTheme(
+    'custom',
+    echartsThemeFromMui(theme.palette.primary.main),
+  )
+
+  const sConfigs = JobStatusConfigs()
+  const chartOptions = {
+    dataset: { source: null },
+    // legend: { bottom: 0 },
+    grid: {
+      // left: 40,
+      top: 10,
+      // right: 20,
+      // bottom: 20,
+    },
+    // Remove until you can handle sentinelZero
+    tooltip: {
+      trigger: 'axis',
+      valueFormatter: (value: number) => value.toFixed(0),
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    xAxis: {
+      type: 'category',
+    },
+    yAxis: {
+      min: 1,
+      type: 'log',
+    },
+    series: [
+      // { type: 'time' },
+      { type: 'bar', stack: 'jobs', color: sConfigs['completed'].color }, // complete
+      { type: 'bar', stack: 'jobs', color: sConfigs['failed'].color }, // failed
+      { type: 'bar', stack: 'jobs', color: sConfigs['errored'].color }, // errored
+      { type: 'bar', stack: 'jobs', color: sConfigs['running'].color }, // running
+      { type: 'bar', stack: 'jobs', color: sConfigs['queued'].color }, // queued
+      // Hide scheduled from the stack
+      // { type: 'bar', stack: 'jobs', color: sConfigs['scheduled'].color }, // scheduled
+    ],
+    barCategoryGap: '0%',
+  }
+
+  const chart = useRef<ReactECharts>(null)
 
   return (
-    <List
-      resource="Job"
-      filter={{ group_by: 'minute' }}
-      exporter={false}
-      disableSyncWithLocation
-      filters={chartFilters}
-      actions={<RefreshButton />}
-      empty={<></>}
-      pagination={false}
-      perPage={100}
+    <JobReportShow
+      title="Performance"
+      id="jobs_by_period"
+      // filter={{}}
     >
-      <WithListContext
-        render={({ data }) => (
-          <GoogleChart
-            width={'100%'}
-            height={'64px'}
-            chartType="ColumnChart"
-            loader={<Loading />}
-            data={data || sampleData}
-            options={{
-              title: 'Job RPM',
-              bar: { groupWidth: '100%' },
-              animation: {
-                startup: true,
-                easing: 'out',
-                duration: 500,
-              },
-              // enableInteractivity: false,
-              legend: 'none',
-              // chartArea: { left: 40, top: 20, right: 20 },
-              hAxis: {
-                viewWindow: {
-                  min: new Date(roundedNow.getTime() - 1000 * 60 * 60),
-                  max: roundedNow,
-                },
-              },
-              vAxis: {
-                format: '#',
-                viewWindow: { min: 0 },
-              },
-            }}
-          />
-        )}
-      />
-    </List>
+      <SimpleShowLayout sx={{ p: 0 }}>
+        <FunctionField
+          render={(data: RaRecord) => {
+            if (!data) return <div>No data</div>
+
+            const processedData = data.data.map((row: any) => {
+              // convert 0 to sentinelZero to avoid log(0) error
+              const processedRow = Object.keys(row).reduce(
+                (acc, key) => ({
+                  ...acc,
+                  [key]: row[key] === 0 ? sentinelZero : row[key],
+                }),
+                {},
+              )
+
+              const reversedKeys = Object.keys(processedRow)
+                .reverse()
+                .reduce(
+                  (acc, key) => ({
+                    ...acc,
+                    [key]: row[key],
+                  }),
+                  {},
+                )
+
+              const reversedKeys2 = {
+                // @ts-ignore-line
+                period: reversedKeys.period,
+                ...reversedKeys,
+              }
+
+              return {
+                ...reversedKeys2, // {period: schedule: completed:} -> {period: completed: scheduled:}
+                period: dayjs(row.period).format('h:mm'),
+              }
+            })
+
+            let config = { ...chartOptions } // make a copy
+            config.dataset.source = processedData
+
+            chart?.current?.getEchartsInstance().setOption(config)
+
+            return (
+              <ReactECharts
+                ref={chart}
+                theme="custom"
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  minHeight: 200,
+                }}
+                option={config}
+                notMerge={true}
+                lazyUpdate={true}
+              />
+            )
+          }}
+        />
+      </SimpleShowLayout>
+    </JobReportShow>
   )
 }

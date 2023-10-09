@@ -22,18 +22,15 @@ for (const path in packagesMeta) {
   })
 }
 
-
 // Storybook
 // https://github.com/storybookjs/storybook/blob/998926f115259ffe4e9afe03b25daf34556e4756/code/ui/blocks/src/blocks/Controls.tsx#L25
 
 // Reflection
 // https://stackoverflow.com/questions/69724621/react-typescript-reflection-listing-properties-of-an-interface
-const Members = ({members}: {members: []}) => {
-
+const Members = ({ members }: { members: [] }) => {
   return (
     <ul>
       {members.map((member: any, idx: number) => {
-
         // console.log(argTypes)
 
         return (
@@ -47,20 +44,20 @@ const Members = ({members}: {members: []}) => {
   )
 }
 
-
-
-export const Packages = ({packages}: {packages:any}) => {
-
+export const Packages = ({ packages }: { packages: any }) => {
   return (
-  <ul>
-    {Object.values(packages).map((pkg, idx:number) => (
-      <li key={idx}>
-        <b>{pkg.name}</b> - {pkg.kind} <br/>
-        <small>v{pkg.version} - {pkg.license}</small> <br/>
-        <Members members={pkg.members[0].members} />
-      </li>
-    ))}
-  </ul>
+    <ul>
+      {Object.values(packages).map((pkg: any, idx: number) => (
+        <li key={idx}>
+          <b>{pkg.name}</b> - {pkg.kind} <br />
+          <small>
+            v{pkg.version} - {pkg.license}
+          </small>{' '}
+          <br />
+          <Members members={pkg.members[0].members} />
+        </li>
+      ))}
+    </ul>
   )
 }
 
@@ -71,9 +68,6 @@ export const Packages = ({packages}: {packages:any}) => {
 //       ))}
 //     </ul>
 // )
-
-
-
 
 export const HomeView = () => (
   <Paper elevation={2} sx={{ minHeight: 600, p: 5, minWidth: 800 }}>

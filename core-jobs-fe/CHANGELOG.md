@@ -1,5 +1,148 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.30
+
+### Patch Changes
+
+- job list actions
+
+## 0.2.29
+
+### Patch Changes
+
+- jobs purge
+
+## 0.2.28
+
+### Patch Changes
+
+- publish latest versions of jobs and notifications (realtime integration)
+
+## 0.2.27
+
+### Patch Changes
+
+- FIX ignore empty ws subscription payloads
+
+## 0.2.26
+
+### Patch Changes
+
+- job report subscriptions expect data to be included
+
+## 0.2.25
+
+### Patch Changes
+
+- ChartJobs / Charts
+
+## 0.2.24
+
+### Patch Changes
+
+- fix job list summary counts
+
+## 0.2.23
+
+### Patch Changes
+
+- build and publish
+
+## 0.2.22
+
+### Patch Changes
+
+- typo
+
+## 0.2.21
+
+### Patch Changes
+
+- Typo
+
+## 0.2.20
+
+### Patch Changes
+
+- layout and live stats
+
+## 0.2.19
+
+### Patch Changes
+
+- bump version
+
+## 0.2.18
+
+### Patch Changes
+
+- jobs list view aggregates
+- WIP Axis
+
+## 0.2.17
+
+### Patch Changes
+
+- Layout
+
+## 0.2.16
+
+### Patch Changes
+
+- Report fixes
+
+## 0.2.15
+
+### Patch Changes
+
+- live chart updates
+
+## 0.2.14
+
+### Patch Changes
+
+- build
+
+## 0.2.13
+
+### Patch Changes
+
+- force version bump
+
+## 0.2.12
+
+### Patch Changes
+
+- live updates for job charts
+
+## 0.2.11
+
+### Patch Changes
+
+- No dynamic imports
+
+## 0.2.10
+
+### Patch Changes
+
+- Re-enable types
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.10
+
+## 0.2.9
+
+### Patch Changes
+
+- Core Jobs and Notifications focus
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.9
+
+## 0.2.8
+
+### Patch Changes
+
+- Add features
+
 ## 0.2.7
 
 ### Patch Changes

@@ -1,15 +1,14 @@
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck'
 
 import { RaRecord } from 'react-admin'
+import { JobsList } from './JobsList'
 import { EditJob } from './edit'
-import { Table } from './table'
 
 export class Jobs {
   static Name = 'Job'
-  static List = Table
+  static List = JobsList
   static Edit = EditJob
-  // static Show = ShowSession
   static Icon = PlaylistAddCheckIcon
   static resourceRepresentation = (job: RaRecord) =>
-    `${job.type} [${job.status}]`
+    `${job.job_class} ${job.sub_class} [${job.status}]`
 }

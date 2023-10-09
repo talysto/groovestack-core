@@ -12,6 +12,7 @@ require 'que/active_record/model'
 
 require 'core/jobs/puma/plugin/que'
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
+require 'core/jobs/que_job_ext'
 require 'core/jobs/job'
 require 'core/jobs/locker'
 
@@ -19,12 +20,20 @@ require 'core/jobs/graphql/job/type'
 require 'core/jobs/graphql/job/filter'
 require 'core/jobs/graphql/job/queries'
 require 'core/jobs/graphql/job/mutations'
+require 'core/jobs/graphql/job/subscriptions'
 require 'core/jobs/graphql/job/locker/type'
 require 'core/jobs/graphql/job/locker/filter'
 require 'core/jobs/graphql/job/locker/queries'
 require 'core/jobs/graphql/job/report/type'
 require 'core/jobs/graphql/job/report/filter'
 require 'core/jobs/graphql/job/report/queries'
+require 'core/jobs/graphql/job/report/subscriptions'
+
+if defined?(Wisper)
+  require 'core/jobs/publishers/que_state'
+  require 'core/jobs/subscribers/que_state'
+  require 'core/jobs/listener'
+end
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
 

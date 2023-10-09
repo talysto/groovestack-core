@@ -12,6 +12,7 @@ export const theme = {
   ...defaultTheme,
   components: {
     ...defaultTheme.components,
+
     // MuiTextField: {
     //   defaultProps: {
     //       variant: 'outlined',
@@ -24,13 +25,13 @@ export const theme = {
     // },
     MuiToolbar: {
       styleOverrides: {
-        root: { alignItems: 'center !important' }
-      }
+        root: { alignItems: 'center !important' },
+      },
     },
     RaFilterForm: {
       styleOverrides: {
-        root: { alignItems: 'center' }
-      }
+        root: { alignItems: 'center' },
+      },
     },
     RaDatagrid: {
       styleOverrides: {
@@ -47,13 +48,15 @@ export const theme = {
     RaLayout: {
       styleOverrides: {
         root: {
-          // backgroundColor: "white",
           '& .RaLayout-content': {
             backgroundColor: 'white',
+            padding: 20,
+            // paddingLeft: 20,
+            // paddingRight: 20
             // padding: 0
           },
           '& .RaLayout-appFrame': {
-            marginTop: '48px',
+            // marginTop: '48px',
           },
         },
       },
@@ -63,7 +66,7 @@ export const theme = {
         root: {
           // backgroundColor: "white",
           '& .RaShow-card': { boxShadow: 'none' },
-          '& .RaShow-main': {flexWrap: 'wrap'},
+          '& .RaShow-main': { flexWrap: 'wrap' },
           // '& .MuiTabs-flexContainer': { flexWrap: 'wrap' }
         },
       },
@@ -91,24 +94,24 @@ export const theme = {
   },
 
   // ...darkTheme,
-  palette: {
-    type: 'light',
-    primary: {
-      main: '#0a568f',
-    },
-    secondary: {
-      main: '#d90522',
-    },
-    warning: {
-      main: '#f7b20e',
-    },
-    info: {
-      main: '#fb5105',
-    },
-    background: {
-      default: '#e5e5ec',
-    },
-  },
+  // palette: {
+  //   type: 'light',
+  //   primary: {
+  //     main: '#0a568f',
+  //   },
+  //   secondary: {
+  //     main: '#d90522',
+  //   },
+  //   warning: {
+  //     main: '#f7b20e',
+  //   },
+  //   info: {
+  //     main: '#fb5105',
+  //   },
+  //   background: {
+  //     default: '#e5e5ec',
+  //   },
+  // },
   typography: {
     h2: {
       fontWeight: 800,
@@ -120,7 +123,6 @@ export const theme = {
 }
 
 export default theme
-
 
 // import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 

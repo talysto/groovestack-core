@@ -1,6 +1,6 @@
 // in src/MyAppBar.js
 import { NotificationMenuButton } from '@moonlight-labs/core-notifications-fe'
-import { AppBar, Logout, TitlePortal, UserMenu, useGetIdentity } from 'react-admin'
+import { AppBar, Logout, TitlePortal, UserMenu } from 'react-admin'
 
 // const SettingsMenuItem = React.forwardRef((props, ref) => {
 //   // We are not using MenuItemLink so we retrieve the onClose function from the UserContext
@@ -21,15 +21,18 @@ import { AppBar, Logout, TitlePortal, UserMenu, useGetIdentity } from 'react-adm
 // });
 
 export const CustomAppBar = () => {
-
-  return <AppBar
-    color="primary"
-    userMenu={<UserMenu>
-      {/* <SettingsMenuItem /> */}
-      <Logout />
-    </UserMenu>}
-  >
-    <TitlePortal />
-    <NotificationMenuButton />
-  </AppBar>
+  return (
+    <AppBar
+      color="primary"
+      userMenu={
+        <UserMenu>
+          {/* <SettingsMenuItem /> */}
+          <Logout />
+        </UserMenu>
+      }
+    >
+      <TitlePortal />
+      <NotificationMenuButton />
+    </AppBar>
+  )
 }
