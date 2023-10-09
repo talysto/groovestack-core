@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.31
+
+### Patch Changes
+
+- job actions require confirmation
+
 ## 0.2.30
 
 ### Patch Changes
