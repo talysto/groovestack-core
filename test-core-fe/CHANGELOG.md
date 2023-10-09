@@ -1,5 +1,19 @@
 # test-core-fe
 
+## 0.2.43
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-jobs-fe@0.2.30
+
+## 0.2.42
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-jobs-fe@0.2.29
+
 ## 0.2.41
 
 ### Patch Changes

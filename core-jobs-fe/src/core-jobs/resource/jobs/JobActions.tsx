@@ -10,49 +10,6 @@ import { DeleteMenuItem } from './DeleteMenuItem'
 import { UpdateMenuItem } from './UpdateMenuItem'
 import { EditJob } from './edit'
 
-// export const JobActions = ({ label = 'Actions' }: { label?: string; }) => {
-//   const record = useRecordContext();
-
-//   if (!record) return null;
-
-//   return (
-//     <Box
-//       className="show-on-hover"
-//       sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}
-//     >
-//       {record.actions.includes('retry') && (
-//         <UpdateButton label="Retry" data={{}} />
-//       )}
-//       <CustomButtonDrawer
-//         label=" "
-//         drawerProps={{ title: 'Edit Jobs' }}
-//         // sx={{ display: 'inline-flex' }}
-//         mode="edit"
-//         drawerWidth={DrawerWidth.Medium}
-//         editProps={{ actions: <JobsEditActions /> }}
-//       >
-//         <EditJob />
-//       </CustomButtonDrawer>
-//       <DeleteWithConfirmButton color="primary" label="" />
-
-//     </Box>
-//   );
-// };
-
-const ITEM_HEIGHT = 48
-
-function deleteJob() {
-  alert('delete job with confirmation')
-}
-
-function retryJob() {
-  alert('retry job')
-}
-
-function viewJob() {
-  alert('open job drawer')
-}
-
 export const JobActions = (props: FieldProps) => {
   const record = useRecordContext()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -107,28 +64,13 @@ export const JobActions = (props: FieldProps) => {
         open={open}
         onClose={handleClose}
       >
-        {/* <MenuItem key={'view'} onClick={viewJob}>
-          View
-        </MenuItem> */}
-        {/* <CustomButtonDrawer
-          label=" "
-          drawerProps={{ title: 'Edit Jobs' }}
-          // sx={{ display: 'inline-flex' }}
-          mode="edit"
-          // onClickableComponentClick={handleClose}
-          drawerWidth={DrawerWidth.Medium}
-          clickableComponent={<MenuItem
+        {(record.actions.includes('run_now') || record.actions.includes('retry')) && (
+          <UpdateMenuItem
+            label={ record.actions.includes('run_now') ? "Run Now" : "Retry"}
+            data={{ instance_method: record.actions.includes('run_now') ? 'run_now!' : 'retry!' }}
             onClick={handleClose}
-            >View</MenuItem>}
-        >
-          <EditJob />
-        </CustomButtonDrawer> */}
-        <UpdateMenuItem
-          label={ record.status.includes('scheduled') ? "Run Now" : "Retry"}
-          disabled={record.status.includes('completed')}
-          data={{ status: 'retry!' }} //Change to run now?
-          onClick={handleClose}
-        />
+          />
+        )}
         <DeleteMenuItem title="test" label="Delete" onClick={handleClose} />
       </Menu>
     </Box>

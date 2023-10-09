@@ -156,21 +156,21 @@ const ListActions = () => {
   )
 }
 
-export const JobsEditActions = () => {
-  const record = useRecordContext()
+// export const JobsEditActions = () => {
+//   const record = useRecordContext()
 
-  return (
-    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-      {record.actions.includes('retry') && (
-        <UpdateButton label="Retry" data={{ instance_method: 'retry!' }} />
-      )}
-      {record.actions.includes('run_now') && (
-        <UpdateButton label="Run Now" data={{ instance_method: 'run_now!' }} />
-      )}
-      {record.actions.includes('delete') && <DeleteWithConfirmButton color="primary" label="" />}
-    </Box>
-  )
-}
+//   return (
+//     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+//       {record.actions.includes('retry') && (
+//         <UpdateButton label="Retry" data={{ instance_method: 'retry!' }} />
+//       )}
+//       {record.actions.includes('run_now') && (
+//         <UpdateButton label="Run Now" data={{ instance_method: 'run_now!' }} />
+//       )}
+//       {record.actions.includes('delete') && <DeleteWithConfirmButton color="primary" label="" />}
+//     </Box>
+//   )
+// }
 
 export const JobsList = () => {
   const theme = useTheme()

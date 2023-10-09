@@ -1,5 +1,17 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.30
+
+### Patch Changes
+
+- job list actions
+
+## 0.2.29
+
+### Patch Changes
+
+- jobs purge
+
 ## 0.2.28
 
 ### Patch Changes

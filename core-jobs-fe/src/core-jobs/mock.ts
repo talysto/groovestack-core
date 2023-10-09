@@ -227,7 +227,7 @@ export function mockJobs(count = 15) {
     // completion metadata
     finished_at: faker.date.future(),
 
-    actions: faker.helpers.arrayElement([['retry'], [], []]),
+    actions: faker.helpers.arrayElement([['retry'], ['run_at'], []]),
 
     // que-specific
     args: [
