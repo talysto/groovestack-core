@@ -3,8 +3,8 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered'
 import SummaryIcon from '@mui/icons-material/GridView'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Box, Card, Grid, Stack, Typography, useTheme } from '@mui/material'
-
 import {
+  Button,
   DeleteWithConfirmButton,
   ListBase,
   ListToolbar,
@@ -15,6 +15,9 @@ import {
   TopToolbar,
   UpdateButton,
   useDataProvider,
+  useDeleteMany,
+  useListContext,
+  useNotify,
   useRecordContext,
   useShowController,
 } from 'react-admin'
@@ -92,6 +95,9 @@ const ListActions = () => {
   const [kpis, setKpis] = useState()
   const [toggles, setToggles] = useState(sortfilterToggles)
   const dataProvider = useDataProvider()
+  const notify = useNotify()
+  const { refetch } = useListContext()
+  const [deleteMany] = useDeleteMany()
 
   const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis(payload.data)}
 
@@ -110,6 +116,23 @@ const ListActions = () => {
     setToggles(newToggles)
   }
 
+  const purgeJobs = async () => {
+    try {
+      // use the default scope from core-jobs purge for now
+      await deleteMany('Job', {
+        ids: [],
+        // meta: { params: { job_scope: "status = 'failed'"}}
+      }, {
+        onSuccess: (ids) => {
+          notify(`${ids.length} jobs purged`, { type: 'info'})
+          refetch()
+        }
+      })
+    } catch(e) {
+      console.log(e)
+      notify('Error purging jobs', { type: 'error'})
+    }
+  }
 
   // initial fetch
   useShowController({
@@ -128,25 +151,30 @@ const ListActions = () => {
   return (
     <TopToolbar sx={{ justifyContent: 'flex-start' }}>
       <ListPresetButtonGroup sortfilterToggles={toggles} />
+      <Button sx={{ ml: 'auto' }} onClick={purgeJobs} label="Purge"/>
     </TopToolbar>
   )
 }
 
 export const JobsEditActions = () => {
   const record = useRecordContext()
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
       {record.actions.includes('retry') && (
-        <UpdateButton label="Retry" data={{}} />
+        <UpdateButton label="Retry" data={{ instance_method: 'retry!' }} />
       )}
-      <DeleteWithConfirmButton color="primary" label="" />
+      {record.actions.includes('run_now') && (
+        <UpdateButton label="Run Now" data={{ instance_method: 'run_now!' }} />
+      )}
+      {record.actions.includes('delete') && <DeleteWithConfirmButton color="primary" label="" />}
     </Box>
   )
 }
 
 export const JobsList = () => {
-  // const notify = useNotify()
   const theme = useTheme()
+
   return (
     <ListBase>
       <Title title="Jobs" />
