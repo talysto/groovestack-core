@@ -28,7 +28,7 @@ module Core
             type ::Core::Jobs::GraphQL::Job::Type
 
             def resolve(id:)
-              job = ::Core::Jobs::Job.find(id)
+              job = ::Core::Jobs::Job.find_by_id(id)
               QueJob.destroy(id)
               job
             end
@@ -47,8 +47,8 @@ module Core
 
             type ::Core::Jobs::GraphQL::Job::Type
 
-            def resolve(id:, instance_method:, instance_method_args:, **attrs)
-              job = ::Core::Jobs::Job.find(id)
+            def resolve(id:, instance_method: nil, instance_method_args: nil, **attrs)
+              job = ::Core::Jobs::Job.find_by_id(id)
 
               if instance_method.present?                 
                 if instance_method_args.present?

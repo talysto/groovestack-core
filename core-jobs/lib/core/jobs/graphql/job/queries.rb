@@ -18,8 +18,8 @@ module Core
           def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
             scope = ::Core::Jobs::Job.unscoped
             scope = scope.where(id: filter.ids) unless filter.ids.nil?
-            scope = scope.where(type: filter.type) if filter.type.present?
-            scope = scope.where('type ilike ?', "%#{filter.q}%") if filter.q.present?
+            scope = scope.where(sub_class: filter.sub_class) if filter.sub_class.present?
+            scope = scope.where('sub_class ilike ?', "%#{filter.q}%") if filter.q.present?
             scope = scope.where(status: filter.status) if filter.status.present?
 
             return scope if sort_field.blank?
