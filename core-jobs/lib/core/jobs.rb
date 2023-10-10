@@ -30,9 +30,8 @@ require 'core/jobs/graphql/job/report/queries'
 require 'core/jobs/graphql/job/report/subscriptions'
 
 if defined?(Wisper)
-  require 'core/jobs/publishers/que_state'
-  require 'core/jobs/subscribers/que_state'
-  require 'core/jobs/listener'
+  require 'core/jobs/pub_sub'
+  require 'core/jobs/listeners'
 end
 
 # Dir["core/jobs/graphql/**/*.rb"].each { |file| require file }
@@ -45,9 +44,3 @@ module Core
     class WrongActiveJobQueueAdapter < Core::Jobs::Error; end
   end
 end
-
-# if Rails.env.development?
-#   Rails.application.console do
-#     puts "Custom message here"
-#   end
-# end

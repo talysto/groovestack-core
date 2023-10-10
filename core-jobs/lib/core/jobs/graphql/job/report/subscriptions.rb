@@ -61,7 +61,7 @@ module Core
             end
 
             included do
-              field :JobReport_instance, subscription: ::Core::Jobs::GraphQL::Job::Report::Subscriptions::Instance
+              field :JobReport, subscription: ::Core::Jobs::GraphQL::Job::Report::Subscriptions::Instance
             end
           end
         end

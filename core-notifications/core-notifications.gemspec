@@ -34,7 +34,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'graphql'
   spec.add_development_dependency 'pg'
-  spec.add_development_dependency 'wisper-activerecord'
 
   spec.add_development_dependency 'fabrication'
   spec.add_development_dependency 'faker'
