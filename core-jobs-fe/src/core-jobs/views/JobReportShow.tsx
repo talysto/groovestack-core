@@ -5,7 +5,8 @@ import { ShowProps, useDataProvider, useShowController } from 'react-admin'
 
 export const JobReportShow = (
   props: ShowProps & {
-    children: ReactElement<any, string | JSXElementConstructor<any>>
+    children: ReactElement<any, string | JSXElementConstructor<any>>;
+    data?: any; // if provided, skip fetch and subscription
   },
 ) => {
   const [data, setData] = useState()
@@ -15,12 +16,12 @@ export const JobReportShow = (
   useShowController({
     resource: 'JobReport',
     id: props.id,
-    queryOptions: { onSuccess(report) { setData(report) } },
+    queryOptions: { enabled: !props.data, onSuccess(report) { setData(report) } },
   })
 
   const handleEventReceived = ({ type, payload: data }: any) => { if (type != 'subscribe') setData(data) }
 
-  const enabled = !!Object.assign({}, dataProvider)?.subscribe
+  const enabled = !props.data && !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
 
   return (
@@ -30,7 +31,7 @@ export const JobReportShow = (
           {props.title}
         </Typography>
       )}
-      {cloneElement(props.children, { record: data })}
+      {cloneElement(props.children, { record: data || props.data })}
     </Box>
   )
 }

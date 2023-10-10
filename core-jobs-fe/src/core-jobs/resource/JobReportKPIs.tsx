@@ -1,17 +1,24 @@
 import { Stack } from '@mui/material'
-import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { Metric } from '../components/Metric'
+import { JobsKPIsContext } from './jobs/JobsList'
+import { useContext } from 'react'
 import { JobReportShow } from '../views/JobReportShow'
+import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
+
 
 export const JobReportKPIsLive = () => {
+  const kpis = useContext(JobsKPIsContext)
+
+  if (kpis.length < 1) return null
+
+  const data = kpis[0]
+
   return (
-    <JobReportShow id="jobs_kpis">
+    <JobReportShow id="jobs_kpis" data={data[0]}>
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
-          render={(data: RaRecord) => {
-            if (!data) return <div>No data</div>
-
-            const record = data.data[0]
+          render={(record: RaRecord) => {
+            if (!record) return <div>No data</div>
 
             return (
               <Stack sx={{ flexDirection: 'row', gap: 1, flexWrap: 'wrap' }}>

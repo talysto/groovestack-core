@@ -2,12 +2,13 @@ import { Alert, Button, ButtonGroup, Stack, useTheme } from '@mui/material'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import { random } from 'lodash'
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 import { WorkersTable } from '../resource/workers/WorkersTable'
 import { ButtonPopover } from './ButtonPopover'
 import { JobReportShow } from './JobReportShow'
 import { echartsThemeFromMui } from './echartsThemeFromMui'
+import { JobsKPIsContext } from '../resource/jobs/JobsList'
 
 // import { echartsThemeFromMui } from './echartsThemeFromMui'
 // echarts.registerTheme('custom', echartsThemeFromMui())
@@ -18,17 +19,19 @@ export const UtilizationChart = () => {
     'custom',
     echartsThemeFromMui(theme.palette.primary.main),
   )
-
   const chart = useRef<ReactECharts>(null)
 
+  const kpis = useContext(JobsKPIsContext)
+
+  if (kpis.length < 1) return null
+
+
   return (
-    <JobReportShow id="jobs_kpis" title="Utilization">
+    <JobReportShow id="jobs_kpis" title="Utilization" data={kpis[0]}>
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
-          render={(data: RaRecord) => {
-            if (!data) return <div>No data</div>
-
-            const record = data.data[0]
+          render={(record: RaRecord) => {
+            if (!record) return <div>No data</div>
 
             const workers = record.workers
             // We use min() because Que locks a 'buffer' of jobs for increased performance. We don't know which one is being processed.

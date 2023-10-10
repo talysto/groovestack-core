@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.32
+
+### Patch Changes
+
+- consolidate jobs_kpis subscription into single
+
 ## 0.2.31
 
 ### Patch Changes

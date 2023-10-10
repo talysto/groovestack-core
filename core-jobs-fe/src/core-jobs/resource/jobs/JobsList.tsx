@@ -24,7 +24,7 @@ import {
 } from 'react-admin'
 
 import { useSubscribeToRecord } from '@react-admin/ra-realtime'
-import { useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import {
   ListPresetButtonGroup,
   ListViewToggleButtonsProps,
@@ -35,6 +35,8 @@ import { Header } from '../Header'
 import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
 import { jobStatuses } from './jobsStatuses'
+
+export const JobsKPIsContext = createContext<{[k: string]: any}[]>([])
 
 const sortfilterToggles: ListViewToggleButtonsProps['sortfilterToggles'] = [
   {
@@ -136,11 +138,9 @@ const PurgeButton = () => {
 }
 
 const ListActions = () => {
-  const [kpis, setKpis] = useState()
+  
   const [toggles, setToggles] = useState(sortfilterToggles)
-  const dataProvider = useDataProvider()
-
-  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis(payload.data)}
+  const kpis = useContext(JobsKPIsContext)
 
   const updateToggles = (data: any) => {
     const newToggles = toggles.map((t) => {
@@ -157,18 +157,8 @@ const ListActions = () => {
     setToggles(newToggles)
   }
 
-  // initial fetch
-  useShowController({
-    resource: 'JobReport',
-    id: 'jobs_kpis',
-    queryOptions: { onSuccess({ data }) { setKpis(data) } }
-  })
-
-  const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecord(handleEventReceived, 'JobReport', 'jobs_kpis', { enabled })
-
   useEffect(() => {
-    if (kpis) updateToggles(kpis[0])
+    if (kpis && kpis.length > 0) updateToggles(kpis[0])
   }, [kpis])
 
   return (
@@ -197,52 +187,68 @@ const ListActions = () => {
 
 export const JobsList = () => {
   const theme = useTheme()
+  const [kpis, setKpis] = useState([])
+  const dataProvider = useDataProvider()
+
+  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis(payload.data)}
+
+  // initial fetch
+  useShowController({
+    resource: 'JobReport',
+    id: 'jobs_kpis',
+    queryOptions: { onSuccess({ data }) { setKpis(data) } }
+  })
+
+  const enabled = !!Object.assign({}, dataProvider)?.subscribe
+  useSubscribeToRecord(handleEventReceived, 'JobReport', 'jobs_kpis', { enabled })
 
   return (
-    <ListBase>
-      <Title title="Jobs" />
+    <JobsKPIsContext.Provider value={kpis}>
+      <ListBase>
+        <Title title="Jobs" />
 
-      <Grid container>
-        <Grid item xs={12} order={1}>
-          <Header />
-        </Grid>
-        <Grid item xs={12} sm={8} order={{ xs: 3, sm: 2 }}>
-          <ListActions />
-          <MultiViewList
-            views={{
-              summary: <JobsSummaryPivot />,
-            }}
-          >
-            <Card sx={{ maxWidth: '100vw' }}>
-              <Stack
-                sx={{
-                  flexDirection: 'row',
-                  background: `color-mix(in srgb, ${theme.palette.primary.main} 20%, white)`,
-                }}
-              >
-                <Typography
-                  variant="h6"
+        <Grid container>
+          <Grid item xs={12} order={1}>
+            <Header />
+          </Grid>
+          <Grid item xs={12} sm={8} order={{ xs: 3, sm: 2 }}>
+            <ListActions />
+            <MultiViewList
+              views={{
+                summary: <JobsSummaryPivot />,
+              }}
+            >
+              <Card sx={{ maxWidth: '100vw' }}>
+                <Stack
                   sx={{
-                    flex: 1,
-                    p: 2,
-                    // color: 'white',
-                    // background: theme.palette.primary.main,
-                    color: theme.palette.primary.main,
+                    flexDirection: 'row',
+                    background: `color-mix(in srgb, ${theme.palette.primary.main} 20%, white)`,
                   }}
                 >
-                  All Jobs
-                </Typography>
-              </Stack>
-              <ListToolbar filters={JobsFilters} />
-              <JobDatagrid />
-              <Pagination />
-            </Card>
-          </MultiViewList>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      flex: 1,
+                      p: 2,
+                      // color: 'white',
+                      // background: theme.palette.primary.main,
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    All Jobs
+                  </Typography>
+                </Stack>
+                <ListToolbar filters={JobsFilters} />
+                <JobDatagrid />
+                <Pagination />
+              </Card>
+            </MultiViewList>
+          </Grid>
+          <Grid item xs={12} sm={4} order={{ xs: 2, sm: 3 }}>
+            <JobsAside />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={4} order={{ xs: 2, sm: 3 }}>
-          <JobsAside />
-        </Grid>
-      </Grid>
-    </ListBase>
+      </ListBase>
+    </JobsKPIsContext.Provider>
   )
 }
