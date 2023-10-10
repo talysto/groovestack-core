@@ -4,6 +4,25 @@ if defined?(Rails)
   module Core
     module Base
       class Railtie < Rails::Engine
+
+        def core_base_dx_validate(validations, module_name)
+          errors = []
+          validations.each do |v|
+            v[:eval].call
+          rescue StandardError
+            errors << v[:message]
+            break
+          end
+
+          if errors.length.positive?
+            print '⚠️'.brown
+            puts "  CORE::#{module_name}\t#{Core::Base::VERSION}\t#{errors[0]}"
+          else
+            print '✔'.green
+            puts "  CORE::#{module_name}\t#{Core::Base::VERSION}"
+          end
+        end
+        
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
@@ -35,23 +54,8 @@ if defined?(Rails)
               }
             ]
 
+            core_base_dx_validate(validations, 'Base')
             puts 'CORE Platform DX Mode'.bold
-
-            errors = []
-            validations.each do |v|
-              v[:eval].call
-            rescue StandardError
-              errors << v[:message]
-              break
-            end
-
-            if errors.length.positive?
-              print '⚠️'.brown
-              puts "  CORE::Base\t#{Core::Base::VERSION}\t#{errors[0]}"
-            else
-              print '✔'.green
-              puts "  CORE::Base\t#{Core::Base::VERSION}"
-            end
           end
         end
       end

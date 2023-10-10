@@ -43,22 +43,8 @@ if defined?(Rails)
               }
             ]
 
-            puts 'CORE Platform DX Mode'.bold
-
-            errors = []
-            validations.each do |v|
-              v[:eval].call
-            rescue StandardError
-              errors << v[:message]
-              break
-            end
-
-            if errors.length.positive?
-              print '⚠️'.brown
-              puts "  CORE::Referrals\t#{Core::Referrals::VERSION}\t#{errors[0]}"
-            else
-              print '✔'.green
-              puts "  CORE::Referrals\t#{Core::Referrals::VERSION}"
+            if defined?(::Core::Base) 
+              ::Core::Base::Railtie.core_base_dx_validate(validations, 'Referrals') 
             end
           end
         end
