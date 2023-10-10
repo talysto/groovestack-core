@@ -1,6 +1,7 @@
 import { List, ListItem, ListItemText, Paper } from '@mui/material'
 
 import pkgComments from '../../../core-comments-fe/package.json'
+import { DemoWelcome } from './DemoWelcome'
 // import { useContext } from 'react'
 
 const stack = [
@@ -61,16 +62,11 @@ export const Packages = ({ packages }: { packages: any }) => {
   )
 }
 
-// export const Components = ({components}) => (
-//   <ul>
-//       {components.members[0].members.map((member: any, idx:number) => (
-//         <li key={idx}>{member.name} ({member.kind})</li>
-//       ))}
-//     </ul>
-// )
-
 export const HomeView = () => (
   <Paper elevation={2} sx={{ minHeight: 600, p: 5, minWidth: 800 }}>
+
+    <DemoWelcome />
+
     <h2>CORE Platform</h2>
     <p>
       The CORE Platform is a suite of modules that provide full-stack
