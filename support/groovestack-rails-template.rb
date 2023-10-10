@@ -35,19 +35,19 @@ end
 # CORE Modules
 # add_source 'https://github.com/moonlight-labs/core.git', branch: 'spike/darren-refactors2' do
 # git 'https://github.com/moonlight-labs/core.git', branch: 'spike/darren-refactors2' do
-github 'moonlight-labs/core', branch: 'dev' do
-  gem 'core-base' # must be first dependency
-  gem 'core-jobs'
-  # gem 'core-comments'
-  # gem 'core-versions'
-  # gem 'core-notifications'
-  # gem 'core-webhooks'
-end
+# github 'moonlight-labs/core', branch: 'dev' do
+#   gem 'core-base' # must be first dependency
+#   gem 'core-jobs'
+#   # gem 'core-comments'
+#   # gem 'core-versions'
+#   # gem 'core-notifications'
+#   # gem 'core-webhooks'
+# end
 
 
 # LOCAL DEVELOPMENT INSTALL 
-# gem 'core-base', path: '../../core-base'
-# gem 'core-jobs', path: '../../core-jobs'
+gem 'core-base', path: '../../core-base'
+gem 'core-jobs', path: '../../core-jobs'
 # gem 'core-comments', path: '../../core-comments'
 # gem 'core-versions', path: '../../core-versions'
 # gem 'core-notifications', path: '../../core-notifications'
@@ -90,7 +90,7 @@ RUBY
 create_file "app/frontend/entrypoints/groovestack-admin.js", <<~RUBY
 import React from 'react'
 
-import { AdminApp } from '@moonlight-labs/core-base-fe/components/Demo/AdminApp'
+import { AdminApp } from '@moonlight-labs/core-base-fe'
 import { createRoot } from 'react-dom/client'
 
 const root = createRoot(document.getElementById('root'))

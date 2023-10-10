@@ -16,10 +16,10 @@ const stack = [
 
 // Reflection
 // https://stackoverflow.com/questions/69724621/react-typescript-reflection-listing-properties-of-an-interface
-const Members = ({ members }) => {
+const Members = ({ members }: any) => {
   return (
     <ul>
-      {members.map((member, idx) => {
+      {members.map((member: any, idx: any) => {
         // console.log(argTypes)
 
         return (
@@ -33,10 +33,10 @@ const Members = ({ members }) => {
   )
 }
 
-export const Packages = ({ packages }) => {
+export const Packages = ({ packages }: any) => {
   return (
     <ul>
-      {Object.values(packages).map((pkg, idx) => (
+      {Object.values(packages).map((pkg: any, idx) => (
         <li key={idx}>
           <b>{pkg.name}</b> - {pkg.kind} <br />
           <small>
