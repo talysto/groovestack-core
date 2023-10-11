@@ -1,1 +1,1 @@
-export { AdminApp } from './resources/config/AdminApp'
+export { Config } from './resources/config'

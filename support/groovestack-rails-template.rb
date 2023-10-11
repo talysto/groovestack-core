@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # CORE Applications Template
 # USAGE
 # rails new -m https://raw.githubusercontent.com/moonlight-labs/core/main/support/core-rails-template.rb
@@ -18,6 +17,12 @@
 # puts self.class.private_instance_methods(false).sort
 # puts self.singleton_class.instance_methods(false).sort
 
+puts Rails::VERSION
+
+unless RUBY_VERSION[0, 3] == "2.7"
+  puts "You need 2.7"
+  exit
+end 
 
 # Groovestack Basics
 gem 'graphql'
@@ -35,23 +40,23 @@ end
 # CORE Modules
 # add_source 'https://github.com/moonlight-labs/core.git', branch: 'spike/darren-refactors2' do
 # git 'https://github.com/moonlight-labs/core.git', branch: 'spike/darren-refactors2' do
-# github 'moonlight-labs/core', branch: 'dev' do
-#   gem 'core-base' # must be first dependency
-#   gem 'core-jobs'
-#   # gem 'core-comments'
-#   # gem 'core-versions'
-#   # gem 'core-notifications'
-#   # gem 'core-webhooks'
-# end
+github 'moonlight-labs/core', branch: 'dev' do
+  gem 'core-base' # must be first dependency
+  gem 'core-jobs'
+  # gem 'core-comments'
+  # gem 'core-versions'
+  # gem 'core-notifications'
+  # gem 'core-webhooks'
+end
 
 
 # LOCAL DEVELOPMENT INSTALL 
-gem 'core-base', path: '../../core-base'
-gem 'core-jobs', path: '../../core-jobs'
-# gem 'core-comments', path: '../../core-comments'
-# gem 'core-versions', path: '../../core-versions'
-# gem 'core-notifications', path: '../../core-notifications'
-# gem 'core-webhooks', path: '../../core-webhooks'
+# gem 'core-base', path: '../../core-base'
+# gem 'core-jobs', path: '../../core-jobs'
+# # gem 'core-comments', path: '../../core-comments'
+# # gem 'core-versions', path: '../../core-versions'
+# # gem 'core-notifications', path: '../../core-notifications'
+# # gem 'core-webhooks', path: '../../core-webhooks'
 
 run "bundle install"
 
@@ -72,13 +77,13 @@ inject_into_file 'app/controllers/application_controller.rb', :before => "  end"
   "\n     def index; end\n\n"
 end
 
-create_file "app/frontend/entrypoints/application.js", <<~RUBY
+file "app/frontend/entrypoints/application.js", <<~RUBY
   console.log('Vite ⚡️ Rails')
   import '~/entrypoints/groovestack-admin.js'
   console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
 RUBY
 
-create_file "app/views/application/index.html.erb", <<~RUBY
+file "app/views/application/index.html.erb", <<~RUBY
 <header>
   <a href="https://vite-ruby.netlify.app/guide/rails.html">
     # <img class="logo smooth" src="<%= vite_asset_path 'images/logo.svg' %>"/>
@@ -87,21 +92,51 @@ create_file "app/views/application/index.html.erb", <<~RUBY
 </header>
 RUBY
 
-create_file "app/frontend/entrypoints/groovestack-admin.js", <<~RUBY
+file "app/frontend/entrypoints/groovestack-admin.js", <<~RUBY
 import React from 'react'
 
-import { AdminApp } from '@moonlight-labs/core-base-fe'
+import { Config } from '@moonlight-labs/core-config-fe'
 import { createRoot } from 'react-dom/client'
 
 const root = createRoot(document.getElementById('root'))
 
-root.render(React.createElement(AdminApp))
+root.render(React.createElement(Config.AdminApp))
+RUBY
+
+file "app/frontend/entrypoints/AdminApp.jsx", <<~RUBY
+import React from 'react'
+import { Admin, Resource } from 'react-admin'
+import { Jobs } from '@moonlight-labs/core-jobs-fe'
+import { Config } from '@moonlight-labs/core-config-fe'
+
+// import { mockDataProvider } from './mockDataProvider/mock-providers'
+
+export const AdminApp = () => {
+  return (
+    <Admin
+    disableTelemetry
+    // dataProvider={mockDataProvider}
+    // authProvider={authProvider}
+    // loginPage={LoginPage}
+    // theme={theme}
+    dashboard={Config.HomeView}
+    // layout={CustomLayout}
+  >
+      <Resource
+        name="Job"
+        icon={Jobs.Icon}
+        edit={Jobs.Edit}
+        list={Jobs.List}
+        recordRepresentation={Jobs.resourceRepresentation}
+      />
+    </Admin>
+  )
+}
 RUBY
 
 # # Setup the DB
 rails_command "db:create"
 rails_command "db:migrate"
-
 
 # # Configure Vite
 # # https://vite-ruby.netlify.app/guide/
@@ -118,7 +153,7 @@ run "bundle exec vite install"
 # "ra-data-fakerest": "^4.12.1",
 # "react": ">=18.0.0",
 # "react-dom": ">=18.0.0"
-run "npm add react react-dom react-admin ra-data-fakerest @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe"
+run "npm add react react-dom react-admin ra-data-fakerest @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe /Users/isomdurm/Desktop/core/core-config-fe"
 
 # # generate(:scaffold, "person name:string")
 # # route "root to: 'people#index'"

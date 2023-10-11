@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-config-fe",
-  "version": "0.2.10",
+  "version": "0.1.0",
   "type": "module",
   "files": [
     "dist"
@@ -30,8 +30,6 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^",
-    "@moonlight-labs/core-jobs-fe": "workspace:^",
     "deep-object-diff": "^1.1.9"
   }
 }
