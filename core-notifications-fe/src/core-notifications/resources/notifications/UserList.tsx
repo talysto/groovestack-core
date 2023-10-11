@@ -56,6 +56,7 @@ export const UserList = () => {
       perPage={10}
       exporter={false}
       actions={false}
+      disableSyncWithLocation
     >
       <SingleFieldList component={MuiList}>
         <NotificationItem />

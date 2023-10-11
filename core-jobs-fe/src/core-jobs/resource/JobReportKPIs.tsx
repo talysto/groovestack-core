@@ -14,7 +14,7 @@ export const JobReportKPIsLive = () => {
   const data = kpis[0]
 
   return (
-    <JobReportShow id="jobs_kpis" data={data[0]}>
+    <JobReportShow id="jobs_kpis" data={data}>
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(record: RaRecord) => {

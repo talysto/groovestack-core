@@ -25,9 +25,10 @@ export const UtilizationChart = () => {
 
   if (kpis.length < 1) return null
 
+  const data = kpis[0]
 
   return (
-    <JobReportShow id="jobs_kpis" title="Utilization" data={kpis[0]}>
+    <JobReportShow id="jobs_kpis" title="Utilization" data={data}>
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(record: RaRecord) => {
