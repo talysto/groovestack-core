@@ -65,43 +65,17 @@ run "bundle install"
 # # gem 'groovestack-rails', github: 'talysto/groovestack-rails'
 
 inject_into_file 'config/application.rb', :before => "  end" do
-  "\n  config.active_record.schema_format = :sql\n\n"
+  "\n     config.active_record.schema_format = :sql\n\n"
 end
 
 inject_into_file 'app/controllers/application_controller.rb', :before => "  end" do
-  "\n  def index; end\n\n"
+  "\n     def index; end\n\n"
 end
 
 create_file "app/frontend/entrypoints/application.js", <<~RUBY
-// To see this message, add the following to the `<head>` section in your
-// views/layouts/application.html.erb
-//
-//    <%= vite_client_tag %>
-//    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
-
-import '~/entrypoints/groovestack-admin.js'
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
-
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
-
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
-
-// Example: Import a stylesheet in app/frontend/index.css
-// import '~/index.css'
+  console.log('Vite ⚡️ Rails')
+  import '~/entrypoints/groovestack-admin.js'
+  console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
 RUBY
 
 create_file "app/views/application/index.html.erb", <<~RUBY
@@ -116,7 +90,7 @@ RUBY
 create_file "app/frontend/entrypoints/groovestack-admin.js", <<~RUBY
 import React from 'react'
 
-import { AdminApp } from '@moonlight-labs/core-base-fe/components/Demo/AdminApp'
+import { AdminApp } from '@moonlight-labs/core-base-fe'
 import { createRoot } from 'react-dom/client'
 
 const root = createRoot(document.getElementById('root'))
@@ -144,7 +118,7 @@ run "bundle exec vite install"
 # "ra-data-fakerest": "^4.12.1",
 # "react": ">=18.0.0",
 # "react-dom": ">=18.0.0"
-run "npm add react react-dom react-admin ra-data-fakerest @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material /Users/isomdurm/Desktop/core/core-base-fe"
+run "npm add react react-dom react-admin ra-data-fakerest @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe"
 
 # # generate(:scaffold, "person name:string")
 # # route "root to: 'people#index'"
