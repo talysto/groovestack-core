@@ -67,7 +67,7 @@ module Core
 
           included do
             field :delete_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Delete, description: 'Delete a job'
-            field :delete_many_jobs, mutation: ::Core::Jobs::GraphQL::Job::Mutations::BulkDelete, description: 'Delete jobs'
+            field :delete_jobs, mutation: ::Core::Jobs::GraphQL::Job::Mutations::BulkDelete, description: 'Delete jobs'
             field :update_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Update, description: 'Update a job'
           end
         end
