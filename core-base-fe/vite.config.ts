@@ -23,11 +23,13 @@ export default defineConfig({
   build: {
     lib: {
       // entry: resolve(__dirname, "lib/main.js"),
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+      },
       formats: ['es'], // UMD
-      name: 'CORE-BASE',
+      // name: 'CORE-BASE',
       // the proper extensions will be added
-      fileName: 'core-base',
+      // fileName: 'core-base',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

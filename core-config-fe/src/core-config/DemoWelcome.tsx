@@ -3,27 +3,31 @@ import {
   Box,
   Button,
   Card,
+  CardActions,
   CardContent,
+  CardHeader,
   Chip,
   Grid,
   Stack,
   Typography,
 } from '@mui/material'
 
-// export const Components = ({components}) => (
-//   <ul>
-//       {components.members[0].members.map((member: any, idx:number) => (
-//         <li key={idx}>{member.name} ({member.kind})</li>
-//       ))}
-//     </ul>
-// )
-export const DemoWelcome = () => {
+// const stack = [
+//   { name: 'React Admin' },
+//   { name: 'MUI' },
+//   { name: 'Typescript / React' },
+//   { name: 'GraphQL' },
+//   { name: 'Ruby / Rails' },
+//   { name: 'PostgreSQL' },
+// ]
+
+export const DemoWelcome = ({ modules }: { modules?: any[] }) => {
   return (
     <>
       <Card>
         <CardContent>
-        <Typography variant="h4">Welcome to Groovestack</Typography>
-          <Grid container>
+          <Typography variant="h4">Welcome to Groovestack</Typography>
+          <Grid container spacing={3}>
             <Grid item xs={8}>
               <Typography>
                 Groovestack is an opinionated full-stack framework for building
@@ -50,11 +54,7 @@ export const DemoWelcome = () => {
             </Grid>
 
             <Grid item xs={4}>
-              <Stack
-                direction={'column-reverse'}
-                gap={1}
-                sx={{ }}
-              >
+              <Stack direction={'column-reverse'} gap={1} sx={{}}>
                 <Chip
                   avatar={
                     <Avatar
@@ -116,9 +116,43 @@ export const DemoWelcome = () => {
       </Card>
 
       <Box sx={{ mt: 3, columns: 2 }}>
-        <Card style={{ breakInside: 'avoid' }}>
+        {modules?.map((module) => (
+          <Card
+            key={module.name}
+            style={{ breakInside: 'avoid' }}
+            sx={{
+              mb: 2,
+              ':hover': {
+                boxShadow: 6, // theme.shadows[20]
+              },
+            }}
+          >
+            <CardHeader
+              title={module.title}
+              subheader={module.name}
+              action={<Chip label={module.version}></Chip>}
+            />
+            <CardContent>
+              <Typography>{module.description}</Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" color="primary">
+                Docs
+              </Button>
+            </CardActions>
+          </Card>
+        ))}
+
+        {/* <Card
+          style={{ breakInside: 'avoid' }}
+          sx={{
+            ':hover': {
+              boxShadow: 6, // theme.shadows[20]
+            },
+          }}
+        >
+          <CardHeader title="CORE Jobs" />
           <CardContent>
-            <Typography variant="h5">CORE Jobs</Typography>
             <Typography>
               A higher performance alternative to Sidekiq that is built on
               PostgreSQL and Ruby on Rails. It integrates fully with ActiveJob
@@ -126,7 +160,12 @@ export const DemoWelcome = () => {
               management.
             </Typography>
           </CardContent>
-        </Card>
+          <CardActions>
+            <Button size="small" color="primary">
+              Docs
+            </Button>
+          </CardActions>
+        </Card> */}
       </Box>
     </>
   )

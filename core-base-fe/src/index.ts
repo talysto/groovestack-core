@@ -8,48 +8,61 @@
  * @packageDocumentation
  */
 
-import { DateField } from './react-admin/fields/DateField'
-import { TimeAgoField, timeAgo } from './react-admin/fields/TimeAgoField'
-import { PolymorphicReferenceField } from './react-admin/fields/PolymorphicReferenceField'
-import { MoneyField } from './react-admin/fields/MoneyField'
-import { StatusInput } from './react-admin/inputs/StatusInput'
-import { MoneyInput } from './react-admin/inputs/MoneyInput'
-import { generateTimeZoneOptions, TimezoneSelectInput } from './react-admin/inputs/TimezoneSelectInput'
-import { clickToCopy } from './util/clickToCopy'
-import { ToggleButtonInput } from './react-admin/inputs/ToggleButtonInput'
-import { ExternalLink } from './components/ExternalLink'
-import { CodeField } from './react-admin/fields/CodeField'
-import { DateRangeFilter, CommonDateRanges } from './components/DateRangeFilter'
-import { CustomButtonDrawer, DrawerWidth } from './react-admin/CustomButtonDrawer'
+import * as pkg from '../package.json'
+export { pkg }
 
+import { CommonDateRanges, DateRangeFilter } from './components/DateRangeFilter'
+import { ExternalLink } from './components/ExternalLink'
+import {
+  CustomButtonDrawer,
+  DrawerWidth,
+} from './react-admin/CustomButtonDrawer'
+import { CodeField } from './react-admin/fields/CodeField'
+import { DateField } from './react-admin/fields/DateField'
+import { MoneyField } from './react-admin/fields/MoneyField'
+import { PolymorphicReferenceField } from './react-admin/fields/PolymorphicReferenceField'
+import { TimeAgoField, timeAgo } from './react-admin/fields/TimeAgoField'
+import { MoneyInput } from './react-admin/inputs/MoneyInput'
+import { StatusInput } from './react-admin/inputs/StatusInput'
+import {
+  TimezoneSelectInput,
+  generateTimeZoneOptions,
+} from './react-admin/inputs/TimezoneSelectInput'
+import { ToggleButtonInput } from './react-admin/inputs/ToggleButtonInput'
+import { clickToCopy } from './util/clickToCopy'
 
 /**
  * function utilities
  * @public
  */
-export { timeAgo, generateTimeZoneOptions, clickToCopy }
+export { clickToCopy, generateTimeZoneOptions, timeAgo }
 
 /**
  * React Admin Fields
  * @public
  */
-export { DateField, TimeAgoField, PolymorphicReferenceField, MoneyField, CodeField }
+export {
+  CodeField,
+  DateField,
+  MoneyField,
+  PolymorphicReferenceField,
+  TimeAgoField,
+}
 
 /**
  * React Admin Inputs
  * @public
  */
-export { StatusInput, MoneyInput, TimezoneSelectInput, ToggleButtonInput }
+export { MoneyInput, StatusInput, TimezoneSelectInput, ToggleButtonInput }
 
 /**
  * React Admin Components
  * @public
  */
- export { CustomButtonDrawer, DrawerWidth }
-
+export { CustomButtonDrawer, DrawerWidth }
 
 /**
  * MUI Components
  * @public
  */
-export { ExternalLink, DateRangeFilter, CommonDateRanges }
+export { CommonDateRanges, DateRangeFilter, ExternalLink }

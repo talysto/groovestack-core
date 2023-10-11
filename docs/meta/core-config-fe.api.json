@@ -161,56 +161,71 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@moonlight-labs/core-webhooks-fe!",
+  "canonicalReference": "@moonlight-labs/core-config-fe!",
   "docComment": "",
-  "name": "@moonlight-labs/core-webhooks-fe",
+  "name": "@moonlight-labs/core-config-fe",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@moonlight-labs/core-webhooks-fe!",
+      "canonicalReference": "@moonlight-labs/core-config-fe!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-webhooks-fe!mockWebhooks:var",
+          "canonicalReference": "@moonlight-labs/core-config-fe!DemoWelcome:var",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "mockWebhooks: "
+              "text": "DemoWelcome: "
             },
             {
               "kind": "Content",
-              "text": "(count?: number) => {\n    source: string;\n    event: string;\n    status: string;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: string;\n    created_at: "
+              "text": "({ modules }: {\n    modules?: any[] | undefined;\n}) => "
             },
             {
               "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n}[]"
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/src/core-webhooks/mock.d.ts",
+          "fileUrlPath": "dist/DemoWelcome.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
-          "name": "mockWebhooks",
+          "name": "DemoWelcome",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 6
+            "endIndex": 3
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-config-fe!HomeView:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "HomeView: "
+            },
+            {
+              "kind": "Content",
+              "text": "({ modules }: {\n    modules?: any[] | undefined;\n}) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/HomeView.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "HomeView",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
           }
         }
       ]

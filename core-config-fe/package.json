@@ -6,8 +6,7 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/index.js",
-    "./mock": "./dist/mock.js"
+    ".": "./dist/index.js"
   },
   "typesVersions": {
     "*": {
@@ -30,8 +29,6 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^",
-    "@moonlight-labs/core-jobs-fe": "workspace:^",
-    "deep-object-diff": "^1.1.9"
+    "@moonlight-labs/core-base-fe": "workspace:^"
   }
 }

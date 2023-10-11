@@ -12,15 +12,23 @@ import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
 
+import { HomeView } from '@moonlight-labs/core-config-fe'
 import { mockAuthProvider, mockDataProvider } from './data/mock-providers'
 import { CustomLayout } from './layout/CustomLayout'
 import theme from './layout/theme'
-import { HomeView } from './pages/HomeView'
 import { Company } from './resources/company'
 import { User } from './resources/user'
 // import { Company } from './resources/company'
 
 const authProvider = await mockAuthProvider()
+
+import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
+import { pkg as CoreJobsPkg } from '@moonlight-labs/core-jobs-fe'
+import { pkg as CoreWebhooksPkg } from '@moonlight-labs/core-webhooks-fe'
+
+const DashboardView = () => (
+  <HomeView modules={[CoreBasePkg, CoreJobsPkg, CoreWebhooksPkg]} />
+)
 
 function AdminApp() {
   // const lineFilters = [
@@ -54,7 +62,7 @@ function AdminApp() {
       authProvider={authProvider}
       // loginPage={LoginPage}
       theme={theme}
-      dashboard={HomeView}
+      dashboard={DashboardView}
       layout={CustomLayout}
     >
       <Resource

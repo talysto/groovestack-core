@@ -199,7 +199,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/mock.d.ts",
+          "fileUrlPath": "dist/src/core-jobs/mock.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 4
@@ -280,7 +280,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/mock.d.ts",
+          "fileUrlPath": "dist/src/core-jobs/mock.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 14
@@ -325,7 +325,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/mock.d.ts",
+          "fileUrlPath": "dist/src/core-jobs/mock.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -362,7 +362,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/mock.d.ts",
+          "fileUrlPath": "dist/src/core-jobs/mock.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 2

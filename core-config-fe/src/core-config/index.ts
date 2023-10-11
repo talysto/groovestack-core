@@ -1,1 +1,3 @@
-export { AdminApp } from './resources/config/AdminApp'
+export { DemoWelcome } from './DemoWelcome'
+
+export { HomeView } from './HomeView'
