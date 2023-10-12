@@ -6,6 +6,7 @@ require 'pg'
 require 'core/base/utilities/string'
 
 require 'core/base/version'
+require 'core/base/puma/plugin/core_cron'
 require 'core/base/railtie' if defined?(Rails::Railtie)
 
 require 'core/base/graphql/subscriptions/event_handler'
