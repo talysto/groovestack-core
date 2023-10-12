@@ -29,7 +29,7 @@ module Core
 
             def resolve(id:)
               job = ::Core::Jobs::Job.find_by_id(id)
-              QueJob.destroy(id)
+              ::Core::Jobs::QueJob.destroy(id)
               job
             end
           end
@@ -57,7 +57,7 @@ module Core
                   job.send(instance_method)
                 end
               else
-                QueJob.update!(id, **attrs)
+                ::Core::Jobs::QueJob.update!(id, **attrs)
               end
               job
             end
