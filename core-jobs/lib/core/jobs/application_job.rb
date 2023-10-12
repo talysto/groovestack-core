@@ -23,6 +23,6 @@ module Core
     class NotifySlack < ExampleJob
     end
     
-    # (0..10000).each { |i| [WelcomeMailer, ProcessPayment, GenerateReport, NotifySlack].sample.set(wait: rand(0..100).minute).perform_later }
+    # (0..10000).each { |i| [::Core::Jobs::WelcomeMailer, ::Core::Jobs::ProcessPayment, ::Core::Jobs::GenerateReport, ::Core::Jobs::NotifySlack].sample.set(wait: rand(0..100).minute).perform_later }
   end
 end
