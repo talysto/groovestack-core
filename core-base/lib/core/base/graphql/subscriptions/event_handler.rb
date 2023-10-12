@@ -6,8 +6,6 @@ module Core
           def self.trigger(subscription, args, event, kwargs)
             triggered = false
 
-            ::Rails.logger.info "GraphQL subscription trigger request: #{subscription}, #{args}, #{event}, #{kwargs}"
-
             ::GraphQL::Schema.descendants.each do |schema|
               subscription_type = schema.types["Subscription"]
               next unless subscription_type.present?
@@ -15,8 +13,6 @@ module Core
               
               triggered = true
               schema.subscriptions.trigger(subscription, args, event, **kwargs)
-
-              ::Rails.logger.info "GraphQL subscription trigger success: #{subscription}, #{args}, #{event}, #{kwargs}"
             end
             
             raise 'app schema not defined' unless triggered
