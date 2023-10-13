@@ -131,7 +131,7 @@ file "app/frontend/components/AdminApp.tsx", <<~RUBY
   import React, { useEffect, useState } from 'react'
   import { Admin, Resource } from 'react-admin'
   import { Jobs } from '@moonlight-labs/core-jobs-fe'
-  import { Config } from '@moonlight-labs/core-config-fe'
+  import { HomeView } from '@moonlight-labs/core-config-fe'
   import { initDataProvider } from './dataProvider'
   // import { mockDataProvider } from './mockDataProvider/mock-providers'
 
@@ -154,7 +154,7 @@ file "app/frontend/components/AdminApp.tsx", <<~RUBY
       // authProvider={authProvider}
       // loginPage={LoginPage}
       // theme={theme}
-      dashboard={Config.HomeView}
+      dashboard={HomeView}
       // layout={CustomLayout}
     >
         <Resource
