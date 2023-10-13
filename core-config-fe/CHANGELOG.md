@@ -1,5 +1,13 @@
 # @moonlight-labs/core-versions-fe
 
+## 0.1.1
+
+### Patch Changes
+
+- build core-config-fe and publish
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.11
+
 ## 0.2.10
 
 ### Patch Changes
