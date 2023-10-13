@@ -10,7 +10,7 @@ export const JobReportKPIsLive = () => {
   const kpis = useContext(JobsKPIsContext)
 
   return (
-    <JobReportShow id="jobs_kpis" data={kpis}>
+    <JobReportShow id="jobs_kpis" data={{...kpis}}>
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(record: RaRecord) => {

@@ -159,7 +159,7 @@ const ListActions = () => {
   }
 
   useEffect(() => {
-    if (kpis && kpis.length > 0) updateToggles(kpis[0])
+    if (kpis?.data?.[0]) updateToggles(kpis.data[0])
   }, [kpis])
 
   return (
@@ -202,7 +202,7 @@ export const JobsList = () => {
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecord(handleEventReceived, 'JobReport', 'jobs_kpis', { enabled })
-  console.log('kpis', kpis)
+
   return (
     <JobsKPIsContext.Provider value={kpis}>
       <ListBase>

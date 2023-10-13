@@ -1,5 +1,29 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.53
+
+### Patch Changes
+
+- cleanup logs
+
+## 0.2.52
+
+### Patch Changes
+
+- force JobReportShow rerender on props update
+
+## 0.2.51
+
+### Patch Changes
+
+- attempted fix of realtime kpi rendering
+
+## 0.2.50
+
+### Patch Changes
+
+- debug job kpis
+
 ## 0.2.49
 
 ### Patch Changes

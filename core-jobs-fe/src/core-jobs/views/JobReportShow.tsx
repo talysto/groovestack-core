@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { useSubscribeToRecord } from '@react-admin/ra-realtime'
-import { JSXElementConstructor, ReactElement, cloneElement, useState } from 'react'
+import { JSXElementConstructor, ReactElement, cloneElement, useState, useEffect } from 'react'
 import { Identifier, RaRecord, ShowProps, useDataProvider, useShowController } from 'react-admin'
 
 export const JobReportShow = (
@@ -26,6 +26,9 @@ export const JobReportShow = (
   const enabled = !props.data && !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
 
+  useEffect(() => {
+    setData(props.data)
+  }, [props.data])
   return (
     <Box>
       {props.title && (
@@ -33,7 +36,7 @@ export const JobReportShow = (
           {props.title}
         </Typography>
       )}
-      {cloneElement(props.children, { record: data || props.data })}
+      {cloneElement(props.children, { record: data })}
     </Box>
   )
 }
