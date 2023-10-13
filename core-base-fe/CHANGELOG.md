@@ -1,5 +1,11 @@
 # @moonlight-labs/core-base-fe
 
+## 0.2.12
+
+### Patch Changes
+
+- bump all versions
+
 ## 0.2.11
 
 ### Patch Changes
