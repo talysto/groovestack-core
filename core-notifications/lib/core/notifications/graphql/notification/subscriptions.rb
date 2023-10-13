@@ -30,7 +30,7 @@ module Core
           end
 
           included do
-            field :Notification_collection, subscription: ::Core::Notifications::GraphQL::Notification::Subscriptions::Collection
+            field :all_notifications, subscription: ::Core::Notifications::GraphQL::Notification::Subscriptions::Collection
           end
         end
       end

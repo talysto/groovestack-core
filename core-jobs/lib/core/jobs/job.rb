@@ -10,13 +10,13 @@ module Core
 
       def self.purge(ids=[], job_scope = :completed_before) # scope name or custom query. default is completed_before 1.day.ago
         ids = (ids.present? ? where(id: ids) : (respond_to?(job_scope) ? send(job_scope) : where(job_scope))).select(:id).map(&:id) # need to persist ids in memory before deleting them
-        ::QueJob.where(id: ids).delete_all
+        ::Core::Jobs::QueJob.where(id: ids).delete_all
 
         ids
       end
 
       def retry!
-        QueJob.update(id, run_at: Time.now, expired_at: nil)
+        ::Core::Jobs::QueJob.update(id, run_at: Time.now, expired_at: nil)
       end
 
       def run_now!

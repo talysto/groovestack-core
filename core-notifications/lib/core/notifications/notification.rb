@@ -72,3 +72,7 @@ module Core
     end
   end
 end
+
+ActiveSupport.on_load(:after_initialize) do
+  ::Core::Notifications::Notification.subscribe(::Core::Notifications::PubSub::NotificationSubscriber.new) if defined?(Wisper::ActiveRecord)
+end

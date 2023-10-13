@@ -2,6 +2,12 @@
 
 require 'puma/plugin'
 
+# Need to pre-declare Puma::Plugin here - not sure why, but it's innocusous so leave it
+module Puma
+  class Plugin # rubocop:disable Lint/EmptyClass
+  end
+end
+
 Puma::Plugin.create do
   def production?
     ENV.fetch('RACK_ENV', 'development') == 'production'

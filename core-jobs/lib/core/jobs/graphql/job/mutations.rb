@@ -28,8 +28,8 @@ module Core
             type ::Core::Jobs::GraphQL::Job::Type
 
             def resolve(id:)
-              job = ::Core::Jobs::Job.find(id)
-              QueJob.destroy(id)
+              job = ::Core::Jobs::Job.find_by_id(id)
+              ::Core::Jobs::QueJob.destroy(id)
               job
             end
           end
@@ -47,8 +47,8 @@ module Core
 
             type ::Core::Jobs::GraphQL::Job::Type
 
-            def resolve(id:, instance_method:, instance_method_args:, **attrs)
-              job = ::Core::Jobs::Job.find(id)
+            def resolve(id:, instance_method: nil, instance_method_args: nil, **attrs)
+              job = ::Core::Jobs::Job.find_by_id(id)
 
               if instance_method.present?                 
                 if instance_method_args.present?
@@ -57,7 +57,7 @@ module Core
                   job.send(instance_method)
                 end
               else
-                QueJob.update!(id, **attrs)
+                ::Core::Jobs::QueJob.update!(id, **attrs)
               end
               job
             end
@@ -67,7 +67,7 @@ module Core
 
           included do
             field :delete_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Delete, description: 'Delete a job'
-            field :delete_many_jobs, mutation: ::Core::Jobs::GraphQL::Job::Mutations::BulkDelete, description: 'Delete jobs'
+            field :delete_jobs, mutation: ::Core::Jobs::GraphQL::Job::Mutations::BulkDelete, description: 'Delete jobs'
             field :update_job, mutation: ::Core::Jobs::GraphQL::Job::Mutations::Update, description: 'Update a job'
           end
         end

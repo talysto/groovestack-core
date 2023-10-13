@@ -1,26 +1,29 @@
 import { Box, Typography } from '@mui/material'
 import { useSubscribeToRecord } from '@react-admin/ra-realtime'
 import { JSXElementConstructor, ReactElement, cloneElement, useState } from 'react'
-import { ShowProps, useDataProvider, useShowController } from 'react-admin'
+import { Identifier, RaRecord, ShowProps, useDataProvider, useShowController } from 'react-admin'
 
 export const JobReportShow = (
   props: ShowProps & {
-    children: ReactElement<any, string | JSXElementConstructor<any>>
+    children: ReactElement<any, string | JSXElementConstructor<any>>;
+    data?: any; // if provided, skip fetch and subscription
   },
 ) => {
-  const [data, setData] = useState()
+  const [data, setData] = useState<RaRecord>()
   const dataProvider = useDataProvider()
+
+  const onSuccess = (report: any) => setData(report) 
 
   // initial call
   useShowController({
     resource: 'JobReport',
     id: props.id,
-    queryOptions: { onSuccess(report) { setData(report) } },
+    queryOptions: { enabled: !props.data, onSuccess },
   })
 
-  const handleEventReceived = ({ type, payload: data }: any) => { if (type != 'subscribe') setData(data) }
+  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setData({id: props.id as Identifier, data: payload.data}) }
 
-  const enabled = !!Object.assign({}, dataProvider)?.subscribe
+  const enabled = !props.data && !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
 
   return (
@@ -30,7 +33,7 @@ export const JobReportShow = (
           {props.title}
         </Typography>
       )}
-      {cloneElement(props.children, { record: data })}
+      {cloneElement(props.children, { record: data || props.data })}
     </Box>
   )
 }

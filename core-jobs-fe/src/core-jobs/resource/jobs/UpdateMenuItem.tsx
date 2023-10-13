@@ -1,6 +1,6 @@
 import ActionUpdate from '@mui/icons-material/Update'
 import { ListItemProps, MenuItem } from '@mui/material'
-import { ReactElement } from 'react'
+import { ReactElement, useState } from 'react'
 import {
   BulkActionProps,
   RaRecord,
@@ -11,6 +11,7 @@ import {
   useRefresh,
   useResourceContext,
   useUpdate,
+  Confirm
 } from 'react-admin'
 import { UseMutationOptions } from 'react-query'
 // import { Button, ButtonProps } from './Button';
@@ -29,6 +30,9 @@ export const UpdateMenuItem = (props: any) => {
   const notify = useNotify()
   const resource = useResourceContext(props)
   const refresh = useRefresh()
+  const [open, setOpen] = useState(false)
+  const onClose = () => setOpen(false)
+  const onOpen = () => setOpen(true)
 
   const defaultIcon = <ActionUpdate />
 
@@ -38,6 +42,9 @@ export const UpdateMenuItem = (props: any) => {
     icon = defaultIcon,
     onClick,
     mutationOptions = {},
+    confirmContent,
+    confirmTitle,
+    mutationMode = 'undoable',
     ...rest
   } = props
 
@@ -81,7 +88,7 @@ export const UpdateMenuItem = (props: any) => {
       {
         onSuccess,
         onError,
-        mutationMode: 'undoable',
+        mutationMode,
         ...otherMutationOptions,
       },
     )
@@ -100,6 +107,28 @@ export const UpdateMenuItem = (props: any) => {
   //         {icon}
   //     </Button>
   // );
+
+  if (confirmContent && confirmTitle) {
+    return (
+      <>
+        <Confirm
+          isOpen={open}
+          loading={isLoading}
+          title={confirmTitle}
+          content={confirmContent}
+          onConfirm={handleClick}
+          onClose={onClose}
+        />
+        <MenuItem
+          onClick={onOpen}
+          disabled={isLoading}
+          {...sanitizeRestProps(rest)}
+        >
+          {label}
+        </MenuItem>
+      </>
+    )
+  }
 
   return (
     <MenuItem

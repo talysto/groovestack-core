@@ -1,5 +1,17 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.23
+
+### Patch Changes
+
+- remove console lines
+
+## 0.2.22
+
+### Patch Changes
+
+- [core-notifications-fe] disable sync with location for user list. [core-jobs-fe] fix kpi data getting passed on event received.
+
 ## 0.2.21
 
 ### Patch Changes

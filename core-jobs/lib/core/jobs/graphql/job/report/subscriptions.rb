@@ -20,12 +20,6 @@ module Core
                 }
               GRAPHQL
 
-              def authorized?(id:)
-                return true if context[:current_user].admin?
-
-                raise ::GraphQL::ExecutionError, 'only admin can subscript to job reports'
-              end
-
               def subscribe(id:)
                 payload(id: id, event: { type: :subscribe })
               end
@@ -61,7 +55,7 @@ module Core
             end
 
             included do
-              field :JobReport_instance, subscription: ::Core::Jobs::GraphQL::Job::Report::Subscriptions::Instance
+              field :JobReport, subscription: ::Core::Jobs::GraphQL::Job::Report::Subscriptions::Instance
             end
           end
         end
