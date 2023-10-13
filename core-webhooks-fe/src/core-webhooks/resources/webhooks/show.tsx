@@ -46,7 +46,7 @@ export const WebhookShow = ({ children, ...rest }: ShowProps) => (
             <TextField source="event" sx={{ mr: 2 }} />
             <FunctionField
               label={false}
-              render={(record: RaRecord) => (
+              render={(record: RaRecord) => record && (
                 <ExternalLink
                   hideIcon
                   title="search..."

@@ -1,5 +1,29 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.48
+
+### Patch Changes
+
+- bullet proof FunctionFields
+
+## 0.2.47
+
+### Patch Changes
+
+- revert datagrid changes
+
+## 0.2.46
+
+### Patch Changes
+
+- disable most jobdatagrid fields for testing
+
+## 0.2.45
+
+### Patch Changes
+
+- disable most joblist datagrid components
+
 ## 0.2.44
 
 ### Patch Changes

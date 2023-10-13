@@ -22,6 +22,8 @@ export const NotificationEdit = () => (
       <FunctionField
         label="Read"
         render={(record: RaRecord) => {
+          if (!record.read) return null
+          
           return Number.isInteger(record.read) ? (
             <NumberField source="read" />
           ) : (

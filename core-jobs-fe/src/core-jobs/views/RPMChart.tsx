@@ -66,7 +66,7 @@ export const RPMChart = () => {
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(data: RaRecord) => {
-            if (!data) return <div>No data</div>
+            if (!data?.data?.[0]) return <div>No data</div>
 
             const processedData = data.data.map((row: any) => {
               // convert 0 to sentinelZero to avoid log(0) error

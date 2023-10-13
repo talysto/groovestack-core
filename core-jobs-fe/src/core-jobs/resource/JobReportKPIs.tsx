@@ -14,7 +14,7 @@ export const JobReportKPIsLive = () => {
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(record: RaRecord) => {
-            if (!record?.data) return <div>No data</div>
+            if (!record?.data?.[0]) return <div>No data</div>
 
             const data = record.data[0]
 

@@ -83,7 +83,7 @@ export const JobsSummaryPivot = () => {
                       <FunctionField
                         key={idx}
                         sortable={false}
-                        render={(record: any) => (
+                        render={(record: any) => record && (
                           <span
                             title={new Intl.NumberFormat().format(
                               record[status],

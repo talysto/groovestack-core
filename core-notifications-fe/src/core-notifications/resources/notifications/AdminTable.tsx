@@ -64,6 +64,8 @@ export const AdminTable = () => (
       <FunctionField
         label="Read"
         render={(record: RaRecord) => {
+          if (!record) return null
+          
           return Number.isInteger(record.read) ? (
             <NumberField source="read" />
           ) : (
