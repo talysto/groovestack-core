@@ -1,5 +1,23 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.57
+
+### Patch Changes
+
+- revert job status icon again
+
+## 0.2.56
+
+### Patch Changes
+
+- expect job status to always have an associated icon
+
+## 0.2.55
+
+### Patch Changes
+
+- try bringing back job status icon
+
 ## 0.2.54
 
 ### Patch Changes

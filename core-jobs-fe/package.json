@@ -1,7 +1,7 @@
 {
   "name": "@moonlight-labs/core-jobs-fe",
   "title": "CORE Jobs",
-  "version": "0.2.54",
+  "version": "0.2.57",
   "description": "A higher performance alternative to Sidekiq that is built on PostgreSQL and Ruby on Rails. It integrates fully with ActiveJob and includes a full administrative UI for monitoring and job management.",
   "homepage": "https://talysto.com/groovestack/#core-jobs",
   "keywords": [
