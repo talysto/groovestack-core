@@ -127,7 +127,7 @@ RUBY
 
 
 # // fix and use M5 file
-file "app/frontend/components/AdminApp.jsx", <<~RUBY
+file "app/frontend/components/AdminApp.tsx", <<~RUBY
   import React, { useEffect, useState } from 'react'
   import { Admin, Resource } from 'react-admin'
   import { Jobs } from '@moonlight-labs/core-jobs-fe'
