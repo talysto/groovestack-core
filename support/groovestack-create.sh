@@ -12,10 +12,10 @@ echo $ruby_version
 echo $rails_version
 echo $node_version
 
-if vercomp $ruby_version \< 3.2; then
-   echo "need to upgrade ruby version to at least 3.1.3"
-   exit
-fi
+# if vercomp $ruby_version \< 3.2; then
+#    echo "need to upgrade ruby version to at least 3.1.3"
+#    exit
+# fi
 
 #  TODO
 # try --api (does vite still build?)

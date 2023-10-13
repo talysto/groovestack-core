@@ -1,29 +1,3 @@
-# frozen_string_literal: true
-# CORE Applications Template
-# USAGE
-# rails new -m https://raw.githubusercontent.com/moonlight-labs/core/main/support/core-rails-template.rb
-
-# Reference: https://guides.rubyonrails.org/rails_application_templates.html
-
-# starter command:
-#  -d postgresql --skip-turbolinks --skip-jbuilder --skip-webpack-install
-
-# ARGV << "--skip-webpack-install"
-# ARGV << "-d postgresql"
-
-# puts ARGV
-# exit
-# puts self.class.protected_instance_methods(false).sort
-# puts self.class.private_instance_methods(false).sort
-# puts self.singleton_class.instance_methods(false).sort
-
-puts Rails::VERSION
-
-unless RUBY_VERSION[0, 3] == "2.7"
-  puts "You need 2.7"
-  exit
-end 
-
 # Groovestack Basics
 gem 'graphql'
 gem 'uuid'
@@ -37,9 +11,11 @@ gem_group :development, :test do
   gem 'foreman'
 end
 
-# CORE Modules
-# add_source 'https://github.com/moonlight-labs/core.git', branch: 'spike/darren-refactors2' do
-# git 'https://github.com/moonlight-labs/core.git', branch: 'spike/darren-refactors2' do
+gem "wisper", "2.0.0"
+gem 'que', github: 'talysto/que', branch: 'talysto-que-enhancements'
+gem "puma", "~> 5.0"
+gem "pg_lock"
+
 github 'moonlight-labs/core', branch: 'dev' do
   gem 'core-base' # must be first dependency
   gem 'core-jobs'
@@ -49,33 +25,28 @@ github 'moonlight-labs/core', branch: 'dev' do
   # gem 'core-webhooks'
 end
 
-
-# LOCAL DEVELOPMENT INSTALL 
-# gem 'core-base', path: '../../core-base'
-# gem 'core-jobs', path: '../../core-jobs'
-# # gem 'core-comments', path: '../../core-comments'
-# # gem 'core-versions', path: '../../core-versions'
-# # gem 'core-notifications', path: '../../core-notifications'
-# # gem 'core-webhooks', path: '../../core-webhooks'
+application "config.active_record.schema_format = :sql"
+application "config.active_job.queue_adapter = :que"
+application "config.action_cable.mount_path = '/cable'"
+# application "config.to_prepare do\nRails.autoloaders.main.eager_load_dir(Rails.root.join('app/graphql'))\nend", env: 'development'
 
 run "bundle install"
 
-# git 'https://github.com/moonlight-labs/core.git', branch: 'spike/darren-refactors2' do # TODO: update branch name to main
-#   gem 'core-base' # must be first dependency
-#   gem 'core-comments'
-#   gem 'core-referrals'
-#   gem 'core-versions'
-# end
+File.delete('config/cable.yml')
 
-# # gem 'groovestack-rails', github: 'talysto/groovestack-rails'
+file "config/cable.yml", <<~RUBY
+default: &default
+  adapter: postgresql
 
-inject_into_file 'config/application.rb', :before => "  end" do
-  "\n     config.active_record.schema_format = :sql\n\n"
-end
+development:
+  <<: *default
 
-inject_into_file 'app/controllers/application_controller.rb', :before => "  end" do
-  "\n     def index; end\n\n"
-end
+test:
+  adapter: test
+
+production:
+  <<: *default
+RUBY
 
 file "app/frontend/entrypoints/application.js", <<~RUBY
   console.log('Vite ⚡️ Rails')
@@ -85,53 +56,163 @@ RUBY
 
 file "app/views/application/index.html.erb", <<~RUBY
 <header>
-  <a href="https://vite-ruby.netlify.app/guide/rails.html">
-    # <img class="logo smooth" src="<%= vite_asset_path 'images/logo.svg' %>"/>
     <div id="root"></div>
-  </a>
 </header>
 RUBY
 
 file "app/frontend/entrypoints/groovestack-admin.js", <<~RUBY
 import React from 'react'
 
-import { Config } from '@moonlight-labs/core-config-fe'
+import { AdminApp } from '../components/AdminApp'
 import { createRoot } from 'react-dom/client'
 
 const root = createRoot(document.getElementById('root'))
-
-root.render(React.createElement(Config.AdminApp))
+root.render(React.createElement(AdminApp))
 RUBY
 
-file "app/frontend/entrypoints/AdminApp.jsx", <<~RUBY
-import React from 'react'
-import { Admin, Resource } from 'react-admin'
-import { Jobs } from '@moonlight-labs/core-jobs-fe'
-import { Config } from '@moonlight-labs/core-config-fe'
+File.delete('config/puma.rb')
+file "config/puma.rb", <<~RUBY
+# Puma can serve each request in a thread from an internal thread pool.
+# The `threads` method setting takes two numbers: a minimum and maximum.
+# Any libraries that use thread pools should be configured to match
+# the maximum value specified for Puma. Default is set to 5 threads for minimum
+# and maximum; this matches the default thread size of Active Record.
+#
+max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
+threads min_threads_count, max_threads_count
 
-// import { mockDataProvider } from './mockDataProvider/mock-providers'
+# Specifies the `worker_timeout` threshold that Puma will use to wait before
+# terminating a worker in development environments.
+#
+worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
-export const AdminApp = () => {
-  return (
-    <Admin
-    disableTelemetry
-    // dataProvider={mockDataProvider}
-    // authProvider={authProvider}
-    // loginPage={LoginPage}
-    // theme={theme}
-    dashboard={Config.HomeView}
-    // layout={CustomLayout}
-  >
-      <Resource
-        name="Job"
-        icon={Jobs.Icon}
-        edit={Jobs.Edit}
-        list={Jobs.List}
-        recordRepresentation={Jobs.resourceRepresentation}
-      />
-    </Admin>
+# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
+#
+port ENV.fetch("PORT") { 3000 }
+
+# Specifies the `environment` that Puma will run in.
+#
+environment ENV.fetch("RAILS_ENV") { "development" }
+
+# Specifies the `pidfile` that Puma will use.
+pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+
+# Specifies the number of `workers` to boot in clustered mode.
+# Workers are forked web server processes. If using threads and workers together
+# the concurrency of the application would be max `threads` * `workers`.
+# Workers do not work on JRuby or Windows (both of which do not support
+# processes).
+#
+# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+
+# Use the `preload_app!` method when specifying a `workers` number.
+# This directive tells Puma to first boot the application and load code
+# before forking the application. This takes advantage of Copy On Write
+# process behavior so workers use less memory.
+#
+# preload_app!
+
+# Allow puma to be restarted by `bin/rails restart` command.
+plugin :tmp_restart
+
+plugin :que
+plugin :core_cron
+RUBY
+
+
+# // fix and use M5 file
+file "app/frontend/components/AdminApp.jsx", <<~RUBY
+  import React, { useEffect, useState } from 'react'
+  import { Admin, Resource } from 'react-admin'
+  import { Jobs } from '@moonlight-labs/core-jobs-fe'
+  import { Config } from '@moonlight-labs/core-config-fe'
+  import { initDataProvider } from './dataProvider'
+  // import { mockDataProvider } from './mockDataProvider/mock-providers'
+
+  export const AdminApp = () => {
+    const [dataProvider, setDataProvider] = useState(null)
+
+    useEffect(() => {
+      console.log('init data provider')
+      initDataProvider().then((graphQlDataProvider) =>
+        setDataProvider(() => graphQlDataProvider),
+      )
+    }, [])
+
+    if (!dataProvider) return <div>Loading...</div>
+
+    return (
+      <Admin
+      disableTelemetry
+      dataProvider={dataProvider}
+      // authProvider={authProvider}
+      // loginPage={LoginPage}
+      // theme={theme}
+      dashboard={Config.HomeView}
+      // layout={CustomLayout}
+    >
+        <Resource
+          name="Job"
+          icon={Jobs.Icon}
+          edit={Jobs.Edit}
+          list={Jobs.List}
+          recordRepresentation={Jobs.resourceRepresentation}
+        />
+      </Admin>
+    )
+  }
+RUBY
+
+file "app/frontend/components/client.tsx", <<~RUBY
+  import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
+  import { createConsumer } from '@rails/actioncable'
+  import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'
+
+  // # VITE ENV
+  const uri = "/graphql"
+    
+  const getWSURL = () => {
+    return '/cable'
+  }
+
+  const cable = createConsumer(getWSURL())
+
+  const hasSubscriptionOperation = ({ query: { definitions } }) => {
+    return definitions.some(({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription')
+  }
+
+  const httpLink = new HttpLink({
+    uri
+  });
+
+  const link = ApolloLink.split(
+    hasSubscriptionOperation,
+    new ActionCableLink({ cable, channelName: 'GraphQLChannel' }),
+    httpLink
   )
-}
+
+  export const client = new ApolloClient({
+    uri,
+    cache: new InMemoryCache(),
+    link
+  })
+RUBY
+
+
+file "app/frontend/components/dataProvider.tsx", <<~RUBY
+  import buildGraphQLProvider from '@moonlight-labs/ra-data-graphql-advanced'
+
+  import { client } from './client'
+
+
+  export async function initDataProvider(options?: any) {
+    return buildGraphQLProvider({
+      client,
+      fieldNamingConvention: 'snake',
+      ...options,
+    })
+  }
 RUBY
 
 # # Setup the DB
@@ -142,73 +223,228 @@ rails_command "db:migrate"
 # # https://vite-ruby.netlify.app/guide/
 run "bundle exec vite install"
 
-## Setup Frontend
-# "@moonlight-labs/core-base-fe": "workspace:^",
-# "@moonlight-labs/core-comments-fe": "workspace:^",
-# "@moonlight-labs/core-jobs-fe": "workspace:^",
-# "@moonlight-labs/core-notifications-fe": "workspace:^",
-# "@moonlight-labs/core-versions-fe": "workspace:^",
-# "@moonlight-labs/core-webhooks-fe": "workspace:^",
-# "@mui/material": "^5.14.11",
-# "ra-data-fakerest": "^4.12.1",
-# "react": ">=18.0.0",
-# "react-dom": ">=18.0.0"
-run "npm add react react-dom react-admin ra-data-fakerest @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe /Users/isomdurm/Desktop/core/core-config-fe"
+File.delete('Procfile.dev')
 
-# # generate(:scaffold, "person name:string")
-# # route "root to: 'people#index'"
-# # rails_command("db:migrate")
+file "Procfile.dev", <<~RUBY
+  vite: VITE_GQL_ENDPOINT=/graphql bin/vite dev
+  web: bin/rails s
+  js: yarn build --watch
+  css: yarn build:css --watch
+RUBY
+    
+run "npm add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced@4.8.10 @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe@0.2.38 /Users/isomdurm/Desktop/core/core-config-fe"
 
-# # after_bundle do
-# #   git :init
-# #   git add: "."
-# #   git commit: %Q{ -m 'Initial commit' }
-# # end
+initializer 'inflections.rb', <<-CODE
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.acronym 'GraphQL'
+end
+CODE
+
+# inject_into_file 'app/controllers/application_controller.rb', :before => /^end/ do
+#   "\n     def index; end\n\n"
+# end
 
 after_bundle do
-  inject_into_file "config/routes.rb", "  root to: 'application#index', as: :home\n", :before => /^end/
+
+  inject_into_file 'app/controllers/application_controller.rb', :before => /^end/ do
+    "\n     def index; end\n\n"
+  end
+
+  route "mount ActionCable.server => '/cable'"
+  route "root to: 'application#index', as: :home"
+  route "post '/graphql', to: 'graphql#execute'"
+
+  create_file "app/graphql/types/query_type.rb" do
+    "module Types
+      class QueryType < ::Core::Base::GraphQL::BaseObject
+        include ::Core::Jobs::GraphQL::Job::Queries
+      end
+    end"
+  end
+
+  create_file "app/graphql/types/mutation_type.rb" do
+    "module Types
+      class MutationType < ::Core::Base::GraphQL::BaseObject
+        include ::Core::Jobs::GraphQL::Job::Mutations
+      end
+    end"
+  end
+
+  create_file "app/graphql/types/subscription_type.rb" do
+    "module Types
+      class SubscriptionType < ::Core::Base::GraphQL::BaseObject
+        include ::Core::Jobs::GraphQL::Job::Subscriptions
+      end
+    end"
+  end
+  
+  schema_name = "#{app_name}Schema"
+
+  create_file "app/graphql/#{schema_name.underscore}.rb" do
+    "class #{schema_name} < GraphQL::Schema
+      use GraphQL::Subscriptions::ActionCableSubscriptions
+      
+      mutation(::Types::MutationType)
+      query(::Types::QueryType)
+      subscription(::Types::SubscriptionType)
+    
+      # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
+      use GraphQL::Dataloader
+    
+      # GraphQL-Ruby calls this when something goes wrong while running a query:
+      def self.type_error(err, context)
+        # if err.is_a?(GraphQL::InvalidNullError)
+        #   # report to your bug tracker here
+        #   return nil
+        # end
+        super
+      end
+    
+      # Union and Interface Resolution
+      def self.resolve_type(abstract_type, obj, ctx)
+        # TODO: Implement this method
+        # to return the correct GraphQL object type for `obj`
+        raise(GraphQL::RequiredImplementationMissingError)
+      end
+    
+      # Stop validating when it encounters this many errors:
+      validate_max_errors(100)
+    
+      # Relay-style Object Identification:
+    
+      # Return a string UUID for `object`
+      def self.id_from_object(object, type_definition, query_ctx)
+        # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
+        object.to_gid_param
+      end
+    
+      # Given a string UUID, find the object
+      def self.object_from_id(global_id, query_ctx)
+        # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
+        GlobalID.find(global_id)
+      end
+    end"
+  end
+
+  application "config.to_prepare do\nRails.autoloaders.main.eager_load_dir(Rails.root.join('app/graphql'))\nend", env: 'development'
+
+  create_file 'app/channels/graphql_channel.rb' do
+    "class GraphQLChannel < ::ApplicationCable::Channel
+      def subscribed
+        @subscription_ids = []
+      end
+  
+      def execute(data)
+        query = data['query']
+        variables = ensure_hash(data['variables'])
+        operation_name = data['operationName']
+        context = {
+          channel: self,
+          schema: ::#{schema_name}
+        }
+    
+        result =  ::#{schema_name}.execute(
+          query: query,
+          context: context,
+          variables: variables,
+          operation_name: operation_name
+        )
+    
+        payload = {
+          result: result.to_h,
+          more: result.subscription?
+        }
+    
+        # Track the subscription here so we can remove it
+        # on unsubscribe.
+        @subscription_ids << result.context[:subscription_id] if result.context[:subscription_id]
+    
+        transmit(payload)
+      end
+  
+      def unsubscribed
+        @subscription_ids.each do |sid|
+          ::#{schema_name}.subscriptions.delete_subscription(sid)
+        end
+      end
+  
+    private
+  
+      def ensure_hash(ambiguous_param)
+        case ambiguous_param
+        when String
+          if ambiguous_param.present?
+            ensure_hash(JSON.parse(ambiguous_param))
+          else
+            {}
+          end
+        when Hash, ActionController::Parameters
+          ambiguous_param
+        when nil
+          {}
+        else
+          raise ArgumentError, 'Unexpected parameter: ' + ambiguous_param
+        end
+      end
+    end"
+  end
+
+  create_file "app/controllers/graphql_controller.rb" do
+    "class GraphQLController < ApplicationController
+      # If accessing from outside this domain, nullify the session
+      # This allows for outside API access while preventing CSRF attacks,
+      # but you'll have to authenticate your user separately
+      # protect_from_forgery with: :null_session
+
+      skip_before_action :verify_authenticity_token
+
+      def execute
+        variables = prepare_variables(params[:variables])
+        query = params[:query]
+        operation_name = params[:operationName]
+        context = {
+          # Query context goes here, for example:
+          # current_user: current_user,
+        }
+        result =  ::#{schema_name}.execute(query, variables: variables, context: context, operation_name: operation_name)
+        render json: result
+      rescue StandardError => e
+        raise e unless Rails.env.development?
+        handle_error_in_development(e)
+      end
+
+      private
+
+      # Handle variables in form data, JSON body, or a blank value
+      def prepare_variables(variables_param)
+        case variables_param
+        when String
+          if variables_param.present?
+            JSON.parse(variables_param) || {}
+          else
+            {}
+          end
+        when Hash
+          variables_param
+        when ActionController::Parameters
+          variables_param.to_unsafe_hash # GraphQL-Ruby will validate name and type of incoming variables.
+        when nil
+          {}
+        else
+          raise ArgumentError, 'Unexpected parameter: ' + variables_param
+        end
+      end
+
+      def handle_error_in_development(e)
+        logger.error e.message
+        logger.error e.backtrace.join('\/n')
+
+        render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+      end
+    end"
+  end
 
   puts "⚡️ Groovestack App Setup Complete"
 
-  run "./bin/dev"
-  # puts ARGV.inspect
+  # run "./bin/dev"
 end
-
-
-# [--skip-namespace], [--no-skip-namespace]              # Skip namespace (affects only isolated engines)
-# [--skip-collision-check], [--no-skip-collision-check]  # Skip collision check
-# -r,          [--ruby=PATH]                                          # Path to the Ruby binary of your choice
-#
-# -m,          [--template=TEMPLATE]                                  # Path to some application template (can be a filesystem path or URL)
-# -d,          [--database=DATABASE]                                  # Preconfigure for selected database (options: mysql/postgresql/sqlite3/oracle/sqlserver/jdbcmysql/jdbcsqlite3/jdbcpostgresql/jdbc)
-#                                                        # Default: sqlite3
-# [--skip-gemfile], [--no-skip-gemfile]                  # Don't create a Gemfile
-# -G,          [--skip-git], [--no-skip-git]                          # Skip .gitignore file
-# [--skip-keeps], [--no-skip-keeps]                      # Skip source control .keep files
-# -M,          [--skip-action-mailer], [--no-skip-action-mailer]      # Skip Action Mailer files
-# [--skip-action-mailbox], [--no-skip-action-mailbox]    # Skip Action Mailbox gem
-# [--skip-action-text], [--no-skip-action-text]          # Skip Action Text gem
-# -O,          [--skip-active-record], [--no-skip-active-record]      # Skip Active Record files
-# [--skip-active-job], [--no-skip-active-job]            # Skip Active Job
-# [--skip-active-storage], [--no-skip-active-storage]    # Skip Active Storage files
-# -P,          [--skip-puma], [--no-skip-puma]                        # Skip Puma related files
-# -C,          [--skip-action-cable], [--no-skip-action-cable]        # Skip Action Cable files
-# -S,          [--skip-sprockets], [--no-skip-sprockets]              # Skip Sprockets files
-# [--skip-spring], [--no-skip-spring]                    # Don't install Spring application preloader
-# [--skip-listen], [--no-skip-listen]                    # Don't generate configuration that depends on the listen gem
-# -J,          [--skip-javascript], [--no-skip-javascript]            # Skip JavaScript files
-# [--skip-turbolinks], [--no-skip-turbolinks]            # Skip turbolinks gem
-# [--skip-jbuilder], [--no-skip-jbuilder]                # Skip jbuilder gem
-# -T,          [--skip-test], [--no-skip-test]                        # Skip test files
-# [--skip-system-test], [--no-skip-system-test]          # Skip system test files
-# [--skip-bootsnap], [--no-skip-bootsnap]                # Skip bootsnap gem
-# [--dev], [--no-dev]                                    # Set up the application with Gemfile pointing to your Rails checkout
-# [--edge], [--no-edge]                                  # Set up the application with Gemfile pointing to Rails repository
-# [--master], [--no-master]                              # Set up the application with Gemfile pointing to Rails repository main branch
-# [--rc=RC]                                              # Path to file containing extra configuration options for rails command
-# [--no-rc], [--no-no-rc]                                # Skip loading of extra configuration options from .railsrc file
-# [--api], [--no-api]                                    # Preconfigure smaller stack for API only apps
-# [--minimal], [--no-minimal]                            # Preconfigure a minimal rails app
-# -B,          [--skip-bundle], [--no-skip-bundle]                    # Don't run bundle install
-# --webpacker, [--webpack=WEBPACK]                                    # Preconfigure Webpack with a particular framework (options: react, vue, angular, elm, stimulus)
-# [--skip-webpack-install], [--no-skip-webpack-install]  # Don't run Webpack install
