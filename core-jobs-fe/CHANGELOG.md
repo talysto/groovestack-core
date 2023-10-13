@@ -1,5 +1,53 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.42
+
+### Patch Changes
+
+- core-jobs-fe improvements
+
+## 0.2.41
+
+### Patch Changes
+
+- try bringing chipicon back
+
+## 0.2.40
+
+### Patch Changes
+
+- disable icon for JobStatusField for now
+
+## 0.2.39
+
+### Patch Changes
+
+- refactor JobStatusField
+
+## 0.2.38
+
+### Patch Changes
+
+- hide job status field
+
+## 0.2.37
+
+### Patch Changes
+
+- another potential fix for job status
+
+## 0.2.36
+
+### Patch Changes
+
+- possible fix for JobStatus field
+
+## 0.2.35
+
+### Patch Changes
+
+- consistent kpis treatment
+
 ## 0.2.34
 
 ### Patch Changes

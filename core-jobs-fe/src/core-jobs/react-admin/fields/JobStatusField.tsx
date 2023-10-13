@@ -4,7 +4,7 @@ import { FieldProps, FunctionField, useRecordContext } from 'react-admin'
 import { jobStatuses } from '../../resource/jobs/jobsStatuses'
 
 export const JobStatusField = (props: FieldProps) => {
-  const record = useRecordContext(props)
+  const record = useRecordContext()
   const { source } = props
 
   if (!record || !source) return null
@@ -12,14 +12,15 @@ export const JobStatusField = (props: FieldProps) => {
   const status = get(record, source)
 
   // TODO if running then add CircularProgress
-  const chipProps =  jobStatuses[status]
-  const ChipIcon = chipProps ? chipProps.icon : null
+  const { icon: ChipIcon, ...filteredChipProps} =  jobStatuses[status]
 
-  const filteredChipProps = { ...chipProps };
-  delete filteredChipProps.icon;
-
-  // return <FunctionField render={() => <Chip {...chipProps} size="small" />} />
-  return <FunctionField render={() => <Chip icon={<ChipIcon />} {...filteredChipProps} size="small" />} />;
+  return (
+    <Chip 
+      {...filteredChipProps}
+      // {...(ChipIcon ? { icon: <ChipIcon /> } : {})}
+      size="small" 
+    />
+  )
 
 }
 

@@ -9,32 +9,30 @@ import { FunctionField, RaRecord, SimpleShowLayout } from 'react-admin'
 export const JobReportKPIsLive = () => {
   const kpis = useContext(JobsKPIsContext)
 
-  if (kpis.length < 1) return null
-
-  const data = kpis[0]
-
   return (
-    <JobReportShow id="jobs_kpis" data={data}>
+    <JobReportShow id="jobs_kpis" data={kpis}>
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(record: RaRecord) => {
-            if (!record) return <div>No data</div>
+            if (!record?.data) return <div>No data</div>
+
+            const data = record.data[0]
 
             return (
               <Stack sx={{ flexDirection: 'row', gap: 1, flexWrap: 'wrap' }}>
                 <Metric
-                  value={record.scheduled}
+                  value={data.scheduled}
                   label="Scheduled"
                   key="scheduled"
                 />
-                <Metric value={record.queued} label="Queued" key="queued" />
+                <Metric value={data.queued} label="Queued" key="queued" />
                 <Metric
-                  value={record.errored + record.failed}
+                  value={data.errored + data.failed}
                   label="Errors"
                   key="errors"
                 />
                 <Metric
-                  value={record.completed}
+                  value={data.completed}
                   label="Completed"
                   key="complete"
                 />

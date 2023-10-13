@@ -29,6 +29,8 @@ export const JobActions = (props: FieldProps) => {
     setAnchorEl(null)
   }
 
+  if (!record) return null
+
   return (
     <Box display="flex">
       <CustomButtonDrawer

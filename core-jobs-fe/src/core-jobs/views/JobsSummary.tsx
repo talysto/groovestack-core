@@ -20,7 +20,7 @@ export const JobsSummaryPivot = () => {
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(data: RaRecord) => {
-            if (!data) return <div>No data</div>
+            if (!data?.data?.[0]) return <div>No data</div>
 
             const processedData = structuredClone(data.data)
 

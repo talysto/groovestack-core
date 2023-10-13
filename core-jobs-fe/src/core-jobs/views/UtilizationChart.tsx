@@ -23,20 +23,18 @@ export const UtilizationChart = () => {
 
   const kpis = useContext(JobsKPIsContext)
 
-  if (kpis.length < 1) return null
-
-  const data = kpis[0]
-
   return (
-    <JobReportShow id="jobs_kpis" title="Utilization" data={data}>
+    <JobReportShow id="jobs_kpis" title="Utilization" data={kpis}>
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(record: RaRecord) => {
-            if (!record) return <div>No data</div>
+            if (!record?.data) return <div>No data</div>
+            
+            const data = record.data[0]
 
-            const workers = record.workers
+            const workers = data.workers
             // We use min() because Que locks a 'buffer' of jobs for increased performance. We don't know which one is being processed.
-            const running = Math.min(record.running, workers)
+            const running = Math.min(data.running, workers)
             const utilization = Math.round((100.0 * running) / workers) || 0
 
             let config = { ...utilizationOptions } // make a copy

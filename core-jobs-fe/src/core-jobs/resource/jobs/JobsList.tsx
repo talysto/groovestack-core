@@ -10,6 +10,7 @@ import {
   ListBase,
   ListToolbar,
   Pagination,
+  RaRecord,
   SearchInput,
   SelectArrayInput,
   Title,
@@ -36,7 +37,7 @@ import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
 import { jobStatuses } from './jobsStatuses'
 
-export const JobsKPIsContext = createContext<{[k: string]: any}[]>([])
+export const JobsKPIsContext = createContext<RaRecord>({} as RaRecord)
 
 const sortfilterToggles: ListViewToggleButtonsProps['sortfilterToggles'] = [
   {
@@ -187,16 +188,16 @@ const ListActions = () => {
 
 export const JobsList = () => {
   const theme = useTheme()
-  const [kpis, setKpis] = useState([])
+  const [kpis, setKpis] = useState<RaRecord>({} as RaRecord)
   const dataProvider = useDataProvider()
 
-  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis(payload.data)}
+  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis({id: 'jobs_kpis', data: payload.data})}
 
   // initial fetch
   useShowController({
     resource: 'JobReport',
     id: 'jobs_kpis',
-    queryOptions: { onSuccess({ data }) { setKpis(data) } }
+    queryOptions: { onSuccess(report) { setKpis(report) } }
   })
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
