@@ -1,6 +1,6 @@
 import { Chip } from '@mui/material'
 import { get } from 'lodash'
-import { FieldProps, FunctionField, useRecordContext } from 'react-admin'
+import { FieldProps, useRecordContext } from 'react-admin'
 import { jobStatuses } from '../../resource/jobs/jobsStatuses'
 
 export const JobStatusField = (props: FieldProps) => {

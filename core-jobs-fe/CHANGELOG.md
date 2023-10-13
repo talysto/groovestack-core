@@ -1,5 +1,17 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.44
+
+### Patch Changes
+
+- force publish
+
+## 0.2.43
+
+### Patch Changes
+
+- publish
+
 ## 0.2.42
 
 ### Patch Changes

@@ -202,7 +202,7 @@ export const JobsList = () => {
 
   const enabled = !!Object.assign({}, dataProvider)?.subscribe
   useSubscribeToRecord(handleEventReceived, 'JobReport', 'jobs_kpis', { enabled })
-
+  console.log('kpis', kpis)
   return (
     <JobsKPIsContext.Provider value={kpis}>
       <ListBase>

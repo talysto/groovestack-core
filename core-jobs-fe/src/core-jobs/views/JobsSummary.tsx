@@ -1,5 +1,4 @@
 import { Card, Typography, useMediaQuery, useTheme } from '@mui/material'
-import { blueGrey } from '@mui/material/colors'
 import {
   Datagrid,
   FunctionField,
@@ -20,6 +19,7 @@ export const JobsSummaryPivot = () => {
       <SimpleShowLayout sx={{ p: 0 }}>
         <FunctionField
           render={(data: RaRecord) => {
+
             if (!data?.data?.[0]) return <div>No data</div>
 
             const processedData = structuredClone(data.data)
