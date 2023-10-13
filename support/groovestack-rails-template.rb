@@ -232,7 +232,7 @@ file "Procfile.dev", <<~RUBY
   css: yarn build:css --watch
 RUBY
     
-run "npm add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced@4.8.10 @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe@0.2.38 /Users/isomdurm/Desktop/core/core-config-fe"
+run "yarn add @moonlight-labs/core-jobs-fe@0.2.38 /Users/isomdurm/Desktop/core/core-config-fe"
 
 initializer 'inflections.rb', <<-CODE
 ActiveSupport::Inflector.inflections(:en) do |inflect|
