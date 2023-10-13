@@ -7,7 +7,7 @@ module Core
             triggered = false
 
             ::GraphQL::Schema.descendants.each do |schema|
-              subscription_type = schema.types["Subscription"]
+              subscription_type = schema.types["Subscription"] || schema.types["SubscriptionType"]
               next unless subscription_type.present?
               next unless schema.get_fields(subscription_type).keys.include?(subscription.to_s)
               
@@ -15,7 +15,7 @@ module Core
               schema.subscriptions.trigger(subscription, args, event, **kwargs)
             end
             
-            raise 'app schema not defined' unless triggered
+            puts 'app schema not defined' unless triggered
           end
         end
       end

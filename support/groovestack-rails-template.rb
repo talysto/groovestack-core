@@ -25,12 +25,13 @@ github 'moonlight-labs/core', branch: 'dev' do
   # gem 'core-webhooks'
 end
 
+run "bundle install"
+
 application "config.active_record.schema_format = :sql"
 application "config.active_job.queue_adapter = :que"
 application "config.action_cable.mount_path = '/cable'"
 # application "config.to_prepare do\nRails.autoloaders.main.eager_load_dir(Rails.root.join('app/graphql'))\nend", env: 'development'
 
-run "bundle install"
 
 File.delete('config/cable.yml')
 
@@ -42,11 +43,15 @@ development:
   <<: *default
 
 test:
-  adapter: test
+adapter: test
 
 production:
-  <<: *default
+<<: *default
 RUBY
+
+# # # Setup the DB initially
+rails_command "db:create"
+rails_command "db:migrate"
 
 file "app/frontend/entrypoints/application.js", <<~RUBY
   console.log('Vite ⚡️ Rails')
@@ -215,10 +220,6 @@ file "app/frontend/components/dataProvider.tsx", <<~RUBY
   }
 RUBY
 
-# # Setup the DB
-rails_command "db:create"
-rails_command "db:migrate"
-
 # # Configure Vite
 # # https://vite-ruby.netlify.app/guide/
 run "bundle exec vite install"
@@ -234,23 +235,20 @@ RUBY
     
 run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced@4.8.10 @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe@0.2.38 /Users/isomdurm/Desktop/core/core-config-fe"
 
-initializer 'inflections.rb', <<-CODE
-ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.acronym 'GraphQL'
-end
-CODE
-
 after_bundle do
+  insert_into_file "config/initializers/inflections.rb" do
+    "ActiveSupport::Inflector.inflections(:en) do |inflect|\n\tinflect.acronym 'GraphQL'\nend"
+  end
 
   inject_into_file 'app/controllers/application_controller.rb', :before => /^end/ do
     "\n     def index; end\n\n"
   end
 
-  inject_into_file 'config/environments/development.rb', :before => /^end/ do
-    config.to_prepare do
-      Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/graphql"))
-    end
-  end
+  # inject_into_file 'config/environments/development.rb', :before => /^end/ do
+  #   config.to_prepare do
+  #     Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/graphql"))
+  #   end
+  # end
 
   route "mount ActionCable.server => '/cable'"
   route "root to: 'application#index', as: :home"
