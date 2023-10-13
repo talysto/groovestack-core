@@ -13,7 +13,7 @@ end
 
 gem "wisper", "2.0.0"
 gem 'que', github: 'talysto/que', branch: 'talysto-que-enhancements'
-gem "puma", "~> 5.0"
+# gem "puma", "~> 5.0"
 gem "pg_lock"
 
 github 'moonlight-labs/core', branch: 'dev' do
@@ -233,7 +233,7 @@ file "Procfile.dev", <<~RUBY
   css: yarn build:css --watch
 RUBY
     
-run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced@4.8.10 @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe@0.2.38 /Users/isomdurm/Desktop/core/core-config-fe"
+run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
 
 after_bundle do
   insert_into_file "config/initializers/inflections.rb" do
