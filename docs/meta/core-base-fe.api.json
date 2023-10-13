@@ -204,7 +204,7 @@
               "text": ">) => void;\n    className: string;\n}"
             }
           ],
-          "fileUrlPath": "dist/util/clickToCopy.d.ts",
+          "fileUrlPath": "dist/src/util/clickToCopy.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "clickToCopy",
@@ -245,7 +245,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/react-admin/fields/CodeField.d.ts",
+          "fileUrlPath": "dist/src/react-admin/fields/CodeField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "CodeField",
@@ -264,7 +264,7 @@
               "text": "export declare class CommonDateRanges "
             }
           ],
-          "fileUrlPath": "dist/components/DateRangeFilter/predefined_ranges.d.ts",
+          "fileUrlPath": "dist/src/components/DateRangeFilter/predefined_ranges.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "CommonDateRanges",
@@ -704,7 +704,7 @@
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/react-admin/CustomButtonDrawer.d.ts",
+          "fileUrlPath": "dist/src/react-admin/CustomButtonDrawer.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "CustomButtonDrawer",
@@ -745,7 +745,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/react-admin/fields/DateField.d.ts",
+          "fileUrlPath": "dist/src/react-admin/fields/DateField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "DateField",
@@ -782,7 +782,7 @@
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/components/DateRangeFilter/index.d.ts",
+          "fileUrlPath": "dist/src/components/DateRangeFilter/index.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "DateRangeFilter",
@@ -801,7 +801,7 @@
               "text": "export declare enum DrawerWidth "
             }
           ],
-          "fileUrlPath": "dist/react-admin/CustomButtonDrawer.d.ts",
+          "fileUrlPath": "dist/src/react-admin/CustomButtonDrawer.d.ts",
           "releaseTag": "Public",
           "name": "DrawerWidth",
           "preserveMemberOrder": false,
@@ -890,7 +890,7 @@
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/components/ExternalLink.d.ts",
+          "fileUrlPath": "dist/src/components/ExternalLink.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ExternalLink",
@@ -922,7 +922,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/react-admin/inputs/TimezoneSelectInput.d.ts",
+          "fileUrlPath": "dist/src/react-admin/inputs/TimezoneSelectInput.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 3
@@ -964,7 +964,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/react-admin/fields/MoneyField.d.ts",
+          "fileUrlPath": "dist/src/react-admin/fields/MoneyField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "MoneyField",
@@ -1001,7 +1001,7 @@
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/react-admin/inputs/MoneyInput.d.ts",
+          "fileUrlPath": "dist/src/react-admin/inputs/MoneyInput.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "MoneyInput",
@@ -1042,7 +1042,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/react-admin/fields/PolymorphicReferenceField.d.ts",
+          "fileUrlPath": "dist/src/react-admin/fields/PolymorphicReferenceField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "PolymorphicReferenceField",
@@ -1092,7 +1092,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/react-admin/inputs/StatusInput.d.ts",
+          "fileUrlPath": "dist/src/react-admin/inputs/StatusInput.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "StatusInput",
@@ -1124,7 +1124,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/react-admin/fields/TimeAgoField.d.ts",
+          "fileUrlPath": "dist/src/react-admin/fields/TimeAgoField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "timeAgo",
@@ -1165,7 +1165,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/react-admin/fields/TimeAgoField.d.ts",
+          "fileUrlPath": "dist/src/react-admin/fields/TimeAgoField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "TimeAgoField",
@@ -1202,7 +1202,7 @@
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/react-admin/inputs/TimezoneSelectInput.d.ts",
+          "fileUrlPath": "dist/src/react-admin/inputs/TimezoneSelectInput.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "TimezoneSelectInput",
@@ -1239,7 +1239,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "dist/react-admin/inputs/ToggleButtonInput.d.ts",
+          "fileUrlPath": "dist/src/react-admin/inputs/ToggleButtonInput.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4

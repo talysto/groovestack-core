@@ -1,13 +1,22 @@
 {
   "name": "@moonlight-labs/core-base-fe",
+  "title": "CORE Base",
+  "description": "Support classes and general-purpose components for MUI and React-Admin",
   "version": "0.2.10",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/core-base.js",
-  "module": "./dist/core-base.js",
-  "types": "./dist/core-base.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

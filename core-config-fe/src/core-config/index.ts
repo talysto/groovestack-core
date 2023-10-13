@@ -1,1 +1,3 @@
-export { Config } from './resources/config'
+export { DemoWelcome } from './DemoWelcome'
+
+export { HomeView } from './HomeView'

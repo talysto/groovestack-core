@@ -6,5 +6,6 @@ packages:
 - "core-accounting-fe"
 - "core-comments-fe"
 - "core-notifications-fe"
+- "core-config-fe"
 - "test-core-fe"
 - "docs"

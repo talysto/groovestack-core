@@ -25,7 +25,7 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(__dirname, 'src/core-config/index.ts'),
-        mock: resolve(__dirname, 'src/core-config/mock.ts'),
+        // mock: resolve(__dirname, 'src/core-config/mock.ts'),
       },
       formats: ['es'], // UMD
     },

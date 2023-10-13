@@ -174,102 +174,58 @@
       "members": [
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-config-fe!mockConfig:var",
+          "canonicalReference": "@moonlight-labs/core-config-fe!DemoWelcome:var",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "mockConfig: "
+              "text": "DemoWelcome: "
             },
             {
               "kind": "Content",
-              "text": "(count?: number) => {\n    changes: (string | any[])[][];\n    timestamp: "
+              "text": "({ modules }: {\n    modules?: any[] | undefined;\n}) => "
             },
             {
               "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    id: string;\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n}[]"
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/mock.d.ts",
+          "fileUrlPath": "dist/DemoWelcome.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
-          "name": "mockConfig",
+          "name": "DemoWelcome",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 8
+            "endIndex": 3
           }
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-config-fe!mockVersion:var",
+          "canonicalReference": "@moonlight-labs/core-config-fe!HomeView:var",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "mockVersion: "
+              "text": "HomeView: "
             },
             {
               "kind": "Content",
-              "text": "() => {\n    changes: (string | any[])[][];\n    timestamp: "
+              "text": "({ modules }: {\n    modules?: any[] | undefined;\n}) => "
             },
             {
               "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    id: string;\n    created_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    updated_at: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Date",
-              "canonicalReference": "!Date:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n}"
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/mock.d.ts",
+          "fileUrlPath": "dist/HomeView.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
-          "name": "mockVersion",
+          "name": "HomeView",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 8
+            "endIndex": 3
           }
         }
       ]

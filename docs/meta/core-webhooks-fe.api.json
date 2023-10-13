@@ -204,7 +204,7 @@
               "text": ";\n}[]"
             }
           ],
-          "fileUrlPath": "dist/mock.d.ts",
+          "fileUrlPath": "dist/src/core-webhooks/mock.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "mockWebhooks",
