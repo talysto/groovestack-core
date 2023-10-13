@@ -1,6 +1,43 @@
-module Core 
-  module Base
+module Core
+  module Base 
+    module Listener
+      extend ActiveSupport::Concern
+
+      CORE_LISTENER = true
+
+      module ClassMethods
+        def init(throttle_seconds: 0)
+          raise 'listener must define class method init'
+        end
+
+        def throttle(seconds)
+          wait = false 
+
+          return Proc.new do |&block|
+            unless wait
+              wait = true 
+              
+              Thread.new do 
+                block.call
+                
+                sleep(seconds)
+
+                wait = false
+              end
+            end
+          end
+        end
+      end
+    end
+    
     module Listeners
+      class InitAll 
+        def self.run(throttle_seconds: 0)
+          core_listeners = ObjectSpace.each_object(Class).select { |klass| klass.const_defined?(:CORE_LISTENER) && klass.const_get(:CORE_LISTENER) }
+          core_listeners.map { |listener| listener.init(throttle_seconds: throttle_seconds) }.flatten
+        end
+      end
+
       class Database
         attr_accessor :db_channel, :connection, :connection_instance
 

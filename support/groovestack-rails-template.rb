@@ -13,7 +13,7 @@ end
 
 gem "wisper", "2.0.0"
 gem 'que', github: 'talysto/que', branch: 'talysto-que-enhancements'
-gem "puma", "~> 5.0"
+# gem "puma", "~> 5.0"
 gem "pg_lock"
 
 github 'moonlight-labs/core', branch: 'dev' do

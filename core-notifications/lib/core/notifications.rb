@@ -20,12 +20,9 @@ require 'core/notifications/graphql/notification/type'
 require 'core/notifications/graphql/notification/filter'
 require 'core/notifications/graphql/notification/queries'
 require 'core/notifications/graphql/notification/mutations'
+require 'core/notifications/graphql/notification/subscriptions'
 
-if defined?(Wisper::ActiveRecord)
-  require 'core/notifications/graphql/notification/subscriptions'
-  require 'core/notifications/publishers/notification'
-  require 'core/notifications/subscribers/notification'
-end
+require 'core/notifications/pub_sub' if defined?(Wisper::ActiveRecord)
 
 module Core
   module Notifications

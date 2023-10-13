@@ -29,6 +29,8 @@ export const JobActions = (props: FieldProps) => {
     setAnchorEl(null)
   }
 
+  if (!record) return null
+
   return (
     <Box display="flex">
       <CustomButtonDrawer
@@ -69,9 +71,12 @@ export const JobActions = (props: FieldProps) => {
             label={ record.actions.includes('run_now') ? "Run Now" : "Retry"}
             data={{ instance_method: record.actions.includes('run_now') ? 'run_now!' : 'retry!' }}
             onClick={handleClose}
+            mutationMode='pessimistic'
+            confirmTitle={ record.actions.includes('run_now') ? "Run Now" : "Retry"}
+            confirmContent={ record.actions.includes('run_now') ? "Are you sure you want to run this job now?" : "Are you sure you want to retry this job?"}
           />
         )}
-        <DeleteMenuItem title="test" label="Delete" onClick={handleClose} />
+        <DeleteMenuItem label="Delete" onClick={handleClose} />
       </Menu>
     </Box>
   )

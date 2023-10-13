@@ -23,6 +23,18 @@ if defined?(Rails)
           end
         end
         
+        initializer :init_puma do |app|
+          return unless defined?(Puma)
+
+          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
+            config.paths.add('lib/core/base/puma/plugin')
+            app.config.paths.add('app/lib/puma/plugin')
+            config.paths['lib/core/base/puma/plugin'].expanded.each do |expanded_path|
+              app.config.paths['app/lib/puma/plugin'] << expanded_path
+            end
+          end
+        end
+
         # Enable our new migrations for the parent app
         initializer :append_migrations do |app|
           unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
