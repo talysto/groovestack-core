@@ -1,7 +1,4 @@
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered'
-import SummaryIcon from '@mui/icons-material/GridView'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import { AccessTime as AccessTimeIcon, FormatListNumbered as FormatListNumberedIcon,  GridView as SummaryIcon, WarningAmber as WarningAmberIcon } from '@mui/icons-material'
 import { Box, Card, Grid, Stack, Typography, useTheme } from '@mui/material'
 import {
   Button,
@@ -205,7 +202,7 @@ export const JobsList = () => {
 
   return (
     <JobsKPIsContext.Provider value={kpis}>
-      <ListBase>
+      <ListBase filterDefaultValues={{ view: 'summary' }}>
         <Title title="Jobs" />
 
         <Grid container>

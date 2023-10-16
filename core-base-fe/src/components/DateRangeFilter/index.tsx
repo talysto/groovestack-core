@@ -1,4 +1,4 @@
-import Calendar from '@mui/icons-material/Event'
+import { Event as Calendar} from '@mui/icons-material'
 import { Box, Chip } from '@mui/material'
 import {
   DateRange,

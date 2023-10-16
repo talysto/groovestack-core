@@ -1,4 +1,4 @@
-import ActionDelete from '@mui/icons-material/Delete'
+import { Delete as ActionDelete } from '@mui/icons-material'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { Fragment, ReactElement, ReactEventHandler } from 'react'

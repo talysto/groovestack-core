@@ -1,6 +1,5 @@
 import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
+import { MoreVert as MoreVertIcon, VisibilityOutlined as VisibilityOutlinedIcon} from '@mui/icons-material'
 import { Box } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'

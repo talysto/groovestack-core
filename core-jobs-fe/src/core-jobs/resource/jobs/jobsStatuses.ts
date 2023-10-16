@@ -1,9 +1,11 @@
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import DoneIcon from '@mui/icons-material/Done'
-import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import RotateRightOutlinedIcon from '@mui/icons-material/RotateRightOutlined'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import {
+  AccessTime as AccessTimeIcon,
+  Done as DoneIcon,
+  FormatListNumberedRtl as FormatListNumberedRtlIcon,
+  HighlightOff as HighlightOffIcon,
+  RotateRightOutlined as RotateRightOutlinedIcon,
+  WarningAmber as WarningAmberIcon
+} from '@mui/icons-material'
 import { JobStatusType } from './JobStatusType'
 
 // import RunningWithErrorsOutlinedIcon from '@mui/icons-material/RunningWithErrorsOutlined';

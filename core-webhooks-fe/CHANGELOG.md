@@ -1,5 +1,12 @@
 # @moonlight-labs/core-webhooks-fe
 
+## 0.2.14
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.13
+
 ## 0.2.13
 
 ### Patch Changes

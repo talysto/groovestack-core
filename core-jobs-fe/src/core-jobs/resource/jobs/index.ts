@@ -1,4 +1,4 @@
-import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck'
+import {PlaylistAddCheck as PlaylistAddCheckIcon} from '@mui/icons-material'
 
 import { RaRecord } from 'react-admin'
 import { JobsList } from './JobsList'

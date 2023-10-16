@@ -1,5 +1,25 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.60
+
+### Patch Changes
+
+- reenable job status field icon
+
+## 0.2.59
+
+### Patch Changes
+
+- named imports for mui icons
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.13
+
+## 0.2.58
+
+### Patch Changes
+
+- list view defaults to summary panel
+
 ## 0.2.57
 
 ### Patch Changes

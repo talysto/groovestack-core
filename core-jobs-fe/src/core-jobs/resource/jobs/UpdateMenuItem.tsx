@@ -1,4 +1,4 @@
-import ActionUpdate from '@mui/icons-material/Update'
+import { Update as ActionUpdate } from '@mui/icons-material'
 import { ListItemProps, MenuItem } from '@mui/material'
 import { ReactElement, useState } from 'react'
 import {

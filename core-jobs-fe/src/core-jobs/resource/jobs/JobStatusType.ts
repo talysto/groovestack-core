@@ -1,16 +1,19 @@
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import DoneIcon from '@mui/icons-material/Done'
-import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import RotateRightOutlinedIcon from '@mui/icons-material/RotateRightOutlined'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
+import {
+  AccessTime as AccessTimeIcon,
+  Done as DoneIcon,
+  FormatListNumberedRtl as FormatListNumberedRtlIcon,
+  HighlightOff as HighlightOffIcon,
+  RotateRightOutlined as RotateRightOutlinedIcon,
+  WarningAmber as WarningAmberIcon
+} from '@mui/icons-material'
+
 import { useTheme } from '@mui/material'
 import { grey } from '@mui/material/colors'
 
 export type JobStatusType = {
   id: 'scheduled' | 'queued' | 'running' | 'errored' | 'failed' | 'completed'
   label: string
-  icon: any
+  icon?: any
   color?: any
 }
 
