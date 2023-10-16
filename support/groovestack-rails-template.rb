@@ -13,7 +13,6 @@ end
 
 gem "wisper", "2.0.0"
 gem 'que', github: 'talysto/que', branch: 'talysto-que-enhancements'
-# gem "puma", "~> 5.0"
 gem "pg_lock"
 
 github 'moonlight-labs/core', branch: 'dev' do
@@ -30,8 +29,6 @@ run "bundle install"
 application "config.active_record.schema_format = :sql"
 application "config.active_job.queue_adapter = :que"
 application "config.action_cable.mount_path = '/cable'"
-# application "config.to_prepare do\nRails.autoloaders.main.eager_load_dir(Rails.root.join('app/graphql'))\nend", env: 'development'
-
 
 File.delete('config/cable.yml')
 
@@ -125,8 +122,6 @@ plugin :que
 plugin :core_cron
 RUBY
 
-
-# // fix and use M5 file
 file "app/frontend/components/AdminApp.tsx", <<~RUBY
   import React, { useEffect, useState } from 'react'
   import { Admin, Resource } from 'react-admin'
@@ -151,11 +146,7 @@ file "app/frontend/components/AdminApp.tsx", <<~RUBY
       <Admin
       disableTelemetry
       dataProvider={dataProvider}
-      // authProvider={authProvider}
-      // loginPage={LoginPage}
-      // theme={theme}
       dashboard={HomeView}
-      // layout={CustomLayout}
     >
         <Resource
           name="Job"
@@ -220,8 +211,6 @@ file "app/frontend/components/dataProvider.tsx", <<~RUBY
   }
 RUBY
 
-# # Configure Vite
-# # https://vite-ruby.netlify.app/guide/
 run "bundle exec vite install"
 
 File.delete('Procfile.dev')
@@ -243,12 +232,6 @@ after_bundle do
   inject_into_file 'app/controllers/application_controller.rb', :before => /^end/ do
     "\n     def index; end\n\n"
   end
-
-  # inject_into_file 'config/environments/development.rb', :before => /^end/ do
-  #   config.to_prepare do
-  #     Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/graphql"))
-  #   end
-  # end
 
   route "mount ActionCable.server => '/cable'"
   route "root to: 'application#index', as: :home"
