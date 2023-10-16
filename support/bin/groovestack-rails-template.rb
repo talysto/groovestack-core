@@ -196,7 +196,6 @@ file "app/frontend/components/client.tsx", <<~RUBY
   })
 RUBY
 
-
 file "app/frontend/components/dataProvider.tsx", <<~RUBY
   import buildGraphQLProvider from '@moonlight-labs/ra-data-graphql-advanced'
 
@@ -219,8 +218,6 @@ File.delete('Procfile.dev')
 file "Procfile.dev", <<~RUBY
   vite: VITE_GQL_ENDPOINT=/graphql bin/vite dev
   web: bin/rails s
-  js: yarn build --watch
-  css: yarn build:css --watch
 RUBY
     
 run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"

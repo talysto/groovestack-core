@@ -34,7 +34,7 @@ fi
 
 #  TODO
 # try --api (does vite still build?)
-rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -c sass -m $2/groovestack-rails-template.rb
+rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -m $2/groovestack-rails-template.rb
 
 # echo "⚡️ Groovestack App Setup Complete"
 
