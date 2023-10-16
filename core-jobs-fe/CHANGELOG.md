@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.58
+
+### Patch Changes
+
+- list view defaults to summary panel
+
 ## 0.2.57
 
 ### Patch Changes
