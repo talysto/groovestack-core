@@ -24,9 +24,10 @@ github 'moonlight-labs/core', branch: 'dev' do
   # gem 'core-webhooks'
 end
 
+application "config.active_record.schema_format = :sql"
+
 run "bundle install"
 
-application "config.active_record.schema_format = :sql"
 application "config.active_job.queue_adapter = :que"
 application "config.action_cable.mount_path = '/cable'"
 

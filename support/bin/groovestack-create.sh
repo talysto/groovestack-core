@@ -4,6 +4,12 @@ vercomp() {
    test $a "$2" $b
 }
 
+if [ -z $1 ];
+then
+   echo "Please provide a name for your app"
+   exit
+fi
+
 node_version=$(node -v | sed 's/[^0-9.]//g')
 rails_version=$(rails -v | sed 's/[^0-9.]//g')
 ruby_version=$(ruby -v | sed 's/[^0-9.]//g' | cut -c1-5)
@@ -28,7 +34,7 @@ fi
 
 #  TODO
 # try --api (does vite still build?)
-rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -m groovestack-rails-template.rb
+rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -c sass -m $2/groovestack-rails-template.rb
 
 # echo "⚡️ Groovestack App Setup Complete"
 
