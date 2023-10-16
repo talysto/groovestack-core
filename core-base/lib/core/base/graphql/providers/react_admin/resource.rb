@@ -39,7 +39,7 @@ module Core
                 unless except.include?(:collection)
                   define_method entity do |page: nil, per_page: nil, **attrs|
                     scope = send("#{entity}_scope", **attrs)
-                    scope = scope.page(page + 1).per(per_page) if page.present? && scope.respond_to?(:page)
+                    scope = scope.offset(page).limit(per_page) if page.present?
                     scope
                   end
                 end
