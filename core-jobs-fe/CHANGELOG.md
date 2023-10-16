@@ -1,5 +1,13 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.59
+
+### Patch Changes
+
+- named imports for mui icons
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.13
+
 ## 0.2.58
 
 ### Patch Changes

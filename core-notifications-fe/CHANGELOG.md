@@ -1,5 +1,12 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-base-fe@0.2.13
+
 ## 0.2.25
 
 ### Patch Changes

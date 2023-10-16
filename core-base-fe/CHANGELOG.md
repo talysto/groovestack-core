@@ -1,5 +1,11 @@
 # @moonlight-labs/core-base-fe
 
+## 0.2.13
+
+### Patch Changes
+
+- named imports for mui icons
+
 ## 0.2.12
 
 ### Patch Changes
