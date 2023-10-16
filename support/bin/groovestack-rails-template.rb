@@ -223,6 +223,8 @@ RUBY
 run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
 
 after_bundle do
+  FileUtils.cp("#{__dir__}/dev", "#{Dir.pwd}/bin/")
+
   insert_into_file "config/initializers/inflections.rb" do
     "ActiveSupport::Inflector.inflections(:en) do |inflect|\n\tinflect.acronym 'GraphQL'\nend"
   end
