@@ -4,12 +4,6 @@ vercomp() {
    test $a "$2" $b
 }
 
-if [ -z $1 ];
-then
-   echo "Please provide a name for your app"
-   exit
-fi
-
 node_version=$(node -v | sed 's/[^0-9.]//g')
 rails_version=$(rails -v | sed 's/[^0-9.]//g')
 ruby_version=$(ruby -v | sed 's/[^0-9.]//g' | cut -c1-5)
@@ -17,6 +11,13 @@ ruby_version=$(ruby -v | sed 's/[^0-9.]//g' | cut -c1-5)
 echo $ruby_version
 echo $rails_version
 echo $node_version
+
+if [ -z $1 ];
+then
+   echo "Please provide a name for your app"
+   exit
+fi
+
 if vercomp $rails_version \< 7.0; then
    echo "Please install Rails Version 7.0.x to Continue"
    exit
@@ -32,10 +33,6 @@ if vercomp $node_version \< 18.0; then
    exit
 fi
 
-#  TODO
-# try --api (does vite still build?)
-rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -m $2/groovestack-rails-template.rb
-
+rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -m $2/groovestack/groovestack-rails-template.rb
 # echo "⚡️ Groovestack App Setup Complete"
-
 cd $1

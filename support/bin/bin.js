@@ -3,4 +3,4 @@
 const shell = require('shelljs')
 const directory = __dirname
 
-shell.exec(`${__dirname}/groovestack-create.sh ${process.argv[2]} ${directory}`)
+shell.exec(`${__dirname}/groovestack/groovestack-create.sh ${process.argv[2]} ${directory}`)
