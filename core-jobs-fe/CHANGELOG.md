@@ -1,5 +1,11 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.60
+
+### Patch Changes
+
+- reenable job status field icon
+
 ## 0.2.59
 
 ### Patch Changes

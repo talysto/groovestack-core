@@ -2,6 +2,7 @@ import { Chip } from '@mui/material'
 import { get } from 'lodash'
 import { FieldProps, useRecordContext } from 'react-admin'
 import { jobStatuses } from '../../resource/jobs/jobsStatuses'
+import { JobStatusType } from '../../resource/jobs/JobStatusType'
 
 export const JobStatusField = (props: FieldProps) => {
   const record = useRecordContext()
@@ -12,27 +13,12 @@ export const JobStatusField = (props: FieldProps) => {
   const status = get(record, source)
 
   // TODO if running then add CircularProgress
-  const { icon: ChipIcon, ...filteredChipProps} =  jobStatuses[status]
-
-  // if (ChipIcon) return (
-  //   <Chip 
-  //     {...filteredChipProps}
-  //     icon={<ChipIcon />}
-  //     size="small" 
-  //   />
-  // )
-
-  // return (
-  //   <Chip 
-  //     {...filteredChipProps}
-  //     size="small" 
-  //   />
-  // )
+  let { icon: ChipIcon, ...rest} =  jobStatuses[status]
+  const filteredChipProps: JobStatusType = { ...rest, ...(ChipIcon ? {icon: <ChipIcon />} : {} ) };
 
   return (
     <Chip 
       {...filteredChipProps}
-      // icon={<ChipIcon />}
       size="small" 
     />
   )

@@ -13,7 +13,7 @@ import { grey } from '@mui/material/colors'
 export type JobStatusType = {
   id: 'scheduled' | 'queued' | 'running' | 'errored' | 'failed' | 'completed'
   label: string
-  icon: any
+  icon?: any
   color?: any
 }
 
