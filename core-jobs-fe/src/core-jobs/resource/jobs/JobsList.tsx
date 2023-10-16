@@ -205,7 +205,7 @@ export const JobsList = () => {
 
   return (
     <JobsKPIsContext.Provider value={kpis}>
-      <ListBase>
+      <ListBase filterDefaultValues={{ view: 'summary' }}>
         <Title title="Jobs" />
 
         <Grid container>
