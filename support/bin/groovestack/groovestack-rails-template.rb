@@ -25,8 +25,6 @@ github 'moonlight-labs/core', branch: 'dev' do
   # gem 'core-webhooks'
 end
 
-# run "bundle install"
-
 application "config.active_record.schema_format = :sql"
 application "config.active_job.queue_adapter = :que"
 application "config.action_cable.mount_path = '/cable'"
@@ -66,11 +64,11 @@ after_bundle do
   <<: *default
   RUBY
 
-  create_file "db/seeds/job_seeds.rb" do
-    puts 'Seeding A Few Example Jobs...'
+  # create_file "db/seeds/job_seeds.rb" do
+  #   puts 'Seeding A Few Example Jobs...'
     
-    "(0..100).each { |i| [::Core::Jobs::ExampleJob].sample.set(wait: 2.minute).perform_later }"
-  end
+  #   "(0..100).each { |i| [::Core::Jobs::ExampleJob].sample.set(wait: 2.minute).perform_later }"
+  # end
 
   file "app/frontend/entrypoints/application.js", <<~RUBY
     console.log('Vite ⚡️ Rails')
@@ -437,6 +435,5 @@ after_bundle do
   # rails_command "db:seed"
 
   puts "⚡️ Groovestack App Setup Complete"
-
   # run "./bin/dev"
 end
