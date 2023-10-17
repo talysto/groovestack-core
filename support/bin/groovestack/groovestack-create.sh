@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 vercomp() {
    local a b IFS=.; set -f
    printf -v a %08d $1; printf -v b %08d $3
@@ -33,6 +35,6 @@ if vercomp $node_version \< 18.0; then
    exit
 fi
 
-rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install -m $2/groovestack/groovestack-rails-template.rb
+rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install --skip-bootsnap -m $2/groovestack/groovestack-rails-template.rb
 # echo "⚡️ Groovestack App Setup Complete"
-cd $1
+# cd $1
