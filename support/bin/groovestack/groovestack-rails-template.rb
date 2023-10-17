@@ -221,7 +221,7 @@ after_bundle do
   RUBY
 
   file "Procfile", <<~RUBY
-    web: bundle exec puma -C config/puma.rb
+    web: bin/rails server -p $PORT -e $RAILS_ENV
   RUBY
 
   gsub_file "config/vite.json", "app/javascript", "app/frontend"
