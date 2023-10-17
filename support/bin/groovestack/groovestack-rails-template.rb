@@ -5,23 +5,17 @@ gem 'vite_rails'
 gem "wisper", "2.0.0"
 gem 'que', github: 'talysto/que', branch: 'talysto-que-enhancements'
 gem "pg_lock"
-# Nice to haves for Rails apps
+
 gem 'view_component'
 
 github 'moonlight-labs/core', branch: 'dev' do
-  gem 'core-base' # must be first dependency
+  gem 'core-base'
   gem 'core-jobs'
-  # gem 'core-comments'
-  # gem 'core-versions'
-  # gem 'core-notifications'
-  # gem 'core-webhooks'
 end
 
 after_bundle do
   run "touch yarn.lock"
-
   run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
-
   run "bundle exec vite install"
 
   application "config.active_record.schema_format = :sql"
@@ -35,198 +29,13 @@ after_bundle do
   application "config.to_prepare do\nRails.autoloaders.main.eager_load_dir(Rails.root.join('app/graphql'))\nend", env: 'development'
 
   File.delete('config/cable.yml')
-
-  file "config/cable.yml", <<~RUBY
-  default: &default
-    adapter: postgresql
-
-  development:
-    <<: *default
-
-  test:
-    adapter: test
-
-  production:
-    <<: *default
-  RUBY
-
-  file "app/frontend/entrypoints/application.js", <<~RUBY
-    console.log('Vite ⚡️ Rails')
-    import '~/entrypoints/groovestack-admin.js'
-    console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
-  RUBY
-
-  file "app/views/application/index.html.erb", <<~RUBY
-  <header>
-      <div id="root"></div>
-  </header>
-  RUBY
-
-  file "app/frontend/entrypoints/groovestack-admin.js", <<~RUBY
-  import React from 'react'
-
-  import { AdminApp } from '../components/AdminApp'
-  import { createRoot } from 'react-dom/client'
-
-  const root = createRoot(document.getElementById('root'))
-  root.render(React.createElement(AdminApp))
-  RUBY
-
   File.delete('config/puma.rb')
-  file "config/puma.rb", <<~RUBY
-  # Puma can serve each request in a thread from an internal thread pool.
-  # The `threads` method setting takes two numbers: a minimum and maximum.
-  # Any libraries that use thread pools should be configured to match
-  # the maximum value specified for Puma. Default is set to 5 threads for minimum
-  # and maximum; this matches the default thread size of Active Record.
-  #
-  max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
-  min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
-  threads min_threads_count, max_threads_count
-
-  # Specifies the `worker_timeout` threshold that Puma will use to wait before
-  # terminating a worker in development environments.
-  #
-  worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
-
-  # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-  #
-  port ENV.fetch("PORT") { 3000 }
-
-  # Specifies the `environment` that Puma will run in.
-  #
-  environment ENV.fetch("RAILS_ENV") { "development" }
-
-  # Specifies the `pidfile` that Puma will use.
-  pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
-
-  # Specifies the number of `workers` to boot in clustered mode.
-  # Workers are forked web server processes. If using threads and workers together
-  # the concurrency of the application would be max `threads` * `workers`.
-  # Workers do not work on JRuby or Windows (both of which do not support
-  # processes).
-  #
-  # workers ENV.fetch("WEB_CONCURRENCY") { 2 }
-
-  # Use the `preload_app!` method when specifying a `workers` number.
-  # This directive tells Puma to first boot the application and load code
-  # before forking the application. This takes advantage of Copy On Write
-  # process behavior so workers use less memory.
-  #
-  # preload_app!
-
-  # Allow puma to be restarted by `bin/rails restart` command.
-  plugin :tmp_restart
-
-  plugin :que
-  plugin :core_cron
-  plugin :example_cron_jobs
-  RUBY
-
-  file "app/frontend/components/AdminApp.tsx", <<~RUBY
-    import React, { useEffect, useState } from 'react'
-    import { Admin, Resource } from 'react-admin'
-    import { Jobs } from '@moonlight-labs/core-jobs-fe'
-    import { HomeView } from '@moonlight-labs/core-config-fe'
-    import { initDataProvider } from './dataProvider'
-    // import { mockDataProvider } from './mockDataProvider/mock-providers'
-
-    export const AdminApp = () => {
-      const [dataProvider, setDataProvider] = useState(null)
-
-      useEffect(() => {
-        console.log('init data provider')
-        initDataProvider().then((graphQlDataProvider) =>
-          setDataProvider(() => graphQlDataProvider),
-        )
-      }, [])
-
-      if (!dataProvider) return <div>Loading...</div>
-
-      return (
-        <Admin
-        disableTelemetry
-        dataProvider={dataProvider}
-        dashboard={HomeView}
-      >
-          <Resource
-            name="Job"
-            icon={Jobs.Icon}
-            edit={Jobs.Edit}
-            list={Jobs.List}
-            recordRepresentation={Jobs.resourceRepresentation}
-          />
-        </Admin>
-      )
-    }
-  RUBY
-
-  file "app/frontend/components/client.tsx", <<~RUBY
-    import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
-    import { createConsumer } from '@rails/actioncable'
-    import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'
-
-    // # VITE ENV
-    const uri = "/graphql"
-      
-    const getWSURL = () => {
-      return '/cable'
-    }
-
-    const cable = createConsumer(getWSURL())
-
-    const hasSubscriptionOperation = ({ query: { definitions } }) => {
-      return definitions.some(({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription')
-    }
-
-    const httpLink = new HttpLink({
-      uri
-    });
-
-    const link = ApolloLink.split(
-      hasSubscriptionOperation,
-      new ActionCableLink({ cable, channelName: 'GraphQLChannel' }),
-      httpLink
-    )
-
-    export const client = new ApolloClient({
-      uri,
-      cache: new InMemoryCache(),
-      link
-    })
-  RUBY
-
-  file "app/frontend/components/dataProvider.tsx", <<~RUBY
-    import buildGraphQLProvider from '@moonlight-labs/ra-data-graphql-advanced'
-
-    import { client } from './client'
-
-
-    export async function initDataProvider(options?: any) {
-      return buildGraphQLProvider({
-        client,
-        fieldNamingConvention: 'snake',
-        ...options,
-      })
-    }
-  RUBY
-
-  FileUtils.rm_rf('app/javascript/entrypoints')
-
   File.delete('Procfile.dev')
 
-  file "Procfile.dev", <<~RUBY
-    vite: VITE_GQL_ENDPOINT=/graphql bin/vite dev
-    web: bin/rails s
-  RUBY
-
-  file "Procfile", <<~RUBY
-    web: bin/rails server -p $PORT -e $RAILS_ENV
-  RUBY
+  FileUtils.rm_rf('app/javascript/entrypoints')
+  FileUtils.cp("#{__dir__}/dev", "#{Dir.pwd}/bin/")
 
   gsub_file "config/vite.json", "app/javascript", "app/frontend"
-
-  FileUtils.cp("#{__dir__}/dev", "#{Dir.pwd}/bin/")
 
   insert_into_file "config/initializers/inflections.rb" do
     "ActiveSupport::Inflector.inflections(:en) do |inflect|\n\tinflect.acronym 'GraphQL'\nend"
@@ -236,33 +45,9 @@ after_bundle do
     "\n     def index; end\n\n"
   end
 
-  create_file "app/graphql/types/query_type.rb" do
-    "module Types
-      class QueryType < ::Core::Base::GraphQL::BaseObject
-        include ::Core::Jobs::GraphQL::Job::Queries
-      end
-    end"
-  end
-
-  create_file "app/graphql/types/mutation_type.rb" do
-    "module Types
-      class MutationType < ::Core::Base::GraphQL::BaseObject
-        include ::Core::Jobs::GraphQL::Job::Mutations
-      end
-    end"
-  end
-
-  create_file "app/graphql/types/subscription_type.rb" do
-    "module Types
-      class SubscriptionType < ::Core::Base::GraphQL::BaseObject
-        include ::Core::Jobs::GraphQL::Job::Subscriptions
-      end
-    end"
-  end
-
   schema_name = "GroovestackSchema"
 
-  create_file "app/graphql/#{schema_name.underscore}.rb" do
+  file "app/graphql/#{schema_name.underscore}.rb" do
     "class #{schema_name} < GraphQL::Schema
       use GraphQL::Subscriptions::ActionCableSubscriptions
       
@@ -308,7 +93,7 @@ after_bundle do
     end"
   end
 
-  create_file 'app/channels/graphql_channel.rb' do
+  file 'app/channels/graphql_channel.rb' do
     "class GraphQLChannel < ::ApplicationCable::Channel
       def subscribed
         @subscription_ids = []
@@ -369,7 +154,7 @@ after_bundle do
     end"
   end
 
-  create_file "app/controllers/graphql_controller.rb" do
+  file "app/controllers/graphql_controller.rb" do
     "class GraphQLController < ApplicationController
       # If accessing from outside this domain, nullify the session
       # This allows for outside API access while preventing CSRF attacks,
@@ -422,6 +207,224 @@ after_bundle do
         render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
       end
     end"
+  end
+
+  # cable.yml
+  file "config/cable.yml" do
+  "default: &default
+    adapter: postgresql
+
+  development:
+    <<: *default
+
+  test:
+    adapter: test
+
+  production:
+    <<: *default"
+  end
+
+  # app/frontend/entrypoints/application.js
+  file "app/frontend/entrypoints/application.js" do
+    "import '~/entrypoints/groovestack-admin.js'"
+  end
+
+
+  # app/views/application/index.html.erb
+  file "app/views/application/index.html.erb" do
+  "<header>
+    <div id='root'></div>
+  </header>"
+  end
+
+  # app/frontend/entrypoints/groovestack-admin.js
+  file "app/frontend/entrypoints/groovestack-admin.js" do
+  "import React from 'react'
+
+  import { AdminApp } from '../components/AdminApp'
+  import { createRoot } from 'react-dom/client'
+
+  const root = createRoot(document.getElementById('root'))
+  root.render(React.createElement(AdminApp))"
+  end
+
+   # app/frontend/components/AdminApp.tsx
+   file "app/frontend/components/AdminApp.tsx" do
+    "import React, { useEffect, useState } from 'react'
+    import { Admin, Resource } from 'react-admin'
+    import { Jobs } from '@moonlight-labs/core-jobs-fe'
+    import { HomeView } from '@moonlight-labs/core-config-fe'
+    import { initDataProvider } from './dataProvider'
+    // import { mockDataProvider } from './mockDataProvider/mock-providers'
+
+    export const AdminApp = () => {
+      const [dataProvider, setDataProvider] = useState(null)
+
+      useEffect(() => {
+        console.log('init data provider')
+        initDataProvider().then((graphQlDataProvider) =>
+          setDataProvider(() => graphQlDataProvider),
+        )
+      }, [])
+
+      if (!dataProvider) return <div>Loading...</div>
+
+      return (
+        <Admin
+        disableTelemetry
+        dataProvider={dataProvider}
+        dashboard={HomeView}
+      >
+          <Resource
+            name='Job'
+            icon={Jobs.Icon}
+            edit={Jobs.Edit}
+            list={Jobs.List}
+            recordRepresentation={Jobs.resourceRepresentation}
+          />
+        </Admin>
+      )
+    }"
+  end
+
+  # app/frontend/components/client.tsx
+  file "app/frontend/components/client.tsx" do
+    "import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
+    import { createConsumer } from '@rails/actioncable'
+    import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink'
+
+    // # VITE ENV
+    const uri = '/graphql'
+      
+    const getWSURL = () => {
+      return '/cable'
+    }
+
+    const cable = createConsumer(getWSURL())
+
+    const hasSubscriptionOperation = ({ query: { definitions } }) => {
+      return definitions.some(({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription')
+    }
+
+    const httpLink = new HttpLink({
+      uri
+    });
+
+    const link = ApolloLink.split(
+      hasSubscriptionOperation,
+      new ActionCableLink({ cable, channelName: 'GraphQLChannel' }),
+      httpLink
+    )
+
+    export const client = new ApolloClient({
+      uri,
+      cache: new InMemoryCache(),
+      link
+    })"
+  end
+
+  # app/frontend/components/dataProvider.tsx
+  file "app/frontend/components/dataProvider.tsx" do
+    "import buildGraphQLProvider from '@moonlight-labs/ra-data-graphql-advanced'
+
+    import { client } from './client'
+
+    export async function initDataProvider(options?: any) {
+      return buildGraphQLProvider({
+        client,
+        fieldNamingConvention: 'snake',
+        ...options,
+      })
+    }"
+  end
+
+   # app/graphql/types/query_type.rb
+   file "app/graphql/types/query_type.rb" do
+    "module Types
+      class QueryType < ::Core::Base::GraphQL::BaseObject
+        include ::Core::Jobs::GraphQL::Job::Queries
+      end
+    end"
+  end
+
+  # app/graphql/types/mutation_type.rb
+  file "app/graphql/types/mutation_type.rb" do
+    "module Types
+      class MutationType < ::Core::Base::GraphQL::BaseObject
+        include ::Core::Jobs::GraphQL::Job::Mutations
+      end
+    end"
+  end
+
+  # app/graphql/types/subscription_type.rb
+  file "app/graphql/types/subscription_type.rb" do
+    "module Types
+      class SubscriptionType < ::Core::Base::GraphQL::BaseObject
+        include ::Core::Jobs::GraphQL::Job::Subscriptions
+      end
+    end"
+  end
+
+  # config/puma.rb
+  file "config/puma.rb" do
+    "# Puma can serve each request in a thread from an internal thread pool.
+    # The `threads` method setting takes two numbers: a minimum and maximum.
+    # Any libraries that use thread pools should be configured to match
+    # the maximum value specified for Puma. Default is set to 5 threads for minimum
+    # and maximum; this matches the default thread size of Active Record.
+    #
+    max_threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
+    min_threads_count = ENV.fetch('RAILS_MIN_THREADS') { max_threads_count }
+    threads min_threads_count, max_threads_count
+
+    # Specifies the `worker_timeout` threshold that Puma will use to wait before
+    # terminating a worker in development environments.
+    #
+    worker_timeout 3600 if ENV.fetch('RAILS_ENV', 'development') == 'development'
+
+    # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
+    #
+    port ENV.fetch('PORT') { 3000 }
+
+    # Specifies the `environment` that Puma will run in.
+    #
+    environment ENV.fetch('RAILS_ENV') { 'development' }
+
+    # Specifies the `pidfile` that Puma will use.
+    pidfile ENV.fetch('PIDFILE') { 'tmp/pids/server.pid' }
+
+    # Specifies the number of `workers` to boot in clustered mode.
+    # Workers are forked web server processes. If using threads and workers together
+    # the concurrency of the application would be max `threads` * `workers`.
+    # Workers do not work on JRuby or Windows (both of which do not support
+    # processes).
+    #
+    # workers ENV.fetch('WEB_CONCURRENCY') { 2 }
+
+    # Use the `preload_app!` method when specifying a `workers` number.
+    # This directive tells Puma to first boot the application and load code
+    # before forking the application. This takes advantage of Copy On Write
+    # process behavior so workers use less memory.
+    #
+    # preload_app!
+
+    # Allow puma to be restarted by `bin/rails restart` command.
+    plugin :tmp_restart
+
+    plugin :que
+    plugin :core_cron
+    plugin :example_cron_jobs"
+  end
+
+  # Procfile.dev
+  file "Procfile.dev" do
+    "vite: VITE_GQL_ENDPOINT=/graphql bin/vite dev
+    web: bin/rails s"
+  end
+
+  # Procfile
+  file "Procfile" do
+    "web: bin/rails server -p $PORT -e $RAILS_ENV"
   end
 
   # # # Setup the DB initially
