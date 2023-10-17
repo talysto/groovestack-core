@@ -24,9 +24,10 @@ github 'moonlight-labs/core', branch: 'dev' do
   # gem 'core-webhooks'
 end
 
+application "config.active_record.schema_format = :sql"
+
 run "bundle install"
 
-application "config.active_record.schema_format = :sql"
 application "config.active_job.queue_adapter = :que"
 application "config.action_cable.mount_path = '/cable'"
 
@@ -196,7 +197,6 @@ file "app/frontend/components/client.tsx", <<~RUBY
   })
 RUBY
 
-
 file "app/frontend/components/dataProvider.tsx", <<~RUBY
   import buildGraphQLProvider from '@moonlight-labs/ra-data-graphql-advanced'
 
@@ -219,13 +219,13 @@ File.delete('Procfile.dev')
 file "Procfile.dev", <<~RUBY
   vite: VITE_GQL_ENDPOINT=/graphql bin/vite dev
   web: bin/rails s
-  js: yarn build --watch
-  css: yarn build:css --watch
 RUBY
     
 run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
 
 after_bundle do
+  FileUtils.cp("#{__dir__}/dev", "#{Dir.pwd}/bin/")
+
   insert_into_file "config/initializers/inflections.rb" do
     "ActiveSupport::Inflector.inflections(:en) do |inflect|\n\tinflect.acronym 'GraphQL'\nend"
   end
