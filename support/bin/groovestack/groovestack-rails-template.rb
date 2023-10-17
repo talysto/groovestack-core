@@ -435,5 +435,6 @@ after_bundle do
   # rails_command "db:seed"
 
   puts "⚡️ Groovestack App Setup Complete"
+
   # run "./bin/dev"
 end
