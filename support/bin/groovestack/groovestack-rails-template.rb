@@ -8,11 +8,6 @@ gem "pg_lock"
 # Nice to haves for Rails apps
 gem 'view_component'
 
-# dev stuff
-gem_group :development, :test do
-  gem 'foreman'
-end
-
 github 'moonlight-labs/core', branch: 'dev' do
   gem 'core-base' # must be first dependency
   gem 'core-jobs'
@@ -22,13 +17,7 @@ github 'moonlight-labs/core', branch: 'dev' do
   # gem 'core-webhooks'
 end
 
-# run "bundle install"
-
 after_bundle do
-  # raise "Error: In After Bundle"
-  # run "bundle install"
-  # run "yarn init"
-
   run "touch yarn.lock"
 
   run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
@@ -222,6 +211,8 @@ after_bundle do
     }
   RUBY
 
+  FileUtils.rm_rf('app/javascript/entrypoints')
+
   File.delete('Procfile.dev')
 
   file "Procfile.dev", <<~RUBY
@@ -234,24 +225,6 @@ after_bundle do
   RUBY
 
   gsub_file "config/vite.json", "app/javascript", "app/frontend"
-
-#   {
-#   "all": {
-#     "sourceCodeDir": "app/frontend",
-#     "watchAdditionalPaths": []
-#   },
-#   "development": {
-#     "autoBuild": true,
-#     "publicOutputDir": "vite-dev",
-#     "port": 3036
-#   },
-#   "test": {
-#     "autoBuild": true,
-#     "publicOutputDir": "vite-test",
-#     "port": 3037
-#   }
-# }
-
 
   FileUtils.cp("#{__dir__}/dev", "#{Dir.pwd}/bin/")
 
