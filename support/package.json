@@ -1,9 +1,12 @@
 {
   "name": "@groovestack/install",
-  "version": "0.9.53",
+  "version": "0.9.54",
   "description": "Groovestack Config App Installer",
   "bin": {
     "install": "./bin/bin.js"
+  },
+  "scripts": {
+    "local_install": "node bin/bin.js AppName"
   },
   "dependencies": {
     "shelljs": "^0.8.5"
