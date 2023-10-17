@@ -29,19 +29,17 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
     end
 
     in_background do
-      sleep 15
+      sleep 10
       log '[example-cron-jobs] Starting example-cron-jobs worker'
 
       loop do
-        unless ::Core::Jobs::Job.where(status: %w[running errored queued scheduled]).size.positive?
-          log '[example-cron-jobs] Inserting new jobs.'
+        log '[example-cron-jobs] Inserting new jobs.'
 
-          rand(3..5).times do 
-            ::Core::Jobs::ExampleJob.descendants.sample.perform_later
-          end
+        rand(0..10).times do 
+          ::Core::Jobs::ExampleJob.descendants.sample.perform_later
         end
 
-        sleep 30
+        sleep 60
       end
     end
   end

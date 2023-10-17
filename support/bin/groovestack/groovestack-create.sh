@@ -35,6 +35,12 @@ if vercomp $node_version \< 18.0; then
    exit
 fi
 
-rails new $1 -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install --skip-bootsnap -m $2/groovestack/groovestack-rails-template.rb
-# echo "⚡️ Groovestack App Setup Complete"
-# cd $1
+rails new $1 -d postgresql \
+--skip-turbolinks --skip-hotwire --skip-jbuilder \
+--skip-webpack-install --skip-bootsnap;
+
+echo "⚡️ Groovestack App Setup Complete";
+
+cd $1;
+
+bin/rails app:template LOCATION=$2/groovestack/groovestack-rails-template.rb;

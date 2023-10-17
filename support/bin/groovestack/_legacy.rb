@@ -24,20 +24,16 @@ end
 
 # run "bundle install"
 
-after_bundle do
-  # raise "Error: In After Bundle"
-  # run "bundle install"
-  # run "yarn init"
+application "config.active_record.schema_format = :sql"
+application "config.active_job.queue_adapter = :que"
+application "config.action_cable.mount_path = '/cable'"
 
-  run "touch yarn.lock"
-
-  run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
+# after_bundle do
+  run "bundle install"
 
   run "bundle exec vite install"
 
-  application "config.active_record.schema_format = :sql"
-  application "config.active_job.queue_adapter = :que"
-  application "config.action_cable.mount_path = '/cable'"
+  run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
 
   route "mount ActionCable.server => '/cable'"
   route "root to: 'application#index', as: :home"
@@ -58,7 +54,7 @@ after_bundle do
   adapter: test
 
   production:
-    <<: *default
+  <<: *default
   RUBY
 
   file "app/frontend/entrypoints/application.js", <<~RUBY
@@ -229,30 +225,6 @@ after_bundle do
     web: bin/rails s
   RUBY
 
-  file "Procfile", <<~RUBY
-    web: bundle exec puma -C config/puma.rb
-  RUBY
-
-  gsub_file "config/vite.json", "app/javascript", "app/frontend"
-
-#   {
-#   "all": {
-#     "sourceCodeDir": "app/frontend",
-#     "watchAdditionalPaths": []
-#   },
-#   "development": {
-#     "autoBuild": true,
-#     "publicOutputDir": "vite-dev",
-#     "port": 3036
-#   },
-#   "test": {
-#     "autoBuild": true,
-#     "publicOutputDir": "vite-test",
-#     "port": 3037
-#   }
-# }
-
-
   FileUtils.cp("#{__dir__}/dev", "#{Dir.pwd}/bin/")
 
   insert_into_file "config/initializers/inflections.rb" do
@@ -286,8 +258,8 @@ after_bundle do
       end
     end"
   end
-
-  schema_name = "GroovestackSchema"
+  
+  schema_name = "#{app_name}Schema"
 
   create_file "app/graphql/#{schema_name.underscore}.rb" do
     "class #{schema_name} < GraphQL::Schema
@@ -451,14 +423,11 @@ after_bundle do
     end"
   end
 
+  puts "⚡️ Groovestack App Setup Complete"
+
   # # # Setup the DB initially
   rails_command "db:create"
   rails_command "db:migrate"
 
-  #   # run "./bin/dev"
-  puts "⚡️ Groovestack App Setup Complete"
-end
-
-
-run_bundle 
-run_after_bundle_callbacks
+  # run "./bin/dev"
+# end

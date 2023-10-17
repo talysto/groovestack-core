@@ -9,6 +9,19 @@
     "local_install": "node bin/bin.js AppName"
   },
   "dependencies": {
+    "@moonlight-labs/core-config-fe": "^0.1.4",
+    "@moonlight-labs/core-jobs-fe": "^0.2.60",
+    "@moonlight-labs/ra-data-graphql-advanced": "^4.8.10",
+    "@mui/material": "^5.14.14",
+    "@rails/actioncable": "^7.1.1",
+    "@react-admin/ra-realtime": "^4.5.1",
+    "graphql": "^16.8.1",
+    "graphql-ruby-client": "^1.11.9",
+    "ra-data-fakerest": "^4.15.0",
+    "ra-data-simple-rest": "^4.15.0",
+    "react": "^18.2.0",
+    "react-admin": "^4.15.0",
+    "react-dom": "^18.2.0",
     "shelljs": "^0.8.5"
   }
 }
