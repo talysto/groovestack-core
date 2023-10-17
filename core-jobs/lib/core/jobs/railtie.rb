@@ -3,7 +3,8 @@
 if defined?(Rails)
   module Core
     module Jobs
-      class Railtie < ::Core::Base::CoreRailtie # Rails::Engine
+      class Railtie < Rails::Engine
+        include ::Core::Base::CoreRailtie
 
         def dx_validations
           [
