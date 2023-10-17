@@ -7,7 +7,7 @@ module Core
     class ExampleJob < ApplicationJob
       def perform
         raise 'random simulated error' if Random.new.rand(10) == 9
-        sleep(0.1 + Random.new.rand(3))
+        sleep(2 + Random.new.rand(3))
       end
     end
     

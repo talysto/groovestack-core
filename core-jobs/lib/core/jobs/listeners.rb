@@ -30,9 +30,8 @@ module Core
               #   "current_state":"nonexistent"
               # }
 
-              notify_event_handler.call do |args|
+            notify_event_handler.call do |args|
               event = { crud_action: :update, payload: JSON.parse(payload) }
-
               subscriptions.each do |subscription|
                 subscription[:ids].each do |id|
                   que_state_publisher.notify_event(subscription[:name], id, event)

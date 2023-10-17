@@ -11,6 +11,7 @@ require 'active_record'
 require 'que/active_record/model'
 
 require 'core/jobs/puma/plugin/que'
+require 'core/jobs/puma/plugin/example_cron_jobs'
 require 'core/jobs/railtie' if defined?(Rails::Railtie)
 require 'core/jobs/application_job'
 require 'core/jobs/que_job_ext'

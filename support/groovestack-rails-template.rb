@@ -120,6 +120,7 @@ plugin :tmp_restart
 
 plugin :que
 plugin :core_cron
+plugin :example_cron_jobs
 RUBY
 
 file "app/frontend/components/AdminApp.tsx", <<~RUBY
