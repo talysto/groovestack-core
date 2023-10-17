@@ -32,9 +32,9 @@ application "config.active_job.queue_adapter = :que"
 application "config.action_cable.mount_path = '/cable'"
 
 after_bundle do
-  run "bundle exec vite install"
-    
   run "yarn add graphql @rails/actioncable graphql-ruby-client react react-dom react-admin ra-data-fakerest @moonlight-labs/ra-data-graphql-advanced @mui/material @react-admin/ra-realtime ra-data-simple-rest @mui/material @moonlight-labs/core-jobs-fe @moonlight-labs/core-config-fe"
+  
+  run "bundle exec vite install"
 
   route "mount ActionCable.server => '/cable'"
   route "root to: 'application#index', as: :home"
