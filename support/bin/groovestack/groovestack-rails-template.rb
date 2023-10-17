@@ -57,10 +57,10 @@ after_bundle do
     <<: *default
 
   test:
-  adapter: test
+    adapter: test
 
   production:
-  <<: *default
+    <<: *default
   RUBY
 
   # create_file "db/seeds/job_seeds.rb" do
