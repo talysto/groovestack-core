@@ -35,11 +35,9 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
       loop do
         log '[example-cron-jobs] Inserting new jobs.'
 
-        rand(0..10).times do 
-          ::Core::Jobs::ExampleJob.descendants.sample.perform_later
-        end
+        rand(3..10).times { |_i| ::Core::Jobs::ExampleJob.descendants.sample.set(wait: rand(0..2).seconds).perform_later }
 
-        sleep 60
+        sleep 10
       end
     end
   end
