@@ -55,7 +55,7 @@ after_bundle do
     <<: *default
 
   test:
-  adapter: test
+    adapter: test
 
   production:
     <<: *default
