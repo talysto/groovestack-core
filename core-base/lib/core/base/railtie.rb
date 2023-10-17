@@ -3,11 +3,43 @@
 if defined?(Rails)
   module Core
     module Base
-      class Railtie < Rails::Engine
+      class CoreRailtie < Rails::Engine
+        CORE_ENGINE = true
 
-        def core_base_dx_validate(validations, module_name)
+        def dx_validations
+          []
+        end
+
+        def module_name
+          self.class.name.deconstantize.demodulize
+        end
+
+        def after_init 
+          if Rails.const_defined?("Console") && (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
+            puts 'CORE Platform DX Mode'.bold if module_name == 'Base'
+            core_base_dx_validate
+          end
+        end
+
+        def append_migrations(app)
+          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
+            config.paths['db/migrate'].expanded.each do |expanded_path|
+              app.config.paths['db/migrate'] << expanded_path
+            end
+          end
+        end
+
+        def append_initializers(app)
+          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
+            config.paths['config/initializers'].expanded.each do |expanded_path|
+              app.config.paths['config/initializers'] << expanded_path
+            end
+          end
+        end
+
+        def core_base_dx_validate
           errors = []
-          validations.each do |v|
+          dx_validations.each do |v|
             v[:eval].call
           rescue StandardError
             errors << v[:message]
@@ -22,7 +54,30 @@ if defined?(Rails)
             puts "  CORE::#{module_name}\t#{Core::Base::VERSION}"
           end
         end
-        
+      end
+
+      class Railtie < CoreRailtie # Rails::Engine
+        def dx_validations 
+          [
+            {
+              eval: proc { require 'pg' },
+              message: "Error: 'pg' gem is required, add it your your gemfile"
+            },
+            {
+              eval: proc { require 'graphql' },
+              message: "Error: 'graphql' gem is required, add it your your gemfile"
+            }
+          ]
+        end
+
+        initializer :append_migrations do |app|
+          append_migrations app
+        end
+
+        initializer :append_initializers do |app|
+          append_initializers app
+        end
+
         initializer :init_puma do |app|
           return unless defined?(Puma)
 
@@ -35,40 +90,8 @@ if defined?(Rails)
           end
         end
 
-        # Enable our new migrations for the parent app
-        initializer :append_migrations do |app|
-          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            # config.paths['db/migrate'].expanded.each do |expanded_path|
-            #   app.config.paths['db/migrate'] << expanded_path
-            # end
-          end
-        end
-
-        # Enable our new initializers for the parent app
-        initializer :append_initializers do |app|
-          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            # config.paths['config/initializers'].expanded.each do |expanded_path|
-            #   app.config.paths['config/initializers'] << expanded_path
-            # end
-          end
-        end
-
         config.after_initialize do
-          if (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
-            validations = [
-              {
-                eval: proc { require 'pg' },
-                message: "Error: 'pg' gem is required, add it your your gemfile"
-              },
-              {
-                eval: proc { require 'graphql' },
-                message: "Error: 'graphql' gem is required, add it your your gemfile"
-              }
-            ]
-
-            core_base_dx_validate(validations, 'Base')
-            puts 'CORE Platform DX Mode'.bold
-          end
+          after_init
         end
       end
     end
