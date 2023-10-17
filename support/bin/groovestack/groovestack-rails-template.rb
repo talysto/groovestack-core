@@ -2,7 +2,6 @@
 gem 'graphql'
 gem 'uuid'
 gem 'vite_rails'
-gem 'sprockets-rails'
 
 # Nice to haves for Rails apps
 gem 'view_component'
