@@ -17,7 +17,7 @@ module Core
                                                  except: [:find]
 
               field :JobReport, ::Core::Jobs::GraphQL::Job::Report::Type, null: true, resolver_method: :show_job_report, description: 'Build job report' do
-                argument :id, String, required: true
+                argument :id, ::GraphQL::Types::ID, required: true
                 argument :meta, ::Core::Jobs::GraphQL::Job::Report::BuildParamsType, required: false
               end
             end

@@ -7,12 +7,12 @@ module Core
             extend ActiveSupport::Concern
 
             class Instance < ::Core::Base::GraphQL::BaseSubscription
-              argument :id, String, required: true
+              argument :id, ::GraphQL::Types::ID, required: true
 
               type ::Core::Base::GraphQL::Types::SubscriptionPayload, null: false
 
               QUERY_STRING = <<-GRAPHQL
-                query JobReport($id: String!, $meta: JobReportBuildParamsType) {
+                query JobReport($id: ID!, $meta: JobReportBuildParamsType) {
                   JobReport(id: $id, meta:$meta){
                     id
                     data
