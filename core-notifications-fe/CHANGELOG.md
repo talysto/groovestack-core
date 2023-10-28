@@ -1,5 +1,17 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.28
+
+### Patch Changes
+
+- fix subscriptions
+
+## 0.2.27
+
+### Patch Changes
+
+- remove ra-realtime dep
+
 ## 0.2.26
 
 ### Patch Changes

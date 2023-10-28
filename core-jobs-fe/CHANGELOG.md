@@ -1,5 +1,17 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.62
+
+### Patch Changes
+
+- fix subscriptions
+
+## 0.2.61
+
+### Patch Changes
+
+- remove ra-realtime dep
+
 ## 0.2.60
 
 ### Patch Changes

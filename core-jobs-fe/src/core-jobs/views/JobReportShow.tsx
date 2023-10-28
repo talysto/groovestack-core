@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material'
-import { useSubscribeToRecord } from '@react-admin/ra-realtime'
 import { JSXElementConstructor, ReactElement, cloneElement, useState, useEffect } from 'react'
-import { Identifier, RaRecord, ShowProps, useDataProvider, useShowController } from 'react-admin'
+import { Identifier, RaRecord, ShowProps, useShowController } from 'react-admin'
+import { useSubscription } from '@apollo/client'
+import { SUBSCRIBE_TO_JOB_REPORT } from '../gql'
 
 export const JobReportShow = (
   props: ShowProps & {
@@ -10,7 +11,6 @@ export const JobReportShow = (
   },
 ) => {
   const [data, setData] = useState<RaRecord>()
-  const dataProvider = useDataProvider()
 
   const onSuccess = (report: any) => setData(report) 
 
@@ -21,14 +21,16 @@ export const JobReportShow = (
     queryOptions: { enabled: !props.data, onSuccess },
   })
 
-  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setData({id: props.id as Identifier, data: payload.data}) }
-
-  const enabled = !props.data && !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecord(handleEventReceived, 'JobReport', props.id, { enabled })
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { variables: { id: props.id } })
 
   useEffect(() => {
     setData(props.data)
   }, [props.data])
+
+  useEffect(() => {
+    if (subscriptionData?.JobReport && subscriptionData.JobReport.event.type != 'subscribe') setData({id: props.id as Identifier, data: subscriptionData.JobReport.event.payload.data})
+  }, [subscriptionData])
+
   return (
     <Box>
       {props.title && (
