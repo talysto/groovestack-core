@@ -23,7 +23,7 @@ module Core
         class SubscriptionPayload < ::GraphQL::Schema::Object
           field :subscription, String, null: false
           field :event, ::GraphQL::Types::JSON, null: false
-          field :subscription_args, ::GraphQL::Types::JSON, null: true
+          field :subscription_args, ::GraphQL::Types::JSON, null: false
         end
       end
     end
