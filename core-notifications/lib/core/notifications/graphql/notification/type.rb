@@ -4,7 +4,7 @@ module Core
   module Notifications
     module GraphQL
       module Notification
-        class Type < ::Core::Base::GraphQL::BaseObject
+        class Type < ::Core::Base::GraphQL::Types::BaseObject
           description 'A core notification'
 
           field :id, ID, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.ids

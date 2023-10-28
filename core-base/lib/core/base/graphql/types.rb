@@ -20,7 +20,11 @@ module Core
           end
         end
 
-        class SubscriptionPayload < ::Core::Base::GraphQL::BaseObject
+        class BaseObject < ::GraphQL::Schema::Object
+          field_class ::Core::Base::GraphQL::Types::BaseField
+        end
+
+        class SubscriptionPayload < ::Core::Base::GraphQL::Types::BaseObject
           field :subscription, String, null: false
           field :event, ::GraphQL::Types::JSON, null: false
           field :subscription_args, ::GraphQL::Types::JSON, null: false

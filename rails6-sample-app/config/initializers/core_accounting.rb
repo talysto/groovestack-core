@@ -96,7 +96,7 @@ module Core
           field_class ::Core::Base::GraphQL::Types::BaseField
         end
 
-        class Line < ::Core::Base::GraphQL::BaseObject
+        class Line < ::Core::Base::GraphQL::Types::BaseObject
           field :account_identifier, String, null: false
           field :scope_detail, ::GraphQL::Types::JSON, null: false
           field :key1, [String], null: false

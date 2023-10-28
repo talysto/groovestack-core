@@ -4,7 +4,7 @@ module Core
   module Accounting
     module GraphQL
       module Line
-        class Type < ::Core::Base::GraphQL::BaseObject
+        class Type < ::Core::Base::GraphQL::Types::BaseObject
           description 'A double entry line'
 
           # model reference:

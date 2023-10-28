@@ -4,7 +4,7 @@ module Core
   module Comments
     module GraphQL
       module Comment
-        class Type < ::Core::Base::GraphQL::BaseObject
+        class Type < ::Core::Base::GraphQL::Types::BaseObject
           description 'A comment'
 
           field :id, ID, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.id

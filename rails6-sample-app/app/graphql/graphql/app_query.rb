@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GraphQL
-  class AppQuery < ::Core::Base::GraphQL::BaseObject
+  class AppQuery < ::Core::Base::GraphQL::Types::BaseObject
     include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
     
     # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
