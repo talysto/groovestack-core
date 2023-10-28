@@ -21,7 +21,7 @@ module Core
               GRAPHQL
 
               def subscribe(id:)
-                payload(id: id, event: { type: :subscribe })
+                { subscription: 'JobReport', subscription_args: { id: id }, event: { type: :subscribe } }
               end
 
               def update(id:)
@@ -35,7 +35,7 @@ module Core
                   },
                 }
 
-                payload(id: id, event: event)
+                { subscription: 'JobReport', subscription_args: { id: id }, event: event }
               end
 
               # HELPER METHODS
@@ -44,13 +44,6 @@ module Core
                 variables = { id: id, meta: nil }
 
                 context[:schema].execute self.class::QUERY_STRING, variables: variables
-              end
-
-              def payload(id:, event:)
-                {
-                  topic: "resource/JobReport/id",
-                  event: event,
-                }
               end
             end
 
