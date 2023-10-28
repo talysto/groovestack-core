@@ -10,10 +10,10 @@ require 'core/base/puma/plugin/core_cron'
 require 'core/base/railtie' if defined?(Rails::Railtie)
 
 require 'core/base/graphql/subscriptions/event_handler'
+require 'core/base/graphql/base_object'
 require 'core/base/graphql/types'
 require 'core/base/graphql/base_input_object'
 require 'core/base/graphql/base_mutation'
-require 'core/base/graphql/base_object'
 require 'core/base/graphql/documentation'
 require 'core/base/graphql/base_subscription'
 
