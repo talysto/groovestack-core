@@ -39,8 +39,8 @@ export const generateFetchRequest = ({
 export type Credentials = {
   getCurrentResource: () => any
   removeCurrentResource: () => void
+  setCurrentResource: (resource: any) => any // often done in hydrateCurrentResource method
   hydrateCurrentResource?: () => Promise<any>
-  setCurrentResource?: (resource: any) => any // often done in hydrateCurrentResource method
 }
 
 type LiveAuthProviderFactoryType = (params: { resource: string, credentials: Credentials, requiredRole?: string }) => AuthProvider
@@ -90,6 +90,8 @@ export const liveAuthProviderFactory: LiveAuthProviderFactoryType = ({ credentia
         console.error(data)
         throw new Error(data[0]?.message)
       }
+
+      if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource()
 
       return data
     },

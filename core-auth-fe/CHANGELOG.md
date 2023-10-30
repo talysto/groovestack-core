@@ -1,5 +1,17 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.5
+
+### Patch Changes
+
+- code cleanup
+
+## 0.1.4
+
+### Patch Changes
+
+- login hydrates store with current resource
+
 ## 0.1.3
 
 ### Patch Changes
