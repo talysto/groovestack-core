@@ -1,0 +1,42 @@
+{
+  "name": "@moonlight-labs/core-auth-fe",
+  "title": "CORE Auth",
+  "version": "0.1.0",
+  "description": "React-admin custom login flow that supports email/password as well as Oauth (Google & Apple) out of the box.",
+  "homepage": "https://talysto.com/groovestack/#core-auth",
+  "keywords": [
+    "authentication",
+    "authorization"
+  ],
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./mock": "./dist/mock.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@mui/icons-material": "5.14.1",
+    "@mui/material": "^5.14.15",
+    "react": "^18.2.0",
+    "react-admin": "^4.15.2",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
+  },
+  "dependencies": {
+    "@mui/lab": "5.0.0-alpha.146"
+  }
+}
