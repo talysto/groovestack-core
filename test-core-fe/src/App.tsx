@@ -4,15 +4,16 @@ import { Admin, Resource } from 'react-admin'
 // import { Jobs } from '@core/jobs'
 
 // Source Code import
+import { Auth } from '@moonlight-labs/core-auth-fe'
 import { Comments } from '@moonlight-labs/core-comments-fe'
-import { Jobs } from '@moonlight-labs/core-jobs-fe'
-import { Notifications } from '@moonlight-labs/core-notifications-fe'
+import { HomeView } from '@moonlight-labs/core-config-fe'
+// import { Jobs } from '@moonlight-labs/core-jobs-fe'
+// import { Notifications } from '@moonlight-labs/core-notifications-fe'
 import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 // Wireframed Version of the resource (Local)
 // Uncomment this to swap in the earlier version
 // import { Jobs } from './jobs/resource'
 
-import { HomeView } from '@moonlight-labs/core-config-fe'
 import { mockAuthProvider, mockDataProvider } from './data/mock-providers'
 import { CustomLayout } from './layout/CustomLayout'
 import theme from './layout/theme'
@@ -60,7 +61,7 @@ function AdminApp() {
       disableTelemetry
       dataProvider={mockDataProvider}
       authProvider={authProvider}
-      // loginPage={LoginPage}
+      loginPage={Auth.RA.LoginPage}
       theme={theme}
       dashboard={DashboardView}
       layout={CustomLayout}
@@ -91,13 +92,13 @@ function AdminApp() {
         edit={Comments.Edit}
       />
 
-      <Resource
+      {/* <Resource
         name="Job"
         icon={Jobs.Icon}
         edit={Jobs.Edit}
         list={Jobs.List}
         recordRepresentation={Jobs.resourceRepresentation}
-      />
+      /> */}
 
       <Resource name="JobLocker" />
       <Resource name="JobStat" />
@@ -110,12 +111,12 @@ function AdminApp() {
         recordRepresentation={Webhooks.recordRepresentation}
       />
 
-      <Resource
+      {/* <Resource
         name="Notification"
         icon={Notifications.Icon}
         list={Notifications.List}
         edit={Notifications.Edit}
-      />
+      /> */}
     </Admin>
   )
 }

@@ -1,5 +1,26 @@
 # test-core-fe
 
+## 0.2.79
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-auth-fe@0.1.3
+
+## 0.2.78
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-auth-fe@0.1.2
+
+## 0.2.77
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-auth-fe@0.1.1
+
 ## 0.2.76
 
 ### Patch Changes

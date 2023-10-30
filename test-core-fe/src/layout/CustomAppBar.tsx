@@ -1,5 +1,5 @@
 // in src/MyAppBar.js
-import { NotificationMenuButton } from '@moonlight-labs/core-notifications-fe'
+// import { NotificationMenuButton } from '@moonlight-labs/core-notifications-fe'
 import { AppBar, Logout, TitlePortal, UserMenu } from 'react-admin'
 
 // const SettingsMenuItem = React.forwardRef((props, ref) => {
@@ -32,7 +32,7 @@ export const CustomAppBar = () => {
       }
     >
       <TitlePortal />
-      <NotificationMenuButton />
+      {/* <NotificationMenuButton /> */}
     </AppBar>
   )
 }

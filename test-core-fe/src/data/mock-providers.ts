@@ -17,7 +17,7 @@ export const mockAuthProvider: MockAuthProviderType = async () => {
     // authentication
     login: () => Promise.resolve(),
     checkError: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
+    checkAuth: () => Promise.reject(),
     logout: () => Promise.resolve(),
     getIdentity: () => Promise.resolve(currentUser),
     handleCallback: () => Promise.resolve(), // for 3rd-party auth only
