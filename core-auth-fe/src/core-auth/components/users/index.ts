@@ -1,6 +1,7 @@
 import GroupsIconOutlined from '@mui/icons-material/GroupsOutlined'
 import { UserTable } from './list'
 import { UserShow } from './show'
+import { UserMenu } from './UserMenu'
 
 export class Users {
   static Name = 'User'
@@ -8,5 +9,6 @@ export class Users {
   static Identifier = (record: any) => `${record.name}`
   static List = UserTable
   static Show = UserShow
+  static Menu = UserMenu
   // static Edit = UserEdit
 }
