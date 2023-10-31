@@ -2,12 +2,11 @@ import {
   Datagrid,
   FilterButton,
   List,
-  NumberField,
   TextInput,
   TopToolbar,
 } from 'react-admin'
 
-import { UserIdField } from '../UserIdField'
+import { UserIdField } from '../../../components/UserIdField'
 
 const filters = [<TextInput label="Search" source="q" alwaysOn />]
 const ListActions = () => (
@@ -19,12 +18,8 @@ const ListActions = () => (
   </TopToolbar>
 )
 
-import { TimeAgoField } from '@moonlight-labs/core-base-fe'
-import { MergeButton } from './MergeButton'
-
 const BulkActionButtons = () => (
   <>
-    <MergeButton />
     {/* default bulk delete action */}
     {/* <BulkDeleteButton /> */}
   </>
@@ -39,12 +34,6 @@ export const UserTable = () => (
   >
     <Datagrid bulkActionButtons={<BulkActionButtons />} rowClick={'show'}>
       <UserIdField />
-
-      <NumberField source="memberships_count" label="Memberships" />
-      <NumberField source="leaderships_count" label="Leaderships" />
-
-      <TimeAgoField source="created_at" label="Registered" />
-      <TimeAgoField source="current_sign_in_at" label="Active" />
     </Datagrid>
   </List>
 )

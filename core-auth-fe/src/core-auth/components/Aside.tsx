@@ -7,15 +7,7 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-const IconOff = () => (
-  <LaunchIcon sx={{ fontSize: '0.75em' }} color="disabled" />
-)
-
-const sidebarConfig = [
-  // { label: 'Comments', component: <></> },
-  // { key: 'onboarding', label: 'Onboarding', component: <OnboardingProgress /> },
-  // { label: 'Features', component: <FeatureFlags /> },
-]
+const sidebarConfig: any = []
 
 const inlineLayout = {
   sx: { '& .RaLabeled-label': { display: 'inline-block', minWidth: 60 } },
@@ -31,7 +23,7 @@ export const Aside = () => {
         <ChipField source="status" size="small" label="Status" />
       </SimpleShowLayout>
 
-      {sidebarConfig.map((section, index) => (
+      {sidebarConfig.map((section: any, index: any) => (
         <Paper sx={{ p: 2, mb: 3 }} id={`${section.key}-header`}>
           <Typography component="h4" variant="h6">
             {section.label}

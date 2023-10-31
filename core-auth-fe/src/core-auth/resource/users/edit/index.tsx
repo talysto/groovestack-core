@@ -7,10 +7,9 @@ import {
   useRefresh,
 } from 'react-admin'
 
-import { StandardTitle } from '../../shared/StandardTitle'
-import { Aside } from '../Aside'
+import { StandardTitle } from '../../../components/StandardTitle'
+import { Aside } from '../../../components/Aside'
 // import { NotificationSettings } from './NotificationSettings'
-import { AvatarUpload } from './AvatarUpload'
 import { GeneralSettings } from './GeneralSettings'
 
 const EditToolbar = () => (
@@ -34,8 +33,6 @@ export const UserEdit = () => {
     >
       <TabbedForm sanitizeEmptyValues toolbar={<EditToolbar />}>
         <TabbedForm.Tab label="preferences">
-          <Typography variant="h6">Avatar</Typography>
-          <AvatarUpload />
           <GeneralSettings />
         </TabbedForm.Tab>
 

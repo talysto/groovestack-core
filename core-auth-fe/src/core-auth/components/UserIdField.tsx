@@ -1,6 +1,6 @@
 import { Chip } from '@mui/material'
 import { useRecordContext } from 'react-admin'
-import { AvatarLabel } from '../shared/AvatarLabel'
+import { AvatarLabel } from './AvatarLabel'
 
 export const UserIdField = ({
   titleField = 'name',
@@ -16,7 +16,7 @@ export const UserIdField = ({
       preTitle={
         record.roles && record.roles.length > 0 ? (
           <>
-            {record.roles.map((role, idx) => (
+            {record.roles.map((role: any, idx: any) => (
               <Chip size="small" label={role} key={idx} />
             ))}
           </>

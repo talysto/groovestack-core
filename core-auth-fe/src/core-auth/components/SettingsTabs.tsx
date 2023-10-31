@@ -74,7 +74,7 @@ export const SettingsGroup = ({
   )
 }
 
-export default function SettingsTabs({ settings }) {
+export default function SettingsTabs({ settings }: { settings: any }) {
   const theme = useTheme()
   const moreThanSmall = useMediaQuery(theme.breakpoints.up('sm'))
 
@@ -106,11 +106,11 @@ export default function SettingsTabs({ settings }) {
               borderColor: 'divider',
             }}
           >
-            {settings.map((setting, idx) => (
+            {settings.map((setting: any, idx: any) => (
               <Tab key={idx} label={setting.title} {...a11yProps(0)} />
             ))}
           </Tabs>
-          {settings.map((setting, idx) => (
+          {settings.map((setting: any, idx: any) => (
             <TabPanel value={selectedTab} key={idx} index={idx}>
               <SettingsGroup {...setting} />
             </TabPanel>
@@ -118,7 +118,7 @@ export default function SettingsTabs({ settings }) {
         </Box>
       ) : (
         <>
-          {settings.map((setting, idx) => (
+          {settings.map((setting: any, idx: any) => (
             // <Backdrop open={expandedPanel === `panel-${idx}`}>
             <Accordion
               disableGutters
@@ -156,7 +156,7 @@ export default function SettingsTabs({ settings }) {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {setting.groups.map(({ component, label, description }, i) => (
+                {setting.groups.map(({ component, label, description }: {component: any, label: any, description: any}, i: any) => (
                   <div key={i}>
                     <Typography>{label}</Typography>
                     <Typography

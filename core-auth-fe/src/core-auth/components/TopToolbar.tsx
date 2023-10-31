@@ -1,7 +1,7 @@
 import { Box, Toolbar } from '@mui/material'
 import { UserIdField } from './UserIdField'
 
-export const TopToolbar = ({ actions }) => (
+export const TopToolbar = ({ actions }: { actions: any }) => (
   <Toolbar
     variant="dense"
     sx={{ justifyContent: 'space-between' }}

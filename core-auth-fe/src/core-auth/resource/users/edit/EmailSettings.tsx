@@ -9,14 +9,14 @@ import {
   SimpleForm,
   TextField,
   TextInput,
-  UpdateButton,
+  BulkUpdateButton,
   WrapperField,
   useNotify,
   useRecordContext,
   useRefresh,
 } from 'react-admin'
 
-import { SaveOnlyToolbar } from '../../shared/SaveOnlyToolbar'
+import { SaveOnlyToolbar } from '../../../components/SaveOnlyToolbar'
 
 export const EmailSettings = () => {
   const notify = useNotify()
@@ -42,7 +42,7 @@ export const EmailSettings = () => {
         target="user_id"
         label={false}
         fullWidth
-        sort={{ field: '', order: '' }}
+        sort={{ field: '', order: 'ASC' }}
       >
         <Datagrid bulkActionButtons={false} sx={{ mb: 3 }}>
           <EmailField source="email" />
@@ -86,7 +86,7 @@ const MakePrimaryButton = () => {
   if (!record || record.primary) return null
 
   return (
-    <UpdateButton
+    <BulkUpdateButton
       icon={<CheckIcon fontSize="small" />}
       resource="User"
       label="Make Primary"
