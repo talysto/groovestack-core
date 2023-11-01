@@ -84,43 +84,6 @@ function PreferenceSwitch({
   )
 }
 
-const NotificationPreferencesList = () => {
-  const user = useRecordContext()
-
-  return (
-    <List
-      sort={{ field: 'org_unit.name', order: 'ASC' }}
-      resource="Membership"
-      filter={{ user_id: user.id }}
-      actions={false}
-      queryOptions={{ meta: { sparse_fields: membershipSparseFields } }}
-    >
-      <Datagrid bulkActionButtons={false}>
-        <ReferenceField
-          label="Association"
-          source="org_unit_id"
-          reference="OrgUnit"
-          link={false}
-        >
-          <TextField source="name" />
-        </ReferenceField>
-        <FunctionField
-          label="email"
-          render={(membership: RaRecord) => (
-            <PreferenceSwitch rec={membership} attribute={'subscribe_email'} />
-          )}
-        />
-        <FunctionField
-          label="sms"
-          render={(membership: RaRecord) => (
-            <PreferenceSwitch rec={membership} attribute={'subscribe_sms'} />
-          )}
-        />
-      </Datagrid>
-    </List>
-  )
-}
-
 const GeneralSettings = () => (
   <SimpleForm>
     <TextInput source="name" fullWidth />
@@ -157,24 +120,6 @@ export const settingsConfig = [
             <GeneralSettings />
           </Edit>
         ),
-      },
-    ],
-  },
-  {
-    title: 'Communication',
-    groups: [
-      {
-        description: 'How to connect with you.',
-        component: (
-          <Edit {...DefaultEditProps} mutationMode="pessimistic">
-            <EmailSettings />
-          </Edit>
-        ),
-      },
-      {
-        label: 'Notifications',
-        description: 'Opt-out of communications from specific groups.',
-        component: <NotificationPreferencesList />,
       },
     ],
   },
