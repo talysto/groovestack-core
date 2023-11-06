@@ -5689,6 +5689,13 @@
       ]
     }
   ],
+  "Identity": [
+    {
+      "uid": "d295a986-132e-4c9b-98e4-f749559543df",
+      "provider": "google",
+      "user_id": "d295a986-132e-4c9b-98e4-f749559543df"
+    }
+  ],
   "User": [
     {
       "name": "Rachael Harris",

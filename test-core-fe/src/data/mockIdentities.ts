@@ -1,11 +1,28 @@
 import { faker } from '@faker-js/faker'
 
-export const mockIdentities = (count = 15) =>
+export const mockIdentities = (count = 15, user: any) =>
   Array.from({ length: count }, () => ({
-    name: faker.person.fullName(),
+    provider: faker.person.fullName(),
 
     type: 'Identity',
     id: faker.string.uuid(),
-    created_at: faker.date.past(),
-    updated_at: faker.date.past(),
+    user_id: user.id
   }))
+
+
+
+//   class CreateIdentities < ActiveRecord::Migration[7.0]
+//   def change
+//     create_table :identities, id: :uuid, default: nil do |t|
+//       t.citext :provider
+//       t.string :uid
+
+//       t.references :user, foreign_key: true, index: false, null: false, type: :uuid
+
+//       t.timestamps
+//     end
+
+//     add_index :identities, %i[user_id provider], unique: true
+//     add_index :identities, %i[provider uid], unique: true
+//   end
+// end

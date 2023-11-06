@@ -70,9 +70,9 @@ export const UserMenu = () => {
       {menuConfig.map((menu: any, idx: any) => (
         <UserMenuItem
           key={idx}
-          // label={menu.label}
-          // path={menu.path}
-          // icon={menu.icon}
+          label={menu.label}
+          path={menu.path}
+          icon={menu.icon}
         />
       ))}
 

@@ -6,13 +6,18 @@ import { mockComments } from '@moonlight-labs/core-comments-fe/mock'
 import { mockVersions } from '@moonlight-labs/core-versions-fe/mock'
 import { mockNotifications } from '@moonlight-labs/core-notifications-fe/mock'
 
-// identities
-// import { mockIdentities } from '..src/data/mockIdentities'
+import { mockIdentities } from '..src/data/mockIdentities'
 import { mockUsers } from '../src/data/mockUsers'
 import { mockCompanies } from '../src/data/mockCompanies'
 import { mock } from 'node:test'
 
 const users = mockUsers(10)
+let identities = []
+
+users.forEach((user) => {
+  const identity = faker.helpers.arrayElement(mockIdentities(1, user))
+  identities.push({})
+})
 const companies = mockCompanies(5)
 const webhooks = mockWebhooks()
 
@@ -120,6 +125,7 @@ const data = {
   // For Testing Integrations
   User: users,
   Company: companies,
+  Identity: identities
 }
 
 console.log(JSON.stringify(data, null, 2))

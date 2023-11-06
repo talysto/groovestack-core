@@ -34,6 +34,7 @@ export const UserTable = () => (
   >
     <Datagrid bulkActionButtons={<BulkActionButtons />} rowClick={'show'}>
       <UserIdField />
+      {/* <createdAt // timeAgoField */}
     </Datagrid>
   </List>
 )

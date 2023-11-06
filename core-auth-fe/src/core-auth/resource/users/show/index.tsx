@@ -4,30 +4,23 @@ import {
   Edit,
   EditProps,
   FunctionField,
-  List,
   PasswordInput,
   RaRecord,
-  ReferenceField,
   ReferenceManyField,
   Show,
   SimpleForm,
   TabProps,
   TabbedShowLayout,
-  TextField,
   TextInput,
   useGetIdentity,
-  useRecordContext,
-  useUpdate,
+  useRecordContext
 } from 'react-admin'
 
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
-import { Box, Switch } from '@mui/material'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { Box } from '@mui/material'
 
 import { TopToolbar } from '../../../components/TopToolbar'
-import { EmailSettings } from '../edit/EmailSettings'
 import { StandardTitle } from '../../../components/StandardTitle'
-import { AddressInput } from '../../../components/AddressInput'
 
 import SettingsTabs from '../../../components/SettingsTabs'
 
@@ -45,52 +38,10 @@ const ChangePasswordForm = () => (
   </SimpleForm>
 )
 
-const membershipSparseFields = [
-  'id',
-  'org_unit_id',
-  'subscribe_email',
-  'subscribe_sms',
-]
-
-function PreferenceSwitch({
-  rec,
-  attribute,
-}: {
-  rec: RaRecord
-  attribute: string
-}) {
-  const record = useRecordContext()
-
-  const [checked, setChecked] = useState(record[attribute])
-  const [update, { isLoading, error }] = useUpdate()
-  const handleClick = (event: ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked)
-  }
-
-  useEffect(() => {
-    if (checked != record[attribute])
-      update('Membership', {
-        id: rec.id,
-        data: { [attribute]: checked },
-        previousData: rec,
-      })
-  }, [checked])
-
-  if (error) {
-    return <p>ERROR</p>
-  }
-  return (
-    <Switch checked={checked} disabled={isLoading} onChange={handleClick} />
-  )
-}
-
 const GeneralSettings = () => (
   <SimpleForm>
     <TextInput source="name" fullWidth />
-    <TextInput source="phone" fullWidth />
-    <AddressInput source="address" fullWidth />
-
-    <TextInput disabled source="language" fullWidth />
+    <TextInput source="email" fullWidth />
   </SimpleForm>
 )
 
