@@ -10,5 +10,4 @@ export class Users {
   static List = UserTable
   static Show = UserShow
   static Menu = UserMenu
-  // static Edit = UserEdit
 }

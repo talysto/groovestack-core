@@ -25,7 +25,6 @@ import { Box, Switch } from '@mui/material'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import { TopToolbar } from '../../../components/TopToolbar'
-import { EmailSettings } from '../edit/EmailSettings'
 import { StandardTitle } from '../../../components/StandardTitle'
 import { AddressInput } from '../../../components/AddressInput'
 
