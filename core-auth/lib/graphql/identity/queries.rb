@@ -8,7 +8,7 @@ module GraphQL
       included do
         include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-        react_admin_resource :identities #, graphql_path: "GraphQL"
+        react_admin_resource :identities, graphql_path: "GraphQL"
       end
   
       def identities_scope(sort_field: nil, sort_order: nil, filter: {})

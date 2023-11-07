@@ -1,3 +1,10 @@
+require 'devise_helper'
+require 'devise_controller'
+require 'devise_token_auth/concerns/resource_finder'
+require 'devise_token_auth/concerns/set_user_by_token'
+require 'devise_token_auth/application_controller'
+require 'devise_token_auth/omniauth_callbacks_controller'
+
 class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController # Devise::OmniauthCallbacksController
   def auth_hash
     @auth_hash ||= request.env['omniauth.auth'] # goes through plain old omniauth so need to override

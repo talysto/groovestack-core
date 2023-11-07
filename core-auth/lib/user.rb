@@ -1,4 +1,11 @@
+require 'devise'
 require 'graphql_devise'
+require 'devise_token_auth_email_validator'
+require 'devise_token_auth/concerns/active_record_support'
+require 'devise_token_auth/concerns/confirmable_support'
+require 'devise_token_auth/concerns/user_omniauth_callbacks'
+require 'devise_token_auth/concerns/tokens_serialization'
+require 'devise_token_auth/concerns/user'
 
 class User < ActiveRecord::Base
   include Users::Roles
@@ -8,14 +15,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  include ::GraphqlDevise::Authenticatable
-
-  # NOTE: this must be after the include DeviseTokenAuth::Concerns::User
-  # b/c Devise Token Auth apparently removes the omniauthable module
-  # https://github.com/lynndylanhurley/devise_token_auth/blob/master/app/models/devise_token_auth/concerns/user.rb#L18
-  
-  devise :omniauthable, omniauth_providers: [:google]
 
   has_many :identities, dependent: :destroy
 

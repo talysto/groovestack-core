@@ -8,7 +8,7 @@ module GraphQL
       included do
         include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-        react_admin_resource :users #, graphql_path: "GraphQL"
+        react_admin_resource :users, graphql_path: "GraphQL"
       end
 
       def current_user
