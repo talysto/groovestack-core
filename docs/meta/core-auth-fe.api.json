@@ -269,6 +269,41 @@
             },
             {
               "kind": "Property",
+              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.Providers:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static Providers: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "typeof "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Providers",
+                  "canonicalReference": "@moonlight-labs/core-auth-fe!~Providers:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "Providers",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
               "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.RA:member",
               "docComment": "",
               "excerptTokens": [

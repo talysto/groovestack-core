@@ -36,8 +36,14 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.6",
     "@mui/lab": "5.0.0-alpha.146",
+    "@rails/actioncable": "^7.1.1",
+    "graphql-ruby-client": "^1.11.9",
     "react-hook-form": "^7.47.0",
     "react-router-dom": "^6.16.0"
+  },
+  "devDependencies": {
+    "@types/rails__actioncable": "^6.1.8"
   }
 }

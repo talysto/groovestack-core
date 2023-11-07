@@ -15,14 +15,14 @@ import {
 import { Link } from 'react-router-dom'
 import { AvatarLabel } from './AvatarLabel'
 
-const UserMenuItem = React.forwardRef((props, ref) => {
+const UserMenuItem = React.forwardRef((props: any, ref) => {
   const { onClose } = useUserMenu()
 
-  const { label, icon, path }: any = props
+  const { label, icon, path } = props
 
   return (
     <MenuItem
-      // ref={ref}
+      ref={ref}
       component={Link}
       {...props}
       to={path}
@@ -45,7 +45,7 @@ export const UserMenu = () => {
 
   if (loadingMe) return null
 
-  const menuConfig: any = [
+  const menuConfig = [
     {
       label: 'Preferences',
       path: `${createPath({
@@ -67,7 +67,7 @@ export const UserMenu = () => {
       </Box>
       <Divider sx={{ mt: 1, mb: 1 }} />
 
-      {menuConfig.map((menu: any, idx: any) => (
+      {menuConfig.map((menu, idx) => (
         <UserMenuItem
           key={idx}
           label={menu.label}

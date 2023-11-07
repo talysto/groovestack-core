@@ -1,6 +1,7 @@
 // in src/MyAppBar.js
 // import { NotificationMenuButton } from '@moonlight-labs/core-notifications-fe'
-import { AppBar, Logout, TitlePortal, UserMenu } from 'react-admin'
+// import { AppBar, Logout, TitlePortal, UserMenu } from 'react-admin'
+import { AppBar, TitlePortal } from 'react-admin'
 import { Auth } from '@moonlight-labs/core-auth-fe'
 
 // const SettingsMenuItem = React.forwardRef((props, ref) => {

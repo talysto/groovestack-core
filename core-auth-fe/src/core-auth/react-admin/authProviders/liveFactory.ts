@@ -1,54 +1,37 @@
-import { AuthProvider } from 'react-admin'
+import { gql } from '@apollo/client'
+import { AuthProviderFactoryType } from './index'
 
 type LoginCredentials = { email: string; password: string }
 
-interface GenerateFetchClientProps {
-  body?: string
-  headers?: { [key: string]: string }
-  method: string
-  path: string
-  baseUrl?: string
-}
+export const liveAuthProviderFactory: AuthProviderFactoryType = ({ credentials, resource, requiredRole, client }) => {
+  const LOGIN_MUTATION = gql`
+    mutation ${resource}Login($email: String!, $password: String!) {
+      ${resource}Login(email: $email, password: $password) {
+        authenticatable {
+          id
+          email
+        }
+        credentials {
+          accessToken
+          client
+          expiry
+          tokenType
+          uid
+        }
+      }
+    }
+  `
 
-export const generateFetchRequest = ({
-  body,
-  headers = {},
-  method,
-  path,
-  baseUrl = window.location.host,
-}: GenerateFetchClientProps): Request => {
-  const requestArgs: { method: string; headers: Headers; body?: string } = {
-    method: method,
-    headers: new Headers(
-      Object.assign(
-        {
-          'Content-Type': 'application/json',
-        },
-        headers,
-      ),
-    ),
-  }
+  const LOGOUT_MUTATION = gql`
+    mutation ${resource}Logout {
+      ${resource}Logout {
+        authenticatable {
+          email
+        }
+      }
+    }
+`
 
-  if (body) requestArgs.body = body
-
-  const request = new Request(`https://${baseUrl}/${path}`, requestArgs)
-
-  return request
-}
-
-export type Credentials = {
-  getCurrentResource: () => any
-  removeCurrentResource: () => void
-  setCurrentResource: (resource: any) => any // often done in hydrateCurrentResource method
-  hydrateCurrentResource?: () => Promise<any>
-}
-
-type LiveAuthProviderFactoryType = (params: { resource: string, credentials: Credentials, requiredRole?: string }) => AuthProvider
-
-// NOTE this is a simple auth provider that has expectations about the auth server
-// this can be completely overridden when passed to the Admin component. This is
-// simply a starter kit
-export const liveAuthProviderFactory: LiveAuthProviderFactoryType = ({ credentials, resource, requiredRole }) => {
   const getIdentity = async () => {
     let currentResource = credentials.getCurrentResource()
     if (currentResource || !credentials.hydrateCurrentResource) return currentResource
@@ -69,31 +52,21 @@ export const liveAuthProviderFactory: LiveAuthProviderFactoryType = ({ credentia
       email,
       password,
     }: LoginCredentials): Promise<void | any> => {
-      const request = generateFetchRequest({
-        body: JSON.stringify({
-          user: { email, password },
-        }),
-        method: 'POST',
-        path: `${resource}/login.json`,
-      })
-
-      let response, data
       try {
-        response = await fetch(request)
-        data = await response.json()
-      } catch (e) {
+        const { data, errors } = await client.mutate({ mutation: LOGIN_MUTATION, variables: { email, password } })
+        if (errors && errors.length > 0) throw new Error(errors[0].message)
+        const { authenticatable: currentUser } = data[`${resource}Login`]
+        const { accessToken, tokenType, uid, ...rest } = data[`${resource}Login`].credentials
+        credentials.setAuthHeaders({ 'access-token': accessToken, 'token-type': tokenType, id: currentUser.id, ...rest })
+        credentials.setCurrentResource(currentUser)
+
+        if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource()
+
+        return data
+      } catch(e: any) {
         console.error(e)
-        throw new Error('Network error')
+        throw new Error(e.message || 'Error logging in')
       }
-
-      if (response.status != 200) {
-        console.error(data)
-        throw new Error(data[0]?.message)
-      }
-
-      if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource()
-
-      return data
     },
     // when the dataProvider returns an error, check if this is an authentication error
     checkError: async (error) => {
@@ -113,6 +86,7 @@ export const liveAuthProviderFactory: LiveAuthProviderFactoryType = ({ credentia
     // when the user navigates, make sure that their credentials are still valid
     checkAuth: async (params) => {
       const currentResource = credentials.getCurrentResource()
+      if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource()
 
       if (!currentResource || (requiredRole && !currentResource?.roles.includes(requiredRole))){
         if (requiredRole) throw new Error(
@@ -124,18 +98,19 @@ export const liveAuthProviderFactory: LiveAuthProviderFactoryType = ({ credentia
       return
     },
     logout: async () => {
-      credentials.removeCurrentResource()
+      try {
+        const { data, errors } = await client.mutate({ mutation: LOGOUT_MUTATION })
+        if (errors && errors.length > 0) throw new Error(errors[0].message)
 
-      const request = generateFetchRequest({
-        method: 'DELETE',
-        path: `${resource}/logout.json`,
-      })
-
-      const response = await fetch(request)
-      if (response.status != 204 && response.status != 200) {
-        throw new Error('Error logging out')
+      } catch(e: any) {
+        console.error(e)
+        if (e.message != "User was not found or was not logged in.") throw new Error(e.message || 'Error logging out')
       }
 
+      credentials.removeCurrentResource()
+      credentials.clearAuthHeaders()
+      // client.resetStore() // https://www.apollographql.com/docs/react/networking/authentication/#reset-store-on-logout
+      
       return
     },
     getIdentity,

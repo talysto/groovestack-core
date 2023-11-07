@@ -143,6 +143,9 @@ importers:
 
   core-auth-fe:
     dependencies:
+      '@apollo/client':
+        specifier: ^3.8.6
+        version: 3.8.7(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
       '@mui/icons-material':
         specifier: 5.14.1
         version: 5.14.1(@mui/material@5.14.15)(@types/react@18.2.15)(react@18.2.0)
@@ -152,6 +155,12 @@ importers:
       '@mui/material':
         specifier: ^5.14.15
         version: 5.14.15(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
+      '@rails/actioncable':
+        specifier: ^7.1.1
+        version: 7.1.1
+      graphql-ruby-client:
+        specifier: ^1.11.9
+        version: 1.11.9(@apollo/client@3.8.7)(graphql@16.8.1)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -167,6 +176,10 @@ importers:
       react-router-dom:
         specifier: ^6.16.0
         version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@types/rails__actioncable':
+        specifier: ^6.1.8
+        version: 6.1.8
 
   core-base-fe:
     dependencies:
@@ -631,6 +644,42 @@ packages:
 
   /@apollo/client@3.8.6(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-FnHg3vhQP8tQzgBs6oTJCFFIbovelDGYujj6MK7CJneiHf62TJstCIO0Ot4A1h7XrgFEtgl8a/OgajQWqrTuYw==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql-ws: ^5.5.5
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
+    peerDependenciesMeta:
+      graphql-ws:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      subscriptions-transport-ws:
+        optional: true
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
+      '@wry/context': 0.7.4
+      '@wry/equality': 0.5.7
+      '@wry/trie': 0.4.3
+      graphql: 16.8.1
+      graphql-tag: 2.12.6(graphql@16.8.1)
+      hoist-non-react-statics: 3.3.2
+      optimism: 0.17.5
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      response-iterator: 0.2.6
+      symbol-observable: 4.0.0
+      ts-invariant: 0.10.3
+      tslib: 2.6.0
+      zen-observable-ts: 1.2.5
+    dev: false
+
+  /@apollo/client@3.8.7(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-DnQtFkQrCyxHTSa9gR84YRLmU/al6HeXcLZazVe+VxKBmx/Hj4rV8xWtzfWYX5ijartsqDR7SJgV037MATEecA==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
@@ -5613,6 +5662,10 @@ packages:
       '@babel/runtime': 7.23.2
     dev: true
 
+  /@rails/actioncable@7.1.1:
+    resolution: {integrity: sha512-ZRJ9rdwFQQjRbtgJnweY0/4UQyxN6ojEGRdib0JkjnuIciv+4ok/aAeZmBJqNreTMaBqS0eHyA9hCArwN58opg==}
+    dev: false
+
   /@remix-run/router@1.10.0:
     resolution: {integrity: sha512-Lm+fYpMfZoEucJ7cMxgt4dYt8jLfbpwRCzAjm9UgSLOkmlqo9gupxt6YX3DY0Fk155NT9l17d/ydi+964uS9Lw==}
     engines: {node: '>=14.0.0'}
@@ -7088,6 +7141,10 @@ packages:
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
+
+  /@types/rails__actioncable@6.1.8:
+    resolution: {integrity: sha512-nKdKS8K6asR5qdRw9M0vQjT84QCZut9SKavdxlMUERO2oz4PlC5ZPe0H15sbIURyGRwq5rVQHPpjgxEivI05qg==}
+    dev: true
 
   /@types/range-parser@1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
@@ -10691,6 +10748,20 @@ packages:
 
   /graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
+
+  /graphql-ruby-client@1.11.9(@apollo/client@3.8.7)(graphql@16.8.1):
+    resolution: {integrity: sha512-bcwpod020KDcqUUVQ22sUifL7lRuIzcjFiYauFF/V/2oRt5Wd/fClKqRny2p+1RX7CHm+dzrQlKkuwBh7Z84HA==}
+    engines: {node: '>=10'}
+    hasBin: true
+    peerDependencies:
+      '@apollo/client': '>=3.3.6'
+      graphql: '>=14.3.1'
+    dependencies:
+      '@apollo/client': 3.8.7(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
+      glob: 7.2.3
+      graphql: 16.8.1
+      minimist: 1.2.8
+    dev: false
 
   /graphql-tag@2.12.6(graphql@16.8.1):
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
