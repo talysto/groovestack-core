@@ -70,6 +70,7 @@ export const UserMenu = () => {
       {menuConfig.map((menu: any, idx: any) => (
         <UserMenuItem
           key={idx}
+          //@ts-ignore
           label={menu.label}
           path={menu.path}
           icon={menu.icon}
