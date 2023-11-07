@@ -60,18 +60,27 @@ function AdminApp() {
     <Admin
       disableTelemetry
       dataProvider={mockDataProvider}
-      // authProvider={authProvider}
-      // loginPage={Auth.RA.LoginPage}
+      authProvider={authProvider}
+      loginPage={Auth.RA.LoginPage}
       theme={theme}
       dashboard={DashboardView}
       layout={CustomLayout}
     >
-      <Resource
+      {/* <Resource
         name="User"
         icon={Auth.Users.Icon}
         list={Auth.Users.List}
         show={Auth.Users.Show}
         recordRepresentation="name"
+        options={{ label: 'Users (Test)' }}
+      /> */}
+      <Resource
+        name={Auth.Users.Name}
+        icon={User.Icon}
+        // edit={User.Edit}
+        list={Auth.Users.List}
+        show={Auth.Users.Show}
+        recordRepresentation="Auth Name"
         options={{ label: 'Users (Test)' }}
       />
 

@@ -1,7 +1,10 @@
+// import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 import {
   Datagrid,
+  DateField,
   FilterButton,
   List,
+  NumberField,
   TextInput,
   TopToolbar,
 } from 'react-admin'
@@ -34,7 +37,10 @@ export const UserTable = () => (
   >
     <Datagrid bulkActionButtons={<BulkActionButtons />} rowClick={'show'}>
       <UserIdField />
-      {/* <createdAt // timeAgoField */}
+      {/* <TimeAgoField source="last_login_at" /> */}
+      <DateField source="last_login_at" />
+      <NumberField source="sign_in_count" />
+      <NumberField source="identities_count" />
     </Datagrid>
   </List>
 )
