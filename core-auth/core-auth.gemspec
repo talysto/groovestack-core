@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'graphql_devise'
   spec.add_dependency 'omniauth-google-oauth2'
-  spec.add_dependency 'omniauth-rails_csrf_protection'
+  spec.add_dependency 'rails'
   
   spec.add_development_dependency 'graphql'
   spec.add_development_dependency 'pg'
