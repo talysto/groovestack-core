@@ -8,16 +8,19 @@ import { mockNotifications } from '@moonlight-labs/core-notifications-fe/mock'
 
 import { mockIdentities } from '..src/data/mockIdentities'
 import { mockUsers } from '../src/data/mockUsers'
-import { mockCompanies } from '../src/data/mockCompanies'
+import { mockCompanies,
+  //  mockIdentities
+   } from '../src/data/mockCompanies'
 import { mock } from 'node:test'
 
 const users = mockUsers(10)
 let identities = []
 
 users.forEach((user) => {
-  const identity = faker.helpers.arrayElement(mockIdentities(1, user))
-  identities.push({})
+  const identity = faker.helpers.arrayElement(mockIdentities(3, user))
+  identities.push(identity)
 })
+
 const companies = mockCompanies(5)
 const webhooks = mockWebhooks()
 

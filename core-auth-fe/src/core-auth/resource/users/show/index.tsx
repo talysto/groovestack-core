@@ -1,5 +1,6 @@
 import {
   Datagrid,
+  DateInput,
   DeleteWithConfirmButton,
   Edit,
   EditProps,
@@ -13,14 +14,15 @@ import {
   TabbedShowLayout,
   TextInput,
   useGetIdentity,
-  useRecordContext
+  useRecordContext,
 } from 'react-admin'
 
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
-import { TopToolbar } from '../../../components/TopToolbar'
 import { StandardTitle } from '../../../components/StandardTitle'
+import { TopToolbar } from '../../../components/TopToolbar'
 
 import SettingsTabs from '../../../components/SettingsTabs'
 
@@ -42,6 +44,31 @@ const GeneralSettings = () => (
   <SimpleForm>
     <TextInput source="name" fullWidth />
     <TextInput source="email" fullWidth />
+    <TextInput source="language" fullWidth />
+    <TextInput source="avatar_image.0" fullWidth />
+    {/* Identity Table (Reference Many) */}
+    {/* <ReferenceManyField reference="Identity" target="user_id" label={false}>
+      <Datagrid>
+        <FunctionField
+          label="provider"
+          render={(rec: RaRecord) => {
+            return (
+              <>
+                <Box sx={{ display: 'inline-block', pl: 0.5 }}>
+                  {titleCase(rec.provider)}
+                </Box>
+              </>
+            )
+          }}
+        />
+        <DeleteWithConfirmButton
+          redirect={false}
+          title="Disconnect"
+          confirmTitle="Delete Social Login"
+          confirmContent={<ConfirmDeleteIdentityContent />}
+        />
+      </Datagrid>
+    </ReferenceManyField> */}
   </SimpleForm>
 )
 
@@ -57,7 +84,7 @@ const ConfirmDeleteIdentityContent = () => {
 
 const DefaultEditProps: EditProps = {
   redirect: false,
-  actions: false
+  actions: false,
 }
 
 export const settingsConfig = [
@@ -124,6 +151,48 @@ export const settingsConfig = [
   },
 ]
 
+const IdentitiesExpand = () => {
+  return (
+    <p>//TODO: display omniauth request blob</p>
+  )
+}
+
+const AdminTab = () => {
+  return (
+    <Edit actions={false}>
+      <SimpleForm>
+        <Typography variant="h6">General</Typography>
+        <DateInput disabled source="last_login_at" />
+        <TextInput disabled source="sign_in_count" />
+        <Typography variant="h6">User Role Management</Typography>
+        //TODO
+        <Box margin='10' />
+        <Typography variant="h6">Identites</Typography>
+        <ReferenceManyField
+              reference="Identity"
+              target="user_id"
+              label={false}
+            >
+              <Datagrid bulkActionButtons={false} expand={<IdentitiesExpand />} expandSingle>
+                <FunctionField
+                  label="provider"
+                  render={(rec: RaRecord) => {
+                    return (
+                      <>
+                        <Box sx={{ display: 'inline-block', pl: 0.5 }}>
+                          {titleCase(rec.provider)}
+                        </Box>
+                      </>
+                    )
+                  }}
+                />
+              </Datagrid>
+            </ReferenceManyField>
+      </SimpleForm>
+    </Edit>
+  )
+}
+
 interface TabConfig {
   label: string
   component: JSX.Element
@@ -137,7 +206,13 @@ const tabsConfig: Array<TabConfig> = [
     icon: SettingsIcon,
     component: <SettingsTabs settings={settingsConfig} />,
     displayIf: (user: any) => true,
-  }
+  },
+  {
+    label: 'Admin',
+    icon: AdminPanelSettingsIcon,
+    component: <AdminTab settings={settingsConfig} />,
+    displayIf: (user: any) => true,
+  },
 ]
 
 const UserTabs = () => {
