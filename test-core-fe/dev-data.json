@@ -6004,61 +6004,61 @@
   ],
   "Identity": [
     {
-      "provider": "Google",
+      "provider": "google",
       "type": "Identity",
       "id": "8bb3cb9b-b4c8-4a3a-bd3d-0d0e272ebf2d",
       "user_id": "42f03cbb-1f42-4303-9a49-62c0934709a5"
     },
     {
-      "provider": "Apple",
+      "provider": "apple",
       "type": "Identity",
       "id": "6331f2a5-6b84-4f5c-8583-8e923d61e3f0",
       "user_id": "4e0aa6dc-3982-4301-8702-9ac93cddf783"
     },
     {
-      "provider": "Apple",
+      "provider": "apple",
       "type": "Identity",
       "id": "46e1d3dd-cda9-4c69-a46e-33732c110219",
       "user_id": "7d568041-95dd-43e0-a28f-c466331c5b64"
     },
     {
-      "provider": "Apple",
+      "provider": "apple",
       "type": "Identity",
       "id": "3735bf1d-24e9-4cad-a2d5-9782370da059",
       "user_id": "35970f0f-2703-427f-b952-791f2c83351f"
     },
     {
-      "provider": "Apple",
+      "provider": "apple",
       "type": "Identity",
       "id": "05b4ec55-a455-440f-b90b-dc290e4aef91",
       "user_id": "92929218-95e2-46f5-a47d-fc30bb17558c"
     },
     {
-      "provider": "Apple",
+      "provider": "apple",
       "type": "Identity",
       "id": "9c00e8b6-5053-45f5-9983-311255f3aaae",
       "user_id": "71b7ab1b-516d-418d-a6b1-5adc90f388f8"
     },
     {
-      "provider": "Apple",
+      "provider": "apple",
       "type": "Identity",
       "id": "1542ddd1-e068-4ef7-9783-f34787713f40",
       "user_id": "7e3e9190-65cd-4d46-80b2-2fbab540e3dd"
     },
     {
-      "provider": "Google",
+      "provider": "google",
       "type": "Identity",
       "id": "d8a39e49-852e-4acd-960f-63284cff171c",
       "user_id": "2ff9f78e-c66f-4f9b-89f6-c2e6cd478327"
     },
     {
-      "provider": "Google",
+      "provider": "google",
       "type": "Identity",
       "id": "82d93ba1-cfba-4a86-96dd-4d25ea37f39e",
       "user_id": "e52074d3-721c-43df-8e52-7b59d5693de9"
     },
     {
-      "provider": "Apple",
+      "provider": "apple",
       "type": "Identity",
       "id": "38fa0d2c-821a-480b-9141-4df232cb6caa",
       "user_id": "80b72b10-b9cc-4efb-acd1-9ebfe736cc62"

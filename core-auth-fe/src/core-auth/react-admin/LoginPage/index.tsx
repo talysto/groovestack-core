@@ -1,7 +1,7 @@
 import LockIcon from '@mui/icons-material/Lock'
 import { Avatar, Box, Button, Card, SxProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { HtmlHTMLAttributes, useEffect, useRef } from 'react'
+import { HtmlHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { TextField, useCheckAuth } from 'react-admin'
 import { useNavigate } from 'react-router-dom'
 import { useLogin, useNotify, useSafeSetState } from 'react-admin'
@@ -46,6 +46,7 @@ export const LoginPage = (props: LoginPageProps) => {
   let { backgroundImage, socialProviders=['google'], Headline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
+  const [usersCount, setUsersCount] = useState(0)
   const checkAuth = useCheckAuth()
   const navigate = useNavigate()
 
@@ -117,6 +118,13 @@ export const LoginPage = (props: LoginPageProps) => {
       })
   }, [checkAuth, navigate])
 
+  useEffect(() => {
+    // call app config and gather users_count information
+    const results = 0
+
+    setUsersCount(results)
+  }, [usersCount])
+
   const updateBackgroundImage = () => {
     if (!backgroundImageLoaded && containerRef.current) {
       containerRef.current.style.backgroundImage = `url(${backgroundImage})`
@@ -140,9 +148,16 @@ export const LoginPage = (props: LoginPageProps) => {
   })
 
   const social = oauthProviders.filter(oP => socialProviders.includes(oP.k))
-
+  
   return (
     <Root {...rest} ref={containerRef}>
+       {usersCount < 1 ? (
+            <>
+              <div>There are currently no registered users on your application.</div>
+              <div>Be the first!</div>
+            </>
+          ) : <></>
+        }
       <Card className={LoginClasses.card}>
         <div className={LoginClasses.avatar}>
           <Avatar className={LoginClasses.icon}>
@@ -154,8 +169,9 @@ export const LoginPage = (props: LoginPageProps) => {
           social={social}
           socialSignInRender={socialSignInRender}
           onLogin={onLogin}
-          // onRegister={onRegister}
-          registration={false}
+          onRegister={(register) => (console.log('register'))}
+          registration={true}
+          login={usersCount > 0 ? true : false}
           ctaDisabled={loading}
         />
       </Card>
@@ -175,7 +191,7 @@ const PREFIX = 'RaLogin'
 export const LoginClasses = {
   card: `${PREFIX}-card`,
   avatar: `${PREFIX}-avatar`,
-  icon: `${PREFIX}-icon`,
+  icon: `${PREFIX}-icon`
 }
 
 const Root = styled('div', {

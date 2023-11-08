@@ -17,6 +17,9 @@ import {
   useRecordContext,
 } from 'react-admin'
 
+import { IdentitiesTable } from '../../identities/show/table'
+import { IdentitiesAdminTable } from '../../identities/show/AdminTable'
+
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
 import { Box, Typography } from '@mui/material'
@@ -48,16 +51,6 @@ const GeneralSettings = () => (
     <TextInput source="avatar_image.0" fullWidth />
   </SimpleForm>
 )
-
-const ConfirmDeleteIdentityContent = () => {
-  const record = useRecordContext()
-
-  return (
-    <Box>
-      Are you sure you want to delete your {titleCase(record.provider)} login?
-    </Box>
-  )
-}
 
 const DefaultEditProps: EditProps = {
   redirect: false,
@@ -94,35 +87,8 @@ export const settingsConfig = [
         label: 'Social Logins',
         description: 'Connect social accounts to enable single sign-on',
         component: (
-          <Edit {...DefaultEditProps}>
-            <ReferenceManyField
-              reference="Identity"
-              target="user_id"
-              label={false}
-            >
-              <Datagrid bulkActionButtons={false}>
-                <FunctionField
-                  label="provider"
-                  render={(rec: RaRecord) => {
-                    return (
-                      <>
-                        <Box sx={{ display: 'inline-block', pl: 0.5 }}>
-                          {titleCase(rec.provider)}
-                        </Box>
-                      </>
-                    )
-                  }}
-                />
-                <DeleteWithConfirmButton
-                  redirect={false}
-                  title="Disconnect"
-                  confirmTitle="Delete Social Login"
-                  confirmContent={<ConfirmDeleteIdentityContent />}
-                />
-              </Datagrid>
-            </ReferenceManyField>
-          </Edit>
-        ),
+          <IdentitiesTable />
+        )
       },
     ],
   },
@@ -145,26 +111,7 @@ const AdminTab = () => {
         //TODO
         <Box margin='10' />
         <Typography variant="h6">Identites</Typography>
-        <ReferenceManyField
-              reference="Identity"
-              target="user_id"
-              label={false}
-            >
-              <Datagrid bulkActionButtons={false} expand={<IdentitiesExpand />} expandSingle>
-                <FunctionField
-                  label="provider"
-                  render={(rec: RaRecord) => {
-                    return (
-                      <>
-                        <Box sx={{ display: 'inline-block', pl: 0.5 }}>
-                          {titleCase(rec.provider)}
-                        </Box>
-                      </>
-                    )
-                  }}
-                />
-              </Datagrid>
-            </ReferenceManyField>
+        <IdentitiesAdminTable />
       </SimpleForm>
     </Edit>
   )

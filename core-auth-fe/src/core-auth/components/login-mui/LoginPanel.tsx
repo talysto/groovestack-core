@@ -19,6 +19,7 @@ interface Props {
   onLoginClick?: Function
   onRegisterClick?: Function
   registration?: boolean
+  login?: boolean
 }
 
 /**
@@ -32,8 +33,9 @@ export function LoginPanel({
   socialSignInRender,
   ctaDisabled = false,
   registration = true,
+  login = true
 }: Props) {
-  const [value, setValue] = useState('1')
+  const [value, setValue] = !login ? useState('2') : useState('1')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue)
@@ -44,17 +46,27 @@ export function LoginPanel({
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="Login or Signup">
+            {/* {login && <Tab label="Login" value="1" />} */}
             <Tab label="Login" value="1" />
             {registration && <Tab label="Sign Up" value="2" />}
           </TabList>
         </Box>
+        {/* {login && (
+          <TabPanel value="1">
+            <LoginForm
+              ctaDisabled={ctaDisabled}
+              onSubmit={onLogin}
+              onPasswordReset={onPasswordReset}
+            />
+          </TabPanel>
+        )} */}
         <TabPanel value="1">
-          <LoginForm
-            ctaDisabled={ctaDisabled}
-            onSubmit={onLogin}
-            onPasswordReset={onPasswordReset}
-          />
-        </TabPanel>
+            <LoginForm
+              ctaDisabled={ctaDisabled}
+              onSubmit={onLogin}
+              onPasswordReset={onPasswordReset}
+            />
+          </TabPanel>
         {registration && (
           <TabPanel value="2">
             <SignupForm onSubmit={onRegister} />
