@@ -1,5 +1,5 @@
 import LockIcon from '@mui/icons-material/Lock'
-import { Avatar, Box, Button, Card, SxProps } from '@mui/material'
+import { Avatar, Box, Button, Card, Input, SxProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { HtmlHTMLAttributes, useEffect, useRef } from 'react'
 import { TextField, useCheckAuth } from 'react-admin'
@@ -39,8 +39,6 @@ const csrfToken = () => {
   const meta: any = document.querySelector('meta[name=csrf-token]');
   return meta && meta.content;
 };
-
-const csrf = csrfToken()
 
 export const LoginPage = (props: LoginPageProps) => {
   let { backgroundImage, socialProviders=['google'], Headline, ...rest } = props
@@ -92,6 +90,8 @@ export const LoginPage = (props: LoginPageProps) => {
       })
   }
 
+  const csrf = csrfToken()
+
   const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href}) => {
     return (
       <Box
@@ -100,7 +100,7 @@ export const LoginPage = (props: LoginPageProps) => {
         sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
         action={href}
       >
-        <TextField type='hidden' name='authenticity_token' value={csrf} />
+        <Input type='hidden' name='authenticity_token' value={csrf} />
         <Button type='submit' variant="outlined" startIcon={icon}>{label}</Button>
       </Box>
     )
