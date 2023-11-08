@@ -43,7 +43,7 @@ module Core
               def generate_report(id:)
                 variables = { id: id, meta: nil }
 
-                context[:schema].execute self.class::QUERY_STRING, variables: variables
+                context[:schema].execute self.class::QUERY_STRING, variables: variables, context: context
               end
             end
 

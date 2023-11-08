@@ -12,11 +12,13 @@ module Core
 
         class BaseField < ::GraphQL::Schema::Field
           argument_class BaseArgument
+          attr_reader :authenticate
 
-          def initialize(*args, null: false, camelize: false, **kwargs, &block)
+          def initialize(*args, authenticate: nil, null: false, camelize: false, **kwargs, &block)
             # Then, call super _without_ any args, where Ruby will take
             # _all_ the args originally passed to this method and pass it to the super method.
-            super
+            @authenticate = authenticate
+            super(*args, null: null, camelize: camelize, **kwargs, &block)
           end
         end
 
