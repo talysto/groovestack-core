@@ -1,12 +1,3 @@
-require 'devise'
-require 'graphql_devise'
-require 'devise_token_auth_email_validator'
-require 'devise_token_auth/concerns/active_record_support'
-require 'devise_token_auth/concerns/confirmable_support'
-require 'devise_token_auth/concerns/user_omniauth_callbacks'
-require 'devise_token_auth/concerns/tokens_serialization'
-require 'devise_token_auth/concerns/user'
-
 class User < ActiveRecord::Base
   include Users::Roles
   extend ::Devise::Models
@@ -23,7 +14,8 @@ class User < ActiveRecord::Base
 
   # GraphqlDevise overrides (due to omniauthable relying on new Identity model)
   # NOTE: DeviseTokenAuth User.provider & User.uid columns are removed
-
+  # TODO: can we remove this overrides?
+  
   def provider 
     # will probably need to pick from identities eventually
     nil
