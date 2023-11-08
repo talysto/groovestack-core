@@ -1,5 +1,23 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.9
+
+### Patch Changes
+
+- fix socialsigninrender form
+
+## 0.1.8
+
+### Patch Changes
+
+- csrf handling
+
+## 0.1.7
+
+### Patch Changes
+
+- auth providers / social sign in improvements
+
 ## 0.1.5
 
 ### Patch Changes

@@ -5,9 +5,12 @@ import {
   Edit,
   EditProps,
   FunctionField,
+  ImageField,
+  ImageInput,
   PasswordInput,
   RaRecord,
   ReferenceManyField,
+  SelectInput,
   Show,
   SimpleForm,
   TabProps,
@@ -43,12 +46,37 @@ const ChangePasswordForm = () => (
   </SimpleForm>
 )
 
+const languageChoices = [
+  { id: 'english', name: 'English' },
+  { id: 'spanish', name: 'Spanish' },
+  { id: 'french', name: 'French' },
+  { id: 'german', name: 'German' },
+  { id: 'chinese', name: 'Chinese' },
+  { id: 'arabic', name: 'Arabic' },
+  { id: 'russian', name: 'Russian' },
+  { id: 'japanese', name: 'Japanese' },
+  { id: 'portuguese', name: 'Portuguese' },
+  { id: 'italian', name: 'Italian' },
+  { id: 'dutch', name: 'Dutch' },
+  { id: 'korean', name: 'Korean' },
+  { id: 'swedish', name: 'Swedish' },
+  { id: 'greek', name: 'Greek' },
+  { id: 'hindi', name: 'Hindi' },
+  { id: 'turkish', name: 'Turkish' },
+  { id: 'polish', name: 'Polish' },
+  { id: 'vietnamese', name: 'Vietnamese' },
+  { id: 'thai', name: 'Thai' },
+  { id: 'romanian', name: 'Romanian' },
+]
+
 const GeneralSettings = () => (
   <SimpleForm>
     <TextInput source="name" fullWidth />
-    <TextInput source="email" fullWidth />
-    <TextInput source="language" fullWidth />
-    <TextInput source="avatar_image.0" fullWidth />
+    <TextInput source="email" type="email" fullWidth />
+    <SelectInput source="language" choices={languageChoices} fullWidth />
+    <ImageInput source="avatar_image">
+      <ImageField source="0" title="avatar image" />
+    </ImageInput>
   </SimpleForm>
 )
 
@@ -94,12 +122,6 @@ export const settingsConfig = [
   },
 ]
 
-const IdentitiesExpand = () => {
-  return (
-    <p>//TODO: display omniauth request blob</p>
-  )
-}
-
 const AdminTab = () => {
   return (
     <Edit actions={false}>
@@ -109,8 +131,9 @@ const AdminTab = () => {
         <TextInput disabled source="sign_in_count" />
         <Typography variant="h6">User Role Management</Typography>
         //TODO
-        <Box margin='10' />
+        <Box margin="10" />
         <Typography variant="h6">Identites</Typography>
+        
         <IdentitiesAdminTable />
       </SimpleForm>
     </Edit>
