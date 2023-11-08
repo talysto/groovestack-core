@@ -5,9 +5,12 @@ import {
   Edit,
   EditProps,
   FunctionField,
+  ImageField,
+  ImageInput,
   PasswordInput,
   RaRecord,
   ReferenceManyField,
+  SelectInput,
   Show,
   SimpleForm,
   TabProps,
@@ -20,6 +23,7 @@ import {
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
 import { Box, Typography } from '@mui/material'
+// import { CodeField } from '@moonlight-labs/core-base-fe'
 
 import { StandardTitle } from '../../../components/StandardTitle'
 import { TopToolbar } from '../../../components/TopToolbar'
@@ -40,12 +44,37 @@ const ChangePasswordForm = () => (
   </SimpleForm>
 )
 
+const languageChoices = [
+  { id: 'english', name: 'English' },
+  { id: 'spanish', name: 'Spanish' },
+  { id: 'french', name: 'French' },
+  { id: 'german', name: 'German' },
+  { id: 'chinese', name: 'Chinese' },
+  { id: 'arabic', name: 'Arabic' },
+  { id: 'russian', name: 'Russian' },
+  { id: 'japanese', name: 'Japanese' },
+  { id: 'portuguese', name: 'Portuguese' },
+  { id: 'italian', name: 'Italian' },
+  { id: 'dutch', name: 'Dutch' },
+  { id: 'korean', name: 'Korean' },
+  { id: 'swedish', name: 'Swedish' },
+  { id: 'greek', name: 'Greek' },
+  { id: 'hindi', name: 'Hindi' },
+  { id: 'turkish', name: 'Turkish' },
+  { id: 'polish', name: 'Polish' },
+  { id: 'vietnamese', name: 'Vietnamese' },
+  { id: 'thai', name: 'Thai' },
+  { id: 'romanian', name: 'Romanian' },
+]
+
 const GeneralSettings = () => (
   <SimpleForm>
     <TextInput source="name" fullWidth />
-    <TextInput source="email" fullWidth />
-    <TextInput source="language" fullWidth />
-    <TextInput source="avatar_image.0" fullWidth />
+    <TextInput source="email" type="email" fullWidth />
+    <SelectInput source="language" choices={languageChoices} fullWidth />
+    <ImageInput source="avatar_image">
+      <ImageField source="0" title="avatar image" />
+    </ImageInput>
   </SimpleForm>
 )
 
@@ -130,7 +159,30 @@ export const settingsConfig = [
 
 const IdentitiesExpand = () => {
   return (
-    <p>//TODO: display omniauth request blob</p>
+    <>asfd</>
+    // <CodeField
+    //   record={{
+    //     requestBlob: {
+    //       provider: 'google', // Replace with the actual OmniAuth provider you are mocking
+    //       uid: '123456789', // Replace with a unique user identifier
+    //       info: {
+    //         email: 'user@example.com',
+    //         name: 'John Doe',
+    //         // Additional user information specific to the provider
+    //       },
+    //       credentials: {
+    //         token: 'your_access_token',
+    //         expires: false,
+    //         // Additional credentials specific to the provider
+    //       },
+    //       extra: {
+    //         // Additional data specific to the provider
+    //       },
+    //     },
+    //   }}
+    //   source="requestBlob"
+    //   label="omniauth request blob"
+    // />
   )
 }
 
@@ -143,28 +195,28 @@ const AdminTab = () => {
         <TextInput disabled source="sign_in_count" />
         <Typography variant="h6">User Role Management</Typography>
         //TODO
-        <Box margin='10' />
+        <Box margin="10" />
         <Typography variant="h6">Identites</Typography>
-        <ReferenceManyField
-              reference="Identity"
-              target="user_id"
-              label={false}
-            >
-              <Datagrid bulkActionButtons={false} expand={<IdentitiesExpand />} expandSingle>
-                <FunctionField
-                  label="provider"
-                  render={(rec: RaRecord) => {
-                    return (
-                      <>
-                        <Box sx={{ display: 'inline-block', pl: 0.5 }}>
-                          {titleCase(rec.provider)}
-                        </Box>
-                      </>
-                    )
-                  }}
-                />
-              </Datagrid>
-            </ReferenceManyField>
+        <ReferenceManyField reference="Identity" target="user_id" label={false}>
+          <Datagrid
+            bulkActionButtons={false}
+            expand={<IdentitiesExpand />}
+            expandSingle
+          >
+            <FunctionField
+              label="provider"
+              render={(rec: RaRecord) => {
+                return (
+                  <>
+                    <Box sx={{ display: 'inline-block', pl: 0.5 }}>
+                      {titleCase(rec.provider)}
+                    </Box>
+                  </>
+                )
+              }}
+            />
+          </Datagrid>
+        </ReferenceManyField>
       </SimpleForm>
     </Edit>
   )
