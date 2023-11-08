@@ -9,14 +9,14 @@ module GraphQL
         include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
         react_admin_resource :users, graphql_path: "GraphQL"
+  
+        def User(id:)
+          id == 'me' ? current_user : ::User.find(id)
+        end
       end
 
       def current_user
         context[:current_resource]
-      end
-
-      def find_user(id:)
-        id == 'me' ? current_user : ::User.find(id)
       end
   
       def users_scope(sort_field: nil, sort_order: nil, filter: {})
