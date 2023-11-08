@@ -187,7 +187,7 @@ const tabsConfig: Array<TabConfig> = [
   {
     label: 'Admin',
     icon: AdminPanelSettingsIcon,
-    component: <AdminTab settings={settingsConfig} />,
+    component: <AdminTab />,
     displayIf: (user: any) => true,
   },
 ]

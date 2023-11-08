@@ -11,12 +11,18 @@ const standard = [
   { key: 'facebook', icon: <FacebookIcon />, label: 'Facebook' },
 ]
 
+type SocialType = { k: string; href?: string }
+type SocialSignInRenderButton = ({ key, icon, label, href }: { key: string; icon: JSX.Element, label: string, href?: string }) => JSX.Element
+
 export interface SocialSignInProps {
-  social?: { k: string; href?: string }[]
+  renderButton?: SocialSignInRenderButton
+  social?: SocialType[]
 }
 
-export const SocialSignIn = ({ social }: SocialSignInProps) => {
-  const socialKeys = social?.map((s) => s.k)
+
+
+export const SocialSignIn = ({ renderButton, social }: SocialSignInProps) => {
+  if (!social || social.length == 0) return null 
 
   return (
     <Box
@@ -30,18 +36,14 @@ export const SocialSignIn = ({ social }: SocialSignInProps) => {
         '& > *': { width: '48%' },
       }}
     >
-      {standard.map((s) => {
-        const href = social?.find(
-          (requestedSocial) => requestedSocial.k == s.key,
-        )?.href
+      {social.map(({ k, href }) => {
+        const s = standard.find((s) => s.key == k)
+        if (!s) return null
 
-        return !socialKeys || socialKeys?.includes(s.key) ? (
-          <Button href={href} key={s.key} variant="outlined" startIcon={s.icon}>
-            {s.label}
-          </Button>
-        ) : (
-          <></>
-        )
+        const { key, icon, label } = s
+        if (renderButton) return <span key={key}>{renderButton({ key, icon, label, href })}</ span>
+
+        return <Button href={href} key={key} variant="outlined" startIcon={icon}>{label}</Button>
       })}
     </Box>
   )

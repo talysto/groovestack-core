@@ -3,10 +3,16 @@ import { AuthProviderFactoryType } from './index'
 
 type LoginCredentials = { email: string; password: string }
 
-export const liveAuthProviderFactory: AuthProviderFactoryType = ({ credentials, resource, requiredRole, client }) => {
+// NOTE this is a simple auth provider that has expectations about the auth server
+// this can be completely overridden when passed to the Admin component. This is
+// simply a starter kit
+
+export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client, credentials, resource, requiredRole }) => {
+  if (!(client && credentials && resource)) throw new Error('liveAuthProviderFactory is not fully implemented yet. client, credentials and resource args must be provided')
+
   const LOGIN_MUTATION = gql`
-    mutation ${resource}Login($email: String!, $password: String!) {
-      ${resource}Login(email: $email, password: $password) {
+    mutation ${resource}_login($email: String!, $password: String!) {
+      ${resource}_login(email: $email, password: $password) {
         authenticatable {
           id
           email
@@ -16,16 +22,16 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = ({ credentials, 
           client
           expiry
           tokenType
-          uid
         }
       }
     }
   `
 
   const LOGOUT_MUTATION = gql`
-    mutation ${resource}Logout {
-      ${resource}Logout {
+    mutation ${resource}_logout {
+      ${resource}_logout {
         authenticatable {
+          id
           email
         }
       }
@@ -54,13 +60,15 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = ({ credentials, 
     }: LoginCredentials): Promise<void | any> => {
       try {
         const { data, errors } = await client.mutate({ mutation: LOGIN_MUTATION, variables: { email, password } })
+
         if (errors && errors.length > 0) throw new Error(errors[0].message)
-        const { authenticatable: currentUser } = data[`${resource}Login`]
-        const { accessToken, tokenType, uid, ...rest } = data[`${resource}Login`].credentials
-        credentials.setAuthHeaders({ 'access-token': accessToken, 'token-type': tokenType, id: currentUser.id, ...rest })
-        credentials.setCurrentResource(currentUser)
+
+        const { authenticatable: currentResource } = data[`${resource}_login`]
+        const { accessToken, tokenType, ...rest } = data[`${resource}_login`].credentials
+        credentials.setAuthHeaders({ 'access-token': accessToken, 'token-type': tokenType, id: currentResource.id, ...rest })
 
         if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource()
+        else credentials.setCurrentResource(currentResource)
 
         return data
       } catch(e: any) {
@@ -84,22 +92,22 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = ({ credentials, 
       return
     },
     // when the user navigates, make sure that their credentials are still valid
-    checkAuth: async (params) => {
-      const currentResource = credentials.getCurrentResource()
-      if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource()
+    checkAuth: async () => {
+      let currentResource = credentials.getCurrentResource()
+      if (!currentResource && credentials.hydrateCurrentResource){
+        await credentials.hydrateCurrentResource()
+        currentResource = credentials.getCurrentResource()
+      } 
 
-      if (!currentResource || (requiredRole && !currentResource?.roles.includes(requiredRole))){
-        if (requiredRole) throw new Error(
-          `You must have an ‘${requiredRole}’ role to access these resources`,
-        )
-        else throw new Error('You must be logged in to access these resources')
-      }
+      if (!currentResource) throw new Error('You must be logged in to access these resources')
+      if (requiredRole && !currentResource?.roles.includes(requiredRole)) throw new Error(`You must have an ‘${requiredRole}’ role to access these resources`)
 
       return
     },
     logout: async () => {
+
       try {
-        const { data, errors } = await client.mutate({ mutation: LOGOUT_MUTATION })
+        const { errors } = await client.mutate({ mutation: LOGOUT_MUTATION })
         if (errors && errors.length > 0) throw new Error(errors[0].message)
 
       } catch(e: any) {

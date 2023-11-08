@@ -348,47 +348,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "() => "
+                  "text": "({ onSubmit }: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "JSX.Element",
-                  "canonicalReference": "@types/react!JSX.Element:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "SignupForm",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isStatic": true,
-              "isProtected": false,
-              "isAbstract": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.SocialSignIn:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "static SocialSignIn: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "({ social }: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "SocialSignInProps",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~SocialSignInProps:interface"
+                  "text": "SignupFormProps",
+                  "canonicalReference": "@moonlight-labs/core-auth-fe!~SignupFormProps:interface"
                 },
                 {
                   "kind": "Content",
@@ -407,10 +372,58 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "SocialSignIn",
+              "name": "SignupForm",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 5
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.SocialSignIn:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static SocialSignIn: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "({ renderButton, social }: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SocialSignInProps",
+                  "canonicalReference": "@moonlight-labs/core-auth-fe!~SocialSignInProps:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "JSX.Element",
+                  "canonicalReference": "@types/react!JSX.Element:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "SocialSignIn",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
               },
               "isStatic": true,
               "isProtected": false,

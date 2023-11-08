@@ -1,12 +1,13 @@
 import LockIcon from '@mui/icons-material/Lock'
-import { Avatar, Card, SxProps } from '@mui/material'
+import { Avatar, Box, Button, Card, SxProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { HtmlHTMLAttributes, ReactNode, useEffect, useRef } from 'react'
-import { useCheckAuth } from 'react-admin'
+import { HtmlHTMLAttributes, useEffect, useRef } from 'react'
+import { TextField, useCheckAuth } from 'react-admin'
 import { useNavigate } from 'react-router-dom'
 import { useLogin, useNotify, useSafeSetState } from 'react-admin'
 
 import { LoginPanel } from '../../components/login-mui/LoginPanel'
+import { SocialSignInProps } from '../../components/login-mui/SocialSignIn'
 
 /**
  * A standalone login page, to serve as authentication gate to the admin
@@ -26,8 +27,23 @@ import { LoginPanel } from '../../components/login-mui/LoginPanel'
  *        </Admin>
  *     );
  */
+
+const oauthProviders: SocialSignInProps['social'] = [
+  { k: 'google', href: '/users/auth/google' },
+  { k: 'microsoft', href: '/users/auth/microsoft' },
+  { k: 'apple', href: '/users/auth/apple' },
+  { k: 'facebook', href: '/users/auth/facebook' },
+]
+
+const csrfToken = () => {
+  const meta: any = document.querySelector('meta[name=csrf-token]');
+  return meta && meta.content;
+};
+
+const csrf = csrfToken()
+
 export const LoginPage = (props: LoginPageProps) => {
-  const { children, backgroundImage, ...rest } = props
+  let { backgroundImage, socialProviders=['google'], Headline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
   const checkAuth = useCheckAuth()
@@ -76,6 +92,20 @@ export const LoginPage = (props: LoginPageProps) => {
       })
   }
 
+  const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href}) => {
+    return (
+      <Box
+        component="form"
+        method='post'
+        sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+        action={href}
+      >
+        <TextField type='hidden' name='authenticity_token' value={csrf} />
+        <Button type='submit' variant="outlined" startIcon={icon}>{label}</Button>
+      </Box>
+    )
+  }
+
   useEffect(() => {
     checkAuth({}, false)
       .then(() => {
@@ -108,6 +138,9 @@ export const LoginPage = (props: LoginPageProps) => {
       lazyLoadBackgroundImage()
     }
   })
+
+  const social = oauthProviders.filter(oP => socialProviders.includes(oP.k))
+
   return (
     <Root {...rest} ref={containerRef}>
       <Card className={LoginClasses.card}>
@@ -116,16 +149,13 @@ export const LoginPage = (props: LoginPageProps) => {
             <LockIcon />
           </Avatar>
         </div>
-        {/* {children} */}
+        {Headline && <Headline />}
         <LoginPanel
-          social={[
-            { k: 'google', href: '/users/auth/google' },
-            { k: 'microsoft', href: '/users/auth/microsoft' },
-            { k: 'apple', href: '/users/auth/apple' },
-            { k: 'facebook', href: '/users/auth/facebook' },
-          ]}
-          registration={false}
+          social={social}
+          socialSignInRender={socialSignInRender}
           onLogin={onLogin}
+          // onRegister={onRegister}
+          registration={false}
           ctaDisabled={loading}
         />
       </Card>
@@ -135,9 +165,10 @@ export const LoginPage = (props: LoginPageProps) => {
 
 export interface LoginPageProps extends HtmlHTMLAttributes<HTMLDivElement> {
   backgroundImage?: string
-  children?: ReactNode
   className?: string
+  Headline?: React.FC
   sx?: SxProps
+  socialProviders?: string[]
 }
 
 const PREFIX = 'RaLogin'

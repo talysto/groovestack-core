@@ -11,7 +11,9 @@ import { SocialSignIn, SocialSignInProps } from './SocialSignIn'
 interface Props {
   ctaDisabled?: boolean
   onLogin?: React.FormEventHandler<HTMLFormElement> | undefined
+  onRegister?: React.FormEventHandler<HTMLFormElement> | undefined
   social?: SocialSignInProps['social']
+  socialSignInRender?: SocialSignInProps['renderButton']
   onClickSocialConnect?: Function
   onPasswordReset?: Function
   onLoginClick?: Function
@@ -24,8 +26,10 @@ interface Props {
  */
 export function LoginPanel({
   onLogin,
+  onRegister,
   onPasswordReset,
   social,
+  socialSignInRender,
   ctaDisabled = false,
   registration = true,
 }: Props) {
@@ -53,11 +57,11 @@ export function LoginPanel({
         </TabPanel>
         {registration && (
           <TabPanel value="2">
-            <SignupForm />
+            <SignupForm onSubmit={onRegister} />
           </TabPanel>
         )}
       </TabContext>
-      <SocialSignIn social={social} />
+      <SocialSignIn renderButton={socialSignInRender} social={social} />
     </Paper>
   )
 }

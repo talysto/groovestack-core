@@ -1,4 +1,4 @@
-import { Admin, Resource, localStorageStore } from 'react-admin'
+import { Admin, Resource } from 'react-admin'
 
 // Source Code import
 import { Auth } from '@moonlight-labs/core-auth-fe'
@@ -6,65 +6,18 @@ import { Comments } from '@moonlight-labs/core-comments-fe'
 import { HomeView } from '@moonlight-labs/core-config-fe'
 import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 
-import { mockDataProvider } from './data/mock-providers'
+import { mockDataProvider, mockAuthProvider } from './data/mock-providers'
 import { CustomLayout } from './layout/CustomLayout'
 import theme from './layout/theme'
 import { Company } from './resources/company'
-import data from '../dev-data.json'
 
 import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
 import { pkg as CoreJobsPkg } from '@moonlight-labs/core-jobs-fe'
 import { pkg as CoreWebhooksPkg } from '@moonlight-labs/core-webhooks-fe'
 
+const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(params)
 
-const store = localStorageStore()
-
-const storeActions = {
-  getCurrentResource: () => store.getItem('currentUser'),
-  removeCurrentResource: () => store.removeItem('currentUser'),
-  setCurrentResource: (resource: any) => store.setItem('currentUser', resource),
-}
-
-const hydrateCurrentUser = async () => {
-  let currentUser = storeActions.getCurrentResource()
-
-  // short circuit. current user already set
-  if (currentUser) return currentUser
-
-  // // fetch current user
-  currentUser = data.User[0]
-  currentUser.fullName = currentUser.name
-
-  storeActions.setCurrentResource(currentUser)
-
-  return currentUser
-}
-
-const credentials = {
-  clearAuthHeaders: () => {},
-  setAuthHeaders: () => {},
-  getCurrentResource: storeActions.getCurrentResource,
-  removeCurrentResource: storeActions.removeCurrentResource,
-  setCurrentResource: storeActions.setCurrentResource,
-  hydrateCurrentResource: hydrateCurrentUser
-}
-
-const resource = 'Users'
-const requiredRole = 'admin'
-const client = null
-
-const params = {
-  resource: resource,
-  requiredRole: requiredRole,
-  client: client,
-  credentials: credentials
-}
-
-const authProvider = await Auth.Providers.Mock(params)
-
-const DashboardView = () => (
-  <HomeView modules={[CoreBasePkg, CoreJobsPkg, CoreWebhooksPkg]} />
-)
+const DashboardView = () => <HomeView modules={[CoreBasePkg, CoreJobsPkg, CoreWebhooksPkg]} />
 
 function AdminApp() {
   return (
@@ -87,7 +40,7 @@ function AdminApp() {
       /> */}
       <Resource
         name={Auth.Users.Name}
-        icon={User.Icon}
+        icon={Auth.Users.Icon}
         // edit={User.Edit}
         list={Auth.Users.List}
         show={Auth.Users.Show}
