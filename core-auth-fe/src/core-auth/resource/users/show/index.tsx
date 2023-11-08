@@ -46,29 +46,6 @@ const GeneralSettings = () => (
     <TextInput source="email" fullWidth />
     <TextInput source="language" fullWidth />
     <TextInput source="avatar_image.0" fullWidth />
-    {/* Identity Table (Reference Many) */}
-    {/* <ReferenceManyField reference="Identity" target="user_id" label={false}>
-      <Datagrid>
-        <FunctionField
-          label="provider"
-          render={(rec: RaRecord) => {
-            return (
-              <>
-                <Box sx={{ display: 'inline-block', pl: 0.5 }}>
-                  {titleCase(rec.provider)}
-                </Box>
-              </>
-            )
-          }}
-        />
-        <DeleteWithConfirmButton
-          redirect={false}
-          title="Disconnect"
-          confirmTitle="Delete Social Login"
-          confirmContent={<ConfirmDeleteIdentityContent />}
-        />
-      </Datagrid>
-    </ReferenceManyField> */}
   </SimpleForm>
 )
 
