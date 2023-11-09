@@ -66,14 +66,14 @@ export const IdentitiesTable = () => {
               )
             }}
           />
-          {currentUser && currentUser.roles.includes('admin') ? <></> :
+          {/* {currentUser && currentUser.roles.includes('admin') ? <></> : */}
             <DeleteWithConfirmButton
               redirect={false}
               title="Disconnect"
               confirmTitle="Delete Social Login"
               confirmContent={<ConfirmDeleteIdentityContent />}
             />
-          }
+          {/* } */}
         </Datagrid>
       </ReferenceManyField>
     </Edit>
