@@ -40,8 +40,9 @@ ActiveSupport.on_load(:after_initialize) do
 
     GraphqlDevise::Types::AuthenticatableType.class_eval do
       field :id, GraphQL::Types::ID, null: false
-      field :name, String, null: true
       field :roles, [String], null: false
+      field :idmage, GraphQL::Types::ID, null: true
+      field :name, String, null: true
     end
 
     $CORE_AUTH_OVERRIDES_COMPLETE = true
