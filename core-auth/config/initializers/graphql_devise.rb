@@ -42,6 +42,7 @@ ActiveSupport.on_load(:after_initialize) do
       def build_resource(attrs)
         # NOTE remove provider from attrs b/c use identity model
         attrs.delete(:provider)
+        attrs[:roles] = [Users::Roles::Role::ADMIN] if Core::Config::App.generate_config[:app_init] == 0
         resource_class.new(attrs)
       end
     end

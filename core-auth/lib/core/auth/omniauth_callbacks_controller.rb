@@ -49,7 +49,13 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     language = request.env.dig('omniauth.params', 'language')
     # auth = request.env['omniauth.auth']
 
-    identity_params = { auth: auth_hash, language: language }
+    identity_params = { 
+      auth: auth_hash, 
+      user_attrs: { 
+        language: language,
+        roles: Core::Config::App.generate_config[:app_init] == 0 ? [Users::Roles::Role::ADMIN] : []
+      }
+    }
 
     @resource = Identity.find_or_create_from_omniauth!(**identity_params).user
 
