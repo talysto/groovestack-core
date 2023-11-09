@@ -9,7 +9,10 @@ module GraphQL
         argument :name, String, required: false
         argument :current_password, String, required: false
         argument :password, String, required: false
-  
+        argument :roles, [String], required: false
+        argument :language, String, required: false
+        argument :image, String, required: false
+        
         type ::GraphQL::User::Type
   
         def current_user
@@ -20,7 +23,9 @@ module GraphQL
           obj = id == current_user&.id ? current_user : ::User.find(id)
   
           return update_with_password!(obj, **attrs) if (attrs.keys & [:password, :current_password]).present?
-  
+          
+          raise GraphQL::ExecutionError, 'Validation Failed: only admins can update user roles' if !current_user.admin? && attrs[:roles].present?
+          
           obj.update!(attrs)
   
           obj
