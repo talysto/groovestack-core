@@ -1,6 +1,6 @@
 $CORE_AUTH_OMNIAUTH_INITED = false unless $CORE_AUTH_OMNIAUTH_INITED
 
-puts "core-auth: omniauth.rb. Inited: #{$CORE_AUTH_OMNIAUTH_INITED}"
+# puts "core-auth: omniauth.rb. Inited: #{$CORE_AUTH_OMNIAUTH_INITED}"
 
 unless $CORE_AUTH_OMNIAUTH_INITED     
   Rails.application.config.middleware.use OmniAuth::Builder do
