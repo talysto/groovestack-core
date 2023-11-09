@@ -3,6 +3,8 @@ module GraphQL
     class Type < ::Core::Base::GraphQL::Types::BaseObject
       description 'An identity'
 
+      graphql_name 'Identity'
+
       field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'created at'
       field :id, ID, null: false, description: 'id'
       field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'updated at'
