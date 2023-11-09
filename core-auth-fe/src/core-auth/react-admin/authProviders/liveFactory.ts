@@ -43,7 +43,7 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
   `
 
   const REGISTRATION_MUTATION = gql`
-    mutation ${resource}_register($email: String!, $password: String!, $passwordConfirmation: String!, $name: String) {
+    mutation ${resource}_register($email: String!, $password: String!, $passwordConfirmation: String!, $name: String!) {
       ${resource}_register(email: $email, password: $password, passwordConfirmation: $passwordConfirmation, name: $name) {
         authenticatable {
           id

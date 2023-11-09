@@ -1,5 +1,17 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.11
+
+### Patch Changes
+
+- fix registration name
+
+## 0.1.10
+
+### Patch Changes
+
+- registration
+
 ## 0.1.9
 
 ### Patch Changes
