@@ -42,7 +42,7 @@ export const IdentitiesTable = () => {
     const { data: currentUser } = useGetIdentity()
 
     return (
-      <Edit>
+      <Edit actions={false}>
         <ReferenceManyField
           reference="Identity"
           target="user_id"
