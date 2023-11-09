@@ -16,6 +16,7 @@ import {
   TextInput,
   useGetIdentity,
   useRecordContext,
+  Labeled
 } from 'react-admin'
 
 import { IdentitiesAdminTable } from '../../identities/show/AdminTable'
@@ -123,8 +124,12 @@ const AdminTab = () => {
     <Edit actions={false}>
       <SimpleForm>
         <Typography variant="h6">General</Typography>
-        <DateField disabled source="last_login_at" />
-        <TextField disabled source="sign_in_count" />
+        <Labeled label="Last Login At">
+        <DateField source="last_login_at" />
+        </Labeled>
+        <Labeled label="Sign In Count">
+        <TextField source="sign_in_count" />
+        </Labeled>
         <Typography variant="h6">User Role Management</Typography>
           <CheckboxGroupInput
             source="roles"
