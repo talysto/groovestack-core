@@ -8,7 +8,7 @@ import {
 import { Box } from '@mui/material'
 import { MoreIcons } from '../../../components/MoreIcons'
 import { StyledIcon } from '@styled-icons/styled-icon'
-import { CodeField } from '@moonlight-labs/core-base-fe'
+// import { CodeField } from '@moonlight-labs/core-base-fe'
 
 
 export function titleCase(str: string): string {
@@ -20,29 +20,30 @@ export function titleCase(str: string): string {
 
 const IdentitiesExpand = () => {
   return (
-    <CodeField
-      record={{
-        requestBlob: {
-          provider: 'google', // Replace with the actual OmniAuth provider you are mocking
-          uid: '123456789', // Replace with a unique user identifier
-          info: {
-            email: 'user@example.com',
-            name: 'John Doe',
-            // Additional user information specific to the provider
-          },
-          credentials: {
-            token: 'your_access_token',
-            expires: false,
-            // Additional credentials specific to the provider
-          },
-          extra: {
-            // Additional data specific to the provider
-          },
-        },
-      }}
-      source="requestBlob"
-      label="omniauth request blob"
-    />
+    <>asdf</>
+    // <CodeField
+    //   record={{
+    //     requestBlob: {
+    //       provider: 'google', // Replace with the actual OmniAuth provider you are mocking
+    //       uid: '123456789', // Replace with a unique user identifier
+    //       info: {
+    //         email: 'user@example.com',
+    //         name: 'John Doe',
+    //         // Additional user information specific to the provider
+    //       },
+    //       credentials: {
+    //         token: 'your_access_token',
+    //         expires: false,
+    //         // Additional credentials specific to the provider
+    //       },
+    //       extra: {
+    //         // Additional data specific to the provider
+    //       },
+    //     },
+    //   }}
+    //   source="requestBlob"
+    //   label="omniauth request blob"
+    // />
   )
 }
 

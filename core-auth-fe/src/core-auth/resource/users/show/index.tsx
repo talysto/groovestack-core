@@ -1,15 +1,11 @@
 import {
-  Datagrid,
+  CheckboxGroupInput,
   DateInput,
-  DeleteWithConfirmButton,
   Edit,
   EditProps,
-  FunctionField,
   ImageField,
   ImageInput,
   PasswordInput,
-  RaRecord,
-  ReferenceManyField,
   SelectInput,
   Show,
   SimpleForm,
@@ -20,8 +16,8 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import { IdentitiesTable } from '../../identities/show/table'
 import { IdentitiesAdminTable } from '../../identities/show/AdminTable'
+import { IdentitiesTable } from '../../identities/show/table'
 
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
@@ -114,9 +110,7 @@ export const settingsConfig = [
       {
         label: 'Social Logins',
         description: 'Connect social accounts to enable single sign-on',
-        component: (
-          <IdentitiesTable />
-        )
+        component: <IdentitiesTable />,
       },
     ],
   },
@@ -130,10 +124,13 @@ const AdminTab = () => {
         <DateInput disabled source="last_login_at" />
         <TextInput disabled source="sign_in_count" />
         <Typography variant="h6">User Role Management</Typography>
-        //TODO
+          <CheckboxGroupInput
+            source="roles"
+            choices={[{ id: 'admin', name: 'Admin' }]}
+          />
         <Box margin="10" />
         <Typography variant="h6">Identites</Typography>
-        
+
         <IdentitiesAdminTable />
       </SimpleForm>
     </Edit>
