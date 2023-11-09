@@ -17,9 +17,6 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         authenticatable {
           id
           email
-          name
-          image
-          roles
         }
         credentials {
           accessToken
@@ -48,9 +45,6 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         authenticatable {
           id
           email
-          name
-          image
-          roles
         }
         credentials {
           accessToken

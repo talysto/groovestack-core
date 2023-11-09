@@ -1,5 +1,11 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.12
+
+### Patch Changes
+
+- login / register let hydrateCurrentResource pull in current user meta
+
 ## 0.1.11
 
 ### Patch Changes
