@@ -27,6 +27,8 @@ ActiveSupport.on_load(:after_initialize) do
     User.include ::GraphqlDevise::Authenticatable
 
     GraphqlDevise::Mutations::Register.class_eval do
+      argument :name, String, required: true
+
       private
 
       def build_resource(attrs)
@@ -38,6 +40,8 @@ ActiveSupport.on_load(:after_initialize) do
 
     GraphqlDevise::Types::AuthenticatableType.class_eval do
       field :id, GraphQL::Types::ID, null: false
+      field :name, String, null: true
+      field :roles, [String], null: false
     end
 
     $CORE_AUTH_OVERRIDES_COMPLETE = true
