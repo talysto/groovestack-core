@@ -8,6 +8,8 @@ import {
   PasswordInput,
   SelectInput,
   Show,
+  TextField,
+  DateField,
   SimpleForm,
   TabProps,
   TabbedShowLayout,
@@ -121,8 +123,8 @@ const AdminTab = () => {
     <Edit actions={false}>
       <SimpleForm>
         <Typography variant="h6">General</Typography>
-        <DateInput disabled source="last_login_at" />
-        <TextInput disabled source="sign_in_count" />
+        <DateField disabled source="last_login_at" />
+        <TextField disabled source="sign_in_count" />
         <Typography variant="h6">User Role Management</Typography>
           <CheckboxGroupInput
             source="roles"

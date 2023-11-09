@@ -12,6 +12,7 @@ import {
 import { Box } from '@mui/material'
 import { MoreIcons } from '../../../components/MoreIcons'
 import { StyledIcon } from '@styled-icons/styled-icon'
+import { useParams } from 'react-router-dom'
 
 const { Apple, Facebook, Google, Microsoft } = MoreIcons
 const identityProviders: { [k: string]: StyledIcon } = {
@@ -40,6 +41,7 @@ const ConfirmDeleteIdentityContent = () => {
 
 export const IdentitiesTable = () => {
     const { data: currentUser } = useGetIdentity()
+    const { id } = useParams()
 
     return (
       <Edit actions={false}>
@@ -66,14 +68,14 @@ export const IdentitiesTable = () => {
               )
             }}
           />
-          {/* {currentUser && currentUser.roles.includes('admin') ? <></> : */}
+          {currentUser && currentUser.id !== id ? <></> :
             <DeleteWithConfirmButton
               redirect={false}
               title="Disconnect"
               confirmTitle="Delete Social Login"
               confirmContent={<ConfirmDeleteIdentityContent />}
             />
-          {/* } */}
+          }
         </Datagrid>
       </ReferenceManyField>
     </Edit>

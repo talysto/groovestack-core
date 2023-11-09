@@ -52,7 +52,7 @@ export const UserMenu = () => {
         resource: 'User',
         type: 'show',
         id: currentUser?.id,
-      })}/preferences`,
+      })}`,
       icon: <SettingsIcon fontSize="small" />,
     },
   ]
@@ -62,7 +62,7 @@ export const UserMenu = () => {
       <Box sx={{ p: 2 }}>
         <AvatarLabel
           title={currentUser?.name}
-          image={currentUser?.avatar_image?.[0]?.[0]}
+          image={currentUser?.image}
         ></AvatarLabel>
       </Box>
       <Divider sx={{ mt: 1, mb: 1 }} />
