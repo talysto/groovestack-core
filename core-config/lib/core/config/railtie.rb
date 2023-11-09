@@ -2,7 +2,7 @@
 
 if defined?(Rails)
   module Core
-    module Auth
+    module Config
       class Railtie < Rails::Engine
         include ::Core::Base::CoreRailtie
 
@@ -12,15 +12,7 @@ if defined?(Rails)
               eval: proc { raise unless defined?(::Core::Base) },
               message: "Error: 'core-base' gem is required, add it your your gemfile"
             },
-            {
-              eval: proc { raise unless defined?(::Core::Config) },
-              message: "Error: 'core-config' gem is required, add it your your gemfile"
-            },
           ]
-        end
-
-        initializer :append_migrations do |app|
-          append_migrations app
         end
 
         initializer :append_initializers do |app|
