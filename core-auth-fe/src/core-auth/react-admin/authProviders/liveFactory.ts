@@ -1,7 +1,8 @@
 import { gql } from '@apollo/client'
 import { AuthProviderFactoryType } from './index'
 
-type LoginCredentials = { email: string; password: string }
+export type LoginCredentials = { email: string; password: string }
+export type RegistrationCredentials = LoginCredentials & { name: string }
 
 // NOTE this is a simple auth provider that has expectations about the auth server
 // this can be completely overridden when passed to the Admin component. This is
@@ -16,6 +17,9 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         authenticatable {
           id
           email
+          name
+          image
+          roles
         }
         credentials {
           accessToken
@@ -36,20 +40,40 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         }
       }
     }
-`
+  `
+
+  const REGISTRATION_MUTATION = gql`
+    mutation ${resource}_register($email: String!, $password: String!, $passwordConfirmation: String!, $name: String) {
+      ${resource}_register(email: $email, password: $password, passwordConfirmation: $passwordConfirmation, name: $name) {
+        authenticatable {
+          id
+          email
+          name
+          image
+          roles
+        }
+        credentials {
+          accessToken
+          client
+          expiry
+          tokenType
+        }
+      }
+    }
+  `
 
   const getIdentity = async () => {
     let currentResource = credentials.getCurrentResource()
     if (currentResource || !credentials.hydrateCurrentResource) return currentResource
 
     try {
-      currentResource = await credentials.hydrateCurrentResource()
+      await credentials.hydrateCurrentResource()
     } catch (e) {
       console.error(e)
       return null
     }
 
-    return currentResource
+    return credentials.getCurrentResource()
   }
 
   return {
@@ -74,6 +98,21 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
       } catch(e: any) {
         console.error(e)
         throw new Error(e.message || 'Error logging in')
+      }
+    },
+    register: async ({
+      email,
+      name,
+      password,
+    }: RegistrationCredentials) => {
+      try {
+        const { data, errors } = await client.mutate({ mutation: REGISTRATION_MUTATION, variables: { email, password, passwordConfirmation: password, name: name } })
+
+        if (errors && errors.length > 0) throw new Error(errors[0].message)
+
+        return data
+      } catch(e: any) {
+        throw new Error(e.message || 'Error registering')
       }
     },
     // when the dataProvider returns an error, check if this is an authentication error

@@ -42,7 +42,7 @@ export function LoginPanel({
   }
 
   return (
-    <Paper sx={{ margin: { xs: 0 } }}>
+    <Paper sx={{ margin: { xs: 0 }, minHeight: 425, display: 'flex', flexDirection: 'column' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="Login or Signup">

@@ -8,5 +8,6 @@ export const mockAuthProvider: AuthProviderFactoryType = async () => {
     logout: () => Promise.resolve(),
     handleCallback: () => Promise.resolve(),
     getPermissions:  () => Promise.resolve(),
+    register: () => Promise.resolve(),
   })
 }

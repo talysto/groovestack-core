@@ -1,4 +1,5 @@
 import { Admin, Resource } from 'react-admin'
+import { Box } from '@mui/material'
 
 // Source Code import
 import { Auth } from '@moonlight-labs/core-auth-fe'
@@ -19,13 +20,29 @@ const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(param
 
 const DashboardView = () => <HomeView modules={[CoreBasePkg, CoreJobsPkg, CoreWebhooksPkg]} />
 
+const appInit = true
+const AppInitHeadline = () => {
+  return (
+    <Box sx={{ p: 3 }}>
+      <div>There are currently no registered users on your application.</div>
+      <div>Be the first!</div>
+    </Box>
+  )
+}
+
+const LoginPage = (props) => {
+  return (
+    <Auth.RA.LoginPage {...props} appInit={appInit} Headline={AppInitHeadline} />
+  )
+}
+
 function AdminApp() {
   return (
     <Admin
       disableTelemetry
       dataProvider={mockDataProvider}
       authProvider={authProvider}
-      loginPage={Auth.RA.LoginPage}
+      loginPage={LoginPage}
       theme={theme}
       dashboard={DashboardView}
       layout={CustomLayout}

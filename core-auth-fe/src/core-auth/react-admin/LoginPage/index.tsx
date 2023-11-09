@@ -2,12 +2,13 @@ import LockIcon from '@mui/icons-material/Lock'
 import { Avatar, Box, Button, Card, Input, SxProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { HtmlHTMLAttributes, useEffect, useRef, useState } from 'react'
-import { TextField, useCheckAuth } from 'react-admin'
+import { useAuthProvider, useCheckAuth } from 'react-admin'
 import { useNavigate } from 'react-router-dom'
 import { useLogin, useNotify, useSafeSetState } from 'react-admin'
 
 import { LoginPanel } from '../../components/login-mui/LoginPanel'
 import { SocialSignInProps } from '../../components/login-mui/SocialSignIn'
+import { LoginCredentials, RegistrationCredentials } from '../authProviders/liveFactory'
 
 /**
  * A standalone login page, to serve as authentication gate to the admin
@@ -41,12 +42,12 @@ const csrfToken = () => {
 };
 
 export const LoginPage = (props: LoginPageProps) => {
-  let { backgroundImage, socialProviders=['google'], Headline, ...rest } = props
+  let { appInit=false, backgroundImage, socialProviders=['google'], Headline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
-  const [usersCount, setUsersCount] = useState(0)
   const checkAuth = useCheckAuth()
   const navigate = useNavigate()
+  const authProvider = useAuthProvider()
 
   // const { redirectTo, className } = props;
   const [loading, setLoading] = useSafeSetState(false)
@@ -58,7 +59,7 @@ export const LoginPage = (props: LoginPageProps) => {
     e.preventDefault()
     const redirectTo = undefined
 
-    const values = {
+    const values: LoginCredentials = {
       email: e.target?.elements.email?.value,
       password: e.target?.elements.password?.value,
     }
@@ -91,6 +92,43 @@ export const LoginPage = (props: LoginPageProps) => {
       })
   }
 
+  const onRegister: React.FormEventHandler<HTMLFormElement> = async (e: any) => {
+    e.preventDefault()
+
+    setLoading(true)
+
+    const values: RegistrationCredentials = {
+      email: e.target?.elements.email?.value,
+      password: e.target?.elements.password?.value,
+      name: e.target?.elements.fullname?.value,
+    }
+
+    try {
+      await authProvider.register(values)
+      await login({email: values.email, password: values.password})
+      
+    } catch(error: any) {
+      notify(
+        typeof error === 'string'
+          ? error
+          : error?.message || 'Error registering',
+        {
+          type: 'error',
+          messageArgs: {
+            _:
+              typeof error === 'string'
+                ? error
+                : error && error.message
+                ? error.message
+                : undefined,
+          },
+        },
+      )
+    }
+
+    setLoading(false)
+  }
+
   const csrf = csrfToken()
 
   const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href}) => {
@@ -98,7 +136,6 @@ export const LoginPage = (props: LoginPageProps) => {
       <Box
         component="form"
         method='post'
-        sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
         action={href}
       >
         <Input type='hidden' name='authenticity_token' value={csrf} />
@@ -117,13 +154,6 @@ export const LoginPage = (props: LoginPageProps) => {
         // not authenticated, stay on the login page
       })
   }, [checkAuth, navigate])
-
-  useEffect(() => {
-    // call app config and gather users_count information
-    const results = 0
-
-    setUsersCount(results)
-  }, [usersCount])
 
   const updateBackgroundImage = () => {
     if (!backgroundImageLoaded && containerRef.current) {
@@ -151,27 +181,20 @@ export const LoginPage = (props: LoginPageProps) => {
   
   return (
     <Root {...rest} ref={containerRef}>
-       {usersCount < 1 ? (
-            <>
-              <div>There are currently no registered users on your application.</div>
-              <div>Be the first!</div>
-            </>
-          ) : <></>
-        }
       <Card className={LoginClasses.card}>
         <div className={LoginClasses.avatar}>
           <Avatar className={LoginClasses.icon}>
             <LockIcon />
           </Avatar>
         </div>
-        {Headline && <Headline />}
+        {appInit && Headline && <Headline />}
         <LoginPanel
           social={social}
           socialSignInRender={socialSignInRender}
           onLogin={onLogin}
-          onRegister={(register) => (console.log('register'))}
+          onRegister={onRegister}
           registration={true}
-          login={usersCount > 0 ? true : false}
+          login={appInit ? false : true}
           ctaDisabled={loading}
         />
       </Card>
@@ -180,6 +203,7 @@ export const LoginPage = (props: LoginPageProps) => {
 }
 
 export interface LoginPageProps extends HtmlHTMLAttributes<HTMLDivElement> {
+  appInit?: boolean
   backgroundImage?: string
   className?: string
   Headline?: React.FC

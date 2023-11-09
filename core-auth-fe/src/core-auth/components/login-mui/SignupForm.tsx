@@ -18,6 +18,8 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => (
       type="password"
       autoComplete="current-password"
     />
-    <Button variant="contained" type='submit'>Create Account</Button>
+    <div>
+      <Button variant="contained" type='submit'>Create Account</Button>
+    </div>
   </Box>
 )

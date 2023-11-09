@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.6",
+    "@moonlight-labs/core-base-fe": "workspace:^",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@mui/lab": "5.0.0-alpha.146",
     "@rails/actioncable": "^7.1.1",

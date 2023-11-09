@@ -68,6 +68,13 @@ export const mockAuthProvider: MockAuthProviderType = async () => {
     
       return
     },
+    register: async(vals) => {
+      console.log('register vals', vals)
+      const currentUser = await credentials.hydrateCurrentResource()
+      credentials.setCurrentResource(currentUser)
+    
+      return
+    },
     checkError: () => Promise.resolve(),
     checkAuth: () => {
       if (credentials.getCurrentResource()) return Promise.resolve()

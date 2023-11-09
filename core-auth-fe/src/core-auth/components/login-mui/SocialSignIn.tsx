@@ -27,6 +27,7 @@ export const SocialSignIn = ({ renderButton, social }: SocialSignInProps) => {
   return (
     <Box
       sx={{
+        mt: 'auto',
         p: 3,
         display: 'flex',
         justifyContent: 'space-between',
