@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import SettingsIcon from '@mui/icons-material/Settings'
-import { Box, Divider } from '@mui/material'
+import { Divider } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import MenuItem from '@mui/material/MenuItem'
@@ -13,7 +13,7 @@ import {
   useUserMenu,
 } from 'react-admin'
 import { Link } from 'react-router-dom'
-import { AvatarLabel } from './AvatarLabel'
+import { UserIdField } from './UserIdField'
 
 const UserMenuItem = React.forwardRef((props: any, ref) => {
   const { onClose } = useUserMenu()
@@ -21,13 +21,7 @@ const UserMenuItem = React.forwardRef((props: any, ref) => {
   const { label, icon, path } = props
 
   return (
-    <MenuItem
-      ref={ref}
-      component={Link}
-      {...props}
-      to={path}
-      onClick={onClose}
-    >
+    <MenuItem ref={ref} component={Link} {...props} to={path} onClick={onClose}>
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText>{label}</ListItemText>
     </MenuItem>
@@ -59,12 +53,14 @@ export const UserMenu = () => {
 
   return (
     <RAUserMenu>
-      <Box sx={{ p: 2 }}>
+      {/* <Box sx={{ p: 2 }}>
         <AvatarLabel
           title={currentUser?.name}
           image={currentUser?.image}
         ></AvatarLabel>
-      </Box>
+      </Box> */}
+      <UserIdField />
+
       <Divider sx={{ mt: 1, mb: 1 }} />
 
       {menuConfig.map((menu, idx) => (

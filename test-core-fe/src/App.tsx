@@ -12,13 +12,15 @@ import { CustomLayout } from './layout/CustomLayout'
 import theme from './layout/theme'
 import { Company } from './resources/company'
 
-import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
-import { pkg as CoreJobsPkg } from '@moonlight-labs/core-jobs-fe'
-import { pkg as CoreWebhooksPkg } from '@moonlight-labs/core-webhooks-fe'
+// import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
+// import { pkg as CoreJobsPkg } from '@moonlight-labs/core-jobs-fe'
+// import { pkg as CoreWebhooksPkg } from '@moonlight-labs/core-webhooks-fe'
 
 const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(params)
 
-const DashboardView = () => <HomeView modules={[CoreBasePkg, CoreJobsPkg, CoreWebhooksPkg]} />
+const DashboardView = () => <HomeView 
+// modules={[CoreBasePkg, CoreJobsPkg, CoreWebhooksPkg]}
+ />
 
 const appInit = true
 const AppInitHeadline = () => {
@@ -30,19 +32,19 @@ const AppInitHeadline = () => {
   )
 }
 
-const LoginPage = (props) => {
-  return (
-    <Auth.RA.LoginPage {...props} appInit={appInit} Headline={AppInitHeadline} />
-  )
-}
+// const LoginPage = (props) => {
+//   return (
+//     <Auth.RA.LoginPage {...props} appInit={appInit} Headline={AppInitHeadline} />
+//   )
+// }
 
 function AdminApp() {
   return (
     <Admin
       disableTelemetry
       dataProvider={mockDataProvider}
-      authProvider={authProvider}
-      loginPage={LoginPage}
+      // authProvider={authProvider}
+      // loginPage={LoginPage}
       theme={theme}
       dashboard={DashboardView}
       layout={CustomLayout}

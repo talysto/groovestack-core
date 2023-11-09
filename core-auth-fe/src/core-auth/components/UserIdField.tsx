@@ -10,7 +10,7 @@ export const UserIdField = ({
   if (!record) return null
 
   // const image = record.avatar_image[0]?.[0] // smallest
-
+  const image = record.image//? || 
   return record ? (
     <AvatarLabel
       preTitle={
@@ -26,7 +26,7 @@ export const UserIdField = ({
       }
       title={record[titleField]}
       subTitle={record[subTitleField]}
-      // image={image}
+      image={image}
     />
   ) : (
     <AvatarLabel isLoading />

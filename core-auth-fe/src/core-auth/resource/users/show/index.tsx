@@ -1,19 +1,21 @@
 import {
   CheckboxGroupInput,
-  DateInput,
+  DateField,
   Edit,
   EditProps,
-  ImageField,
-  ImageInput,
   PasswordInput,
+  SaveButton,
   SelectInput,
   Show,
   TextField,
   DateField,
   SimpleForm,
+  SimpleShowLayout,
   TabProps,
   TabbedShowLayout,
+  TextField,
   TextInput,
+  Toolbar,
   useGetIdentity,
   useRecordContext,
 } from 'react-admin'
@@ -38,7 +40,7 @@ export function titleCase(str: string): string {
 }
 
 const ChangePasswordForm = () => (
-  <SimpleForm>
+  <SimpleForm toolbar={<DefaultToolbar />}>
     <PasswordInput disabled source="current_password" />
     <PasswordInput disabled source="password" />
   </SimpleForm>
@@ -67,14 +69,18 @@ const languageChoices = [
   { id: 'romanian', name: 'Romanian' },
 ]
 
+const DefaultToolbar = (props: any) => (
+  <Toolbar {...props} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+    <SaveButton />
+  </Toolbar>
+)
+
 const GeneralSettings = () => (
-  <SimpleForm>
+  <SimpleForm toolbar={<DefaultToolbar />}>
     <TextInput source="name" fullWidth />
     <TextInput source="email" type="email" fullWidth />
     <SelectInput source="language" choices={languageChoices} fullWidth />
-    <ImageInput source="avatar_image">
-      <ImageField source="0" title="avatar image" />
-    </ImageInput>
+    <TextInput source="image" />
   </SimpleForm>
 )
 
@@ -123,13 +129,15 @@ const AdminTab = () => {
     <Edit actions={false}>
       <SimpleForm>
         <Typography variant="h6">General</Typography>
-        <DateField disabled source="last_login_at" />
-        <TextField disabled source="sign_in_count" />
+        <SimpleShowLayout>
+          <DateField disabled source="last_login_at" />
+          <TextField disabled source="sign_in_count" />
+        </SimpleShowLayout>
         <Typography variant="h6">User Role Management</Typography>
-          <CheckboxGroupInput
-            source="roles"
-            choices={[{ id: 'admin', name: 'Admin' }]}
-          />
+        <CheckboxGroupInput
+          source="roles"
+          choices={[{ id: 'admin', name: 'Admin' }]}
+        />
         <Box margin="10" />
         <Typography variant="h6">Identites</Typography>
 
