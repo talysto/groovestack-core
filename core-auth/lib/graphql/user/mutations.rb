@@ -9,7 +9,8 @@ module GraphQL
         argument :name, String, required: false
         argument :current_password, String, required: false
         argument :password, String, required: false
-  
+        argument :roles, [String], required: false
+        
         type ::GraphQL::User::Type
   
         def current_user
