@@ -6,7 +6,23 @@ export const mockIdentities = (count = 15, user: any) =>
     provider: faker.helpers.arrayElement(['Google', 'Apple']),
     type: 'Identity',
     id: faker.string.uuid(),
-    user_id: user.id
+    user_id: user.id,
+    data: { sample: 'data', id: '_someKey' },
+    requestBlob: {
+      provider: 'google', 
+      uid: '123456789', 
+      info: {
+        email: 'user@example.com',
+        name: 'John Doe',
+        
+      },
+      credentials: {
+        token: 'your_access_token',
+        expires: false,
+      },
+      extra: {
+      },
+    },
   }))
 
 

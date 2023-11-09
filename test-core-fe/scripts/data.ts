@@ -6,7 +6,7 @@ import { mockComments } from '@moonlight-labs/core-comments-fe/mock'
 import { mockVersions } from '@moonlight-labs/core-versions-fe/mock'
 import { mockNotifications } from '@moonlight-labs/core-notifications-fe/mock'
 
-import { mockIdentities } from '..src/data/mockIdentities'
+import { mockIdentities } from '../src/data/mockIdentities'
 import { mockUsers } from '../src/data/mockUsers'
 import { mockCompanies,
   //  mockIdentities
