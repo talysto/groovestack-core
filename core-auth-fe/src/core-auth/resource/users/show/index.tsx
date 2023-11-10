@@ -7,8 +7,6 @@ import {
   SaveButton,
   SelectInput,
   Show,
-  TextField,
-  DateField,
   SimpleForm,
   SimpleShowLayout,
   TabProps,
