@@ -9,8 +9,8 @@ export const UserIdField = ({
   const record = useRecordContext()
   if (!record) return null
 
-  // const image = record.avatar_image[0]?.[0] // smallest
-  const image = record.image//? || 
+  const image = record.image || 'https://avatars.githubusercontent.com/u/52014929'
+
   return record ? (
     <AvatarLabel
       preTitle={

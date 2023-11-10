@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import SettingsIcon from '@mui/icons-material/Settings'
-import { Divider } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import MenuItem from '@mui/material/MenuItem'
@@ -13,7 +13,7 @@ import {
   useUserMenu,
 } from 'react-admin'
 import { Link } from 'react-router-dom'
-import { UserIdField } from './UserIdField'
+import { AvatarLabel } from './AvatarLabel'
 
 const UserMenuItem = React.forwardRef((props: any, ref) => {
   const { onClose } = useUserMenu()
@@ -53,13 +53,12 @@ export const UserMenu = () => {
 
   return (
     <RAUserMenu>
-      {/* <Box sx={{ p: 2 }}>
+      <Box sx={{ p: 2 }}>
         <AvatarLabel
           title={currentUser?.name}
           image={currentUser?.image}
         ></AvatarLabel>
-      </Box> */}
-      <UserIdField />
+      </Box>
 
       <Divider sx={{ mt: 1, mb: 1 }} />
 

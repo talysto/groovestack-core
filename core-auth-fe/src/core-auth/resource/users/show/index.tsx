@@ -19,6 +19,8 @@ import {
   Labeled
 } from 'react-admin'
 
+import { useParams } from 'react-router-dom'
+
 import { IdentitiesAdminTable } from '../../identities/show/AdminTable'
 import { IdentitiesTable } from '../../identities/show/table'
 
@@ -38,10 +40,10 @@ export function titleCase(str: string): string {
     .join(' ')
 }
 
-const ChangePasswordForm = () => (
+const ChangePasswordForm = (props: any) => (
   <SimpleForm toolbar={<DefaultToolbar />}>
-    <PasswordInput disabled source="current_password" />
-    <PasswordInput disabled source="password" />
+    <PasswordInput disabled={props.isDisabled} source="current_password" />
+    <PasswordInput disabled={props.isDisabled} source="password" />
   </SimpleForm>
 )
 
@@ -88,45 +90,47 @@ const DefaultEditProps: EditProps = {
   actions: false,
 }
 
-export const settingsConfig = [
-  {
-    title: 'General',
-    groups: [
-      {
-        description: 'Your basic account information.',
-        component: (
-          <Edit {...DefaultEditProps}>
-            <GeneralSettings />
-          </Edit>
-        ),
-      },
-    ],
-  },
-  {
-    title: 'Security',
-    groups: [
-      {
-        label: 'Password',
-        description: 'Add or update your password',
-        component: (
-          <Edit {...DefaultEditProps}>
-            <ChangePasswordForm />
-          </Edit>
-        ),
-      },
-      {
-        label: 'Social Logins',
-        description: 'Connect social accounts to enable single sign-on',
-        component: <IdentitiesTable />,
-      },
-    ],
-  },
-]
+export const settingsConfig = (isDisabled: boolean) => {
+  return [
+    {
+      title: 'General',
+      groups: [
+        {
+          description: 'Your basic account information.',
+          component: (
+            <Edit {...DefaultEditProps}>
+              <GeneralSettings />
+            </Edit>
+          ),
+        },
+      ],
+    },
+    {
+      title: 'Security',
+      groups: [
+        {
+          label: 'Password',
+          description: 'Add or update your password',
+          component: (
+            <Edit {...DefaultEditProps}>
+              <ChangePasswordForm isDisabled={isDisabled} />
+            </Edit>
+          ),
+        },
+        {
+          label: 'Social Logins',
+          description: 'Connect social accounts to enable single sign-on',
+          component: <IdentitiesTable />,
+        },
+      ],
+    },
+  ]
+}
 
 const AdminTab = () => {
   return (
-    <Edit actions={false}>
-      <SimpleForm>
+    <Edit actions={false} redirect={false}>
+      <SimpleForm toolbar={<DefaultToolbar />}>
         <Typography variant="h6">General</Typography>
         <Labeled label="Last Login At">
         <DateField source="last_login_at" />
@@ -155,26 +159,29 @@ interface TabConfig {
   icon?: any
 }
 
-const tabsConfig: Array<TabConfig> = [
-  {
-    label: 'Preferences',
-    icon: SettingsIcon,
-    component: <SettingsTabs settings={settingsConfig} />,
-    displayIf: (user: any) => true,
-  },
-  {
-    label: 'Admin',
-    icon: AdminPanelSettingsIcon,
-    component: <AdminTab />,
-    displayIf: (user: any) => true,
-  },
-]
-
 const UserTabs = () => {
   const record = useRecordContext()
   const { data: currentUser } = useGetIdentity()
+  const { id } = useParams()
+
+  const disabled = !(currentUser && currentUser.id !== id) ?? true
 
   if (!record) return <div>Loading...</div>
+
+  const tabsConfig: Array<TabConfig> = [
+    {
+      label: 'Preferences',
+      icon: SettingsIcon,
+      component: <SettingsTabs settings={settingsConfig(disabled)} />,
+      displayIf: (user: any) => true,
+    },
+    {
+      label: 'Admin',
+      icon: AdminPanelSettingsIcon,
+      component: <AdminTab />,
+      displayIf: (user: any) => true,
+    },
+  ]
 
   const tabs = tabsConfig.filter(
     (tab) =>
