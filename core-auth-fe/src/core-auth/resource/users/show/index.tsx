@@ -3,20 +3,20 @@ import {
   DateField,
   Edit,
   EditProps,
+  Labeled,
   PasswordInput,
   SaveButton,
   SelectInput,
   Show,
   SimpleForm,
-  SimpleShowLayout,
   TabProps,
   TabbedShowLayout,
   TextField,
   TextInput,
   Toolbar,
+  required,
   useGetIdentity,
   useRecordContext,
-  Labeled
 } from 'react-admin'
 
 import { useParams } from 'react-router-dom'
@@ -79,8 +79,13 @@ const GeneralSettings = () => (
   <SimpleForm toolbar={<DefaultToolbar />}>
     <TextInput source="name" fullWidth />
     <TextInput source="email" type="email" fullWidth />
-    <SelectInput source="language" choices={languageChoices} fullWidth />
-    <TextInput source="image" />
+    <SelectInput
+      source="language"
+      choices={languageChoices}
+      validate={required()}
+      fullWidth
+    />
+    <TextInput disabled source="image" fullWidth />
   </SimpleForm>
 )
 
@@ -132,10 +137,10 @@ const AdminTab = () => {
       <SimpleForm toolbar={<DefaultToolbar />}>
         <Typography variant="h6">General</Typography>
         <Labeled label="Last Login At">
-        <DateField source="last_login_at" />
+          <DateField source="last_login_at" />
         </Labeled>
         <Labeled label="Sign In Count">
-        <TextField source="sign_in_count" />
+          <TextField source="sign_in_count" />
         </Labeled>
         <Typography variant="h6">User Role Management</Typography>
         <CheckboxGroupInput
@@ -177,11 +182,13 @@ const UserTabs = () => {
     },
   ]
 
-  const tabs = tabsConfig.filter(tab => !tab.displayIf || tab.displayIf(currentUser))
+  const tabs = tabsConfig.filter(
+    (tab) => !tab.displayIf || tab.displayIf(currentUser),
+  )
 
   return (
     <TabbedShowLayout
-      sx={{ '& .RaTabbedShowLayout-content': { p: { xs: 0, md: 1 } } }}
+      sx={{ '& .RaTabbedShowLayout-content': { p: { xs: 0 }, pt: { md: 1 } } }}
     >
       {tabs.map((tab, idx) => {
         const props = {

@@ -12,6 +12,7 @@ import {
 import { Box } from '@mui/material'
 import { MoreIcons } from '../../components/MoreIcons'
 import { StyledIcon } from '@styled-icons/styled-icon'
+import LinkOffIcon from '@mui/icons-material/LinkOff'
 import { useParams } from 'react-router-dom'
 
 const { Apple, Facebook, Google, Microsoft } = MoreIcons
@@ -71,9 +72,11 @@ export const IdentitiesTable = () => {
           {currentUser && currentUser.id !== id ? <></> :
             <DeleteWithConfirmButton
               redirect={false}
+              icon={<LinkOffIcon/>}
               title="Disconnect"
               confirmTitle="Delete Social Login"
               confirmContent={<ConfirmDeleteIdentityContent />}
+              label='Disconnect'
             />
           }
         </Datagrid>
