@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material'
 import { useState, createContext, useEffect } from 'react'
-import { RecordContextProvider, useGetIdentity, useGetList } from 'react-admin'
+import { RecordContextProvider, useDataProvider, useGetIdentity, useGetList } from 'react-admin'
 import { gql, useSubscription } from '@apollo/client'
 
 import { Notifications } from '../resources/notifications'
@@ -29,6 +29,7 @@ export const NotificationSubscriberEventContext = createContext<NotificationEven
 
 export const NotificationMenuButton = (props: any) => {
   const { data: user, isLoading: identityLoading } = useGetIdentity()
+  const dataProvider = useDataProvider()
   const [event, setEvent] = useState<NotificationEvent>(null)
 
   const resource = 'Notification'
@@ -55,7 +56,7 @@ export const NotificationMenuButton = (props: any) => {
     { enabled: !identityLoading }
   )
 
-  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_NOTIFICATIONS)
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_NOTIFICATIONS, { client: dataProvider.client })
 
   useEffect(() => {
     if (subscriptionData?.all_notifications && subscriptionData.all_notifications.event.type != 'subscribe') setEvent(subscriptionData.all_notifications.event.type)

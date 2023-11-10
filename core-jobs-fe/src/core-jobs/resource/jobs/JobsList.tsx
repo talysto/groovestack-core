@@ -184,6 +184,7 @@ const ListActions = () => {
 
 export const JobsList = () => {
   const theme = useTheme()
+  const dataProvider = useDataProvider()
   const [kpis, setKpis] = useState<RaRecord>({} as RaRecord)
 
   // initial fetch
@@ -193,7 +194,7 @@ export const JobsList = () => {
     queryOptions: { onSuccess(report) { setKpis(report) } }
   })
 
-  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { variables: { id: 'jobs_kpis' } })
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { client: dataProvider.client, variables: { id: 'jobs_kpis' } })
 
   useEffect(() => {
     if (subscriptionData?.JobReport && subscriptionData?.JobReport.event.type != 'subscribe') setKpis({id: 'jobs_kpis' as Identifier, data: subscriptionData?.JobReport.event.payload.data})

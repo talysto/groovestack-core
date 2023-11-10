@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { JSXElementConstructor, ReactElement, cloneElement, useState, useEffect } from 'react'
-import { Identifier, RaRecord, ShowProps, useShowController } from 'react-admin'
+import { Identifier, RaRecord, ShowProps, useShowController, useDataProvider } from 'react-admin'
 import { useSubscription } from '@apollo/client'
 import { SUBSCRIBE_TO_JOB_REPORT } from '../gql'
 
@@ -10,6 +10,7 @@ export const JobReportShow = (
     data?: any; // if provided, skip fetch and subscription
   },
 ) => {
+  const dataProvider = useDataProvider()
   const [data, setData] = useState<RaRecord>()
 
   const onSuccess = (report: any) => setData(report) 
@@ -21,7 +22,7 @@ export const JobReportShow = (
     queryOptions: { enabled: !props.data, onSuccess },
   })
 
-  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { variables: { id: props.id } })
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { client: dataProvider.client, variables: { id: props.id } })
 
   useEffect(() => {
     setData(props.data)
