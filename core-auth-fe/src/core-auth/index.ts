@@ -4,13 +4,16 @@ import { SignupForm } from './components/login-mui/SignupForm'
 import { SocialSignIn } from './components/login-mui/SocialSignIn'
 import { RAAuth } from './react-admin'
 import { Users } from './resource/users'
-import { Providers } from './react-admin/authProviders'
 import { Identities } from './resource/identities'
+import { defaultCredentials } from './credentials'
+import { authLink } from './authLink'
 
 export class Auth {
+  static ApolloLink = authLink
+  static Credentials = defaultCredentials
   static RA = RAAuth
+
   static Users = Users
-  static Providers = Providers
   static Identities = Identities
 
   // individual components

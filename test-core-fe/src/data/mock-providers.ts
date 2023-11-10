@@ -11,7 +11,7 @@ const store = localStorageStore()
 
 const storeActions = {
   getCurrentResource: () => store.getItem('currentUser'),
-  removeCurrentResource: () => store.removeItem('currentUser'),
+  clearCurrentResource: () => store.removeItem('currentUser'),
   setCurrentResource: (resource: any) => store.setItem('currentUser', resource),
 }
 
@@ -32,7 +32,7 @@ const hydrateCurrentUser = async () => {
 
 const credentials = {
   getCurrentResource: storeActions.getCurrentResource,
-  removeCurrentResource: storeActions.removeCurrentResource,
+  clearCurrentResource: storeActions.clearCurrentResource,
   setCurrentResource: storeActions.setCurrentResource,
   hydrateCurrentResource: hydrateCurrentUser
 }
@@ -59,7 +59,7 @@ export const mockAuthProvider: MockAuthProviderType = async () => {
       return Promise.reject()
     },
     logout: () => {
-      credentials.removeCurrentResource()
+      credentials.clearCurrentResource()
 
       return Promise.resolve()
     },

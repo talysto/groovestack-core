@@ -9,7 +9,7 @@ module Core
     class Error < StandardError; end
     
     class App      
-      @@config = {}
+      @@config = { app_level: 0 }
       @@dynamic_config = []
 
       def self.generate_config

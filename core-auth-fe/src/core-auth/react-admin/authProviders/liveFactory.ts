@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client'
 import { AuthProviderFactoryType } from './index'
+import { defaultCredentials } from '../../credentials';
+import { UserIdentity } from 'react-admin'
 
 export type LoginCredentials = { email: string; password: string }
 export type RegistrationCredentials = LoginCredentials & { name: string }
@@ -8,7 +10,7 @@ export type RegistrationCredentials = LoginCredentials & { name: string }
 // this can be completely overridden when passed to the Admin component. This is
 // simply a starter kit
 
-export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client, credentials, resource, requiredRole }) => {
+export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client, credentials=defaultCredentials, resource='user', requiredRole }) => {
   if (!(client && credentials && resource)) throw new Error('liveAuthProviderFactory is not fully implemented yet. client, credentials and resource args must be provided')
 
   const LOGIN_MUTATION = gql`
@@ -57,17 +59,12 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
   `
 
   const getIdentity = async () => {
-    let currentResource = credentials.getCurrentResource()
+    let currentResource = credentials.getCurrentResource() as UserIdentity
     if (currentResource || !credentials.hydrateCurrentResource) return currentResource
 
-    try {
-      await credentials.hydrateCurrentResource()
-    } catch (e) {
-      console.error(e)
-      return null
-    }
+    await credentials.hydrateCurrentResource(client)
 
-    return credentials.getCurrentResource()
+    return credentials.getCurrentResource() as UserIdentity
   }
 
   return {
@@ -85,7 +82,7 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         const { accessToken, tokenType, ...rest } = data[`${resource}_login`].credentials
         credentials.setAuthHeaders({ 'access-token': accessToken, 'token-type': tokenType, id: currentResource.id, ...rest })
 
-        if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource()
+        if (credentials.hydrateCurrentResource) await credentials.hydrateCurrentResource(client)
         else credentials.setCurrentResource(currentResource)
 
         return data
@@ -128,7 +125,7 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
     checkAuth: async () => {
       let currentResource = credentials.getCurrentResource()
       if (!currentResource && credentials.hydrateCurrentResource){
-        await credentials.hydrateCurrentResource()
+        await credentials.hydrateCurrentResource(client)
         currentResource = credentials.getCurrentResource()
       } 
 
@@ -148,7 +145,7 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         if (e.message != "User was not found or was not logged in.") throw new Error(e.message || 'Error logging out')
       }
 
-      credentials.removeCurrentResource()
+      credentials.clearCurrentResource()
       credentials.clearAuthHeaders()
       // client.resetStore() // https://www.apollographql.com/docs/react/networking/authentication/#reset-store-on-logout
       

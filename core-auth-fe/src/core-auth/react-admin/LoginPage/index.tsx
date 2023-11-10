@@ -9,7 +9,7 @@ import { useLogin, useNotify, useSafeSetState } from 'react-admin'
 import { LoginPanel } from '../../components/login-mui/LoginPanel'
 import { SocialSignInProps } from '../../components/login-mui/SocialSignIn'
 import { LoginCredentials, RegistrationCredentials } from '../authProviders/liveFactory'
-
+import { Credentials, defaultCredentials } from '../../credentials'
 /**
  * A standalone login page, to serve as authentication gate to the admin
  *
@@ -41,8 +41,19 @@ const csrfToken = () => {
   return meta && meta.content;
 };
 
+const csrf = csrfToken()
+
+const AppInitHeadline = () => {
+  return (
+    <Box sx={{ p: 3 }}>
+      <div>There are currently no registered users on your application.</div>
+      <div>Be the first!</div>
+    </Box>
+  )
+}
+
 export const LoginPage = (props: LoginPageProps) => {
-  let { appInit=false, backgroundImage, socialProviders=['google'], Headline, ...rest } = props
+  let { backgroundImage, credentials = defaultCredentials, socialProviders=['google'], Headline = AppInitHeadline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
   const checkAuth = useCheckAuth()
@@ -129,8 +140,6 @@ export const LoginPage = (props: LoginPageProps) => {
     setLoading(false)
   }
 
-  const csrf = csrfToken()
-
   const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href}) => {
     return (
       <Box
@@ -187,14 +196,14 @@ export const LoginPage = (props: LoginPageProps) => {
             <LockIcon />
           </Avatar>
         </div>
-        {appInit && Headline && <Headline />}
+        {!credentials.getAppConfig()?.has_admins && Headline && <Headline />}
         <LoginPanel
           social={social}
           socialSignInRender={socialSignInRender}
           onLogin={onLogin}
           onRegister={onRegister}
           registration={true}
-          login={appInit ? false : true}
+          login={credentials.getAppConfig()?.has_admins}
           ctaDisabled={loading}
         />
       </Card>
@@ -203,9 +212,9 @@ export const LoginPage = (props: LoginPageProps) => {
 }
 
 export interface LoginPageProps extends HtmlHTMLAttributes<HTMLDivElement> {
-  appInit?: boolean
   backgroundImage?: string
   className?: string
+  credentials?: Credentials
   Headline?: React.FC
   sx?: SxProps
   socialProviders?: string[]

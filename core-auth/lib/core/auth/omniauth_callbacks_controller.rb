@@ -53,7 +53,7 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
       auth: auth_hash, 
       user_attrs: { 
         language: language,
-        roles: Core::Config::App.generate_config[:app_init] == 0 ? [Users::Roles::Role::ADMIN] : []
+        roles: Core::Config::App.generate_config[:has_admins] ? [] : [Users::Roles::Role::ADMIN]
       }
     }
 

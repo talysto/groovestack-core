@@ -190,6 +190,68 @@
           "members": [
             {
               "kind": "Property",
+              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.ApolloLink:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static ApolloLink: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApolloLink",
+                  "canonicalReference": "@apollo/client/link/core!ApolloLink:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "ApolloLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.Credentials:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static Credentials: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Credentials",
+                  "canonicalReference": "@moonlight-labs/core-auth-fe!~Credentials:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "Credentials",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
               "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.Identities:member",
               "docComment": "",
               "excerptTokens": [
@@ -294,41 +356,6 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "LoginPanel",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isStatic": true,
-              "isProtected": false,
-              "isAbstract": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.Providers:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "static Providers: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "typeof "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Providers",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~Providers:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "Providers",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
