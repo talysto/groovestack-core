@@ -1,19 +1,20 @@
-import { 
-  Edit, 
+import {
+  Datagrid,
   DeleteWithConfirmButton,
-  Datagrid, 
-  ReferenceManyField, 
+  Edit,
   FunctionField,
   RaRecord,
+  ReferenceManyField,
+  SingleFieldList,
+  useGetIdentity,
   useRecordContext,
-  useGetIdentity
 } from 'react-admin'
 
-import { Box } from '@mui/material'
-import { MoreIcons } from '../../components/MoreIcons'
-import { StyledIcon } from '@styled-icons/styled-icon'
 import LinkOffIcon from '@mui/icons-material/LinkOff'
+import { Box, Chip } from '@mui/material'
+import { StyledIcon } from '@styled-icons/styled-icon'
 import { useParams } from 'react-router-dom'
+import { MoreIcons } from '../../components/MoreIcons'
 
 const { Apple, Facebook, Google, Microsoft } = MoreIcons
 const identityProviders: { [k: string]: StyledIcon } = {
@@ -41,46 +42,80 @@ const ConfirmDeleteIdentityContent = () => {
 }
 
 export const IdentitiesTable = () => {
-    const { data: currentUser } = useGetIdentity()
-    const { id } = useParams()
+  const { data: currentUser } = useGetIdentity()
+  const { id } = useParams()
 
-    return (
-      <Edit actions={false}>
-        <ReferenceManyField
-          reference="Identity"
-          target="user_id"
-          label={false}
-          // sort={{ field: 'status', order: 'ASC' }}
-          // {...rest}
-        >
+  return (
+    <Edit actions={false}>
+      <ReferenceManyField
+        reference="Identity"
+        target="user_id"
+        label={false}
+        // sort={{ field: 'status', order: 'ASC' }}
+        // {...rest}
+      >
         <Datagrid bulkActionButtons={false}>
           <FunctionField
             label="provider"
             render={(rec: RaRecord) => {
               const Icon = identityProviders[rec.provider]
-
               return (
-                <>
-                  {Icon && <Icon size={'1em'} />}
-                  <Box sx={{ display: 'inline-block', pl: 0.5 }}>
-                    {titleCase(rec.provider)}
-                  </Box>
-                </>
+                <Chip
+                  onClick={undefined}
+                  sx={{ backgroundColor: 'transparent', color: 'inherit' }}
+                  icon={<Box sx={{pb:'.25em'}} ><Icon size={'1em'} /></Box>}
+                  label={<Box>{titleCase(rec.provider)}</Box>}
+                />
               )
             }}
           />
-          {currentUser && currentUser.id !== id ? <></> :
+          {currentUser && currentUser.id !== id ? (
+            <></>
+          ) : (
             <DeleteWithConfirmButton
               redirect={false}
-              icon={<LinkOffIcon/>}
+              icon={<LinkOffIcon />}
               title="Disconnect"
               confirmTitle="Delete Social Login"
               confirmContent={<ConfirmDeleteIdentityContent />}
-              label='Disconnect'
+              label="Disconnect"
             />
-          }
+          )}
         </Datagrid>
       </ReferenceManyField>
     </Edit>
   )
 }
+
+export const ReferenceManyIdentitiesField = () => (
+  <ReferenceManyField
+    reference="Identity"
+    target="user_id"
+    label={false}
+    // sort={{ field: 'status', order: 'ASC' }}
+    // {...rest}
+  >
+    <SingleFieldList sx={{ gap: 1 }}>
+      <FunctionField
+        label="provider"
+        render={(rec: RaRecord) => {
+          const Icon = identityProviders['google']
+          // const Icon = identityProviders[rec.provider]
+          console.log(Icon)
+          return (
+            <Chip
+              onClick={undefined}
+              label={
+                Icon ? (
+                  <Icon size={'1em'} />
+                ) : (
+                  <Box>{titleCase(rec.provider)}</Box>
+                )
+              }
+            />
+          )
+        }}
+      />
+    </SingleFieldList>
+  </ReferenceManyField>
+)

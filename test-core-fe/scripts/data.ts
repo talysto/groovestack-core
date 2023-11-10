@@ -17,7 +17,7 @@ const users = mockUsers(10)
 let identities = []
 
 users.forEach((user) => {
-  const identity = faker.helpers.arrayElement(mockIdentities(3, user))
+  const identity = faker.helpers.arrayElement(mockIdentities(30, user))
   identities.push(identity)
 })
 
