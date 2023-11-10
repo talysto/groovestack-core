@@ -1,7 +1,7 @@
 class Identity < ActiveRecord::Base
   belongs_to :user
 
-  def self.find_or_create_from_omniauth!(auth:, language: nil)
+  def self.find_or_create_from_omniauth!(auth:, user_attrs: [])
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |identity|
       # TODO 
       # possible cases
@@ -9,11 +9,17 @@ class Identity < ActiveRecord::Base
       # 2. user does not exist in the system (i.e. oauth email doesn't match anything in the system
 
       unless (user = User.find_by(email: auth.info.email))
-        user = User.new(name: auth.info.name, password: Devise.friendly_token[0, 20], email: auth.info.email)
+        user = User.new({
+          name: auth.info.name, 
+          password: Devise.friendly_token[0, 20], 
+          email: auth.info.email,
+        }.merge(user_attrs))
+
         # user.skip_confirmation!
         user.save!
       end
 
+      identity.omniauth_data = auth
       identity.user = user
     end
   end

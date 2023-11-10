@@ -3,6 +3,7 @@ class CreateIdentities < ActiveRecord::Migration[7.0]
     create_table :identities, id: :uuid do |t|
       t.string :provider
       t.string :uid
+      t.jsonb :omniauth_data
 
       t.references :user, foreign_key: true, index: false, null: false, type: :uuid
 
