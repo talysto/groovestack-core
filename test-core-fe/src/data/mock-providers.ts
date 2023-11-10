@@ -22,7 +22,7 @@ const hydrateCurrentUser = async () => {
   if (currentUser) return currentUser
 
   // // fetch current user
-  currentUser = data.User[0]
+  currentUser = data.User.find(u => u.roles.includes('admin'))
   currentUser.fullName = currentUser.name
 
   storeActions.setCurrentResource(currentUser)

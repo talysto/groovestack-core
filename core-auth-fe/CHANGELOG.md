@@ -1,5 +1,11 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.22
+
+### Patch Changes
+
+- fixes / cleanup
+
 ## 0.1.12
 
 ### Patch Changes
