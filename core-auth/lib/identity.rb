@@ -11,7 +11,6 @@ class Identity < ActiveRecord::Base
       unless (user = User.find_by(email: auth.info.email))
         user = User.new({
           name: auth.info.name, 
-          password: Devise.friendly_token[0, 20], 
           email: auth.info.email,
         }.merge(user_attrs))
 

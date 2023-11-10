@@ -35,6 +35,8 @@ module GraphQL
           raise GraphQL::ExecutionError, 'Validation Failed: user can only update their own password' unless current_user&.id == user.id
   
           ::User.transaction do
+            user.password = attrs[:current_password] unless user.encrypted_password? # if password isn't set yet, allow them to set it
+            
             raise GraphQL::ExecutionError, user.errors.full_messages.join(' ') unless user.update_with_password(attrs)
   
             context[:bypass_sign_in].call user.reload, scope: :user
