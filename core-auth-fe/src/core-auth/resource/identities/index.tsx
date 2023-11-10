@@ -1,7 +1,5 @@
-import { IdentitiesAdminTable } from './show/AdminTable'
-import { IdentitiesTable } from './show/table'
+import { IdentitiesTable } from './table'
 
 export class Identities {
   static Table = IdentitiesTable
-  static AdminTable = IdentitiesAdminTable
 }

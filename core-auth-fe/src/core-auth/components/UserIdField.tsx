@@ -9,7 +9,7 @@ export const UserIdField = ({
   const record = useRecordContext()
   if (!record) return null
 
-  const image = record.image || 'https://avatars.githubusercontent.com/u/52014929'
+  const image = record.image
 
   return record ? (
     <AvatarLabel
@@ -20,9 +20,7 @@ export const UserIdField = ({
               <Chip size="small" label={role} key={idx} />
             ))}
           </>
-        ) : (
-          false
-        )
+        ) : null
       }
       title={record[titleField]}
       subTitle={record[subTitleField]}

@@ -18,11 +18,8 @@ import { Company } from './resources/company'
 
 const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(params)
 
-const DashboardView = () => <HomeView 
-// modules={[CoreBasePkg, CoreJobsPkg, CoreWebhooksPkg]}
- />
-
 const appInit = true
+
 const AppInitHeadline = () => {
   return (
     <Box sx={{ p: 3 }}>
@@ -32,31 +29,23 @@ const AppInitHeadline = () => {
   )
 }
 
-// const LoginPage = (props) => {
-//   return (
-//     <Auth.RA.LoginPage {...props} appInit={appInit} Headline={AppInitHeadline} />
-//   )
-// }
+const LoginPage = (props: any) => {
+  return (
+    <Auth.RA.LoginPage {...props} appInit={appInit} Headline={AppInitHeadline} />
+  )
+}
 
 function AdminApp() {
   return (
     <Admin
       disableTelemetry
       dataProvider={mockDataProvider}
-      // authProvider={authProvider}
-      // loginPage={LoginPage}
+      authProvider={authProvider}
+      loginPage={LoginPage}
       theme={theme}
-      dashboard={DashboardView}
+      dashboard={HomeView}
       layout={CustomLayout}
     >
-      {/* <Resource
-        name="User"
-        icon={Auth.Users.Icon}
-        list={Auth.Users.List}
-        show={Auth.Users.Show}
-        recordRepresentation="name"
-        options={{ label: 'Users (Test)' }}
-      /> */}
       <Resource
         name={Auth.Users.Name}
         icon={Auth.Users.Icon}

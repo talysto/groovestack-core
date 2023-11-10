@@ -11,7 +11,7 @@ export const mockUsers = (count = 15) =>
     email: faker.internet.email(),
     avatar_image: [[faker.image.avatar()]],
     image: faker.image.avatar(),
-    roles: faker.helpers.arrayElements([['admin'], []]),
+    roles: faker.helpers.arrayElements(['admin'], faker.number.int({ min: 0, max: 1 })),
     last_login_at: faker.date.past(),
     sign_in_count: faker.number.int({ min: 1, max: 50 }),
     identities_count: faker.number.int({ min: 1, max: 4 }),

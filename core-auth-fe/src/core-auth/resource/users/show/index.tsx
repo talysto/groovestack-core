@@ -21,12 +21,11 @@ import {
 
 import { useParams } from 'react-router-dom'
 
-import { IdentitiesAdminTable } from '../../identities/show/AdminTable'
-import { IdentitiesTable } from '../../identities/show/table'
+import { IdentitiesTable } from '../../identities/table'
 
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 
 import { StandardTitle } from '../../../components/StandardTitle'
 import { TopToolbar } from '../../../components/TopToolbar'
@@ -143,10 +142,6 @@ const AdminTab = () => {
           source="roles"
           choices={[{ id: 'admin', name: 'Admin' }]}
         />
-        <Box margin="10" />
-        <Typography variant="h6">Identites</Typography>
-
-        <IdentitiesAdminTable />
       </SimpleForm>
     </Edit>
   )
@@ -166,28 +161,23 @@ const UserTabs = () => {
 
   const disabled = !(currentUser && currentUser.id === id) ?? true
 
-  if (!record) return <div>Loading...</div>
+  if (!(record && currentUser)) return <div>Loading...</div>
 
   const tabsConfig: Array<TabConfig> = [
     {
       label: 'Preferences',
       icon: SettingsIcon,
       component: <SettingsTabs settings={settingsConfig(disabled)} />,
-      displayIf: (user: any) => true,
     },
     {
       label: 'Admin',
       icon: AdminPanelSettingsIcon,
       component: <AdminTab />,
-      displayIf: (user: any) => true,
+      displayIf: (currentUser: any) => currentUser?.roles?.includes('admin'),
     },
   ]
 
-  const tabs = tabsConfig.filter(
-    (tab) =>
-      !tab.displayIf ||
-      tab.displayIf(tab.label == 'Admin' ? currentUser : record),
-  )
+  const tabs = tabsConfig.filter(tab => !tab.displayIf || tab.displayIf(currentUser))
 
   return (
     <TabbedShowLayout

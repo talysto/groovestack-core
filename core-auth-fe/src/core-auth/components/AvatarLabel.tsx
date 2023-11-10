@@ -6,7 +6,6 @@ interface Props {
   title?: string
   subTitle?: string | React.ReactNode
   image?: string
-  defaultImage?: string
   content?: React.ReactNode
 }
 
@@ -16,9 +15,24 @@ export const AvatarLabel = ({
   title,
   subTitle,
   image,
-  defaultImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
   content,
 }: Props) => {
+  const renderPreTitle = () => {
+    if (!preTitle) return null
+
+    if (typeof preTitle == 'string')
+      return (
+        <Typography
+          variant="subtitle2"
+          sx={{ lineHeight: 1.0, marginTop: '0.2em' }}
+        >
+          {preTitle}
+        </Typography>
+      )
+
+    return preTitle
+  }
+
   if (isLoading)
     return (
       <Box sx={{ display: 'inline-block' }}>
@@ -28,7 +42,6 @@ export const AvatarLabel = ({
           </Box>
 
           <Box sx={{ flexGrow: 1, m: 1 }}>
-            {/* <Skeleton variant="text" sx={{ fontSize: '1rem' }} /> */}
             <Skeleton variant="text" sx={{ fontSize: '2rem' }} />
             <Skeleton
               variant="text"
@@ -40,28 +53,17 @@ export const AvatarLabel = ({
     )
 
   return (
-    // <Box sx={{ display: 'inline-block' }}>
     <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
       <Box>
         <Avatar
           variant="rounded"
           sx={{ width: '4rem', height: '4rem' }}
-          src={`${image || defaultImage}`}
+          src={image}
         />
       </Box>
 
       <Box>
-        {preTitle && typeof preTitle == 'string' ? (
-          <Typography
-            variant="subtitle2"
-            noWrap
-            sx={{ fontWeight: 'light', lineHeight: 1.0 }}
-          >
-            {preTitle}
-          </Typography>
-        ) : (
-          <>{preTitle}</>
-        )}
+        {renderPreTitle()}
         <Typography
           className="no-translate"
           sx={{ fontWeight: 'bold', lineHeight: 1.0, marginTop: '0.35em' }}
@@ -82,6 +84,5 @@ export const AvatarLabel = ({
         {content && content}
       </Box>
     </Box>
-    // </Box>
   )
 }

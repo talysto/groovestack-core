@@ -34,7 +34,7 @@ export const UserMenu = () => {
   const {
     data: currentUser,
     isLoading: loadingMe,
-    error: errorMe,
+    // error: errorMe,
   } = useGetIdentity()
 
   if (loadingMe) return null
@@ -56,6 +56,7 @@ export const UserMenu = () => {
       <Box sx={{ p: 2 }}>
         <AvatarLabel
           title={currentUser?.name}
+          subTitle={currentUser?.email}
           image={currentUser?.image}
         ></AvatarLabel>
       </Box>

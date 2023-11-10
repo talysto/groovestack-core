@@ -10,7 +10,7 @@ import {
 } from 'react-admin'
 
 import { Box } from '@mui/material'
-import { MoreIcons } from '../../../components/MoreIcons'
+import { MoreIcons } from '../../components/MoreIcons'
 import { StyledIcon } from '@styled-icons/styled-icon'
 import { useParams } from 'react-router-dom'
 
