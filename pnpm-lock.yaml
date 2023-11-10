@@ -260,6 +260,9 @@ importers:
 
   core-config-fe:
     dependencies:
+      '@moonlight-labs/core-auth-fe':
+        specifier: workspace:^
+        version: link:../core-auth-fe
       '@moonlight-labs/core-base-fe':
         specifier: workspace:^
         version: link:../core-base-fe
