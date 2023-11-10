@@ -32,7 +32,7 @@ export const UserMenu = () => {
   const createPath = useCreatePath()
 
   const {
-    data: currentUser,
+    data: data,
     isLoading: loadingMe,
     error: errorMe,
   } = useGetIdentity()
@@ -45,7 +45,7 @@ export const UserMenu = () => {
       path: `${createPath({
         resource: 'User',
         type: 'show',
-        id: currentUser?.id,
+        id: data?.currentUser?.id,
       })}`,
       icon: <SettingsIcon fontSize="small" />,
     },
@@ -55,8 +55,8 @@ export const UserMenu = () => {
     <RAUserMenu>
       <Box sx={{ p: 2 }}>
         <AvatarLabel
-          title={currentUser?.name}
-          image={currentUser?.image}
+          title={data?.currentUser.name}
+          image={data?.currentUser.image}
         ></AvatarLabel>
       </Box>
 

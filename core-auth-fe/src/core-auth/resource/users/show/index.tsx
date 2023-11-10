@@ -161,10 +161,10 @@ interface TabConfig {
 
 const UserTabs = () => {
   const record = useRecordContext()
-  const { data: currentUser } = useGetIdentity()
+  const { data: data } = useGetIdentity()
   const { id } = useParams()
 
-  const disabled = !(currentUser && currentUser.id !== id) ?? true
+  const disabled = !(data?.currentUser && data.currentUser.id === id) ?? true
 
   if (!record) return <div>Loading...</div>
 
