@@ -45,12 +45,11 @@ export function LoginPanel({
     <Paper sx={{ margin: { xs: 0 }, minHeight: 425, display: 'flex', flexDirection: 'column' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="Login or Signup">
-            {login && <Tab label="Login" value="1" />}
+          <TabList centered onChange={handleChange} aria-label="Login or Signup">
+            <Tab label="Login" value="1" disabled={login} />
             {registration && <Tab label="Sign Up" value="2" />}
           </TabList>
         </Box>
-        {login && (
           <TabPanel value="1">
             <LoginForm
               ctaDisabled={ctaDisabled}
@@ -58,7 +57,6 @@ export function LoginPanel({
               onPasswordReset={onPasswordReset}
             />
           </TabPanel>
-        )}
         {registration && (
           <TabPanel value="2">
             <SignupForm onSubmit={onRegister} />

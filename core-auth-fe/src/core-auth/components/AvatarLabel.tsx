@@ -66,7 +66,7 @@ export const AvatarLabel = ({
         {renderPreTitle()}
         <Typography
           className="no-translate"
-          sx={{ fontWeight: 'bold', lineHeight: 1.0, marginTop: '0.35em' }}
+          sx={{ fontWeight: 'bold', marginTop: '0.35em' }}
         >
           {title}
         </Typography>
@@ -74,7 +74,7 @@ export const AvatarLabel = ({
           <Typography
             variant="subtitle2"
             noWrap
-            sx={{ lineHeight: 1.0, marginTop: '0.2em' }}
+            sx={{ marginTop: '0.2em' }}
           >
             {subTitle}
           </Typography>
