@@ -104,8 +104,6 @@ export const ReferenceManyIdentitiesField = () => (
         label="provider"
         render={(rec: RaRecord) => {
           const Icon = identityProviders['google']
-          // const Icon = identityProviders[rec.provider]
-          console.log(Icon)
           return (
             <Chip
               onClick={undefined}
