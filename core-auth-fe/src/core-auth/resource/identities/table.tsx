@@ -1,12 +1,12 @@
 import {
   Datagrid,
   DeleteWithConfirmButton,
-  Edit,
   FunctionField,
   RaRecord,
   ReferenceManyField,
   SingleFieldList,
   useGetIdentity,
+  useGetManyReference,
   useRecordContext,
 } from 'react-admin'
 
@@ -36,7 +36,8 @@ const ConfirmDeleteIdentityContent = () => {
 
   return (
     <Box>
-      Are you sure you want to delete your {titleCase(record.provider)} login?
+      Are you sure you want to disconnect your {titleCase(record.provider)}{' '}
+      login?
     </Box>
   )
 }
@@ -45,45 +46,48 @@ export const IdentitiesTable = () => {
   const { data: currentUser } = useGetIdentity()
   const { id } = useParams()
 
+  const record = useRecordContext()
+  const { total } = useGetManyReference('Identity', {
+    target: 'user_id',
+    id: record.id,
+  })
+
   return (
-    <Edit actions={false}>
-      <ReferenceManyField
-        reference="Identity"
-        target="user_id"
-        label={false}
-        // sort={{ field: 'status', order: 'ASC' }}
-        // {...rest}
-      >
-        <Datagrid bulkActionButtons={false}>
-          <FunctionField
-            label="provider"
-            render={(rec: RaRecord) => {
-              const Icon = identityProviders[rec.provider]
-              return (
-                <Chip
-                  onClick={undefined}
-                  sx={{ backgroundColor: 'transparent', color: 'inherit' }}
-                  icon={<Box sx={{pb:'.25em'}} ><Icon size={'1em'} /></Box>}
-                  label={<Box>{titleCase(rec.provider)}</Box>}
-                />
-              )
-            }}
+    <ReferenceManyField reference="Identity" target="user_id" label={false}>
+      <Datagrid bulkActionButtons={false}>
+        <FunctionField
+          label="provider"
+          render={(rec: RaRecord) => {
+            const Icon = identityProviders[rec.provider]
+            return (
+              <Chip
+                onClick={undefined}
+                sx={{ backgroundColor: 'transparent', color: 'inherit' }}
+                icon={
+                  <Box sx={{ pb: '.25em' }}>
+                    <Icon size={'1em'} />
+                  </Box>
+                }
+                label={<Box>{titleCase(rec.provider)}</Box>}
+              />
+            )
+          }}
+        />
+        {currentUser && currentUser.id !== id ? (
+          <></>
+        ) : (
+          <DeleteWithConfirmButton
+            redirect={false}
+            icon={<LinkOffIcon />}
+            title="Disconnect"
+            disabled={typeof total === 'undefined' || total <= 1}
+            confirmTitle="Disconnect Social Login"
+            confirmContent={<ConfirmDeleteIdentityContent />}
+            label="Disconnect"
           />
-          {currentUser && currentUser.id !== id ? (
-            <></>
-          ) : (
-            <DeleteWithConfirmButton
-              redirect={false}
-              icon={<LinkOffIcon />}
-              title="Disconnect"
-              confirmTitle="Delete Social Login"
-              confirmContent={<ConfirmDeleteIdentityContent />}
-              label="Disconnect"
-            />
-          )}
-        </Datagrid>
-      </ReferenceManyField>
-    </Edit>
+        )}
+      </Datagrid>
+    </ReferenceManyField>
   )
 }
 

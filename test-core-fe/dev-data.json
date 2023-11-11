@@ -6069,7 +6069,7 @@
       "provider": "apple",
       "type": "Identity",
       "id": "b20acc8e-f25d-40a6-95d5-57c671e25ae8",
-      "user_id": "e21a4f8d-1a25-416a-8fe6-0d23a041c8f9",
+      "user_id": "3f6bc6fa-024b-486d-9481-1dcda5bcccd5",
       "data": {
         "sample": "data",
         "id": "_someKey"
@@ -6092,7 +6092,7 @@
       "provider": "apple",
       "type": "Identity",
       "id": "e76f9c9c-ab72-47a2-841c-d3b219b5144b",
-      "user_id": "7c37eef4-2531-461b-a721-81f8f122365a",
+      "user_id": "3f6bc6fa-024b-486d-9481-1dcda5bcccd5",
       "data": {
         "sample": "data",
         "id": "_someKey"
