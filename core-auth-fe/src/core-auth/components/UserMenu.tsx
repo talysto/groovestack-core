@@ -39,6 +39,8 @@ export const UserMenu = () => {
 
   if (loadingMe) return null
 
+  console.log('currentUser', currentUser)
+
   const menuConfig = [
     {
       label: 'Preferences',
@@ -66,7 +68,6 @@ export const UserMenu = () => {
       {menuConfig.map((menu, idx) => (
         <UserMenuItem
           key={idx}
-          //@ts-ignore
           label={menu.label}
           path={menu.path}
           icon={menu.icon}

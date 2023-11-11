@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker'
 export const mockIdentities = (count = 15, user: any) =>
   Array.from({ length: count }, () => ({
     // provider: faker.person.fullName(),
-    provider: faker.helpers.arrayElement(['Google', 'Apple']),
+    provider: faker.helpers.arrayElement(['google', 'apple']),
     type: 'Identity',
     id: faker.string.uuid(),
     user_id: user.id,

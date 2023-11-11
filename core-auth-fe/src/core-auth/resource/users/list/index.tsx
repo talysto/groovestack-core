@@ -1,15 +1,17 @@
 // import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 import {
   Datagrid,
-  DateField,
   FilterButton,
   List,
   NumberField,
   TextInput,
   TopToolbar,
+  WrapperField,
 } from 'react-admin'
 
+import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 import { UserIdField } from '../../../components/UserIdField'
+import { ReferenceManyIdentitiesField } from '../../identities/table'
 
 const filters = [<TextInput label="Search" source="q" alwaysOn />]
 const ListActions = () => (
@@ -37,10 +39,11 @@ export const UserTable = () => (
   >
     <Datagrid bulkActionButtons={<BulkActionButtons />} rowClick={'show'}>
       <UserIdField />
-      {/* <TimeAgoField source="last_login_at" /> */}
-      <DateField source="last_login_at" />
-      <NumberField source="sign_in_count" />
-      <NumberField source="identities_count" />
+      <TimeAgoField source="last_login_at" label="Last Login" />
+      <NumberField source="sign_in_count" label="Sign Ins" />
+      <WrapperField label="Identities">
+        <ReferenceManyIdentitiesField />
+      </WrapperField>
     </Datagrid>
   </List>
 )

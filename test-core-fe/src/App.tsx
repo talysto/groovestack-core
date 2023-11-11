@@ -9,7 +9,6 @@ import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 
 import { mockDataProvider, mockAuthProvider } from './data/mock-providers'
 import { CustomLayout } from './layout/CustomLayout'
-import theme from './layout/theme'
 import { Company } from './resources/company'
 
 // import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
@@ -42,7 +41,6 @@ function AdminApp() {
       dataProvider={mockDataProvider}
       authProvider={authProvider}
       loginPage={LoginPage}
-      theme={theme}
       dashboard={HomeView}
       layout={CustomLayout}
     >
