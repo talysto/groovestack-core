@@ -1,5 +1,23 @@
 # @moonlight-labs/core-notifications-fe
 
+## 0.2.31
+
+### Patch Changes
+
+- fix subscriptions
+
+## 0.2.30
+
+### Patch Changes
+
+- try to fix broken subscription call
+
+## 0.2.29
+
+### Patch Changes
+
+- pass client into useSubscription calls
+
 ## 0.2.28
 
 ### Patch Changes

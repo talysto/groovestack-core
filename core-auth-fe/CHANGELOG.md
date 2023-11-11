@@ -1,5 +1,11 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.24
+
+### Patch Changes
+
+- fix subscriptions
+
 ## 0.1.23
 
 ### Patch Changes

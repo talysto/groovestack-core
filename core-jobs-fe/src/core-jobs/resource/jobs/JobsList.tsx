@@ -1,8 +1,9 @@
 import { AccessTime as AccessTimeIcon, FormatListNumbered as FormatListNumberedIcon,  GridView as SummaryIcon, WarningAmber as WarningAmberIcon } from '@mui/icons-material'
-import { Box, Card, Grid, Stack, Typography, useTheme } from '@mui/material'
+import { Card, Grid, Stack, Typography, useTheme } from '@mui/material'
 import {
   Button,
   Confirm,
+  DataProviderContext,
   Identifier,
   ListBase,
   ListToolbar,
@@ -12,14 +13,13 @@ import {
   SelectArrayInput,
   Title,
   TopToolbar,
-  useDataProvider,
   useDeleteMany,
   useListContext,
   useNotify,
   useShowController,
 } from 'react-admin'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useSubscription } from '@apollo/client'
+import { useSubscription, ApolloProvider } from '@apollo/client'
 
 import { SUBSCRIBE_TO_JOB_REPORT } from '../../gql'
 import {
@@ -182,9 +182,8 @@ const ListActions = () => {
 //   )
 // }
 
-export const JobsList = () => {
+const JobsList = () => {
   const theme = useTheme()
-  const dataProvider = useDataProvider()
   const [kpis, setKpis] = useState<RaRecord>({} as RaRecord)
 
   // initial fetch
@@ -194,7 +193,7 @@ export const JobsList = () => {
     queryOptions: { onSuccess(report) { setKpis(report) } }
   })
 
-  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { client: dataProvider.client, variables: { id: 'jobs_kpis' } })
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { variables: { id: 'jobs_kpis' } })
 
   useEffect(() => {
     if (subscriptionData?.JobReport && subscriptionData?.JobReport.event.type != 'subscribe') setKpis({id: 'jobs_kpis' as Identifier, data: subscriptionData?.JobReport.event.payload.data})
@@ -250,3 +249,17 @@ export const JobsList = () => {
     </JobsKPIsContext.Provider>
   )
 }
+
+const JobsListWithApolloProvider = () => {
+  // don't want dataprovider wrapped in proxy 
+  // https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/dataProvider/useDataProvider.ts
+  const dataProvider = useContext(DataProviderContext)
+
+  return (
+    <ApolloProvider client={dataProvider.client}>
+      <JobsList />
+    </ApolloProvider>
+  )
+}
+
+export { JobsListWithApolloProvider as JobsList }

@@ -1,5 +1,50 @@
 # test-core-fe
 
+## 0.2.95
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-jobs-fe@0.2.67
+
+## 0.2.94
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.31
+  - @moonlight-labs/core-auth-fe@0.1.24
+
+## 0.2.93
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-jobs-fe@0.2.66
+
+## 0.2.92
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-jobs-fe@0.2.65
+
+## 0.2.91
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.30
+  - @moonlight-labs/core-jobs-fe@0.2.64
+
+## 0.2.90
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-notifications-fe@0.2.29
+  - @moonlight-labs/core-jobs-fe@0.2.63
+
 ## 0.2.89
 
 ### Patch Changes

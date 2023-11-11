@@ -7,9 +7,9 @@ import {
   Menu,
   Typography,
 } from '@mui/material'
-import { useState, createContext, useEffect } from 'react'
-import { RecordContextProvider, useDataProvider, useGetIdentity, useGetList } from 'react-admin'
-import { gql, useSubscription } from '@apollo/client'
+import { useState, createContext, useEffect, useContext } from 'react'
+import { DataProviderContext, RecordContextProvider, useGetIdentity, useGetList } from 'react-admin'
+import { ApolloProvider, gql, useSubscription } from '@apollo/client'
 
 import { Notifications } from '../resources/notifications'
 
@@ -27,9 +27,8 @@ type NotificationEvent = 'created' | 'updated' | 'deleted' | 'subscribe' | 'unsu
 
 export const NotificationSubscriberEventContext = createContext<NotificationEvent>(null)
 
-export const NotificationMenuButton = (props: any) => {
+const NotificationMenuButton = (props: any) => {
   const { data: user, isLoading: identityLoading } = useGetIdentity()
-  const dataProvider = useDataProvider()
   const [event, setEvent] = useState<NotificationEvent>(null)
 
   const resource = 'Notification'
@@ -56,7 +55,7 @@ export const NotificationMenuButton = (props: any) => {
     { enabled: !identityLoading }
   )
 
-  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_NOTIFICATIONS, { client: dataProvider.client })
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_NOTIFICATIONS)
 
   useEffect(() => {
     if (subscriptionData?.all_notifications && subscriptionData.all_notifications.event.type != 'subscribe') setEvent(subscriptionData.all_notifications.event.type)
@@ -114,3 +113,17 @@ export const NotificationMenuButton = (props: any) => {
     </>
   )
 }
+
+const NotificationMenuButtonWithApolloProvider = (props: any) => {
+  // don't want dataprovider wrapped in proxy 
+  // https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/dataProvider/useDataProvider.ts
+  const dataProvider = useContext(DataProviderContext)
+
+  return (
+    <ApolloProvider client={dataProvider.client}>
+      <NotificationMenuButton {...props} />
+    </ApolloProvider>
+  )
+}
+
+export { NotificationMenuButtonWithApolloProvider as NotificationMenuButton }
