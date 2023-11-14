@@ -1,5 +1,17 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.31
+
+### Patch Changes
+
+- wire up SecuritySettings component
+
+## 0.1.30
+
+### Patch Changes
+
+- fix don't render current password if user doesn't have email provider
+
 ## 0.1.29
 
 ### Patch Changes

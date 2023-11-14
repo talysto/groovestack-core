@@ -39,8 +39,6 @@ export const UserMenu = () => {
 
   if (loadingMe) return null
 
-  console.log('currentUser', currentUser)
-
   const menuConfig = [
     {
       label: 'Preferences',

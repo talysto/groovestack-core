@@ -4,9 +4,7 @@ import {
   Edit,
   EditProps,
   Labeled,
-  PasswordInput,
   SaveButton,
-  SelectInput,
   Show,
   SimpleForm,
   TabProps,
@@ -14,7 +12,6 @@ import {
   TextField,
   TextInput,
   Toolbar,
-  required,
   useGetIdentity,
   useRecordContext,
 } from 'react-admin'
@@ -31,6 +28,7 @@ import { StandardTitle } from '../../../components/StandardTitle'
 import { TopToolbar } from '../../../components/TopToolbar'
 
 import SettingsTabs from '../../../components/SettingsTabs'
+import { SecuritySettings } from './SecuritySettings'
 
 export function titleCase(str: string): string {
   return str
@@ -39,35 +37,28 @@ export function titleCase(str: string): string {
     .join(' ')
 }
 
-const ChangePasswordForm = (props: any) => (
-  <SimpleForm toolbar={<DefaultToolbar />}>
-    <PasswordInput disabled={props.isDisabled} source="current_password" />
-    <PasswordInput disabled={props.isDisabled} source="password" />
-  </SimpleForm>
-)
-
-const languageChoices = [
-  { id: 'english', name: 'English' },
-  { id: 'spanish', name: 'Spanish' },
-  { id: 'french', name: 'French' },
-  { id: 'german', name: 'German' },
-  { id: 'chinese', name: 'Chinese' },
-  { id: 'arabic', name: 'Arabic' },
-  { id: 'russian', name: 'Russian' },
-  { id: 'japanese', name: 'Japanese' },
-  { id: 'portuguese', name: 'Portuguese' },
-  { id: 'italian', name: 'Italian' },
-  { id: 'dutch', name: 'Dutch' },
-  { id: 'korean', name: 'Korean' },
-  { id: 'swedish', name: 'Swedish' },
-  { id: 'greek', name: 'Greek' },
-  { id: 'hindi', name: 'Hindi' },
-  { id: 'turkish', name: 'Turkish' },
-  { id: 'polish', name: 'Polish' },
-  { id: 'vietnamese', name: 'Vietnamese' },
-  { id: 'thai', name: 'Thai' },
-  { id: 'romanian', name: 'Romanian' },
-]
+// const languageChoices = [
+//   { id: 'english', name: 'English' },
+//   { id: 'spanish', name: 'Spanish' },
+//   { id: 'french', name: 'French' },
+//   { id: 'german', name: 'German' },
+//   { id: 'chinese', name: 'Chinese' },
+//   { id: 'arabic', name: 'Arabic' },
+//   { id: 'russian', name: 'Russian' },
+//   { id: 'japanese', name: 'Japanese' },
+//   { id: 'portuguese', name: 'Portuguese' },
+//   { id: 'italian', name: 'Italian' },
+//   { id: 'dutch', name: 'Dutch' },
+//   { id: 'korean', name: 'Korean' },
+//   { id: 'swedish', name: 'Swedish' },
+//   { id: 'greek', name: 'Greek' },
+//   { id: 'hindi', name: 'Hindi' },
+//   { id: 'turkish', name: 'Turkish' },
+//   { id: 'polish', name: 'Polish' },
+//   { id: 'vietnamese', name: 'Vietnamese' },
+//   { id: 'thai', name: 'Thai' },
+//   { id: 'romanian', name: 'Romanian' },
+// ]
 
 const DefaultToolbar = (props: any) => (
   <Toolbar {...props} sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -118,7 +109,7 @@ export const settingsConfig = (isDisabled: boolean) => {
           description: 'Add or update your password',
           component: (
             <Edit {...DefaultEditProps}>
-              <ChangePasswordForm isDisabled={isDisabled} />
+              <SecuritySettings toolbar={<DefaultToolbar />} />
             </Edit>
           ),
         },
