@@ -76,13 +76,14 @@ const DefaultToolbar = (props: any) => (
 )
 
 const GeneralSettings = () => (
-  <SimpleForm toolbar={<DefaultToolbar />}>
+  <SimpleForm warnWhenUnsavedChanges toolbar={<DefaultToolbar />}>
     <TextInput source="name" fullWidth />
     <TextInput source="email" type="email" fullWidth />
     <SelectInput
       source="language"
       choices={languageChoices}
       validate={required()}
+      disabled
       fullWidth
     />
     <TextInput disabled source="image" fullWidth />
