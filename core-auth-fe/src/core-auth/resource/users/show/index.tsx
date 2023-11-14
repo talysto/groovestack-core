@@ -16,6 +16,8 @@ import {
   useRecordContext,
 } from 'react-admin'
 
+import { Grid, Box, Card, CardContent } from '@mui/material'
+
 import { useParams } from 'react-router-dom'
 
 import { IdentitiesTable } from '../../identities/table'
@@ -105,6 +107,11 @@ export const settingsConfig = (isDisabled: boolean) => {
       title: 'Security',
       groups: [
         {
+          label: 'Social Logins',
+          description: 'Connect social accounts to enable single sign-on',
+          component: <IdentitiesTable />,
+        },
+        {
           label: 'Password',
           description: 'Add or update your password',
           component: (
@@ -112,31 +119,34 @@ export const settingsConfig = (isDisabled: boolean) => {
               <SecuritySettings toolbar={<DefaultToolbar />} />
             </Edit>
           ),
-        },
-        {
-          label: 'Social Logins',
-          description: 'Connect social accounts to enable single sign-on',
-          component: <IdentitiesTable />,
-        },
+        }
       ],
     },
   ]
 }
 
+const AdminUserMetaAside = () => {
+  return (
+    <div style={{ width: '30%', margin: '1em', display: 'flex', flexDirection: 'column' }}>
+      <Typography variant="h6">General</Typography>
+      <Labeled label="Last Login At">
+        <DateField source="last_login_at" />
+      </Labeled>
+      <Labeled label="Sign In Count">
+        <TextField source="sign_in_count" />
+      </Labeled>
+    </div>
+  )
+}
+
+
 const AdminTab = () => {
   // TODO: grab choices from app config and add to choices
 
   return (
-    <Edit actions={false} redirect={false}>
+    <Edit aside={<AdminUserMetaAside />} actions={false} redirect={false}>
       <SimpleForm toolbar={<DefaultToolbar />}>
-        <Typography variant="h6">General</Typography>
-        <Labeled label="Last Login At">
-          <DateField source="last_login_at" />
-        </Labeled>
-        <Labeled label="Sign In Count">
-          <TextField source="sign_in_count" />
-        </Labeled>
-        <Typography variant="h6">User Role Management</Typography>
+        <Typography variant="h6">User Management</Typography>
         <CheckboxGroupInput
           source="roles"
           choices={[{ id: 'admin', name: 'Admin' }]}

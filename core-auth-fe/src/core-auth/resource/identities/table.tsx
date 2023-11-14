@@ -56,7 +56,6 @@ export const IdentitiesTable = () => {
     <ReferenceManyField reference="Identity" target="user_id" label={false}>
       <Datagrid bulkActionButtons={false}>
         <FunctionField
-          label="provider"
           render={(rec: RaRecord) => {
             const Icon = identityProviders[rec.provider]
             return (
@@ -83,7 +82,6 @@ export const IdentitiesTable = () => {
             disabled={typeof total === 'undefined' || total <= 1}
             confirmTitle="Disconnect Social Login"
             confirmContent={<ConfirmDeleteIdentityContent />}
-            label="Disconnect"
           />
         )}
       </Datagrid>
