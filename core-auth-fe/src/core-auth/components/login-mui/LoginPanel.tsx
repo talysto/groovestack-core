@@ -46,7 +46,7 @@ export function LoginPanel({
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList centered onChange={handleChange} aria-label="Login or Signup">
-            <Tab label="Login" value="1" disabled={login} />
+            <Tab label="Login" value="1" disabled={!login} />
             {registration && <Tab label="Sign Up" value="2" />}
           </TabList>
         </Box>

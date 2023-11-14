@@ -7,7 +7,7 @@ import { Comments } from '@moonlight-labs/core-comments-fe'
 import { HomeView, GroovestackLayout } from '@moonlight-labs/core-config-fe'
 import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 
-import { mockDataProvider, mockAuthProvider } from './data/mock-providers'
+import { mockDataProvider, mockAuthProvider, credentials } from './data/mock-providers'
 // import { CustomLayout } from './layout/CustomLayout'
 import { Company } from './resources/company'
 
@@ -30,7 +30,7 @@ const AppInitHeadline = () => {
 
 const LoginPage = (props: any) => {
   return (
-    <Auth.RA.LoginPage {...props} appInit={appInit} Headline={AppInitHeadline} />
+    <Auth.RA.LoginPage {...props} credentials={credentials} appInit={appInit} Headline={AppInitHeadline} />
   )
 }
 
@@ -40,6 +40,15 @@ const CustomLayout = (props: LayoutProps) => {
 
 
 function AdminApp() {
+  credentials.setAppConfig({ 
+    has_admins: false, 
+    user_roles: ['admin'], 
+    oauth_providers: { 
+      // enabled: [{k: 'google', path: 'users/auth/google'}]
+      enabled: []
+    }
+  })
+
   return (
     <Admin
       disableTelemetry

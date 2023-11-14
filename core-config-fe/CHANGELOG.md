@@ -1,5 +1,19 @@
 # @moonlight-labs/core-versions-fe
 
+## 0.1.64
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-auth-fe@0.1.27
+
+## 0.1.63
+
+### Patch Changes
+
+- Updated dependencies
+  - @moonlight-labs/core-auth-fe@0.1.26
+
 ## 0.1.4
 
 ### Patch Changes
