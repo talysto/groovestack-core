@@ -1,5 +1,11 @@
 # @moonlight-labs/core-versions-fe
 
+## 0.1.65
+
+### Patch Changes
+
+- build latest
+
 ## 0.1.64
 
 ### Patch Changes

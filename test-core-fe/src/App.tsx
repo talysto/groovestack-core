@@ -57,7 +57,7 @@ function AdminApp() {
       loginPage={LoginPage}
       dashboard={HomeView}
       layout={CustomLayout}
-      theme={houseLightTheme}
+      // theme={houseLightTheme}
     >
       <Resource
         name={Auth.Users.Name}
