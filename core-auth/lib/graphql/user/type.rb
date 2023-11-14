@@ -19,6 +19,10 @@ module GraphQL
       field :sign_in_count, Integer, null: true, description: 'sign in count'
     
       field :identities, [::GraphQL::Identity::Type], null: false, description: 'identities'
+
+      def has_email_provider
+        object.has_email_provider?
+      end
     end
   end
 end

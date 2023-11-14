@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     nil
   end
 
-  def has_email_provider
+  def has_email_provider?
     encrypted_password.present?
   end
 
