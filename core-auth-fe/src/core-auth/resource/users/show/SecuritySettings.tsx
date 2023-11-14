@@ -3,7 +3,7 @@ import {
   SimpleForm,
   minLength,
   required,
-  useGetIdentity,
+  useGetIdentity
 } from 'react-admin'
 import { useWatch } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
@@ -17,13 +17,13 @@ export const SecuritySettings = () => {
 
   return (
     <SimpleForm>
-      <PasswordInput
+      { currentUser?.hasEmailProvider ? <PasswordInput
         disabled={disabled}
         source="current_password"
         label="Current Password"
         fullWidth
         validate={password ? required() : undefined}
-      />
+      /> : null }
       <PasswordInput
         disabled={disabled}
         source="password"

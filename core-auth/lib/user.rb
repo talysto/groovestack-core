@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     nil
   end
 
+  def has_email_provider
+    encrypted_password.present?
+  end
+
   def build_auth_headers(token, client = 'default')
     # client may use expiry to prevent validation request if expired
     # must be cast as string or headers will break

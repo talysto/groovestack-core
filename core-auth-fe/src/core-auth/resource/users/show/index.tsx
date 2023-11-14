@@ -79,13 +79,13 @@ const GeneralSettings = () => (
   <SimpleForm warnWhenUnsavedChanges toolbar={<DefaultToolbar />}>
     <TextInput source="name" fullWidth />
     <TextInput source="email" type="email" fullWidth />
-    <SelectInput
+    {/* <SelectInput
       source="language"
       choices={languageChoices}
       validate={required()}
       disabled
       fullWidth
-    />
+    /> */}
     <TextInput disabled source="image" fullWidth />
   </SimpleForm>
 )
@@ -133,6 +133,8 @@ export const settingsConfig = (isDisabled: boolean) => {
 }
 
 const AdminTab = () => {
+  // TODO: grab choices from app config and add to choices
+
   return (
     <Edit actions={false} redirect={false}>
       <SimpleForm toolbar={<DefaultToolbar />}>
