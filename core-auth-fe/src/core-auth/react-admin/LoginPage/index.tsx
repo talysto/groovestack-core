@@ -29,13 +29,6 @@ import { Credentials, defaultCredentials } from '../../credentials'
  *     );
  */
 
-const oauthProviders: SocialSignInProps['social'] = [
-  { k: 'google', href: '/users/auth/google' },
-  { k: 'microsoft', href: '/users/auth/microsoft' },
-  { k: 'apple', href: '/users/auth/apple' },
-  { k: 'facebook', href: '/users/auth/facebook' },
-]
-
 const csrfToken = () => {
   const meta: any = document.querySelector('meta[name=csrf-token]');
   return meta && meta.content;
@@ -52,8 +45,13 @@ const AppInitHeadline = () => {
   )
 }
 
+type OauthProvider = {
+  k: string;
+  path: string;
+}
+
 export const LoginPage = (props: LoginPageProps) => {
-  let { backgroundImage, credentials = defaultCredentials, socialProviders=['google'], Headline = AppInitHeadline, ...rest } = props
+  let { backgroundImage, credentials = defaultCredentials, Headline = AppInitHeadline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
   const checkAuth = useCheckAuth()
@@ -185,9 +183,11 @@ export const LoginPage = (props: LoginPageProps) => {
       lazyLoadBackgroundImage()
     }
   })
-
-  const social = oauthProviders.filter(oP => socialProviders.includes(oP.k))
   
+  const social = credentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
+    const { k, path: href } = p
+    return { k, href }
+  })
   return (
     <Root {...rest} ref={containerRef}>
       <Card className={LoginClasses.card}>
@@ -217,7 +217,6 @@ export interface LoginPageProps extends HtmlHTMLAttributes<HTMLDivElement> {
   credentials?: Credentials
   Headline?: React.FC
   sx?: SxProps
-  socialProviders?: string[]
 }
 
 const PREFIX = 'RaLogin'

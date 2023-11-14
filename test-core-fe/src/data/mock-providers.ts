@@ -13,6 +13,8 @@ const storeActions = {
   getCurrentResource: () => store.getItem('currentUser'),
   clearCurrentResource: () => store.removeItem('currentUser'),
   setCurrentResource: (resource: any) => store.setItem('currentUser', resource),
+  getAppConfig: () => store.getItem('groovestackAppConfig'),
+  setAppConfig: (appConfig: {[k:string]: any}) => store.setItem('groovestackAppConfig', appConfig),
 }
 
 const hydrateCurrentUser = async () => {
@@ -30,10 +32,8 @@ const hydrateCurrentUser = async () => {
   return currentUser
 }
 
-const credentials = {
-  getCurrentResource: storeActions.getCurrentResource,
-  clearCurrentResource: storeActions.clearCurrentResource,
-  setCurrentResource: storeActions.setCurrentResource,
+export const credentials = {
+  ...storeActions,
   hydrateCurrentResource: hydrateCurrentUser
 }
 

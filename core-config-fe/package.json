@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-config-fe",
-  "version": "0.1.62",
+  "version": "0.1.64",
   "type": "module",
   "files": [
     "dist"
