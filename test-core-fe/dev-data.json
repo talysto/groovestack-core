@@ -5728,6 +5728,7 @@
     {
       "name": "Tracy Aufderhar",
       "type": "User",
+      "has_email_provider": false,
       "id": "3f6bc6fa-024b-486d-9481-1dcda5bcccd5",
       "created_at": "2023-05-12T22:47:47.673Z",
       "updated_at": "2023-09-14T15:56:32.857Z",
@@ -5747,6 +5748,7 @@
     {
       "name": "Eula Pouros",
       "type": "User",
+      "has_email_provider": false,
       "id": "e21a4f8d-1a25-416a-8fe6-0d23a041c8f9",
       "created_at": "2023-08-07T18:41:49.328Z",
       "updated_at": "2023-03-27T13:25:54.558Z",
@@ -5766,6 +5768,7 @@
     {
       "name": "Josephine Graham",
       "type": "User",
+      "has_email_provider": false,
       "id": "7c37eef4-2531-461b-a721-81f8f122365a",
       "created_at": "2023-07-10T00:20:33.856Z",
       "updated_at": "2022-11-28T11:28:16.713Z",
@@ -5785,6 +5788,7 @@
     {
       "name": "Maureen Marvin",
       "type": "User",
+      "has_email_provider": false,
       "id": "a32d416c-8f5e-4e51-bcab-af34fb45afd0",
       "created_at": "2022-11-10T23:27:06.916Z",
       "updated_at": "2023-02-02T16:03:46.402Z",
@@ -5804,6 +5808,7 @@
     {
       "name": "Mattie Koepp",
       "type": "User",
+      "has_email_provider": false,
       "id": "9ec6dda9-41a4-487a-83d6-a39822cf245a",
       "created_at": "2023-07-26T17:19:24.496Z",
       "updated_at": "2023-08-07T18:13:21.982Z",
@@ -5825,6 +5830,7 @@
     {
       "name": "Sarah Morissette",
       "type": "User",
+      "has_email_provider": false,
       "id": "b860d2a3-0f25-423a-9b10-36728dc81465",
       "created_at": "2022-11-23T19:46:48.101Z",
       "updated_at": "2023-03-01T04:38:26.556Z",
@@ -5844,6 +5850,7 @@
     {
       "name": "Dr. Virgil Feeney",
       "type": "User",
+      "has_email_provider": false,
       "id": "2b7e3785-0f84-4e26-8222-047cc368c2ee",
       "created_at": "2023-01-12T19:32:33.245Z",
       "updated_at": "2023-04-08T16:09:32.369Z",
@@ -5865,6 +5872,7 @@
     {
       "name": "Miss Bernadette Windler",
       "type": "User",
+      "has_email_provider": false,
       "id": "ced37646-537a-4c96-af9f-78260e8676af",
       "created_at": "2023-07-27T22:49:46.157Z",
       "updated_at": "2023-09-12T10:52:53.510Z",
@@ -5886,6 +5894,7 @@
     {
       "name": "Leona Stehr",
       "type": "User",
+      "has_email_provider": false,
       "id": "a49e0413-d34e-4cb1-8b5f-0f07cb50fccb",
       "created_at": "2023-03-30T06:20:22.833Z",
       "updated_at": "2023-11-04T11:25:14.643Z",
@@ -5907,6 +5916,7 @@
     {
       "name": "Allison Prosacco DVM",
       "type": "User",
+      "has_email_provider": false,
       "id": "6f9ccbc5-a939-4427-8fef-fbff33e0b4bb",
       "created_at": "2023-03-26T15:39:56.558Z",
       "updated_at": "2023-01-10T21:23:45.190Z",

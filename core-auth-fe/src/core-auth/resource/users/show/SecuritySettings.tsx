@@ -17,7 +17,7 @@ export const SecuritySettings = () => {
 
   return (
     <SimpleForm>
-      { currentUser?.hasEmailProvider ? <PasswordInput
+      { currentUser?.has_email_provider ? <PasswordInput
         disabled={disabled}
         source="current_password"
         label="Current Password"
