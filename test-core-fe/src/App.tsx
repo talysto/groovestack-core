@@ -1,14 +1,14 @@
-import { Admin, Resource } from 'react-admin'
+import { Admin, Resource, houseLightTheme, LayoutProps } from 'react-admin'
 import { Box } from '@mui/material'
 
 // Source Code import
 import { Auth } from '@moonlight-labs/core-auth-fe'
 import { Comments } from '@moonlight-labs/core-comments-fe'
-import { HomeView } from '@moonlight-labs/core-config-fe'
+import { HomeView, GroovestackLayout } from '@moonlight-labs/core-config-fe'
 import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 
 import { mockDataProvider, mockAuthProvider } from './data/mock-providers'
-import { CustomLayout } from './layout/CustomLayout'
+// import { CustomLayout } from './layout/CustomLayout'
 import { Company } from './resources/company'
 
 // import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
@@ -34,6 +34,11 @@ const LoginPage = (props: any) => {
   )
 }
 
+const CustomLayout = (props: LayoutProps) => {
+  return <GroovestackLayout LayoutProps={props} AppBarProps={{userMenu: <Auth.Users.Menu />}} />
+}
+
+
 function AdminApp() {
   return (
     <Admin
@@ -43,6 +48,7 @@ function AdminApp() {
       loginPage={LoginPage}
       dashboard={HomeView}
       layout={CustomLayout}
+      theme={houseLightTheme}
     >
       <Resource
         name={Auth.Users.Name}
