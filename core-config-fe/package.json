@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-config-fe",
-  "version": "0.1.62",
+  "version": "0.1.65",
   "type": "module",
   "files": [
     "dist"
@@ -29,7 +29,6 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^",
-    "@moonlight-labs/core-auth-fe": "workspace:^"
+    "@moonlight-labs/core-base-fe": "workspace:^"
   }
 }

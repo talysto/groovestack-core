@@ -75,7 +75,7 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     @resource
   end
 
-  def google
+  def verified
     omniauth_success do 
       set_token_in_cookie(@resource, @token)
       redirect_to DeviseTokenAuth::Url.generate(request.env["omniauth.origin"], redirect_options)

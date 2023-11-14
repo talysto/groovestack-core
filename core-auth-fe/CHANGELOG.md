@@ -1,5 +1,23 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.29
+
+### Patch Changes
+
+- build latest
+
+## 0.1.27
+
+### Patch Changes
+
+- fix disabled login when no admins
+
+## 0.1.26
+
+### Patch Changes
+
+- pull available oauth providers from app config
+
 ## 0.1.24
 
 ### Patch Changes

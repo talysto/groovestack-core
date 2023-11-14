@@ -3,29 +3,29 @@ import {
   SimpleForm,
   minLength,
   required,
-  useGetIdentity
+  useGetIdentity,
+  useRecordContext
 } from 'react-admin'
 import { useWatch } from 'react-hook-form'
-import { useParams } from 'react-router-dom'
 
 export const SecuritySettings = () => {
   const password = useWatch({ name: 'password' })
   const currentPassword = useWatch({ name: 'current_password' })
   const { data: currentUser } = useGetIdentity()
-  const { id } = useParams()
-  const disabled = currentUser?.id != id
+  const record = useRecordContext()
+  if (!(record && currentUser)) return null 
+
+  const disabled = currentUser.id != record.id
 
   return (
-    <SimpleForm>
-      { currentUser?.has_email_provider ? <PasswordInput
-        disabled={disabled}
+    <SimpleForm disabled={disabled}>
+      {record.has_email_provider ? <PasswordInput
         source="current_password"
         label="Current Password"
         fullWidth
         validate={password ? required() : undefined}
       /> : null }
       <PasswordInput
-        disabled={disabled}
         source="password"
         fullWidth
         helperText="(6 characters minimum)"
