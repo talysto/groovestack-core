@@ -114,7 +114,7 @@ const PurgeButton = () => {
         }
       })
     } catch(e) {
-      console.log(e)
+      // console.log('error', e)
       notify('Error purging jobs', { type: 'error'})
     }
   }
