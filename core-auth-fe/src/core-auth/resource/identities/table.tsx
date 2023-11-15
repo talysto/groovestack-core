@@ -15,6 +15,7 @@ import { Box, Chip } from '@mui/material'
 import { StyledIcon } from '@styled-icons/styled-icon'
 import { useParams } from 'react-router-dom'
 import { MoreIcons } from '../../components/MoreIcons'
+import { ConnectSocialLogin } from './ConnectSocialLogin'
 
 const { Apple, Facebook, Google, Microsoft } = MoreIcons
 const identityProviders: { [k: string]: StyledIcon } = {
@@ -47,45 +48,54 @@ export const IdentitiesTable = () => {
   const { id } = useParams()
 
   const record = useRecordContext()
-  const { total } = useGetManyReference('Identity', {
+
+  const { total, data } = useGetManyReference('Identity', {
     target: 'user_id',
     id: record.id,
   })
 
   return (
-    <ReferenceManyField reference="Identity" target="user_id" label={false}>
-      <Datagrid bulkActionButtons={false}>
-        <FunctionField
-          render={(rec: RaRecord) => {
-            const Icon = identityProviders[rec.provider]
-            return (
-              <Chip
-                onClick={undefined}
-                sx={{ backgroundColor: 'transparent', color: 'inherit' }}
-                icon={
-                  <Box sx={{ pb: '.25em' }}>
-                    <Icon size={'1em'} />
-                  </Box>
+    <>
+      {currentUser && currentUser.id == id ? 
+        <ConnectSocialLogin currentUser={currentUser} total={total} id={id} data={data} /> : 
+      <></> }
+      <ReferenceManyField reference="Identity" target="user_id" label={false}>
+        <Datagrid
+          bulkActionButtons={false}
+        >
+          <FunctionField
+              render={(rec: RaRecord) => {
+                const Icon = identityProviders[rec.provider]
+                return (
+                    <Chip
+                      onClick={undefined}
+                      sx={{ backgroundColor: 'transparent', color: 'inherit' }}
+                      icon={
+                        <Box sx={{ pb: '.25em' }}>
+                          <Icon size={'1em'} />
+                        </Box>
+                      }
+                      label={<Box>{titleCase(rec.provider)}</Box>}
+                    />
+                  )
                 }
-                label={<Box>{titleCase(rec.provider)}</Box>}
+              }
+            />
+            {currentUser && currentUser.id !== id ? (
+              <></>
+            ) : (
+              <DeleteWithConfirmButton
+                redirect={false}
+                icon={<LinkOffIcon />}
+                title="Disconnect"
+                disabled={typeof total === 'undefined' || total <= 1}
+                confirmTitle="Disconnect Social Login"
+                confirmContent={<ConfirmDeleteIdentityContent />}
               />
-            )
-          }}
-        />
-        {currentUser && currentUser.id !== id ? (
-          <></>
-        ) : (
-          <DeleteWithConfirmButton
-            redirect={false}
-            icon={<LinkOffIcon />}
-            title="Disconnect"
-            disabled={typeof total === 'undefined' || total <= 1}
-            confirmTitle="Disconnect Social Login"
-            confirmContent={<ConfirmDeleteIdentityContent />}
-          />
-        )}
-      </Datagrid>
-    </ReferenceManyField>
+            )}
+          </Datagrid>
+      </ReferenceManyField>
+    </>
   )
 }
 
@@ -101,7 +111,8 @@ export const ReferenceManyIdentitiesField = () => (
       <FunctionField
         label="provider"
         render={(rec: RaRecord) => {
-          const Icon = identityProviders['google']
+          const Icon = identityProviders[rec.provider]
+          
           return (
             <Chip
               onClick={undefined}

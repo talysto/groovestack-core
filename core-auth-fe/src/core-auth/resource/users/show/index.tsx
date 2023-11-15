@@ -16,8 +16,6 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-import { Grid, Box, Card, CardContent } from '@mui/material'
-
 import { useParams } from 'react-router-dom'
 
 import { IdentitiesTable } from '../../identities/table'

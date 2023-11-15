@@ -44,8 +44,10 @@ function AdminApp() {
     has_admins: false, 
     user_roles: ['admin'], 
     oauth_providers: { 
-      // enabled: [{k: 'google', path: 'users/auth/google'}]
-      enabled: []
+      enabled: [
+        {k: 'google', path: 'users/auth/google'},
+        {k: 'apple', path: 'users/auth/apple'}
+      ]
     }
   })
 

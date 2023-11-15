@@ -29,7 +29,7 @@ import { Credentials, defaultCredentials } from '../../credentials'
  *     );
  */
 
-const csrfToken = () => {
+export const csrfToken = () => {
   const meta: any = document.querySelector('meta[name=csrf-token]');
   return meta && meta.content;
 };

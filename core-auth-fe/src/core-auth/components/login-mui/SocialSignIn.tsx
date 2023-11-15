@@ -4,7 +4,7 @@ import GoogleIcon from '@mui/icons-material/Google'
 import MicrosoftIcon from '@mui/icons-material/Microsoft'
 import { Box, Button } from '@mui/material'
 
-const standard = [
+export const standard = [
   { key: 'apple', icon: <AppleIcon />, label: 'Apple' },
   { key: 'google', icon: <GoogleIcon />, label: 'Google' },
   { key: 'microsoft', icon: <MicrosoftIcon />, label: 'Microsoft' },

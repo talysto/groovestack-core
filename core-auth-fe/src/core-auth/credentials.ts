@@ -1,4 +1,5 @@
 import { ApolloClient, NormalizedCacheObject, gql } from '@apollo/client'
+import { localStorageStore } from 'react-admin'
 
 export type Credentials = {
   clearCurrentResource: () => void
@@ -25,11 +26,13 @@ const CURRENT_USER_QUERY = gql`
   }
 `
 
+const store = localStorageStore()
+
 const parseCached = (k: string) => {
-  const cached = localStorage.getItem(k)
+  const cached = store.getItem(k)
   if (!cached) return null
 
-  return JSON.parse(cached)
+  return cached
 }
 
 const credentials: Credentials = {
