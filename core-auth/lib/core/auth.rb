@@ -8,6 +8,7 @@ require 'active_record'
 
 require 'core/auth/railtie' if defined?(Rails::Railtie)
 require 'core/auth/engine' if defined?(Rails::Engine)
+require 'core/auth/provider'
 
 # add devise and devise_token_auth app/ dirs to load path
 Dir[File.join(Gem::Specification.find_by_name("devise").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
@@ -41,4 +42,3 @@ require 'core/auth/authenticated_api_controller'
 require 'core/auth/omniauth_callbacks_controller'
 require 'core/auth/action_cable'
 require 'core/auth/schema_plugin'
-
