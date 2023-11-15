@@ -66,7 +66,6 @@ function AdminApp() {
         list={Auth.Users.List}
         show={Auth.Users.Show}
         recordRepresentation="Auth Name"
-        options={{ label: 'Users (Test)' }}
       />
 
       <Resource
@@ -75,7 +74,6 @@ function AdminApp() {
         edit={Company.Edit}
         list={Company.List}
         create={Company.Create}
-        options={{ label: 'Companies (Test)' }}
         recordRepresentation="name"
       />
 
