@@ -32,6 +32,9 @@ import { TopToolbar } from '../../../components/TopToolbar'
 import SettingsTabs from '../../../components/SettingsTabs'
 import { SecuritySettings } from './SecuritySettings'
 
+// TODO: grab user roles from lookups, not default app config
+import { defaultCredentials } from '../../../credentials'
+
 export function titleCase(str: string): string {
   return str
     .split(' ')
@@ -141,7 +144,7 @@ const AdminUserMetaAside = () => {
 
 
 const AdminTab = () => {
-  // TODO: grab choices from app config and add to choices
+  const roles = defaultCredentials.getAppConfig().user_roles.map((role: string) => ({ id: role, name: titleCase(role) }))
 
   return (
     <Edit aside={<AdminUserMetaAside />} actions={false} redirect={false}>
@@ -149,7 +152,7 @@ const AdminTab = () => {
         <Typography variant="h6">User Management</Typography>
         <CheckboxGroupInput
           source="roles"
-          choices={[{ id: 'admin', name: 'Admin' }]}
+          choices={roles}
         />
       </SimpleForm>
     </Edit>
