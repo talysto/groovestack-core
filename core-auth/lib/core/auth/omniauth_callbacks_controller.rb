@@ -27,11 +27,10 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     # don't currently have access through b/c we are going directly
     # through omniauth
 
-
     return @resource_class if defined?(@resource_class)
 
+    raise 'No resource_class found' unless @resource.present?
     @resource_class = @resource.class
-    raise 'No resource_class found' if @resource_class.nil?
 
     @resource_class
   end
@@ -56,12 +55,13 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     #   provider: auth_hash['provider']
     # ).first_or_initialize
 
-    invitation_token = request.env.dig('omniauth.params', 'invitation_token')
+    # invitation_token = request.env.dig('omniauth.params', 'invitation_token')
     language = request.env.dig('omniauth.params', 'language')
     # auth = request.env['omniauth.auth']
 
     identity_params = { 
       auth: auth_hash, 
+      current_user: current_user rescue nil,
       user_attrs: { 
         language: language,
         roles: Core::Config::App.generate_config[:has_admins] ? [] : [Users::Roles::Role::ADMIN]
@@ -75,7 +75,7 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     # end
 
     # sync user info with provider, update/generate auth token
-    assign_provider_attrs(@resource, auth_hash)
+    # assign_provider_attrs(@resource, auth_hash)
 
     # assign any additional (whitelisted) attributes
     # if assign_whitelisted_params?
