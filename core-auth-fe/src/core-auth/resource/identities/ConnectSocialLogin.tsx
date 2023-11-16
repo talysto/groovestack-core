@@ -34,7 +34,7 @@ const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, labe
       action={href}
     >
       <Input type='hidden' name='authenticity_token' value={csrf} />
-      <Button disabled={disabled} type='submit' variant='outlined' startIcon={icon}>{label}</Button>
+      <Button sx={{ width: '100%' }} disabled={disabled} type='submit' variant='outlined' startIcon={icon}>{label}</Button>
     </Box>
   )
 }
@@ -86,7 +86,7 @@ export const ConnectSocialLogin = (props: any) => {
 
           return (
             <MenuItem>
-              <span key={key}>{socialSignInRender({ key, icon, label, href, disabled })}</ span>
+              <span style={{ width: '100%' }} key={key}>{socialSignInRender({ key, icon, label, href, disabled })}</ span>
             </MenuItem>    
           )
         })}
