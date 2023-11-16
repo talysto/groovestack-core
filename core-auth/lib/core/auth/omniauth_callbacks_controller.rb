@@ -59,9 +59,11 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     language = request.env.dig('omniauth.params', 'language')
     # auth = request.env['omniauth.auth']
 
+    c_user = current_user rescue nil
+    
     identity_params = { 
       auth: auth_hash, 
-      current_user: current_user rescue nil,
+      current_user: c_user,
       user_attrs: { 
         language: language,
         roles: Core::Config::App.generate_config[:has_admins] ? [] : [Users::Roles::Role::ADMIN]
