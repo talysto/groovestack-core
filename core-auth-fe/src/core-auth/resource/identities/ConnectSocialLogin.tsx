@@ -1,12 +1,10 @@
-import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import { Box, Input, List, Button, ListItemButton, ListItemText, Collapse, Chip, Icon } from '@mui/material'
+import { Box, Input } from '@mui/material'
 import { useState } from 'react'
 import { SocialSignInProps, standard } from '../../components/login-mui/SocialSignIn'
 import { defaultCredentials } from '../../credentials'
 import { StyledIcon } from '@styled-icons/styled-icon'
 import { csrfToken } from '../../react-admin/LoginPage'
 import { MoreIcons } from '../../components/MoreIcons'
-import { titleCase } from './table'
 
 const { Apple, Facebook, Google, Microsoft } = MoreIcons
 const identityProviders: { [k: string]: StyledIcon } = {
@@ -28,81 +26,71 @@ const social = defaultCredentials.getAppConfig()?.oauth_providers?.enabled.map((
 
 const csrf = csrfToken()
 
-const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href}) => {
+const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href, disabled }) => {
   return (
     <Box
-      component="form"
+      component='form'
       method='post'
       action={href}
     >
       <Input type='hidden' name='authenticity_token' value={csrf} />
-      <Button type='submit' startIcon={icon}>{label}</Button>
+      <Button disabled={disabled} type='submit' variant='outlined' startIcon={icon}>{label}</Button>
     </Box>
   )
 }
 
-export const ConnectSocialLogin = (props: any) => {
-  const [open, setOpen] = useState(true)
+import { Button, Menu, MenuItem, Fade } from '@mui/material'
 
-  const handleClick = () => {
-    setOpen(!open)
+export const ConnectSocialLogin = (props: any) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
+  
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
   }
 
   if (!props.data) return <></>
 
   return (
-    <>
-      <List
-        disablePadding
-        component="nav"
-        aria-labelledby="nested-list-subheader"
+    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Button
+        id='fade-button'
+        aria-controls={open ? 'fade-menu' : undefined}
+        aria-haspopup='true'
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
       >
-        <ListItemButton onClick={handleClick}>
-          <ListItemText primary="Connect" />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {social.map(({ k, href }: { k: any, href: any }) => {
-              const hasProvider = props.data.find((record: any) => record.provider === k)
-              
-              if (hasProvider) return <></>
+        Connect
+      </Button>
+      <Menu
+        id='fade-menu'
+        MenuListProps={{
+          'aria-labelledby': 'fade-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        {social.map(({ k, href }: { k: any, href: any }) => {
+          const disabled = props.data.find((record: any) => record.provider === k)
 
-              const s = standard.find((s) => s.key == k)
-              if (!s) return null
+          const s = standard.find((s) => s.key == k)
+          if (!s) return null
 
-              const { key } = s
-              
-              const Icon = identityProviders[k]
+          const { key, icon, label } = s
 
-              const label = `Connect`
-              const icon = <></>
-
-              return (
-                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between',
-                  flexDirection: 'row', flexWrap: 'nowrap', alignContent: 'center', alignItems: 'center', paddingLeft: 15, paddingRight: 15 }}>
-                    <div>
-                  <Chip
-                      onClick={undefined}
-                      sx={{ backgroundColor: 'transparent', color: 'inherit' }}
-                      icon={
-                        <Box sx={{ pb: '.25em' }}>
-                          <Icon size={'1em'} />
-                        </Box>
-                      }
-                      label={<Box>{titleCase(k)}</Box>}
-                    />
-                    </div>
-                    
-                    <div style={{ width: '50%' }}>
-                      <span key={key}>{socialSignInRender({ key, icon, label, href })}</ span>
-                  </div>
-                </div>
-              )
-            })}
-          </List>
-        </Collapse>
-      </List>
-    </>
-  )
+          return (
+            <MenuItem>
+              <span key={key}>{socialSignInRender({ key, icon, label, href, disabled })}</ span>
+            </MenuItem>    
+          )
+        })}
+      </Menu>
+    </div>
+  );
 }

@@ -12,7 +12,7 @@ export const standard = [
 ]
 
 type SocialType = { k: string; href?: string }
-type SocialSignInRenderButton = ({ key, icon, label, href }: { key: string; icon: JSX.Element, label: string, href?: string }) => JSX.Element
+type SocialSignInRenderButton = ({ key, icon, label, href, disabled }: { key: string; icon: JSX.Element, label: string, href?: string, disabled?: boolean }) => JSX.Element
 
 export interface SocialSignInProps {
   renderButton?: SocialSignInRenderButton
