@@ -5,7 +5,18 @@ require 'devise_token_auth/concerns/set_user_by_token'
 require 'devise_token_auth/application_controller'
 require 'devise_token_auth/omniauth_callbacks_controller'
 
-class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController # Devise::OmniauthCallbacksController
+class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+  def verified_request?
+    # required b/c apple uses POST to callback and resets the origin header
+    # source: https://github.com/rails/rails/blob/6b93fff8af32ef5e91f4ec3cfffb081d0553faf0/actionpack/lib/action_controller/metal/request_forgery_protection.rb#L442C11-L442C27
+
+    apple_success_callback_request? || super
+  end
+
+  def apple_success_callback_request?
+    params[:action] == 'verified' && params[:provider] == 'apple' && request.headers['Origin'] == 'https://appleid.apple.com'
+  end
+
   def auth_hash
     @auth_hash ||= request.env['omniauth.auth'] # goes through plain old omniauth so need to override
   end
@@ -16,11 +27,10 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     # don't currently have access through b/c we are going directly
     # through omniauth
 
-
     return @resource_class if defined?(@resource_class)
 
+    raise 'No resource_class found' unless @resource.present?
     @resource_class = @resource.class
-    raise 'No resource_class found' if @resource_class.nil?
 
     @resource_class
   end
@@ -45,12 +55,15 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     #   provider: auth_hash['provider']
     # ).first_or_initialize
 
-    invitation_token = request.env.dig('omniauth.params', 'invitation_token')
+    # invitation_token = request.env.dig('omniauth.params', 'invitation_token')
     language = request.env.dig('omniauth.params', 'language')
     # auth = request.env['omniauth.auth']
 
+    c_user = current_user rescue nil
+    
     identity_params = { 
       auth: auth_hash, 
+      current_user: c_user,
       user_attrs: { 
         language: language,
         roles: Core::Config::App.generate_config[:has_admins] ? [] : [Users::Roles::Role::ADMIN]
@@ -64,7 +77,7 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     # end
 
     # sync user info with provider, update/generate auth token
-    assign_provider_attrs(@resource, auth_hash)
+    # assign_provider_attrs(@resource, auth_hash)
 
     # assign any additional (whitelisted) attributes
     # if assign_whitelisted_params?

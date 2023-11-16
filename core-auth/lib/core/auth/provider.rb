@@ -114,7 +114,6 @@ module Core
               team_id: Rails.application.credentials.APPLE_TEAM_ID,
               key_id: Rails.application.credentials.APPLE_KEY_ID,
               pem: Rails.application.credentials.APPLE_PEM_CONTENT,
-              provider_ignores_state: true
             }
           ]
         end
