@@ -5,7 +5,18 @@ require 'devise_token_auth/concerns/set_user_by_token'
 require 'devise_token_auth/application_controller'
 require 'devise_token_auth/omniauth_callbacks_controller'
 
-class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController # Devise::OmniauthCallbacksController
+class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+  def verified_request?
+    # required b/c apple uses POST to callback and resets the origin header
+    # source: https://github.com/rails/rails/blob/6b93fff8af32ef5e91f4ec3cfffb081d0553faf0/actionpack/lib/action_controller/metal/request_forgery_protection.rb#L442C11-L442C27
+
+    apple_success_callback_request? || super
+  end
+
+  def apple_success_callback_request?
+    params[:action] == 'verified' && params[:provider] == 'apple' && request.headers['Origin'] == 'https://appleid.apple.com'
+  end
+
   def auth_hash
     @auth_hash ||= request.env['omniauth.auth'] # goes through plain old omniauth so need to override
   end
