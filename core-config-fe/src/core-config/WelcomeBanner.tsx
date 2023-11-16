@@ -8,8 +8,6 @@ export const WelcomeBanner = ({ props }: { props?: any }) => {
   
   if (loadingMe) return null
 
-  console.log(currentUser)
-
   return (
     <>
       {currentUser && !currentUser.roles.includes('admin') ? 
