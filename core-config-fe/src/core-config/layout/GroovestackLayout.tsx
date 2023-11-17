@@ -7,6 +7,7 @@ type GroovestackLayoutProps = {
 
 export const GroovestackLayout = ({ AppBarProps, LayoutProps}: GroovestackLayoutProps) => {
   if (AppBarProps) {
+
     const GroovestackAppBar = () => <AppBar {...AppBarProps} />
 
     return <Layout {...LayoutProps} appBar={GroovestackAppBar} />

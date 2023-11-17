@@ -1,5 +1,11 @@
 # @moonlight-labs/core-versions-fe
 
+## 0.1.68
+
+### Patch Changes
+
+- app bar title improvements
+
 ## 0.1.65
 
 ### Patch Changes

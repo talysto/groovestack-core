@@ -11,22 +11,18 @@ import {
   TabbedShowLayout,
   TextField,
   TextInput,
+  Title,
   Toolbar,
   useGetIdentity,
   useRecordContext,
 } from 'react-admin'
-
-import { useParams } from 'react-router-dom'
-
-import { IdentitiesTable } from '../../identities/table'
-
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
 import { Typography } from '@mui/material'
 
+import { IdentitiesTable } from '../../identities/table'
 import { StandardTitle } from '../../../components/StandardTitle'
 import { TopToolbar } from '../../../components/TopToolbar'
-
 import SettingsTabs from '../../../components/SettingsTabs'
 import { SecuritySettings } from './SecuritySettings'
 
@@ -40,29 +36,6 @@ export function titleCase(str: string): string {
     .join(' ')
 }
 
-// const languageChoices = [
-//   { id: 'english', name: 'English' },
-//   { id: 'spanish', name: 'Spanish' },
-//   { id: 'french', name: 'French' },
-//   { id: 'german', name: 'German' },
-//   { id: 'chinese', name: 'Chinese' },
-//   { id: 'arabic', name: 'Arabic' },
-//   { id: 'russian', name: 'Russian' },
-//   { id: 'japanese', name: 'Japanese' },
-//   { id: 'portuguese', name: 'Portuguese' },
-//   { id: 'italian', name: 'Italian' },
-//   { id: 'dutch', name: 'Dutch' },
-//   { id: 'korean', name: 'Korean' },
-//   { id: 'swedish', name: 'Swedish' },
-//   { id: 'greek', name: 'Greek' },
-//   { id: 'hindi', name: 'Hindi' },
-//   { id: 'turkish', name: 'Turkish' },
-//   { id: 'polish', name: 'Polish' },
-//   { id: 'vietnamese', name: 'Vietnamese' },
-//   { id: 'thai', name: 'Thai' },
-//   { id: 'romanian', name: 'Romanian' },
-// ]
-
 const DefaultToolbar = (props: any) => (
   <Toolbar {...props} sx={{ display: 'flex', justifyContent: 'space-between' }}>
     <SaveButton />
@@ -73,24 +46,32 @@ const GeneralSettings = () => (
   <SimpleForm warnWhenUnsavedChanges toolbar={<DefaultToolbar />}>
     <TextInput source="name" fullWidth />
     <TextInput source="email" type="email" fullWidth />
-    {/* <SelectInput
-      source="language"
-      choices={languageChoices}
-      validate={required()}
-      disabled
-      fullWidth
-    /> */}
     <TextInput disabled source="image" fullWidth />
   </SimpleForm>
 )
 
-const DefaultEditProps: EditProps = {
-  redirect: false,
-  actions: false,
+const AdminUserMetaAside = () => {
+  return (
+    <div style={{ width: '30%', margin: '1em', display: 'flex', flexDirection: 'column' }}>
+      <Typography variant="h6">General</Typography>
+      <Labeled label="Last Login At">
+        <DateField source="last_login_at" />
+      </Labeled>
+      <Labeled label="Sign In Count">
+        <TextField source="sign_in_count" />
+      </Labeled>
+    </div>
+  )
 }
 
-export const settingsConfig = (isDisabled: boolean) => {
-  return [
+const PreferencesTab = () => {
+  const DefaultEditProps: EditProps = {
+    redirect: false,
+    actions: false,
+    title: ' ', // don't override titles
+  }
+
+  const settingsConfig = [
     {
       title: 'General',
       groups: [
@@ -124,19 +105,12 @@ export const settingsConfig = (isDisabled: boolean) => {
       ],
     },
   ]
-}
 
-const AdminUserMetaAside = () => {
   return (
-    <div style={{ width: '30%', margin: '1em', display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="h6">General</Typography>
-      <Labeled label="Last Login At">
-        <DateField source="last_login_at" />
-      </Labeled>
-      <Labeled label="Sign In Count">
-        <TextField source="sign_in_count" />
-      </Labeled>
-    </div>
+    <>
+      <Title title={<StandardTitle />} />
+      <SettingsTabs settings={settingsConfig} />
+    </>
   )
 }
 
@@ -145,7 +119,12 @@ const AdminTab = () => {
   const roles = defaultCredentials.getAppConfig().user_roles.map((role: string) => ({ id: role, name: titleCase(role) }))
 
   return (
-    <Edit aside={<AdminUserMetaAside />} actions={false} redirect={false}>
+    <Edit 
+      title={<StandardTitle />}
+      aside={<AdminUserMetaAside />} 
+      actions={false} 
+      redirect={false}
+    >
       <SimpleForm toolbar={<DefaultToolbar />}>
         <Typography variant="h6">User Management</Typography>
         <CheckboxGroupInput
@@ -167,9 +146,6 @@ interface TabConfig {
 const UserTabs = () => {
   const record = useRecordContext()
   const { data: currentUser } = useGetIdentity()
-  const { id } = useParams()
-
-  const disabled = !(currentUser && currentUser.id === id) ?? true
 
   if (!(record && currentUser)) return <div>Loading...</div>
 
@@ -177,7 +153,7 @@ const UserTabs = () => {
     {
       label: 'Preferences',
       icon: SettingsIcon,
-      component: <SettingsTabs settings={settingsConfig(disabled)} />,
+      component: <PreferencesTab />,
     },
     {
       label: 'Admin',
@@ -221,7 +197,10 @@ const UserTabs = () => {
   )
 }
 export const UserShow = () => (
-  <Show title={<StandardTitle />} actions={<TopToolbar actions={false} />}>
+  <Show 
+    title={<></>} // underlying tab edit component will set title
+    actions={<TopToolbar actions={false} />}
+  >
     <UserTabs />
   </Show>
 )

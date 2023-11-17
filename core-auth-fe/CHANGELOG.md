@@ -1,5 +1,11 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.38
+
+### Patch Changes
+
+- app bar title improvements
+
 ## 0.1.37
 
 ### Patch Changes
