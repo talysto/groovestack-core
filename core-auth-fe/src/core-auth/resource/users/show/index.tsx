@@ -7,6 +7,7 @@ import {
   SaveButton,
   Show,
   SimpleForm,
+  SimpleShowLayout,
   TabProps,
   TabbedShowLayout,
   TextField,
@@ -18,7 +19,7 @@ import {
 } from 'react-admin'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
-import { Typography } from '@mui/material'
+import { Card, Grid, Typography } from '@mui/material'
 
 import { IdentitiesTable } from '../../identities/table'
 import { StandardTitle } from '../../../components/StandardTitle'
@@ -50,17 +51,21 @@ const GeneralSettings = () => (
   </SimpleForm>
 )
 
-const AdminUserMetaAside = () => {
+export const inlineLayout = {
+  '& .RaLabeled-label': {
+    display: 'inline-block',
+    minWidth: 70,
+    mr: 1,
+    textTransform: 'uppercase',
+  },
+}
+
+const AdminUserMeta = () => {
   return (
-    <div style={{ width: '30%', margin: '1em', display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="h6">General</Typography>
-      <Labeled label="Last Login At">
-        <DateField source="last_login_at" />
-      </Labeled>
-      <Labeled label="Sign In Count">
-        <TextField source="sign_in_count" />
-      </Labeled>
-    </div>
+    <SimpleShowLayout sx={{ ...inlineLayout }}>
+      <DateField noWrap source="last_login_at" />
+      <TextField noWrap source="sign_in_count" />
+    </SimpleShowLayout>
   )
 }
 
@@ -119,20 +124,29 @@ const AdminTab = () => {
   const roles = defaultCredentials.getAppConfig().user_roles.map((role: string) => ({ id: role, name: titleCase(role) }))
 
   return (
-    <Edit 
-      title={<StandardTitle />}
-      aside={<AdminUserMetaAside />} 
-      actions={false} 
-      redirect={false}
-    >
-      <SimpleForm toolbar={<DefaultToolbar />}>
-        <Typography variant="h6">User Management</Typography>
-        <CheckboxGroupInput
-          source="roles"
-          choices={roles}
-        />
-      </SimpleForm>
-    </Edit>
+    <Grid container>
+      <Grid item xs={12} md={8}>
+        <Edit 
+          title={<StandardTitle />}
+          actions={false} 
+          redirect={false}
+          sx={{ mt: 0, '& .RaEdit-noActions': { mt: 0 } }}
+          
+        >
+          <SimpleForm toolbar={<DefaultToolbar />}>
+            <Typography variant="h6">Permissions</Typography>
+            <CheckboxGroupInput
+              source="roles"
+              choices={roles}
+            />
+          </SimpleForm>
+        </Edit>
+      </Grid>
+      <Grid item xs={12} md={4} sx={{ p: '16px'}}>
+        <Typography variant="h6">Metadata</Typography>
+        <AdminUserMeta />
+      </Grid>
+    </Grid>
   )
 }
 
