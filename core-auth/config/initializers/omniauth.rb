@@ -37,6 +37,7 @@ module OmniAuth
         apple_omniauth_params = JSON.parse(cookies.encrypted['apple_omniauth_params'])
         cookies.delete('apple_omniauth_params')
         env['omniauth.origin'] = apple_omniauth_params['origin']
+        session['omniauth.origin'] = apple_omniauth_params['origin']
         session['omniauth.state'] = apple_omniauth_params['state']
         session['omniauth.nonce'] = apple_omniauth_params['nonce']
 

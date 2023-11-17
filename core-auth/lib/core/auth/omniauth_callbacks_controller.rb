@@ -91,7 +91,14 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
   def verified
     omniauth_success do 
       set_token_in_cookie(@resource, @token)
-      redirect_to DeviseTokenAuth::Url.generate(request.env["omniauth.origin"], redirect_options)
+      
+      redirect_url =  if redirect_options.present? || request.env["omniauth.origin"].split('?').size > 1
+                        DeviseTokenAuth::Url.generate(request.env["omniauth.origin"], redirect_options)
+                      else
+                        request.env["omniauth.origin"].split('?').first # get rid of occasional trailing ?
+                      end
+
+      redirect_to redirect_url
 
       return
     end

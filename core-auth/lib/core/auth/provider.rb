@@ -97,7 +97,7 @@ module Core
         REQUIRED_CREDENTIALS = [:GOOGLE_CLIENT_ID, :GOOGLE_CLIENT_SECRET]
 
         def self.generate_omniauth_args 
-          super << { name: k }
+          super << { name: k, origin_param: 'return_to' }
         end
       end
 
@@ -114,6 +114,7 @@ module Core
               team_id: Rails.application.credentials.APPLE_TEAM_ID,
               key_id: Rails.application.credentials.APPLE_KEY_ID,
               pem: Rails.application.credentials.APPLE_PEM_CONTENT,
+              origin_param: 'return_to'
             }
           ]
         end
