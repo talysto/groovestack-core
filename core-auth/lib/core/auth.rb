@@ -2,6 +2,7 @@
 
 require 'graphql_devise'
 require 'omniauth-google-oauth2'
+require 'omniauth-apple'
 
 require 'core/auth/version'
 require 'active_record'
