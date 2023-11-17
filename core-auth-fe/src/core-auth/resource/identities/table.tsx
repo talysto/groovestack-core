@@ -84,7 +84,7 @@ const IdentitiesList = ({ currentUser, id, total }: { currentUser: any, id: any,
           redirect={false}
           icon={<LinkOffIcon />}
           title="Disconnect"
-          disabled={typeof total === 'undefined' || total <= 1}
+          disabled={typeof total === 'undefined' || (total <= 1 && !currentUser?.has_email_provider)}
           confirmTitle="Disconnect Social Login"
           confirmContent={<ConfirmDeleteIdentityContent />}
         />
