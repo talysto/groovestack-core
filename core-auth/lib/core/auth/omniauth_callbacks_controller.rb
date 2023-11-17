@@ -49,15 +49,8 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
   end
 
   def get_resource_from_auth_hash
-    # find or create user by provider and provider uid
-    # @resource = resource_class.where(
-    #   uid: auth_hash['uid'],
-    #   provider: auth_hash['provider']
-    # ).first_or_initialize
-
     # invitation_token = request.env.dig('omniauth.params', 'invitation_token')
     language = request.env.dig('omniauth.params', 'language')
-    # auth = request.env['omniauth.auth']
 
     c_user = current_user rescue nil
     
@@ -71,19 +64,6 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     }
 
     @resource = Identity.find_or_create_from_omniauth!(**identity_params).user
-
-    # if @resource.new_record?
-    #   handle_new_resource
-    # end
-
-    # sync user info with provider, update/generate auth token
-    # assign_provider_attrs(@resource, auth_hash)
-
-    # assign any additional (whitelisted) attributes
-    # if assign_whitelisted_params?
-    #   extra_params = whitelisted_params
-    #   @resource.assign_attributes(extra_params) if extra_params
-    # end
 
     @resource
   end
