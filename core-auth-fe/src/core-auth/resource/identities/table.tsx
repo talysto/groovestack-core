@@ -6,7 +6,7 @@ import {
   ReferenceManyField,
   SingleFieldList,
   useGetIdentity,
-  useGetManyReference,
+  useListContext,
   useRecordContext
 } from 'react-admin'
 import { useState } from 'react'
@@ -14,7 +14,6 @@ import { useState } from 'react'
 import LinkOffIcon from '@mui/icons-material/LinkOff'
 import { Box, Chip } from '@mui/material'
 import { StyledIcon } from '@styled-icons/styled-icon'
-import { useParams } from 'react-router-dom'
 import { MoreIcons } from '../../components/MoreIcons'
 import { ConnectSocialLogin } from './ConnectSocialLogin'
 
@@ -44,21 +43,18 @@ const ConfirmDeleteIdentityContent = () => {
   )
 }
 
-const IdentitiesList = ({ currentUser, id, total }: { currentUser: any, id: any, total: any }) => {
+const IdentityRow = ({ actionsEnabled, user }: { actionsEnabled: boolean, user: RaRecord }) => {
   const [isHovering, setIsHovering] = useState(false)
+  const { total } = useListContext()
+
+  const deletable = total > 1 || user.has_email_provider
 
   return (
     <div 
-    onMouseEnter={(event: any) => {
-      setIsHovering(true)
-    }}
-    onMouseLeave={(event: any) => {
-      setIsHovering(false)
-    }}
-    style={{
-      display: 'flex',
-      justifyContent: 'space-between'
-    }}>
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      style={{ display: 'flex', justifyContent: 'space-between' }}
+    >
       <FunctionField
         render={(rec: RaRecord) => {
           const Icon = identityProviders[rec.provider]
@@ -77,56 +73,43 @@ const IdentitiesList = ({ currentUser, id, total }: { currentUser: any, id: any,
           }
         }
       />
-      {currentUser && currentUser.id !== id ? (
-        null
-      ) : isHovering ? (
-        <DeleteWithConfirmButton
-          redirect={false}
-          icon={<LinkOffIcon />}
-          title="Disconnect"
-          disabled={typeof total === 'undefined' || (total <= 1 && !currentUser?.has_email_provider)}
-          confirmTitle="Disconnect Social Login"
-          confirmContent={<ConfirmDeleteIdentityContent />}
-        />
-      ) : null }
+      {
+        actionsEnabled && isHovering && (
+          <DeleteWithConfirmButton
+            redirect={false}
+            icon={<LinkOffIcon />}
+            title="Disconnect"
+            disabled={!deletable}
+            confirmTitle="Disconnect Social Login"
+            confirmContent={<ConfirmDeleteIdentityContent />}
+          />
+        )
+      }
     </div>
   )
 }
 
 export const IdentitiesTable = () => {
   const { data: currentUser } = useGetIdentity()
-  const { id } = useParams()
-
   const record = useRecordContext()
 
-  const { total, data } = useGetManyReference('Identity', {
-    target: 'user_id',
-    id: record.id,
-  })
+  if (!(record && currentUser)) return null
 
   return (
-    <>
-      {currentUser && currentUser.id == id ? 
-        <ConnectSocialLogin currentUser={currentUser} total={total} id={id} data={data} /> : 
-      <></> }
-      <ReferenceManyField reference="Identity" target="user_id" label={false}>
-        <Datagrid
-          bulkActionButtons={false}
-        >
-          <IdentitiesList currentUser={currentUser} id={id} total={total} />
-          </Datagrid>
-      </ReferenceManyField>
-    </>
+    <ReferenceManyField reference="Identity" target="user_id" label={false}>
+      {currentUser.id == record.id && <ConnectSocialLogin />}
+      <Datagrid bulkActionButtons={false}>
+        <IdentityRow actionsEnabled={record.id == currentUser.id} user={record} />
+      </Datagrid>
+    </ReferenceManyField>
   )
 }
 
-export const ReferenceManyIdentitiesField = () => (
+export const EnabledIdentitiesIcons = () => (
   <ReferenceManyField
     reference="Identity"
     target="user_id"
     label={false}
-    // sort={{ field: 'status', order: 'ASC' }}
-    // {...rest}
   >
     <SingleFieldList sx={{ gap: 1 }}>
       <FunctionField

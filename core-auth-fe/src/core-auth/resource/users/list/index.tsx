@@ -11,7 +11,7 @@ import {
 
 import { TimeAgoField } from '@moonlight-labs/core-base-fe'
 import { UserIdField } from '../../../components/UserIdField'
-import { ReferenceManyIdentitiesField } from '../../identities/table'
+import { EnabledIdentitiesIcons } from '../../identities/table'
 
 const filters = [<TextInput label="Search" source="q" alwaysOn />]
 const ListActions = () => (
@@ -42,7 +42,7 @@ export const UserTable = () => (
       <TimeAgoField source="last_login_at" label="Last Login" />
       <NumberField source="sign_in_count" label="Sign Ins" />
       <WrapperField label="Identities">
-        <ReferenceManyIdentitiesField />
+        <EnabledIdentitiesIcons />
       </WrapperField>
     </Datagrid>
   </List>

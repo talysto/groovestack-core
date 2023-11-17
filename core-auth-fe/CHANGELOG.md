@@ -1,5 +1,35 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.43
+
+### Patch Changes
+
+- fix identity row delete disabled bug
+
+## 0.1.42
+
+### Patch Changes
+
+- fix disabled identity delete button
+
+## 0.1.41
+
+### Patch Changes
+
+- identity management improvements
+
+## 0.1.40
+
+### Patch Changes
+
+- user show layout improvements
+
+## 0.1.39
+
+### Patch Changes
+
+- identity management improvements
+
 ## 0.1.38
 
 ### Patch Changes
