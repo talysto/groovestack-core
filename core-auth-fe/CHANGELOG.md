@@ -1,5 +1,11 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.37
+
+### Patch Changes
+
+- identity management improvements
+
 ## 0.1.36
 
 ### Patch Changes
