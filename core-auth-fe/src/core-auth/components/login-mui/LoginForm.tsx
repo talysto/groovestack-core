@@ -20,13 +20,14 @@ export const LoginForm = ({
     onSubmit={onSubmit}
     sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
   >
-    <TextField label="Email" type="email" id="email" placeholder="email@domain.com" />
+    <TextField label="Email" type="email" id="email" placeholder="email@domain.com" required />
     <TextField
       label="Password"
       id="password"
       placeholder="password"
       type="password"
       autoComplete="current-password"
+      required
     />
     <div>
       <Button disabled={ctaDisabled} variant="contained" type="submit">

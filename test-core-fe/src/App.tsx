@@ -38,7 +38,6 @@ const CustomLayout = (props: LayoutProps) => {
   return <GroovestackLayout LayoutProps={props} AppBarProps={{userMenu: <Auth.Users.Menu />}} />
 }
 
-
 function AdminApp() {
   credentials.setAppConfig({ 
     has_admins: false, 
@@ -59,6 +58,7 @@ function AdminApp() {
       loginPage={LoginPage}
       dashboard={HomeView}
       layout={CustomLayout}
+      requireAuth
       // theme={houseLightTheme}
     >
       <Resource

@@ -129,7 +129,7 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         currentResource = credentials.getCurrentResource()
       } 
 
-      if (!currentResource) throw new Error('You must be logged in to access these resources')
+      if (!currentResource) throw new Error('Please login to continue')
       if (requiredRole && !currentResource?.roles.includes(requiredRole)) throw new Error(`You must have an ‘${requiredRole}’ role to access these resources`)
 
       return

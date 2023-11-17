@@ -10,14 +10,15 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => (
     onSubmit={onSubmit}
     sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
   >
-    <TextField label="Full Name" id="fullname" placeholder="First Last" />
-    <TextField label="Email" id="email" placeholder="email@domain.com" />
+    <TextField label="Full Name" id="fullname" placeholder="First Last" required />
+    <TextField label="Email" type='email' id="email" placeholder="email@domain.com" required />
     <TextField
       label="Password"
       id="password"
       placeholder="password"
       type="password"
       autoComplete="current-password"
+      required
     />
     <div>
       <Button variant="contained" type='submit'>Create Account</Button>

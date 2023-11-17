@@ -1,5 +1,11 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.44
+
+### Patch Changes
+
+- app bar improvements. login page form validators
+
 ## 0.1.43
 
 ### Patch Changes
