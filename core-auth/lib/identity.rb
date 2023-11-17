@@ -10,9 +10,8 @@ class Identity < ActiveRecord::Base
 
       user = current_user || User.find_by(email: auth.info.email)
       user = User.new if user.nil?
-      attrs = auth['info'].to_hash.merge(user_attrs)
-      attrs = attrs.slice(*user.attribute_names)
-      user.assign_attributes(attrs)
+      attrs = auth['info'].to_hash.slice(*user.attribute_names)
+      user.assign_attributes(attrs.merge(user_attrs))
 
       # user.skip_confirmation!
       user.save!
