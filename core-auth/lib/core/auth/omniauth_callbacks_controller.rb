@@ -83,4 +83,8 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
       return
     end
   end
+
+  def render_data_or_redirect(message, data, user_data = {})
+    redirect_to DeviseTokenAuth::Url.generate(session['omniauth.origin'], data.merge(blank: true).merge(redirect_options))
+  end
 end

@@ -1,11 +1,6 @@
-$CORE_AUTH_ROUTES_SET = false unless $CORE_AUTH_ROUTES_SET
-
 Core::Auth::Engine.routes.draw do
-  unless $CORE_AUTH_ROUTES_SET # prevent routes being redrawn
-    devise_scope :user do
-      match "/users/auth/:provider/callback", to: 'core/auth/omniauth_callbacks#verified', via: [:get, :post], as: :omniauth_callback
-    end
-
-    $CORE_AUTH_ROUTES_SET = true
+  devise_scope :user do
+    match "/users/auth/:provider/callback", to: 'core/auth/omniauth_callbacks#verified', via: [:get, :post], as: :omniauth_callback
+    get '/users/auth/failure', to: 'core/auth/omniauth_callbacks#omniauth_failure', as: :omniauth_failure
   end
 end

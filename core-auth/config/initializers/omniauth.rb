@@ -4,6 +4,19 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 end
 
+module Core 
+  module Auth 
+    class OmniauthFailureEndpoint < OmniAuth::FailureEndpoint
+      def call
+        # raise_out! if OmniAuth.config.failure_raise_out_environments.include?(ENV['RACK_ENV'].to_s)
+        redirect_to_failure
+      end
+    end
+  end
+end
+
+OmniAuth.config.on_failure = Core::Auth::OmniauthFailureEndpoint
+
 module OmniAuth
   module Strategies
     class Apple < OmniAuth::Strategies::OAuth2
