@@ -51,6 +51,7 @@ type OauthProvider = {
 }
 
 export const LoginPage = (props: LoginPageProps) => {
+  const [socials, setSocials] = useState<SocialSignInProps['social']>([])
   let { backgroundImage, credentials = defaultCredentials, Headline = AppInitHeadline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
@@ -183,11 +184,33 @@ export const LoginPage = (props: LoginPageProps) => {
       lazyLoadBackgroundImage()
     }
   })
-  
-  const social = credentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
-    const { k, path: href } = p
-    return { k, href }
-  })
+
+  useEffect(() => {
+    if (!credentials.getAppConfig()) {
+      credentials.setAppConfig({ 
+        has_admins: false, 
+        user_roles: ['admin'], 
+        oauth_providers: { 
+          enabled: [
+            {k: 'google', path: 'users/auth/google'},
+            {k: 'apple', path: 'users/auth/apple'}
+          ]
+        }
+      })
+    }
+
+    const social = credentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
+      const { k, path: href } = p
+      return { k, href }
+    })
+
+    setSocials(social)
+  }, [])
+
+  useEffect(() => {
+    // console.log(socials)
+  }, [socials])
+
   return (
     <Root {...rest} ref={containerRef}>
       <Card className={LoginClasses.card}>
@@ -198,7 +221,7 @@ export const LoginPage = (props: LoginPageProps) => {
         </div>
         {!credentials.getAppConfig()?.has_admins && Headline && <Headline />}
         <LoginPanel
-          social={social}
+          social={socials}
           socialSignInRender={socialSignInRender}
           onLogin={onLogin}
           onRegister={onRegister}
