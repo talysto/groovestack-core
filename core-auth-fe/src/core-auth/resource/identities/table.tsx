@@ -7,8 +7,9 @@ import {
   SingleFieldList,
   useGetIdentity,
   useGetManyReference,
-  useRecordContext,
+  useRecordContext
 } from 'react-admin'
+import { useState } from 'react'
 
 import LinkOffIcon from '@mui/icons-material/LinkOff'
 import { Box, Chip } from '@mui/material'
@@ -43,6 +44,55 @@ const ConfirmDeleteIdentityContent = () => {
   )
 }
 
+const IdentitiesList = ({ currentUser, id, total }: { currentUser: any, id: any, total: any }) => {
+  const [isHovering, setIsHovering] = useState(false)
+
+  return (
+    <div 
+    onMouseEnter={(event: any) => {
+      setIsHovering(true)
+    }}
+    onMouseLeave={(event: any) => {
+      setIsHovering(false)
+    }}
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between'
+    }}>
+      <FunctionField
+        render={(rec: RaRecord) => {
+          const Icon = identityProviders[rec.provider]
+          return (
+              <Chip
+                onClick={undefined}
+                sx={{ backgroundColor: 'transparent', color: 'inherit' }}
+                icon={
+                  <Box sx={{ pb: '.25em' }}>
+                    <Icon size={'1em'} />
+                  </Box>
+                }
+                label={<Box>{titleCase(rec.provider)}</Box>}
+              />
+            )
+          }
+        }
+      />
+      {currentUser && currentUser.id !== id ? (
+        null
+      ) : isHovering ? (
+        <DeleteWithConfirmButton
+          redirect={false}
+          icon={<LinkOffIcon />}
+          title="Disconnect"
+          disabled={typeof total === 'undefined' || total <= 1}
+          confirmTitle="Disconnect Social Login"
+          confirmContent={<ConfirmDeleteIdentityContent />}
+        />
+      ) : null }
+    </div>
+  )
+}
+
 export const IdentitiesTable = () => {
   const { data: currentUser } = useGetIdentity()
   const { id } = useParams()
@@ -63,36 +113,7 @@ export const IdentitiesTable = () => {
         <Datagrid
           bulkActionButtons={false}
         >
-          <FunctionField
-              render={(rec: RaRecord) => {
-                const Icon = identityProviders[rec.provider]
-                return (
-                    <Chip
-                      onClick={undefined}
-                      sx={{ backgroundColor: 'transparent', color: 'inherit' }}
-                      icon={
-                        <Box sx={{ pb: '.25em' }}>
-                          <Icon size={'1em'} />
-                        </Box>
-                      }
-                      label={<Box>{titleCase(rec.provider)}</Box>}
-                    />
-                  )
-                }
-              }
-            />
-            {currentUser && currentUser.id !== id ? (
-              <></>
-            ) : (
-              <DeleteWithConfirmButton
-                redirect={false}
-                icon={<LinkOffIcon />}
-                title="Disconnect"
-                disabled={typeof total === 'undefined' || total <= 1}
-                confirmTitle="Disconnect Social Login"
-                confirmContent={<ConfirmDeleteIdentityContent />}
-              />
-            )}
+          <IdentitiesList currentUser={currentUser} id={id} total={total} />
           </Datagrid>
       </ReferenceManyField>
     </>

@@ -77,7 +77,7 @@ export const ConnectSocialLogin = (props: any) => {
         TransitionComponent={Fade}
       >
         {social.map(({ k, href }: { k: any, href: any }) => {
-          const disabled = props.data.find((record: any) => record.provider === k)
+          const disabled = !!props.data.find((record: any) => record.provider === k)
 
           const s = standard.find((s) => s.key == k)
           if (!s) return null
