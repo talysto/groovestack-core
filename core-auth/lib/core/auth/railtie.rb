@@ -3,7 +3,7 @@
 if defined?(Rails)
   module Core
     module Auth
-      class Railtie < Rails::Engine
+      class Railtie < Engine
         include ::Core::Base::CoreRailtie
 
         def dx_validations

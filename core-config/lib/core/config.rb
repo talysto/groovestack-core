@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "config/version"
-require_relative "config/railtie" if defined?(Rails)
+require_relative "config/railtie" if defined?(Rails::Railtie)
 require_relative "config/graphql/app/queries"
 
 module Core

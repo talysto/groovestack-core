@@ -7,8 +7,8 @@ require 'omniauth-apple'
 require 'core/auth/version'
 require 'active_record'
 
-require 'core/auth/railtie' if defined?(Rails::Railtie)
 require 'core/auth/engine' if defined?(Rails::Engine)
+require 'core/auth/railtie' if defined?(Rails::Railtie)
 require 'core/auth/provider'
 
 # add devise and devise_token_auth app/ dirs to load path
