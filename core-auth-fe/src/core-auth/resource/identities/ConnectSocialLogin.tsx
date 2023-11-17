@@ -86,7 +86,7 @@ export const ConnectSocialLogin = (props: any) => {
 
           return (
             <MenuItem>
-              <span style={{ width: '100%' }} key={key}>{socialSignInRender({ key, icon, label, href, disabled })}</ span>
+              <span style={{ width: '100%' }} key={key}>{socialSignInRender({ key, icon, label, href: `${href}?return_to=${window.location.href}`, disabled })}</ span>
             </MenuItem>    
           )
         })}

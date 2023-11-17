@@ -28,23 +28,16 @@ const CURRENT_USER_QUERY = gql`
 
 const store = localStorageStore()
 
-const parseCached = (k: string) => {
-  const cached = store.getItem(k)
-  if (!cached) return null
-
-  return cached
-}
-
 const credentials: Credentials = {
-  clearCurrentResource: () => localStorage.removeItem('currentResource'),
-  getCurrentResource: () => parseCached('currentResource'),
-  setCurrentResource: (r: {[k:string]: any}) => localStorage.setItem('currentResource', JSON.stringify(r)),
-  clearAuthHeaders: () => localStorage.removeItem('authCredentials'),
-  getAuthHeaders: () => parseCached('authCredentials'),
-  setAuthHeaders: (headers: {[k:string]: any}) => localStorage.setItem('authCredentials', JSON.stringify(headers)),
-  clearAppConfig: () => localStorage.removeItem('groovestackAppConfig'),
-  getAppConfig: () => parseCached('groovestackAppConfig'),
-  setAppConfig: (appConfig: {[k:string]: any}) => localStorage.setItem('groovestackAppConfig', JSON.stringify(appConfig)),
+  clearCurrentResource: () => store.removeItem('currentResource'),
+  getCurrentResource: () => store.getItem('currentResource'),
+  setCurrentResource: (r: {[k:string]: any}) => store.setItem('currentResource', r),
+  clearAuthHeaders: () => store.removeItem('authCredentials'),
+  getAuthHeaders: () => store.getItem('authCredentials'),
+  setAuthHeaders: (headers: {[k:string]: any}) => store.setItem('authCredentials', headers),
+  clearAppConfig: () => store.removeItem('groovestackAppConfig'),
+  getAppConfig: () => store.getItem('groovestackAppConfig'),
+  setAppConfig: (appConfig: {[k:string]: any}) => store.setItem('groovestackAppConfig', appConfig),
 }
 
 credentials.hydrateCurrentResource = async (client: ApolloClient<NormalizedCacheObject>) => {

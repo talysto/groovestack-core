@@ -1,5 +1,23 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.36
+
+### Patch Changes
+
+- identity management improvements
+
+## 0.1.35
+
+### Patch Changes
+
+- remove redundant json generation when using ra localstoragestore
+
+## 0.1.34
+
+### Patch Changes
+
+- fix credentials set items in ra admin local storage store
+
 ## 0.1.31
 
 ### Patch Changes
