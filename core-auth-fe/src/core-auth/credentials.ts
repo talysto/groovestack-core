@@ -35,9 +35,10 @@ const credentials: Credentials = {
   clearAuthHeaders: () => store.removeItem('authCredentials'),
   getAuthHeaders: () => store.getItem('authCredentials'),
   setAuthHeaders: (headers: {[k:string]: any}) => store.setItem('authCredentials', headers),
-  clearAppConfig: () => store.removeItem('groovestackAppConfig'),
-  getAppConfig: () => store.getItem('groovestackAppConfig'),
-  setAppConfig: (appConfig: {[k:string]: any}) => store.setItem('groovestackAppConfig', appConfig),
+  // use localstorage for app config so it persists beyond logout
+  clearAppConfig: () => localStorage.removeItem('groovestackAppConfig'),
+  getAppConfig: () => JSON.parse(localStorage.getItem('groovestackAppConfig') || ''),
+  setAppConfig: (appConfig: {[k:string]: any}) => localStorage.setItem('groovestackAppConfig', JSON.stringify(appConfig)),
 }
 
 credentials.hydrateCurrentResource = async (client: ApolloClient<NormalizedCacheObject>) => {

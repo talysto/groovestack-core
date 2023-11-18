@@ -3,7 +3,7 @@ import { Avatar, Box, Button, Card, Input, SxProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { HtmlHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { useAuthProvider, useCheckAuth } from 'react-admin'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useLogin, useNotify, useSafeSetState } from 'react-admin'
 
 import { LoginPanel } from '../../components/login-mui/LoginPanel'
@@ -58,6 +58,7 @@ export const LoginPage = (props: LoginPageProps) => {
   const checkAuth = useCheckAuth()
   const navigate = useNavigate()
   const authProvider = useAuthProvider()
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // const { redirectTo, className } = props;
   const [loading, setLoading] = useSafeSetState(false)
@@ -65,9 +66,17 @@ export const LoginPage = (props: LoginPageProps) => {
   // const translate = useTranslate();
   const notify = useNotify()
 
-  const onLogin: React.FormEventHandler<HTMLFormElement> = (e: any) => {
+  const notifyOmniauthFailureError = () => {
+    const omniauthFailureErr = searchParams.get('omniauth_failure_error')
+    if (omniauthFailureErr) {
+      searchParams.delete('omniauth_failure_error')
+      setSearchParams(searchParams)
+      notify(`Authentication Failure: ${omniauthFailureErr}`, { type: 'error' })
+    }
+  }
+
+  const onLogin: React.FormEventHandler<HTMLFormElement> = async (e: any) => {
     e.preventDefault()
-    const redirectTo = undefined
 
     const values: LoginCredentials = {
       email: e.target?.elements.email?.value,
@@ -75,12 +84,11 @@ export const LoginPage = (props: LoginPageProps) => {
     }
 
     setLoading(true)
-    login(values, redirectTo)
-      .then(() => {
-        setLoading(false)
-      })
-      .catch((error) => {
-        setLoading(false)
+    try {
+      await login(values)
+      setLoading(false)
+    } catch (error: any) {
+      setLoading(false)
         notify(
           typeof error === 'string'
             ? error
@@ -99,7 +107,7 @@ export const LoginPage = (props: LoginPageProps) => {
             },
           },
         )
-      })
+    }
   }
 
   const onRegister: React.FormEventHandler<HTMLFormElement> = async (e: any) => {
@@ -116,7 +124,6 @@ export const LoginPage = (props: LoginPageProps) => {
     try {
       await authProvider.register(values)
       await login({email: values.email, password: values.password})
-      
     } catch(error: any) {
       notify(
         typeof error === 'string'
@@ -186,25 +193,15 @@ export const LoginPage = (props: LoginPageProps) => {
   })
 
   useEffect(() => {
-    if (!credentials.getAppConfig()) {
-      credentials.setAppConfig({ 
-        has_admins: false, 
-        user_roles: ['admin'], 
-        oauth_providers: { 
-          enabled: [
-            {k: 'google', path: 'users/auth/google'},
-            {k: 'apple', path: 'users/auth/apple'}
-          ]
-        }
-      })
-    }
-
     const social = credentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
       const { k, path: href } = p
       return { k, href }
     })
 
-    setSocials(social)
+    setSocials(social || [])
+
+    // handle oauth failure
+    notifyOmniauthFailureError()
   }, [])
 
   useEffect(() => {

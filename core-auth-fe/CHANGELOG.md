@@ -1,5 +1,17 @@
 # @moonlight-labs/core-auth-fe
 
+## 0.1.46
+
+### Patch Changes
+
+- use localstorage for app config so it persists beyond logout
+
+## 0.1.45
+
+### Patch Changes
+
+- login page handles omniauth errors
+
 ## 0.1.44
 
 ### Patch Changes

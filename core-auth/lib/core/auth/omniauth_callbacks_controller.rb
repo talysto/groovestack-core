@@ -84,7 +84,11 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     end
   end
 
-  def render_data_or_redirect(message, data, user_data = {})
-    redirect_to DeviseTokenAuth::Url.generate(session['omniauth.origin'], data.merge(blank: true).merge(redirect_options))
+  def omniauth_failure
+    @error = params[:message]
+    # render_data_or_redirect('authFailure', omniauth_failure_error: @error)
+    data = { omniauth_failure_error: @error }.merge(redirect_options)
+    # redirect_to DeviseTokenAuth::Url.generate(session['omniauth.origin'], data)
+    redirect_to "#{session['omniauth.origin']}#{Core::Config::App.generate_config[:hashed_ra_login_path] || ''}?#{data.to_query}"
   end
 end
