@@ -9,6 +9,14 @@
 			"path": "core-auth-fe"
 		},
 		{
+			"name": "@groovestack/base",
+			"path": "core-base-fe"
+		},
+		{
+			"name": "@groovestack/config",
+			"path": "core-config-fe"
+		},
+		{
 			"name": "@groovestack/jobs",
 			"path": "core-jobs-fe"
 		},
