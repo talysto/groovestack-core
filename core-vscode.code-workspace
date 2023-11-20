@@ -5,6 +5,10 @@
 			"path": "."
 		},
 		{
+			"name": "@moonlight-labs/core-auth-fe",
+			"path": "core-auth-fe"
+		},
+		{
 			"name": "@moonlight-labs/core-jobs-fe",
 			"path": "core-jobs-fe"
 		},

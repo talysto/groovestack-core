@@ -4,7 +4,7 @@ module Core
   module Versions
     module GraphQL
       module Version
-        class Type < ::Core::Base::GraphQL::BaseObject
+        class Type < ::Core::Base::GraphQL::Types::BaseObject
           description 'A version'
 
           field :id, ID, null: false, description: ::Core::Base::GraphQL::Documentation::Fields.id

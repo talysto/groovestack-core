@@ -11,21 +11,11 @@ module Core
             type ::Core::Base::GraphQL::Types::SubscriptionPayload, null: false
 
             def subscribe(_attrs = {})
-              payload(event: { type: :subscribe })
+              { subscription: 'all_notifications', subscription_args: {}, event: { type: :subscribe } }
             end
 
             def update(_attrs = {})
-              payload(event: { type: object[:crud_action], ids: object[:notification_ids] })
-            end
-
-            # HELPER METHODS
-
-            def payload(event:)
-              # only triggering collection
-              {
-                topic: "resource/Notification",
-                event: event,
-              }
+              { subscription: 'all_notifications', subscription_args: {}, event: { type: object[:crud_action], ids: object[:notification_ids] } }
             end
           end
 

@@ -1,4 +1,5 @@
 packages:
+- "core-auth-fe"
 - "core-base-fe"
 - "core-jobs-fe"
 - "core-versions-fe"

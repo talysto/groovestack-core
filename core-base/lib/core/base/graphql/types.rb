@@ -12,17 +12,24 @@ module Core
 
         class BaseField < ::GraphQL::Schema::Field
           argument_class BaseArgument
+          attr_accessor :authenticate
 
-          def initialize(*args, null: false, camelize: false, **kwargs, &block)
+          def initialize(*args, authenticate: nil, null: false, camelize: false, **kwargs, &block)
             # Then, call super _without_ any args, where Ruby will take
             # _all_ the args originally passed to this method and pass it to the super method.
-            super
+            @authenticate = authenticate
+            super(*args, null: null, camelize: camelize, **kwargs, &block)
           end
         end
 
-        class SubscriptionPayload < ::GraphQL::Schema::Object
-          field :topic, String, null: false
+        class BaseObject < ::GraphQL::Schema::Object
+          field_class ::Core::Base::GraphQL::Types::BaseField
+        end
+
+        class SubscriptionPayload < ::Core::Base::GraphQL::Types::BaseObject
+          field :subscription, String, null: false
           field :event, ::GraphQL::Types::JSON, null: false
+          field :subscription_args, ::GraphQL::Types::JSON, null: false
         end
       end
     end

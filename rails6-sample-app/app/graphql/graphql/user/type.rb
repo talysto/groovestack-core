@@ -2,7 +2,7 @@
 
 module GraphQL
   module User
-    class Type < ::Core::Base::GraphQL::BaseObject
+    class Type < ::Core::Base::GraphQL::Types::BaseObject
       include ::Core::Comments::GraphQL::Comment::Types::Commentable
 
       field :email, String, null: false

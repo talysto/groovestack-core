@@ -1,6 +1,6 @@
 {
   "name": "@moonlight-labs/core-notifications-fe",
-  "version": "0.2.26",
+  "version": "0.2.31",
   "type": "module",
   "files": [
     "dist"
@@ -26,6 +26,7 @@
     "@types/react-syntax-highlighter": "^15.5.6"
   },
   "peerDependencies": {
+    "@apollo/client": "^3.8.6",
     "@mui/icons-material": ">=5.14.0",
     "@mui/material": ">=5.14.0",
     "react": ">=18.2.0",
@@ -33,7 +34,6 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^",
-    "@react-admin/ra-realtime": "^4.5.1"
+    "@moonlight-labs/core-base-fe": "workspace:^"
   }
 }

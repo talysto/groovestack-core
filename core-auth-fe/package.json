@@ -1,0 +1,53 @@
+{
+  "name": "@moonlight-labs/core-auth-fe",
+  "title": "CORE Auth",
+  "version": "0.1.46",
+  "description": "React-admin custom login flow that supports email/password as well as Oauth (Google & Apple) out of the box.",
+  "homepage": "https://talysto.com/groovestack/#core-auth",
+  "keywords": [
+    "authentication",
+    "authorization"
+  ],
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./mock": "./dist/mock.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@mui/icons-material": "5.14.1",
+    "@mui/material": "^5.14.15",
+    "react": "^18.2.0",
+    "react-admin": "^4.15.2",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.6",
+    "@moonlight-labs/core-base-fe": "workspace:^",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@mui/lab": "5.0.0-alpha.146",
+    "@rails/actioncable": "^7.1.1",
+    "@styled-icons/fa-brands": "^10.47.0",
+    "@styled-icons/styled-icon": "^10.7.0",
+    "graphql-ruby-client": "^1.11.9",
+    "react-hook-form": "^7.47.0",
+    "react-router-dom": "^6.16.0"
+  },
+  "devDependencies": {
+    "@types/rails__actioncable": "^6.1.8"
+  }
+}

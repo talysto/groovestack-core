@@ -4,7 +4,7 @@ module Core
   module Jobs
     module GraphQL
       module Job
-        class Type < ::Core::Base::GraphQL::BaseObject
+        class Type < ::Core::Base::GraphQL::Types::BaseObject
           description 'A background job'
 
           field :actions, [String], null: false, description: 'actions'

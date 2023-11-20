@@ -52,7 +52,7 @@
     "prettier-plugin-organize-imports": "^3.2.3",
     "ra-data-fakerest": "^4.12.1",
     "react": "18.2.0",
-    "react-admin": ">=4.14.4",
+    "react-admin": ">=4.15.4",
     "react-dom": "18.2.0",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-visualizer": "5.9.2",

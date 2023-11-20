@@ -9,7 +9,7 @@ module Core
             argument :params, ::GraphQL::Types::JSON, required: true
           end
           
-          class Type < ::Core::Base::GraphQL::BaseObject
+          class Type < ::Core::Base::GraphQL::Types::BaseObject
             description 'a job report'
 
             field :data, ::GraphQL::Types::JSON, null: false, description: ''

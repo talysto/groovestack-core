@@ -1,27 +1,36 @@
 // import { Notifications } from "@mui/icons-material"
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import {
-  Alert,
   Badge,
   Box,
-  Button,
   IconButton,
   Menu,
   Typography,
 } from '@mui/material'
-import { useState, createContext, useEffect } from 'react'
-import { RecordContextProvider, useDataProvider, useGetIdentity, useGetList } from 'react-admin'
-import { RecordListEvent, useSubscribeToRecordList } from '@react-admin/ra-realtime'
+import { useState, createContext, useEffect, useContext } from 'react'
+import { DataProviderContext, RecordContextProvider, useGetIdentity, useGetList } from 'react-admin'
+import { ApolloProvider, gql, useSubscription } from '@apollo/client'
 
 import { Notifications } from '../resources/notifications'
 
-export const NotificationSubscriberEventContext = createContext<RecordListEvent | null>(null)
+export const SUBSCRIBE_TO_NOTIFICATIONS = gql`
+  subscription all_notifications {
+    all_notifications {
+      subscription
+      subscription_args
+      event
+    }
+  }
+`
 
-export const NotificationMenuButton = (props: any) => {
+type NotificationEvent = 'created' | 'updated' | 'deleted' | 'subscribe' | 'unsubscribe' | null
+
+export const NotificationSubscriberEventContext = createContext<NotificationEvent>(null)
+
+const NotificationMenuButton = (props: any) => {
   const { data: user, isLoading: identityLoading } = useGetIdentity()
-  const [event, setEvent] = useState<RecordListEvent | null>(null)
+  const [event, setEvent] = useState<NotificationEvent>(null)
 
-  const dataProvider = useDataProvider()
   const resource = 'Notification'
 
   
@@ -46,17 +55,18 @@ export const NotificationMenuButton = (props: any) => {
     { enabled: !identityLoading }
   )
 
-  const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecordList((event) => setEvent(event), resource, { enabled });
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_NOTIFICATIONS)
 
   useEffect(() => {
-    if (!!event) {
-      switch (event.type) {
-        case "created":
-        case "updated": {
-          refetchNotificationCount();
-          break;
-        }
+    if (subscriptionData?.all_notifications && subscriptionData.all_notifications.event.type != 'subscribe') setEvent(subscriptionData.all_notifications.event.type)
+  }, [subscriptionData])
+
+  useEffect(() => {
+    switch (event) {
+      case "created":
+      case "updated": {
+        refetchNotificationCount();
+        break;
       }
     }
   }, [event])
@@ -103,3 +113,17 @@ export const NotificationMenuButton = (props: any) => {
     </>
   )
 }
+
+const NotificationMenuButtonWithApolloProvider = (props: any) => {
+  // don't want dataprovider wrapped in proxy 
+  // https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/dataProvider/useDataProvider.ts
+  const dataProvider = useContext(DataProviderContext)
+
+  return (
+    <ApolloProvider client={dataProvider.client}>
+      <NotificationMenuButton {...props} />
+    </ApolloProvider>
+  )
+}
+
+export { NotificationMenuButtonWithApolloProvider as NotificationMenuButton }

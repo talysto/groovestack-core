@@ -1,5 +1,47 @@
 # @moonlight-labs/core-jobs-fe
 
+## 0.2.67
+
+### Patch Changes
+
+- fix subscriptions
+
+## 0.2.66
+
+### Patch Changes
+
+- try client.subscribe
+
+## 0.2.65
+
+### Patch Changes
+
+- use ApolloProvider wrapper for JobsList
+
+## 0.2.64
+
+### Patch Changes
+
+- try to fix broken subscription call
+
+## 0.2.63
+
+### Patch Changes
+
+- pass client into useSubscription calls
+
+## 0.2.62
+
+### Patch Changes
+
+- fix subscriptions
+
+## 0.2.61
+
+### Patch Changes
+
+- remove ra-realtime dep
+
 ## 0.2.60
 
 ### Patch Changes

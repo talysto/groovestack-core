@@ -22,10 +22,10 @@ export const LiveTable: React.FC<LiveTableProps> = ({
   const [data, setData] = useState<any[]>([])
 
   const fetchData = async () => {
-    console.log('LiveTable: fetching data...')
+    // console.log('LiveTable: fetching data...')
     try {
       const data = await refreshData()
-      console.log('LiveTable: fetched data', data)
+      // console.log('LiveTable: fetched data', data)
       setData(transform ? transform(data) : data)
     } catch (e) {
       console.error(e)

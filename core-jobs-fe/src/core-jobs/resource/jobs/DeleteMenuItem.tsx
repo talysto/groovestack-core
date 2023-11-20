@@ -118,6 +118,7 @@ export interface DeleteMenuItemProps<
 DeleteWithConfirmButton.propTypes = {
   //replace with DeleteMenuItem.propTypes?
   className: PropTypes.string,
+  confirmColor: PropTypes.string,
   confirmTitle: PropTypes.node,
   confirmContent: PropTypes.node,
   label: PropTypes.string,

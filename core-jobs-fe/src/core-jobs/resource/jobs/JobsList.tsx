@@ -1,9 +1,10 @@
 import { AccessTime as AccessTimeIcon, FormatListNumbered as FormatListNumberedIcon,  GridView as SummaryIcon, WarningAmber as WarningAmberIcon } from '@mui/icons-material'
-import { Box, Card, Grid, Stack, Typography, useTheme } from '@mui/material'
+import { Card, Grid, Stack, Typography, useTheme } from '@mui/material'
 import {
   Button,
   Confirm,
-  DeleteWithConfirmButton,
+  DataProviderContext,
+  Identifier,
   ListBase,
   ListToolbar,
   Pagination,
@@ -12,17 +13,15 @@ import {
   SelectArrayInput,
   Title,
   TopToolbar,
-  UpdateButton,
-  useDataProvider,
   useDeleteMany,
   useListContext,
   useNotify,
-  useRecordContext,
   useShowController,
 } from 'react-admin'
-
-import { useSubscribeToRecord } from '@react-admin/ra-realtime'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useSubscription, ApolloProvider } from '@apollo/client'
+
+import { SUBSCRIBE_TO_JOB_REPORT } from '../../gql'
 import {
   ListPresetButtonGroup,
   ListViewToggleButtonsProps,
@@ -115,7 +114,7 @@ const PurgeButton = () => {
         }
       })
     } catch(e) {
-      console.log(e)
+      // console.log('error', e)
       notify('Error purging jobs', { type: 'error'})
     }
   }
@@ -183,12 +182,9 @@ const ListActions = () => {
 //   )
 // }
 
-export const JobsList = () => {
+const JobsList = () => {
   const theme = useTheme()
   const [kpis, setKpis] = useState<RaRecord>({} as RaRecord)
-  const dataProvider = useDataProvider()
-
-  const handleEventReceived = ({ type, payload }: any) => { if (type != 'subscribe') setKpis({id: 'jobs_kpis', data: payload.data})}
 
   // initial fetch
   useShowController({
@@ -197,8 +193,11 @@ export const JobsList = () => {
     queryOptions: { onSuccess(report) { setKpis(report) } }
   })
 
-  const enabled = !!Object.assign({}, dataProvider)?.subscribe
-  useSubscribeToRecord(handleEventReceived, 'JobReport', 'jobs_kpis', { enabled })
+  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { variables: { id: 'jobs_kpis' } })
+
+  useEffect(() => {
+    if (subscriptionData?.JobReport && subscriptionData?.JobReport.event.type != 'subscribe') setKpis({id: 'jobs_kpis' as Identifier, data: subscriptionData?.JobReport.event.payload.data})
+  }, [subscriptionData])
 
   return (
     <JobsKPIsContext.Provider value={kpis}>
@@ -250,3 +249,17 @@ export const JobsList = () => {
     </JobsKPIsContext.Provider>
   )
 }
+
+const JobsListWithApolloProvider = () => {
+  // don't want dataprovider wrapped in proxy 
+  // https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/dataProvider/useDataProvider.ts
+  const dataProvider = useContext(DataProviderContext)
+
+  return (
+    <ApolloProvider client={dataProvider.client}>
+      <JobsList />
+    </ApolloProvider>
+  )
+}
+
+export { JobsListWithApolloProvider as JobsList }

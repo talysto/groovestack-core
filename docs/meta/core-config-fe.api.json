@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.36.3",
+    "toolVersion": "7.38.3",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -198,6 +198,43 @@
           "variableTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 3
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@moonlight-labs/core-config-fe!GroovestackLayout:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "GroovestackLayout: "
+            },
+            {
+              "kind": "Content",
+              "text": "({ AppBarProps, LayoutProps }: "
+            },
+            {
+              "kind": "Reference",
+              "text": "GroovestackLayoutProps",
+              "canonicalReference": "@moonlight-labs/core-config-fe!~GroovestackLayoutProps:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/layout/GroovestackLayout.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "GroovestackLayout",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
           }
         },
         {

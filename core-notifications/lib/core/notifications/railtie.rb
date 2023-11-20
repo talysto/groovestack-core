@@ -4,38 +4,23 @@ if defined?(Rails)
   module Core
     module Notifications
       class Railtie < Rails::Engine
+        include ::Core::Base::CoreRailtie
 
-        # Enable our new migrations for the parent app
-        initializer :append_migrations do |app|
-          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-            config.paths['db/migrate'].expanded.each do |expanded_path|
-              app.config.paths['db/migrate'] << expanded_path
-            end
-          end
+        def dx_validations
+          [
+            {
+              eval: proc { raise unless defined?(::Core::Base) },
+              message: "Error: 'core-base' gem is required, add it your your gemfile"
+            },
+          ]
         end
 
-        # # Enable our new initializers for the parent app
-        # initializer :append_initializers do |app|
-        #   unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-        #     config.paths['config/initializers'].expanded.each do |expanded_path|
-        #       app.config.paths['config/initializers'] << expanded_path
-        #     end
-        #   end
-        # end
+        initializer :append_migrations do |app|
+          append_migrations app
+        end
 
         config.after_initialize do
-          if (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
-            validations = [
-              {
-                eval: proc { raise unless defined?(::Core::Base) },
-                message: "Error: 'core-base' gem is required, add it your your gemfile"
-              },
-            ]
-
-            if defined?(::Core::Base) 
-              ::Core::Base::Railtie.core_base_dx_validate(validations, 'Notifications') 
-            end
-          end
+          after_init
         end
       end
     end

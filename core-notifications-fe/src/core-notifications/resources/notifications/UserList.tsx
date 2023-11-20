@@ -28,13 +28,11 @@ const NotificationSubscriber = () => {
   const event = useContext(NotificationSubscriberEventContext);
 
   useEffect(() => {
-    if (!!event) {
-      switch (event.type) {
-        case "created":
-        case "updated": {
-          refetch();
-          break;
-        }
+    switch (event) {
+      case "created":
+      case "updated": {
+        refetch();
+        break;
       }
     }
   }, [event])
