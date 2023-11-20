@@ -1,5 +1,5 @@
 {
-  "name": "@moonlight-labs/core-notifications-fe",
+  "name": "@groovestack/notifications",
   "version": "0.2.31",
   "type": "module",
   "files": [

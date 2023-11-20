@@ -1,5 +1,5 @@
 {
-  "name": "@moonlight-labs/core-webhooks-fe",
+  "name": "@groovestack/webhooks",
   "title": "CORE Webhooks",
   "version": "0.2.14",
   "type": "module",

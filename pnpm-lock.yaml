@@ -120,27 +120,6 @@ importers:
         specifier: ^3.5.0
         version: 3.6.3(@types/node@20.4.2)(rollup@4.4.0)(typescript@5.1.6)(vite@4.4.4)
 
-  core-accounting-fe:
-    dependencies:
-      '@groovestack/base':
-        specifier: workspace:^
-        version: link:../core-base-fe
-      '@mui/icons-material':
-        specifier: '>=5.14.0'
-        version: 5.14.1(@mui/material@5.14.17)(@types/react@18.2.15)(react@18.2.0)
-      '@mui/material':
-        specifier: '>=5.14.0'
-        version: 5.14.17(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: '>=18.2.0'
-        version: 18.2.0
-      react-admin:
-        specifier: '>=4.12.1'
-        version: 4.15.4(@types/react@18.2.15)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      react-dom:
-        specifier: '>=18.2.0'
-        version: 18.2.0(react@18.2.0)
-
   core-auth-fe:
     dependencies:
       '@apollo/client':

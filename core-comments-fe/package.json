@@ -1,5 +1,5 @@
 {
-  "name": "@moonlight-labs/core-comments-fe",
+  "name": "@groovestack/comments",
   "version": "0.2.13",
   "type": "module",
   "files": [
