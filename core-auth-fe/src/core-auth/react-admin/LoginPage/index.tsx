@@ -3,7 +3,7 @@ import { Avatar, Box, Button, Card, Input, SxProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { HtmlHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { useAuthProvider, useCheckAuth } from 'react-admin'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import { useLogin, useNotify, useSafeSetState } from 'react-admin'
 
 import { LoginPanel } from '../../components/login-mui/LoginPanel'
@@ -45,12 +45,46 @@ const AppInitHeadline = () => {
   )
 }
 
+const useHandleServerURLParams = () => {
+  const [serverURLParamsHandled, setServerURLParamsHandled] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    // This is required for a few reasons:
+    //  1. Server side origin urls will not include hashed paths b/c HTTP_REFERRER 
+    //     does not include the hash.
+    //  2. RA uses react router dom HashRouter by default. Side effect of this
+    //     is that any server redirects that include url params will result 
+    //     in a path like: /?omniauth_failure_error=Invalid+credentials#/login.
+    //  3. React router dom useSearchParams hook only parses url params that exist
+    //     after the hash, so we need to extract the server url params and append
+
+    const serverUrlParams = new URLSearchParams(window.location.search)
+    const feUrlParams = new URLSearchParams(location.search)
+
+    if (serverUrlParams.size > 0){
+      let href = window.location.href.replace(`?${serverUrlParams.toString()}`, "")
+
+      // append server url params
+      if (feUrlParams.size > 0) href += `&${serverUrlParams.toString()}`
+      else href += `?${serverUrlParams.toString()}`
+      window.location.href = href
+    }
+
+    setServerURLParamsHandled(true)
+  }, [])
+
+  return serverURLParamsHandled
+}
+
 type OauthProvider = {
   k: string;
   path: string;
 }
 
 export const LoginPage = (props: LoginPageProps) => {
+  const serverURLParamsHandled = useHandleServerURLParams()
+
   const [socials, setSocials] = useState<SocialSignInProps['social']>([])
   let { backgroundImage, credentials = defaultCredentials, Headline = AppInitHeadline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -160,6 +194,8 @@ export const LoginPage = (props: LoginPageProps) => {
   }
 
   useEffect(() => {
+    if (!serverURLParamsHandled) return
+
     checkAuth({}, false)
       .then(() => {
         // already authenticated, redirect to the home page
@@ -168,7 +204,7 @@ export const LoginPage = (props: LoginPageProps) => {
       .catch(() => {
         // not authenticated, stay on the login page
       })
-  }, [checkAuth, navigate])
+  }, [serverURLParamsHandled, checkAuth, navigate])
 
   const updateBackgroundImage = () => {
     if (!backgroundImageLoaded && containerRef.current) {
@@ -199,14 +235,11 @@ export const LoginPage = (props: LoginPageProps) => {
     })
 
     setSocials(social || [])
-
-    // handle oauth failure
-    notifyOmniauthFailureError()
   }, [])
 
-  useEffect(() => {
-    // console.log(socials)
-  }, [socials])
+  useEffect(notifyOmniauthFailureError, [serverURLParamsHandled])
+
+  if (!serverURLParamsHandled) return null
 
   return (
     <Root {...rest} ref={containerRef}>

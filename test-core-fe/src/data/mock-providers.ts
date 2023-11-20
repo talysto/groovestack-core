@@ -9,12 +9,27 @@ type MockAuthProviderType = () => Promise<AuthProvider>
 
 const store = localStorageStore()
 
+// set default app config
+
+export const defaultAppConfig = { 
+  has_admins: true, 
+  user_roles: ['admin'], 
+  oauth_providers: { 
+    enabled: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'}
+    ]
+  }
+}
+
 const storeActions = {
   getCurrentResource: () => store.getItem('currentUser'),
   clearCurrentResource: () => store.removeItem('currentUser'),
   setCurrentResource: (resource: any) => store.setItem('currentUser', resource),
-  getAppConfig: () => store.getItem('groovestackAppConfig'),
-  setAppConfig: (appConfig: {[k:string]: any}) => store.setItem('groovestackAppConfig', appConfig),
+  // use localstorage for app config so it persists beyond logout
+  clearAppConfig: () => localStorage.removeItem('groovestackAppConfig'),
+  getAppConfig: () => JSON.parse(localStorage.getItem('groovestackAppConfig') || ''),
+  setAppConfig: (appConfig: {[k:string]: any}) => localStorage.setItem('groovestackAppConfig', JSON.stringify(appConfig)),
 }
 
 const hydrateCurrentUser = async () => {

@@ -9,11 +9,6 @@ type OauthProvider = {
   path: string
 }
 
-const social = defaultCredentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
-  const { k, path: href } = p
-  return { k, href }
-})
-
 const csrf = csrfToken()
 
 const socialSignInRender: SocialSignInProps['renderButton'] = ({ icon, label, href, disabled }) => {
@@ -46,6 +41,11 @@ export const ConnectSocialLogin = () => {
   }
 
   if (!data) return null
+
+  const social = defaultCredentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
+    const { k, path: href } = p
+    return { k, href }
+  })
 
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>

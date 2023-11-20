@@ -1,5 +1,6 @@
-import { Admin, Resource, houseLightTheme, LayoutProps } from 'react-admin'
+import { Admin, Resource, LayoutProps } from 'react-admin'
 import { Box } from '@mui/material'
+import { useSearchParams, useLocation } from 'react-router-dom'
 
 // Source Code import
 import { Auth } from '@moonlight-labs/core-auth-fe'
@@ -7,9 +8,10 @@ import { Comments } from '@moonlight-labs/core-comments-fe'
 import { HomeView, GroovestackLayout } from '@moonlight-labs/core-config-fe'
 import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
 
-import { mockDataProvider, mockAuthProvider, credentials } from './data/mock-providers'
+import { mockDataProvider, mockAuthProvider, credentials, defaultAppConfig } from './data/mock-providers'
 // import { CustomLayout } from './layout/CustomLayout'
 import { Company } from './resources/company'
+import { useEffect } from 'react'
 
 // import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
 // import { pkg as CoreJobsPkg } from '@moonlight-labs/core-jobs-fe'
@@ -39,16 +41,7 @@ const CustomLayout = (props: LayoutProps) => {
 }
 
 function AdminApp() {
-  credentials.setAppConfig({ 
-    has_admins: false, 
-    user_roles: ['admin'], 
-    oauth_providers: { 
-      enabled: [
-        {k: 'google', path: 'users/auth/google'},
-        {k: 'apple', path: 'users/auth/apple'}
-      ]
-    }
-  })
+  credentials.setAppConfig(defaultAppConfig)
 
   return (
     <Admin

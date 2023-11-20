@@ -494,6 +494,9 @@ importers:
       react-dom:
         specifier: '>=18.0.0'
         version: 18.2.0(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.16.0
+        version: 6.18.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@faker-js/faker':
         specifier: '>=8.0.0'
