@@ -1,8 +1,8 @@
 {
-  "name": "@moonlight-labs/core-base-fe",
+  "name": "@groovestack/base",
   "title": "CORE Base",
   "description": "Support classes and general-purpose components for MUI and React-Admin",
-  "version": "0.2.13",
+  "version": "0.2.8",
   "type": "module",
   "files": [
     "dist"
@@ -39,5 +39,9 @@
   },
   "devDependencies": {
     "@types/prop-types": "^15.7.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

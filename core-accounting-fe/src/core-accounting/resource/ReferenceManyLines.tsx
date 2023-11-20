@@ -8,7 +8,7 @@ import {
 } from 'react-admin'
 import { MoneyField } from './MoneyField'
 
-import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField } from '@groovestack/base'
 
 export const ReferenceManyLines: FC<{
   children?: any

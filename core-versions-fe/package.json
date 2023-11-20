@@ -30,7 +30,7 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^",
+    "@groovestack/base": "workspace:^",
     "deep-object-diff": "^1.1.9"
   }
 }

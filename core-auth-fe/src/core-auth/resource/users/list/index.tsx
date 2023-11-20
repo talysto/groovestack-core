@@ -1,4 +1,4 @@
-// import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+// import { TimeAgoField } from '@groovestack/base'
 import {
   Datagrid,
   FilterButton,
@@ -9,7 +9,7 @@ import {
   WrapperField,
 } from 'react-admin'
 
-import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField } from '@groovestack/base'
 import { UserIdField } from '../../../components/UserIdField'
 import { EnabledIdentitiesIcons } from '../../identities/table'
 

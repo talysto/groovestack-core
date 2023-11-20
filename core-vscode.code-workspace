@@ -5,15 +5,15 @@
 			"path": "."
 		},
 		{
-			"name": "@moonlight-labs/core-auth-fe",
+			"name": "@groovestack/auth",
 			"path": "core-auth-fe"
 		},
 		{
-			"name": "@moonlight-labs/core-jobs-fe",
+			"name": "@groovestack/jobs",
 			"path": "core-jobs-fe"
 		},
 		{
-			"name": "@moonlight-labs/core-notifications-fe",
+			"name": "@groovestack/notifications",
 			"path": "core-notifications-fe"
 		},
 		{

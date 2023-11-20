@@ -161,20 +161,20 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@moonlight-labs/core-config-fe!",
+  "canonicalReference": "@groovestack/config!",
   "docComment": "",
-  "name": "@moonlight-labs/core-config-fe",
+  "name": "@groovestack/config",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@moonlight-labs/core-config-fe!",
+      "canonicalReference": "@groovestack/config!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-config-fe!DemoWelcome:var",
+          "canonicalReference": "@groovestack/config!DemoWelcome:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -202,7 +202,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-config-fe!GroovestackLayout:var",
+          "canonicalReference": "@groovestack/config!GroovestackLayout:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -216,7 +216,7 @@
             {
               "kind": "Reference",
               "text": "GroovestackLayoutProps",
-              "canonicalReference": "@moonlight-labs/core-config-fe!~GroovestackLayoutProps:type"
+              "canonicalReference": "@groovestack/config!~GroovestackLayoutProps:type"
             },
             {
               "kind": "Content",
@@ -239,7 +239,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-config-fe!HomeView:var",
+          "canonicalReference": "@groovestack/config!HomeView:var",
           "docComment": "",
           "excerptTokens": [
             {

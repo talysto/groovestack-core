@@ -2,7 +2,7 @@ import {
   MoneyField,
   StatusInput,
   TimeAgoField,
-} from '@moonlight-labs/core-base-fe'
+} from '@groovestack/base'
 import {
   Datagrid,
   List,

@@ -1,7 +1,7 @@
 {
-  "name": "@moonlight-labs/core-auth-fe",
+  "name": "@groovestack/auth",
   "title": "CORE Auth",
-  "version": "0.1.46",
+  "version": "0.2.8",
   "description": "React-admin custom login flow that supports email/password as well as Oauth (Google & Apple) out of the box.",
   "homepage": "https://talysto.com/groovestack/#core-auth",
   "keywords": [
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.6",
-    "@moonlight-labs/core-base-fe": "workspace:^",
+    "@groovestack/base": "workspace:^",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@mui/lab": "5.0.0-alpha.146",
     "@rails/actioncable": "^7.1.1",
@@ -49,5 +49,9 @@
   },
   "devDependencies": {
     "@types/rails__actioncable": "^6.1.8"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

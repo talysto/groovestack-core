@@ -1,4 +1,4 @@
-import { CodeField } from '@moonlight-labs/core-base-fe'
+import { CodeField } from '@groovestack/base'
 import {
   FieldProps,
   SimpleShowLayout,

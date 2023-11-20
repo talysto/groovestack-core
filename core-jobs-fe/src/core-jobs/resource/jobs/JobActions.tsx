@@ -1,4 +1,4 @@
-import { CustomButtonDrawer, DrawerWidth } from '@moonlight-labs/core-base-fe'
+import { CustomButtonDrawer, DrawerWidth } from '@groovestack/base'
 import { MoreVert as MoreVertIcon, VisibilityOutlined as VisibilityOutlinedIcon} from '@mui/icons-material'
 import { Box } from '@mui/material'
 import IconButton from '@mui/material/IconButton'

@@ -161,20 +161,20 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@moonlight-labs/core-base-fe!",
+  "canonicalReference": "@groovestack/base!",
   "docComment": "",
-  "name": "@moonlight-labs/core-base-fe",
+  "name": "@groovestack/base",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@moonlight-labs/core-base-fe!",
+      "canonicalReference": "@groovestack/base!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!DateField:var",
+          "canonicalReference": "@groovestack/base!DateField:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -215,7 +215,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@moonlight-labs/core-base-fe!generateTimeZoneOptions:function(1)",
+          "canonicalReference": "@groovestack/base!generateTimeZoneOptions:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
@@ -225,7 +225,7 @@
             {
               "kind": "Reference",
               "text": "TimeZoneOption",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~TimeZoneOption:interface"
+              "canonicalReference": "@groovestack/base!~TimeZoneOption:interface"
             },
             {
               "kind": "Content",
@@ -248,7 +248,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!MoneyField:var",
+          "canonicalReference": "@groovestack/base!MoneyField:var",
           "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
           "excerptTokens": [
             {
@@ -262,7 +262,7 @@
             {
               "kind": "Reference",
               "text": "MoneyFieldProps",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~MoneyFieldProps:interface"
+              "canonicalReference": "@groovestack/base!~MoneyFieldProps:interface"
             },
             {
               "kind": "Content",
@@ -289,7 +289,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!MoneyInput:var",
+          "canonicalReference": "@groovestack/base!MoneyInput:var",
           "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
           "excerptTokens": [
             {
@@ -326,7 +326,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!PolymorphicReferenceField:var",
+          "canonicalReference": "@groovestack/base!PolymorphicReferenceField:var",
           "docComment": "/**\n * React Admin Field that renders a Rails-style polymorphic relationship\n *\n * @component\n *\n * @example\n *\n * return ( <PolymorphicReferenceField source='author' /> )\n */\n",
           "excerptTokens": [
             {
@@ -340,7 +340,7 @@
             {
               "kind": "Reference",
               "text": "PolymorphicReferenceFieldProps",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~PolymorphicReferenceFieldProps:interface"
+              "canonicalReference": "@groovestack/base!~PolymorphicReferenceFieldProps:interface"
             },
             {
               "kind": "Content",
@@ -363,7 +363,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!StatusInput:var",
+          "canonicalReference": "@groovestack/base!StatusInput:var",
           "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events.\n *\n * @component\n *\n * @example\n *\n * <StatusInput source='status' />\n *\n * @example\n *\n * Usage in a DataGrid as an editable column <WrapperField label='status'> <StatusInput source=\"status\" label={false} /> </WrapperField>\n */\n",
           "excerptTokens": [
             {
@@ -413,7 +413,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!timeAgo:var",
+          "canonicalReference": "@groovestack/base!timeAgo:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -445,7 +445,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!TimeAgoField:var",
+          "canonicalReference": "@groovestack/base!TimeAgoField:var",
           "docComment": "/**\n * React Admin Field that renders a timestamp relative to the current time. For example: - 2 hours ago - 12 minutes from now The full timestamp is available as a tooltip.\n *\n * @component\n *\n * @example\n *\n * return ( <TimeAgoField source='created_at' /> )\n */\n",
           "excerptTokens": [
             {

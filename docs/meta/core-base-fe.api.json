@@ -161,20 +161,20 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@moonlight-labs/core-base-fe!",
+  "canonicalReference": "@groovestack/base!",
   "docComment": "",
-  "name": "@moonlight-labs/core-base-fe",
+  "name": "@groovestack/base",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@moonlight-labs/core-base-fe!",
+      "canonicalReference": "@groovestack/base!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!clickToCopy:var",
+          "canonicalReference": "@groovestack/base!clickToCopy:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -215,7 +215,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!CodeField:var",
+          "canonicalReference": "@groovestack/base!CodeField:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -256,7 +256,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges:class",
+          "canonicalReference": "@groovestack/base!CommonDateRanges:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -272,7 +272,7 @@
           "members": [
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.AllTime:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.AllTime:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -282,7 +282,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -303,7 +303,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.Last30Days:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.Last30Days:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -313,7 +313,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -334,7 +334,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.Last7Days:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.Last7Days:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -344,7 +344,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -365,7 +365,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.LastCalendarYear:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.LastCalendarYear:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -375,7 +375,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -396,7 +396,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.LastFiscalYear:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.LastFiscalYear:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -406,7 +406,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -427,7 +427,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.LastMonth:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.LastMonth:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -437,7 +437,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -458,7 +458,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.LastWeek:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.LastWeek:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -468,7 +468,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -489,7 +489,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.ThisCalendarYear:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.ThisCalendarYear:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -499,7 +499,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -520,7 +520,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.ThisFiscalYear:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.ThisFiscalYear:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -530,7 +530,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -551,7 +551,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.ThisMonth:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.ThisMonth:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -561,7 +561,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -582,7 +582,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.ThisWeek:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.ThisWeek:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -592,7 +592,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -613,7 +613,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.Today:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.Today:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -623,7 +623,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -644,7 +644,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-base-fe!CommonDateRanges.Yesterday:member",
+              "canonicalReference": "@groovestack/base!CommonDateRanges.Yesterday:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -654,7 +654,7 @@
                 {
                   "kind": "Reference",
                   "text": "NamedRangeType",
-                  "canonicalReference": "@moonlight-labs/core-base-fe!~NamedRangeType:type"
+                  "canonicalReference": "@groovestack/base!~NamedRangeType:type"
                 },
                 {
                   "kind": "Content",
@@ -678,7 +678,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!CustomButtonDrawer:var",
+          "canonicalReference": "@groovestack/base!CustomButtonDrawer:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -692,7 +692,7 @@
             {
               "kind": "Reference",
               "text": "ButtonDrawerProps",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~ButtonDrawerProps:type"
+              "canonicalReference": "@groovestack/base!~ButtonDrawerProps:type"
             },
             {
               "kind": "Content",
@@ -715,7 +715,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!DateField:var",
+          "canonicalReference": "@groovestack/base!DateField:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -756,7 +756,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!DateRangeFilter:var",
+          "canonicalReference": "@groovestack/base!DateRangeFilter:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -770,7 +770,7 @@
             {
               "kind": "Reference",
               "text": "DateRangeFilterProps",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~DateRangeFilterProps:type"
+              "canonicalReference": "@groovestack/base!~DateRangeFilterProps:type"
             },
             {
               "kind": "Content",
@@ -793,7 +793,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth:enum",
+          "canonicalReference": "@groovestack/base!DrawerWidth:enum",
           "docComment": "",
           "excerptTokens": [
             {
@@ -808,7 +808,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth.Large:member",
+              "canonicalReference": "@groovestack/base!DrawerWidth.Large:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -829,7 +829,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth.Medium:member",
+              "canonicalReference": "@groovestack/base!DrawerWidth.Medium:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -850,7 +850,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "@moonlight-labs/core-base-fe!DrawerWidth.Small:member",
+              "canonicalReference": "@groovestack/base!DrawerWidth.Small:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -873,7 +873,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!ExternalLink:var",
+          "canonicalReference": "@groovestack/base!ExternalLink:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -901,7 +901,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@moonlight-labs/core-base-fe!generateTimeZoneOptions:function(1)",
+          "canonicalReference": "@groovestack/base!generateTimeZoneOptions:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
@@ -911,7 +911,7 @@
             {
               "kind": "Reference",
               "text": "TimeZoneOption",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~TimeZoneOption:interface"
+              "canonicalReference": "@groovestack/base!~TimeZoneOption:interface"
             },
             {
               "kind": "Content",
@@ -934,7 +934,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!MoneyField:var",
+          "canonicalReference": "@groovestack/base!MoneyField:var",
           "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
           "excerptTokens": [
             {
@@ -948,7 +948,7 @@
             {
               "kind": "Reference",
               "text": "MoneyFieldProps",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~MoneyFieldProps:interface"
+              "canonicalReference": "@groovestack/base!~MoneyFieldProps:interface"
             },
             {
               "kind": "Content",
@@ -975,7 +975,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!MoneyInput:var",
+          "canonicalReference": "@groovestack/base!MoneyInput:var",
           "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
           "excerptTokens": [
             {
@@ -1012,7 +1012,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!PolymorphicReferenceField:var",
+          "canonicalReference": "@groovestack/base!PolymorphicReferenceField:var",
           "docComment": "/**\n * React Admin Field that renders a Rails-style polymorphic relationship\n *\n * @component\n *\n * @example\n *\n * return ( <PolymorphicReferenceField source='author' /> )\n */\n",
           "excerptTokens": [
             {
@@ -1026,7 +1026,7 @@
             {
               "kind": "Reference",
               "text": "PolymorphicReferenceFieldProps",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~PolymorphicReferenceFieldProps:interface"
+              "canonicalReference": "@groovestack/base!~PolymorphicReferenceFieldProps:interface"
             },
             {
               "kind": "Content",
@@ -1053,7 +1053,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!StatusInput:var",
+          "canonicalReference": "@groovestack/base!StatusInput:var",
           "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events.\n *\n * @component\n *\n * @example\n *\n * <StatusInput source='status' />\n *\n * @example\n *\n * Usage in a DataGrid as an editable column <WrapperField label='status'> <StatusInput source=\"status\" label={false} /> </WrapperField>\n */\n",
           "excerptTokens": [
             {
@@ -1103,7 +1103,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!timeAgo:var",
+          "canonicalReference": "@groovestack/base!timeAgo:var",
           "docComment": "",
           "excerptTokens": [
             {
@@ -1135,7 +1135,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!TimeAgoField:var",
+          "canonicalReference": "@groovestack/base!TimeAgoField:var",
           "docComment": "/**\n * React Admin Field that renders a timestamp relative to the current time. For example: - 2 hours ago - 12 minutes from now The full timestamp is available as a tooltip.\n *\n * @component\n *\n * @example\n *\n * return ( <TimeAgoField source='created_at' /> )\n */\n",
           "excerptTokens": [
             {
@@ -1176,7 +1176,7 @@
         },
         {
           "kind": "Variable",
-          "canonicalReference": "@moonlight-labs/core-base-fe!TimezoneSelectInput:var",
+          "canonicalReference": "@groovestack/base!TimezoneSelectInput:var",
           "docComment": "/**\n * React Admin Input that allows user to select a timezone. ' Input provides the current timezone as a first option and autocomplete to quickly find your local timezone.\n *\n * @component\n *\n * @example\n *\n * return ( <TimezoneSelectInput source='timezone' /> )\n */\n",
           "excerptTokens": [
             {
@@ -1213,7 +1213,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@moonlight-labs/core-base-fe!ToggleButtonInput:function(1)",
+          "canonicalReference": "@groovestack/base!ToggleButtonInput:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
@@ -1223,7 +1223,7 @@
             {
               "kind": "Reference",
               "text": "ToggleButtonGroupInputProps",
-              "canonicalReference": "@moonlight-labs/core-base-fe!~ToggleButtonGroupInputProps:type"
+              "canonicalReference": "@groovestack/base!~ToggleButtonGroupInputProps:type"
             },
             {
               "kind": "Content",

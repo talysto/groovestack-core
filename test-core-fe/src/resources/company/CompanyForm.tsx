@@ -1,6 +1,6 @@
 import { SimpleForm, TextInput } from 'react-admin'
 
-import { MoneyInput, StatusInput } from '@moonlight-labs/core-base-fe'
+import { MoneyInput, StatusInput } from '@groovestack/base'
 
 export const CompanyForm = () => {
   return (

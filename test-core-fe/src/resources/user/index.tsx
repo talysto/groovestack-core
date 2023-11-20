@@ -1,6 +1,6 @@
-// import { CoreComments } from '@moonlight-labs/core-comments-fe'
-// import { CoreVersions } from '@moonlight-labs/core-versions-fe'
-// import { CoreAccounting } from '@moonlight-labs/core-accounting-fe'
+// import { CoreComments } from '@groovestack/comments'
+// import { CoreVersions } from '@groovestack/versions'
+// import { CoreAccounting } from '@groovestack/accounting'
 
 // import { users } from '../../data/mock-data-provider'
 // import { faker } from '@faker-js/faker'

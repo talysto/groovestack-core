@@ -8,5 +8,5 @@
 
 |  Package | Description |
 |  --- | --- |
-|  [@moonlight-labs/core-base-fe](./core-base-fe.md) |  |
+|  [@groovestack/base](./core-base-fe.md) |  |
 

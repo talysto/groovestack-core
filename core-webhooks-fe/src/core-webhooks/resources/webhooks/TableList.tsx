@@ -9,7 +9,7 @@ import {
   useRecordContext,
 } from 'react-admin'
 import { SourceField } from './SourceField'
-import { TimeAgoField, ToggleButtonInput } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField, ToggleButtonInput } from '@groovestack/base'
 
 const IdField = (props: FieldProps) => {
   const record = useRecordContext()

@@ -1,4 +1,4 @@
-import { CodeField, clickToCopy } from '@moonlight-labs/core-base-fe'
+import { CodeField, clickToCopy } from '@groovestack/base'
 import { Form, SimpleShowLayout, TextField } from 'react-admin'
 
 import { Grid } from '@mui/material'

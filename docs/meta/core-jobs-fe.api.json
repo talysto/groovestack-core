@@ -161,20 +161,20 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@moonlight-labs/core-jobs-fe!",
+  "canonicalReference": "@groovestack/jobs!",
   "docComment": "",
-  "name": "@moonlight-labs/core-jobs-fe",
+  "name": "@groovestack/jobs",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@moonlight-labs/core-jobs-fe!",
+      "canonicalReference": "@groovestack/jobs!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Function",
-          "canonicalReference": "@moonlight-labs/core-jobs-fe!mockJobReports:function(1)",
+          "canonicalReference": "@groovestack/jobs!mockJobReports:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
@@ -211,7 +211,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@moonlight-labs/core-jobs-fe!mockJobs:function(1)",
+          "canonicalReference": "@groovestack/jobs!mockJobs:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
@@ -301,7 +301,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@moonlight-labs/core-jobs-fe!mockLockers:function(1)",
+          "canonicalReference": "@groovestack/jobs!mockLockers:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
@@ -346,7 +346,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@moonlight-labs/core-jobs-fe!mockReportByPeriod:function(1)",
+          "canonicalReference": "@groovestack/jobs!mockReportByPeriod:function(1)",
           "docComment": "",
           "excerptTokens": [
             {

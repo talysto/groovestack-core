@@ -1,6 +1,6 @@
 import { NumberField, Show, SimpleShowLayout, TextField } from 'react-admin'
 
-import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField } from '@groovestack/base'
 
 export const LineShow = () => (
   <Show>

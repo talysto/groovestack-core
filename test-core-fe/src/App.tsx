@@ -3,19 +3,19 @@ import { Box } from '@mui/material'
 import { useSearchParams, useLocation } from 'react-router-dom'
 
 // Source Code import
-import { Auth } from '@moonlight-labs/core-auth-fe'
-import { Comments } from '@moonlight-labs/core-comments-fe'
-import { HomeView, GroovestackLayout } from '@moonlight-labs/core-config-fe'
-import { Webhooks } from '@moonlight-labs/core-webhooks-fe'
+import { Auth } from '@groovestack/auth'
+import { Comments } from '@groovestack/comments'
+import { HomeView, GroovestackLayout } from '@groovestack/config'
+import { Webhooks } from '@groovestack/webhooks'
 
 import { mockDataProvider, mockAuthProvider, credentials, defaultAppConfig } from './data/mock-providers'
 // import { CustomLayout } from './layout/CustomLayout'
 import { Company } from './resources/company'
 import { useEffect } from 'react'
 
-// import { pkg as CoreBasePkg } from '@moonlight-labs/core-base-fe'
-// import { pkg as CoreJobsPkg } from '@moonlight-labs/core-jobs-fe'
-// import { pkg as CoreWebhooksPkg } from '@moonlight-labs/core-webhooks-fe'
+// import { pkg as CoreBasePkg } from '@groovestack/base'
+// import { pkg as CoreJobsPkg } from '@groovestack/jobs'
+// import { pkg as CoreWebhooksPkg } from '@groovestack/webhooks'
 
 const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(params)
 

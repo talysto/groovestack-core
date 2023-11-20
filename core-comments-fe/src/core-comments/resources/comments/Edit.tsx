@@ -6,7 +6,7 @@ import {
   TextInput,
 } from 'react-admin'
 
-import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
+import { PolymorphicReferenceField } from '@groovestack/base'
 
 export const CommentEdit = () => {
   return (

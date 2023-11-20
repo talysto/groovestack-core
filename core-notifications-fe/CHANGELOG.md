@@ -1,4 +1,4 @@
-# @moonlight-labs/core-notifications-fe
+# @groovestack/notifications
 
 ## 0.2.31
 
@@ -35,7 +35,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @moonlight-labs/core-base-fe@0.2.13
+  - @groovestack/base@0.2.13
 
 ## 0.2.25
 
@@ -43,7 +43,7 @@
 
 - bump all versions
 - Updated dependencies
-  - @moonlight-labs/core-base-fe@0.2.12
+  - @groovestack/base@0.2.12
 
 ## 0.2.24
 
@@ -51,7 +51,7 @@
 
 - build core-config-fe and publish
 - Updated dependencies
-  - @moonlight-labs/core-base-fe@0.2.11
+  - @groovestack/base@0.2.11
 
 ## 0.2.23
 
@@ -130,7 +130,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @moonlight-labs/core-base-fe@0.2.10
+  - @groovestack/base@0.2.10
 
 ## 0.2.10
 
@@ -138,7 +138,7 @@
 
 - Core Jobs and Notifications focus
 - Updated dependencies
-  - @moonlight-labs/core-base-fe@0.2.9
+  - @groovestack/base@0.2.9
 
 ## 0.2.9
 
@@ -146,7 +146,7 @@
 
 - base enhancements
 - Updated dependencies
-  - @moonlight-labs/core-base-fe@0.2.8
+  - @groovestack/base@0.2.8
 
 ## 0.2.8
 
@@ -154,4 +154,4 @@
 
 - Base enhancements, Webhooks improvements
 - Updated dependencies
-  - @moonlight-labs/core-base-fe@0.2.7
+  - @groovestack/base@0.2.7

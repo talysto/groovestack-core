@@ -1,8 +1,8 @@
 // in src/MyAppBar.js
-// import { NotificationMenuButton } from '@moonlight-labs/core-notifications-fe'
+// import { NotificationMenuButton } from '@groovestack/notifications'
 // import { AppBar, Logout, TitlePortal, UserMenu } from 'react-admin'
 import { AppBar, TitlePortal } from 'react-admin'
-import { Auth } from '@moonlight-labs/core-auth-fe'
+import { Auth } from '@groovestack/auth'
 
 // const SettingsMenuItem = React.forwardRef((props, ref) => {
 //   // We are not using MenuItemLink so we retrieve the onClose function from the UserContext

@@ -4,7 +4,7 @@ import { Datagrid, List, TextField } from 'react-admin'
 
 import { MoneyField } from './MoneyField'
 
-import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField } from '@groovestack/base'
 
 export const Table: React.FC<{
   datagridProps?: any

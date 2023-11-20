@@ -1,10 +1,10 @@
 import { faker } from '@faker-js/faker'
 
-import { mockJobs, mockLockers, mockJobReports } from '@moonlight-labs/core-jobs-fe/mock'
-import { mockWebhooks } from '@moonlight-labs/core-webhooks-fe/mock'
-import { mockComments } from '@moonlight-labs/core-comments-fe/mock'
-import { mockVersions } from '@moonlight-labs/core-versions-fe/mock'
-import { mockNotifications } from '@moonlight-labs/core-notifications-fe/mock'
+import { mockJobs, mockLockers, mockJobReports } from '@groovestack/jobs/mock'
+import { mockWebhooks } from '@groovestack/webhooks/mock'
+import { mockComments } from '@groovestack/comments/mock'
+import { mockVersions } from '@groovestack/versions/mock'
+import { mockNotifications } from '@groovestack/notifications/mock'
 
 import { mockIdentities } from '../src/data/mockIdentities'
 import { mockUsers } from '../src/data/mockUsers'

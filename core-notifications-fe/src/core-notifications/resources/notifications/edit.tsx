@@ -1,4 +1,4 @@
-import { PolymorphicReferenceField } from '@moonlight-labs/core-base-fe'
+import { PolymorphicReferenceField } from '@groovestack/base'
 import {
   DateField,
   DateInput,

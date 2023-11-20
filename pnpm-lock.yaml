@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -118,7 +122,7 @@ importers:
 
   core-accounting-fe:
     dependencies:
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -145,7 +149,7 @@ importers:
       '@fortawesome/react-fontawesome':
         specifier: ^0.1.11
         version: 0.1.19(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -232,7 +236,7 @@ importers:
 
   core-comments-fe:
     dependencies:
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -256,7 +260,7 @@ importers:
 
   core-config-fe:
     dependencies:
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -283,7 +287,7 @@ importers:
       '@apollo/client':
         specifier: ^3.8.6
         version: 3.8.7(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -350,7 +354,7 @@ importers:
       '@apollo/client':
         specifier: ^3.8.6
         version: 3.8.7(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -375,7 +379,7 @@ importers:
 
   core-versions-fe:
     dependencies:
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -402,7 +406,7 @@ importers:
 
   core-webhooks-fe:
     dependencies:
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
       '@mui/icons-material':
@@ -458,28 +462,28 @@ importers:
 
   test-core-fe:
     dependencies:
-      '@moonlight-labs/core-auth-fe':
+      '@groovestack/auth':
         specifier: workspace:^
         version: link:../core-auth-fe
-      '@moonlight-labs/core-base-fe':
+      '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
-      '@moonlight-labs/core-comments-fe':
+      '@groovestack/comments':
         specifier: workspace:^
         version: link:../core-comments-fe
-      '@moonlight-labs/core-config-fe':
+      '@groovestack/config':
         specifier: workspace:^
         version: link:../core-config-fe
-      '@moonlight-labs/core-jobs-fe':
+      '@groovestack/jobs':
         specifier: workspace:^
         version: link:../core-jobs-fe
-      '@moonlight-labs/core-notifications-fe':
+      '@groovestack/notifications':
         specifier: workspace:^
         version: link:../core-notifications-fe
-      '@moonlight-labs/core-versions-fe':
+      '@groovestack/versions':
         specifier: workspace:^
         version: link:../core-versions-fe
-      '@moonlight-labs/core-webhooks-fe':
+      '@groovestack/webhooks':
         specifier: workspace:^
         version: link:../core-webhooks-fe
       '@mui/material':
@@ -15856,7 +15860,3 @@ packages:
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

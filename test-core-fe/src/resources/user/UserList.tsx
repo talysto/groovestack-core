@@ -1,4 +1,4 @@
-import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField } from '@groovestack/base'
 import { Datagrid, List, TextField } from 'react-admin'
 
 export const UserList = () => (

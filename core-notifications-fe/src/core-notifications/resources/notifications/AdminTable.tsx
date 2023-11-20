@@ -2,7 +2,7 @@ import {
   PolymorphicReferenceField,
   TimeAgoField,
   ToggleButtonInput,
-} from '@moonlight-labs/core-base-fe'
+} from '@groovestack/base'
 import {
   ChipField,
   Datagrid,

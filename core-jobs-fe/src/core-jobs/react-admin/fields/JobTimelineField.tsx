@@ -1,4 +1,4 @@
-import { TimeAgoField } from '@moonlight-labs/core-base-fe'
+import { TimeAgoField } from '@groovestack/base'
 import {
   Timeline,
   TimelineConnector,

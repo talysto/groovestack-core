@@ -20,7 +20,7 @@ import { Box } from '@mui/material'
 import {
   PolymorphicReferenceField,
   TimeAgoField,
-} from '@moonlight-labs/core-base-fe'
+} from '@groovestack/base'
 import { ChangesTable } from './ChangesTable'
 
 

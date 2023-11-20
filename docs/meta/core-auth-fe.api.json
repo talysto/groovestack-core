@@ -161,20 +161,20 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@moonlight-labs/core-auth-fe!",
+  "canonicalReference": "@groovestack/auth!",
   "docComment": "",
-  "name": "@moonlight-labs/core-auth-fe",
+  "name": "@groovestack/auth",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@moonlight-labs/core-auth-fe!",
+      "canonicalReference": "@groovestack/auth!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Class",
-          "canonicalReference": "@moonlight-labs/core-auth-fe!Auth:class",
+          "canonicalReference": "@groovestack/auth!Auth:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -190,7 +190,7 @@
           "members": [
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.ApolloLink:member",
+              "canonicalReference": "@groovestack/auth!Auth.ApolloLink:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -221,7 +221,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.Credentials:member",
+              "canonicalReference": "@groovestack/auth!Auth.Credentials:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -231,7 +231,7 @@
                 {
                   "kind": "Reference",
                   "text": "Credentials",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~Credentials:type"
+                  "canonicalReference": "@groovestack/auth!~Credentials:type"
                 },
                 {
                   "kind": "Content",
@@ -252,7 +252,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.Identities:member",
+              "canonicalReference": "@groovestack/auth!Auth.Identities:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -266,7 +266,7 @@
                 {
                   "kind": "Reference",
                   "text": "Identities",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~Identities:class"
+                  "canonicalReference": "@groovestack/auth!~Identities:class"
                 },
                 {
                   "kind": "Content",
@@ -287,7 +287,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.LoginForm:member",
+              "canonicalReference": "@groovestack/auth!Auth.LoginForm:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -301,7 +301,7 @@
                 {
                   "kind": "Reference",
                   "text": "LoginFormProps",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~LoginFormProps:interface"
+                  "canonicalReference": "@groovestack/auth!~LoginFormProps:interface"
                 },
                 {
                   "kind": "Content",
@@ -331,7 +331,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.LoginPanel:member",
+              "canonicalReference": "@groovestack/auth!Auth.LoginPanel:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -345,7 +345,7 @@
                 {
                   "kind": "Reference",
                   "text": "LoginPanel",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~LoginPanel:function"
+                  "canonicalReference": "@groovestack/auth!~LoginPanel:function"
                 },
                 {
                   "kind": "Content",
@@ -366,7 +366,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.RA:member",
+              "canonicalReference": "@groovestack/auth!Auth.RA:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -380,7 +380,7 @@
                 {
                   "kind": "Reference",
                   "text": "RAAuth",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~RAAuth:class"
+                  "canonicalReference": "@groovestack/auth!~RAAuth:class"
                 },
                 {
                   "kind": "Content",
@@ -401,7 +401,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.SignupForm:member",
+              "canonicalReference": "@groovestack/auth!Auth.SignupForm:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -415,7 +415,7 @@
                 {
                   "kind": "Reference",
                   "text": "SignupFormProps",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~SignupFormProps:interface"
+                  "canonicalReference": "@groovestack/auth!~SignupFormProps:interface"
                 },
                 {
                   "kind": "Content",
@@ -445,7 +445,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.SocialSignIn:member",
+              "canonicalReference": "@groovestack/auth!Auth.SocialSignIn:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -459,7 +459,7 @@
                 {
                   "kind": "Reference",
                   "text": "SocialSignInProps",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~SocialSignInProps:interface"
+                  "canonicalReference": "@groovestack/auth!~SocialSignInProps:interface"
                 },
                 {
                   "kind": "Content",
@@ -493,7 +493,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@moonlight-labs/core-auth-fe!Auth.Users:member",
+              "canonicalReference": "@groovestack/auth!Auth.Users:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -507,7 +507,7 @@
                 {
                   "kind": "Reference",
                   "text": "Users",
-                  "canonicalReference": "@moonlight-labs/core-auth-fe!~Users:class"
+                  "canonicalReference": "@groovestack/auth!~Users:class"
                 },
                 {
                   "kind": "Content",

@@ -11,7 +11,7 @@ import {
 import {
   DateField,
   PolymorphicReferenceField,
-} from '@moonlight-labs/core-base-fe'
+} from '@groovestack/base'
 import { ChangesTable } from './ChangesTable'
 
 const ActionsField = (props: any) => {

@@ -9,11 +9,11 @@ import { SimpleShowLayout, TextField } from 'react-admin'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-import { DateField as CoreDateField } from '@moonlight-labs/core-base-fe'
-import { Comments } from '@moonlight-labs/core-comments-fe'
-// import { CoreVersions } from '@moonlight-labs/core-versions-fe'
+import { DateField as CoreDateField } from '@groovestack/base'
+import { Comments } from '@groovestack/comments'
+// import { CoreVersions } from '@groovestack/versions'
 
-import { Versions } from '@moonlight-labs/core-versions-fe'
+import { Versions } from '@groovestack/versions'
 import { inlineLayout } from '../inlineLayout'
 
 export const CompanyAside = () => {

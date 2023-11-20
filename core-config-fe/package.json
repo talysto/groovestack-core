@@ -1,6 +1,6 @@
 {
-  "name": "@moonlight-labs/core-config-fe",
-  "version": "0.1.68",
+  "name": "@groovestack/config",
+  "version": "0.2.8",
   "type": "module",
   "files": [
     "dist"
@@ -29,6 +29,10 @@
     "react-dom": ">=18.2.0"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^"
+    "@groovestack/base": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

@@ -1,4 +1,4 @@
-import { Comments } from '@moonlight-labs/core-comments-fe'
+import { Comments } from '@groovestack/comments'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
   Accordion,
@@ -16,8 +16,8 @@ import {
 //     updated_at: new Date().toDateString(),
 //   }
 // }
-// import { CoreVersions } from '@moonlight-labs/core-versions-fe'
-// import { Comments } from '@moonlight-labs/core-comments-fe'
+// import { CoreVersions } from '@groovestack/versions'
+// import { Comments } from '@groovestack/comments'
 
 export const UserAside = () => {
   return (

@@ -1,7 +1,7 @@
 import {
   PolymorphicReferenceField,
   TimeAgoField,
-} from '@moonlight-labs/core-base-fe'
+} from '@groovestack/base'
 import { Avatar, Box, Typography } from '@mui/material'
 import { TextField } from 'react-admin'
 

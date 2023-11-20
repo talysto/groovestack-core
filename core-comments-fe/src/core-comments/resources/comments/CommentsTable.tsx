@@ -15,7 +15,7 @@ import {
 import {
   DateField,
   PolymorphicReferenceField,
-} from '@moonlight-labs/core-base-fe'
+} from '@groovestack/base'
 import { CommentCreate } from './Create'
 import { CommentField } from './Fields'
 

@@ -31,6 +31,6 @@
     "react-hook-form": ">=7.43.9"
   },
   "dependencies": {
-    "@moonlight-labs/core-base-fe": "workspace:^"
+    "@groovestack/base": "workspace:^"
   }
 }

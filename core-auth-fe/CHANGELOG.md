@@ -1,4 +1,4 @@
-# @moonlight-labs/core-auth-fe
+# @groovestack/auth
 
 ## 0.1.46
 

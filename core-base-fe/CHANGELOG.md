@@ -1,4 +1,4 @@
-# @moonlight-labs/core-base-fe
+# @groovestack/base
 
 ## 0.2.13
 
