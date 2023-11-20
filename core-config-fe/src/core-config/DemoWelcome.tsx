@@ -115,13 +115,15 @@ export const DemoWelcome = ({ modules }: { modules?: any[] }) => {
         </CardContent>
       </Card>
 
-      <Box sx={{ mt: 3, columns: 2 }}>
+      <Box sx={{ mt: 3, display: 'flex', flexWrap: 'wrap', gap: 2 }}>
         {modules?.map((module) => (
           <Card
             key={module.name}
-            style={{ breakInside: 'avoid' }}
             sx={{
-              mb: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              width: '45%',
+              flexGrow: 1,
               ':hover': {
                 boxShadow: 6, // theme.shadows[20]
               },
@@ -135,7 +137,7 @@ export const DemoWelcome = ({ modules }: { modules?: any[] }) => {
             <CardContent>
               <Typography>{module.description}</Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{ marginTop: 'auto' }}>
               <Button size="small" color="primary">
                 Docs
               </Button>
