@@ -61,7 +61,7 @@ tasks:
       - pnpm --filter core-jobs-fe build
       - pnpm --filter core-comments-fe build
       - pnpm --filter core-versions-fe build
-      - pnpm --filter core-accounting-fe build
+      # - pnpm --filter core-accounting-fe build
       - pnpm --filter core-webhooks-fe build
       # - task: build-core-base-fe
       # - task: build-core-jobs-fe
