@@ -2,7 +2,7 @@
 
 == CONTENTS
 
-https://talysto.com/tech/groovestack/[Groovestack] is an opinionated fullstack application framework that consists of PostgreSQL, Rails, GrphQL and React-Admin. Groovestack CORE is a base set of gems and React components that can be used to bootstrap a new application with services out of the box:
+https://talysto.com/tech/groovestack/[Groovestack] is an opinionated fullstack application framework that consists of PostgreSQL, Rails, GraphQL and React-Admin. Groovestack CORE is a base set of gems and React components that can be used to bootstrap a new application with services out of the box:
 
 * Base: Reusable Groovestack extensions for CORE applications. 
 * Auth: Token based authentication fully integrated with Devise at the Rails & GraphQL layer. It also includes a React-Admin login flow that supports email/password as well as Oauth (Google & Apple) out of the box.
