@@ -1,17 +1,14 @@
-import { Admin, Resource, LayoutProps } from 'react-admin'
+import { Admin, Resource } from 'react-admin'
 import { Box } from '@mui/material'
-import { useSearchParams, useLocation } from 'react-router-dom'
 
 // Source Code import
 import { Auth } from '@groovestack/auth'
 import { Comments } from '@groovestack/comments'
-import { HomeView, GroovestackLayout } from '@groovestack/config'
+import { HomeView, GroovestackDash } from '@groovestack/config'
 import { Webhooks } from '@groovestack/webhooks'
 
 import { mockDataProvider, mockAuthProvider, credentials, defaultAppConfig } from './data/mock-providers'
-// import { CustomLayout } from './layout/CustomLayout'
 import { Company } from './resources/company'
-import { useEffect } from 'react'
 
 // import { pkg as CoreBasePkg } from '@groovestack/base'
 // import { pkg as CoreJobsPkg } from '@groovestack/jobs'
@@ -36,10 +33,6 @@ const LoginPage = (props: any) => {
   )
 }
 
-const CustomLayout = (props: LayoutProps) => {
-  return <GroovestackLayout LayoutProps={props} AppBarProps={{userMenu: <Auth.Users.Menu />}} />
-}
-
 function AdminApp() {
   credentials.setAppConfig(defaultAppConfig)
 
@@ -49,8 +42,8 @@ function AdminApp() {
       dataProvider={mockDataProvider}
       authProvider={authProvider}
       loginPage={LoginPage}
-      dashboard={HomeView}
-      layout={CustomLayout}
+      dashboard={GroovestackDash}
+      layout={Auth.RA.Layout}
       requireAuth
       // theme={houseLightTheme}
     >

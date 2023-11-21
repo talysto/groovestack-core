@@ -1,5 +1,13 @@
 # @groovestack/auth
 
+## 0.2.11
+
+### Patch Changes
+
+- refactor groovestack layout / dash
+- Updated dependencies
+  - @groovestack/config@0.2.11
+
 ## 0.2.10
 
 ### Patch Changes

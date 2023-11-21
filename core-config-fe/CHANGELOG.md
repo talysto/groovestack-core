@@ -1,5 +1,11 @@
 # @groovestack/versions
 
+## 0.2.11
+
+### Patch Changes
+
+- refactor groovestack layout / dash
+
 ## 0.2.10
 
 ### Patch Changes

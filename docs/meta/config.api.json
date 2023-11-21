@@ -202,6 +202,34 @@
         },
         {
           "kind": "Variable",
+          "canonicalReference": "@groovestack/config!GroovestackDash:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "GroovestackDash: "
+            },
+            {
+              "kind": "Content",
+              "text": "() => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/GroovestackDash.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "GroovestackDash",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          }
+        },
+        {
+          "kind": "Variable",
           "canonicalReference": "@groovestack/config!GroovestackLayout:var",
           "docComment": "",
           "excerptTokens": [

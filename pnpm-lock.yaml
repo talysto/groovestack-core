@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -131,6 +127,9 @@ importers:
       '@groovestack/base':
         specifier: workspace:^
         version: link:../core-base-fe
+      '@groovestack/config':
+        specifier: workspace:^
+        version: link:../core-config-fe
       '@mui/icons-material':
         specifier: 5.14.1
         version: 5.14.1(@mui/material@5.14.17)(@types/react@18.2.15)(react@18.2.0)
@@ -15839,3 +15838,7 @@ packages:
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
