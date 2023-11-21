@@ -31,12 +31,11 @@ APPLE_TEAM_ID: YOUR_TEAM_ID
 
 For instructions on how to acquire the required keys, see the https://github.com/zquestz/omniauth-google-oauth2[omniauth-google-oauth2] and https://github.com/nhosoya/omniauth-apple[omniauth-apple] documentation.
 
-To edit your environment specific Rails credentials file, run 
+CORE Auth ships with development and production environment credentials out of the box. To edit your environment specific Rails credentials file, run 
 [source,shell]
 ----
 rails credentials:edit -e [environment]
 ----
-CORE Auth ships with development and production environments out of the box.
 
 ==== Existing ROR & GraphQL Ruby Applications
 #TODO
