@@ -1,5 +1,17 @@
 # @groovestack/base
 
+## 0.2.10
+
+### Patch Changes
+
+- bump version
+
+## 0.2.9
+
+### Patch Changes
+
+- bump all versions
+
 ## 0.2.13
 
 ### Patch Changes

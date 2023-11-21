@@ -2,7 +2,7 @@
   "name": "@groovestack/base",
   "title": "CORE Base",
   "description": "Support classes and general-purpose components for MUI and React-Admin",
-  "version": "0.2.8",
+  "version": "0.2.10",
   "type": "module",
   "files": [
     "dist"
