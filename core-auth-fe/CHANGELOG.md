@@ -1,5 +1,11 @@
 # @groovestack/auth
 
+## 0.2.12
+
+### Patch Changes
+
+- fix missing dependency for styled-icons
+
 ## 0.2.11
 
 ### Patch Changes
