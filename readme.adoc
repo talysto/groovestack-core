@@ -14,7 +14,7 @@ https://talysto.com/tech/groovestack/[Groovestack] is an opinionated fullstack a
 
 == INSTALLATION
 
-Find instructions on how to create a new Groovestack application bundled with CORE gems and React components https://github.com/groovestack/launch[here].
+Find instructions on how to create a new Groovestack application bundled with CORE gems and React components https://github.com/groovestack/create-groovestack[here].
 
 == Demos
 
