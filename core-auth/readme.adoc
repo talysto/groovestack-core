@@ -1,3 +1,38 @@
-== CONTENTS
+= CORE Auth
+CORE Auth is a https://talysto.com/tech/groovestack/[Groovestack] CORE gem that provides an authentication solution for Ruby on Rails / GraphQL applications. 
 
-# TODO
+== Introduction
+CORE Auth relies on a few gems:
+* https://github.com/graphql-devise/graphql_devise[graphql_devise] (GraphQL wrapper for Devise Token Auth)
+* https://github.com/lynndylanhurley/devise_token_auth[devise_token_auth] - token-based authentication for a Rails / https://github.com/heartcombo/devise[Devise] app.
+* https://github.com/omniauth/omniauth[OmniAuth] - Multi-Provider Authentication.
+
+CORE Auth enables seamless authentication via email and password or through OAuth providers like Google and Apple.
+
+=== Configuration
+CORE Auth ships with email and password authentication out of the box as well as easily configurable https://github.com/zquestz/omniauth-google-oauth2[Google] and https://github.com/nhosoya/omniauth-apple[Apple] OAuth providers. To enable Omniauth providers, simply add the required third party keys to your Rails credentials file. For example, to enable Google OAuth, add the following to your Rails credentials file:
+
+[source,yaml]
+----
+GOOGLE_CLIENT_ID: YOUR_CLIENT_ID
+GOOGLE_CLIENT_SECRET: YOUR_CLIENT_SECRET
+----
+
+To enable Apple OAuth, add the following to your Rails credentials file:
+[source,yaml]
+----
+APPLE_CLIENT_ID: YOUR_CLIENT_ID
+APPLE_KEY_ID: YOUR_KEY_ID
+APPLE_PEM_CONTENT: YOUR_PEM_CONTENT
+APPLE_TEAM_ID: YOUR_TEAM_ID
+----
+
+For instructions on how to acquire the required keys, see the https://github.com/zquestz/omniauth-google-oauth2[omniauth-google-oauth2] and https://github.com/nhosoya/omniauth-apple[omniauth-apple] documentation.
+
+To edit your environment specific Rails credentials file, run 
+[source,shell]
+----
+rails credentials:edit -e [environment]
+----
+CORE Auth ships with development and production environments out of the box.
+
