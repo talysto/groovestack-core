@@ -6,8 +6,11 @@ https://talysto.com/tech/groovestack/[Groovestack] is an opinionated fullstack a
 
 * Base: Reusable Groovestack extensions for CORE applications. 
 * Auth: Token based authentication fully integrated with Devise at the Rails & GraphQL layer. It also includes a React-Admin login flow that supports email/password as well as Oauth (Google & Apple) out of the box.
+** https://github.com/talysto/groovestack-core/tree/dev/core-auth[Gem Documentation]
+** https://github.com/talysto/groovestack-core/tree/dev/core-auth-fe[React Documentation]
 * Jobs: A higher performance alternative to Sidekiq that is built on PostgreSQL and Ruby on Rails. It integrates fully with ActiveJob and includes a full administrative UI for monitoring and job management.
-
+** https://github.com/talysto/groovestack-core/tree/dev/core-jobs[Gem Documentation]
+** https://github.com/talysto/groovestack-core/tree/dev/core-jobs-fe[React Documentation]
 
 == INSTALLATION
 
