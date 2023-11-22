@@ -12,7 +12,7 @@ CORE Auth enables seamless authentication via email and password or through OAut
 CORE Auth ships with email and password authentication out of the box as well as easily configurable https://github.com/zquestz/omniauth-google-oauth2[Google] and https://github.com/nhosoya/omniauth-apple[Apple] OAuth providers.
 
 ==== create-groovestack
-When using the https://github.com/groovestack/create-groovestack[create-groovestack] utility to bootstrap a new Groovestack application, enabling Oauth providers is easy. Simply add the required third party keys to your Rails credentials file. For example, to enable Google OAuth, add the following to your Rails credentials file:
+When using the https://github.com/groovestack/create-groovestack[create-groovestack] utility to bootstrap a new Groovestack application, enabling OAuth providers is easy. Simply add the required third party keys to your Rails credentials file. For example, to enable Google OAuth, add the following to your Rails credentials file:
 
 [source,yaml]
 ----
@@ -31,11 +31,20 @@ APPLE_TEAM_ID: YOUR_TEAM_ID
 
 For instructions on how to acquire the required keys, see the https://github.com/zquestz/omniauth-google-oauth2[omniauth-google-oauth2] and https://github.com/nhosoya/omniauth-apple[omniauth-apple] documentation.
 
-CORE Auth ships with development and production environment credentials out of the box. To edit your environment specific Rails credentials file, run 
+CORE Auth ships with development and production environment https://edgeguides.rubyonrails.org/security.html#custom-credentials[rails credentials] out of the box. To edit your environment specific Rails credentials file, run 
 [source,shell]
 ----
 rails credentials:edit -e [environment]
 ----
+Credential master key files are located in the `config/credentials` directory but excluded from source control. When deploying your app to production, make sure you configure your production environment to include the `RAILS_MASTER_KEY` variable. For example, when deploying to Heroku, you can set the `RAILS_MASTER_KEY` variable by running:
+[source,shell]
+----
+heroku config:set RAILS_MASTER_KEY=`cat config/credentials/production.key`
+----
+
+===== Local Development with Apple OAuth
+
+Sign-In with Apple does not allow `localhost` as a valid callback URL. It also requires SSL. This means that you won't be able to test your Apple OAuth integration out of the box. To enable local development with Apple OAuth in your bootstrapped Groovestack app, follow https://github.com/talysto/groovestack-core/tree/main/core-auth/docs/apple-oauth-local-dev.adoc[these instructions].
 
 ==== Existing ROR & GraphQL Ruby Applications
 #TODO

@@ -1,0 +1,67 @@
+= Local Development with Apple OAuth & create-groovestack
+
+Sign-In with Apple does not allow `localhost` as a valid callback URL. It also requires SSL. This means that you won't be able to test your Apple OAuth integration out of the box. To enable local development with Apple OAuth in your bootstrapped Groovestack app, you have a few options.
+
+== ngrok (or similar)
+Use a tool like https://ngrok.com/[ngrok] to create a temporary public https:// URL for your local development environment. Add this URL to your Apple OAuth config as well as the callback url ending with `/users/auth/apple/callback`. For example, if your ngrok URL is `https://12345678.ngrok.io`, your Apple OAuth domain would be `12345678.ngrok.io` and your callback URL would be `https://12345678.ngrok.io/users/auth/apple/callback.`
+
+== Custom Host Entry
+Add a custom host entry to your `/etc/hosts` file for a testing URL and point it to your local machine. For example, you could add the following to your `/etc/hosts` file:
+
+[source,shell]
+----
+127.0.0.1	local.groovestack-demo.com
+----
+
+Register the custom host with your Apple OAuth config. I.e. set the domain to `local.groovestack-demo.com` and the callback URL to `https://local.groovestack-demo.com:3000/users/auth/apple/callback`. (create-groovestack runs on port 3000 out of the box so be sure to include this in your callback URL).
+
+Now generate a self-signed certificate for `local.groovestack-demo.com` using https://github.com/FiloSottile/mkcert[mkcert].
+
+[source,shell]
+----
+mkcert local.groovestack-demo.com
+----
+This will generate a `local.groovestack-demo.com.pem` and `local.groovestack-demo.com-key.pem` file in your current directory. Make sure the new cert is marked as trusted.
+
+Finally, enable SSL in your rails vite app.
+
+=== Procfile.dev
+
+Update your Procfile.dev web command to serve ssl
+[source,ruby]
+----
+web: bin/rails s -b 'ssl://localhost:3000?key=local.groovestack-demo.com-key.pem&cert=local.groovestack-demo.com.pem&verify_mode=none'
+----
+
+=== Vite
+
+Add the following development options in your `vite.json` file.
+[source, ts]
+----
+"host": "local.groovestack-demo.com",
+"https": true,
+----
+
+Add the following server options to your `vite.config.ts` file.
+[source, ts]
+----
+import { existsSync, readFileSync } from "fs";
+import { resolve } from "path";
+
+// resolve your certificate
+const certPath = resolve('.', "local.groovestack-demo.com.pem");
+const keyPath = resolve('.', "local.groovestack-demo.com-key.pem");
+const https = existsSync(certPath) ? { key: readFileSync(keyPath), cert: readFileSync(certPath) } : {};
+
+// add the server config options
+server: { 
+  host: 'local.groovestack-demo.com',
+  https 
+},
+----
+
+Finally, don't forget to add your new host to your `development.rb` file.
+[source,ruby]
+----
+config.hosts << "local.groovestack-demo.com"
+----
