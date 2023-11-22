@@ -1,0 +1,2 @@
+vite: VITE_GQL_ENDPOINT=/graphql bin/vite dev
+web: bin/rails s -b 'ssl://localhost:3000?key=local.groovestack-demo.com-key.pem&cert=local.groovestack-demo.com.pem&verify_mode=none'

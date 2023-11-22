@@ -1,0 +1,27 @@
+{
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vite-plugin-ruby": "^5.0.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.7",
+    "@groovestack/auth": "workspace:^",
+    "@groovestack/base": "workspace:^",
+    "@groovestack/comments": "workspace:^",
+    "@groovestack/config": "workspace:^",
+    "@groovestack/jobs": "workspace:^",
+    "@groovestack/notifications": "workspace:^",
+    "@groovestack/versions": "workspace:^",
+    "@groovestack/webhooks": "workspace:^",
+    "@moonlight-labs/ra-data-graphql-advanced": "^4.9.8",
+    "@mui/material": "^5.14.18",
+    "@rails/actioncable": "^7.1.2",
+    "graphql": "^16.8.1",
+    "graphql-ruby-client": "^1.11.10",
+    "ra-data-fakerest": "^4.16.0",
+    "ra-data-simple-rest": "^4.16.0",
+    "react": "^18.2.0",
+    "react-admin": "^4.16.0",
+    "react-dom": "^18.2.0"
+  }
+}
