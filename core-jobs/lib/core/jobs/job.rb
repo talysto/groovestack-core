@@ -23,6 +23,10 @@ module Core
         retry!
       end
 
+      def self.find(id)
+        find_by(id: id) # override b/c no primary key on que_jobs_ext view
+      end
+
       def actions
         actions = []
         actions << :retry if error_count.positive?

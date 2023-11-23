@@ -37,7 +37,7 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
 
         rand(3..10).times { |_i| ::Core::Jobs::ExampleJob.descendants.sample.set(wait: rand(0..2).seconds).perform_later }
 
-        ::Core::Jobs::QueJob.where("finished_at < now() - interval '1 hour' or expired_at < now() - interval '1 hour'").delete_all
+        ::Core::Jobs::QueJob.where("finished_at < now() - interval '2 hours' or expired_at < now() - interval '2 hours'").delete_all
 
         sleep 10
       end
