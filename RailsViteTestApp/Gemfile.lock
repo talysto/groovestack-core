@@ -147,6 +147,9 @@ GEM
     faraday-net_http (3.0.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    graphiql-rails (1.9.0)
+      railties
+      sprockets-rails
     graphql (2.1.6)
       racc (~> 1.4)
     graphql_devise (1.4.0)
@@ -369,6 +372,7 @@ DEPENDENCIES
   core-config!
   core-jobs!
   debug
+  graphiql-rails (>= 1.9.0)
   graphql
   importmap-rails
   omniauth-rails_csrf_protection
