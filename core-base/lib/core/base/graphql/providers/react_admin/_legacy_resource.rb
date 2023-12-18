@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Core
   module Base
     module GraphQL
@@ -7,10 +8,8 @@ module Core
           module Resource
             extend ActiveSupport::Concern
 
-            class_methods do
-              # TODO make authorize default to true
-
-              def react_admin_resource(entity, class_name: nil, graphql_path: nil, graphql_type: nil, graphql_filter: nil, authorize: false, policy: nil, **args)
+            class_methods do              
+              def react_admin_resource(entity, class_name: nil, graphql_path: nil, graphql_type: nil, graphql_filter: nil, **args)
                 # NOTE class_name is only required if a custom _base_scope is not defined
                 # NOTE graphql_path is only required to override the default graphql path
 
@@ -20,14 +19,17 @@ module Core
                 entity_type = (graphql_type || "#{graphql_namespace}#{entity_model_name}::Type").constantize
                 entity_filter_type = (graphql_filter || "#{graphql_namespace}#{entity_model_name}::Filter").constantize
                 except = args.delete(:except) || []
-                policy = policy || "#{entity_class}Policy"
-                base_scope = entity_class.constantize.unscoped rescue nil # nil is for the virtual classes (i.e. JobReport)
 
                 # resolver_method for Record
 
                 unless except.include?(:find)
                   define_method entity_model_name.to_sym do |id:|
-                    scope = authorize ? policy.constantize::Scope.new(context[:current_user], base_scope).resolve : base_scope
+                    scope = begin
+                      send("#{entity}_base_scope")
+                    rescue StandardError # => e
+                      entity_class.constantize
+                    end
+
                     scope.find id
                   end
                 end
@@ -36,8 +38,7 @@ module Core
 
                 unless except.include?(:collection)
                   define_method entity do |page: nil, per_page: nil, **attrs|
-                    scope = authorize ? policy.constantize::Scope.new(context[:current_user], base_scope).resolve : base_scope
-                    scope = send("#{entity}_scope", **attrs.merge(base_scope: scope))
+                    scope = send("#{entity}_scope", **attrs)
                     scope = scope.offset(page).limit(per_page) if page.present?
                     scope
                   end
@@ -47,8 +48,7 @@ module Core
 
                 unless except.include?(:collection_meta)
                   define_method "#{entity}_meta".to_sym do |page: nil, per_page: nil, **attrs| # rubocop:disable Lint/UnusedBlockArgument
-                    scope = authorize ? policy.constantize::Scope.new(context[:current_user], base_scope).resolve : base_scope
-                    { count: send("#{entity}_scope", **attrs.merge(base_scope: scope)).size }
+                    { count: send("#{entity}_scope", **attrs).size }
                   end
                 end
 

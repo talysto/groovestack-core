@@ -11,7 +11,7 @@ module Core
             included do
               include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-              react_admin_resource :job_lockers, graphql_type: 'Core::Jobs::GraphQL::Job::Locker::Type',
+              react_admin_resource :job_lockers, class_name: 'Core::Jobs::Locker', graphql_type: 'Core::Jobs::GraphQL::Job::Locker::Type',
               graphql_filter: 'Core::Jobs::GraphQL::Job::Locker::Filter'
             end
 

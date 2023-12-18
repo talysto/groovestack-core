@@ -10,15 +10,15 @@ module Core
           included do
             include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-            react_admin_resource :comments, graphql_path: "Core::Comments::GraphQL"
+            react_admin_resource :comments, graphql_path: "Core::Comments::GraphQL", class_name: 'Core::Comments::Comment'
           end
 
-          def comments_base_scope
-            ::Core::Comments::Comment.all
-          end
+          # def comments_base_scope
+          #   ::Core::Comments::Comment.all
+          # end
 
           def comments_scope(sort_field: nil, sort_order: nil, filter: {})
-            scope = comments_base_scope
+            scope = ::Core::Comments::Comment.all
             scope = scope.where(id: filter.ids) if filter.ids.present?
             scope = scope.where(author_id: filter.author_id) if filter.author_id.present?
             scope = scope.where(author_type: filter.author_type) if filter.author_type.present?
