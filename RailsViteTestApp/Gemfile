@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'graphiql-rails', '>= 1.9.0' # graphql api introspection
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
