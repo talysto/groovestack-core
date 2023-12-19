@@ -27,7 +27,7 @@ module Core
 
                 unless except.include?(:find)
                   define_method entity_model_name.to_sym do |id:|
-                    scope = authorize ? policy.constantize::Scope.new(context[:current_user], base_scope).resolve : base_scope
+                    scope = authorize ? policy.constantize::ShowScope.new(context[:current_user], base_scope).resolve : base_scope
                     scope.find id
                   end
                 end
@@ -36,7 +36,7 @@ module Core
 
                 unless except.include?(:collection)
                   define_method entity do |page: nil, per_page: nil, **attrs|
-                    scope = authorize ? policy.constantize::Scope.new(context[:current_user], base_scope).resolve : base_scope
+                    scope = authorize ? policy.constantize::IndexScope.new(context[:current_user], base_scope).resolve : base_scope
                     scope = send("#{entity}_scope", **attrs.merge(base_scope: scope))
                     scope = scope.offset(page).limit(per_page) if page.present? && scope.respond_to?(:offset)
                     scope
@@ -47,7 +47,7 @@ module Core
 
                 unless except.include?(:collection_meta)
                   define_method "#{entity}_meta".to_sym do |page: nil, per_page: nil, **attrs| # rubocop:disable Lint/UnusedBlockArgument
-                    scope = authorize ? policy.constantize::Scope.new(context[:current_user], base_scope).resolve : base_scope
+                    scope = authorize ? policy.constantize::IndexScope.new(context[:current_user], base_scope).resolve : base_scope
                     { count: send("#{entity}_scope", **attrs.merge(base_scope: scope)).size }
                   end
                 end
