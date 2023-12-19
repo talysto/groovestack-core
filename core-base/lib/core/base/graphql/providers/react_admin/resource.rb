@@ -38,7 +38,7 @@ module Core
                   define_method entity do |page: nil, per_page: nil, **attrs|
                     scope = authorize ? policy.constantize::Scope.new(context[:current_user], base_scope).resolve : base_scope
                     scope = send("#{entity}_scope", **attrs.merge(base_scope: scope))
-                    scope = scope.offset(page).limit(per_page) if page.present?
+                    scope = scope.offset(page).limit(per_page) if page.present? && scope.respond_to?(:offset)
                     scope
                   end
                 end
