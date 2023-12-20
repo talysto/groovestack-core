@@ -39,7 +39,8 @@ module Core
             current_user = context[:current_user]
             class_const = name.to_s.classify
             policy = Pundit.policy!(current_user, class_const)
-            policy::IndexScope.new(current_user, class_const).resolve
+            scope_class = @return_type_expr.is_a?(Array) ? policy::IndexScope : policy::ShowScope
+            scope_class.new(current_user, class_const).resolve
           end
   
           def authorized?(obj, args, ctx)
