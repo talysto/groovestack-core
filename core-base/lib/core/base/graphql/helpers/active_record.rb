@@ -13,7 +13,7 @@ module Core
 
               raise ::GraphQL::ExecutionError, 'Cannot update multiple attributes when firing instance methods' if attrs.present?
               raise ::GraphQL::ExecutionError, "#{instance_method.capitalize} not permitted" unless obj.aasm.events.map(&:name).include?(instance_method.to_sym)
-              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to #{instance_method} this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_aasm_events_for_update.include?(instance_method.to_sym)
+              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to #{instance_method} this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_aasm_events.include?(instance_method.to_sym)
 
               args = args.merge({ current_user: context[:current_user] }).symbolize_keys!
               instance_method = "#{instance_method}!".to_sym
