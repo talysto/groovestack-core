@@ -13,12 +13,8 @@ module Core
             react_admin_resource :comments, graphql_path: "Core::Comments::GraphQL", class_name: 'Core::Comments::Comment'
           end
 
-          # def comments_base_scope
-          #   ::Core::Comments::Comment.all
-          # end
-
-          def comments_scope(sort_field: nil, sort_order: nil, filter: {})
-            scope = ::Core::Comments::Comment.all
+          def comments_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+            scope = base_scope
             scope = scope.where(id: filter.ids) if filter.ids.present?
             scope = scope.where(author_id: filter.author_id) if filter.author_id.present?
             scope = scope.where(author_type: filter.author_type) if filter.author_type.present?

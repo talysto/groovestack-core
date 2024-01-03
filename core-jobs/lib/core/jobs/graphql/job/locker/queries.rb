@@ -15,8 +15,8 @@ module Core
               graphql_filter: 'Core::Jobs::GraphQL::Job::Locker::Filter'
             end
 
-            def job_lockers_scope(sort_field: nil, sort_order: nil, filter: {})
-              scope = ::Core::Jobs::Locker.unscoped
+            def job_lockers_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+              scope = base_scope
               # scope = scope.where(id: filter.ids) unless filter.ids.nil?
 
               return scope if sort_field.blank? || sort_field == 'id' # no id on this table

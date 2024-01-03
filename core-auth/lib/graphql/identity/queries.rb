@@ -11,8 +11,8 @@ module GraphQL
         react_admin_resource :identities, graphql_path: "GraphQL"
       end
   
-      def identities_scope(sort_field: nil, sort_order: nil, filter: {})
-        scope = ::Identity.all
+      def identities_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+        scope = base_scope
         scope = scope.where(id: filter.ids) if filter.ids.present?
         scope = scope.where(user_id: filter.user_id) if filter.user_id.present?
 
