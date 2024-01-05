@@ -31,7 +31,7 @@ module Core
               event = event.gsub("!", '').to_sym
 
               raise ::GraphQL::ExecutionError, 'Cannot update multiple attributes when firing instance methods' if attrs.present?
-              raise ::GraphQL::ExecutionError, "#{event.capitalize} not permitted" unless obj.aasm.events(permitted: true).map(&:name).include?(event.to_sym)
+              raise ::GraphQL::ExecutionError, "#{event.capitalize} unavailable" unless obj.aasm.events.map(&:name).include?(event.to_sym)
               raise ::GraphQL::ExecutionError, "Unauthorized not allowed to #{event} this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_aasm_events.include?(event.to_sym)
 
               event = "#{event}!".to_sym
