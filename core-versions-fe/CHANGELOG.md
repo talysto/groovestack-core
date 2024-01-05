@@ -1,5 +1,12 @@
 # @groovestack/versions
 
+## 0.2.14
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.2.12
+
 ## 0.2.13
 
 ### Patch Changes

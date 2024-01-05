@@ -1,5 +1,27 @@
 # test-core-fe
 
+## 0.2.117
+
+### Patch Changes
+
+- StatusInput gracefully handles undefined save context
+- Updated dependencies
+  - @groovestack/base@0.2.12
+  - @groovestack/auth@0.2.13
+  - @groovestack/comments@0.2.14
+  - @groovestack/config@0.2.12
+  - @groovestack/jobs@0.2.11
+  - @groovestack/notifications@0.2.32
+  - @groovestack/versions@0.2.14
+  - @groovestack/webhooks@0.2.15
+
+## 0.2.116
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.2.11
+
 ## 0.2.115
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @groovestack/jobs
 
+## 0.2.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.2.12
+
 ## 0.2.10
 
 ### Patch Changes
