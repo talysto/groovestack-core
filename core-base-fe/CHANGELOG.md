@@ -1,5 +1,11 @@
 # @groovestack/base
 
+## 0.2.13
+
+### Patch Changes
+
+- diffObjects helper
+
 ## 0.2.12
 
 ### Patch Changes

@@ -7,7 +7,7 @@ import {
 } from 'react-admin'
 import { isEqual } from 'lodash'
 
-const diff = (old: any, updated: any) => {
+export const diffObjects = (old: any, updated: any) => {
   const diffObj: any = {}
   if (!old) return updated
 
@@ -24,13 +24,13 @@ export const useSaveOnlyChanges = () => {
   const { save } = useSaveContext()
 
   const diffSave = (data: FieldProps) => {
-    if (save) save(diff(record, data))
+    if (save) save(diffObjects(record, data))
     else throw new Error('save context undefined')
   }
 
   const diffSaveAdvanced: SaveHandler<RaRecord> = async (data, callbacks) => {
     if (save) {
-      const d = diff(record, data)
+      const d = diffObjects(record, data)
       return await save(d, callbacks)
     }
 

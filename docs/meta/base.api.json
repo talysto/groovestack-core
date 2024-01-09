@@ -792,6 +792,29 @@
           }
         },
         {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/base!diffObjects:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "diffObjects: "
+            },
+            {
+              "kind": "Content",
+              "text": "(old: any, updated: any) => any"
+            }
+          ],
+          "fileUrlPath": "dist/src/react-admin/hooks/useSaveOnlyChanges.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "diffObjects",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
           "kind": "Enum",
           "canonicalReference": "@groovestack/base!DrawerWidth:enum",
           "docComment": "",
