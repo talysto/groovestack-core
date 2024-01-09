@@ -52,27 +52,7 @@ module Core
         end
 
         # module Authorized 
-        class AuthorizedBaseField < BaseField
-          attr_accessor :authenticate
-  
-          def initialize(*args, association: false, **kwargs, &block)
-            kwargs[:resolver_method] = :resolve_association if association && kwargs[:resolver_method].nil? && defined?(Pundit) # ensure associations scopes are authorized
-  
-            super(*args, **kwargs, &block)
-            # puts "AuthorizedField for #{owner}: #{name} association: #{association} resolver_method #{resolver_method}"
-            # puts "authorized_field #{name} association: #{association}"
-          end
-  
-          def resolve_association
-            puts "resolve_association #{name}"
-            current_user = context[:current_user]
-            class_const = name.to_s.classify
-            policy = Pundit.policy!(current_user, class_const)
-            scope_class = @return_type_expr.is_a?(Array) ? policy::IndexScope : policy::ShowScope
-            puts "scope_class #{scope_class}"
-            scope_class.new(current_user, class_const).resolve
-          end
-  
+        class AuthorizedBaseField < BaseField  
           def authorized?(obj, args, ctx)
             authorized_fields = obj.authorized_fields_for_serialization(ctx[:current_user]) rescue []
             
@@ -82,13 +62,7 @@ module Core
 
         class AuthorizedBaseObject < BaseObject
           field_class ::Core::Base::GraphQL::Types::AuthorizedBaseField
-
-          def initialize(object, context)
-            @object = object
-            @context = context
-          end
         end
-        # end
       end
     end
   end
