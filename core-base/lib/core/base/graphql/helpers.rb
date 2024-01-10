@@ -49,7 +49,7 @@ module Core
             def trigger_instance_method!(obj:, attrs:, instance_method:, args: nil, authorization_policy: nil)
               raise GraphQL::ExecutionError, 'instance_method not present' unless instance_method.present?
               raise GraphQL::ExecutionError, 'Cannot update multiple attributes when triggering instance method' if attrs.present?
-              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(event.to_sym)
+              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(instance_method.to_sym)
 
               if args.present? && args.is_a?(Array)
                 obj.send("#{instance_method}", *args)
