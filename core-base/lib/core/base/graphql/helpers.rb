@@ -54,7 +54,7 @@ module Core
               if args.present? && args.is_a?(Array)
                 obj.send("#{instance_method}", *args)
               elsif args.present? && args.is_a?(Hash)
-                obj.send("#{instance_method}", **args)
+                obj.send("#{instance_method}", **args.symbolize_keys!)
               else
                 obj.send("#{instance_method}")
               end
