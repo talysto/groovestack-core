@@ -1,7 +1,7 @@
 {
   "name": "@groovestack/webhooks",
   "title": "CORE Webhooks",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "type": "module",
   "files": [
     "dist"
