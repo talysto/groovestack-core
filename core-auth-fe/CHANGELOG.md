@@ -1,5 +1,21 @@
 # @groovestack/auth
 
+## 0.2.14
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.2.13
+  - @groovestack/config@0.2.13
+
+## 0.2.13
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.2.12
+  - @groovestack/config@0.2.12
+
 ## 0.2.12
 
 ### Patch Changes

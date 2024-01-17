@@ -1,5 +1,12 @@
 # @groovestack/notifications
 
+## 0.2.32
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.2.12
+
 ## 0.2.31
 
 ### Patch Changes
