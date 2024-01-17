@@ -31,8 +31,8 @@ module Core
               event = event.gsub("!", '').to_sym
 
               raise ::GraphQL::ExecutionError, 'Cannot update multiple attributes when firing instance methods' if attrs.present?
-              raise ::GraphQL::ExecutionError, "#{event.capitalize} unavailable" unless obj.aasm.events.map(&:name).include?(event.to_sym)
-              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to #{event} this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_aasm_events.include?(event.to_sym)
+              raise ::GraphQL::ExecutionError, "#{event.capitalize} unavailable" unless obj.aasm.events.map(&:name).include?(event)
+              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to #{event} this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_aasm_events.include?(event)
 
               event = "#{event}!".to_sym
 
@@ -48,8 +48,12 @@ module Core
           module InstanceMethods
             def trigger_instance_method!(obj:, attrs:, instance_method:, args: nil, authorization_policy: nil)
               raise GraphQL::ExecutionError, 'instance_method not present' unless instance_method.present?
+
+              instance_method = instance_method.to_sym
+
+              raise GraphQL::ExecutionError, 'instance_method undefined' unless obj.respond_to?(instance_method)
               raise GraphQL::ExecutionError, 'Cannot update multiple attributes when triggering instance method' if attrs.present?
-              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(instance_method.to_sym)
+              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(instance_method)
 
               if args.present? && args.is_a?(Array)
                 obj.send("#{instance_method}", *args)
