@@ -19,8 +19,8 @@ module GraphQL
         context[:current_resource]
       end
   
-      def users_scope(sort_field: nil, sort_order: nil, filter: {})
-        scope = ::User.all
+      def users_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+        scope = base_scope
         scope = scope.where(id: filter.ids) if filter.ids.present?
   
         scope = scope.where(id: scope.fuzzysearch(filter.q)).or(scope.where(id: scope.emailsearch(filter.q))) if filter.q.present?
