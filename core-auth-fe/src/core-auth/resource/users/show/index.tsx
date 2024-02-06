@@ -19,7 +19,7 @@ import {
 } from 'react-admin'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import SettingsIcon from '@mui/icons-material/TuneOutlined'
-import { Card, Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 
 import { IdentitiesTable } from '../../identities/table'
 import { StandardTitle } from '../../../components/StandardTitle'
@@ -43,7 +43,7 @@ const DefaultToolbar = (props: any) => (
   </Toolbar>
 )
 
-const GeneralSettings = () => (
+export const GeneralSettings = () => (
   <SimpleForm warnWhenUnsavedChanges toolbar={<DefaultToolbar />}>
     <TextInput source="name" fullWidth />
     <TextInput source="email" type="email" fullWidth />
@@ -69,47 +69,58 @@ const AdminUserMeta = () => {
   )
 }
 
-const PreferencesTab = () => {
-  const DefaultEditProps: EditProps = {
-    redirect: false,
-    actions: false,
-    title: ' ', // don't override titles
-  }
+const DefaultEditProps: EditProps = {
+  redirect: false,
+  actions: false,
+  title: ' ', // don't override titles
+}
 
-  const settingsConfig = [
-    {
-      title: 'General',
-      groups: [
-        {
-          description: 'Your basic account information.',
-          component: (
-            <Edit {...DefaultEditProps}>
-              <GeneralSettings />
-            </Edit>
-          ),
-        },
-      ],
-    },
-    {
-      title: 'Security',
-      groups: [
-        {
-          label: 'Social Logins',
-          description: 'Connect social accounts to enable single sign-on',
-          component: <IdentitiesTable />,
-        },
-        {
-          label: 'Password',
-          description: 'Add or update your password',
-          component: (
-            <Edit {...DefaultEditProps}>
-              <SecuritySettings toolbar={<DefaultToolbar />} />
-            </Edit>
-          ),
-        }
-      ],
-    },
-  ]
+interface PreferencesSettingConfig {
+  title: string;
+  groups: {
+      label?: string;
+      description: string;
+      component: JSX.Element;
+  }[];
+}
+
+export const PreferencesSettingsConfig: PreferencesSettingConfig[] = [
+  {
+    title: 'General',
+    groups: [
+      {
+        description: 'Your basic account information.',
+        component: (
+          <Edit {...DefaultEditProps}>
+            <GeneralSettings />
+          </Edit>
+        ),
+      },
+    ],
+  },
+  {
+    title: 'Security',
+    groups: [
+      {
+        label: 'Social Logins',
+        description: 'Connect social accounts to enable single sign-on',
+        component: <IdentitiesTable />,
+      },
+      {
+        label: 'Password',
+        description: 'Add or update your password',
+        component: (
+          <Edit {...DefaultEditProps}>
+            <SecuritySettings toolbar={<DefaultToolbar />} />
+          </Edit>
+        ),
+      }
+    ],
+  },
+]
+
+export const PreferencesTab = ({ settingsConfig=PreferencesSettingsConfig }: { settingsConfig?: PreferencesSettingConfig[] }) => {
+  
 
   return (
     <>
@@ -119,8 +130,14 @@ const PreferencesTab = () => {
   )
 }
 
+const AdminTabAside = () => (
+  <>
+    <Typography variant="h6">Metadata</Typography>
+    <AdminUserMeta />
+  </>
+)
 
-const AdminTab = () => {
+export const AdminTab = ({ aside=<AdminTabAside /> }: { aside?: React.ReactNode }) => {
   const roles = defaultCredentials.getAppConfig().user_roles.map((role: string) => ({ id: role, name: titleCase(role) }))
 
   return (
@@ -142,10 +159,11 @@ const AdminTab = () => {
           </SimpleForm>
         </Edit>
       </Grid>
-      <Grid item xs={12} md={4} sx={{ p: '16px'}}>
-        <Typography variant="h6">Metadata</Typography>
-        <AdminUserMeta />
-      </Grid>
+      {aside && (
+        <Grid item xs={12} md={4} sx={{ p: '16px'}}>
+          {aside}
+        </Grid>
+      )}
     </Grid>
   )
 }
@@ -157,25 +175,25 @@ interface TabConfig {
   icon?: any
 }
 
-const UserTabs = () => {
+export const UserTabsConfig: Array<TabConfig> = [
+  {
+    label: 'Preferences',
+    icon: SettingsIcon,
+    component: <PreferencesTab />,
+  },
+  {
+    label: 'Admin',
+    icon: AdminPanelSettingsIcon,
+    component: <AdminTab />,
+    displayIf: (currentUser: any) => currentUser?.roles?.includes('admin'),
+  },
+]
+
+export const UserTabs = ({ tabsConfig=UserTabsConfig}: { tabsConfig?: Array<TabConfig>}) => {
   const record = useRecordContext()
   const { data: currentUser } = useGetIdentity()
 
   if (!(record && currentUser)) return <div>Loading...</div>
-
-  const tabsConfig: Array<TabConfig> = [
-    {
-      label: 'Preferences',
-      icon: SettingsIcon,
-      component: <PreferencesTab />,
-    },
-    {
-      label: 'Admin',
-      icon: AdminPanelSettingsIcon,
-      component: <AdminTab />,
-      displayIf: (currentUser: any) => currentUser?.roles?.includes('admin'),
-    },
-  ]
 
   const tabs = tabsConfig.filter(
     (tab) => !tab.displayIf || tab.displayIf(currentUser),
@@ -210,6 +228,7 @@ const UserTabs = () => {
     </TabbedShowLayout>
   )
 }
+
 export const UserShow = () => (
   <Show 
     title={<></>} // underlying tab edit component will set title

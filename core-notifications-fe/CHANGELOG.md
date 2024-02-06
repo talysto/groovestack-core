@@ -1,5 +1,11 @@
 # @groovestack/notifications
 
+## 0.2.33
+
+### Patch Changes
+
+- publish
+
 ## 0.2.32
 
 ### Patch Changes

@@ -507,7 +507,7 @@
                 {
                   "kind": "Reference",
                   "text": "Users",
-                  "canonicalReference": "@groovestack/auth!~Users:class"
+                  "canonicalReference": "!unknown:member"
                 },
                 {
                   "kind": "Content",

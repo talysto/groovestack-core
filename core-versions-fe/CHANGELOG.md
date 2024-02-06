@@ -1,5 +1,11 @@
 # @groovestack/versions
 
+## 0.2.15
+
+### Patch Changes
+
+- publish
+
 ## 0.2.14
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @groovestack/auth
 
+## 0.2.16
+
+### Patch Changes
+
+- more user show child components available for custom composition
+
+## 0.2.15
+
+### Patch Changes
+
+- more configurable user show component
+
 ## 0.2.14
 
 ### Patch Changes

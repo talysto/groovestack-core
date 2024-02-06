@@ -1,6 +1,6 @@
 {
   "name": "@groovestack/notifications",
-  "version": "0.2.32",
+  "version": "0.2.33",
   "type": "module",
   "files": [
     "dist"
@@ -35,5 +35,9 @@
   },
   "dependencies": {
     "@groovestack/base": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
