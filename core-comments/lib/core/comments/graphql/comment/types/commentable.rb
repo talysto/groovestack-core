@@ -6,7 +6,11 @@ module Core
           module Commentable
             # TODO: remove this proxy module when we remove the old commentable types
 
-            include Core::Base::GraphQL::Helpers::Types::Typified
+            extend ActiveSupport::Concern
+
+            include do 
+              include Core::Base::GraphQL::Helpers::Types::Typified
+            end
           end
         end
       end
