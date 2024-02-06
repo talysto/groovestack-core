@@ -8,7 +8,7 @@ module Core
 
             extend ActiveSupport::Concern
 
-            include do 
+            included do 
               include Core::Base::GraphQL::Helpers::Types::Typified
             end
           end
