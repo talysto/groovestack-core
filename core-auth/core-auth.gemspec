@@ -38,6 +38,8 @@ Gem::Specification.new do |spec|
   
   spec.add_development_dependency 'graphql'
   spec.add_development_dependency 'pg'
+  spec.add_development_dependency 'fabrication'
+  spec.add_development_dependency 'faker'
 
   spec.add_development_dependency 'combustion', '~> 1.3'  # Test engines without a full 'dummy' app https://github.com/pat/combustion
   spec.add_development_dependency 'racksh'                # get a console without a full Rails application

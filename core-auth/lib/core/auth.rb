@@ -42,3 +42,5 @@ require 'core/auth/authenticated_api_controller'
 require 'core/auth/omniauth_callbacks_controller'
 require 'core/auth/action_cable'
 require 'core/auth/schema_plugin'
+
+require 'test/fabricators/user_fabricator'
