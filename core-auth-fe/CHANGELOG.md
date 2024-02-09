@@ -1,5 +1,23 @@
 # @groovestack/auth
 
+## 0.2.19
+
+### Patch Changes
+
+- general settings hides default img url field if imgInput prop is passed
+
+## 0.2.18
+
+### Patch Changes
+
+- add key to user show preferences settings group configs
+
+## 0.2.17
+
+### Patch Changes
+
+- user general settings takes an optional image input
+
 ## 0.2.16
 
 ### Patch Changes

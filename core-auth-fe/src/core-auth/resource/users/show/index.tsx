@@ -43,11 +43,12 @@ const DefaultToolbar = (props: any) => (
   </Toolbar>
 )
 
-export const GeneralSettings = () => (
+export const GeneralSettings = ({ imgInput }: { imgInput?: React.ReactNode }) => (
   <SimpleForm warnWhenUnsavedChanges toolbar={<DefaultToolbar />}>
+    {imgInput}
     <TextInput source="name" fullWidth />
     <TextInput source="email" type="email" fullWidth />
-    <TextInput disabled source="image" fullWidth />
+    {!imgInput && <TextInput disabled source="image" fullWidth />}
   </SimpleForm>
 )
 
@@ -78,6 +79,7 @@ const DefaultEditProps: EditProps = {
 interface PreferencesSettingConfig {
   title: string;
   groups: {
+      key: string;
       label?: string;
       description: string;
       component: JSX.Element;
@@ -89,6 +91,7 @@ export const PreferencesSettingsConfig: PreferencesSettingConfig[] = [
     title: 'General',
     groups: [
       {
+        key: 'basic_info',
         description: 'Your basic account information.',
         component: (
           <Edit {...DefaultEditProps}>
@@ -102,11 +105,13 @@ export const PreferencesSettingsConfig: PreferencesSettingConfig[] = [
     title: 'Security',
     groups: [
       {
+        key: 'identities',
         label: 'Social Logins',
         description: 'Connect social accounts to enable single sign-on',
         component: <IdentitiesTable />,
       },
       {
+        key: 'password',
         label: 'Password',
         description: 'Add or update your password',
         component: (
