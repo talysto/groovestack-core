@@ -1,5 +1,17 @@
 # @groovestack/auth
 
+## 0.2.21
+
+### Patch Changes
+
+- authProvider.logout handles custom redirect
+
+## 0.2.20
+
+### Patch Changes
+
+- authProvider.logout can skip server logout
+
 ## 0.2.19
 
 ### Patch Changes

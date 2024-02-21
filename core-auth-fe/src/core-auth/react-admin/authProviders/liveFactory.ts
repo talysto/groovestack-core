@@ -134,7 +134,12 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
 
       return
     },
-    logout: async () => {
+    logout: async (params: { redirect?: string; skip_server?: boolean }) => {
+      credentials.clearCurrentResource()
+      credentials.clearAuthHeaders()
+      // client.resetStore() // https://www.apollographql.com/docs/react/networking/authentication/#reset-store-on-logout
+
+      if (params?.skip_server) return params?.redirect
 
       try {
         const { errors } = await client.mutate({ mutation: LOGOUT_MUTATION })
@@ -144,12 +149,8 @@ export const liveAuthProviderFactory: AuthProviderFactoryType = async ({ client,
         console.error(e)
         if (e.message != "User was not found or was not logged in.") throw new Error(e.message || 'Error logging out')
       }
-
-      credentials.clearCurrentResource()
-      credentials.clearAuthHeaders()
-      // client.resetStore() // https://www.apollographql.com/docs/react/networking/authentication/#reset-store-on-logout
       
-      return
+      return params?.redirect
     },
     getIdentity,
     getPermissions: async () => {
