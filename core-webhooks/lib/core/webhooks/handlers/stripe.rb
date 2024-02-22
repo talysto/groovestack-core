@@ -20,25 +20,14 @@ module Core
           webhook_event.headers['HTTP_STRIPE_SIGNATURE'].present?
         end
 
-        protected
-
         def ensure_authentic!
-          stripe_event.present? || super
+          stripe_event.present?
+        rescue e 
+          raise ::Core::Webhooks::UnverifiedWebhookError, e
         end
 
         def augment_webhook_event
           webhook_event.event = stripe_event.type
-        end
-
-        def stripe_event
-          @stripe_event ||= Stripe::Webhook.construct_event(
-            webhook_event.data,
-            webhook_event.headers['HTTP_STRIPE_SIGNATURE'],
-            self.class.api_key
-          )
-        rescue Stripe::SignatureVerificationError => e
-          logger.error e.inspect
-          false
         end
 
         def duplicate?
@@ -54,8 +43,18 @@ module Core
             # TODO: don't assume event handlers are jobs
             event_handler.perform_later(webhook_event)
           else
-            logger.error "No handler for Stripe #{stripe_event.type} event"
+            ::Rails.logger.error "No handler for Stripe #{stripe_event.type} event"
           end
+        end
+
+        protected
+
+        def stripe_event
+          @stripe_event ||= Stripe::Webhook.construct_event(
+            webhook_event.data,
+            webhook_event.headers['HTTP_STRIPE_SIGNATURE'],
+            self.class.api_key
+          )
         end
       end
     end

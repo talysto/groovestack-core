@@ -7,6 +7,7 @@ module Core
 
     class Handler 
       attr_reader :webhook_event
+      attr_accessor :request_data, :request_headers
 
       def initialize(webhook_event)
         webhook_event.source = provider
@@ -17,10 +18,12 @@ module Core
         raise 'Not implemented'
       end
 
-      protected
+      def augment_webhook_event
+        true
+      end
 
       def ensure_authentic!
-        raise ::Core::Webhooks::UnverifiedWebhookError, 'Could not verify webhook'
+        raise 'Not implemented'
       end
 
       def duplicate?
@@ -30,6 +33,8 @@ module Core
       def perform
         raise 'Not implemented'
       end
+
+      protected
 
       def provider
         self.class.name.split('::').last.downcase
