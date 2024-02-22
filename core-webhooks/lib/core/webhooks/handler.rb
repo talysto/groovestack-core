@@ -1,17 +1,26 @@
 module Core
   module Webhooks
-    class Handler 
-      attr_reader :request
+    def self.handler_for(webhook_event)
+      handler = ::Core::Webhooks::Handler.descendants.find { |h| h.handles?(webhook_event) }
+      handler&.new(webhook_event)
+    end
 
-      def initialize(request)
-        @request = request
+    class Handler 
+      attr_reader :webhook_event
+
+      def initialize(webhook_event)
+        webhook_event.source = provider
+        @webhook_event = webhook_event
+      end
+
+      def self.handles?(_webhook_event)
+        raise 'Not implemented'
       end
 
       protected
 
       def ensure_authentic!
-        logger.error ["Error in #{params[:source]} webhook", request_headers, request_data,].join("\n")
-        raise 'Could not verify webhook'
+        raise ::Core::Webhooks::UnverifiedWebhookError, 'Could not verify webhook'
       end
 
       def duplicate?
@@ -22,20 +31,8 @@ module Core
         raise 'Not implemented'
       end
 
-      def request_data
-        @request_data ||= request.body.read
-      end
-    
-      def request_headers
-        @request_headers ||= request.headers.to_h.select { |k, _v| k =~ /^HTTP_/ }
-      end
-    
-      def webhook_event
-        @webhook_event ||= ::Core::Webhooks::Event.new(
-          source: params[:source],
-          headers: request_headers,
-          data: JSON.parse(request_data)
-        )
+      def provider
+        self.class.name.split('::').last.downcase
       end
     end
   end

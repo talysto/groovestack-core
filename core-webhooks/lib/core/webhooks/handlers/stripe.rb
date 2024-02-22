@@ -16,16 +16,24 @@ module Core
 
         setting :api_key, reader: true
 
+        def self.handles?(webhook_event)
+          webhook_event.headers['HTTP_STRIPE_SIGNATURE'].present?
+        end
+
         protected
 
         def ensure_authentic!
           stripe_event.present? || super
         end
 
+        def augment_webhook_event
+          webhook_event.event = stripe_event.type
+        end
+
         def stripe_event
           @stripe_event ||= Stripe::Webhook.construct_event(
-            request_data,
-            request_headers['HTTP_STRIPE_SIGNATURE'],
+            webhook_event.data,
+            webhook_event.headers['HTTP_STRIPE_SIGNATURE'],
             self.class.api_key
           )
         rescue Stripe::SignatureVerificationError => e
@@ -36,16 +44,7 @@ module Core
         def duplicate?
           event = webhook_event.data['id']
 
-          ::Core::Webhooks::Event.where("data->>'id' = ?", event).size.positive?
-        end
-
-        def webhook_event
-          @webhook_event ||= ::Core::Webhooks::Event.new(
-            source: :stripe,
-            headers: request_headers,
-            data: JSON.parse(request_data),
-            event: stripe_event.type
-          )
+          ::Core::Webhooks::Event.where.(source: :stripe).where("data->>'id' = ?", event).size.positive?
         end
 
         def perform

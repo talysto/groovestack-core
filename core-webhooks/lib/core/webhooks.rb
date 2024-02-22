@@ -52,7 +52,7 @@ module Core
     }, reader: true
     setting :enabled_providers, default: [:stipe, :shopify], reader: true
 
-    class Error < StandardError; end
-    # Your code goes here...
+    class WebhooksError < StandardError; end
+    class UnverifiedWebhookError < WebhooksError; end
   end
 end
