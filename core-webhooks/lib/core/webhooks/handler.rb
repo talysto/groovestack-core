@@ -1,21 +1,30 @@
 module Core
   module Webhooks
-    def self.handler_for(webhook_event)
-      handler = ::Core::Webhooks::Handler.descendants.find { |h| h.handles?(webhook_event) }
-      handler&.new(webhook_event)
+    def self.enabled_handlers
+      ::Core::Webhooks::Handler.descendants.reject { |h| disabled_handlers.include?(h.provider.to_sym) }
+    end
+
+    def self.handler_for(webhook_event, raw_request_data)
+      handler = enabled_handlers.find { |h| h.handles?(webhook_event) }
+      handler&.new(webhook_event, raw_request_data)
     end
 
     class Handler 
       attr_reader :webhook_event
-      attr_accessor :request_data, :request_headers
+      attr_accessor :raw_request_data
 
-      def initialize(webhook_event)
-        webhook_event.source = provider
+      def initialize(webhook_event, raw_request_data)
+        webhook_event.source = self.class.provider
         @webhook_event = webhook_event
+        @raw_request_data = raw_request_data
       end
 
       def self.handles?(_webhook_event)
         raise 'Not implemented'
+      end
+
+      def self.provider
+        name.split('::').last.downcase
       end
 
       def augment_webhook_event
@@ -28,16 +37,6 @@ module Core
 
       def duplicate?
         false
-      end
-
-      def perform
-        raise 'Not implemented'
-      end
-
-      protected
-
-      def provider
-        self.class.name.split('::').last.downcase
       end
     end
   end

@@ -4,6 +4,7 @@ module Core
       self.table_name = 'core_webhooks_events'
       
       include AASM
+      include Wisper.model
 
       aasm column: :status, whiny_transitions: false, whiny_persistence: true do
         state :received, initial: true

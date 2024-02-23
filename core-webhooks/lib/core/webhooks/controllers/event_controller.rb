@@ -5,20 +5,22 @@ module Core
         skip_forgery_protection raise: false
 
         def create
-          puts "\n\nwebhook_event called\n#{request_headers.map {|k,v| "#{k} #{v}" }.join("\n\t")}\n\n"
-          handler = Core::Webhooks.handler_for(webhook_event)
+          handler = Core::Webhooks.handler_for(webhook_event, request_data)
 
           unless handler.present?
-            # always save webhook event even if unhandled
-            ::Rails.logger.error "No handler for received webhook #{webhook_event.data}."
-            webhook_event.source = :unknown
-            webhook_event.save!
+            if ::Core::Webhooks.unhandled_webhook_action == :raise
+              raise ::Core::Webhooks::UnverifiedWebhookError, "No handler for received webhook."
+            elsif ::Core::Webhooks.unhandled_webhook_action == :log
+              ::Rails.logger.error "No handler for received webhook #{[request_headers, request_data].join("\n")}."
+            elsif ::Core::Webhooks.unhandled_webhook_action == :persist
+              webhook_event.source = :unknown
+              webhook_event.save!
+            end
 
             head :ok
             return
           end
 
-          handler.request_data = request_data
           handler.ensure_authentic!
 
           if handler.duplicate?
@@ -32,9 +34,6 @@ module Core
           handler.augment_webhook_event
           handler.webhook_event.save!
 
-          handler.perform
-
-          # return if performed?
           head :ok
 
         rescue ::Core::Webhooks::UnverifiedWebhookError => e

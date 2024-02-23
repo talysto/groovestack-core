@@ -8,14 +8,6 @@ module Core
       class Shopify < Core::Webhooks::Handler
         extend Dry::Configurable
 
-        setting :events, reader: true do 
-          setting :handlers, default: {
-
-          }
-        end
-
-        setting :webhook_secret, reader: true
-
         def self.shopify_headers
           OpenStruct.new(
             hmac_sha256: 'HTTP_X_SHOPIFY_HMAC_SHA256',
@@ -29,7 +21,7 @@ module Core
         end
 
         def ensure_authentic!
-          calculated_hmac = ::Base64.strict_encode64(::OpenSSL::HMAC.digest('sha256', self.class.webhook_secret, request_data))
+          calculated_hmac = ::Base64.strict_encode64(::OpenSSL::HMAC.digest('sha256', ::Core::Webhooks.handler_credentials.shopify.webhook_secret, raw_request_data))
           verified = ::ActiveSupport::SecurityUtils.secure_compare(calculated_hmac, hmac_header)
 
           raise ::Core::Webhooks::UnverifiedWebhookError, "Invalid HMAC for Shopify webhook" unless verified
@@ -44,17 +36,6 @@ module Core
 
         def augment_webhook_event
           webhook_event.event = event_type
-        end
-
-        def perform
-          # ensure_livemode!
-
-          if (event_handler = self.class.events.handlers[event_type])
-            # TODO: don't assume event handlers are jobs
-            event_handler.perform_later(webhook_event)
-          else
-            ::Rails.logger.error "No handler for Shopify #{event_type} event"
-          end
         end
 
         protected
