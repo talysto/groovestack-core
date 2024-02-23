@@ -45,6 +45,10 @@ module Core
       end
     end
     setting :unhandled_webhook_action, reader: true, default: :raise # :raise, :log, :persist
+    setting :webhooks_listeners, reader: true do 
+      setting :namespace, reader: true, default: 'webhooks_event_listeners'
+      setting :process_event_method, reader: true, default: :process_event
+    end
 
     class WebhooksError < StandardError; end
     class UnverifiedWebhookError < WebhooksError; end
