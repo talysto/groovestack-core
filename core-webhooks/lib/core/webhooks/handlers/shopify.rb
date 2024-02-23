@@ -36,6 +36,32 @@ module Core
 
         def augment_webhook_event
           webhook_event.event = event_type
+
+          # TODO: remove. This is a temporary fix to add missing attributes to the mock webhook events
+          unless webhook_event.data['note_attributes'].present?
+            webhook_event.data['note_attributes'] = [
+              {
+                "name": "Delivery Method",
+                "value": "Delivery"
+              },
+              {
+                "name": "Customer TimeZone",
+                "value": "America/Toronto"
+              },
+              {
+                "name": "Delivery Date",
+                "value": "Mar 17, 2024"
+              },
+              {
+                "name": "Delivery Day",
+                "value": "Sunday"
+              },
+              {
+                "name": "Delivery Time",
+                "value": " 9:30 AM"
+              }
+            ]
+          end
         end
 
         protected
