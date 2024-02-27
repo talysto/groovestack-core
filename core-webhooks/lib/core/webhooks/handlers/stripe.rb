@@ -3,6 +3,7 @@ module Core
     module Handlers
       class Stripe < Core::Webhooks::Handler
         extend Dry::Configurable
+        REQUIRED_CREDENTIALS = [:STRIPE_API_KEY].freeze
 
         def self.handles?(webhook_event)
           webhook_event.headers['HTTP_STRIPE_SIGNATURE'].present?
@@ -30,7 +31,7 @@ module Core
           @stripe_event ||= Stripe::Webhook.construct_event(
             webhook_event.data,
             webhook_event.headers['HTTP_STRIPE_SIGNATURE'],
-            ::Core::Webhooks.handler_credentials.stripe.api_key
+            Rails.application.credentials.send(self.class.required_credentials.first)
           )
         end
       end

@@ -7,6 +7,7 @@ module Core
     module Handlers
       class Shopify < Core::Webhooks::Handler
         extend Dry::Configurable
+        REQUIRED_CREDENTIALS = [:SHOPIFY_WEBHOOK_SECRET].freeze
 
         def self.shopify_headers
           OpenStruct.new(
@@ -21,7 +22,7 @@ module Core
         end
 
         def ensure_authentic!
-          calculated_hmac = ::Base64.strict_encode64(::OpenSSL::HMAC.digest('sha256', ::Core::Webhooks.handler_credentials.shopify.webhook_secret, raw_request_data))
+          calculated_hmac = ::Base64.strict_encode64(::OpenSSL::HMAC.digest('sha256', Rails.application.credentials.send(self.class.required_credentials.first), raw_request_data))
           verified = ::ActiveSupport::SecurityUtils.secure_compare(calculated_hmac, hmac_header)
 
           raise ::Core::Webhooks::UnverifiedWebhookError, "Invalid HMAC for Shopify webhook" unless verified

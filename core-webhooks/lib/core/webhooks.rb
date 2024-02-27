@@ -36,14 +36,6 @@ module Core
 
     setting :routes_scope, reader: true
     setting :disabled_handlers, default: [], reader: true
-    setting :handler_credentials, reader: true do 
-      setting :shopify, reader: true do 
-        setting :webhook_secret, reader: true
-      end
-      setting :stripe, reader: true do 
-        setting :api_key, reader: true
-      end
-    end
     setting :unhandled_webhook_action, reader: true, default: :raise # :raise, :log, :persist
     setting :webhooks_listeners, reader: true do 
       setting :namespace, reader: true, default: 'webhooks_event_listeners'

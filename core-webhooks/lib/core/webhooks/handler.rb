@@ -1,11 +1,26 @@
 module Core
   module Webhooks
+    def self.available_handlers
+      # ensure all handlers are loaded to enable Core::Webhooks.handler_for method
+      ::Core::Webhooks::Handlers.eager_load! unless ::Core::Webhooks::Handler.descendants.present?
+
+      ::Core::Webhooks::Handler.descendants
+    end
+
     def self.enabled_handlers
-      ::Core::Webhooks::Handler.descendants.reject { |h| disabled_handlers.include?(h.provider.to_sym) }
+      available_handlers.select { |h| h.enabled? }
+    end
+
+    def self.configured_handlers
+      enabled_handlers.select { |h| h.configured? }
+    end
+
+    def self.enabled_handlers_sans_configuration
+      enabled_handlers - configured_handlers
     end
 
     def self.handler_for(webhook_event, raw_request_data)
-      handler = enabled_handlers.find { |h| h.handles?(webhook_event) }
+      handler = configured_handlers.find { |h| h.handles?(webhook_event) }
       handler&.new(webhook_event, raw_request_data)
     end
 
@@ -37,6 +52,22 @@ module Core
 
       def duplicate?
         false
+      end
+
+      def self.required_credentials
+        self.const_defined?(:REQUIRED_CREDENTIALS) ? self::REQUIRED_CREDENTIALS : []
+      end
+
+      def self.required_credentials_present?
+        required_credentials.all? { |credential| Rails.application.credentials.send(credential).present? }
+      end
+
+      def self.enabled?
+        !::Core::Webhooks.disabled_handlers.include?(provider.to_sym)
+      end
+
+      def self.configured?
+        required_credentials_present?
       end
     end
   end

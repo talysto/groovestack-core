@@ -33,8 +33,9 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "aasm"
-  spec.add_dependency "wisper-activerecord"
   spec.add_dependency "dry-configurable"
+  spec.add_dependency 'rails'
+  spec.add_dependency "wisper-activerecord"
 
   spec.add_development_dependency 'pg'
   spec.add_development_dependency 'racksh'                # get a console without a full Rails application
