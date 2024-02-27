@@ -4,6 +4,7 @@ module Core
       module Event
         class Type < ::Core::Base::GraphQL::Types::BaseObject
           description 'A webhook event'
+          graphql_name 'WebhookEvent'
 
           field :data, ::GraphQL::Types::JSON, null: true, description: 'data'
           field :event, String, null: true, description: 'event'

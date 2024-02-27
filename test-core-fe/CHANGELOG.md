@@ -1,5 +1,12 @@
 # test-core-fe
 
+## 0.2.127
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/webhooks@0.2.16
+
 ## 0.2.126
 
 ### Patch Changes
