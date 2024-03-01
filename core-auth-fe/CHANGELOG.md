@@ -1,5 +1,11 @@
 # @groovestack/auth
 
+## 0.2.22
+
+### Patch Changes
+
+- email form is rendered conditionally based off configured auth providers in app config
+
 ## 0.2.21
 
 ### Patch Changes

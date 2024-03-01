@@ -1,5 +1,26 @@
 module Core
   module Auth 
+    def self.available_providers(ancestor: nil)
+      # ensure all providers are loaded
+      ::Core::Auth::Providers.eager_load!
+
+      root = ancestor || ::Core::Auth::Provider
+
+      root.descendants.select(&:available?)
+    end
+
+    def self.enabled_providers(ancestor: nil)
+      available_providers(ancestor: ancestor).select(&:enabled?)
+    end
+
+    def self.configured_providers(ancestor: nil)
+      enabled_providers(ancestor: ancestor).select(&:configured?)
+    end
+
+    def self.enabled_providers_sans_configuration(ancestor: nil)
+      enabled_providers(ancestor: ancestor) - configured_providers(ancestor: ancestor)
+    end
+
     class Provider 
       def self.provider
         self.const_defined?(:PROVIDER) ? self::PROVIDER : nil
@@ -13,20 +34,12 @@ module Core
         provider.present?
       end
 
-      def self.available_providers
-        self.descendants.select(&:available?)
-      end
-
-      def self.enabled 
-        self.const_defined?(:ENABLED) ? self::ENABLED : false
-      end
-
       def self.enabled?
-        (::Core::Auth::Provider.available_providers & self.ancestors).any?(&:enabled)
+        available? && ::Core::Auth.disabled_providers.exclude?(provider)
       end
 
-      def self.enabled_providers 
-        available_providers.select(&:enabled?)
+      def self.configured?
+        false
       end
 
       def self.as_json(keys=nil)
@@ -38,86 +51,6 @@ module Core
         return verbose if keys.nil?
 
         verbose.select { |k, v| keys.include?(k) }
-      end
-    end
-  end
-end
-
-module Core
-  module Auth
-    module Providers
-      class Email < Core::Auth::Provider
-        PROVIDER = :email
-        ENABLED = true # TODO allow this to be disabled
-      end
-
-      class OmniAuth < Core::Auth::Provider
-        BASE_PATH = '/users/auth'.freeze
-
-        def self.required_credentials
-          self.const_defined?(:REQUIRED_CREDENTIALS) ? self::REQUIRED_CREDENTIALS : []
-        end
-
-        def self.required_credentials_present?
-          required_credentials.all? { |credential| Rails.application.credentials.send(credential).present? }
-        end
-
-        def self.enabled 
-          available? && required_credentials_present?
-        end
-
-        def self.generate_omniauth_args 
-          # different providers require different arguments
-          [
-            provider, 
-            *required_credentials.map { |c| Rails.application.credentials.send(c) },
-          ]
-        end
-
-        def self.path
-          "#{BASE_PATH}/#{k}"
-        end
-
-        def self.as_json(keys=nil)
-          verbose = super.merge({
-            required_credentials: required_credentials,
-            path: path,
-            generate_omniauth_args: generate_omniauth_args
-          })
-  
-          return verbose if keys.nil?
-  
-          verbose.select { |k, v| keys.include?(k) }
-        end
-      end
-
-      class Google < OmniAuth
-        PROVIDER = :google_oauth2
-        K = :google
-        REQUIRED_CREDENTIALS = [:GOOGLE_CLIENT_ID, :GOOGLE_CLIENT_SECRET]
-
-        def self.generate_omniauth_args 
-          super << { name: k, origin_param: 'return_to' }
-        end
-      end
-
-      class Apple < OmniAuth
-        PROVIDER = :apple
-        REQUIRED_CREDENTIALS = [:APPLE_CLIENT_ID, :APPLE_TEAM_ID, :APPLE_KEY_ID, :APPLE_PEM_CONTENT]
-
-        def self.generate_omniauth_args 
-          [
-            provider,
-            Rails.application.credentials.APPLE_CLIENT_ID,
-            '',
-            {
-              team_id: Rails.application.credentials.APPLE_TEAM_ID,
-              key_id: Rails.application.credentials.APPLE_KEY_ID,
-              pem: Rails.application.credentials.APPLE_PEM_CONTENT,
-              origin_param: 'return_to'
-            }
-          ]
-        end
       end
     end
   end
