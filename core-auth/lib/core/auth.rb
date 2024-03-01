@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
+require 'active_record'
+require 'dry-configurable'
 require 'graphql_devise'
 require 'omniauth-google-oauth2'
 require 'omniauth-apple'
 
 require 'core/auth/version'
-require 'active_record'
-
 require 'core/auth/railtie' if defined?(Rails::Railtie)
-require 'core/auth/provider'
 
 # add devise and devise_token_auth app/ dirs to load path
 Dir[File.join(Gem::Specification.find_by_name("devise").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
@@ -28,19 +27,45 @@ require 'users/roles'
 require 'user'
 require 'identity'
 
-require 'graphql/identity/type'
-require 'graphql/identity/filter'
-require 'graphql/identity/queries'
-require 'graphql/identity/mutations'
+module GraphQL
+  module Identity
+    autoload :Type, 'graphql/identity/type'
+    autoload :Filter, 'graphql/identity/filter'
+    autoload :Queries, 'graphql/identity/queries'
+    autoload :Mutations, 'graphql/identity/mutations'
+  end
 
-require 'graphql/user/filter'
-require 'graphql/user/type'
-require 'graphql/user/queries'
-require 'graphql/user/mutations'
+  module User
+    autoload :Filter, 'graphql/user/filter'
+    autoload :Type, 'graphql/user/type'
+    autoload :Queries, 'graphql/user/queries'
+    autoload :Mutations, 'graphql/user/mutations'
+  end
+end
 
-require 'core/auth/authenticated_api_controller'
-require 'core/auth/omniauth_callbacks_controller'
-require 'core/auth/action_cable'
-require 'core/auth/schema_plugin'
+module Core
+  module Auth
+    autoload :Provider, 'core/auth/provider'
+    autoload :AuthenticatedApiController, 'core/auth/authenticated_api_controller'
+    autoload :OmniauthCallbacksController, 'core/auth/omniauth_callbacks_controller'
+    autoload :ActionCable, 'core/auth/action_cable'
+    autoload :SchemaPlugin, 'core/auth/schema_plugin'
+
+    module Providers
+      extend ActiveSupport::Autoload
+
+      eager_autoload do
+        autoload :Email, 'core/auth/providers/email'
+        autoload :OmniAuth, 'core/auth/providers/omni_auth'
+        autoload :Apple, 'core/auth/providers/apple'
+        autoload :Google, 'core/auth/providers/google'
+      end
+    end
+
+    extend Dry::Configurable
+
+    setting :disabled_providers, default: [], reader: true
+  end
+end
 
 require 'test/fabricators/user_fabricator'
