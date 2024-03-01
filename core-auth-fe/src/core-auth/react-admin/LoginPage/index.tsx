@@ -86,6 +86,7 @@ export const LoginPage = (props: LoginPageProps) => {
   const serverURLParamsHandled = useHandleServerURLParams()
 
   const [socials, setSocials] = useState<SocialSignInProps['social']>([])
+  const [providers, setProviders] = useState<string[]>([])
   let { backgroundImage, credentials = defaultCredentials, Headline = AppInitHeadline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
@@ -229,12 +230,15 @@ export const LoginPage = (props: LoginPageProps) => {
   })
 
   useEffect(() => {
-    const social = credentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
+    const appConfig = credentials.getAppConfig()
+    const social = appConfig?.oauth_providers?.configured.map((p: OauthProvider) => {
       const { k, path: href } = p
       return { k, href }
     })
-
     setSocials(social || [])
+
+    const providers = appConfig?.auth_providers?.configured.map((p: OauthProvider) => p.k)
+    setProviders(providers || [])
   }, [])
 
   useEffect(notifyOmniauthFailureError, [serverURLParamsHandled])
@@ -253,6 +257,7 @@ export const LoginPage = (props: LoginPageProps) => {
         <LoginPanel
           social={socials}
           socialSignInRender={socialSignInRender}
+          providers={providers}
           onLogin={onLogin}
           onRegister={onRegister}
           registration={true}
