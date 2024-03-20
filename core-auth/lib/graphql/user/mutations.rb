@@ -19,7 +19,7 @@ module GraphQL
           context[:current_resource]
         end
   
-        def resolve(id:, **attrs)
+        def perform(id:, **attrs)
           obj = id == current_user&.id ? current_user : ::User.find(id)
   
           return update_with_password!(obj, **attrs) if (attrs.keys & [:password, :current_password]).present?

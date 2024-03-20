@@ -8,7 +8,7 @@ module GraphQL
   
         type ::GraphQL::Identity::Type
   
-        def resolve(id:)
+        def perform(id:)
           identity = ::Identity.find(id)
   
           identity.destroy!

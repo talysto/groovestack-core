@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'dry-configurable'
 require 'graphql'
 require 'pg'
 
@@ -24,3 +25,21 @@ require 'core/base/active_record'
 require 'core/base/listeners'
 
 require 'core/base/pub_sub' if defined?(Wisper)
+
+module Core
+  module Base
+    extend Dry::Configurable
+
+    DEFAULT_ERROR_MONITOR =  ::Logger.new(STDOUT)
+
+    def self.log_error(prefix, e)
+      msg = "#{[prefix, 'error'].compact.join(' ')}: #{e}"
+
+      if defined?(Bugsnag)
+        Bugsnag.notify(msg)
+      else
+         DEFAULT_ERROR_MONITOR.error(msg)
+      end
+    end
+  end
+end

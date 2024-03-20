@@ -16,7 +16,7 @@ module Core
               context[:current_user]
             end
 
-            def resolve(**attrs)
+            def perform(**attrs)
               attrs[:author_id] = current_user.id
               attrs[:author_type] = current_user.respond_to?(:class) ? current_user.class.to_s : nil # the nil case should throw an error
 
@@ -29,7 +29,7 @@ module Core
 
             type ::Core::Comments::GraphQL::Comment::Type
 
-            def resolve(id:)
+            def perform(id:)
               obj = ::Core::Comments::Comment.find(id)
               obj.destroy!
             end
@@ -41,7 +41,7 @@ module Core
 
             type ::Core::Comments::GraphQL::Comment::Type
 
-            def resolve(id:, **attrs)
+            def perform(id:, **attrs)
               obj = ::Core::Comments::Comment.find(id)
               obj.update!(**attrs)
               obj
