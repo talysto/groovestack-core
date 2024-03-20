@@ -8,7 +8,7 @@ module Core
           perform(**args)
 
         rescue => e
-          Core::Base.log_error(self.class, e)
+          Core::Base.notify_error(self.class, e)
 
           raise e
         end

@@ -32,7 +32,7 @@ module Core
 
     DEFAULT_ERROR_MONITOR =  ::Logger.new(STDOUT)
 
-    def self.log_error(prefix, e)
+    def self.notify_error(prefix, e)
       msg = "#{[prefix, 'error'].compact.join(' ')}: #{e}"
 
       if defined?(Bugsnag)
