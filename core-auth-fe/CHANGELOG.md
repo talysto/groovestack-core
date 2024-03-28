@@ -1,5 +1,11 @@
 # @groovestack/auth
 
+## 0.2.23
+
+### Patch Changes
+
+- improve oauth only UI
+
 ## 0.2.22
 
 ### Patch Changes

@@ -6,7 +6,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab'
 
 import { LoginForm } from './LoginForm'
 import { SignupForm } from './SignupForm'
-import { SocialSignIn, SocialSignInProps } from './SocialSignIn'
+import { SocialSignIn, SocialSignInProps, SocialSignInMode } from './SocialSignIn'
 
 interface Props {
   ctaDisabled?: boolean
@@ -69,7 +69,7 @@ export function LoginPanel({
           )}
         </TabContext>
       )}
-      <SocialSignIn renderButton={socialSignInRender} social={social} />
+      <SocialSignIn mode={emailProviderEnabled ? SocialSignInMode.Footer : SocialSignInMode.Main} renderButton={socialSignInRender} social={social} />
     </Paper>
   )
 }

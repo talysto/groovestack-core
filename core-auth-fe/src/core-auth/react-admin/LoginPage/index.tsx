@@ -87,7 +87,7 @@ export const LoginPage = (props: LoginPageProps) => {
 
   const [socials, setSocials] = useState<SocialSignInProps['social']>([])
   const [providers, setProviders] = useState<string[]>([])
-  let { backgroundImage, credentials = defaultCredentials, Headline = AppInitHeadline, ...rest } = props
+  let { backgroundImage, credentials = defaultCredentials, Headline, ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
   const checkAuth = useCheckAuth()
@@ -181,7 +181,7 @@ export const LoginPage = (props: LoginPageProps) => {
     setLoading(false)
   }
 
-  const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href}) => {
+  const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href, btnSx }) => {
     return (
       <Box
         component="form"
@@ -189,7 +189,7 @@ export const LoginPage = (props: LoginPageProps) => {
         action={href}
       >
         <Input type='hidden' name='authenticity_token' value={csrf} />
-        <Button type='submit' variant="outlined" startIcon={icon}>{label}</Button>
+        <Button sx={btnSx} type='submit' variant="outlined" startIcon={icon}>{label}</Button>
       </Box>
     )
   }
@@ -253,7 +253,13 @@ export const LoginPage = (props: LoginPageProps) => {
             <LockIcon />
           </Avatar>
         </div>
-        {!credentials.getAppConfig()?.has_admins && Headline && <Headline />}
+        {Headline ? (
+          <Headline />
+        ) : 
+          !credentials.getAppConfig()?.has_admins ?
+            <AppInitHeadline />
+            : null
+        }
         <LoginPanel
           social={socials}
           socialSignInRender={socialSignInRender}
