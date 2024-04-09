@@ -1,5 +1,11 @@
 # @groovestack/auth
 
+## 0.2.24
+
+### Patch Changes
+
+- more ui flex with core-auth
+
 ## 0.2.23
 
 ### Patch Changes

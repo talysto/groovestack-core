@@ -87,7 +87,7 @@ export const LoginPage = (props: LoginPageProps) => {
 
   const [socials, setSocials] = useState<SocialSignInProps['social']>([])
   const [providers, setProviders] = useState<string[]>([])
-  let { backgroundImage, credentials = defaultCredentials, Headline, ...rest } = props
+  let { backgroundImage, credentials = defaultCredentials, Headline,  ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
   const checkAuth = useCheckAuth()
@@ -248,18 +248,20 @@ export const LoginPage = (props: LoginPageProps) => {
   return (
     <Root {...rest} ref={containerRef}>
       <Card className={LoginClasses.card}>
-        <div className={LoginClasses.avatar}>
-          <Avatar className={LoginClasses.icon}>
-            <LockIcon />
-          </Avatar>
-        </div>
         {Headline ? (
           <Headline />
-        ) : 
-          !credentials.getAppConfig()?.has_admins ?
-            <AppInitHeadline />
-            : null
-        }
+        ) : (
+          <>
+            <div className={LoginClasses.avatar}>
+              <Avatar className={LoginClasses.icon}>
+                <LockIcon />
+              </Avatar>
+            </div>
+            {
+              !credentials.getAppConfig()?.has_admins && <AppInitHeadline />
+            }
+          </>
+        )}
         <LoginPanel
           social={socials}
           socialSignInRender={socialSignInRender}
