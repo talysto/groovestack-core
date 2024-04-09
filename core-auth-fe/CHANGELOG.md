@@ -1,5 +1,11 @@
 # @groovestack/auth
 
+## 0.2.25
+
+### Patch Changes
+
+- configurable user menu items for core-auth
+
 ## 0.2.24
 
 ### Patch Changes
