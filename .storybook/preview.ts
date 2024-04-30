@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/react'
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    // actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -11,7 +11,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['CORE', 'React Admin', 'Example'],
+        order: ['Core Base', 'Core Versions', 'Core Labs', 'Example'],
       },
     },
     docs: {
