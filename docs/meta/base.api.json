@@ -792,6 +792,29 @@
           }
         },
         {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/base!diffObjects:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "diffObjects: "
+            },
+            {
+              "kind": "Content",
+              "text": "(old: any, updated: any) => any"
+            }
+          ],
+          "fileUrlPath": "dist/src/react-admin/hooks/useSaveOnlyChanges.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "diffObjects",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
           "kind": "Enum",
           "canonicalReference": "@groovestack/base!DrawerWidth:enum",
           "docComment": "",
@@ -1257,6 +1280,65 @@
             }
           ],
           "name": "ToggleButtonInput"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/base!useSaveOnlyChanges:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "useSaveOnlyChanges: "
+            },
+            {
+              "kind": "Content",
+              "text": "() => {\n    saveOnlyChanges: (data: "
+            },
+            {
+              "kind": "Reference",
+              "text": "FieldProps",
+              "canonicalReference": "ra-ui-materialui!FieldProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => void;\n    saveOnlyChangesWithCallbacks: "
+            },
+            {
+              "kind": "Reference",
+              "text": "SaveHandler",
+              "canonicalReference": "ra-core!SaveHandler:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "RaRecord",
+              "canonicalReference": "ra-core!RaRecord:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Identifier",
+              "canonicalReference": "ra-core!Identifier:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">>;\n}"
+            }
+          ],
+          "fileUrlPath": "dist/src/react-admin/hooks/useSaveOnlyChanges.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "useSaveOnlyChanges",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 10
+          }
         }
       ]
     }

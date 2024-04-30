@@ -15,8 +15,8 @@ module Core
             react_admin_resource :jobs, class_name: 'Core::Jobs::Job', graphql_path: 'Core::Jobs::GraphQL'
           end
 
-          def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
-            scope = ::Core::Jobs::Job.unscoped
+          def jobs_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+            scope = base_scope
             scope = scope.where(id: filter.ids) unless filter.ids.nil?
             scope = scope.where(sub_class: filter.sub_class) if filter.sub_class.present?
             scope = scope.where('sub_class ilike ?', "%#{filter.q}%") if filter.q.present?

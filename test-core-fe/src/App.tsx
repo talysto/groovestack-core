@@ -18,6 +18,33 @@ const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(param
 
 const appInit = true
 
+const appConfig = { 
+  has_admins: true, 
+  user_roles: ['admin'], 
+  oauth_providers: { 
+    enabled: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'},
+    ],
+    configured: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'},
+    ]
+  },
+  auth_providers: { 
+    enabled: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'},
+      {k: 'email' }
+    ],
+    configured: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'},
+      {k: 'email' }
+    ]
+  }
+}
+
 const AppInitHeadline = () => {
   return (
     <Box sx={{ p: 3 }}>
@@ -29,12 +56,18 @@ const AppInitHeadline = () => {
 
 const LoginPage = (props: any) => {
   return (
-    <Auth.RA.LoginPage {...props} credentials={credentials} appInit={appInit} Headline={AppInitHeadline} />
+    <Auth.RA.LoginPage 
+      {...props} 
+      credentials={credentials} 
+      appInit={appInit} 
+      Headline={AppInitHeadline} 
+    />
   )
 }
 
 function AdminApp() {
-  credentials.setAppConfig(defaultAppConfig)
+  // credentials.setAppConfig(defaultAppConfig)
+  credentials.setAppConfig(appConfig)
 
   return (
     <Admin

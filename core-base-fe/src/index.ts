@@ -29,13 +29,14 @@ import {
   generateTimeZoneOptions,
 } from './react-admin/inputs/TimezoneSelectInput'
 import { ToggleButtonInput } from './react-admin/inputs/ToggleButtonInput'
+import { diffObjects, useSaveOnlyChanges } from './react-admin/hooks/useSaveOnlyChanges'
 import { clickToCopy } from './util/clickToCopy'
 
 /**
  * function utilities
  * @public
  */
-export { clickToCopy, generateTimeZoneOptions, timeAgo }
+export { clickToCopy, diffObjects, generateTimeZoneOptions, timeAgo }
 
 /**
  * React Admin Fields
@@ -60,6 +61,12 @@ export { MoneyInput, StatusInput, TimezoneSelectInput, ToggleButtonInput }
  * @public
  */
 export { CustomButtonDrawer, DrawerWidth }
+
+/**
+ * React Admin Hooks
+ * @public
+ */
+export { useSaveOnlyChanges }
 
 /**
  * MUI Components

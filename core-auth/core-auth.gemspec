@@ -30,7 +30,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'graphql_devise'
+  spec.add_dependency "dry-configurable"
+  spec.add_dependency 'graphql_devise', '~>1.4'
   spec.add_dependency 'omniauth-google-oauth2'
   spec.add_dependency 'omniauth-apple'
   spec.add_dependency 'rails'
@@ -38,6 +39,8 @@ Gem::Specification.new do |spec|
   
   spec.add_development_dependency 'graphql'
   spec.add_development_dependency 'pg'
+  spec.add_development_dependency 'fabrication'
+  spec.add_development_dependency 'faker'
 
   spec.add_development_dependency 'combustion', '~> 1.3'  # Test engines without a full 'dummy' app https://github.com/pat/combustion
   spec.add_development_dependency 'racksh'                # get a console without a full Rails application

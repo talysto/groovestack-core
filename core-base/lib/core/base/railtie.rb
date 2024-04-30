@@ -55,10 +55,15 @@ if defined?(Rails)
 
             if errors.length.positive?
               print '⚠️'.brown
-              puts "  CORE::#{module_name}\t#{module_version}\t#{errors[0]}"
+              msg = "  CORE::#{module_name}\t#{module_version}"
+              msg += module_description if respond_to?(:module_description)
+              msg += "\t#{errors[0]}"
+              puts msg
             else
               print '✔'.green
-              puts "  CORE::#{module_name}\t#{module_version}"
+              msg = "  CORE::#{module_name}\t#{module_version}"
+              msg += module_description if respond_to?(:module_description)
+              puts msg
             end
           end
         end

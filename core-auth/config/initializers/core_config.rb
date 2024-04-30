@@ -7,10 +7,22 @@ ActiveSupport.on_load(:after_initialize) do
       key: :oauth_providers, 
       build: Proc.new { 
         { 
-          available: Core::Auth::Providers::OmniAuth.available_providers.map { |p| p.as_json[:k] }, 
-          enabled: Core::Auth::Providers::OmniAuth.enabled_providers.map { |p| p.as_json([:k, :path]) }
+          available: Core::Auth.available_providers(ancestor: Core::Auth::Providers::OmniAuth).map { |p| p.as_json[:k] }, 
+          enabled: Core::Auth.enabled_providers(ancestor: Core::Auth::Providers::OmniAuth).map { |p| p.as_json([:k, :path]) },
+          configured: Core::Auth.configured_providers(ancestor: Core::Auth::Providers::OmniAuth).map { |p| p.as_json([:k, :provider, :path]) }
         } 
       } 
+    }
+
+    Core::Config::App.dynamic_config << {
+      key: :auth_providers,
+      build: Proc.new {
+        {
+          available: Core::Auth.available_providers.map { |p| p.as_json([:k, :provider]) },
+          enabled: Core::Auth.enabled_providers.map { |p| p.as_json([:k, :provider, :path]) },
+          configured: Core::Auth.configured_providers.map { |p| p.as_json([:k, :provider, :path]) }
+        }
+      }
     }
 
     # make AppConfig query public
