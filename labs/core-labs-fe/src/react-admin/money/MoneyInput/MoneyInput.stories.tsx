@@ -5,7 +5,7 @@ import { MoneyInputLocaleByCurrencyTable } from './MoneyInputLocaleByCurrencyTab
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Core Labs/Inputs/MoneyInput',
+  title: 'Core Labs/Money/MoneyInput',
   component: MoneyInput,
   decorators: [withFormContext],
   // parameters: { layout: 'centered' },

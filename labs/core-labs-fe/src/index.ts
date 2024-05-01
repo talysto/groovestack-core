@@ -16,40 +16,36 @@
 import * as pkg from '../package.json'
 export { pkg }
 
-
-import { MoneyField } from './react-admin/fields/MoneyField'
-import { MoneyInput } from './react-admin/inputs/MoneyInput/MoneyInput'
-import { AddressField } from './react-admin/fields/AddressField'
-import { AddressInput } from './react-admin/inputs/AddressInput'
+import { AddressField } from './react-admin/address/AddressField/AddressField'
+import { AddressInput } from './react-admin/address/AddressInput/AddressInput'
+import { MoneyField, MoneyInput } from './react-admin/money'
 
 /**
  * function utilities
  * @public
  */
-export {  }
+export {}
 
 /**
  * React Admin Fields
  * @public
  */
-export {
-  MoneyField, AddressField
-}
+export { AddressField, MoneyField }
 
 /**
  * React Admin Inputs
  * @public
  */
-export { MoneyInput, AddressInput }
+export { AddressInput, MoneyInput }
 
 /**
  * React Admin Components
  * @public
  */
-export {  }
+export {}
 
 /**
  * MUI Components
  * @public
  */
-export {  }
+export {}

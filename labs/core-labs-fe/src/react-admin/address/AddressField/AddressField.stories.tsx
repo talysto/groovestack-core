@@ -1,18 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { AddressInput } from '.'
-import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
+import type { StoryObj } from '@storybook/react'
+import { AddressField } from './AddressField'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta = {
-  title: 'Core Labs/Inputs/AddressInput',
-  component: AddressInput,
-  decorators: [withFormContext],
+export default {
+  title: 'Core Labs/Address/AddressField',
+  component: AddressField,
+  // decorators: [withFormContext],
   parameters: { layout: 'centered' },
   tags: ['autodocs'], // https://storybook.js.org/docs/react/writing-docs/autodocs
-} satisfies Meta<typeof AddressInput>
+}
 
-export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof AddressField>
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default: Story = {
