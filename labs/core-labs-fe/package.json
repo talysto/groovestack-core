@@ -29,9 +29,7 @@
     "react-admin": ">=4.8.0",
     "react-dom": ">=18.0.0"
   },
-  "optionalDependencies": {
-
-  },
+  "optionalDependencies": {},
   "devDependencies": {
     "@types/prop-types": "^15.7.6"
   }

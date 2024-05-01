@@ -1,9 +1,14 @@
 /**
- * This file includes components used by other CORE modules such as enhanced React Admin Fields and Inputs.
+ * This package includes components that are experimental or in active development.
+ * These components will not be published to NPM but you can reference them via
+ * `pnpm i https://github.com/talysto/groovestack-core#labs`
  *
  * @remarks
- * The `core-base` defines the {@link DateField} interface and {@link TimeAgoField} components.
- * which are used to build widgets.
+ * The `core-labs` currently includes
+ * {@link MoneyField}
+ * {@link MoneyInput}
+ * {@link AddressField}
+ * {@link AddressInput}
  *
  * @packageDocumentation
  */
@@ -11,58 +16,40 @@
 import * as pkg from '../package.json'
 export { pkg }
 
-import { CommonDateRanges, DateRangeFilter } from './components/DateRangeFilter'
-import { ExternalLink } from './components/ExternalLink'
-import {
-  CustomButtonDrawer,
-  DrawerWidth,
-} from './react-admin/CustomButtonDrawer'
-import { CodeField } from './react-admin/fields/CodeField'
-import { DateField } from './react-admin/fields/DateField'
+
 import { MoneyField } from './react-admin/fields/MoneyField'
-import { PolymorphicReferenceField } from './react-admin/fields/PolymorphicReferenceField'
-import { TimeAgoField, timeAgo } from './react-admin/fields/TimeAgoField'
-import { MoneyInput } from './react-admin/inputs/MoneyInput'
-import { StatusInput } from './react-admin/inputs/StatusInput'
-import {
-  TimezoneSelectInput,
-  generateTimeZoneOptions,
-} from './react-admin/inputs/TimezoneSelectInput'
-import { ToggleButtonInput } from './react-admin/inputs/ToggleButtonInput'
-import { clickToCopy } from './util/clickToCopy'
+import { MoneyInput } from './react-admin/inputs/MoneyInput/MoneyInput'
+import { AddressField } from './react-admin/fields/AddressField'
+import { AddressInput } from './react-admin/inputs/AddressInput'
 
 /**
  * function utilities
  * @public
  */
-export { clickToCopy, generateTimeZoneOptions, timeAgo }
+export {  }
 
 /**
  * React Admin Fields
  * @public
  */
 export {
-  CodeField,
-  DateField,
-  MoneyField,
-  PolymorphicReferenceField,
-  TimeAgoField,
+  MoneyField, AddressField
 }
 
 /**
  * React Admin Inputs
  * @public
  */
-export { MoneyInput, StatusInput, TimezoneSelectInput, ToggleButtonInput }
+export { MoneyInput, AddressInput }
 
 /**
  * React Admin Components
  * @public
  */
-export { CustomButtonDrawer, DrawerWidth }
+export {  }
 
 /**
  * MUI Components
  * @public
  */
-export { CommonDateRanges, DateRangeFilter, ExternalLink }
+export {  }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { withFormContext } from '../../../stories/RAStorybookDecorators'
-import {AddressInput} from '../src/react-admin/inputs/AddressInput'
+import { AddressInput } from '.'
+import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {

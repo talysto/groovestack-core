@@ -1,5 +1,5 @@
 import { InputAdornment } from '@mui/material'
-import { InputProps, TextInput, useInput } from 'react-admin'
+import { InputProps, TextInput } from 'react-admin'
 
 /**
  * React Admin Field that supports editing a currency value.
@@ -12,8 +12,7 @@ import { InputProps, TextInput, useInput } from 'react-admin'
  * )
  */
 export const MoneyInput = (props: InputProps) => {
-
-  const ATM_REGEX = /^[0-9\.\,\b]+$/;
+  const ATM_REGEX = /^[0-9\.\,\b]+$/
 
   return (
     <TextInput
