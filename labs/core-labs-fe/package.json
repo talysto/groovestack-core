@@ -2,7 +2,7 @@
   "name": "@groovestack/labs",
   "title": "CORE Labs",
   "description": "Experimental components and other elements not yet ready for mainline",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "files": [
     "dist"
