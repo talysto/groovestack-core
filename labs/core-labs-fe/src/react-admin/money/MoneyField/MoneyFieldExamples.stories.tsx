@@ -6,9 +6,21 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material'
+import { StoryObj } from '@storybook/react'
 import { MoneyField } from './MoneyField'
 
-export const MoneyFieldExamples = () => {
+export default {
+  title: 'Core Labs/Money/MoneyField',
+  component: MoneyField,
+}
+
+type Story = StoryObj<typeof MoneyField>
+
+export const MoreExamples: Story = {
+  render: () => <MoneyFieldExamples />,
+}
+
+const MoneyFieldExamples = () => {
   return (
     <Paper>
       <Table size="small">

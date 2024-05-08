@@ -5,7 +5,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build-old": "npx prettier -c **/*.{tsx,ts,json} && pnpm --filter core-base-fe build && pnpm --filter core-comments-fe build && pnpm --filter core-versions-fe build && pnpm --filter core-jobs-fe build && pnpm --filter core-accounting-fe build && pnpm --filter core-webhooks-fe build",
     "build": "pnpm -r --workspace-concurrency=-1 --filter './core*' build",
     "lint": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0 .",
@@ -16,7 +15,10 @@
     "publish-all": "pnpm publish -r",
     "beta:docs": "npx @microsoft/api-documenter markdown -i core-base-fe/docs -o docs/docs/api/",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "storybook:test": "test-storybook --coverage && nyc report --reporter=text  -t coverage/storybook",
+    "storybook:build": "storybook build",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
     "build:watch": "npx onchange -f change '**/*' -e '**/dist/**' -e 'docs/**' -e '**/stats.html' -- echo {{event}} {{changed}}",
     "watch": "find $PKG/src | entr pnpm -F $PKG build"
   },
@@ -29,14 +31,16 @@
     "@faker-js/faker": "8.0.2",
     "@mui/icons-material": "5.14.1",
     "@mui/material": "5.14.1",
+    "@storybook/addon-coverage": "^1.0.3",
     "@storybook/addon-essentials": "^8.0.10",
     "@storybook/addon-interactions": "^8.0.10",
     "@storybook/addon-links": "^8.0.10",
-    "@storybook/addon-mdx-gfm": "^8.0.10",
     "@storybook/addon-onboarding": "^8.0.10",
     "@storybook/blocks": "^8.0.10",
     "@storybook/react": "^8.0.10",
     "@storybook/react-vite": "^8.0.10",
+    "@storybook/test": "^8.0.10",
+    "@storybook/test-runner": "^0.17.0",
     "@types/lodash": "^4.14.196",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
@@ -49,6 +53,7 @@
     "eslint-plugin-react-refresh": "0.4.3",
     "eslint-plugin-storybook": "^0.8.0",
     "lodash": "^4.17.21",
+    "nyc": "^15.1.0",
     "prettier": "3.0.0",
     "prettier-plugin-organize-imports": "^3.2.4",
     "ra-data-fakerest": "^4.12.1",
@@ -61,9 +66,7 @@
     "tsx": "^3.12.7",
     "typescript": "5.1.6",
     "vite": "4.4.4",
-    "vite-plugin-dts": "^3.5.0"
-  },
-  "dependencies": {
-    "@storybook/test": "^8.0.10"
+    "vite-plugin-dts": "^3.5.0",
+    "vitest": "^1.6.0"
   }
 }

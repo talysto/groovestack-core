@@ -204,7 +204,7 @@
               "text": " | null"
             }
           ],
-          "fileUrlPath": "dist/src/react-admin/address/AddressField/AddressField.d.ts",
+          "fileUrlPath": "dist/labs/core-labs-fe/src/react-admin/address/AddressField/AddressField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "AddressField",
@@ -241,7 +241,7 @@
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/src/react-admin/address/AddressInput/AddressInput.d.ts",
+          "fileUrlPath": "dist/labs/core-labs-fe/src/react-admin/address/AddressInput/AddressInput.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "AddressInput",
@@ -287,7 +287,7 @@
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
-          "fileUrlPath": "dist/src/react-admin/money/MoneyField/MoneyField.d.ts",
+          "fileUrlPath": "dist/labs/core-labs-fe/src/react-admin/money/MoneyField/MoneyField.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "MoneyField",
@@ -337,7 +337,7 @@
               "text": " | undefined"
             }
           ],
-          "fileUrlPath": "dist/src/react-admin/money/MoneyInput/MoneyInput.d.ts",
+          "fileUrlPath": "dist/labs/core-labs-fe/src/react-admin/money/MoneyInput/MoneyInput.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "MoneyInput",

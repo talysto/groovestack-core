@@ -16,7 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
-  "exclude": ["src/**/*.stories.*"]
+  "include": ["src"]
+  // "exclude": ["src/**/*.stories.*"]
   // "references": [{ "path": "./tsconfig.node.json" }]
 }
