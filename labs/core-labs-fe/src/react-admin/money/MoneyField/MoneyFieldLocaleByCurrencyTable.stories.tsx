@@ -9,11 +9,51 @@ import {
 } from '@mui/material'
 import { MoneyField } from './MoneyField'
 
+export default {
+  title: 'Core Labs/Money/MoneyField',
+  component: MoneyField,
+  // argTypes: {
+  //   // roundWhole: { control: 'boolean' },
+  //   // record: {control: 'object'},
+  //   // source: {control: 'text'}
+  // },
+  // parameters: {
+  //   controls: {
+  //     expanded: true,
+  //     exclude: ['sx', 'bar'],
+  //   },
+  // },
+  // tags: ['autodocs'],
+}
+
+type LocalesStory = StoryObj<typeof MoneyFieldLocaleByCurrencyTable>
+
+/**
+ * Browser Locales are used to format the currency based on the user. Locales can be explictly set with the 'locales' prop.
+ * This table shows some of the display variations of locales vs currency.
+ */
+export const LocalesVsCurrency: LocalesStory = {
+  argTypes: {
+    amount: { control: 'number' },
+    // roundWhole: { control: 'boolean' },
+    // record: {control: 'object'},
+    // source: {control: 'text'}
+  },
+  args: { amount: 1234.56 },
+  parameters: {
+    controls: {
+      expanded: true,
+      exclude: ['sx', 'currencySource'],
+    },
+  },
+  render: (args) => <MoneyFieldLocaleByCurrencyTable {...args} />,
+}
+
 interface MoneyFieldLocaleByCurrencyTableProps {
   amount: number
 }
 
-export const MoneyFieldLocaleByCurrencyTable = (
+const MoneyFieldLocaleByCurrencyTable = (
   props: MoneyFieldLocaleByCurrencyTableProps,
 ) => {
   const locales = [

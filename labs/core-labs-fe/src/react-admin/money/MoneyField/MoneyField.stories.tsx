@@ -2,8 +2,7 @@ import { Typography } from '@mui/material'
 import { StoryObj } from '@storybook/react'
 import { SimpleShowLayout } from 'react-admin'
 import { MoneyField } from './MoneyField'
-import { MoneyFieldExamples } from './MoneyFieldExamples'
-import { MoneyFieldLocaleByCurrencyTable } from './MoneyFieldLocaleByCurrencyTable'
+// import { MoneyFieldLocaleByCurrencyTable } from './MoneyFieldLocaleByCurrencyTable.stories'
 
 export default {
   title: 'Core Labs/Money/MoneyField',
@@ -51,38 +50,6 @@ export const Basic: Story = {
     },
   ],
 }
-
-type LocalesStory = StoryObj<typeof MoneyFieldLocaleByCurrencyTable>
-
-/**
- * Browser Locales are used to format the currency based on the user. Locales can be explictly set with the 'locales' prop.
- * This table shows some of the display variations of locales vs currency.
- */
-export const LocalesVsCurrency: LocalesStory = {
-  argTypes: {
-    amount: { control: 'number' },
-    // roundWhole: { control: 'boolean' },
-    // record: {control: 'object'},
-    // source: {control: 'text'}
-  },
-  args: { amount: 1234.56 },
-  parameters: {
-    controls: {
-      expanded: true,
-      exclude: ['sx', 'currencySource'],
-    },
-  },
-  render: (args) => <MoneyFieldLocaleByCurrencyTable {...args} />,
-}
-
-/**
- * The data shape for records can be flat, ie `price` and `currency` are at the same level, or nested, ie `price` is an object with `amount` and `currency` properties.
- */
-export const MoreExamples: Story = {
-  render: () => <MoneyFieldExamples />,
-}
-
-// type FieldStory = StoryObj<typeof MoneyField>
 
 // export const OtherStories: Story = {
 //   render: () => <MoneyInputAndFieldVariations />
