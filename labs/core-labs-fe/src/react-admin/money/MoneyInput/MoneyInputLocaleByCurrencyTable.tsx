@@ -13,13 +13,17 @@ export const MoneyInputLocaleByCurrencyTable = () => {
     'zn-CN',
     'zn-TW',
   ]
-  const currencies = ['USD', 'EUR', 'JPY', 'CNY', 'BTC']
+  const currencies = [
+    'USD',
+    'EUR',
+    'JPY',
+    'CNY',
+    // 'BTC'
+  ]
 
   const record = {
-    id: '1',
-    title: 'Integer Price',
-    amount: 1000,
-    price: { code: 'USD', amount: 2000 },
+    price: 1000,
+    currency: 'USD',
   }
 
   return (
@@ -43,11 +47,12 @@ export const MoneyInputLocaleByCurrencyTable = () => {
                     {/* <TextInput source='amount' /> */}
 
                     <MoneyInput
-                      source="amount"
+                      source="price"
+                      currencySource={currency}
                       // currencySource="price.code"
-                      // locales={locale}
-                      currency={currency}
+                      locales={locale}
                       helperText={false}
+                      variant="outlined"
                     />
                   </TableCell>
                 ))}

@@ -9,7 +9,7 @@ export default {
   title: 'Core Labs/Money/MoneyField',
   component: MoneyField,
   argTypes: {
-    // truncate: { control: 'boolean' },
+    // roundWhole: { control: 'boolean' },
     // record: {control: 'object'},
     // source: {control: 'text'}
   },
@@ -61,7 +61,7 @@ type LocalesStory = StoryObj<typeof MoneyFieldLocaleByCurrencyTable>
 export const LocalesVsCurrency: LocalesStory = {
   argTypes: {
     amount: { control: 'number' },
-    // truncate: { control: 'boolean' },
+    // roundWhole: { control: 'boolean' },
     // record: {control: 'object'},
     // source: {control: 'text'}
   },

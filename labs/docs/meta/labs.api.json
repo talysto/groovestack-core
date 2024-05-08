@@ -1,0 +1,352 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.38.3",
+    "schemaVersion": 1011,
+    "oldestForwardsCompatibleVersion": 1001,
+    "tsdocConfig": {
+      "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+      "noStandardTags": true,
+      "tagDefinitions": [
+        {
+          "tagName": "@alpha",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@beta",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@defaultValue",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@decorator",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@deprecated",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@eventProperty",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@example",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@experimental",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@inheritDoc",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@internal",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@label",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@link",
+          "syntaxKind": "inline",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@override",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@packageDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@param",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@privateRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@public",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@readonly",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@remarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@returns",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@sealed",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@see",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@throws",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@typeParam",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@virtual",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@betaDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@internalRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@preapproved",
+          "syntaxKind": "modifier"
+        }
+      ],
+      "supportForTags": {
+        "@alpha": true,
+        "@beta": true,
+        "@defaultValue": true,
+        "@decorator": true,
+        "@deprecated": true,
+        "@eventProperty": true,
+        "@example": true,
+        "@experimental": true,
+        "@inheritDoc": true,
+        "@internal": true,
+        "@label": true,
+        "@link": true,
+        "@override": true,
+        "@packageDocumentation": true,
+        "@param": true,
+        "@privateRemarks": true,
+        "@public": true,
+        "@readonly": true,
+        "@remarks": true,
+        "@returns": true,
+        "@sealed": true,
+        "@see": true,
+        "@throws": true,
+        "@typeParam": true,
+        "@virtual": true,
+        "@betaDocumentation": true,
+        "@internalRemarks": true,
+        "@preapproved": true
+      },
+      "reportUnsupportedHtmlElements": false
+    }
+  },
+  "kind": "Package",
+  "canonicalReference": "@groovestack/labs!",
+  "docComment": "",
+  "name": "@groovestack/labs",
+  "preserveMemberOrder": false,
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "@groovestack/labs!",
+      "name": "",
+      "preserveMemberOrder": false,
+      "members": [
+        {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/labs!AddressField:var",
+          "docComment": "/**\n * AddressField is a React Admin field that displays an address with a a variety of formatting options.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "AddressField: "
+            },
+            {
+              "kind": "Content",
+              "text": "(_props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "FieldProps",
+              "canonicalReference": "ra-ui-materialui!FieldProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
+            }
+          ],
+          "fileUrlPath": "dist/src/react-admin/address/AddressField/AddressField.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "AddressField",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/labs!AddressInput:var",
+          "docComment": "/**\n * AddressInput is a React Admin input that accepts free-form postal addresses as input It can be used to validate values, reformat them and supports autocomplete using the Google Places API (if enabled)\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "AddressInput: "
+            },
+            {
+              "kind": "Content",
+              "text": "(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AddressInputProps",
+              "canonicalReference": "@groovestack/labs!~AddressInputProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/src/react-admin/address/AddressInput/AddressInput.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "AddressInput",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/labs!MoneyField:var",
+          "docComment": "/**\n * MoneyField is a React Admin field that formats a number as currency.\n *\n * FEATURES - Standard React Admin Field property interface - Amount may be numeric or string value - Currency specified by record or explicity via 'currencySource' prop - Locale can be specified for currency formatting. Defaults to browser locale. - Display a special value for zero amounts\n *\n * TODO - Specify sx overrides for negative values, ie red text or () instead of - negative sign - Crypto: Dynamic support if library found, Map unicode symbols for crypto and override, Allow specifying number of decimal places - Support amount specific as Cents. Consider 'transform' usage for NumberField. - Support Negative values\n *\n * NOTES - Stripe API specifies amounts in cents for USD. This is a common pattern for financial APIs. Their docs include references to zero-decimal currencies like JPY, and three-decimal currencies like BHD. https://docs.stripe.com/currencies#zero-decimal\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "MoneyField: "
+            },
+            {
+              "kind": "Content",
+              "text": "({ currencySource, roundWhole, displayWhenZero, ...rest }: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MoneyFieldProps",
+              "canonicalReference": "@groovestack/labs!~MoneyFieldProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    sx?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "SxProps",
+              "canonicalReference": "@mui/system!SxProps:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            }
+          ],
+          "fileUrlPath": "dist/src/react-admin/money/MoneyField/MoneyField.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "MoneyField",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/labs!MoneyInput:var",
+          "docComment": "/**\n * MoneyInput is a React Admin input that supports editing a currency value.\n *\n * FEATURES - Full Il8n currency support - Mobile friendly numeric input - Currency specified by record or explicity via 'currencySource' prop\n *\n * TODO - Refactor to simpler MUI pattern - Handle whole values on mode - Validate cents transforms mode - Support Negative values\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "MoneyInput: "
+            },
+            {
+              "kind": "Content",
+              "text": "({ currencySource, locales, "
+            },
+            {
+              "kind": "Reference",
+              "text": "record",
+              "canonicalReference": "@groovestack/labs!~MoneyInputProps#record"
+            },
+            {
+              "kind": "Content",
+              "text": ": recordProp, ...rest }: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MoneyInputProps",
+              "canonicalReference": "@groovestack/labs!~MoneyInputProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | undefined"
+            }
+          ],
+          "fileUrlPath": "dist/src/react-admin/money/MoneyInput/MoneyInput.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "MoneyInput",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 8
+          }
+        }
+      ]
+    }
+  ]
+}

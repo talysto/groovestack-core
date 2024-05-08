@@ -15,7 +15,7 @@ interface MoneyFieldProps extends NumberFieldProps {
   currencySource: string
 
   /** shorten to whole value (ie Dollars) */
-  truncate?: boolean
+  roundWhole?: boolean
 
   /** Show a special value when zero (0) */
   displayWhenZero?: string
@@ -36,7 +36,7 @@ interface MoneyFieldProps extends NumberFieldProps {
  *
  * FEATURES
  * - Standard React Admin Field property interface
- * - Amount may be numerice or string value
+ * - Amount may be numeric or string value
  * - Currency specified by record or explicity via 'currencySource' prop
  * - Locale can be specified for currency formatting. Defaults to browser locale.
  * - Display a special value for zero amounts
@@ -45,7 +45,7 @@ interface MoneyFieldProps extends NumberFieldProps {
  * - Specify sx overrides for negative values, ie red text or () instead of - negative sign
  * - Crypto: Dynamic support if library found, Map unicode symbols for crypto and override, Allow specifying number of decimal places
  * - Support amount specific as Cents. Consider 'transform' usage for NumberField.
- *
+ * - Support Negative values
  *
  * NOTES
  * - Stripe API specifies amounts in cents for USD. This is a common pattern for financial APIs.
@@ -54,7 +54,7 @@ interface MoneyFieldProps extends NumberFieldProps {
  */
 export const MoneyField = ({
   currencySource,
-  truncate = false,
+  roundWhole = false,
   displayWhenZero = undefined,
   ...rest
 }: MoneyFieldProps & { sx?: SxProps }) => {
@@ -69,7 +69,7 @@ export const MoneyField = ({
   }
 
   const overrides = {
-    ...(truncate ? { maximumFractionDigits: 0 } : {}),
+    ...(roundWhole ? { maximumFractionDigits: 0 } : {}),
     // Pattern: ...query.bar && { bar: query.bar },
   }
 

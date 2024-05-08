@@ -1,46 +1,133 @@
 import { InputAdornment } from '@mui/material'
-import { InputProps, TextInput } from 'react-admin'
+import _ from 'lodash'
+import { forwardRef, useState } from 'react'
+import { TextInput, useRecordContext } from 'react-admin'
+import {
+  NumberFormatBase,
+  NumberFormatValues,
+  NumericFormatProps,
+} from 'react-number-format'
+import { MoneyInputProps } from './MoneyInputProps.js'
 
 /**
- * React Admin Field that supports editing a currency value.
+ * MoneyInput is a React Admin input that supports editing a currency value.
  *
- * @component
+ * FEATURES
+ * - Full Il8n currency support
+ * - Mobile friendly numeric input
+ * - Currency specified by record or explicity via 'currencySource' prop
  *
- * @example
- * return (
- *   <MoneyField source='price' />
- * )
+ * TODO
+ * - Refactor to simpler MUI pattern
+ * - Handle whole values on mode
+ * - Validate cents transforms mode
+ * - Support Negative values
  */
-export const MoneyInput = (props: InputProps) => {
-  const ATM_REGEX = /^[0-9\.\,\b]+$/
+export const MoneyInput = ({
+  currencySource,
+  locales,
+  record: recordProp,
+  ...rest
+}: MoneyInputProps) => {
+  const [values, setValues] = useState<NumberFormatValues>()
+
+  const data = useRecordContext()
+  // const [value, setValue] = useState<string>()
+
+  const record = recordProp || data
+
+  if (!record) return
+
+  console.log('record: ', JSON.stringify(record))
+  console.log('cv: ', _.get(record, currencySource))
+
+  const currencyValue = _.get(record, currencySource) || currencySource
+
+  if (!Intl.supportedValuesOf('currency').includes(currencyValue)) {
+    const err = `Currency '${currencyValue}' for ${currencySource} not supported.  Specify the source for the currency, ie 'price' or 'price.amount' OR an explicit ISO 4217 currency code, ie USD, JPY`
+    console.error(err)
+  }
+
+  // TODO: Remove this :any and resolve this warning
+  const handleChange = (v: any) => {
+    console.log('handleChange', JSON.stringify(v))
+    setValues(v)
+  }
+
+  function getPrefixSuffix() {
+    console.log('currencyValue:' + currencyValue)
+    const parts = Intl.NumberFormat(locales || navigator.languages, {
+      style: 'currency',
+      currency: currencyValue,
+    }).formatToParts(1234.56)
+
+    console.log('parts: ' + JSON.stringify(parts))
+
+    return parts[0].type == 'currency'
+      ? [parts[0].value, '']
+      : ['', parts.at(-1)?.value]
+  }
+
+  const [prefix, suffix] = getPrefixSuffix()
+
+  const numericValue = parseFloat(
+    record && rest.source && _.get(record, rest.source),
+  )
 
   return (
     <TextInput
       InputProps={{
+        // label="react-number-format-2"
+        type: 'tel',
+        value: values?.value || numericValue,
+        onChange: handleChange,
         startAdornment: (
-          <InputAdornment position="start">
-            {/* {org?.currency?.symbol} */}$
-          </InputAdornment>
+          <InputAdornment position="start">{prefix}</InputAdornment>
         ),
-        // onInput: (ev) => {
-        //   const el = ev.target as HTMLInputElement | null
-        //   if (!el || !el.value) return
-
-        //   // console.log('before <' + el.value + '>')
-        //   // const regexPat = /^[\d\.\,]+$/g
-        //   // https://stackoverflow.com/questions/354044/what-is-the-best-u-s-currency-regex
-        //   // cents required
-        //   const regexPat = /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*\.[0-9]{2}$/g
-
-        //   el.value = el.value.match(regexPat)?.join('') ?? ''
-        // },
-        // onKeyDown: (event) => {
-        //   if (!ATM_REGEX.test(event.key)) {
-        //     event.preventDefault();
-        //   }
-        // }
+        endAdornment: <InputAdornment position="end">{suffix}</InputAdornment>,
+        inputComponent: NumericFormatCustom as any,
       }}
-      {...props}
+      {...rest}
     />
   )
 }
+
+interface CustomProps {
+  onChange: ({}) => void
+  name: string
+}
+
+const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
+  function NumericFormatCustom(props, ref) {
+    const { onChange, ...other } = props
+
+    const format = (numStr: string) => {
+      if (numStr === '') return ''
+      const fmt = Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 2,
+      }).format(parseFloat(numStr) / 100.0)
+
+      const regexPat = /[+-]?[\d\,\.\s]/g
+      const filtered = fmt.match(regexPat)?.join('') ?? ''
+
+      console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
+      return filtered
+    }
+
+    // TODO Try refactor with the patter for MUI
+    // https://codesandbox.io/p/sandbox/custominput-demo-u3wg9m?file=%2Fsrc%2FApp.js&from-embed=
+    return (
+      <NumberFormatBase
+        // {...other}
+        format={format}
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange(values)
+        }}
+      />
+    )
+  },
+)

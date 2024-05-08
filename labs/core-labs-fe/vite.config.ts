@@ -36,13 +36,16 @@ export default defineConfig({
       // into your library
       plugins: [autoExternal()],
       external: [
-        'react/jsx-runtime',
-        'dayjs/plugin/relativeTime',
-        'dayjs/plugin/localizedFormat',
+        // 'react/jsx-runtime',
+        // 'dayjs/plugin/relativeTime',
+        // 'dayjs/plugin/localizedFormat',
       ],
+      // input: Object.fromEntries(
+      //   globSync('src/**/*.{ts,tsx}', { ignore: 'src/**/*.stories.*' }),
+      // ),
       output: {
         // Some utils have minimal CSS deps
-        intro: 'import "./style.css";',
+        // intro: 'import "./style.css";',
         // Provide global variables to use in the UMD build for externalized deps
         globals: {
           // "react-copy-to-clipboard": "react-copy-to-clipboard",
