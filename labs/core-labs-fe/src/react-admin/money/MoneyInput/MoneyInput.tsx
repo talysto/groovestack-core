@@ -25,7 +25,6 @@ import { MoneyInputProps } from './MoneyInputProps.js'
  */
 export const MoneyInput = ({
   currencySource,
-  locales,
   record: recordProp,
   ...rest
 }: MoneyInputProps) => {
@@ -56,7 +55,7 @@ export const MoneyInput = ({
 
   function getPrefixSuffix() {
     console.log('currencyValue:' + currencyValue)
-    const parts = Intl.NumberFormat(locales || navigator.languages, {
+    const parts = Intl.NumberFormat(rest.locales || navigator.languages, {
       style: 'currency',
       currency: currencyValue,
     }).formatToParts(1234.56)

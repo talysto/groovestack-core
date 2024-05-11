@@ -29,3 +29,12 @@ Find instructions on how to create a new Groovestack application bundled with CO
 * Run command on specific module: `pnpm -F {module_name} {command}`
 * Bump and publish, see https://pnpm.io/using-changesets#releasing-changesets[Releasing Changesets]
 * Monitor and autobuild a module on changes: `find core-notifications-fe/src | entr pnpm -F core-notifications-fe build`
+
+=== Publishing New Versions
+
+```
+pnpm changeset // select the projects to bump
+pnpm changeset version // bump the versions
+git commit ...
+pnpm publish -r // publish the new versions
+```

@@ -2,10 +2,6 @@ import { SxProps } from '@mui/material'
 import _ from 'lodash'
 import { NumberField, NumberFieldProps, useRecordContext } from 'react-admin'
 
-export class MoneyFieldTransforms {
-  static transformFromCents = (v: number) => Math.floor(v / 100)
-}
-
 interface MoneyFieldProps extends NumberFieldProps {
   /** attribute of the record that contains the currency code
    * (similar to `source` for a standard Field or Input)
@@ -19,6 +15,9 @@ interface MoneyFieldProps extends NumberFieldProps {
 
   /** Show a special value when zero (0) */
   displayWhenZero?: string
+
+  /** Transform the source value when provided in a safer integer form */
+  sourceFormat?: 'cents' | 'majorUnit'
 }
 
 // TODD: Rudimentary crypto support for more significant digits, etc
@@ -56,6 +55,7 @@ export const MoneyField = ({
   currencySource,
   roundWhole = false,
   displayWhenZero = undefined,
+  sourceFormat = 'majorUnit',
   ...rest
 }: MoneyFieldProps & { sx?: SxProps }) => {
   const record = useRecordContext() || rest.record
@@ -80,9 +80,10 @@ export const MoneyField = ({
     currency: currencyValue,
   }
 
+  const value = record && rest.source && _.get(record, rest.source)
+  const numericValue = parseFloat(value)
+
   if (displayWhenZero) {
-    const value = record && rest.source && _.get(record, rest.source)
-    const numericValue = parseFloat(value)
     if (numericValue == 0)
       return (
         <NumberField
@@ -94,5 +95,22 @@ export const MoneyField = ({
       )
   }
 
-  return <NumberField options={options} {...rest} />
+  const fractionDigits =
+    sourceFormat === 'cents' &&
+    Intl.NumberFormat(rest.locales || navigator.languages, {
+      style: 'currency',
+      currency: currencyValue,
+    })
+      .formatToParts(1)
+      .find((part) => part.type === 'fraction')?.value.length
+
+  return (
+    <NumberField
+      options={options}
+      {...(fractionDigits && {
+        transform: (v: number) => v / 10 ** fractionDigits,
+      })}
+      {...rest}
+    />
+  )
 }

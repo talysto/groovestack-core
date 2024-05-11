@@ -50,7 +50,3 @@ export const Basic: Story = {
     },
   ],
 }
-
-// export const OtherStories: Story = {
-//   render: () => <MoneyInputAndFieldVariations />
-// };
