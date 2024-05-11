@@ -97,7 +97,7 @@ export const MoneyField = ({
 
   const fractionDigits =
     sourceFormat === 'cents' &&
-    Intl.NumberFormat(rest.locales || navigator.languages, {
+    Intl.NumberFormat(rest.locales, {
       style: 'currency',
       currency: currencyValue,
     })

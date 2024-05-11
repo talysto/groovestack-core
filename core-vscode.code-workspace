@@ -1,33 +1,36 @@
 {
-	"folders": [
-		{
-			"name": "✨ core",
-			"path": "."
-		},
-		{
-			"name": "@groovestack/auth",
-			"path": "core-auth-fe"
-		},
-		{
-			"name": "@groovestack/base",
-			"path": "core-base-fe"
-		},
-		{
-			"name": "@groovestack/config",
-			"path": "core-config-fe"
-		},
-		{
-			"name": "@groovestack/jobs",
-			"path": "core-jobs-fe"
-		},
-		{
-			"name": "@groovestack/notifications",
-			"path": "core-notifications-fe"
-		},
-		{
-			"name": "test-core-fe",
-			"path": "test-core-fe"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "name": "✨ core",
+      "path": "."
+    },
+    {
+      "name": "@groovestack/auth",
+      "path": "core-auth-fe"
+    },
+    {
+      "name": "@groovestack/base",
+      "path": "core-base-fe"
+    },
+    {
+      "name": "@groovestack/config",
+      "path": "core-config-fe"
+    },
+    {
+      "name": "@groovestack/jobs",
+      "path": "core-jobs-fe"
+    },
+    {
+      "name": "@groovestack/notifications",
+      "path": "core-notifications-fe"
+    },
+    {
+      "name": "test-core-fe",
+      "path": "test-core-fe"
+    },
+    {
+      "path": "labs/core-labs-fe"
+    }
+  ],
+  "settings": {}
 }

@@ -55,7 +55,7 @@ export const MoneyInput = ({
 
   function getPrefixSuffix() {
     console.log('currencyValue:' + currencyValue)
-    const parts = Intl.NumberFormat(rest.locales || navigator.languages, {
+    const parts = Intl.NumberFormat(rest.locales, {
       style: 'currency',
       currency: currencyValue,
     }).formatToParts(1234.56)

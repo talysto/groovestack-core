@@ -31,6 +31,11 @@ Find instructions on how to create a new Groovestack application bundled with CO
 * Monitor and autobuild a module on changes: `find core-notifications-fe/src | entr pnpm -F core-notifications-fe build`
 
 === Publishing New Versions
+Make sure everything builds:
+
+```
+pnpm build
+```
 
 ```
 pnpm changeset // select the projects to bump
