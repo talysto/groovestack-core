@@ -261,7 +261,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ currencySource, roundWhole, displayWhenZero, ...rest }: "
+              "text": "({ currencySource, roundWhole, displayWhenZero, sourceFormat, ...rest }: "
             },
             {
               "kind": "Reference",
@@ -307,7 +307,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ currencySource, locales, "
+              "text": "({ currencySource, "
             },
             {
               "kind": "Reference",

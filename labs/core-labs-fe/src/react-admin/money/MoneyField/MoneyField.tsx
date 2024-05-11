@@ -2,7 +2,7 @@ import { SxProps } from '@mui/material'
 import _ from 'lodash'
 import { NumberField, NumberFieldProps, useRecordContext } from 'react-admin'
 
-interface MoneyFieldProps extends NumberFieldProps {
+export interface MoneyFieldProps extends NumberFieldProps {
   /** attribute of the record that contains the currency code
    * (similar to `source` for a standard Field or Input)
    * OR
