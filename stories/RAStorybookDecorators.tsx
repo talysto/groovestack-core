@@ -33,6 +33,7 @@ export const withFormContext = (Story, context) => {
           id: 1,
           name: 'Name',
           amount: '123.45',
+          rating: 3,
           created_at: Date.now(),
         }}
         onChange={(values) =>
