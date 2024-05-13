@@ -66,8 +66,8 @@ const MoneyInputSourceFractionsTable = () => {
                     }
                     source="price"
                     currencySource={currency}
-                    sourceFormat={scenario.sourceFormat}
                     allowMinorUnits={scenario.allowMinorUnits}
+                    sourceFormat={scenario.sourceFormat}
                     // currencySource="price.code"
                     // locales={locale}
                     // helperText={false}

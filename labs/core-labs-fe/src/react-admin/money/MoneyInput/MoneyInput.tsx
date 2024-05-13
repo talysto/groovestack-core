@@ -74,8 +74,7 @@ export const MoneyInput = ({
     record && rest.source && _.get(record, rest.source),
   )
 
-  const fractionDigits =
-    sourceFormat === 'cents' &&
+  const fractionDigits = // sourceFormat === 'cents' &&
     Intl.NumberFormat(rest.locales, {
       style: 'currency',
       currency: currencyValue,
@@ -83,17 +82,17 @@ export const MoneyInput = ({
       .formatToParts(1)
       .find((part) => part.type === 'fraction')?.value.length
 
-  // TODO BUG
-  const initialValue =
-    sourceFormat == 'cents'
-      ? numericValue
-      : numericValue * 10 ** (fractionDigits || 1)
+  const initialValue = (() => {
+    // TODO detect truncation here
+    if (sourceFormat == 'cents' && !allowMinorUnits) return numericValue / 100.0
+    if (sourceFormat == 'majorUnit' && allowMinorUnits)
+      return numericValue * 100.0
+    return numericValue
+  })()
 
   const FormatComponent = (() => {
-    if (sourceFormat == 'cents' && fractionDigits == 2)
-      return NumericFormatCustom2
-    if (sourceFormat == 'cents' && fractionDigits == 3)
-      return NumericFormatCustom3
+    if (fractionDigits == 2 && allowMinorUnits) return NumericFormatCustom2
+    if (fractionDigits == 3 && allowMinorUnits) return NumericFormatCustom3
     return NumericFormatCustom
   })()
 
@@ -136,7 +135,7 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
         currency: 'USD',
         // NOTE: These options are important for 2, 3 digit currencies
         maximumFractionDigits: 0,
-      }).format(parseFloat(numStr) * 1.0)
+      }).format(parseFloat(numStr))
 
       const regexPat = /[+-]?[\d\,\.\s]/g
       const filtered = fmt.match(regexPat)?.join('') ?? ''
