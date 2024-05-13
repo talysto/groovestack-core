@@ -55,13 +55,13 @@ export const MoneyInput = ({
   }
 
   function getPrefixSuffix() {
-    console.log('currencyValue:' + currencyValue)
+    // console.log('currencyValue:' + currencyValue)
     const parts = Intl.NumberFormat(rest.locales, {
       style: 'currency',
       currency: currencyValue,
     }).formatToParts(1234.56)
 
-    console.log('parts: ' + JSON.stringify(parts))
+    // console.log('parts: ' + JSON.stringify(parts))
 
     return parts[0].type == 'currency'
       ? [parts[0].value, '']
@@ -80,13 +80,14 @@ export const MoneyInput = ({
       currency: currencyValue,
     })
       .formatToParts(1)
-      .find((part) => part.type === 'fraction')?.value.length
+      .find((part) => part.type === 'fraction')?.value.length || 0
 
   const initialValue = (() => {
     // TODO detect truncation here
-    if (sourceFormat == 'cents' && !allowMinorUnits) return numericValue / 100.0
+    if (sourceFormat == 'cents' && !allowMinorUnits)
+      return numericValue / 10 ** fractionDigits
     if (sourceFormat == 'majorUnit' && allowMinorUnits)
-      return numericValue * 100.0
+      return numericValue * 10 ** fractionDigits
     return numericValue
   })()
 
@@ -140,7 +141,7 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
       const regexPat = /[+-]?[\d\,\.\s]/g
       const filtered = fmt.match(regexPat)?.join('') ?? ''
 
-      console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
+      // console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
       return filtered
     }
 
@@ -176,7 +177,7 @@ const NumericFormatCustom2 = forwardRef<NumericFormatProps, CustomProps>(
       const regexPat = /[+-]?[\d\,\.\s]/g
       const filtered = fmt.match(regexPat)?.join('') ?? ''
 
-      console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
+      // console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
       return filtered
     }
 
@@ -207,12 +208,12 @@ const NumericFormatCustom3 = forwardRef<NumericFormatProps, CustomProps>(
         currency: 'USD',
         // NOTE: These options are important for 2, 3 digit currencies
         maximumFractionDigits: 3,
-      }).format(parseFloat(numStr)) /// 100.0)
+      }).format(parseFloat(numStr) / 1000.0)
 
       const regexPat = /[+-]?[\d\,\.\s]/g
       const filtered = fmt.match(regexPat)?.join('') ?? ''
 
-      console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
+      // console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
       return filtered
     }
 

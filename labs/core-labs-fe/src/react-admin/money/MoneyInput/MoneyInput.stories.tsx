@@ -1,6 +1,13 @@
-import { Stack } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
-import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
+import { FormEventHandler, useState } from 'react'
+import {
+  AdminContext,
+  SimpleForm,
+  TextInput,
+  defaultI18nProvider,
+  testDataProvider,
+} from 'react-admin'
 import { MoneyInput } from './MoneyInput'
 // import { MoneyInputLocaleByCurrencyTable } from './MoneyInputLocaleByCurrencyTable.stories.tsx.ex'
 
@@ -8,7 +15,7 @@ import { MoneyInput } from './MoneyInput'
 export default {
   title: 'Core Labs/Money/MoneyInput',
   component: MoneyInput,
-  decorators: [withFormContext],
+  // decorators: [withFormContext],
   // parameters: { layout: 'centered' },
   tags: ['autodocs'], // https://storybook.js.org/docs/react/writing-docs/autodocs
 }
@@ -28,43 +35,64 @@ type Story = StoryObj<typeof MoneyInput>
 export const BasicUsage: Story = {
   args: {
     record: {
+      id: 7,
+      title: 'Book',
       price: 123.45,
-      cost: '$50.00',
       currency: 'USD',
-      nested: { amount: 2000, currency: 'USD' },
     },
-    variant: 'outlined',
+    // variant: 'outlined',
     // source: 'amount',
     // currencySource: 'currency',
     // displayWhenZero: 'zero',
   },
   render: (args) => (
-    <Stack>
-      <code>{JSON.stringify(args?.record, null, 2)}</code>
-      {/* <MoneyInput {...args} source="amount" currencySource="currency" /> */}
+    <>
       <MoneyInput {...args} source="price" currencySource="currency" />
-      {/* <MoneyInput {...args} source="price" currencySource="currency" />
-      <MoneyInput {...args} source="price" currencySource="USD" />
-      <MoneyInput {...args} source="price" currencySource="CNY" /> */}
-      {/* <MoneyInput {...args} source="create_value" currencySource="USD" />
       <MoneyInput
         {...args}
-        source="create_value"
-        currencySource="JPY"
-        validate={[required()]}
-      /> */}
-      {/* <MoneyInput {...args} source="cost" /> */}
-    </Stack>
+        source="price"
+        // sourceFormat="cents"
+        allowMinorUnits
+        currencySource="currency"
+      />
+    </>
   ),
-  // decorators: [
-  //   (Story, context) => {
-  //     const { record, ...rest } = context.args
-  //     return (
-  //       <SimpleShowLayout record={record}>
-  //         <Typography variant="body2">SimpleShowLayout</Typography>
-  //         <Story {...rest} />
-  //       </SimpleShowLayout>
-  //     )
-  //   },
-  // ],
+  decorators: [
+    (Story, context) => {
+      const { record, ...rest } = context.args
+      const [vals, setVals] = useState({})
+
+      const changed: FormEventHandler<HTMLDivElement> = (e) => {
+        console.log(e.target.value)
+        // setVals(data)
+      }
+
+      return (
+        <AdminContext
+          i18nProvider={defaultI18nProvider}
+          dataProvider={{
+            ...testDataProvider(),
+            // getCompletion: delayedPromise({
+            //   data: ' dolor sit amet',
+            // }),
+          }}
+        >
+          <Stack direction="row">
+            <Box sx={{ flex: 1 }}>
+              <SimpleForm record={record} onChange={changed}>
+                <Typography variant="body2">MoneyInput on a form</Typography>
+                <TextInput source="title" />
+                <Story {...rest} />
+              </SimpleForm>
+            </Box>
+            <Box sx={{ flex: 1, p: 5 }}>
+              <pre>{JSON.stringify(record, null, 2)}</pre>
+              <hr />
+              <pre>{JSON.stringify(vals, null, 2)}</pre>
+            </Box>
+          </Stack>
+        </AdminContext>
+      )
+    },
+  ],
 }

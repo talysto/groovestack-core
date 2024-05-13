@@ -26,7 +26,7 @@ type Story = StoryObj<typeof MoneyField>
 /**
  * MoneyField can take a currency prop as an atomic value or an object.
  */
-export const Basic: Story = {
+export const BasicUsage: Story = {
   args: {
     record: {
       id: 1,

@@ -35,7 +35,9 @@ export const withFormContext = (Story, context) => {
           amount: '123.45',
           created_at: Date.now(),
         }}
-        // onChange={(values) => console.log('onChange', values)}
+        onChange={(values) =>
+          console.log('SimpleForm onChange:', JSON.stringify(values, null, 2))
+        }
       >
         <Story {...context} />
       </SimpleForm>

@@ -71,7 +71,7 @@ const MoneyInputSourceFractionsTable = () => {
                     // currencySource="price.code"
                     // locales={locale}
                     // helperText={false}
-                    variant="outlined"
+                    // variant="outlined"
                   />
                 </TableCell>
               ))}
