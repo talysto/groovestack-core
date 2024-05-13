@@ -39,12 +39,11 @@ export interface MoneyFieldProps extends NumberFieldProps {
  * - Currency specified by record or explicity via 'currencySource' prop
  * - Locale can be specified for currency formatting. Defaults to browser locale.
  * - Display a special value for zero amounts
+ * - Use sourceFormat='cents' to transform values that are provided in integer form (ie divide by 100 for USD)
  *
  * TODO
  * - Specify sx overrides for negative values, ie red text or () instead of - negative sign
  * - Crypto: Dynamic support if library found, Map unicode symbols for crypto and override, Allow specifying number of decimal places
- * - Support amount specific as Cents. Consider 'transform' usage for NumberField.
- * - Support Negative values
  *
  * NOTES
  * - Stripe API specifies amounts in cents for USD. This is a common pattern for financial APIs.
@@ -58,7 +57,7 @@ export const MoneyField = ({
   sourceFormat = 'majorUnit',
   ...rest
 }: MoneyFieldProps & { sx?: SxProps }) => {
-  const record = useRecordContext() || rest.record
+  const record = rest.record || useRecordContext()
 
   const currencyValue =
     (currencySource && _.get(record, currencySource)) || currencySource

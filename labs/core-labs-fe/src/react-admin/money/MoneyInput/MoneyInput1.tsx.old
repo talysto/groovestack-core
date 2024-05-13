@@ -24,7 +24,7 @@ export const MoneyInput1 = ({
   const data = useRecordContext()
   const [value, setValue] = useState<string>()
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const number = Number(event.target.value.replace(/[^0-9.-]+/g, ''))
     setValue(format(number))
     // setValue(format(parseFloat(event.target.value)))

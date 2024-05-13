@@ -1,4 +1,6 @@
-import * as React from "react";
+// TODO: Keep this line import * as React from "react";
+import React from 'react'
+const R_KEEPER = React
 
 import {
   AdminContext,
@@ -27,7 +29,13 @@ export const withFormContext = (Story, context) => {
     >
       <SimpleForm
         sx={{ minWidth: 240 }}
-        record={{ name: 'Name', amount: '25.43', created_at: Date.now() }}
+        record={{
+          id: 1,
+          name: 'Name',
+          amount: '123.45',
+          created_at: Date.now(),
+        }}
+        // onChange={(values) => console.log('onChange', values)}
       >
         <Story {...context} />
       </SimpleForm>

@@ -16,5 +16,8 @@ export interface MoneyInputProps extends TextInputProps {
   // TODO: Attempt to type this correctly
   locales?: any // readonly string[] | string
 
+  sourceFormat?: 'cents' | 'majorUnit'
+  allowMinorUnits?: boolean
+
   record?: RaRecord
 }

@@ -175,7 +175,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@groovestack/labs!AddressField:var",
-          "docComment": "/**\n * AddressField is a React Admin field that displays an address with a a variety of formatting options.\n */\n",
+          "docComment": "/**\n * AddressField is a React Admin field that displays an address with a a variety of formatting options.\n *\n * FEATURES - source can be string or object - various formatting options: single line, multiline, etc -\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -183,12 +183,12 @@
             },
             {
               "kind": "Content",
-              "text": "(_props: "
+              "text": "({ format, ...rest }: "
             },
             {
               "kind": "Reference",
-              "text": "FieldProps",
-              "canonicalReference": "ra-ui-materialui!FieldProps:interface"
+              "text": "AddressFieldProps",
+              "canonicalReference": "@groovestack/labs!~AddressFieldProps:interface"
             },
             {
               "kind": "Content",
@@ -253,7 +253,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@groovestack/labs!MoneyField:var",
-          "docComment": "/**\n * MoneyField is a React Admin field that formats a number as currency.\n *\n * FEATURES - Standard React Admin Field property interface - Amount may be numeric or string value - Currency specified by record or explicity via 'currencySource' prop - Locale can be specified for currency formatting. Defaults to browser locale. - Display a special value for zero amounts\n *\n * TODO - Specify sx overrides for negative values, ie red text or () instead of - negative sign - Crypto: Dynamic support if library found, Map unicode symbols for crypto and override, Allow specifying number of decimal places - Support amount specific as Cents. Consider 'transform' usage for NumberField. - Support Negative values\n *\n * NOTES - Stripe API specifies amounts in cents for USD. This is a common pattern for financial APIs. Their docs include references to zero-decimal currencies like JPY, and three-decimal currencies like BHD. https://docs.stripe.com/currencies#zero-decimal\n */\n",
+          "docComment": "/**\n * MoneyField is a React Admin field that formats a number as currency.\n *\n * FEATURES - Standard React Admin Field property interface - Amount may be numeric or string value - Currency specified by record or explicity via 'currencySource' prop - Locale can be specified for currency formatting. Defaults to browser locale. - Display a special value for zero amounts - Use sourceFormat='cents' to transform values that are provided in integer form (ie divide by 100 for USD)\n *\n * TODO - Specify sx overrides for negative values, ie red text or () instead of - negative sign - Crypto: Dynamic support if library found, Map unicode symbols for crypto and override, Allow specifying number of decimal places\n *\n * NOTES - Stripe API specifies amounts in cents for USD. This is a common pattern for financial APIs. Their docs include references to zero-decimal currencies like JPY, and three-decimal currencies like BHD. https://docs.stripe.com/currencies#zero-decimal\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -299,7 +299,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@groovestack/labs!MoneyInput:var",
-          "docComment": "/**\n * MoneyInput is a React Admin input that supports editing a currency value.\n *\n * FEATURES - Full Il8n currency support - Mobile friendly numeric input - Currency specified by record or explicity via 'currencySource' prop\n *\n * TODO - Refactor to simpler MUI pattern - Handle whole values on mode - Validate cents transforms mode - Support Negative values\n */\n",
+          "docComment": "/**\n * MoneyInput is a React Admin input that supports editing a currency value.\n *\n * FEATURES - Full Il8n currency support - Mobile friendly numeric input - Currency specified by record or explicity via 'currencySource' prop\n *\n * TODO - Handle 2 and 3 digit currencies with the various source and format options - Refactor to simpler MUI pattern - Throw error if sourceFormat is 'cents' and allowMinorUnits is false and value has cents. This would likely cause the result to truncate the fractional part - Handle whole values on mode - Validate cents transforms mode - Support Negative values\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -307,7 +307,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ currencySource, "
+              "text": "({ currencySource, sourceFormat, allowMinorUnits, "
             },
             {
               "kind": "Reference",

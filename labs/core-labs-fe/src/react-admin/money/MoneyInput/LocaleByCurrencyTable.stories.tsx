@@ -1,9 +1,11 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 
+import { StoryObj } from '@storybook/react'
 import { RecordContextProvider, SimpleForm } from 'react-admin'
+import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
 import { MoneyInput } from './MoneyInput'
 
-export const MoneyInputLocaleByCurrencyTable = () => {
+const MoneyInputLocaleByCurrencyTable = () => {
   const locales = [
     'en-US',
     'en-IN',
@@ -63,4 +65,25 @@ export const MoneyInputLocaleByCurrencyTable = () => {
       </SimpleForm>
     </RecordContextProvider>
   )
+}
+
+export default {
+  title: 'Core Labs/Money/MoneyInput',
+  component: MoneyInput,
+  decorators: [withFormContext],
+  // parameters: { layout: 'centered' },
+  // tags: ['autodocs'], // https://storybook.js.org/docs/react/writing-docs/autodocs
+}
+
+type Story = StoryObj<typeof MoneyInput>
+
+export const Localization: Story = {
+  args: {
+    record: {
+      price: 123.45,
+      currency: 'USD',
+    },
+    variant: 'outlined',
+  },
+  render: () => <MoneyInputLocaleByCurrencyTable />,
 }

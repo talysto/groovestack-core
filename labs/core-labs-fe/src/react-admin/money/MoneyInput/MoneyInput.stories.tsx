@@ -2,7 +2,7 @@ import { Stack } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
 import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
 import { MoneyInput } from './MoneyInput'
-import { MoneyInputLocaleByCurrencyTable } from './MoneyInputLocaleByCurrencyTable'
+// import { MoneyInputLocaleByCurrencyTable } from './MoneyInputLocaleByCurrencyTable.stories.tsx.ex'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof MoneyInput>
 /**
  * MoneyField can take a currency prop as an atomic value or an object.
  */
-export const Basic: Story = {
+export const BasicUsage: Story = {
   args: {
     record: {
       price: 123.45,
@@ -67,15 +67,4 @@ export const Basic: Story = {
   //     )
   //   },
   // ],
-}
-
-export const Localization: Story = {
-  args: {
-    record: {
-      price: 123.45,
-      currency: 'USD',
-    },
-    variant: 'outlined',
-  },
-  render: () => <MoneyInputLocaleByCurrencyTable />,
 }

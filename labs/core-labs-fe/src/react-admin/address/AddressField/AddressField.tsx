@@ -1,22 +1,66 @@
-import { Typography } from '@mui/material'
-import { FieldProps, useRecordContext } from 'react-admin'
+import {
+  TextField,
+  TextFieldProps,
+  WrapperField,
+  useRecordContext,
+} from 'react-admin'
+
+export interface AddressFieldProps extends TextFieldProps {
+  format?: 'singleline' | 'multiline' | 'stacked'
+  // labelComponents?: boolean
+}
 
 /**
  * AddressField is a React Admin field that displays an address with a
  * a variety of formatting options.
+ *
+ *  FEATURES
+ * - source can be string or object
+ * - various formatting options: single line, multiline, etc
+ * -
+ *
  */
-export const AddressField = (_props: FieldProps) => {
+export const AddressField = ({
+  format = 'singleline',
+  // labelComponents = false,
+  ...rest
+}: AddressFieldProps) => {
   const record = useRecordContext()
-  if (!record?.address) return null
+  const address = '123 Main St' // TODO _.get(record, rest.source)
 
-  const splitAddressArr = record.address.split(',')
-  const addr1 = splitAddressArr[0]
-  const addr2 = splitAddressArr.slice(1).join(',')
+  if (!address) return null
+
+  if (typeof address === 'string') return <TextField {...rest} />
 
   return (
-    <Typography variant="body2" component="span">
-      <div>{addr1}</div>
-      <div>{addr2}</div>
-    </Typography>
+    <WrapperField>
+      {/* <Stack direction="row" spacing={1}> */}
+      <TextField
+        {...rest}
+        source={`${rest.source}.street`}
+        {...(format != 'singleline' && { sx: { display: 'block' } })}
+      />
+      <TextField
+        {...rest}
+        source={`${rest.source}.city`}
+        {...(format == 'stacked' && { sx: { display: 'block' } })}
+      />
+      <TextField
+        {...rest}
+        source={`${rest.source}.state`}
+        {...(format == 'stacked' && { sx: { display: 'block' } })}
+      />
+      <TextField
+        {...rest}
+        source={`${rest.source}.zip`}
+        {...(format == 'stacked' && { sx: { display: 'block' } })}
+      />
+      <TextField
+        {...rest}
+        source={`${rest.source}.country`}
+        {...(format == 'stacked' && { sx: { display: 'block' } })}
+      />
+      {/* </Stack> */}
+    </WrapperField>
   )
 }

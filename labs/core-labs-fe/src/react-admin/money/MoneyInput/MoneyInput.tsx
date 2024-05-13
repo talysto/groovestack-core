@@ -18,13 +18,17 @@ import { MoneyInputProps } from './MoneyInputProps.js'
  * - Currency specified by record or explicity via 'currencySource' prop
  *
  * TODO
+ * - Handle 2 and 3 digit currencies with the various source and format options
  * - Refactor to simpler MUI pattern
+ * - Throw error if sourceFormat is 'cents' and allowMinorUnits is false and value has cents. This would likely cause the result to truncate the fractional part
  * - Handle whole values on mode
  * - Validate cents transforms mode
  * - Support Negative values
  */
 export const MoneyInput = ({
   currencySource,
+  sourceFormat = 'majorUnit',
+  allowMinorUnits = false,
   record: recordProp,
   ...rest
 }: MoneyInputProps) => {
@@ -36,9 +40,6 @@ export const MoneyInput = ({
   const record = recordProp || data
 
   if (!record) return
-
-  console.log('record: ', JSON.stringify(record))
-  console.log('cv: ', _.get(record, currencySource))
 
   const currencyValue = _.get(record, currencySource) || currencySource
 
@@ -73,19 +74,47 @@ export const MoneyInput = ({
     record && rest.source && _.get(record, rest.source),
   )
 
+  const fractionDigits =
+    sourceFormat === 'cents' &&
+    Intl.NumberFormat(rest.locales, {
+      style: 'currency',
+      currency: currencyValue,
+    })
+      .formatToParts(1)
+      .find((part) => part.type === 'fraction')?.value.length
+
+  // TODO BUG
+  const initialValue =
+    sourceFormat == 'cents'
+      ? numericValue
+      : numericValue * 10 ** (fractionDigits || 1)
+
+  const FormatComponent = (() => {
+    if (sourceFormat == 'cents' && fractionDigits == 2)
+      return NumericFormatCustom2
+    if (sourceFormat == 'cents' && fractionDigits == 3)
+      return NumericFormatCustom3
+    return NumericFormatCustom
+  })()
+
   return (
     <TextInput
       InputProps={{
         // label="react-number-format-2"
         type: 'tel',
-        value: values?.value || numericValue,
+        value: values?.value || initialValue,
         onChange: handleChange,
         startAdornment: (
           <InputAdornment position="start">{prefix}</InputAdornment>
         ),
         endAdornment: <InputAdornment position="end">{suffix}</InputAdornment>,
-        inputComponent: NumericFormatCustom as any,
+        inputComponent: FormatComponent as any,
       }}
+      helperText={JSON.stringify({
+        record,
+        init: initialValue,
+        current: values,
+      })}
       {...rest}
     />
   )
@@ -105,8 +134,81 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
       const fmt = Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
+        // NOTE: These options are important for 2, 3 digit currencies
+        maximumFractionDigits: 0,
+      }).format(parseFloat(numStr) * 1.0)
+
+      const regexPat = /[+-]?[\d\,\.\s]/g
+      const filtered = fmt.match(regexPat)?.join('') ?? ''
+
+      console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
+      return filtered
+    }
+
+    // TODO Try refactor with the patter for MUI
+    // https://codesandbox.io/p/sandbox/custominput-demo-u3wg9m?file=%2Fsrc%2FApp.js&from-embed=
+    return (
+      <NumberFormatBase
+        // {...other}
+        format={format}
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange(values)
+        }}
+      />
+    )
+  },
+)
+
+const NumericFormatCustom2 = forwardRef<NumericFormatProps, CustomProps>(
+  function NumericFormatCustom(props, ref) {
+    const { onChange, ...other } = props
+
+    const format = (numStr: string) => {
+      if (numStr === '') return ''
+      const fmt = Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        // NOTE: These options are important for 2, 3 digit currencies
         maximumFractionDigits: 2,
       }).format(parseFloat(numStr) / 100.0)
+
+      const regexPat = /[+-]?[\d\,\.\s]/g
+      const filtered = fmt.match(regexPat)?.join('') ?? ''
+
+      console.log('format [numStr, fmt, filtered]', numStr, fmt, filtered)
+      return filtered
+    }
+
+    // TODO Try refactor with the patter for MUI
+    // https://codesandbox.io/p/sandbox/custominput-demo-u3wg9m?file=%2Fsrc%2FApp.js&from-embed=
+    return (
+      <NumberFormatBase
+        // {...other}
+        format={format}
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange(values)
+        }}
+      />
+    )
+  },
+)
+
+const NumericFormatCustom3 = forwardRef<NumericFormatProps, CustomProps>(
+  function NumericFormatCustom(props, ref) {
+    const { onChange, ...other } = props
+
+    const format = (numStr: string) => {
+      if (numStr === '') return ''
+      const fmt = Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        // NOTE: These options are important for 2, 3 digit currencies
+        maximumFractionDigits: 3,
+      }).format(parseFloat(numStr)) /// 100.0)
 
       const regexPat = /[+-]?[\d\,\.\s]/g
       const filtered = fmt.match(regexPat)?.join('') ?? ''
