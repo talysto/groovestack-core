@@ -8,7 +8,8 @@ import {
 } from '@mui/material'
 import { StoryObj } from '@storybook/react'
 import { RatingField } from './RatingField'
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { red } from '@mui/material/colors';
 export default {
   title: 'Core Labs/Rating/RatingField',
   component: RatingField,
@@ -56,9 +57,12 @@ const examples = [
   },
   {
     code: '<RatingField source="value" record={{value: 5}} componentProps={{size: \'large\'}} />',
-    component: <RatingField record={{ value: 5 }} source="value" componentProps={{size: 'large'}} />,
-    desc: "RatingField RA field with an example of a MUI Rating Props also being set, in this case, size: 'large'.",
+    component: <RatingField record={{ value: 3 }} source="value" componentProps={{emptyIcon: <FavoriteIcon />, icon: <FavoriteIcon /> }} />,
+    desc: "An example with MUI Rating Props also being set to effect the visuals, in this case, setting the icon to a heart.",
   },
-
- //TODO key props empty icon and icon, precision, etc. (also cross reference moneyfield for any other cases that I may want to have a story for here)
+  {
+    code: '<RatingField source="value" record={{value: 4.5}} componentProps={{size: \'large\'}} />',
+    component: <RatingField record={{ value: 4.5 }} source="value" componentProps={{size: 'small', precision: .5, max: 10}} />,
+    desc: "Some other more commonly used MUI Props include changing the size, precision and range.",
+  }
 ]
