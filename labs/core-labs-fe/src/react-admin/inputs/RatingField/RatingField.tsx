@@ -1,4 +1,5 @@
 import { Rating, RatingProps } from "@mui/material"
+import _ from "lodash";
 import { FieldProps, useRecordContext } from "react-admin"
 
 export interface RatingFieldProps extends FieldProps {
@@ -19,6 +20,6 @@ export interface RatingFieldProps extends FieldProps {
  */
 export const RatingField = ({componentProps, ...props}: RatingFieldProps) => {
   const record = useRecordContext(props);
-  const value = props.source ? record[props.source] : undefined;
+  const value = props.source && _.get(record, props.source)
   return <Rating value={value} {...componentProps} readOnly={true} />
 }

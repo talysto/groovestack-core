@@ -1,3 +1,4 @@
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import {
   Paper,
   Table,
@@ -8,8 +9,6 @@ import {
 } from '@mui/material'
 import { StoryObj } from '@storybook/react'
 import { RatingField } from './RatingField'
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { red } from '@mui/material/colors';
 export default {
   title: 'Core Labs/Rating/RatingField',
   component: RatingField,
@@ -51,18 +50,30 @@ const RatingFieldExamples = () => {
 }
 const examples = [
   {
-    code: '<RatingField source="price" record={{value: 4}} />',
-    component: <RatingField record={{ value: 4 }} source="value" />,
-    desc: "RatingField acts as a standard ReactAdmin field.",
+    code: '<RatingField source="price" record={{rating: 4}} />',
+    component: <RatingField record={{ rating: 4 }} source="rating" />,
+    desc: 'RatingField acts as a standard ReactAdmin field.',
   },
   {
-    code: '<RatingField source="value" record={{value: 5}} componentProps={{size: \'large\'}} />',
-    component: <RatingField record={{ value: 3 }} source="value" componentProps={{emptyIcon: <FavoriteIcon />, icon: <FavoriteIcon /> }} />,
-    desc: "An example with MUI Rating Props also being set to effect the visuals, in this case, setting the icon to a heart.",
+    code: `<RatingField record={{ rating: 3 }} source="rating" componentProps={{ emptyIcon: <FavoriteIcon />, icon: <FavoriteIcon /> }} />`,
+    component: (
+      <RatingField
+        record={{ rating: 3 }}
+        source="rating"
+        componentProps={{ emptyIcon: <FavoriteIcon />, icon: <FavoriteIcon /> }}
+      />
+    ),
+    desc: 'An example with MUI Rating Props also being set to effect the visuals, in this case, setting the icon to a heart.',
   },
   {
-    code: '<RatingField source="value" record={{value: 4.5}} componentProps={{size: \'large\'}} />',
-    component: <RatingField record={{ value: 4.5 }} source="value" componentProps={{size: 'small', precision: .5, max: 10}} />,
-    desc: "Some other more commonly used MUI Props include changing the size, precision and range.",
-  }
+    code: `<RatingField record={{ rating: 4.5 }} source="rating" componentProps={{ size: 'small', precision: .5, max: 10 }} />`,
+    component: (
+      <RatingField
+        record={{ rating: 4.5 }}
+        source="rating"
+        componentProps={{ size: 'small', precision: 0.5, max: 10 }}
+      />
+    ),
+    desc: 'Some other more commonly used MUI Props include changing the size, precision and range.',
+  },
 ]
