@@ -1,0 +1,132 @@
+import { InputAdornment } from '@mui/material'
+import _ from 'lodash'
+import { useState } from 'react'
+import { TextInput, useRecordContext } from 'react-admin'
+import { MoneyInputProps } from './MoneyInputProps'
+
+/**
+ * React Admin Field that supports editing a currency value.
+ *
+ * ## Features
+ * - Only allows numeric and formatting inputs (no alpha characters)
+ * - Formats the value correctly
+ * - Support for APIs that use cents for US interchange (ie Stripe)
+ * - ?? string or numeric value?
+ */
+export const MoneyInput1 = ({
+  currencySource,
+  locales,
+  record: recordProp,
+  ...rest
+}: MoneyInputProps) => {
+  const ATM_REGEX = /^[0-9\.\,\b]+$/
+
+  const data = useRecordContext()
+  const [value, setValue] = useState<string>()
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const number = Number(event.target.value.replace(/[^0-9.-]+/g, ''))
+    setValue(format(number))
+    // setValue(format(parseFloat(event.target.value)))
+  }
+
+  const record = recordProp || data
+
+  if (!record) return
+
+  // useEffect(() => {setValue()}, [])
+
+  console.log('record: ', JSON.stringify(record))
+  console.log('cv: ', _.get(record, currencySource))
+
+  // NOTE: Duplicate code used in MoneyField
+  const currencyValue = _.get(record, currencySource) || currencySource
+
+  if (!Intl.supportedValuesOf('currency').includes(currencyValue)) {
+    const err = `Currency '${currencyValue}' for ${currencySource} not supported.  Specify the source for the currency, ie 'price' or 'price.amount' OR an explicit ISO 4217 currency code, ie USD, JPY`
+    console.error(err)
+  }
+
+  function format(value: number) {
+    const formatted = Intl.NumberFormat(locales || navigator.languages, {
+      style: 'currency',
+      currency: currencyValue,
+      symbol: false,
+    }).format(value)
+
+    console.log('formatting value: ' + value)
+
+    return formatted
+  }
+
+  // function to extract everything except the currency symbol from a formatted string
+  function getPrefixSuffix() {
+    console.log('currencyValue:' + currencyValue)
+    const parts = Intl.NumberFormat(locales || navigator.languages, {
+      style: 'currency',
+      currency: currencyValue,
+    }).formatToParts(1234.56)
+
+    console.log('parts: ' + JSON.stringify(parts))
+
+    return parts[0].type == 'currency'
+      ? [parts[0].value, '']
+      : ['', parts.at(-1)?.value]
+  }
+
+  const [prefix, suffix] = getPrefixSuffix()
+
+  const numericValue = parseFloat(
+    record && rest.source && _.get(record, rest.source),
+  )
+
+  return (
+    <TextInput
+      InputProps={{
+        value: value,
+        onChange: handleChange,
+        startAdornment: (
+          <InputAdornment position="start">{prefix}</InputAdornment>
+        ),
+        endAdornment: <InputAdornment position="end">{suffix}</InputAdornment>,
+        // onInput: (ev) => {
+        //   const el = ev.target as HTMLInputElement | null
+        //   if (!el || !el.value) return
+
+        //   // console.log('before <' + el.value + '>')
+        //   // const regexPat = /^[\d\.\,]+$/g
+        //   // https://stackoverflow.com/questions/354044/what-is-the-best-u-s-currency-regex
+        //   // cents required
+        //   const regexPat = /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*\.[0-9]{2}$/g
+
+        //   el.value = el.value.match(regexPat)?.join('') ?? ''
+        // },
+
+        // Keypress triggers when a visible character is pressed vs shoft or backspace, etc
+        onKeyPress: (event) => {
+          // Reject non-numeric and currency chars
+          if (!ATM_REGEX.test(event.key)) {
+            event.preventDefault()
+          }
+        },
+      }}
+      {...rest}
+      helperText={`Value: ${format(numericValue)}`}
+    />
+  )
+}
+
+// React Admin
+// useInput exaple
+// import { useInput } from 'react-admin';
+
+// const TitleInput = ({ source, label }) => {
+//     const { id, field, fieldState } = useInput({ source });
+//     return (
+//         <label htmlFor={id}>
+//             {label}
+//             <input id={id} {...field} />
+//             {fieldState.error && <span>{fieldState.error.message}</span>}
+//         </label>
+//     );
+// };
