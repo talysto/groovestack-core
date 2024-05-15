@@ -1,5 +1,11 @@
 # @groovestack/labs
 
+## 0.1.5
+
+### Patch Changes
+
+- add button props to StatusInput
+
 ## 0.1.4
 
 ### Patch Changes

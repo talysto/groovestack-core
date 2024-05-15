@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonProps,
   Dialog,
   DialogActions,
   DialogContent,
@@ -41,11 +42,12 @@ type StatusEvent = { key: string; enabled: boolean; name: string }
 
 
 type StatusInputProps = FormGroupProps & CommonInputProps & {
+  buttonProps?: ButtonProps
   updateOptions?: UseUpdateOptions
 }
 
 export const StatusInput = (props: StatusInputProps) => {
-  const { source, label, isRequired, className, sx, updateOptions, ...rest } = props
+  const { source, label, isRequired, className, sx, buttonProps, updateOptions, ...rest } = props
   // const { id, field, fieldState } = useInput({source})
   const record = useRecordContext()
   const resource = useResourceContext()
@@ -132,6 +134,7 @@ export const StatusInput = (props: StatusInputProps) => {
         <Button
           id="basic-button"
           size="medium"
+          {...buttonProps}
           aria-controls={open ? 'basic-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
