@@ -1,5 +1,11 @@
 # @groovestack/auth
 
+## 0.2.26
+
+### Patch Changes
+
+- remove react-router-dom dep from core-auth-fe & core-jobs-fe. move to peer dep for core-auth-fe (this should be brought in by react-admin)
+
 ## 0.2.25
 
 ### Patch Changes
