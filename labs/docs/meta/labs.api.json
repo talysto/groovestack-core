@@ -345,6 +345,47 @@
             "startIndex": 1,
             "endIndex": 8
           }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@groovestack/labs!StatusInput:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "StatusInput: "
+            },
+            {
+              "kind": "Content",
+              "text": "(props: "
+            },
+            {
+              "kind": "Reference",
+              "text": "StatusInputProps",
+              "canonicalReference": "@groovestack/labs!~StatusInputProps:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "JSX.Element",
+              "canonicalReference": "@types/react!JSX.Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
+            }
+          ],
+          "fileUrlPath": "dist/labs/core-labs-fe/src/react-admin/inputs/StatusInput/StatusInput.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "StatusInput",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
         }
       ]
     }

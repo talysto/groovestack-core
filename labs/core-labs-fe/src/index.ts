@@ -19,6 +19,7 @@ export { pkg }
 import { AddressField } from './react-admin/address/AddressField/AddressField'
 import { AddressInput } from './react-admin/address/AddressInput/AddressInput'
 import { MoneyField, MoneyInput } from './react-admin/money'
+import { StatusInput } from './react-admin/inputs/StatusInput/StatusInput'
 
 /**
  * function utilities
@@ -36,7 +37,7 @@ export { AddressField, MoneyField }
  * React Admin Inputs
  * @public
  */
-export { AddressInput, MoneyInput }
+export { AddressInput, MoneyInput, StatusInput }
 
 /**
  * React Admin Components
