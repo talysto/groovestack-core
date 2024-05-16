@@ -34,6 +34,7 @@ export const withFormContext = (Story, context) => {
           name: 'Name',
           amount: '123.45',
           rating: 3,
+          options: ['SM', 'MD', 'LG'],
           qty: 10,
           created_at: Date.now(),
         }}
