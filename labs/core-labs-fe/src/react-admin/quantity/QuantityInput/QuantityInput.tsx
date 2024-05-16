@@ -17,6 +17,21 @@ export type QuantityInputProps = {
   max?: number
 } & TextInputProps
 
+/**
+ * QuantityInput is a React Admin Input for use inside applications such as a store instead of a standard number input.
+ *
+ * FEATURES
+ * - Key features you would find on a typical React Admin Input property interface and some properties geared towards a quantity input 
+ * - Controlled and Uncontrolled modes
+ * - Increment and decrement buttons
+ * - Ref forwarding
+ *
+ * TODO
+ * - test further
+ *
+ * NOTES
+ * - Quanity Input allows users to select a quantity of something, such as an item they would like to purchase in a store.
+ */
 export const QuantityInput = ({
   defaultValue,
   mode = QuantityInputMode.Uncontrolled,
