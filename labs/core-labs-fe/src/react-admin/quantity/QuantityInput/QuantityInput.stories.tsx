@@ -3,22 +3,37 @@ import type { StoryObj } from '@storybook/react'
 import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
 import { QuantityInput } from './QuantityInput'
 
+export enum QuantityInputMode {
+  Controlled,
+  Uncontrolled,
+}
+
 export default {
   title: 'Core Labs/Quantity/QuantityInput',
   component: QuantityInput,
   decorators: [withFormContext],
+  // args: {
+  //   onChangeSuccess: (value: number) => console.log('onChangeSuccess', value),
+  //   // onClick: fn(),
+  //   },
   argTypes: {
-    // max: { control: 'number' },
-    // size: {
-    //   control: 'select',
-    //   options: ['small', 'medium', 'large'],
-    // },
-    // precision: {
-    //   control: 'select',
-    //   options: [0.25, 0.5, 1],
-    // },
-    // record: {control: 'object'},
-    // source: {control: 'text'}
+    defaultValue: { control: 'number' },
+    mode: {
+      options: [0, 1],
+      mapping: [0, 1], 
+      control: {
+        type: 'select', 
+        labels: ['Controlled', 'Uncontrolled'],
+      },
+    },
+    onChangeSuccess: { action: 'onChangeSuccess Value' },
+    // ref: { control: 'object' },
+    min: { control: 'number' },
+    max: { control: 'number' },
+    error: { control: 'boolean' },
+    helperText: { control: 'text' },
+    label: { control: 'text' },
+    props: { control: 'object' },
   },
   parameters: {
     controls: {
@@ -33,9 +48,8 @@ export default {
 type Story = StoryObj<typeof QuantityInput>
 
 /**
- * QuantityInput can take standard RA props (source, etc) and some other Quantity specific props.
+ * QuantityInput can take standard RA TextInputProps (source, etc) and other Quantity specific props.
  */
-/* TODO grab qty source value from the form in the decorator */
 
 export const BasicUsage: Story = {
   args: {

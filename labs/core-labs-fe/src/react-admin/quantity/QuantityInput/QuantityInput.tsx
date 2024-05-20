@@ -21,10 +21,12 @@ export type QuantityInputProps = {
  * QuantityInput is a React Admin Input for use inside applications such as a store instead of a standard number input.
  *
  * FEATURES
- * - Key features you would find on a typical React Admin Input property interface and some properties geared towards a quantity input 
+ * - Key features you would find on a typical React Admin Input property interface, in this case TextInputProps from RA, 
  * - Controlled and Uncontrolled modes
  * - Increment and decrement buttons
  * - Ref forwarding
+ * - Min and Max values
+ * - onChangeSuccess callback
  *
  * TODO
  * - test further
