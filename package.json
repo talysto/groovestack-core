@@ -60,6 +60,7 @@
     "react": "18.2.0",
     "react-admin": ">=4.15.4",
     "react-dom": "18.2.0",
+    "react-router-dom": "^6.18.0",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-visualizer": "5.9.2",
     "storybook": "^8.0.10",

@@ -1,7 +1,10 @@
 import { Stack } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
 import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
+import { withFormContext2 } from '../../../../../../stories/RAStorybookDecorators'
+
 import { QuantityInput } from './QuantityInput'
+import { useRecordContext } from 'react-admin'
 
 export enum QuantityInputMode {
   Controlled,
@@ -11,7 +14,7 @@ export enum QuantityInputMode {
 export default {
   title: 'Core Labs/Quantity/QuantityInput',
   component: QuantityInput,
-  decorators: [withFormContext],
+  decorators: [withFormContext2],
   // args: {
   //   onChangeSuccess: (value: number) => console.log('onChangeSuccess', value),
   //   // onClick: fn(),
@@ -59,11 +62,13 @@ export const BasicUsage: Story = {
     source: 'qty',
   },
   render: (args) => {
+    const record = useRecordContext()
+    console.log()
     return (
       <Stack>
-        <code>{JSON.stringify(args?.record, null, 2)}</code>
+        <code>{JSON.stringify(record?.qty, null, 2)}</code>
         {/* <QuantityInput source="newItem.qty" /> */}
-        <QuantityInput {...args} />
+        <QuantityInput {...args} fullWidth />
       </Stack>
     )
   },
