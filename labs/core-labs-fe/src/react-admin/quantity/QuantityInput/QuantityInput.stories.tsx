@@ -1,10 +1,9 @@
-import { Stack } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
-import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
 import { withFormContext2 } from '../../../../../../stories/RAStorybookDecorators'
 
-import { QuantityInput } from './QuantityInput'
 import { useRecordContext } from 'react-admin'
+import { QuantityInput } from './QuantityInput'
 
 export enum QuantityInputMode {
   Controlled,
@@ -23,9 +22,9 @@ export default {
     defaultValue: { control: 'number' },
     mode: {
       options: [0, 1],
-      mapping: [0, 1], 
+      mapping: [0, 1],
       control: {
-        type: 'select', 
+        type: 'select',
         labels: ['Controlled', 'Uncontrolled'],
       },
     },
@@ -65,10 +64,13 @@ export const BasicUsage: Story = {
     const record = useRecordContext()
     console.log()
     return (
-      <Stack>
-        <code>{JSON.stringify(record?.qty, null, 2)}</code>
-        {/* <QuantityInput source="newItem.qty" /> */}
-        <QuantityInput {...args} fullWidth />
+      <Stack direction="row">
+        <Box sx={{ flex: 1 }}>
+          <QuantityInput {...args} />
+        </Box>
+        <Box sx={{ flex: 1, p: 3 }}>
+          <code>{JSON.stringify({ qty: record?.qty }, null, 2)}</code>
+        </Box>
       </Stack>
     )
   },

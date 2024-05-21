@@ -14,7 +14,7 @@ import { useEditContext, useNotify, useRecordContext, useRefresh } from 'react-a
 
 
 export default {
-  title: 'Core Labs/quantity/QuantityInput',
+  title: 'Core Labs/Quantity/QuantityInput',
   component: QuantityInput,
   decorators: [withFormContext],
 }
