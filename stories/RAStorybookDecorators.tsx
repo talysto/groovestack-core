@@ -88,7 +88,7 @@ const dataProvider = () =>
   })
 
 const EditWrapper = ({ children }) => (
-  <Edit resource="test" id={7}>
+  <Edit resource="test" id={7} mutationMode="optimistic">
     <SimpleForm>{children}</SimpleForm>
   </Edit>
 )
@@ -132,7 +132,7 @@ const MyLayout = (props) => (
   />
 )
 
-export const withFormContext2 = (Story, context) => {
+export const withEditFormContext = (Story, context) => {
   return (
     <Admin dataProvider={dataProvider()} layout={MyLayout}>
       <Resource

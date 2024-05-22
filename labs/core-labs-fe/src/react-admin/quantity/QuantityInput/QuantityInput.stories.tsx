@@ -1,6 +1,6 @@
 import { Box, Stack } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
-import { withFormContext2 } from '../../../../../../stories/RAStorybookDecorators'
+import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
 
 import { useRecordContext } from 'react-admin'
 import { QuantityInput } from './QuantityInput'
@@ -13,7 +13,7 @@ export enum QuantityInputMode {
 export default {
   title: 'Core Labs/Quantity/QuantityInput',
   component: QuantityInput,
-  decorators: [withFormContext2],
+  decorators: [withEditFormContext],
   // args: {
   //   onChangeSuccess: (value: number) => console.log('onChangeSuccess', value),
   //   // onClick: fn(),
