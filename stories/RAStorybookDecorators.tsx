@@ -41,7 +41,7 @@ export const withFormContext = (Story, context) => {
           amount: '123.45',
           rating: 3,
           options: ['SM', 'MD', 'LG'],
-          qty: 10,
+          qty: 5,
           qty2: 2,
           created_at: Date.now(),
         }}
@@ -79,7 +79,7 @@ const dataProvider = () =>
         amount: '123.45',
         rating: 3,
         options: ['SM', 'MD', 'LG'],
-        qty: 10,
+        qty: 5,
         qty2: 2,
         created_at: Date.now(),
         updated_at: Date.now(),

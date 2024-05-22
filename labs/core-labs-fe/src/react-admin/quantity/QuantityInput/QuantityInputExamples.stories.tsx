@@ -1,4 +1,5 @@
 import {
+  Box,
   Paper,
   Table,
   TableBody,
@@ -7,7 +8,12 @@ import {
   TableRow,
 } from '@mui/material'
 import { StoryObj } from '@storybook/react'
-import { useEditContext, useNotify, useRefresh } from 'react-admin'
+import {
+  useEditContext,
+  useNotify,
+  useRecordContext,
+  useRefresh,
+} from 'react-admin'
 import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
 import { QuantityInput, QuantityInputMode } from './QuantityInput'
 
@@ -23,12 +29,22 @@ export const MoreExamples: Story = {
   render: () => <QuantityInputExamples />,
 }
 
+const FieldOutput = () => {
+  const record = useRecordContext()
+  return (
+    <Box sx={{ pt: 1.5 }}>
+      <code style={{ whiteSpace: 'pre' }}>
+        {JSON.stringify({ qty: record?.qty })}
+      </code>
+    </Box>
+  )
+}
+
 const ControlledQtyExample = () => {
   // const qty = useRecordContext()
   // console.log('useRecordContext', qty)
   const { record, save } = useEditContext()
-  console.log('useEditContext', record?.qty)
-  
+
   const notify = useNotify()
   const refresh = useRefresh()
 
@@ -67,6 +83,7 @@ const QuantityInputExamples = () => {
           <TableRow>
             <TableCell>Code</TableCell>
             <TableCell>Output</TableCell>
+            <TableCell>Field from Record</TableCell>
             <TableCell>Note</TableCell>
           </TableRow>
         </TableHead>
@@ -75,10 +92,12 @@ const QuantityInputExamples = () => {
           {examples.map((example, idx) => (
             <TableRow key={idx}>
               <TableCell>
-                {/* <Source code={example.code} /> */}
                 <code>{example.code}</code>
               </TableCell>
               <TableCell>{example.component}</TableCell>
+              <TableCell>
+                <FieldOutput />
+              </TableCell>
               <TableCell>{example.desc}</TableCell>
             </TableRow>
           ))}
