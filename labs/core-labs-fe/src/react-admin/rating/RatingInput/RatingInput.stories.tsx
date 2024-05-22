@@ -1,13 +1,15 @@
 import { RatingProps, Stack } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
 import { ComponentProps } from 'react'
-import { withFormContext } from '../../../../../../stories/RAStorybookDecorators'
+import { useRecordContext } from 'react-admin'
+import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
+import { JsonDisplay } from '../../JsonDisplay'
 import { RatingInput } from './RatingInput'
 
 export default {
   title: 'Core Labs/Rating/RatingInput',
   component: RatingInput,
-  decorators: [withFormContext],
+  decorators: [withEditFormContext],
   argTypes: {
     max: { control: 'number' },
     size: {
@@ -40,18 +42,16 @@ type Story = StoryObj<RatingPropsAndCustomArgs>
 /* TODO grab rating source value from the form in the decorator */
 
 export const BasicUsage: Story = {
-  args: {
-    record: {
-      rating: 3,
-    },
-    source: 'rating',
-  },
   render: (args) => {
     const { max, size, precision } = args
+    const record = useRecordContext()
     return (
-      <Stack>
-        <code>{JSON.stringify(args?.record, null, 2)}</code>
-        <RatingInput componentProps={{ max, size, precision }} {...args} />
+      <Stack direction="row" gap={3} alignItems="center">
+        <RatingInput
+          source="rating"
+          componentProps={{ max, size, precision }}
+        />
+        {JsonDisplay({ rating: record?.rating })}
       </Stack>
     )
   },

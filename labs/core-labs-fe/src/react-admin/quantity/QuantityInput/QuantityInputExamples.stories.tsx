@@ -1,5 +1,4 @@
 import {
-  Box,
   Paper,
   Table,
   TableBody,
@@ -15,6 +14,7 @@ import {
   useRefresh,
 } from 'react-admin'
 import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
+import { JsonDisplay } from '../../JsonDisplay'
 import { QuantityInput, QuantityInputMode } from './QuantityInput'
 
 export default {
@@ -31,13 +31,7 @@ export const MoreExamples: Story = {
 
 const FieldOutput = () => {
   const record = useRecordContext()
-  return (
-    <Box sx={{ pt: 1.5 }}>
-      <code style={{ whiteSpace: 'pre' }}>
-        {JSON.stringify({ qty: record?.qty })}
-      </code>
-    </Box>
-  )
+  return JsonDisplay({ qty: record?.qty })
 }
 
 const ControlledQtyExample = () => {
@@ -126,8 +120,8 @@ const examples = [
     desc: 'An example of the input with bounds on it.',
   },
   {
-    code: `<QuantityInput source="qty" mode={QuantityInputMode.Controlled} defaultValue={record.qty} onChangeSuccess={onUpdateQty} label="Quantity" defaultValue={record.qty} min={0} max={10}  />`,
+    code: `<QuantityInput source="qty" mode={QuantityInputMode.Controlled} defaultValue={record.qty} onChangeSuccess={onUpdateQty} label="Quantity" defaultValue={record.qty} min={0} max={10} />`,
     component: <ControlledQtyExample />,
-    desc: 'An example of the controlled version of the input. NOTE code to update the quantity is omitted in this code snippet for brevity. Additionally the edit mode MUST be set to optomistic.',
+    desc: 'An example of the controlled version of the input. NOTE code to update the qty field is omitted in this code snippet for brevity. Additionally on the Edit component, the property mode MUST be set to optimistic.',
   },
 ]

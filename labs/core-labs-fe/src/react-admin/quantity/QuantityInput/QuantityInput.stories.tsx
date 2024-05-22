@@ -1,8 +1,9 @@
-import { Box, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
 import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
 
 import { useRecordContext } from 'react-admin'
+import { JsonDisplay } from '../../JsonDisplay'
 import { QuantityInput } from './QuantityInput'
 
 export enum QuantityInputMode {
@@ -54,23 +55,12 @@ type Story = StoryObj<typeof QuantityInput>
  */
 
 export const BasicUsage: Story = {
-  args: {
-    record: {
-      qty: 10,
-    },
-    source: 'qty',
-  },
   render: (args) => {
     const record = useRecordContext()
-    console.log()
     return (
-      <Stack direction="row">
-        <Box sx={{ flex: 1 }}>
-          <QuantityInput {...args} />
-        </Box>
-        <Box sx={{ flex: 1, p: 3 }}>
-          <code>{JSON.stringify({ qty: record?.qty }, null, 2)}</code>
-        </Box>
+      <Stack direction="row" alignItems="center" gap={3}>
+        <QuantityInput {...args} source="qty" />
+        {JsonDisplay({ rating: record?.qty })}
       </Stack>
     )
   },
