@@ -79,6 +79,7 @@ const dataProvider = () =>
         amount: '123.45',
         rating: 3,
         options: ['SM', 'MD', 'LG'],
+        size: 'sm',
         qty: 5,
         qty2: 2,
         created_at: Date.now(),

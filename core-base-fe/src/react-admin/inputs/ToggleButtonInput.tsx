@@ -30,12 +30,10 @@ import {
 
 
 /**
- * React Admin Custom Input built off the the RadioButtonGroupInput //https://github.com/marmelab/react-admin/blob/master/packages/ra-ui-materialui/src/input/RadioButtonGroupInput.tsx
+ * React Admin Custom Input built off the the RadioButtonGroupInput (https://github.com/marmelab/react-admin/blob/master/packages/ra-ui-materialui/src/input/RadioButtonGroupInput.tsx)
  * Allows for single choice to be selected via toggle buttons, similar to a radio button input.
  * 
- *
  * @component
- *
  *
  * @example
  * return (
