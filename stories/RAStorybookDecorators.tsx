@@ -82,6 +82,23 @@ const dataProvider = () =>
         size: 'sm',
         qty: 5,
         qty2: 2,
+        source:'Archived',
+        status_events: [ {
+          name: 'Archive',
+          key: 'archive',
+          enabled: status != 'archived',
+        },
+        {
+          name: 'Publish',
+          key: 'publish',
+          enabled: status != 'active',
+        },
+        {
+          name: 'Disable/Hide',
+          key: 'draft',
+          enabled: status != 'draft',
+        },
+      ],
         created_at: Date.now(),
         updated_at: Date.now(),
       },

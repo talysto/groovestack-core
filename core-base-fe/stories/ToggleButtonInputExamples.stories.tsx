@@ -104,31 +104,13 @@ const examples = [
   },
 
   //TODO - add example of ReferenceInput as parent populating the choices?
-  {
-    code: '<ToggleButtonInput source="size" />',
-    component: (
-      <ToggleButtonInput
-        source="size"
-      />
-    ),
-    desc: 'ToggleButtonInput using a __ instead of choices, this can also be populated by a filter as well (https://marmelab.com/react-admin/RadioButtonGroupInput.html#choices)',
-  },
   // {
-  //   code: `<ToggleButtonInput source="qty" label="Quantity" defaultValue={3}  min={0} max={10}  />`,
+  //   code: '<ToggleButtonInput source="size" />',
   //   component: (
   //     <ToggleButtonInput
-  //       source="qty"
-  //       label="Quantity"
-  //       defaultValue={3}
-  //       min={0}
-  //       max={10}
+  //       source="size"
   //     />
   //   ),
-  //   desc: 'An example of the input with bounds on it.',
-  // },
-  // {
-  //   code: `<ToggleButtonInput source="qty" mode={QuantityInputMode.Controlled} defaultValue={record.qty} onChangeSuccess={onUpdateQty} label="Quantity" defaultValue={record.qty} min={0} max={10} />`,
-  //   component: <ControlledQtyExample />,
-  //   desc: 'An example of the controlled version of the input. NOTE code to update the qty field is omitted in this code snippet for brevity. Additionally on the Edit component, the property mode MUST be set to optimistic.',
+  //   desc: 'ToggleButtonInput using a __ instead of choices, this can also be populated by a filter as well (https://marmelab.com/react-admin/RadioButtonGroupInput.html#choices)',
   // },
 ]
