@@ -25,7 +25,7 @@ import {
 type StatusEvent = { key: string; enabled: boolean; name: string }
 
 /**
- * React Admin Field that updating a status value via permitted state transition events.
+ * React Admin Field that updating a status value via permitted state transition events. Requires backend implementation to support status transitions.
  *
  * @component
  *
