@@ -82,7 +82,7 @@ const dataProvider = () =>
         size: 'sm',
         qty: 5,
         qty2: 2,
-        source:'Archived',
+        status:'Archived',
         status_events: [ {
           name: 'Archive',
           key: 'archive',
