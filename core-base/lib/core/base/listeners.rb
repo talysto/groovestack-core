@@ -1,7 +1,7 @@
 module Core
   module Base 
     module Listener
-      extend ActiveSupport::Concern
+      extend ::ActiveSupport::Concern
 
       CORE_LISTENER = true
 
@@ -49,7 +49,7 @@ module Core
 
         def listen
           Rails.logger.info "Listening to #{db_channel}"
-          ActiveRecord::Base.connection_pool.with_connection do |connection|
+          ::ActiveRecord::Base.connection_pool.with_connection do |connection|
             @connection = connection
 
             @connection_instance = connection.instance_variable_get(:@connection)
@@ -73,7 +73,7 @@ module Core
         end
 
         def disconnect 
-          ActiveRecord::Base.connection_pool.checkin(connection)
+          ::ActiveRecord::Base.connection_pool.checkin(connection)
         end
       end
     end

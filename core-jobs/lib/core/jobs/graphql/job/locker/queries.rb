@@ -11,12 +11,12 @@ module Core
             included do
               include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
 
-              react_admin_resource :job_lockers, graphql_type: 'Core::Jobs::GraphQL::Job::Locker::Type',
+              react_admin_resource :job_lockers, class_name: 'Core::Jobs::Locker', graphql_type: 'Core::Jobs::GraphQL::Job::Locker::Type',
               graphql_filter: 'Core::Jobs::GraphQL::Job::Locker::Filter'
             end
 
-            def job_lockers_scope(sort_field: nil, sort_order: nil, filter: {})
-              scope = ::Core::Jobs::Locker.unscoped
+            def job_lockers_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+              scope = base_scope
               # scope = scope.where(id: filter.ids) unless filter.ids.nil?
 
               return scope if sort_field.blank? || sort_field == 'id' # no id on this table

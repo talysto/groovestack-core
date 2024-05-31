@@ -86,7 +86,8 @@ export const LoginPage = (props: LoginPageProps) => {
   const serverURLParamsHandled = useHandleServerURLParams()
 
   const [socials, setSocials] = useState<SocialSignInProps['social']>([])
-  let { backgroundImage, credentials = defaultCredentials, Headline = AppInitHeadline, ...rest } = props
+  const [providers, setProviders] = useState<string[]>([])
+  let { backgroundImage, credentials = defaultCredentials, Headline,  ...rest } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
   const checkAuth = useCheckAuth()
@@ -180,7 +181,7 @@ export const LoginPage = (props: LoginPageProps) => {
     setLoading(false)
   }
 
-  const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href}) => {
+  const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href, btnSx }) => {
     return (
       <Box
         component="form"
@@ -188,7 +189,7 @@ export const LoginPage = (props: LoginPageProps) => {
         action={href}
       >
         <Input type='hidden' name='authenticity_token' value={csrf} />
-        <Button type='submit' variant="outlined" startIcon={icon}>{label}</Button>
+        <Button sx={btnSx} type='submit' variant="outlined" startIcon={icon}>{label}</Button>
       </Box>
     )
   }
@@ -229,12 +230,15 @@ export const LoginPage = (props: LoginPageProps) => {
   })
 
   useEffect(() => {
-    const social = credentials.getAppConfig()?.oauth_providers?.enabled.map((p: OauthProvider) => {
+    const appConfig = credentials.getAppConfig()
+    const social = appConfig?.oauth_providers?.configured.map((p: OauthProvider) => {
       const { k, path: href } = p
       return { k, href }
     })
-
     setSocials(social || [])
+
+    const providers = appConfig?.auth_providers?.configured.map((p: OauthProvider) => p.k)
+    setProviders(providers || [])
   }, [])
 
   useEffect(notifyOmniauthFailureError, [serverURLParamsHandled])
@@ -244,15 +248,24 @@ export const LoginPage = (props: LoginPageProps) => {
   return (
     <Root {...rest} ref={containerRef}>
       <Card className={LoginClasses.card}>
-        <div className={LoginClasses.avatar}>
-          <Avatar className={LoginClasses.icon}>
-            <LockIcon />
-          </Avatar>
-        </div>
-        {!credentials.getAppConfig()?.has_admins && Headline && <Headline />}
+        {Headline ? (
+          <Headline />
+        ) : (
+          <>
+            <div className={LoginClasses.avatar}>
+              <Avatar className={LoginClasses.icon}>
+                <LockIcon />
+              </Avatar>
+            </div>
+            {
+              !credentials.getAppConfig()?.has_admins && <AppInitHeadline />
+            }
+          </>
+        )}
         <LoginPanel
           social={socials}
           socialSignInRender={socialSignInRender}
+          providers={providers}
           onLogin={onLogin}
           onRegister={onRegister}
           registration={true}

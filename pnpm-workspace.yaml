@@ -8,5 +8,6 @@ packages:
 - "core-comments-fe"
 - "core-notifications-fe"
 - "core-config-fe"
+- "labs/core-labs-fe"
 - "test-core-fe"
 - "docs"

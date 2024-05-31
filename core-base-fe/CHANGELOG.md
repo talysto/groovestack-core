@@ -1,5 +1,23 @@
 # @groovestack/base
 
+## 0.2.13
+
+### Patch Changes
+
+- diffObjects helper
+
+## 0.2.12
+
+### Patch Changes
+
+- StatusInput gracefully handles undefined save context
+
+## 0.2.11
+
+### Patch Changes
+
+- useSaveOnlyChanges & enhance StatusInput
+
 ## 0.2.10
 
 ### Patch Changes

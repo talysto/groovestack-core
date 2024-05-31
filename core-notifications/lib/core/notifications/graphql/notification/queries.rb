@@ -13,8 +13,8 @@ module Core
             react_admin_resource :notifications, class_name: 'Core::Notifications::Notification', graphql_path: 'Core::Notifications::GraphQL'
           end
 
-          def notifications_scope(sort_field: nil, sort_order: nil, filter: {})
-            scope = ::Core::Notifications::Notification.unscoped
+          def notifications_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+            scope = base_scope
             scope = scope.where(id: filter.ids) unless filter.ids.nil?
             scope = scope.where(type: filter.type) unless filter.type.nil?
 

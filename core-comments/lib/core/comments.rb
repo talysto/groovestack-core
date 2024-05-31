@@ -22,7 +22,6 @@ require 'core/comments/graphql/comment/queries'
 module Core
   module Comments
     class Error < StandardError; end
-    class WrongSchemaFormat < Core::Comments::Error; end
   end
 end
 

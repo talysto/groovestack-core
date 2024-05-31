@@ -4,7 +4,7 @@
 
 https://talysto.com/tech/groovestack/[Groovestack] is an opinionated fullstack application framework that consists of PostgreSQL, Rails, GraphQL and React-Admin. Groovestack CORE is a base set of gems and React components that can be used to bootstrap a new application with services out of the box:
 
-* Base: Reusable Groovestack extensions for CORE applications. 
+* Base: Reusable Groovestack extensions for CORE applications.
 * Auth: Token based authentication fully integrated with Devise at the Rails & GraphQL layer. It also includes a React-Admin login flow that supports email/password as well as Oauth (Google & Apple) out of the box.
 ** https://github.com/talysto/groovestack-core/tree/main/core-auth[Gem Documentation]
 ** https://github.com/talysto/groovestack-core/tree/main/core-auth-fe[React Documentation]
@@ -19,3 +19,27 @@ Find instructions on how to create a new Groovestack application bundled with CO
 == Demos
 
 * https://groovestack-demo.talysto.com/[Jobs Admin Dash]
+
+
+== Workflow Cheatsheet
+
+=== Frontend Projects
+
+* Install all Deps: `pnpm i`
+* Run command on specific module: `pnpm -F {module_name} {command}`
+* Bump and publish, see https://pnpm.io/using-changesets#releasing-changesets[Releasing Changesets]
+* Monitor and autobuild a module on changes: `find core-notifications-fe/src | entr pnpm -F core-notifications-fe build`
+
+=== Publishing New Versions
+Make sure everything builds:
+
+```
+pnpm build
+```
+
+```
+pnpm changeset // select the projects to bump
+pnpm changeset version // bump the versions
+git commit ...
+pnpm publish -r // publish the new versions
+```

@@ -17,7 +17,23 @@ export const defaultAppConfig = {
   oauth_providers: { 
     enabled: [
       {k: 'google', path: 'users/auth/google'},
-      {k: 'apple', path: 'users/auth/apple'}
+      {k: 'apple', path: 'users/auth/apple'},
+    ],
+    configured: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'},
+    ]
+  },
+  auth_providers: { 
+    enabled: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'},
+      {k: 'email' }
+    ],
+    configured: [
+      {k: 'google', path: 'users/auth/google'},
+      {k: 'apple', path: 'users/auth/apple'},
+      {k: 'email' }
     ]
   }
 }
