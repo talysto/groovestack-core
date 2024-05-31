@@ -6,9 +6,9 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import { TikTokIcon } from './TikTokIcon'
 
 import { Box, Stack } from '@mui/material'
-import { useEffect, useState } from 'react'
+import _ from 'lodash'
+import { useState } from 'react'
 import { InputProps, TextInput, useRecordContext } from 'react-admin'
-
 
 export enum SocialMediaPlatform {
   Instagram = 'Instagram',
@@ -30,25 +30,30 @@ export interface SocialLinkProps extends InputProps {
 }
 
 /**
- * SocialLinkInput is a React Admin Input that formats a rating value as a MUI rating component.
+ * SocialLinkInput is a React Admin Input that takes a Social Link Url and styles and adds features to it.
  *
  * FEATURES
  * - Standard React Admin Input property interface
- * - The ability to pass MUI Rating component props via 'componentProps'
+ * - The ability to pass props including platform, which is a SocialMediaPlatform enum in order to render the correct icon.
+ * - The ability to open the link in a new tab via the LaunchIcon.
  *
  * NOTES
- * - Rating Input allows people to share their opinions on something.
+ * - SocialLinkInput allows users to share their social media links.
  */
 
-export const SocialLinkInput = ({ platform, ...props }: SocialLinkProps) => {
+export const SocialLinkInput = ({
+  platform,
+  source,
+  ...props
+}: SocialLinkProps) => {
   // const { field } = useInput(props)
-  const IconComponent = SocialMediaIcons[platform]
-  const record = useRecordContext()
-  const [link, setLink] = useState(record.instagram_url) //TODO use lodash to drill down and get the correct platform on intial load
+  props = { ...props, source }
 
-  useEffect(() => {
-    console.log('link', link)
-  }, [link])
+  const IconComponent = SocialMediaIcons[platform]
+
+  const record = useRecordContext()
+  const intialLink = source && _.get(record, source)
+  const [link, setLink] = useState(intialLink)
 
   if (!IconComponent) {
     console.error(`No platform set: ${platform}`)

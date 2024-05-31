@@ -11,6 +11,18 @@ export default {
   component: SocialLinkInput,
   decorators: [withEditFormContext],
   argTypes: {
+    source: {
+      control: 'select',
+      options: ['tiktok_url', 'instagram_url', 'facebook_url', 'twitter_url'],
+    },
+    platform: {
+      control: 'select',
+      options: Object.values(SocialMediaPlatform),
+    },
+  },
+  args: {
+    source: 'tiktok_url',
+    platform: SocialMediaPlatform.TikTok,
   },
   parameters: {
     controls: {
@@ -28,23 +40,21 @@ type Story = StoryObj<SocialLinkPropsAndCustomArgs>
 /**
  * SocialLinkInput can take standard RA InputProps props (source, etc) and SocialLink props such as platform.
  */
-/* TODO finish implementing inline link, valdations, decide how we are going to add new, etc.  */
+/* TODO finish implementing: valdations, etc.  */
 
 export const BasicUsage: Story = {
   render: (args) => {
-    // const { max, size, precision } = args
     const record = useRecordContext()
     return (
       <>
         <Stack direction="row" gap={3} alignItems="center">
           <SocialLinkInput
-            source="tiktok_url"
-            platform={SocialMediaPlatform.TikTok}
-            // {...args}
-            // componentProps={{ max, size, precision }}
+            {...args}
+            // source="tiktok_url"
+            // platform={SocialMediaPlatform.TikTok}
           />
         </Stack>
-        {JsonDisplay({ socialLink: record?.tiktok_url })}
+        {JsonDisplay({ tiktok_url: record?.tiktok_url })}
       </>
     )
   },
