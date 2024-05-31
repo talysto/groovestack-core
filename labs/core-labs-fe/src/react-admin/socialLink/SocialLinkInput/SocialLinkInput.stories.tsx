@@ -38,13 +38,13 @@ export const BasicUsage: Story = {
       <>
         <Stack direction="row" gap={3} alignItems="center">
           <SocialLinkInput
-            source="instagram_url"
-            platform={SocialMediaPlatform.Instagram}
+            source="tiktok_url"
+            platform={SocialMediaPlatform.TikTok}
             // {...args}
             // componentProps={{ max, size, precision }}
           />
         </Stack>
-        {JsonDisplay({ socialLink: record?.instagram_url })}
+        {JsonDisplay({ socialLink: record?.tiktok_url })}
       </>
     )
   },

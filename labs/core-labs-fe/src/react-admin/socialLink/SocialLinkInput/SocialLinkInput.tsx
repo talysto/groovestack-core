@@ -3,21 +3,26 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import LaunchIcon from '@mui/icons-material/Launch'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TwitterIcon from '@mui/icons-material/Twitter'
+import { TikTokIcon } from './TikTokIcon'
+
 import { Box, Stack } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { InputProps, TextInput, useInput, useRecordContext } from 'react-admin'
+import { InputProps, TextInput, useRecordContext } from 'react-admin'
+
 
 export enum SocialMediaPlatform {
   Instagram = 'Instagram',
   Facebook = 'Facebook',
   Twitter = 'Twitter',
   LinkedIn = 'LinkedIn',
+  TikTok = 'TikTok',
 }
 const SocialMediaIcons = {
   [SocialMediaPlatform.Instagram]: InstagramIcon,
   [SocialMediaPlatform.Facebook]: FacebookIcon,
   [SocialMediaPlatform.Twitter]: TwitterIcon,
   [SocialMediaPlatform.LinkedIn]: LinkedInIcon,
+  [SocialMediaPlatform.TikTok]: TikTokIcon,
 }
 
 export interface SocialLinkProps extends InputProps {
@@ -34,6 +39,7 @@ export interface SocialLinkProps extends InputProps {
  * NOTES
  * - Rating Input allows people to share their opinions on something.
  */
+
 export const SocialLinkInput = ({ platform, ...props }: SocialLinkProps) => {
   // const { field } = useInput(props)
   const IconComponent = SocialMediaIcons[platform]
@@ -57,13 +63,12 @@ export const SocialLinkInput = ({ platform, ...props }: SocialLinkProps) => {
       <TextInput
         {...props}
         variant="outlined"
-        onChange={(e) =>
-          setLink(e.target.value)
-        }
+        onChange={(e) => setLink(e.target.value)}
       />
       <Box sx={{ pb: 1.5, pl: 1 }}>
-        <LaunchIcon fontSize="small"
-        onClick={() => window.open(link, '_blank')}
+        <LaunchIcon
+          fontSize="small"
+          onClick={() => window.open(link, '_blank')}
         />
       </Box>
     </Stack>
