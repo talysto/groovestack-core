@@ -50,5 +50,8 @@ module Core
          DEFAULT_ERROR_MONITOR.error(msg)
       end
     end
+
+    class Error < StandardError; end
+    class WrongSchemaFormat < Core::Base::Error; end
   end
 end
