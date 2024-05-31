@@ -5,7 +5,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { TikTokIcon } from './TikTokIcon'
 
-import { Box, Stack } from '@mui/material'
+import { Box, Button, Stack } from '@mui/material'
 import _ from 'lodash'
 import { useState } from 'react'
 import { InputProps, TextInput, useRecordContext } from 'react-admin'
@@ -36,6 +36,7 @@ export interface SocialLinkProps extends InputProps {
  * - Standard React Admin Input property interface
  * - The ability to pass props including platform, which is a SocialMediaPlatform enum in order to render the correct icon.
  * - The ability to open the link in a new tab via the LaunchIcon.
+ * - disabled also disables the LaunchIcon.
  *
  * NOTES
  * - SocialLinkInput allows users to share their social media links.
@@ -44,10 +45,12 @@ export interface SocialLinkProps extends InputProps {
 export const SocialLinkInput = ({
   platform,
   source,
+  disabled,
+  sx,
   ...props
 }: SocialLinkProps) => {
   // const { field } = useInput(props)
-  props = { ...props, source }
+  props = { ...props, source, disabled }
 
   const IconComponent = SocialMediaIcons[platform]
 
@@ -61,7 +64,7 @@ export const SocialLinkInput = ({
   }
 
   return (
-    <Stack direction="row" alignItems="center">
+    <Stack direction="row" alignItems={'center'} sx={sx}>
       <Box sx={{ pb: 1.5, pr: 1 }}>
         <IconComponent fontSize="large" />
       </Box>
@@ -70,12 +73,16 @@ export const SocialLinkInput = ({
         variant="outlined"
         onChange={(e) => setLink(e.target.value)}
       />
-      <Box sx={{ pb: 1.5, pl: 1 }}>
+      <Button
+        disabled={disabled}
+        size="large"
+        sx={{ p: 0, mb: 2.5, minWidth: '36px' }}
+      >
         <LaunchIcon
           fontSize="small"
           onClick={() => window.open(link, '_blank')}
         />
-      </Box>
+      </Button>
     </Stack>
   )
 }
