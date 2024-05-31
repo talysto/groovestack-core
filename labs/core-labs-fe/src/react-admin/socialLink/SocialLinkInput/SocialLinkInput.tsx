@@ -65,7 +65,7 @@ export const SocialLinkInput = ({
 
   return (
     <Stack direction="row" alignItems={'center'} sx={sx}>
-      <Box sx={{ pb: 1.5, pr: 1 }}>
+      <Box sx={{ pb: 1.75, pr: 1 }}>
         <IconComponent fontSize="large" />
       </Box>
       <TextInput
