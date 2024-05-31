@@ -42,7 +42,6 @@ end
 module Core
   module Jobs
     class Error < StandardError; end
-    class WrongSchemaFormat < Core::Jobs::Error; end
     class DepPostgresRequired < Core::Jobs::Error; end
     class WrongActiveJobQueueAdapter < Core::Jobs::Error; end
   end

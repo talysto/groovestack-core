@@ -2,7 +2,7 @@
 
 if defined?(Rails)
   module Core
-    module Versions
+    module Referrals
       class Railtie < Rails::Engine
         include ::Core::Base::CoreRailtie
 
@@ -13,8 +13,8 @@ if defined?(Rails)
               message: "Error: 'core-base' gem is required, add it your your gemfile"
             },
             {
-              eval: proc { require 'paper_trail' },
-              message: "Error: 'paper_trail' gem is required, add it your your gemfile"
+              eval: proc { require 'base32h' },
+              message: "Error: 'base32h' gem is required, add it your your gemfile"
             },
             {
               eval: proc do

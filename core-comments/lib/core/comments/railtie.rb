@@ -15,7 +15,7 @@ if defined?(Rails)
             {
               eval: proc do
                       unless Rails.application.config.active_record.schema_format == :sql
-                        raise Core::Comments::WrongSchemaFormat
+                        raise Core::Base::WrongSchemaFormat
                       end
                     end,
               message: 'Error: Must change your schema format to :sql'
