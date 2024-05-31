@@ -68,4 +68,4 @@ module Core
   end
 end
 
-require 'test/fabricators/user_fabricator'
+require 'test/fabricators/user_fabricator' if defined?(Fabrication) && defined?(Faker)

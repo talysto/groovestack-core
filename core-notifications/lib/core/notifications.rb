@@ -14,7 +14,7 @@ require 'core/notifications/notification'
 require 'core/notifications/simple'
 require 'core/notifications/task'
 require 'core/notifications/global'
-require 'test/fabricators/notification_fabricator'
+require 'test/fabricators/notification_fabricator' if defined?(Fabrication) && defined?(Faker)
 
 require 'core/notifications/graphql/notification/type'
 require 'core/notifications/graphql/notification/filter'
