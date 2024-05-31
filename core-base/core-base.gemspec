@@ -40,7 +40,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'puma'
 
   spec.add_development_dependency 'activerecord'
-  spec.add_development_dependency 'bugsnag', '~> 6.26'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'rake', '~> 12.0'
 

@@ -32,11 +32,20 @@ module Core
 
     DEFAULT_ERROR_MONITOR =  ::Logger.new(STDOUT)
 
+    # ex: 
+    #   Core::Base.configure do |config|
+    #     config.error_notifier.handler = Bugsnag
+    #   end
+    setting :error_notifier, reader: true do 
+      setting :handler, reader: true
+      setting :notify_method, reader: true, default: :notify
+    end
+
     def self.notify_error(prefix, e)
       msg = "#{[prefix, 'error'].compact.join(' ')}: #{e}"
 
-      if defined?(Bugsnag)
-        Bugsnag.notify(msg)
+      if error_notifier&.handler.present?
+        error_notifier.handler.send(error_notifier.notify_method, msg)
       else
          DEFAULT_ERROR_MONITOR.error(msg)
       end
