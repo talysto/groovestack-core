@@ -1,5 +1,18 @@
 # @groovestack/webhooks
 
+## 0.2.16
+
+### Patch Changes
+
+- initial publish
+
+## 0.2.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.2.12
+
 ## 0.2.14
 
 ### Patch Changes

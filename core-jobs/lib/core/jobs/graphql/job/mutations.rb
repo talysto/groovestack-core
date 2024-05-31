@@ -13,7 +13,7 @@ module Core
 
             field :ids, [ID], null: false, description: 'delete job ids', camelize: false
 
-            def resolve(ids: [], meta: nil)
+            def perform(ids: [], meta: nil)
               {
                 ids: ::Core::Jobs::Job.purge(ids, *[meta&.dig("params", "job_scope")].compact) # if no ids or job_scope provided, want the default purge job_scope to be used
               }
@@ -27,7 +27,7 @@ module Core
 
             type ::Core::Jobs::GraphQL::Job::Type
 
-            def resolve(id:)
+            def perform(id:)
               job = ::Core::Jobs::Job.find_by_id(id)
               ::Core::Jobs::QueJob.destroy(id)
               job
@@ -47,7 +47,7 @@ module Core
 
             type ::Core::Jobs::GraphQL::Job::Type
 
-            def resolve(id:, instance_method: nil, instance_method_args: nil, **attrs)
+            def perform(id:, instance_method: nil, instance_method_args: nil, **attrs)
               job = ::Core::Jobs::Job.find_by_id(id)
 
               if instance_method.present?                 

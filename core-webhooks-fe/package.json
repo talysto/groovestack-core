@@ -1,7 +1,7 @@
 {
   "name": "@groovestack/webhooks",
   "title": "CORE Webhooks",
-  "version": "0.2.14",
+  "version": "0.2.16",
   "type": "module",
   "files": [
     "dist"
@@ -36,5 +36,9 @@
   "dependencies": {
     "@groovestack/base": "workspace:^",
     "react-syntax-highlighter": ">=15.5.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

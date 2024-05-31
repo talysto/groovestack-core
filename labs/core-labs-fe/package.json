@@ -1,0 +1,41 @@
+{
+  "name": "@groovestack/labs",
+  "title": "CORE Labs",
+  "description": "Experimental components and other elements not yet ready for mainline",
+  "version": "0.1.5",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --project tsconfig.build.json && vite build",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@mui/material": ">=5.0.0",
+    "lodash": ">=4.0.0",
+    "react": ">=18.0.0",
+    "react-admin": ">=4.8.0",
+    "react-dom": ">=18.0.0",
+    "react-number-format": "^5.3.4"
+  },
+  "devDependencies": {
+    "@types/prop-types": "^15.7.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

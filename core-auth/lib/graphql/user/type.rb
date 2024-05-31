@@ -1,6 +1,8 @@
 module GraphQL
   module User
     class Type < ::Core::Base::GraphQL::Types::BaseObject
+      include ::Core::Base::GraphQL::Helpers::Types::Typified
+      
       description 'An user'
 
       field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'created at'

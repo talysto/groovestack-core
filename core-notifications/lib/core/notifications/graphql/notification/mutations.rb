@@ -10,7 +10,7 @@ module Core
 
           #   type ::Core::Notifications::GraphQL::Notification::Type
 
-          #   def resolve(**attrs)
+          #   def perform(**attrs)
           #     notification = ::Core::Notifications::Notification.create!(**attrs)
           #     notification
           #   end
@@ -23,7 +23,7 @@ module Core
 
           #   type ::Core::Notifications::GraphQL::Notification::Type
 
-          #   def resolve(id:)
+          #   def perform(id:)
           #     notification = ::Core::Notifications::Notification.find(id)
           #     notification.destroy!
           #   end
@@ -51,7 +51,7 @@ module Core
               }.freeze
             end
 
-            def resolve(id:, instance_method:, instance_method_args:, **attrs)
+            def perform(id:, instance_method:, instance_method_args:, **attrs)
               notification = ::Core::Notifications::Notification.find(id)
               
               if instance_method.present? 

@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
 
   # spec.add_dependency 'activerecord', '~> 6.0'
 
+  spec.add_dependency 'dry-configurable'
   spec.add_dependency 'graphql'
   spec.add_dependency 'pg'
 

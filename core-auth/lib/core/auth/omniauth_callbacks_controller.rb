@@ -91,6 +91,9 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
   def omniauth_failure
     @error = params[:message]
     # render_data_or_redirect('authFailure', omniauth_failure_error: @error)
+
+    ::Core::Base.notify_error("Core::Auth::OmniauthCallbacksController.omniauth_failure", @error)
+
     data = { omniauth_failure_error: @error }.merge(redirect_options)
     redirect_to DeviseTokenAuth::Url.generate(session['omniauth.origin'], data)
   end

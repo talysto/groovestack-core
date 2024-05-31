@@ -28,7 +28,13 @@ const UserMenuItem = React.forwardRef((props: any, ref) => {
   )
 })
 
-export const UserMenu = () => {
+interface MenuItemType {
+  label: string;
+  path: string;
+  icon: JSX.Element;
+}
+
+export const UserMenu = ({ menuItems }: { menuItems?: MenuItemType[] }) => {
   const createPath = useCreatePath()
 
   const {
@@ -39,7 +45,7 @@ export const UserMenu = () => {
 
   if (loadingMe || !currentUser) return null
 
-  const menuConfig = [
+  const defaultMenuItems: MenuItemType[] = [
     {
       label: 'Preferences',
       path: `${createPath({
@@ -63,7 +69,7 @@ export const UserMenu = () => {
 
       <Divider sx={{ mt: 1, mb: 1 }} />
 
-      {menuConfig.map((menu, idx) => (
+      {(menuItems || defaultMenuItems).map((menu, idx) => (
         <UserMenuItem
           key={idx}
           label={menu.label}

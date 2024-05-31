@@ -18,6 +18,7 @@ import {
   useNotify,
   useRecordContext,
   useResourceContext,
+  useSaveContext,
   useUpdate,
 } from 'react-admin'
 
@@ -47,6 +48,7 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
 
   const [openDialog, setOpenDialog] = useState(false)
   const [update, { isLoading, error }] = useUpdate()
+  const saveContext = useSaveContext()
   const [statusEvent, setStatusEvent] = useState<StatusEvent>()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -69,11 +71,19 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
 
   const handleYes = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
-    update(resource, {
-      id: record.id,
-      data: { status_event: statusEvent?.key },
-      previousData: record,
-    })
+
+    const { save } = saveContext || {}
+    
+    if (save) {
+      // in a create / edit context. use save so that mutation options are passed through
+      save({ status_event: statusEvent?.key })
+    } else
+      update(resource, {
+        id: record.id,
+        data: { status_event: statusEvent?.key },
+        previousData: record,
+      })
+
     setOpenDialog(false)
     setAnchorEl(null)
   }

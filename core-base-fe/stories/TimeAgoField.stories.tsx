@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import fakeRestProvider from 'ra-data-fakerest'
 import { Admin, Datagrid, DateField, List, Resource } from 'react-admin'
-import { TimeAgoField } from '../src/react-admin/fields/TimeAgoField'
 import { withFormContext } from '../../stories/RAStorybookDecorators'
-import React from 'react'
+import { TimeAgoField } from '../src/react-admin/fields/TimeAgoField'
 
 import { faker } from '@faker-js/faker'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'React Admin/Fields/TimeAgoField',
+  title: 'Core Base/Fields/TimeAgoField',
   component: TimeAgoField,
   decorators: [withFormContext],
   tags: ['autodocs'], // https://storybook.js.org/docs/react/writing-docs/autodocs,
@@ -31,7 +30,8 @@ const dataProvider = () =>
     ],
   })
 
-const TimestampList = () => (<List actions={false} >
+const TimestampList = () => (
+  <List actions={false}>
     <Datagrid bulkActionButtons={false}>
       <DateField source="created_at" label="DateField" />
       <TimeAgoField source="created_at" label="TimeAgoField" />
@@ -44,7 +44,7 @@ export const Examples: Story = {
     <Admin dataProvider={dataProvider()}>
       <Resource name="timestamps" list={TimestampList} />
     </Admin>
-  )
+  ),
 }
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args

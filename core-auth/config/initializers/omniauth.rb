@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  Core::Auth::Providers::OmniAuth.enabled_providers.each do |p|
+  Core::Auth.configured_providers(ancestor: Core::Auth::Providers::OmniAuth).each do |p|
     provider *p.generate_omniauth_args
   end
 end

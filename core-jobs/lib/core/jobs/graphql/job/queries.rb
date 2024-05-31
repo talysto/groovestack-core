@@ -12,11 +12,26 @@ module Core
             include ::Core::Jobs::GraphQL::Job::Locker::Queries
             include ::Core::Jobs::GraphQL::Job::Report::Queries
 
-            react_admin_resource :jobs, class_name: 'Core::Jobs::Job', graphql_path: 'Core::Jobs::GraphQL'
+            react_admin_resource :jobs, class_name: 'Core::Jobs::Job', graphql_path: 'Core::Jobs::GraphQL', except: [:find]
+
+            field :Job, ::Core::Jobs::GraphQL::Job::Type, null: true, resolver_method: :Job,
+                                                          description: "Find Job." do
+              argument :id, ::GraphQL::Types::ID, required: true, description: ::Core::Base::GraphQL::Documentation::Arguments.id
+            end
           end
 
-          def jobs_scope(sort_field: nil, sort_order: nil, filter: {})
-            scope = ::Core::Jobs::Job.unscoped
+          def Job(id:)
+            # NOTE:
+            # Core::Jobs::Job overrides find b/c no primary key on que_jobs_ext view
+            # Need custom find query to use the overriden method
+            # (Core::Jobs::Job.unscope, the base_scope in the react_admin_resource
+            # provider, does not work with the overriden find method)
+
+            ::Core::Jobs::Job.find id
+          end
+
+          def jobs_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+            scope = base_scope
             scope = scope.where(id: filter.ids) unless filter.ids.nil?
             scope = scope.where(sub_class: filter.sub_class) if filter.sub_class.present?
             scope = scope.where('sub_class ilike ?', "%#{filter.q}%") if filter.q.present?
