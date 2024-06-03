@@ -4,7 +4,7 @@ import { ComponentProps } from 'react'
 import { useRecordContext } from 'react-admin'
 import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
 import { JsonDisplay } from '../../JsonDisplay'
-import { SocialLinkInput, SocialMediaPlatform } from './SocialLinkInput'
+import { SocialLinkInput } from './SocialLinkInput'
 
 export default {
   title: 'Core Labs/socialLink/SocialLinkInput',
@@ -15,14 +15,9 @@ export default {
       control: 'select',
       options: ['tiktok_url', 'instagram_url', 'facebook_url', 'twitter_url'],
     },
-    platform: {
-      control: 'select',
-      options: Object.values(SocialMediaPlatform),
-    },
   },
   args: {
     source: 'tiktok_url',
-    platform: SocialMediaPlatform.TikTok,
   },
   parameters: {
     controls: {
@@ -38,7 +33,7 @@ type SocialLinkPropsAndCustomArgs = ComponentProps<typeof SocialLinkInput>
 type Story = StoryObj<SocialLinkPropsAndCustomArgs>
 
 /**
- * SocialLinkInput can take standard RA InputProps props (source, etc) and SocialLink props such as platform.
+ * SocialLinkInput can take standard RA InputProps props (source, etc) and SocialLink props such as icon.
  */
 /* TODO finish implementing: valdations, etc.  */
 
@@ -51,7 +46,6 @@ export const BasicUsage: Story = {
           <SocialLinkInput
             {...args}
             // source="tiktok_url"
-            // platform={SocialMediaPlatform.TikTok}
           />
         </Stack>
         {JsonDisplay({ tiktok_url: record?.tiktok_url })}

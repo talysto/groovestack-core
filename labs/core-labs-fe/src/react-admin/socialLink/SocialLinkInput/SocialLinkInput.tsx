@@ -1,9 +1,7 @@
-import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import LaunchIcon from '@mui/icons-material/Launch'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import TwitterIcon from '@mui/icons-material/Twitter'
 import { TikTokIcon } from './TikTokIcon'
+import PublicIcon from '@mui/icons-material/Public';
 
 import { Box, Button, Stack } from '@mui/material'
 import _ from 'lodash'
@@ -17,16 +15,23 @@ export enum SocialMediaPlatform {
   LinkedIn = 'LinkedIn',
   TikTok = 'TikTok',
 }
-const SocialMediaIcons = {
-  [SocialMediaPlatform.Instagram]: InstagramIcon,
-  [SocialMediaPlatform.Facebook]: FacebookIcon,
-  [SocialMediaPlatform.Twitter]: TwitterIcon,
-  [SocialMediaPlatform.LinkedIn]: LinkedInIcon,
-  [SocialMediaPlatform.TikTok]: TikTokIcon,
+export interface SocialLinkProps extends InputProps {
 }
 
-export interface SocialLinkProps extends InputProps {
-  platform: SocialMediaPlatform
+export const platformConfig = {
+  Instagram: {
+    icon: InstagramIcon,
+    // validation: 'instagram.com' //callback to validate the url?
+  },
+  TikTok: {
+    icon: TikTokIcon,
+    // validation: 'tiktok.com'
+  },
+  Default: {
+    icon: PublicIcon,
+    // validation: ''// is this a website?
+  }
+
 }
 
 /**
@@ -34,7 +39,8 @@ export interface SocialLinkProps extends InputProps {
  *
  * FEATURES
  * - Standard React Admin Input property interface
- * - The ability to pass props including platform, which is a SocialMediaPlatform enum in order to render the correct icon.
+ * - Smart detection of the platform based on the source prop which changes the icon
+ * - The ability to pass props including icon, to override default icon.
  * - The ability to open the link in a new tab via the LaunchIcon.
  * - disabled also disables the LaunchIcon.
  *
@@ -43,7 +49,7 @@ export interface SocialLinkProps extends InputProps {
  */
 
 export const SocialLinkInput = ({
-  platform,
+  // platform,
   source,
   disabled,
   sx,
@@ -52,21 +58,23 @@ export const SocialLinkInput = ({
   // const { field } = useInput(props)
   props = { ...props, source, disabled }
 
-  const IconComponent = SocialMediaIcons[platform]
 
   const record = useRecordContext()
+  
+  const platform = source.includes('tiktok')
+    ? platformConfig.TikTok
+    : source.includes('instagram')
+    ? platformConfig.Instagram
+    : platformConfig.Default
+
+  source.includes('tiktok') ? 'tiktok' : source
   const intialLink = source && _.get(record, source)
   const [link, setLink] = useState(intialLink)
-
-  if (!IconComponent) {
-    console.error(`No platform set: ${platform}`)
-    return null
-  }
 
   return (
     <Stack direction="row" alignItems={'center'} sx={sx}>
       <Box sx={{ pb: 1.75, pr: 1 }}>
-        <IconComponent fontSize="large" />
+        <platform.icon fontSize="large" />
       </Box>
       <TextInput
         {...props}

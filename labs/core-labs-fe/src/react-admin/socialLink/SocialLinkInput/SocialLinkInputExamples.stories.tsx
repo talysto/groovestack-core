@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import { StoryObj } from '@storybook/react'
 import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
-import { SocialLinkInput, SocialMediaPlatform } from './SocialLinkInput'
+import { SocialLinkInput } from './SocialLinkInput'
 
 export default {
   title: 'Core Labs/SocialLink/SocialLinkInput',
@@ -52,39 +52,24 @@ const SocialLinkInputExamples = () => {
 }
 const examples = [
   {
-    code: '<SocialLinkInput source="instagram_url" platform={SocialMediaPlatform.Instagram} sx={{ minWidth: 300}} />',
+    code: '<SocialLinkInput source="instagram_url" sx={{ minWidth: 300}} />',
     component: (
-      <SocialLinkInput
-        source="instagram_url"
-        platform={SocialMediaPlatform.Instagram}
-        sx={{ minWidth: 300}}
-      />
+      <SocialLinkInput source="instagram_url" sx={{ minWidth: 300 }} />
     ),
-    desc: 'SocialLinkInput acts as a standard ReactAdmin Input. Here we are using the Instagram platform.',
+    desc: 'SocialLinkInput acts as a standard ReactAdmin Input. Here we set the source to instagram_url, and the input will smart detect and display the instagram icon.',
   },
 
   {
-    code: '<SocialLinkInput source="tiktok_url" platform={SocialMediaPlatform.TikTok} sx={{ minWidth: 300}} />',
-    component: (
-      <SocialLinkInput
-        source="tiktok_url"
-        platform={SocialMediaPlatform.TikTok}
-        sx={{ minWidth: 300}}
-      />
-    ),
-    desc: 'Here is another example, but using the tik tok platform. As you can see, the primary difference by changing the platform prop is the SocialMedia Icon.',
+    code: '<SocialLinkInput source="tiktok_url" sx={{ minWidth: 300}} />',
+    component: <SocialLinkInput source="tiktok_url" sx={{ minWidth: 300 }} />,
+    desc: 'Here is another example, but using the tik tok platform. As you can see, the icon is now a tik tok icon.',
   },
 
   {
-    code: '<SocialLinkInput source="facebook_url" platform={SocialMediaPlatform.Facebook} disabled sx={{ minWidth: 300}} />',
+    code: '<SocialLinkInput source="facebook_url" disabled sx={{ minWidth: 300}} />',
     component: (
-      <SocialLinkInput
-        source="facebook_url"
-        platform={SocialMediaPlatform.Facebook}
-        disabled
-        sx={{ minWidth: 300}}
-      />
+      <SocialLinkInput source="facebook_url" disabled sx={{ minWidth: 300 }} />
     ),
-    desc: "Finally here's an example of facebook, but we disabled the value.",
+    desc: "Finally here's an example of facebook, for this platform we have not defined an Icon so it is given a default one. We have also disabled the input.",
   },
 ]
