@@ -5,32 +5,21 @@ import { TikTokIcon } from './TikTokIcon'
 
 import { Box, Button, Stack } from '@mui/material'
 import _ from 'lodash'
-import { useState } from 'react'
-import { InputProps, TextInput, useRecordContext } from 'react-admin'
-
-export enum SocialMediaPlatform {
-  Instagram = 'Instagram',
-  Facebook = 'Facebook',
-  Twitter = 'Twitter',
-  LinkedIn = 'LinkedIn',
-  TikTok = 'TikTok',
-}
-export interface SocialLinkProps extends InputProps {
-  icon?: React.ElementType
-}
+import React, { useState } from 'react'
+import { InputProps, TextInput, Validator, required, useRecordContext } from 'react-admin'
 
 export const platformConfig = {
   Instagram: {
     icon: InstagramIcon,
-    // validation: //callback to validate the url?
+    domain: 'instagram.com',
   },
   TikTok: {
     icon: TikTokIcon,
-    // validation:
+    domain: 'tiktok.com',
   },
   Default: {
     icon: PublicIcon,
-    // validation:
+    domain: '',
   },
 }
 
@@ -42,21 +31,33 @@ export const platformConfig = {
  * - Smart detection of the platform based on the source prop which changes the icon
  * - The ability to pass props including icon, to override default icon.
  * - The ability to open the link in a new tab via the LaunchIcon.
+ * - Default 'smart' validation on the domain of the link pulled from the source name.
  * - disabled also hides the LaunchIcon.
  *
  * NOTES
  * - SocialLinkInput allows users to share their social media links.
  */
 
+export interface SocialLinkProps extends InputProps {
+  // icon?: (OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string; }) | ((props: SvgIconProps) => Element),
+  icon?: React.ElementType
+  source: string
+  disabled?: boolean
+  validate?: Validator | Validator[]
+  sx?: any
+}
+
+
 export const SocialLinkInput = ({
   icon,
   source,
   disabled,
+  validate,
   sx,
   ...props
 }: SocialLinkProps) => {
   // const { field } = useInput(props)
-  props = { ...props, source, disabled }
+  props = { ...props }
 
   const record = useRecordContext()
 
@@ -65,7 +66,12 @@ export const SocialLinkInput = ({
     : source.includes('instagram')
     ? platformConfig.Instagram
     : platformConfig.Default
-  icon ? (platform.icon = icon) : null
+  icon && (platform.icon = icon)
+
+  const validateDomain = (url: string) => {
+    if (!url.includes(platform.domain)) return `Invalid ${platform.domain} URL`
+    return undefined
+  }
 
   source.includes('tiktok') ? 'tiktok' : source
   const intialLink = source && _.get(record, source)
@@ -77,13 +83,21 @@ export const SocialLinkInput = ({
         <platform.icon fontSize="large" />
       </Box>
       <TextInput
-        {...props}
         variant="outlined"
+        source={source}
+        disabled={disabled}
+        {...props}
+        validate={[required(), validateDomain]}
         onChange={(e) => setLink(e.target.value)}
       />
       <Button
         size="large"
-        sx={{ p: 0, mb: 1.75, minWidth: '36px', display: disabled ? 'none' : 'block'}}
+        sx={{
+          p: 0,
+          mb: 1.75,
+          minWidth: '36px',
+          display: disabled ? 'none' : 'block',
+        }}
       >
         <LaunchIcon
           fontSize="small"

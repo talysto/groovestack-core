@@ -59,7 +59,8 @@ export const BasicUsage: Story = {
     return (
       <>
         <Stack direction="row" gap={3} alignItems="center">
-          <SocialLinkInput {...args} icon={IconComponent} />
+          <SocialLinkInput {...args} 
+          icon={IconComponent} />
         </Stack>
         {JsonDisplay({ tiktok_url: record?.tiktok_url })}
       </>
