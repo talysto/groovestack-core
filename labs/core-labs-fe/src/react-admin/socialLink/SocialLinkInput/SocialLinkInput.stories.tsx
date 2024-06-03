@@ -30,10 +30,12 @@ export default {
       control: 'select',
       options: Object.keys(iconMap),
     },
+    disabled: { control: 'boolean' },
   },
   args: {
     source: 'tiktok_url',
     icon: undefined,
+    disabled: false,
   },
   parameters: {
     controls: {

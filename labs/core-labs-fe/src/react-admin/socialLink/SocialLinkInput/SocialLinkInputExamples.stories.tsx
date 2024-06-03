@@ -10,6 +10,7 @@ import {
 import { StoryObj } from '@storybook/react'
 import { withEditFormContext } from '../../../../../../stories/RAStorybookDecorators'
 import { SocialLinkInput } from './SocialLinkInput'
+import { required } from 'react-admin'
 
 export default {
   title: 'Core Labs/SocialLink/SocialLinkInput',
@@ -71,18 +72,20 @@ const examples = [
     component: (
       <SocialLinkInput source="facebook_url" disabled sx={{ minWidth: 300 }} />
     ),
-    desc: "Finally here's an example of facebook, for this platform we have not defined an Icon so it is given a default one. We have also disabled the input.",
+    desc: "Finally here's an example of facebook, for this platform we have not defined an Icon so it is given a default one. We have also disabled the input, which also hides the launch button.",
   },
 
   {
-    code: '<SocialLinkInput source="linkedIn_url" icon={LinkedInIcon} sx={{ minWidth: 300}} />',
+    code: '<SocialLinkInput source="linkedIn_url" label="LinkedIn" icon={LinkedInIcon} sx={{ minWidth: 300}} />',
     component: (
       <SocialLinkInput
         source="linkedIn_url"
+        label="LinkedIn"
         icon={LinkedInIcon}
+        validate={required()}
         sx={{ minWidth: 300 }}
-        />
+      />
     ),
-    desc: "Finally here's an example of linkedIn, because this input does not have a LinkedInIcon, we pass one through ourselves.",
+    desc: "Finally here's an example of linkedIn. We renamed the label, and because this input does not have a LinkedInIcon, we pass one through ourselves.",
   },
 ]

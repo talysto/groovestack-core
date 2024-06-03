@@ -22,15 +22,15 @@ export interface SocialLinkProps extends InputProps {
 export const platformConfig = {
   Instagram: {
     icon: InstagramIcon,
-    // validation: 'instagram.com' //callback to validate the url?
+    // validation: //callback to validate the url?
   },
   TikTok: {
     icon: TikTokIcon,
-    // validation: 'tiktok.com'
+    // validation:
   },
   Default: {
     icon: PublicIcon,
-    // validation: ''// is this a website?
+    // validation:
   },
 }
 
@@ -42,7 +42,7 @@ export const platformConfig = {
  * - Smart detection of the platform based on the source prop which changes the icon
  * - The ability to pass props including icon, to override default icon.
  * - The ability to open the link in a new tab via the LaunchIcon.
- * - disabled also disables the LaunchIcon.
+ * - disabled also hides the LaunchIcon.
  *
  * NOTES
  * - SocialLinkInput allows users to share their social media links.
@@ -82,9 +82,8 @@ export const SocialLinkInput = ({
         onChange={(e) => setLink(e.target.value)}
       />
       <Button
-        disabled={disabled}
         size="large"
-        sx={{ p: 0, mb: 2.5, minWidth: '36px' }}
+        sx={{ p: 0, mb: 1.75, minWidth: '36px', display: disabled ? 'none' : 'block'}}
       >
         <LaunchIcon
           fontSize="small"
