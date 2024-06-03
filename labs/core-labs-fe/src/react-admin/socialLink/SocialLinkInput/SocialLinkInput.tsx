@@ -1,7 +1,7 @@
 import InstagramIcon from '@mui/icons-material/Instagram'
 import LaunchIcon from '@mui/icons-material/Launch'
+import PublicIcon from '@mui/icons-material/Public'
 import { TikTokIcon } from './TikTokIcon'
-import PublicIcon from '@mui/icons-material/Public';
 
 import { Box, Button, Stack } from '@mui/material'
 import _ from 'lodash'
@@ -16,6 +16,7 @@ export enum SocialMediaPlatform {
   TikTok = 'TikTok',
 }
 export interface SocialLinkProps extends InputProps {
+  icon?: React.ElementType
 }
 
 export const platformConfig = {
@@ -30,8 +31,7 @@ export const platformConfig = {
   Default: {
     icon: PublicIcon,
     // validation: ''// is this a website?
-  }
-
+  },
 }
 
 /**
@@ -49,7 +49,7 @@ export const platformConfig = {
  */
 
 export const SocialLinkInput = ({
-  // platform,
+  icon,
   source,
   disabled,
   sx,
@@ -58,14 +58,14 @@ export const SocialLinkInput = ({
   // const { field } = useInput(props)
   props = { ...props, source, disabled }
 
-
   const record = useRecordContext()
-  
+
   const platform = source.includes('tiktok')
     ? platformConfig.TikTok
     : source.includes('instagram')
     ? platformConfig.Instagram
     : platformConfig.Default
+  icon ? (platform.icon = icon) : null
 
   source.includes('tiktok') ? 'tiktok' : source
   const intialLink = source && _.get(record, source)

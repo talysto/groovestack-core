@@ -82,6 +82,7 @@ const dataProvider = () =>
         instagram_url: 'https://www.instagram.com',
         facebook_url: 'https://www.facebook.com',
         tiktok_url: 'https://www.tiktok.com',
+        linkedin_url: 'https://www.linkedin.com',
         size: 'sm',
         qty: 5,
         qty2: 2,

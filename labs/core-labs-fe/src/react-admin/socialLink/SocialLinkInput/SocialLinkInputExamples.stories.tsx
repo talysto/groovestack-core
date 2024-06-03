@@ -1,3 +1,4 @@
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import {
   Paper,
   Table,
@@ -71,5 +72,17 @@ const examples = [
       <SocialLinkInput source="facebook_url" disabled sx={{ minWidth: 300 }} />
     ),
     desc: "Finally here's an example of facebook, for this platform we have not defined an Icon so it is given a default one. We have also disabled the input.",
+  },
+
+  {
+    code: '<SocialLinkInput source="linkedIn_url" icon={LinkedInIcon} sx={{ minWidth: 300}} />',
+    component: (
+      <SocialLinkInput
+        source="linkedIn_url"
+        icon={LinkedInIcon}
+        sx={{ minWidth: 300 }}
+        />
+    ),
+    desc: "Finally here's an example of linkedIn, because this input does not have a LinkedInIcon, we pass one through ourselves.",
   },
 ]
