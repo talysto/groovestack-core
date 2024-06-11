@@ -37,6 +37,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails'
   spec.add_dependency "wisper-activerecord"
 
+  spec.add_development_dependency 'fabrication'
+  spec.add_development_dependency 'faker'
   spec.add_development_dependency 'pg'
   spec.add_development_dependency 'racksh'                # get a console without a full Rails application
   spec.add_development_dependency 'sinatra-activerecord'  # ActiveRecord without rails

@@ -46,3 +46,5 @@ module Core
     class UnverifiedWebhookError < WebhooksError; end
   end
 end
+
+require 'test/fabricators/core_webhooks_event_fabricator' if defined?(Fabrication) && defined?(Faker)
