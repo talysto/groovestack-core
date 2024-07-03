@@ -74,7 +74,7 @@ export const CommentsTable = ({
             <PolymorphicReferenceField source="resource" sortable={false} />
             <TextField source="body" label="Comment" sortable={false} />
             <DateField source="created_at" label="Date" />
-            <EditButton />
+            {/* <EditButton /> */}
             <DeleteWithConfirmButton />
           </Datagrid>
         )}

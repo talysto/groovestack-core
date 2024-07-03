@@ -10,7 +10,9 @@ export const GroovestackLayout = ({ AppBarProps, LayoutProps}: GroovestackLayout
 
     const GroovestackAppBar = () => <AppBar {...AppBarProps} />
 
-    return <Layout {...LayoutProps} appBar={GroovestackAppBar} />
+    return <Layout {...LayoutProps} 
+    appBar={GroovestackAppBar}
+     />
   }
 
   return <Layout {...LayoutProps} />
