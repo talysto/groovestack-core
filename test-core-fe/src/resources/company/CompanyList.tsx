@@ -42,7 +42,7 @@ export const CompanyList = () => (
       <MoneyField source="share_price" />
       <MoneyField source="market_cap" />
 
-      <WrapperField label="status">
+      <WrapperField source='status' label="status">
         <StatusInput source="status" label={false} />
       </WrapperField>
 

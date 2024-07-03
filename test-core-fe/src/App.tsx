@@ -4,10 +4,14 @@ import { Box } from '@mui/material'
 // Source Code import
 import { Auth } from '@groovestack/auth'
 import { Comments } from '@groovestack/comments'
-import { HomeView, GroovestackDash } from '@groovestack/config'
+import { 
+        // HomeView,
+        GroovestackDash } from '@groovestack/config'
 import { Webhooks } from '@groovestack/webhooks'
 
-import { mockDataProvider, mockAuthProvider, credentials, defaultAppConfig } from './data/mock-providers'
+import { mockDataProvider, mockAuthProvider, credentials, 
+          //defaultAppConfig
+        } from './data/mock-providers'
 import { Company } from './resources/company'
 
 // import { pkg as CoreBasePkg } from '@groovestack/base'
