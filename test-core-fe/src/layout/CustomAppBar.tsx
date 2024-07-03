@@ -25,7 +25,7 @@ import { Auth } from '@groovestack/auth'
 export const CustomAppBar = (props: any) => {
   return (
     <AppBar
-      color="secondary"
+      color="primary"
       userMenu={
         <Auth.Users.Menu {...props} />
           // {/* <SettingsMenuItem /> */}
