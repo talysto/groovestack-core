@@ -1,16 +1,26 @@
-import {
-  MoneyField,
-  StatusInput,
-  TimeAgoField,
-} from '@groovestack/base'
+// import {
+//   MoneyField,
+//   StatusInput,
+//   TimeAgoField,
+// } from '@groovestack/base'
 import {
   Datagrid,
   List,
   NumberField,
   ReferenceManyCount,
   TextField,
-  WrapperField,
+  SimpleShowLayout,
+
+  // WrapperField,
 } from 'react-admin'
+
+export const TestShow = () => {
+  return (
+  <SimpleShowLayout record={{ id: 1, name: 'foo', address: 'bar' }}>
+    <TextField source="name" />
+    <TextField source="address" />
+  </SimpleShowLayout>)
+}
 
 export const CompanyList = () => (
   <List>
@@ -38,7 +48,7 @@ export const CompanyList = () => (
           minimumFractionDigits: 2,
         }}
       />
-
+{/* 
       <MoneyField source="share_price" />
       <MoneyField source="market_cap" />
 
@@ -46,7 +56,7 @@ export const CompanyList = () => (
         <StatusInput source="status" label={false} />
       </WrapperField>
 
-      <TimeAgoField source="created_at" />
+      <TimeAgoField source="created_at" /> */}
     </Datagrid>
   </List>
 )

@@ -18,6 +18,7 @@ import { Company } from './resources/company'
 // import { pkg as CoreJobsPkg } from '@groovestack/jobs'
 // import { pkg as CoreWebhooksPkg } from '@groovestack/webhooks'
 
+//@ts-ignore
 const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(params)
 
 const appInit = true

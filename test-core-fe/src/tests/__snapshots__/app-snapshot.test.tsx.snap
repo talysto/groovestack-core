@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders the Company List 1`] = `
+<div>
+  <div
+    class="css-g826q3-RaSimpleShowLayout-root"
+  >
+    <div
+      class="MuiStack-root RaSimpleShowLayout-stack css-jfdv4h-MuiStack-root"
+    >
+      <span
+        class="MuiStack-root ra-field ra-field-name RaSimpleShowLayout-row css-8l66u2-MuiStack-root-RaLabeled-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 RaLabeled-label css-1pnmrwp-MuiTypography-root"
+        >
+          <span>
+            Name
+          </span>
+        </p>
+        <span
+          class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+        >
+          foo
+        </span>
+      </span>
+      <span
+        class="MuiStack-root ra-field ra-field-address RaSimpleShowLayout-row css-8l66u2-MuiStack-root-RaLabeled-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 RaLabeled-label css-1pnmrwp-MuiTypography-root"
+        >
+          <span>
+            Address
+          </span>
+        </p>
+        <span
+          class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+        >
+          bar
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
