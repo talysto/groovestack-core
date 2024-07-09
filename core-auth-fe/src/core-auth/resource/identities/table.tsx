@@ -47,6 +47,7 @@ const ConfirmDeleteIdentityContent = () => {
 const IdentityRow = ({ actionsEnabled, user }: { actionsEnabled: boolean, user: RaRecord }) => {
   const [isHovering, setIsHovering] = useState(false)
   const { total } = useListContext()
+  if (!total) return null
 
   const deletable = total > 1 || user.has_email_provider
 

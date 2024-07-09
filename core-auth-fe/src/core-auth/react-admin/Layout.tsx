@@ -7,7 +7,6 @@ export const Layout = (props: LayoutProps) => {
   const { appBar, ...rest } = props
   return (
     <GroovestackLayout
-      //@ts-ignore
       LayoutProps={rest}
       AppBarProps={{ userMenu: <Users.Menu /> }}
     />
