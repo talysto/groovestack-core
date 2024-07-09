@@ -10,7 +10,6 @@ import {
   ReferenceManyCount,
   TextField,
   WrapperField,
-  Link
 } from 'react-admin'
 
 export const CompanyList = () => (
@@ -18,16 +17,6 @@ export const CompanyList = () => (
     <Datagrid rowClick="edit">
       <TextField source="name" sx={{ fontWeight: 'bold' }} />
       <TextField source="address" />
-      <Link
-        href={"www.google.com"}
-        sx={{ display: 'flex', alignItems: 'center', mr: 1 }}
-        rel="noreferrer"
-        underline="hover"
-        target="_blank"
-        onClick={(event) => {
-          event.stopPropagation()
-        }}
-      >asdf</Link>
 
       <ReferenceManyCount
         label="Comments"

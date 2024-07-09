@@ -15,7 +15,7 @@ import { jobStatuses } from '../../resource/jobs/jobsStatuses'
 export const JobTimelineField = (_props: Omit<FieldProps, 'source'>) => {
   const job = useRecordContext()
 
-  if (!record) return null
+  if (!job) return null
   return (
     <Timeline
       sx={{

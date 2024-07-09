@@ -34,7 +34,7 @@ export const CommentCreate = () => {
   if (!record) return null
 
   function defaults() {
-    return Object.assign(
+    return record && Object.assign(
       {
         resource_type: record.type,
         resource_id: record.id,

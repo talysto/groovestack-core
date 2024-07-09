@@ -2,7 +2,7 @@ import { AppBar, AppBarProps, Layout, LayoutProps } from 'react-admin'
 
 type GroovestackLayoutProps = {
   AppBarProps?: AppBarProps
-  LayoutProps?: LayoutProps
+  LayoutProps: LayoutProps
 }
 
 export const GroovestackLayout = ({ AppBarProps, LayoutProps}: GroovestackLayoutProps) => {
@@ -10,9 +10,7 @@ export const GroovestackLayout = ({ AppBarProps, LayoutProps}: GroovestackLayout
 
     const GroovestackAppBar = () => <AppBar {...AppBarProps} />
 
-    return <Layout {...LayoutProps} 
-    appBar={GroovestackAppBar}
-     />
+    return <Layout {...LayoutProps} appBar={GroovestackAppBar} />
   }
 
   return <Layout {...LayoutProps} />

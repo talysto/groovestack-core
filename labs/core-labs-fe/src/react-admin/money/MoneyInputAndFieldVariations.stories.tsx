@@ -40,7 +40,7 @@ const MoneyInputAndFieldVariations = () => {
           <Datagrid bulkActionButtons={false}>
             <TextField source="title" />
             <MoneyField source="price" currencySource="USD" />
-            <WrapperField label="MoneyInput (GS Base)">
+            <WrapperField source='MoneyInput (GS Base)' label="MoneyInput (GS Base)">
               <SimpleForm toolbar={false} sx={{ p: 0 }}>
                 <MoneyInput
                   source="price"
@@ -60,7 +60,7 @@ const MoneyInputAndFieldVariations = () => {
           <Datagrid bulkActionButtons={false}>
             <TextField source="title" />
             <MoneyField source="price.amount" currencySource="price.code" />
-            <WrapperField label="MoneyInput (GS Base)">
+            <WrapperField source='MoneyInput (GS Base)' label="MoneyInput (GS Base)">
               <SimpleForm toolbar={false} sx={{ p: 0 }}>
                 <MoneyInput
                   source="price"
