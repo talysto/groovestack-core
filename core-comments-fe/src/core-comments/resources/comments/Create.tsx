@@ -75,7 +75,6 @@ export const CommentCreate = () => {
           multiline
           minRows={2}
           maxRows={6}
-          fullWidth
           label={<CurrentUserField />}
           InputProps={{
             endAdornment: (

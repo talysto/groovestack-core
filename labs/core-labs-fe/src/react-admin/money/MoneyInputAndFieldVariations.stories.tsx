@@ -37,7 +37,7 @@ const MoneyInputAndFieldVariations = () => {
 
         {/* <Typography variant="h5">MoneyField</Typography> */}
         <ListContextProvider value={listA}>
-          <Datagrid bulkActionButtons={false}>
+          <Datagrid bulkActionButtons={false} rowClick={false}>
             <TextField source="title" />
             <MoneyField source="price" currencySource="USD" />
             <WrapperField source='MoneyInput (GS Base)' label="MoneyInput (GS Base)">
@@ -57,7 +57,7 @@ const MoneyInputAndFieldVariations = () => {
         </ListContextProvider>
 
         <ListContextProvider value={listB}>
-          <Datagrid bulkActionButtons={false}>
+          <Datagrid bulkActionButtons={false} rowClick={false}>
             <TextField source="title" />
             <MoneyField source="price.amount" currencySource="price.code" />
             <WrapperField source='MoneyInput (GS Base)' label="MoneyInput (GS Base)">

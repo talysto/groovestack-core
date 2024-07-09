@@ -9,7 +9,6 @@ export const AddressInput = (props: AddressInputProps) => {
   const {} = props
   return (
     <TextInput
-      fullWidth
       multiline
       minRows={2}
       sx={{ minWidth: '25em' }}

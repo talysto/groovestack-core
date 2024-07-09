@@ -28,6 +28,7 @@ export const JobDatagrid = () => {
   return (
     <Datagrid
       onClick={rowClick}
+      // rowClick={false}
       // rowClick='tFunc'
       //  bulkActionButtons={!moreThanSmall && false}
       sort={{ field: 'priority', order: 'ASC' }}

@@ -82,7 +82,7 @@ function AdminApp() {
       dashboard={GroovestackDash}
       layout={Auth.RA.Layout}
       requireAuth
-      darkTheme={undefined}
+      darkTheme={null}
       // theme={houseLightTheme}
     >
       <Resource

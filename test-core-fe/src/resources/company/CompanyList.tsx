@@ -14,7 +14,7 @@ import {
 
 export const CompanyList = () => (
   <List>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="name" sx={{ fontWeight: 'bold' }} />
       <TextField source="address" />
 
@@ -22,12 +22,14 @@ export const CompanyList = () => (
         label="Comments"
         reference="Comment"
         target="resource_id"
+        sx={{'& a': { textDecoration: 'none' }}}
       />
 
       <ReferenceManyCount
         label="Changes"
         reference="Version"
         target="resource_id"
+        sx={{'& a': { textDecoration: 'none' }}}
       />
 
       <NumberField

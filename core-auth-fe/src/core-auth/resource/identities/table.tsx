@@ -100,7 +100,7 @@ export const IdentitiesTable = () => {
   return (
     <ReferenceManyField reference="Identity" target="user_id" label={false}>
       {currentUser.id == record.id && <ConnectSocialLogin />}
-      <Datagrid bulkActionButtons={false}>
+      <Datagrid bulkActionButtons={false} rowClick={false}>
         <IdentityRow actionsEnabled={record.id == currentUser.id} user={record} />
       </Datagrid>
     </ReferenceManyField>

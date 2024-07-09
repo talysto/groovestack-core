@@ -28,5 +28,5 @@ export const PolymorphicReferenceField = ({
     refSource = `${source}.id`
   }
 
-  return <ReferenceField source={refSource} reference={refReference} />
+  return <ReferenceField source={refSource} reference={refReference} sx={{'& a': { textDecoration: 'none' }}}/>
 }

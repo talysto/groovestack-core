@@ -35,12 +35,10 @@ const Inputs = () => {
       {record.has_email_provider ? <PasswordInput
         source="current_password"
         label="Current Password"
-        fullWidth
         validate={password ? required() : undefined}
       /> : null }
       <PasswordInput
         source="password"
-        fullWidth
         helperText="(6 characters minimum)"
         validate={[
           ...(currentPassword ? [required()] : []),

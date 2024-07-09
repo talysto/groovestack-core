@@ -57,6 +57,7 @@ export const JobsSummaryPivot = () => {
                   total={5}
                   isLoading={false}
                   sort={{ field: 'sub_class', order: 'ASC' }}
+                  rowClick={false}
                   bulkActionButtons={false}
                   sx={{
                     '& .RaDatagrid-headerCell': {
