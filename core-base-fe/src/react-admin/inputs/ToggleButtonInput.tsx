@@ -170,9 +170,6 @@ export function ToggleButtonInput(props: ToggleButtonGroupInputProps) {
       {renderHelperText ? (
         <FormHelperText>
           <InputHelperText
-            //says touched does not exist on type, but it does
-            //@ts-ignore 
-            touched={isTouched || isSubmitted || !!fetchError}
             error={error?.message || fetchError?.message}
             helperText={helperText}
           />

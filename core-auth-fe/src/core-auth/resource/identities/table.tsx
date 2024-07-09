@@ -34,6 +34,7 @@ export function titleCase(str: string): string {
 
 const ConfirmDeleteIdentityContent = () => {
   const record = useRecordContext()
+  if (!record) return null
 
   return (
     <Box>

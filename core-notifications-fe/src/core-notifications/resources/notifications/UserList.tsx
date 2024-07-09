@@ -43,6 +43,7 @@ const NotificationSubscriber = () => {
 export const UserList = () => {
   const to = useRecordContext()
 
+  if (!to) return null
   return (
     <InfiniteList
       resource="Notification"
@@ -85,6 +86,7 @@ const NotificationItem = () => {
 
 const ActionButtons = () => {
   const notification = useRecordContext()
+  if (!notification) return null
   const { data: currentUser } = useGetIdentity()
 
   const [update] = useUpdate()

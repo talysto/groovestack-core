@@ -28,6 +28,7 @@ const Inputs = () => {
   const password = useWatch({ name: 'password' })
   const currentPassword = useWatch({ name: 'current_password' })
   const record = useRecordContext()
+  if (!record) return null
 
   return (
     <>

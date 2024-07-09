@@ -25,7 +25,6 @@ export const AddressField = ({
   // labelComponents = false,
   ...rest
 }: AddressFieldProps) => {
-  const record = useRecordContext()
   const address = '123 Main St' // TODO _.get(record, rest.source)
 
   if (!address) return null

@@ -14,7 +14,6 @@ const inlineLayout = {
 }
 
 export const Aside = () => {
-  const record = useRecordContext()
 
   return (
     <Paper elevation={0} sx={{ minWidth: 400, width: '33%', ml: 1, p: 2 }}>
