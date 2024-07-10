@@ -2,7 +2,6 @@ import { Update as ActionUpdate } from '@mui/icons-material'
 import { ListItemProps, MenuItem } from '@mui/material'
 import { ReactElement, useState } from 'react'
 import {
-  BulkActionProps,
   RaRecord,
   UpdateParams,
   // UpdateWithUndoListItem,
@@ -15,7 +14,6 @@ import {
 } from 'react-admin'
 import { UseMutationOptions } from 'react-query'
 // import { Button, ButtonProps } from './Button';
-// import { BulkActionProps } from '../types';
 
 //TODO: this is a copy of UpdateWithUndoListItem.tsx, but with the Button component replaced with MenuItem.
 //1. replace props: any with an appropriate version of props: UpdateWithUndoButtonProps
@@ -151,7 +149,7 @@ const sanitizeRestProps = ({
 export interface UpdateWithUndoListItemProps<
   RecordType extends RaRecord = any,
   MutationOptionsError = unknown,
-> extends BulkActionProps,
+> extends
     ListItemProps {
   icon?: ReactElement
   data: any

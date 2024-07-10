@@ -47,7 +47,7 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
   const notify = useNotify()
 
   const [openDialog, setOpenDialog] = useState(false)
-  const [update, { isLoading, error }] = useUpdate()
+  const [update, { error }] = useUpdate()
   const saveContext = useSaveContext()
   const [statusEvent, setStatusEvent] = useState<StatusEvent>()
 
@@ -79,6 +79,8 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
       save({ status_event: statusEvent?.key })
     } else
       update(resource, {
+        //if (!record) return null will ensure record exists
+        //@ts-ignore
         id: record.id,
         data: { status_event: statusEvent?.key },
         previousData: record,

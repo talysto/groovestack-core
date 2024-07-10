@@ -19,6 +19,7 @@ const delayedPromise =
 export const withFormContext = (Story, context) => {
   return (
     <AdminContext
+      darkTheme={undefined}
       i18nProvider={defaultI18nProvider}
       dataProvider={{
         ...testDataProvider(),

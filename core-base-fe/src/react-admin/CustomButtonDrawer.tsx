@@ -226,7 +226,7 @@ const CustomDrawer = ({
             </RecordContextProvider>
           </Create>
         )}
-        {mode == 'edit' && (
+        {mode == 'edit' && record && (
           <Edit
             mutationMode="pessimistic"
             mutationOptions={{ onSuccess }}

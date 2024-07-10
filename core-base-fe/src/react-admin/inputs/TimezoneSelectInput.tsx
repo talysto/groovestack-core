@@ -37,7 +37,6 @@ export const TimezoneSelectInput = (props: AutocompleteInputProps) => {
     <AutocompleteInput
       defaultValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
       choices={zones}
-      fullWidth
       {...props}
     />
   )

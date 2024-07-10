@@ -51,7 +51,7 @@ export const AdminTable = () => (
 
       <PolymorphicReferenceField label="To" source="to" />
 
-      <WrapperField label="Message">
+      <WrapperField source='Message' label="Message">
         <TextField
           source="title"
           sx={{ fontWeight: 'bold', display: 'block' }}

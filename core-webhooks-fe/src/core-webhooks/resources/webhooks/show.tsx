@@ -42,7 +42,7 @@ export const WebhookShow = ({ children, ...rest }: ShowProps) => (
           <TextField source="id" noWrap label={false} {...clickToCopy} />
 
           <SourceField source="source" />
-          <WrapperField label="Event">
+          <WrapperField source='Event' label="Event">
             <TextField source="event" sx={{ mr: 2 }} />
             <FunctionField
               label={false}

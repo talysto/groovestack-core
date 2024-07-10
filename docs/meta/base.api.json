@@ -224,7 +224,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ label, source }: "
+              "text": "({ source }: "
             },
             {
               "kind": "Reference",

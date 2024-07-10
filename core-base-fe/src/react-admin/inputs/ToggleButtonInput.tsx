@@ -170,7 +170,6 @@ export function ToggleButtonInput(props: ToggleButtonGroupInputProps) {
       {renderHelperText ? (
         <FormHelperText>
           <InputHelperText
-            touched={isTouched || isSubmitted || fetchError}
             error={error?.message || fetchError?.message}
             helperText={helperText}
           />

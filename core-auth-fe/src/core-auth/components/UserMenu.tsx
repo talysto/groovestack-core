@@ -16,6 +16,9 @@ import { Link } from 'react-router-dom'
 import { AvatarLabel } from './AvatarLabel'
 
 const UserMenuItem = React.forwardRef((props: any, ref) => {
+  
+  // RA 5 Upgrade - compiler complaining even though it does seem to exist
+  //@ts-ignore
   const { onClose } = useUserMenu()
 
   const { label, icon, path } = props

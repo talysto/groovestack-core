@@ -11,7 +11,7 @@ import {
 import { SourceField } from './SourceField'
 import { TimeAgoField, ToggleButtonInput } from '@groovestack/base'
 
-const IdField = (props: FieldProps) => {
+const IdField = (_props: FieldProps) => {
   const record = useRecordContext()
   return record ? <>{record.id.toString().slice(0, 6)}</> : <>{'...'}</>
 }

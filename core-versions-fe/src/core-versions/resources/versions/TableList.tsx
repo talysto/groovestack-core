@@ -47,7 +47,7 @@ export const VersionsTable: React.FC<{
       <Datagrid rowClick="show" rowStyle={rowStyle}>
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
-        <WrapperField label="Changes">
+        <WrapperField source='Changes' label="Changes">
           <ChangesTable changesDisplayed={changesDisplayed} />
         </WrapperField>
         <DateField source="timestamp" showTime={false} />

@@ -51,6 +51,7 @@ export const CommentsTable = ({
 
   const ListComponent = infinite || stream ? InfiniteList : List
   const renderChildren = children || (stream ? <CommentField /> : null)
+  if (!record) return null
 
   return (
     <>

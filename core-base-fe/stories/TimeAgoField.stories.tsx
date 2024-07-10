@@ -41,7 +41,7 @@ const TimestampList = () => (
 
 export const Examples: Story = {
   render: () => (
-    <Admin dataProvider={dataProvider()}>
+    <Admin darkTheme={null} dataProvider={dataProvider()}>
       <Resource name="timestamps" list={TimestampList} />
     </Admin>
   ),

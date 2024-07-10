@@ -46,9 +46,9 @@ const DefaultToolbar = (props: any) => (
 export const GeneralSettings = ({ imgInput }: { imgInput?: React.ReactNode }) => (
   <SimpleForm warnWhenUnsavedChanges toolbar={<DefaultToolbar />}>
     {imgInput}
-    <TextInput source="name" fullWidth />
-    <TextInput source="email" type="email" fullWidth />
-    {!imgInput && <TextInput disabled source="image" fullWidth />}
+    <TextInput source="name" />
+    <TextInput source="email" type="email" />
+    {!imgInput && <TextInput disabled source="image" />}
   </SimpleForm>
 )
 

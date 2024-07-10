@@ -12,7 +12,7 @@ import { UserAside } from './UserAside'
 export const UserEdit = () => (
   <Edit aside={<UserAside />}>
     <SimpleForm>
-      <TextInput source="name" fullWidth />
+      <TextInput source="name" />
       <SimpleShowLayout {...inlineLayout} sx={{ padding: 0, marginBottom: 5 }}>
         <TextField source="id" />
         <DateField source="created_at" />
