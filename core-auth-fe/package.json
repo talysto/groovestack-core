@@ -29,29 +29,28 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "@mui/icons-material": "5.14.1",
-    "@mui/material": "^5.14.15",
-    "react": "^18.2.0",
-    "react-admin": "^5.0.3",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.18.0"
+    "@mui/icons-material": ">=5.14.1",
+    "@mui/material": ">=5.14.15",
+    "react": "^18.0",
+    "react-admin": "^5.0",
+    "react-dom": "^18.0",
+    "react-router-dom": "^6.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.6",
-    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@apollo/client": "^3.8",
+    "@fortawesome/react-fontawesome": "^0.1",
     "@groovestack/base": "workspace:^",
     "@groovestack/config": "workspace:^",
     "@mui/lab": "5.0.0-alpha.146",
-    "@rails/actioncable": "^7.1.1",
-    "@styled-icons/fa-brands": "^10.47.0",
-    "@styled-icons/styled-icon": "^10.7.0",
-    "graphql-ruby-client": "^1.11.9",
-    "react-hook-form": "^7.47.0",
-    "styled-components": "^6.1.1"
+    "@rails/actioncable": "^7.0",
+    "@styled-icons/fa-brands": "^10.0",
+    "@styled-icons/styled-icon": "^10.0",
+    "graphql-ruby-client": "^1.11",
+    "react-hook-form": "^7.0"
   },
   "devDependencies": {
-    "@types/rails__actioncable": "^6.1.8",
-    "react-router-dom": "^6.18.0"
+    "@types/rails__actioncable": "^6.0",
+    "react-router-dom": "^6.0"
   },
   "publishConfig": {
     "access": "public",

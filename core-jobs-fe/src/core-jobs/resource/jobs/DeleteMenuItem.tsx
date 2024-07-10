@@ -115,21 +115,21 @@ export interface DeleteMenuItemProps<
   label?: string
 }
 
-DeleteWithConfirmButton.propTypes = {
-  //replace with DeleteMenuItem.propTypes?
-  className: PropTypes.string,
-  confirmColor: PropTypes.string,
-  confirmTitle: PropTypes.node,
-  confirmContent: PropTypes.node,
-  label: PropTypes.string,
-  mutationMode: PropTypes.oneOf(['pessimistic', 'optimistic', 'undoable']),
-  record: PropTypes.any,
-  redirect: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.func,
-  ]),
-  resource: PropTypes.string,
-  icon: PropTypes.element,
-  translateOptions: PropTypes.object,
-}
+// DeleteWithConfirmButton.propTypes = {
+//   //replace with DeleteMenuItem.propTypes?
+//   className: PropTypes.string,
+//   confirmColor: PropTypes.string,
+//   confirmTitle: PropTypes.node,
+//   confirmContent: PropTypes.node,
+//   label: PropTypes.string,
+//   mutationMode: PropTypes.oneOf(['pessimistic', 'optimistic', 'undoable']),
+//   record: PropTypes.any,
+//   redirect: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.bool,
+//     PropTypes.func,
+//   ]),
+//   resource: PropTypes.string,
+//   icon: PropTypes.element,
+//   translateOptions: PropTypes.object,
+// }

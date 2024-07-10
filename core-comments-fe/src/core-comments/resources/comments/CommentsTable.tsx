@@ -39,6 +39,8 @@ export const CommentsTable = ({
 }) => {
   const record = useRecordContext()
   // const {children as c, ...rest} = listProps
+  //@ts-ignore 2339
+  const {key, ...restDatagridProps} = datagridProps
 
   const mergedListProps = Object.assign(
     stream ? { actions: false, children: null } : {},
@@ -46,7 +48,7 @@ export const CommentsTable = ({
   )
   const mergedDatagridProps = Object.assign(
     stream ? { bulkActionButtons: false } : {},
-    datagridProps || {},
+    restDatagridProps || {},
   )
 
   const ListComponent = infinite || stream ? InfiniteList : List
