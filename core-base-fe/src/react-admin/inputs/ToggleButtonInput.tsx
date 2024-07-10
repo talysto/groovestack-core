@@ -30,7 +30,7 @@ import {
 
 export function ToggleButtonInput(props: ToggleButtonGroupInputProps) {
   const {
-    alwaysOn,
+    // alwaysOn,
     choices: choicesProp,
     className,
     format,
@@ -199,39 +199,39 @@ export function ToggleButtonInput(props: ToggleButtonGroupInputProps) {
 // }
 
 const sanitizeRestProps = ({
-  afterSubmit,
-  allowNull,
-  alwaysOn,
-  beforeSubmit,
-  choices,
-  className,
-  crudGetMatching,
-  crudGetOne,
-  data,
-  filter,
-  filterToQuery,
-  formatOnBlur,
-  isEqual,
-  limitChoicesToValue,
-  multiple,
-  name,
-  pagination,
-  perPage,
-  ref,
-  reference,
-  refetch,
-  render,
-  setFilter,
-  setPagination,
-  setSort,
-  sort,
-  subscription,
-  type,
-  validateFields,
-  validation,
-  value,
+  // afterSubmit,
+  // allowNull,
+  // alwaysOn,
+  // beforeSubmit,
+  // choices,
+  // className,
+  // crudGetMatching,
+  // crudGetOne,
+  // data,
+  // filter,
+  // filterToQuery,
+  // formatOnBlur,
+  // isEqual,
+  // limitChoicesToValue,
+  // multiple,
+  // name,
+  // pagination,
+  // perPage,
+  // ref,
+  // reference,
+  // refetch,
+  // render,
+  // setFilter,
+  // setPagination,
+  // setSort,
+  // sort,
+  // subscription,
+  // type,
+  // validateFields,
+  // validation,
+  // value,
   ...rest
-}: any) => sanitizeInputRestProps(rest)
+}) => sanitizeInputRestProps(rest)
 
 export type ToggleButtonGroupInputProps = Omit<CommonInputProps, 'source'> &
   ChoicesProps &
@@ -250,7 +250,7 @@ export const ToggleButtonGroupInputClasses = {
 const StyledFormControl = styled(FormControl, {
   name: PREFIX,
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
+})(() => ({
   [`& .${ToggleButtonGroupInputClasses.label}`]: {
     // transform: 'translate(0, 5px) scale(0.75)',
     // transformOrigin: `top ${theme.direction === 'ltr' ? 'left' : 'right'}`,
