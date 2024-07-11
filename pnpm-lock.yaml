@@ -150,6 +150,73 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2(@types/node@20.14.10)(jsdom@20.0.3)(terser@5.24.0)
 
+  RailsViteTestApp:
+    dependencies:
+      '@apollo/client':
+        specifier: ^3.8.7
+        version: 3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@groovestack/auth':
+        specifier: workspace:^
+        version: link:../core-auth-fe
+      '@groovestack/base':
+        specifier: workspace:^
+        version: link:../core-base-fe
+      '@groovestack/comments':
+        specifier: workspace:^
+        version: link:../core-comments-fe
+      '@groovestack/config':
+        specifier: workspace:^
+        version: link:../core-config-fe
+      '@groovestack/jobs':
+        specifier: workspace:^
+        version: link:../core-jobs-fe
+      '@groovestack/notifications':
+        specifier: workspace:^
+        version: link:../core-notifications-fe
+      '@groovestack/versions':
+        specifier: workspace:^
+        version: link:../core-versions-fe
+      '@groovestack/webhooks':
+        specifier: workspace:^
+        version: link:../core-webhooks-fe
+      '@moonlight-labs/ra-data-graphql-advanced':
+        specifier: ^4.9.8
+        version: 4.9.9(graphql@16.8.1)(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/material':
+        specifier: ^5.14.18
+        version: 5.16.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@rails/actioncable':
+        specifier: ^7.1.2
+        version: 7.1.2
+      graphql:
+        specifier: ^16.8.1
+        version: 16.8.1
+      graphql-ruby-client:
+        specifier: ^1.11.10
+        version: 1.14.0(@apollo/client@3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@16.8.1)
+      ra-data-fakerest:
+        specifier: ^4.16.0
+        version: 4.16.19(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1))
+      ra-data-simple-rest:
+        specifier: ^4.16.0
+        version: 4.16.19(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1))
+      react:
+        specifier: ^18.0
+        version: 18.3.1
+      react-admin:
+        specifier: ^5.0
+        version: 5.0.4(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+      react-dom:
+        specifier: ^18.0
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      vite:
+        specifier: ^5.3.3
+        version: 5.3.3(@types/node@20.14.10)(terser@5.24.0)
+      vite-plugin-ruby:
+        specifier: ^5.0.0
+        version: 5.0.0(vite@5.3.3(@types/node@20.14.10)(terser@5.24.0))
+
   core-auth-fe:
     dependencies:
       '@apollo/client':
@@ -2658,6 +2725,12 @@ packages:
 
   '@microsoft/tsdoc@0.14.2':
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
+
+  '@moonlight-labs/ra-data-graphql-advanced@4.9.9':
+    resolution: {integrity: sha512-o+vV9EncTPfaCd0NMmgf+dolyND/WtHErsdBweCgxcIgUP/nbeQXnQSeQTaaiMtzS36Koji6Aa9mld1v63gykw==}
+    peerDependencies:
+      graphql: ^15.6.0
+      ra-core: ^4.0.0
 
   '@mui/base@5.0.0-beta.17':
     resolution: {integrity: sha512-xNbk7iOXrglNdIxFBN0k3ySsPIFLWCnFxqsAYl7CIcDkD9low4kJ7IUuy6ctwx/HAy2fenrT3KXHr1sGjAMgpQ==}
@@ -6092,8 +6165,21 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
+  graphql-ast-types-browser@1.0.2:
+    resolution: {integrity: sha512-QuKZ+Et3dE7SyO5c41eNPlJc7+HwQxOzHfmIhqzj4cUgAGyhSwVkKb7K24zom8y6y0VnG7Xb3RRypjIVvfIevQ==}
+    peerDependencies:
+      graphql: ^0.11.7
+
   graphql-ruby-client@1.11.9:
     resolution: {integrity: sha512-bcwpod020KDcqUUVQ22sUifL7lRuIzcjFiYauFF/V/2oRt5Wd/fClKqRny2p+1RX7CHm+dzrQlKkuwBh7Z84HA==}
+    engines: {node: '>=10'}
+    hasBin: true
+    peerDependencies:
+      '@apollo/client': '>=3.3.6'
+      graphql: '>=14.3.1'
+
+  graphql-ruby-client@1.14.0:
+    resolution: {integrity: sha512-F45uBF9sJrF+UtPUggKq+fnYImT2w/pH4k/rpq+LrvmkxYNnNA6asX8dsSWml3MDDGFDSVWioBtsffq6f09uTg==}
     engines: {node: '>=10'}
     hasBin: true
     peerDependencies:
@@ -6459,9 +6545,6 @@ packages:
   is-ci@2.0.0:
     resolution: {integrity: sha512-YfJT7rkpQB0updsdHLGWrvhBJfcfzNNawYDNIyQXJz0IViGf75O8EBPKSdvw2rF+LGCsX4FZ8tcr3b19LcZq4w==}
     hasBin: true
-
-  is-core-module@2.13.1:
-    resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
 
   is-core-module@2.14.0:
     resolution: {integrity: sha512-a5dFJih5ZLYlRtDc0dZWP7RiKr6xIKzmn/oAYCDvdLThadVgyJwlaoQPmRtMSpz+rk0OGAgIu+TcM9HUF0fk1A==}
@@ -7760,6 +7843,10 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
+  pluralize@7.0.0:
+    resolution: {integrity: sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==}
+    engines: {node: '>=4'}
+
   polished@4.2.2:
     resolution: {integrity: sha512-Sz2Lkdxz6F2Pgnpi9U5Ng/WdWAUZxmHrNPoVlm3aAemxoy2Qy7LGjQg4uf8qKelDAUW94F4np3iH2YPf2qefcQ==}
     engines: {node: '>=10'}
@@ -8172,10 +8259,26 @@ packages:
     peerDependencies:
       ra-core: ^4.0.0
 
+  ra-data-fakerest@4.16.19:
+    resolution: {integrity: sha512-bJ1sZJWGr2fcHVpLckU1nLIE0Pm4Cu9f1TPAuO80WuK9jgtpE1YlvmFmL3Nxj+lXIWJstgmDit2BhqWzMRjO7A==}
+    peerDependencies:
+      ra-core: ^4.0.0
+
   ra-data-fakerest@5.0.4:
     resolution: {integrity: sha512-OO5+H1Y+Vl0lOfN6KkgU8XX0XXDNfS7Ke8lk0i6obuNDTWJzz6HltoVIwBaZphRjm41uuOwgt7PTsmbyRYdr0Q==}
     peerDependencies:
       ra-core: ^5.0.0
+
+  ra-data-graphql@4.16.19:
+    resolution: {integrity: sha512-zsyz8kIl5gNVVIjzNFbwIGutXQsHtXemvg9gAZZWO+TP/cjSYCekXRecBWAvcOsl+jX9XUrGuZDiMTIWVuUSAg==}
+    peerDependencies:
+      graphql: ^15.6.0 || ^16
+      ra-core: ^4.0.0
+
+  ra-data-simple-rest@4.16.19:
+    resolution: {integrity: sha512-TMOJxWXNRr6f2yNn6uXwXv4yuG5J4RUoXatmHa506jZJyQazVTMey4W8rQJvHjYGvLWE4InBfzv28BDRYTUstQ==}
+    peerDependencies:
+      ra-core: ^4.0.0
 
   ra-i18n-polyglot@5.0.4:
     resolution: {integrity: sha512-KcDgDJqIvaqFa7YAOhh4lL2yhDLGE3Z//wJkJ9gQjty1C2Y7aUWTI1t7DRFcs09inA5Z6/aawXd/oBNtG8wbjA==}
@@ -9661,6 +9764,11 @@ packages:
   vite-plugin-istanbul@3.0.4:
     resolution: {integrity: sha512-DJy3cq6yOFbsM3gLQf/3zeuaJNJsfBv5dLFdZdv8sUV30xLtZI+66QeYfHUyP/5vBUYyLA+xNUCSG5uHY6w+5g==}
 
+  vite-plugin-ruby@5.0.0:
+    resolution: {integrity: sha512-c8PjTp21Ah/ttgnNUyu0qvCXZI08Jr9I24oUKg3TRIRhF5GcOZ++6wtlTCrNFd9COEQbpXHxlRIXd/MEg0iZJw==}
+    peerDependencies:
+      vite: '>=5.0.0'
+
   vite@5.3.3:
     resolution: {integrity: sha512-NPQdeCU0Dv2z5fu+ULotpuq5yfCS1BzKUIPhNbP3YBfAMGJXbt2nS+sbTFu+qchaqWTD+H3JK++nRwr6XIcp6A==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -10159,7 +10267,7 @@ snapshots:
       response-iterator: 0.2.6
       symbol-observable: 4.0.0
       ts-invariant: 0.10.3
-      tslib: 2.6.2
+      tslib: 2.6.3
       zen-observable-ts: 1.2.5
     optionalDependencies:
       react: 18.3.1
@@ -13314,13 +13422,12 @@ snapshots:
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
       '@jridgewell/set-array': 1.2.1
-      '@jridgewell/sourcemap-codec': 1.4.15
+      '@jridgewell/sourcemap-codec': 1.5.0
       '@jridgewell/trace-mapping': 0.3.25
 
   '@jridgewell/resolve-uri@3.1.1': {}
 
-  '@jridgewell/resolve-uri@3.1.2':
-    optional: true
+  '@jridgewell/resolve-uri@3.1.2': {}
 
   '@jridgewell/set-array@1.1.2': {}
 
@@ -13342,8 +13449,8 @@ snapshots:
 
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
-      '@jridgewell/resolve-uri': 3.1.1
-      '@jridgewell/sourcemap-codec': 1.4.15
+      '@jridgewell/resolve-uri': 3.1.2
+      '@jridgewell/sourcemap-codec': 1.5.0
 
   '@jridgewell/trace-mapping@0.3.9':
     dependencies:
@@ -13449,6 +13556,21 @@ snapshots:
       resolve: 1.19.0
 
   '@microsoft/tsdoc@0.14.2': {}
+
+  '@moonlight-labs/ra-data-graphql-advanced@4.9.9(graphql@16.8.1)(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@apollo/client': 3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      graphql: 16.8.1
+      graphql-ast-types-browser: 1.0.2(graphql@16.8.1)
+      lodash: 4.17.21
+      pluralize: 7.0.0
+      ra-core: 5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)
+      ra-data-graphql: 4.16.19(graphql@16.8.1)(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    transitivePeerDependencies:
+      - graphql-ws
+      - react
+      - react-dom
+      - subscriptions-transport-ws
 
   '@mui/base@5.0.0-beta.17(@types/react@18.3.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -15444,15 +15566,15 @@ snapshots:
 
   '@wry/context@0.7.4':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@wry/equality@0.5.7':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@wry/trie@0.4.3':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@xtuc/ieee754@1.2.0': {}
 
@@ -17999,10 +18121,21 @@ snapshots:
 
   graphemer@1.4.0: {}
 
+  graphql-ast-types-browser@1.0.2(graphql@16.8.1):
+    dependencies:
+      graphql: 16.8.1
+
   graphql-ruby-client@1.11.9(@apollo/client@3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@16.8.1):
     dependencies:
       '@apollo/client': 3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       glob: 7.2.3
+      graphql: 16.8.1
+      minimist: 1.2.8
+
+  graphql-ruby-client@1.14.0(@apollo/client@3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(graphql@16.8.1):
+    dependencies:
+      '@apollo/client': 3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      glob: 10.3.10
       graphql: 16.8.1
       minimist: 1.2.8
 
@@ -18402,10 +18535,6 @@ snapshots:
   is-ci@2.0.0:
     dependencies:
       ci-info: 2.0.0
-
-  is-core-module@2.13.1:
-    dependencies:
-      hasown: 2.0.2
 
   is-core-module@2.14.0:
     dependencies:
@@ -19720,7 +19849,7 @@ snapshots:
     dependencies:
       '@wry/context': 0.7.4
       '@wry/trie': 0.4.3
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   optionator@0.9.3:
     dependencies:
@@ -19940,6 +20069,8 @@ snapshots:
       playwright-core: 1.44.0
     optionalDependencies:
       fsevents: 2.3.2
+
+  pluralize@7.0.0: {}
 
   polished@4.2.2:
     dependencies:
@@ -20521,9 +20652,32 @@ snapshots:
       fakerest: 3.5.0
       ra-core: 5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)
 
+  ra-data-fakerest@4.16.19(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)):
+    dependencies:
+      fakerest: 3.5.0
+      ra-core: 5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)
+
   ra-data-fakerest@5.0.4(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       fakerest: 4.0.1
+      ra-core: 5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)
+
+  ra-data-graphql@4.16.19(graphql@16.8.1)(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@apollo/client': 3.8.7(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      graphql: 16.8.1
+      lodash: 4.17.21
+      pluralize: 7.0.0
+      ra-core: 5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)
+    transitivePeerDependencies:
+      - graphql-ws
+      - react
+      - react-dom
+      - subscriptions-transport-ws
+
+  ra-data-simple-rest@4.16.19(ra-core@5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)):
+    dependencies:
+      query-string: 7.1.3
       ra-core: 5.0.4(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.52.1(react@18.3.1))(react-router-dom@6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.24.1(react@18.3.1))(react@18.3.1)
 
   ra-i18n-polyglot@5.0.4(react-dom@18.2.0(react@18.2.0))(react-hook-form@7.52.1(react@18.2.0))(react-router-dom@6.24.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-router@6.24.1(react@18.2.0))(react@18.2.0):
@@ -21221,7 +21375,7 @@ snapshots:
 
   resolve@1.22.8:
     dependencies:
-      is-core-module: 2.13.1
+      is-core-module: 2.14.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
@@ -22423,6 +22577,14 @@ snapshots:
       istanbul-lib-instrument: 5.2.1
       picocolors: 1.0.1
       test-exclude: 6.0.0
+    transitivePeerDependencies:
+      - supports-color
+
+  vite-plugin-ruby@5.0.0(vite@5.3.3(@types/node@20.14.10)(terser@5.24.0)):
+    dependencies:
+      debug: 4.3.5
+      fast-glob: 3.3.2
+      vite: 5.3.3(@types/node@20.14.10)(terser@5.24.0)
     transitivePeerDependencies:
       - supports-color
 

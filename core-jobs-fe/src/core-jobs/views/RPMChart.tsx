@@ -89,7 +89,7 @@ export const RPMChart = () => {
                 )
 
               const reversedKeys2 = {
-                // @ts-ignore-line
+                // @ts-ignore
                 period: reversedKeys.period,
                 ...reversedKeys,
               }

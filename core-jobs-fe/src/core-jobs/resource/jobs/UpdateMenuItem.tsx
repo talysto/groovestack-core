@@ -76,7 +76,7 @@ export const UpdateMenuItem = (props: any) => {
     ...otherMutationOptions
   } = mutationOptions
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: Event) => {
     updateMany(
       resource,
       { id: record.id, data, meta: mutationMeta, previousData: record },

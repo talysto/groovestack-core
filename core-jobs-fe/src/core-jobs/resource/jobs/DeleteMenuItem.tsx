@@ -17,7 +17,7 @@ import { UseMutationOptions } from 'react-query'
 // import { Confirm } from '../layout';
 // import { Button, ButtonProps } from './Button';
 
-export const DeleteMenuItem = <RecordType extends RaRecord = any>(
+export const DeleteMenuItem = <RecordType extends RaRecord>(
   props: DeleteMenuItemProps<RecordType>,
 ) => {
   const {
