@@ -10,8 +10,6 @@ export default tseslint.config(
     ignores: ['**/*.config.js', '**/*.config.ts', '**/dist/*', '.storybook/*'],
   },
 
-  
-
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
 
@@ -28,8 +26,21 @@ export default tseslint.config(
 
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
+      "@typescript-eslint/ban-ts-comment": "warn",
       'react/jsx-uses-react': 'error',
-      'react/jsx-uses-vars': 'error',
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "args": "all",
+          "argsIgnorePattern": "^_",
+          "caughtErrors": "all",
+          "caughtErrorsIgnorePattern": "^_",
+          "destructuredArrayIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "ignoreRestSiblings": true
+        }
+      ]
+
     },
   },
 )
