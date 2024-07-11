@@ -14,7 +14,7 @@ import {
   Button,
   InfiniteList,
   SingleFieldList,
-  useDataProvider,
+  // useDataProvider,
   useGetIdentity,
   useListContext,
   useRecordContext,
@@ -92,7 +92,7 @@ const ActionButtons = () => {
   const [update] = useUpdate()
 
 
-  const markAsRead = (e: any) => {
+  const markAsRead = (e: { preventDefault: () => void; }) => {
     e.preventDefault() // necessary to prevent redirects on update (default save behavior)
 
     update(
@@ -109,7 +109,7 @@ const ActionButtons = () => {
     )
   }
 
-  const markAsComplete = (e: any, action_response: string) => {
+  const markAsComplete = (e: { preventDefault: () => void; }, action_response: string) => {
     e.preventDefault()
 
     update(
