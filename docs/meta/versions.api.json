@@ -183,7 +183,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    changes: (string | any[])[][];\n    timestamp: "
+              "text": "{\n    changes: (string | (string | number | {\n        unchanged: string;\n        name: string;\n        amount: number;\n    } | null)[])[][];\n    timestamp: "
             },
             {
               "kind": "Reference",
@@ -242,7 +242,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    changes: (string | any[])[][];\n    timestamp: "
+              "text": "{\n    changes: (string | (string | number | {\n        unchanged: string;\n        name: string;\n        amount: number;\n    } | null)[])[][];\n    timestamp: "
             },
             {
               "kind": "Reference",

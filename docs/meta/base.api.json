@@ -693,7 +693,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "CustomButtonDrawer: ({ mode, icon, drawerProps, createProps, editProps, onClickableComponentClick, clickableComponent, children, drawerWidth, label, footer, }: "
+              "text": "CustomButtonDrawer: ({ mode, icon, drawerProps, createProps, editProps, clickableComponent, children, drawerWidth, footer, }: "
             },
             {
               "kind": "Reference",
@@ -723,7 +723,7 @@
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "{ mode, icon, drawerProps, createProps, editProps, onClickableComponentClick, clickableComponent, children, drawerWidth, label, footer, }",
+              "parameterName": "{ mode, icon, drawerProps, createProps, editProps, clickableComponent, children, drawerWidth, footer, }",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
