@@ -98,7 +98,7 @@ export const LoginPage = (props: LoginPageProps) => {
 
   const [socials, setSocials] = useState<SocialSignInProps['social']>([])
   const [providers, setProviders] = useState<string[]>([])
-  let {
+  const {
     backgroundImage,
     credentials = defaultCredentials,
     Headline,
@@ -202,7 +202,7 @@ export const LoginPage = (props: LoginPageProps) => {
   }
 
   const socialSignInRender: SocialSignInProps['renderButton'] = ({
-    key,
+    //key,
     icon,
     label,
     href,
@@ -320,7 +320,7 @@ export const LoginClasses = {
 
 const Root = styled('div', {
   name: PREFIX,
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (_props, styles) => styles.root,
 })(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',

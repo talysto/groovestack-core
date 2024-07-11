@@ -1,10 +1,8 @@
-import LaunchIcon from '@mui/icons-material/Launch'
 import { Paper, Typography } from '@mui/material'
 import {
   ChipField,
   SimpleShowLayout,
   TextField,
-  useRecordContext,
 } from 'react-admin'
 
 const sidebarConfig: any = []
@@ -22,7 +20,7 @@ export const Aside = () => {
         <ChipField source="status" size="small" label="Status" />
       </SimpleShowLayout>
 
-      {sidebarConfig.map((section: any, index: any) => (
+      {sidebarConfig.map((section: any) => (
         <Paper sx={{ p: 2, mb: 3 }} id={`${section.key}-header`}>
           <Typography component="h4" variant="h6">
             {section.label}

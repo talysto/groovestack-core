@@ -66,7 +66,7 @@ const Example = (p: ExampleType) => {
 type ExampleStory = StoryObj<typeof Example>
 
 export const Examples: ExampleStory = {
-  render: (args) => (
+  render: (_args) => (
     <Stack direction="row" gap={2} sx={{ flexWrap: 'wrap' }}>
       {examples.map((example, idx) => (
         <Example key={idx} record={example.record} props={example.props} />

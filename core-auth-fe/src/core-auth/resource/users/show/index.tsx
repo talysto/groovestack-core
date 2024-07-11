@@ -3,7 +3,6 @@ import {
   DateField,
   Edit,
   EditProps,
-  Labeled,
   SaveButton,
   Show,
   SimpleForm,

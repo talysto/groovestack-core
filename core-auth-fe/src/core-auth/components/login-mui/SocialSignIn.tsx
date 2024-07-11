@@ -49,7 +49,7 @@ export const SocialSignIn = ({ renderButton, social, mode=SocialSignInMode.Main 
   const renderSocials = () => {
     return (
       <>
-        {socials.map(({ k, href, standard }) => {
+        {socials.map(({ _k, href, standard }) => {
           const { key, icon, label } = standard
           
           if (renderButton) return <span key={key}>{renderButton({ key, icon, label, href, btnSx })}</ span>
