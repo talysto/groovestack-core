@@ -56,7 +56,6 @@ export const CommentCreate = () => {
       mutationOptions={{
         onSuccess: () => {
           // TODO Clear the form
-          // @ts-ignore-line
           // document.getElementById("commentCreateForm").reset();
           // formContext.reset(defaults())
           // refresh()

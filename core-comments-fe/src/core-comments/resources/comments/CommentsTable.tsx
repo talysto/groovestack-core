@@ -39,8 +39,9 @@ export const CommentsTable = ({
 }) => {
   const record = useRecordContext()
   // const {children as c, ...rest} = listProps
-  //@ts-ignore 2339
-  const {key, ...restDatagridProps} = datagridProps
+
+  //@ts-expect-error T2339 wip fixing comments table
+  const {_key, ...restDatagridProps} = datagridProps
 
   const mergedListProps = Object.assign(
     stream ? { actions: false, children: null } : {},
@@ -59,7 +60,7 @@ export const CommentsTable = ({
     <>
       <CommentCreate />
 
-      {/* @ts-ignore-line */}
+      
       <ListComponent
         sort={{ field: 'created_at', order: 'DESC' }}
         filters={stream ? undefined : filters}

@@ -5,7 +5,6 @@ import {
   List,
   SearchInput,
   TextField,
-  TextInput,
   useRecordContext,
 } from 'react-admin'
 import { SourceField } from './SourceField'
