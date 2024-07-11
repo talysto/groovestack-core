@@ -3,7 +3,7 @@ import { useRecordContext } from 'react-admin'
 import { detailedDiff } from 'deep-object-diff'
 
 const ObjectChanges = ({from, to}: {from:object, to:object}) => {
-  const diff = Object.fromEntries(Object.entries(detailedDiff(from, to)).filter(([_, v]) => v != null && Object.keys(v).length != 0 ))
+  const diff = Object.fromEntries(Object.entries(detailedDiff(from, to)).filter(([, v]) => v != null && Object.keys(v).length != 0 ))
 
 
   return <>
@@ -54,7 +54,7 @@ const ObjectChanges = ({from, to}: {from:object, to:object}) => {
   </>
 }
 
-const SimpleChange = ({from, to}:{from:any|undefined, to:any|undefined}) => <>
+const SimpleChange = ({from, to}:{from:string|undefined, to:string|undefined}) => <>
 {to && (
   <Typography
     component="div"
@@ -96,7 +96,7 @@ export const ChangesTable = ({
         {record &&
           record.changes &&
           record.changes
-            .filter((item: any, idx: number) => idx < changesDisplayed)
+            .filter((_item: any, idx: number) => idx < changesDisplayed)
             .map((change: any, idx: number) => (
               <tr key={idx}>
 

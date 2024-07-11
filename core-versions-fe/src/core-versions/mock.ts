@@ -22,9 +22,19 @@ export const mockVersions = (count = 15) => {
   return Array.from({ length: count }, () => mockVersion())
 }
 
+interface ChangeTypes {
+  string: () => string;
+  text: () => string;
+  number: () => number;
+  url: () => string;
+  email: () => string;
+  name: () => string;
+  object: () => { unchanged: string; name: string; amount: number };
+  'maybe-nil': () => string | null;
+}
 
 function generateChanges(numChanges: number) {
-    const changeTypes: {[index: string]:Function} = {
+    const changeTypes: ChangeTypes = {
       "string": () => faker.lorem.words(),
       "text": () => faker.lorem.sentence(),
       "number": () => faker.number.int({min:0, max: 100}),
