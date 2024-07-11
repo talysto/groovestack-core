@@ -1,20 +1,17 @@
-import { Delete as ActionDelete } from '@mui/icons-material'
+// import { Delete as ActionDelete } from '@mui/icons-material'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 import React, { Fragment, ReactElement, ReactEventHandler } from 'react'
 // import inflection from 'inflection';
 import { MenuItem, MenuItemProps } from '@mui/material'
 import {
   Confirm,
   DeleteParams,
-  DeleteWithConfirmButton,
   MutationMode,
   RaRecord,
   RedirectionSideEffect,
   useDeleteWithConfirmController,
   useRecordContext,
   useResourceContext,
-  useTranslate,
 } from 'react-admin'
 import { UseMutationOptions } from 'react-query'
 // import { Confirm } from '../layout';
@@ -27,7 +24,8 @@ export const DeleteMenuItem = <RecordType extends RaRecord = any>(
     className,
     confirmTitle = 'ra.message.delete_title',
     confirmContent = 'ra.message.delete_content',
-    icon = defaultIcon,
+    //@ts-ignore TODO add icon (see below)
+    // icon = defaultIcon,
     label = 'ra.action.delete',
     mutationMode = 'pessimistic',
     onClick,
@@ -35,9 +33,10 @@ export const DeleteMenuItem = <RecordType extends RaRecord = any>(
     translateOptions = {},
     mutationOptions,
     color = 'error',
-    ...rest
+    //@ts-ignore TODO add to menu item? (see below)
+    //...rest
   } = props
-  const translate = useTranslate()
+  // const translate = useTranslate()
   const record = useRecordContext(props)
   const resource = useResourceContext(props)
 
@@ -91,7 +90,7 @@ export const DeleteMenuItem = <RecordType extends RaRecord = any>(
   )
 }
 
-const defaultIcon = <ActionDelete />
+// const defaultIcon = <ActionDelete />
 
 export interface DeleteMenuItemProps<
   RecordType extends RaRecord = any,

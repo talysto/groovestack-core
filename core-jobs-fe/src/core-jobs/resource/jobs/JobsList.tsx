@@ -113,7 +113,7 @@ const PurgeButton = () => {
           onClose()
         }
       })
-    } catch(e) {
+    } catch(_e) {
       // console.log('error', e)
       notify('Error purging jobs', { type: 'error'})
     }
@@ -139,7 +139,7 @@ const ListActions = () => {
   const [toggles, setToggles] = useState(sortfilterToggles)
   const kpis = useContext(JobsKPIsContext)
 
-  const updateToggles = (data: any) => {
+  const updateToggles = (data) => {
     const newToggles = toggles.map((t) => {
       if (t.value === 'errors') {
         t.count = data.errored + data.failed

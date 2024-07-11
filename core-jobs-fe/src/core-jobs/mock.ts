@@ -34,19 +34,19 @@ export function mockLockers(count = 15) {
 //   }))
 // }
 
-function mockStats(count = 3) {
-  return Array.from({ length: count }, () => ({
-    id: faker.string.uuid(),
-    job_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
-    sub_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
-    scheduled: faker.number.int({ min: 1, max: 100_000 }),
-    queued: faker.number.int({ min: 1, max: 24 }),
-    running: faker.number.int({ min: 1, max: 24 }),
-    errored: faker.number.int({ min: 1, max: 24 }),
-    failed: faker.number.int({ min: 1, max: 24 }),
-    completed: faker.number.int({ min: 1, max: 24 }),
-  }))
-}
+// function mockStats(count = 3) {
+//   return Array.from({ length: count }, () => ({
+//     id: faker.string.uuid(),
+//     job_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
+//     sub_class: `${faker.lorem.word()}::${faker.lorem.word()}`,
+//     scheduled: faker.number.int({ min: 1, max: 100_000 }),
+//     queued: faker.number.int({ min: 1, max: 24 }),
+//     running: faker.number.int({ min: 1, max: 24 }),
+//     errored: faker.number.int({ min: 1, max: 24 }),
+//     failed: faker.number.int({ min: 1, max: 24 }),
+//     completed: faker.number.int({ min: 1, max: 24 }),
+//   }))
+// }
 
 function mockReportByType(count = 3) {
   return {
@@ -167,11 +167,9 @@ export function mockReportByPeriod() {
           faker.number.int({ min: 0, max: 24 }),
         ]),
       }
-      // @ts-ignore-line
       // const statuses = Object.keys(jobStatuses).reduce(
       //   (map, status) =>
       //     (
-      //       // @ts-ignore-line
       //       (map[status] = faker.helpers.arrayElement([0,0,0,faker.number.int({ min: 0, max: 400 })])), map
       //     ),
       //   {},

@@ -6,7 +6,7 @@ import {
   useRecordContext,
 } from 'react-admin'
 
-export const ErrorPanelField = (props: FieldProps) => {
+export const ErrorPanelField = (_props: Omit<FieldProps, 'source'>) => {
   const record = useRecordContext()
 
   if (!record || !record.error_count) return null

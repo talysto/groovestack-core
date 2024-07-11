@@ -5,6 +5,7 @@ import {
   Datagrid,
   FunctionField,
   NumberField,
+  RaRecord,
   TextField,
 } from 'react-admin'
 import { JobStatusField } from '../../react-admin/fields/JobStatusField'
@@ -14,7 +15,7 @@ import { JobActions } from './JobActions'
 const rowClick = (event: React.MouseEvent<HTMLElement>) => {
 
   // TODO Resolve this warning
-  // @ts-ignore-line
+  // @ts-ignore
   const tr = event.target.closest('tr')
   if(!tr) return false
 
@@ -35,7 +36,7 @@ export const JobDatagrid = () => {
     >
       <FunctionField
         label="Job"
-        render={(record: any) => (
+        render={(record: RaRecord) => (
           <div>
             <div>{record.sub_class}</div>
             <small style={{ marginRight: 5 }} title={record.id}>

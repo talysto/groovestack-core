@@ -72,21 +72,21 @@ echarts.registerTheme('custom', {
 //   legend: 'none',
 //   bars: 'horizontal'
 // };
-const queChartFilter = {
-  group_by: 'status',
-  // group_by_period: 'minute',
-  // start_at: dayjs().subtract(1, 'hour'),
-  // end_at: dayjs().add(1, 'hour'),
-}
-const queMockData = [
-  ['Status', 'Jobs'],
-  ['scheduled', 250_000],
-  ['queued', 4503],
-  ['running', 24],
-  ['failed', 12],
-  ['errored', 234],
-  ['completed', 65000],
-]
+// const queChartFilter = {
+//   group_by: 'status',
+//   // group_by_period: 'minute',
+//   // start_at: dayjs().subtract(1, 'hour'),
+//   // end_at: dayjs().add(1, 'hour'),
+// }
+// const queMockData = [
+//   ['Status', 'Jobs'],
+//   ['scheduled', 250_000],
+//   ['queued', 4503],
+//   ['running', 24],
+//   ['failed', 12],
+//   ['errored', 234],
+//   ['completed', 65000],
+// ]
 // console.log('queMockData', queMockData);
 
 // export const QueChart2 = () => (

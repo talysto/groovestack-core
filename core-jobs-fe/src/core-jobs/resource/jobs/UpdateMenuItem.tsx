@@ -1,4 +1,4 @@
-import { Update as ActionUpdate } from '@mui/icons-material'
+// import { Update as ActionUpdate } from '@mui/icons-material'
 import { ListItemProps, MenuItem } from '@mui/material'
 import { ReactElement, useState } from 'react'
 import {
@@ -32,12 +32,9 @@ export const UpdateMenuItem = (props: any) => {
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
 
-  const defaultIcon = <ActionUpdate />
-
   const {
     data,
     label = 'ra.action.update',
-    icon = defaultIcon,
     onClick,
     mutationOptions = {},
     confirmContent,
