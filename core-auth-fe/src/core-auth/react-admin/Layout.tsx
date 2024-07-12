@@ -1,12 +1,13 @@
 import { GroovestackLayout } from '@groovestack/config'
-import { LayoutProps as ReactAdminLayoutProps } from 'react-admin'
+import { LayoutProps } from 'react-admin'
 
 import { Users } from '../resource/users'
 
-export const Layout = (props: ReactAdminLayoutProps) => {
+export const Layout = (props: LayoutProps) => {
+  const { appBar, ...rest } = props
   return (
     <GroovestackLayout
-      layoutProps={props}
+      LayoutProps={rest}
       AppBarProps={{ userMenu: <Users.Menu /> }}
     />
   )

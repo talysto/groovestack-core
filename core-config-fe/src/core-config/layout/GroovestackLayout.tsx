@@ -1,4 +1,6 @@
-import { AppBar, Layout } from 'react-admin'
+import { AppBar, Layout,
+  // AppBarProps, LayoutProps
+} from 'react-admin'
 
 // type GroovestackLayoutProps = {
 //   AppBarProps?: AppBarProps
