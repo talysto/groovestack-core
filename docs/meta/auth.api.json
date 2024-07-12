@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.3",
+    "toolVersion": "7.43.0",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -198,6 +198,10 @@
                   "text": "static ApolloLink: "
                 },
                 {
+                  "kind": "Content",
+                  "text": "import('@apollo/client')."
+                },
+                {
                   "kind": "Reference",
                   "text": "ApolloLink",
                   "canonicalReference": "@apollo/client/link/core!ApolloLink:class"
@@ -213,7 +217,7 @@
               "name": "ApolloLink",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               },
               "isStatic": true,
               "isProtected": false,
@@ -227,6 +231,10 @@
                 {
                   "kind": "Content",
                   "text": "static Credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "import('./credentials')."
                 },
                 {
                   "kind": "Reference",
@@ -244,7 +252,7 @@
               "name": "Credentials",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               },
               "isStatic": true,
               "isProtected": false,
@@ -296,7 +304,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "({ ctaDisabled, onPasswordReset, onSubmit, }: "
+                  "text": "({ ctaDisabled, onPasswordReset, onSubmit, }: import('./components/login-mui/LoginForm')."
                 },
                 {
                   "kind": "Reference",
@@ -305,7 +313,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ") => "
+                  "text": ") => import(\"react/jsx-runtime\")."
                 },
                 {
                   "kind": "Reference",
@@ -410,7 +418,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "({ onSubmit }: "
+                  "text": "({ onSubmit }: import('./components/login-mui/SignupForm')."
                 },
                 {
                   "kind": "Reference",
@@ -419,7 +427,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ") => "
+                  "text": ") => import(\"react/jsx-runtime\")."
                 },
                 {
                   "kind": "Reference",
@@ -454,7 +462,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "({ renderButton, social, mode }: "
+                  "text": "({ renderButton, social, mode }: import('./components/login-mui/SocialSignIn')."
                 },
                 {
                   "kind": "Reference",
@@ -463,7 +471,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ") => "
+                  "text": ") => import(\"react/jsx-runtime\")."
                 },
                 {
                   "kind": "Reference",

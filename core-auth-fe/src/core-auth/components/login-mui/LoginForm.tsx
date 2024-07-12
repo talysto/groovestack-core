@@ -2,7 +2,7 @@ import { Box, Button, TextField } from '@mui/material'
 
 export interface LoginFormProps {
   ctaDisabled?: boolean
-  onPasswordReset?: () => void
+  onPasswordReset?: Function
   onSubmit?: React.FormEventHandler<HTMLFormElement>
   // social?: string[]
   // onClickSocialConnect?: Function

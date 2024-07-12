@@ -81,12 +81,12 @@ export default function SettingsTabs({ settings }: { settings: any }) {
   const [selectedTab, setSelectedTab] = useState(0)
   const [expandedPanel, setExpandedPanel] = useState<string | false>(false)
 
-  const handleTabChange = (newValue: number) => {
+  const handleTabChange = (event: SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue)
   }
 
   const handleAccordionChange =
-    (panel: string) => (newExpanded: boolean) => {
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpandedPanel(newExpanded ? panel : false)
     }
 

@@ -32,8 +32,8 @@ export type ButtonDrawerProps = {
   drawerProps: {
     title?: string | React.ReactNode
   } & DrawerProps & { onSuccess?: () => void }
-  createProps?: CreateProps
-  editProps?: EditProps
+  createProps?: Omit<CreateProps, 'children'>
+  editProps?: Omit<EditProps, 'children'>
   buttonProps?: ButtonProps
   drawerWidth?: DrawerWidth
   footer?: React.ReactNode
@@ -56,8 +56,8 @@ export type CustomDrawerProps = {
   mode?: 'static' | 'create' | 'edit'
   children: ButtonDrawerProps['children']
   open: boolean
-  editProps?: EditProps
-  createProps?: CreateProps
+  editProps?: Omit<EditProps, 'children'>
+  createProps?: Omit<CreateProps, 'children'>
   drawerWidth: DrawerWidth
   onClose: () => void
   title?: ButtonDrawerProps['drawerProps']['title']

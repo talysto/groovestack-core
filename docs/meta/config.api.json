@@ -259,7 +259,7 @@
             {
               "kind": "Reference",
               "text": "GroovestackLayoutProps",
-              "canonicalReference": "@groovestack/config!~GroovestackLayoutProps:type"
+              "canonicalReference": "@groovestack/config!~GroovestackLayoutProps:interface"
             },
             {
               "kind": "Content",

@@ -14,7 +14,7 @@ import React from 'react'
 export type JobStatusType = {
   id: 'scheduled' | 'queued' | 'running' | 'errored' | 'failed' | 'completed'
   label: string
-  icon?: React.ElementType
+  icon?: any
   color?: any
 }
 

@@ -34,9 +34,10 @@ export const JobDatagrid = () => {
       //  bulkActionButtons={!moreThanSmall && false}
       sort={{ field: 'priority', order: 'ASC' }}
     >
+      {/* @ts-ignore */}
       <FunctionField
         label="Job"
-        render={(record: RaRecord) => (
+        render={(record: any) => (
           <div>
             <div>{record.sub_class}</div>
             <small style={{ marginRight: 5 }} title={record.id}>

@@ -40,6 +40,8 @@ export const DeleteMenuItem = <RecordType extends RaRecord>(
   const record = useRecordContext(props)
   const resource = useResourceContext(props)
 
+  if (!record) return null
+
   const { open, isLoading, handleDialogOpen, handleDialogClose, handleDelete } =
     useDeleteWithConfirmController({
       record,
