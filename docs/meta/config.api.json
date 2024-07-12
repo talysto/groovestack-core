@@ -257,9 +257,8 @@
               "text": "GroovestackLayout: ({ AppBarProps, LayoutProps }: "
             },
             {
-              "kind": "Reference",
-              "text": "GroovestackLayoutProps",
-              "canonicalReference": "@groovestack/config!~GroovestackLayoutProps:interface"
+              "kind": "Content",
+              "text": "any"
             },
             {
               "kind": "Content",

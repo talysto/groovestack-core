@@ -13,7 +13,7 @@ import {
   useRecordContext,
   useResourceContext,
 } from 'react-admin'
-import { UseMutationOptions } from 'react-query'
+import { UseMutationOptions } from '@tanstack/react-query'
 // import { Confirm } from '../layout';
 // import { Button, ButtonProps } from './Button';
 

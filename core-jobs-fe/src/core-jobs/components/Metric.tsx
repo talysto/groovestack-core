@@ -5,7 +5,7 @@ export type MetricType = {
   label: string
   value: number | string | JSX.Element
   units?: string
-  onClick?: () => void
+  onClick?: any
 }
 
 export const Metric = ({ value, label, units }: MetricType) => {

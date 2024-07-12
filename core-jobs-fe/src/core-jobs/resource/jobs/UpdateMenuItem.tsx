@@ -1,6 +1,6 @@
 // import { Update as ActionUpdate } from '@mui/icons-material'
 import { ListItemProps, MenuItem } from '@mui/material'
-import { ReactElement, useState } from 'react'
+import { MouseEventHandler, ReactElement, useState } from 'react'
 import {
   RaRecord,
   UpdateParams,
@@ -12,7 +12,7 @@ import {
   useUpdate,
   Confirm
 } from 'react-admin'
-import { UseMutationOptions } from 'react-query'
+import { UseMutationOptions } from '@tanstack/react-query'
 // import { Button, ButtonProps } from './Button';
 
 //TODO: this is a copy of UpdateWithUndoListItem.tsx, but with the Button component replaced with MenuItem.
@@ -31,6 +31,8 @@ export const UpdateMenuItem = (props: any) => {
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
+
+  if (!record) return null
 
   const {
     data,
@@ -76,7 +78,7 @@ export const UpdateMenuItem = (props: any) => {
     ...otherMutationOptions
   } = mutationOptions
 
-  const handleClick = (e: Event) => {
+  const handleClick : MouseEventHandler = (e) => {
     updateMany(
       resource,
       { id: record.id, data, meta: mutationMeta, previousData: record },
@@ -137,9 +139,9 @@ export const UpdateMenuItem = (props: any) => {
 }
 
 const sanitizeRestProps = ({
-  filterValues,
+  // filterValues,
   // label,
-  selectedIds,
+  // selectedIds,
   ...rest
 }: Omit<UpdateWithUndoListItemProps, 'resource' | 'icon' | 'data'>) => rest
 
