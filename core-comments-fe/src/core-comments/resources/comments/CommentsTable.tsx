@@ -40,27 +40,23 @@ export const CommentsTable = ({
   const record = useRecordContext()
   // const {children as c, ...rest} = listProps
 
-  //@ts-expect-error T2339 wip fixing comments table
-  const {_key, ...restDatagridProps} = datagridProps
-
   const mergedListProps = Object.assign(
     stream ? { actions: false, children: null } : {},
     listProps || {},
   )
   const mergedDatagridProps = Object.assign(
     stream ? { bulkActionButtons: false } : {},
-    restDatagridProps || {},
+    datagridProps || {},
   )
 
   const ListComponent = infinite || stream ? InfiniteList : List
   const renderChildren = children || (stream ? <CommentField /> : null)
-  if (!record) return null
 
   return (
     <>
       <CommentCreate />
 
-      
+      {/* @ts-ignore TODO fix ts issue*/}
       <ListComponent
         sort={{ field: 'created_at', order: 'DESC' }}
         filters={stream ? undefined : filters}
