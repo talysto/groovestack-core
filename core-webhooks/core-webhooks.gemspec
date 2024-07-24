@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "CORE module to handle webhook integrations"
   spec.homepage = "https://github.com/talysto/groovestack-core"
   spec.required_ruby_version = ">= 2.6.0"
+  spec.post_install_message = 'CORE::Webhooks installed'
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 

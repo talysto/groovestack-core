@@ -22,6 +22,7 @@ module Core
           end
 
           handler.ensure_authentic!
+          handler.confirm_subscription! if handler.respond_to?(:confirm!) && handler.respond_to?(:subscription_event?) && handler.subscription_event? 
 
           if handler.duplicate?
             # don't persist duplicate events
