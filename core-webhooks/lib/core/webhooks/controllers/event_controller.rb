@@ -26,7 +26,7 @@ module Core
 
           if handler.duplicate?
             # don't persist duplicate events
-            ::Rails.logger.error "Duplicate #{handler.provider} webhook received #{webhook_event.data}."
+            ::Rails.logger.error "Duplicate #{handler.class.provider} webhook received #{webhook_event.data}."
 
             head :ok
             return
