@@ -25,7 +25,8 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
 
   def start(_launcher)
     trap('TERM') do
-      puts '[core-cron] Graceful shutdown'
+      log '[core-cron] Graceful shutdown'
+      exit
     end
 
     in_background do
