@@ -63,8 +63,8 @@ module Core
 
               instance_method = instance_method.to_sym
 
-              raise GraphQL::ExecutionError, 'instance_method undefined' unless obj.respond_to?(instance_method)
-              raise GraphQL::ExecutionError, 'Cannot update multiple attributes when triggering instance method' if attrs.present?
+              raise ::GraphQL::ExecutionError, 'instance_method undefined' unless obj.respond_to?(instance_method)
+              raise ::GraphQL::ExecutionError, 'Cannot update multiple attributes when triggering instance method' if attrs.present?
               raise ::GraphQL::ExecutionError, "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(instance_method)
 
               if args.present? && args.is_a?(Array)

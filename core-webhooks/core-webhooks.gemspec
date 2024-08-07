@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "CORE module to handle webhook integrations"
   spec.homepage = "https://github.com/talysto/groovestack-core"
   spec.required_ruby_version = ">= 2.6.0"
+  spec.post_install_message = 'CORE::Webhooks installed'
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
@@ -37,6 +38,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails'
   spec.add_dependency "wisper-activerecord"
 
+  spec.add_development_dependency 'fabrication'
+  spec.add_development_dependency 'faker'
   spec.add_development_dependency 'pg'
   spec.add_development_dependency 'racksh'                # get a console without a full Rails application
   spec.add_development_dependency 'sinatra-activerecord'  # ActiveRecord without rails

@@ -22,7 +22,6 @@ require 'core/versions/graphql/version/queries'
 module Core
   module Versions
     class Error < StandardError; end
-    class WrongSchemaFormat < Core::Versions::Error; end
   end
 end
 

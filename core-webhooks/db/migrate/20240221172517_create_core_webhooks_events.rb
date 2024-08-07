@@ -1,4 +1,4 @@
-class CreateCoreWebhooksEvents < ActiveRecord::Migration[7.0]
+class CreateCoreWebhooksEvents < ActiveRecord::Migration[Gem::Version.new(Rails.version).segments.first.to_f] # dynamic rails major version as recommended by perplexity
   def change
     create_table :core_webhooks_events, id: :uuid do |t|
       t.string :source, null: false

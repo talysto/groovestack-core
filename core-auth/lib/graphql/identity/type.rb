@@ -7,6 +7,7 @@ module GraphQL
 
       field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'created at'
       field :id, ID, null: false, description: 'id'
+      field :uid, String, null: false, description: 'uid'
       field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'updated at'
 
       field :provider, String, null: true, description: 'provider'
