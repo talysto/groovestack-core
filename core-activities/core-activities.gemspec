@@ -34,5 +34,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "dry-configurable"
   spec.add_dependency "wisper-activerecord"
-  spec.add_dependency 'sinatra-activerecord'
+  spec.add_dependency 'activerecord'
 end

@@ -2,7 +2,7 @@
 
 require 'dry-configurable'
 require 'wisper/activerecord'
-require 'sinatra-activerecord'
+require 'active_record'
 
 require_relative "activities/version"
 require_relative "activities/railtie" if defined?(Rails)

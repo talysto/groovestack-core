@@ -3,6 +3,8 @@
 module Core
   module Activities
     class Activity < ActiveRecord::Base
+      self.table_name = 'core_activities'
+
       belongs_to :actor,  polymorphic: true
       belongs_to :object, polymorphic: true, optional: true # optional required for Rails 5
       belongs_to :target, polymorphic: true, optional: true
