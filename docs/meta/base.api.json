@@ -1077,7 +1077,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@groovestack/base!StatusInput:var",
-          "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events.\n *\n * @component\n *\n * @example\n *\n * <StatusInput source='status' />\n *\n * @example\n *\n * Usage in a DataGrid as an editable column <WrapperField label='status'> <StatusInput source=\"status\" label={false} /> </WrapperField>\n */\n",
+          "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events. Requires backend implementation to support status transitions.\n *\n * @component\n *\n * @example\n *\n * <StatusInput source='status' />\n *\n * @example\n *\n * Usage in a DataGrid as an editable column <WrapperField label='status'> <StatusInput source=\"status\" label={false} /> </WrapperField>\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1237,7 +1237,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@groovestack/base!ToggleButtonInput:function(1)",
-          "docComment": "",
+          "docComment": "/**\n * React Admin Custom Input built off the the RadioButtonGroupInput (https://github.com/marmelab/react-admin/blob/master/packages/ra-ui-materialui/src/input/RadioButtonGroupInput.tsx) Allows for single choice to be selected via toggle buttons, similar to a radio button input.\n *\n * @component\n *\n * @example\n *\n * return ( <ToggleButtonInput source='status' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
