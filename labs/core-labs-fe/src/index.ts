@@ -20,6 +20,7 @@ import { AddressField } from './react-admin/address/AddressField/AddressField'
 import { AddressInput } from './react-admin/address/AddressInput/AddressInput'
 import { MoneyField, MoneyInput } from './react-admin/money'
 import { StatusInput } from './react-admin/rating/StatusInput/StatusInput'
+import { Carousel } from './media/carousel/Carousel'
 
 /**
  * function utilities
@@ -50,3 +51,9 @@ export {}
  * @public
  */
 export {}
+
+/**
+ * Media Components
+ * @public
+ */
+export { Carousel }

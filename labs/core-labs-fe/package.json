@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@mui/material": ">=5.0.0",
+    "@popmotion/popcorn": "^0.4.4",
+    "framer-motion": "^11.3.24",
     "lodash": ">=4.0.0",
     "react": ">=18.0.0",
     "react-admin": ">=4.8.0",
@@ -32,7 +34,8 @@
     "react-number-format": "^5.3.4"
   },
   "devDependencies": {
-    "@types/prop-types": "^15.7.6"
+    "@types/prop-types": "^15.7.6",
+    "vite": "^5.4.0"
   },
   "publishConfig": {
     "access": "public",
