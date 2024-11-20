@@ -89,7 +89,7 @@ export const RPMChart = () => {
                 )
 
               const reversedKeys2 = {
-                // @ts-ignore-line
+                // @ts-ignore
                 period: reversedKeys.period,
                 ...reversedKeys,
               }
@@ -100,7 +100,7 @@ export const RPMChart = () => {
               }
             })
 
-            let config = { ...chartOptions } // make a copy
+            const config = { ...chartOptions } // make a copy
             config.dataset.source = processedData
 
             chart?.current?.getEchartsInstance().setOption(config)

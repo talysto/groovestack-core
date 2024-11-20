@@ -12,9 +12,10 @@ import {
 import { FieldProps, useRecordContext } from 'react-admin'
 import { jobStatuses } from '../../resource/jobs/jobsStatuses'
 
-export const JobTimelineField = (props: FieldProps) => {
+export const JobTimelineField = (_props: Omit<FieldProps, 'source'>) => {
   const job = useRecordContext()
 
+  if (!job) return null
   return (
     <Timeline
       sx={{

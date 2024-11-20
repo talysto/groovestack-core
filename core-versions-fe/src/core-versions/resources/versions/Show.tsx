@@ -35,7 +35,7 @@ export const VersionShow: React.FC<VersionsShowProps> = ({
 
   return (
     <Show title={<VersionsTitle />} {...props}>
-      {!!WrapperComponent ? (
+      {WrapperComponent ? (
         <WrapperComponent {...wrapperProps}>{renderLayout()}</WrapperComponent>
       ) : (
         <>{renderLayout()}</>

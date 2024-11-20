@@ -56,7 +56,7 @@ export const CommentsTable = ({
     <>
       <CommentCreate />
 
-      {/* @ts-ignore-line */}
+      {/* @ts-ignore TODO fix ts issue*/}
       <ListComponent
         sort={{ field: 'created_at', order: 'DESC' }}
         filters={stream ? undefined : filters}

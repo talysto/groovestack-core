@@ -22,9 +22,20 @@ export const mockVersions = (count = 15) => {
   return Array.from({ length: count }, () => mockVersion())
 }
 
+interface ChangeTypes {
+  string: () => string;
+  text: () => string;
+  number: () => number;
+  url: () => string;
+  email: () => string;
+  name: () => string;
+  object: () => { unchanged: string; name: string; amount: number };
+  'maybe-nil': () => string | null;
+}
+type MyType = keyof ChangeTypes;
 
 function generateChanges(numChanges: number) {
-    const changeTypes: {[index: string]:Function} = {
+    const changeTypes: ChangeTypes = {
       "string": () => faker.lorem.words(),
       "text": () => faker.lorem.sentence(),
       "number": () => faker.number.int({min:0, max: 100}),
@@ -37,7 +48,7 @@ function generateChanges(numChanges: number) {
 
     function change() {
       const field = faker.lorem.words({ min: 1, max: 3 })
-      const type = faker.helpers.arrayElement(Object.keys(changeTypes))
+      const type : MyType = faker.helpers.arrayElement(Object.keys(changeTypes)) as MyType;
       const fn = changeTypes[type]
 
       return [field, [fn(), fn()]]

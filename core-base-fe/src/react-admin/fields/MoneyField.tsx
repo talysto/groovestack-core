@@ -22,12 +22,15 @@ export const MoneyField = (props: MoneyFieldProps) => {
   return <div>{sourceValue}</div>
 }
 
-export interface MoneyFieldProps<
-  RecordType extends Record<string, unknown> = Record<string, any>,
-> extends FieldProps<RecordType> {
-  // src?: string;
-  //     title?: string;
-  //     sx?: SxProps;
+// export interface MoneyFieldProps<
+//   RecordType extends Record<string, unknown> = Record<string, any>,
+// > extends FieldProps<RecordType> {
+//   // src?: string;
+//   //     title?: string;
+//   //     sx?: SxProps;
+// }
+
+export interface MoneyFieldProps extends FieldProps {
 }
 
 // = <

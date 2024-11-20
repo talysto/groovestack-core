@@ -34,6 +34,7 @@ export function titleCase(str: string): string {
 
 const ConfirmDeleteIdentityContent = () => {
   const record = useRecordContext()
+  if (!record) return null
 
   return (
     <Box>
@@ -46,6 +47,7 @@ const ConfirmDeleteIdentityContent = () => {
 const IdentityRow = ({ actionsEnabled, user }: { actionsEnabled: boolean, user: RaRecord }) => {
   const [isHovering, setIsHovering] = useState(false)
   const { total } = useListContext()
+  if (!total) return null
 
   const deletable = total > 1 || user.has_email_provider
 
@@ -98,7 +100,7 @@ export const IdentitiesTable = () => {
   return (
     <ReferenceManyField reference="Identity" target="user_id" label={false}>
       {currentUser.id == record.id && <ConnectSocialLogin />}
-      <Datagrid bulkActionButtons={false}>
+      <Datagrid bulkActionButtons={false} rowClick={false}>
         <IdentityRow actionsEnabled={record.id == currentUser.id} user={record} />
       </Datagrid>
     </ReferenceManyField>

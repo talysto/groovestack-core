@@ -22,8 +22,8 @@
     "@groovestack/webhooks": "workspace:^",
     "@mui/material": "^5.14.11",
     "ra-data-fakerest": "^4.12.1",
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0",
+    "react": "^18.0",
+    "react-dom": "^18.0",
     "react-router-dom": "^6.16.0"
   },
   "devDependencies": {

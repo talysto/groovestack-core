@@ -9,7 +9,8 @@ PATH
   remote: ../core-auth
   specs:
     core-auth (0.1.0)
-      graphql_devise
+      dry-configurable
+      graphql_devise (~> 1.4)
       jsonb_accessor (~> 1.4)
       omniauth-apple
       omniauth-google-oauth2
@@ -19,6 +20,7 @@ PATH
   remote: ../core-base
   specs:
     core-base (0.1.0)
+      dry-configurable
       graphql
       pg
 
@@ -110,7 +112,7 @@ GEM
     bcrypt (3.1.20)
     bindata (2.4.15)
     bindex (0.8.1)
-    builder (3.2.4)
+    builder (3.3.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -120,7 +122,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.3.3)
     crass (1.0.6)
     date (3.3.4)
     debug (1.8.0)
@@ -137,7 +139,13 @@ GEM
       devise (> 3.5.2, < 5)
       rails (>= 4.2.0, < 7.1)
     dry-cli (1.0.0)
-    erubi (1.12.0)
+    dry-configurable (1.2.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-core (1.0.1)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    erubi (1.13.0)
     faraday (2.7.12)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -158,7 +166,7 @@ GEM
       rails (>= 4.2, < 7.1)
       zeitwerk
     hashie (5.0.0)
-    i18n (1.14.1)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.3)
       actionpack (>= 6.0.0)
@@ -193,9 +201,9 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
-    method_source (1.0.0)
+    method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.20.0)
+    minitest (5.24.1)
     multi_xml (0.6.0)
     net-imap (0.4.6)
       date
@@ -207,11 +215,11 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.6.1)
-    nokogiri (1.15.5-aarch64-linux)
+    nokogiri (1.16.6-aarch64-linux)
       racc (~> 1.4)
-    nokogiri (1.15.5-arm64-darwin)
+    nokogiri (1.16.6-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.5-x86_64-linux)
+    nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
@@ -250,8 +258,8 @@ GEM
     public_suffix (5.0.4)
     puma (5.6.7)
       nio4r (~> 2.0)
-    racc (1.7.3)
-    rack (2.2.8)
+    racc (1.8.0)
+    rack (2.2.9)
     rack-protection (3.1.0)
       rack (~> 2.2, >= 2.2.4)
     rack-proxy (0.7.7)
@@ -287,7 +295,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
-    rake (13.1.0)
+    rake (13.2.1)
     rdoc (6.6.0)
       psych (>= 4.0.0)
     regexp_parser (2.8.2)
@@ -329,7 +337,7 @@ GEM
       sprockets (>= 3.0.0)
     stringio (3.0.9)
     systemu (2.6.5)
-    thor (1.3.0)
+    thor (1.3.1)
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -340,7 +348,7 @@ GEM
     vite_rails (3.0.17)
       railties (>= 5.1, < 8)
       vite_ruby (~> 3.0, >= 3.2.2)
-    vite_ruby (3.5.0)
+    vite_ruby (3.6.0)
       dry-cli (>= 0.7, < 2)
       rack-proxy (~> 0.6, >= 0.6.1)
       zeitwerk (~> 2.2)
@@ -358,11 +366,12 @@ GEM
     wisper (2.0.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.12)
+    zeitwerk (2.6.16)
 
 PLATFORMS
   aarch64-linux
   arm64-darwin-21
+  arm64-darwin-23
   x86_64-linux
 
 DEPENDENCIES

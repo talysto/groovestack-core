@@ -1,4 +1,4 @@
-import { Button, Paper, Popover } from '@mui/material'
+import { Button, Paper, Popover, SxProps } from '@mui/material'
 import { useState } from 'react'
 
 export const ButtonPopover = ({
@@ -8,7 +8,7 @@ export const ButtonPopover = ({
 }: {
   label: string
   children: any
-  sx?: any
+  sx?: SxProps
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 

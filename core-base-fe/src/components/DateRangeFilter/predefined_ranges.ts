@@ -1,6 +1,7 @@
-import dayjs from 'dayjs'
+import { DateRange, PickersShortcutsItem } from '@mui/x-date-pickers-pro'
+import dayjs, { Dayjs } from 'dayjs'
 
-export type NamedRangeType = any  //PickersShortcutsItem<DateRange<Dayjs>>
+export type NamedRangeType = PickersShortcutsItem<DateRange<Dayjs>>
 
 export class CommonDateRanges {
   static Today : NamedRangeType = {

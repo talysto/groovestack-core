@@ -1,6 +1,6 @@
 import { useGetIdentity } from "react-admin"
 
-export const WelcomeBanner = ({ props }: { props?: any }) => {
+export const WelcomeBanner = () => {
   const {
     data: currentUser,
     isLoading: loadingMe

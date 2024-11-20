@@ -25,7 +25,7 @@ export const BasicUsage: Story = {
   // args: {
   //   source: 'address',
   // },
-  render: (Story, context) => <AddressFieldScenarios {...context.args} />,
+  render: (context) => <AddressFieldScenarios {...context.args} />,
 }
 
 const scenarios = [

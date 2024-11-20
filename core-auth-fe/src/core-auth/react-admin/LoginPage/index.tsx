@@ -2,14 +2,22 @@ import LockIcon from '@mui/icons-material/Lock'
 import { Avatar, Box, Button, Card, Input, SxProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { HtmlHTMLAttributes, useEffect, useRef, useState } from 'react'
-import { useAuthProvider, useCheckAuth } from 'react-admin'
-import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
-import { useLogin, useNotify, useSafeSetState } from 'react-admin'
+import {
+  useAuthProvider,
+  useCheckAuth,
+  useLogin,
+  useNotify,
+  useSafeSetState,
+} from 'react-admin'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { LoginPanel } from '../../components/login-mui/LoginPanel'
 import { SocialSignInProps } from '../../components/login-mui/SocialSignIn'
-import { LoginCredentials, RegistrationCredentials } from '../authProviders/liveFactory'
 import { Credentials, defaultCredentials } from '../../credentials'
+import {
+  LoginCredentials,
+  RegistrationCredentials,
+} from '../authProviders/liveFactory'
 /**
  * A standalone login page, to serve as authentication gate to the admin
  *
@@ -30,9 +38,9 @@ import { Credentials, defaultCredentials } from '../../credentials'
  */
 
 export const csrfToken = () => {
-  const meta: any = document.querySelector('meta[name=csrf-token]');
-  return meta && meta.content;
-};
+  const meta: any = document.querySelector('meta[name=csrf-token]')
+  return meta && meta.content
+}
 
 const csrf = csrfToken()
 
@@ -51,10 +59,10 @@ const useHandleServerURLParams = () => {
 
   useEffect(() => {
     // This is required for a few reasons:
-    //  1. Server side origin urls will not include hashed paths b/c HTTP_REFERRER 
+    //  1. Server side origin urls will not include hashed paths b/c HTTP_REFERRER
     //     does not include the hash.
     //  2. RA uses react router dom HashRouter by default. Side effect of this
-    //     is that any server redirects that include url params will result 
+    //     is that any server redirects that include url params will result
     //     in a path like: /?omniauth_failure_error=Invalid+credentials#/login.
     //  3. React router dom useSearchParams hook only parses url params that exist
     //     after the hash, so we need to extract the server url params and append
@@ -62,8 +70,11 @@ const useHandleServerURLParams = () => {
     const serverUrlParams = new URLSearchParams(window.location.search)
     const feUrlParams = new URLSearchParams(location.search)
 
-    if (serverUrlParams.size > 0){
-      let href = window.location.href.replace(`?${serverUrlParams.toString()}`, "")
+    if (serverUrlParams.size > 0) {
+      let href = window.location.href.replace(
+        `?${serverUrlParams.toString()}`,
+        '',
+      )
 
       // append server url params
       if (feUrlParams.size > 0) href += `&${serverUrlParams.toString()}`
@@ -78,8 +89,8 @@ const useHandleServerURLParams = () => {
 }
 
 type OauthProvider = {
-  k: string;
-  path: string;
+  k: string
+  path: string
 }
 
 export const LoginPage = (props: LoginPageProps) => {
@@ -87,13 +98,18 @@ export const LoginPage = (props: LoginPageProps) => {
 
   const [socials, setSocials] = useState<SocialSignInProps['social']>([])
   const [providers, setProviders] = useState<string[]>([])
-  let { backgroundImage, credentials = defaultCredentials, Headline,  ...rest } = props
+  const {
+    backgroundImage,
+    credentials = defaultCredentials,
+    Headline,
+    ...rest
+  } = props
   const containerRef = useRef<HTMLDivElement | null>(null)
   let backgroundImageLoaded = false
   const checkAuth = useCheckAuth()
   const navigate = useNavigate()
   const authProvider = useAuthProvider()
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
 
   // const { redirectTo, className } = props;
   const [loading, setLoading] = useSafeSetState(false)
@@ -124,46 +140,12 @@ export const LoginPage = (props: LoginPageProps) => {
       setLoading(false)
     } catch (error: any) {
       setLoading(false)
-        notify(
-          typeof error === 'string'
-            ? error
-            : typeof error === 'undefined' || !error.message
-            ? 'ra.auth.sign_in_error'
-            : error.message,
-          {
-            type: 'error',
-            messageArgs: {
-              _:
-                typeof error === 'string'
-                  ? error
-                  : error && error.message
-                  ? error.message
-                  : undefined,
-            },
-          },
-        )
-    }
-  }
-
-  const onRegister: React.FormEventHandler<HTMLFormElement> = async (e: any) => {
-    e.preventDefault()
-
-    setLoading(true)
-
-    const values: RegistrationCredentials = {
-      email: e.target?.elements.email?.value,
-      password: e.target?.elements.password?.value,
-      name: e.target?.elements.fullname?.value,
-    }
-
-    try {
-      await authProvider.register(values)
-      await login({email: values.email, password: values.password})
-    } catch(error: any) {
       notify(
         typeof error === 'string'
           ? error
-          : error?.message || 'Error registering',
+          : typeof error === 'undefined' || !error.message
+          ? 'ra.auth.sign_in_error'
+          : error.message,
         {
           type: 'error',
           messageArgs: {
@@ -177,19 +159,61 @@ export const LoginPage = (props: LoginPageProps) => {
         },
       )
     }
+  }
+
+  const onRegister: React.FormEventHandler<HTMLFormElement> = async (
+    e: any,
+  ) => {
+    e.preventDefault()
+
+    setLoading(true)
+
+    const values: RegistrationCredentials = {
+      email: e.target?.elements.email?.value,
+      password: e.target?.elements.password?.value,
+      name: e.target?.elements.fullname?.value,
+    }
+
+    if (authProvider) {
+      try {
+        await authProvider.register(values)
+        await login({ email: values.email, password: values.password })
+      } catch (error: any) {
+        notify(
+          typeof error === 'string'
+            ? error
+            : error?.message || 'Error registering',
+          {
+            type: 'error',
+            messageArgs: {
+              _:
+                typeof error === 'string'
+                  ? error
+                  : error && error.message
+                  ? error.message
+                  : undefined,
+            },
+          },
+        )
+      }
+    }
 
     setLoading(false)
   }
 
-  const socialSignInRender: SocialSignInProps['renderButton'] = ({ key, icon, label, href, btnSx }) => {
+  const socialSignInRender: SocialSignInProps['renderButton'] = ({
+    //key,
+    icon,
+    label,
+    href,
+    btnSx,
+  }) => {
     return (
-      <Box
-        component="form"
-        method='post'
-        action={href}
-      >
-        <Input type='hidden' name='authenticity_token' value={csrf} />
-        <Button sx={btnSx} type='submit' variant="outlined" startIcon={icon}>{label}</Button>
+      <Box component="form" method="post" action={href}>
+        <Input type="hidden" name="authenticity_token" value={csrf} />
+        <Button sx={btnSx} type="submit" variant="outlined" startIcon={icon}>
+          {label}
+        </Button>
       </Box>
     )
   }
@@ -231,13 +255,17 @@ export const LoginPage = (props: LoginPageProps) => {
 
   useEffect(() => {
     const appConfig = credentials.getAppConfig()
-    const social = appConfig?.oauth_providers?.configured.map((p: OauthProvider) => {
-      const { k, path: href } = p
-      return { k, href }
-    })
+    const social = appConfig?.oauth_providers?.configured.map(
+      (p: OauthProvider) => {
+        const { k, path: href } = p
+        return { k, href }
+      },
+    )
     setSocials(social || [])
 
-    const providers = appConfig?.auth_providers?.configured.map((p: OauthProvider) => p.k)
+    const providers = appConfig?.auth_providers?.configured.map(
+      (p: OauthProvider) => p.k,
+    )
     setProviders(providers || [])
   }, [])
 
@@ -257,9 +285,7 @@ export const LoginPage = (props: LoginPageProps) => {
                 <LockIcon />
               </Avatar>
             </div>
-            {
-              !credentials.getAppConfig()?.has_admins && <AppInitHeadline />
-            }
+            {!credentials.getAppConfig()?.has_admins && <AppInitHeadline />}
           </>
         )}
         <LoginPanel
@@ -289,12 +315,12 @@ const PREFIX = 'RaLogin'
 export const LoginClasses = {
   card: `${PREFIX}-card`,
   avatar: `${PREFIX}-avatar`,
-  icon: `${PREFIX}-icon`
+  icon: `${PREFIX}-icon`,
 }
 
 const Root = styled('div', {
   name: PREFIX,
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (_props, styles) => styles.root,
 })(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -318,6 +344,6 @@ const Root = styled('div', {
   },
   [`& .${LoginClasses.icon}`]: {
     // backgroundColor: theme.palette.secondary[500],
-    backgroundColor: theme.palette.secondary.dark
+    backgroundColor: theme.palette.secondary.dark,
   },
 }))

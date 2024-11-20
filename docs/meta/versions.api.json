@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.3",
+    "toolVersion": "7.43.0",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -173,17 +173,17 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/versions!mockVersion:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/versions!mockVersion:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "mockVersion: "
+              "text": "mockVersion: () => "
             },
             {
               "kind": "Content",
-              "text": "() => {\n    changes: (string | any[])[][];\n    timestamp: "
+              "text": "{\n    changes: (string | (string | number | {\n        unchanged: string;\n        name: string;\n        amount: number;\n    } | null)[])[][];\n    timestamp: "
             },
             {
               "kind": "Reference",
@@ -214,26 +214,35 @@
             }
           ],
           "fileUrlPath": "dist/mock.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "mockVersion",
-          "variableTypeTokenRange": {
+          "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 8
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [],
+          "name": "mockVersion"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/versions!mockVersions:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/versions!mockVersions:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "mockVersions: "
+              "text": "mockVersions: (count?: "
             },
             {
               "kind": "Content",
-              "text": "(count?: number) => {\n    changes: (string | any[])[][];\n    timestamp: "
+              "text": "number"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    changes: (string | (string | number | {\n        unchanged: string;\n        name: string;\n        amount: number;\n    } | null)[])[][];\n    timestamp: "
             },
             {
               "kind": "Reference",
@@ -264,13 +273,23 @@
             }
           ],
           "fileUrlPath": "dist/mock.d.ts",
-          "isReadonly": true,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 10
+          },
           "releaseTag": "Public",
-          "name": "mockVersions",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 8
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "count",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "mockVersions"
         }
       ]
     }

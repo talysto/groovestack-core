@@ -1,33 +1,31 @@
-import { Delete as ActionDelete } from '@mui/icons-material'
+// import { Delete as ActionDelete } from '@mui/icons-material'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 import React, { Fragment, ReactElement, ReactEventHandler } from 'react'
 // import inflection from 'inflection';
 import { MenuItem, MenuItemProps } from '@mui/material'
 import {
   Confirm,
   DeleteParams,
-  DeleteWithConfirmButton,
   MutationMode,
   RaRecord,
   RedirectionSideEffect,
   useDeleteWithConfirmController,
   useRecordContext,
   useResourceContext,
-  useTranslate,
 } from 'react-admin'
-import { UseMutationOptions } from 'react-query'
+import { UseMutationOptions } from '@tanstack/react-query'
 // import { Confirm } from '../layout';
 // import { Button, ButtonProps } from './Button';
 
-export const DeleteMenuItem = <RecordType extends RaRecord = any>(
+export const DeleteMenuItem = <RecordType extends RaRecord>(
   props: DeleteMenuItemProps<RecordType>,
 ) => {
   const {
     className,
     confirmTitle = 'ra.message.delete_title',
     confirmContent = 'ra.message.delete_content',
-    icon = defaultIcon,
+    //@ts-ignore TODO add icon (see below)
+    // icon = defaultIcon,
     label = 'ra.action.delete',
     mutationMode = 'pessimistic',
     onClick,
@@ -35,11 +33,14 @@ export const DeleteMenuItem = <RecordType extends RaRecord = any>(
     translateOptions = {},
     mutationOptions,
     color = 'error',
-    ...rest
+    //@ts-ignore TODO add to menu item? (see below)
+    //...rest
   } = props
-  const translate = useTranslate()
+  // const translate = useTranslate()
   const record = useRecordContext(props)
   const resource = useResourceContext(props)
+
+  if (!record) return null
 
   const { open, isLoading, handleDialogOpen, handleDialogClose, handleDelete } =
     useDeleteWithConfirmController({
@@ -91,7 +92,7 @@ export const DeleteMenuItem = <RecordType extends RaRecord = any>(
   )
 }
 
-const defaultIcon = <ActionDelete />
+// const defaultIcon = <ActionDelete />
 
 export interface DeleteMenuItemProps<
   RecordType extends RaRecord = any,
@@ -115,21 +116,21 @@ export interface DeleteMenuItemProps<
   label?: string
 }
 
-DeleteWithConfirmButton.propTypes = {
-  //replace with DeleteMenuItem.propTypes?
-  className: PropTypes.string,
-  confirmColor: PropTypes.string,
-  confirmTitle: PropTypes.node,
-  confirmContent: PropTypes.node,
-  label: PropTypes.string,
-  mutationMode: PropTypes.oneOf(['pessimistic', 'optimistic', 'undoable']),
-  record: PropTypes.any,
-  redirect: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.func,
-  ]),
-  resource: PropTypes.string,
-  icon: PropTypes.element,
-  translateOptions: PropTypes.object,
-}
+// DeleteWithConfirmButton.propTypes = {
+//   //replace with DeleteMenuItem.propTypes?
+//   className: PropTypes.string,
+//   confirmColor: PropTypes.string,
+//   confirmTitle: PropTypes.node,
+//   confirmContent: PropTypes.node,
+//   label: PropTypes.string,
+//   mutationMode: PropTypes.oneOf(['pessimistic', 'optimistic', 'undoable']),
+//   record: PropTypes.any,
+//   redirect: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.bool,
+//     PropTypes.func,
+//   ]),
+//   resource: PropTypes.string,
+//   icon: PropTypes.element,
+//   translateOptions: PropTypes.object,
+// }

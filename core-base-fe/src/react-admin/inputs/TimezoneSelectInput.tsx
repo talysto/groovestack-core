@@ -1,4 +1,4 @@
-import { AutocompleteInput, AutocompleteInputProps, SelectInputProps } from "react-admin"
+import { AutocompleteInput, AutocompleteInputProps } from "react-admin"
 
 interface TimeZoneOption {
   id: string
@@ -37,7 +37,6 @@ export const TimezoneSelectInput = (props: AutocompleteInputProps) => {
     <AutocompleteInput
       defaultValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
       choices={zones}
-      fullWidth
       {...props}
     />
   )

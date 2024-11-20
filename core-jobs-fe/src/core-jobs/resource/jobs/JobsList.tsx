@@ -83,7 +83,8 @@ const JobsFilters = [
     label={false}
     // TODO: This pt works but is not scalable
     sx={{'& .MuiSelect-select': {pt: '12px'}}}
-    placeholder="Status"
+    //@ts-ignore - incoperate this into selectarrayinput or rm
+    placeholder="Status" 
     choices={Object.keys(jobStatuses).map((status) => ({
       id: status,
       name: jobStatuses[status].label,
@@ -113,7 +114,7 @@ const PurgeButton = () => {
           onClose()
         }
       })
-    } catch(e) {
+    } catch(_e) {
       // console.log('error', e)
       notify('Error purging jobs', { type: 'error'})
     }
@@ -255,7 +256,10 @@ const JobsListWithApolloProvider = () => {
   // https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/dataProvider/useDataProvider.ts
   const dataProvider = useContext(DataProviderContext)
 
+  if(!dataProvider) return null
+
   return (
+    
     <ApolloProvider client={dataProvider.client}>
       <JobsList />
     </ApolloProvider>

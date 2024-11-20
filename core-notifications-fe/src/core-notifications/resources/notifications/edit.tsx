@@ -34,10 +34,10 @@ export const NotificationEdit = () => (
     </SimpleShowLayout>
 
     <SimpleForm>
-      <TextInput source="title" fullWidth />
-      <TextInput source="description" multiline fullWidth />
-      <TextInput source="link" fullWidth />
-      <TextInput source="actions" fullWidth />
+      <TextInput source="title" />
+      <TextInput source="description" multiline />
+      <TextInput source="link" />
+      <TextInput source="actions" />
 
       {/* <ChipInput source="status" /> */}
       <DateInput source="publish_at" />
