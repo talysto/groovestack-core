@@ -30,6 +30,10 @@ module Users
       def admin?
         roles.include? User::Role::ADMIN
       end
+
+      def has_role?(role)
+        roles.include? role.to_s
+      end
     end
   end
 end

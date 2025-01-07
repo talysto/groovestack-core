@@ -51,7 +51,8 @@ module Core
           end
         end
 
-        # module Authorized 
+        # AUTHORIZATION
+
         class AuthorizedBaseField < BaseField  
           def authorized?(obj, args, ctx)
             authorized_fields = obj.authorized_fields_for_serialization(ctx[:current_user]) rescue []
@@ -62,6 +63,27 @@ module Core
 
         class AuthorizedBaseObject < BaseObject
           field_class ::Core::Base::GraphQL::Types::AuthorizedBaseField
+        end
+
+        class VisibleBaseField < BaseField
+          attr_reader :visibility_permission
+        
+          def initialize(*args, visibility_permission: nil, **kwargs, &block)
+            # restrict visibility to GAME_CLIENT by default
+            @visibility_permission = visibility_permission
+            super(*args, **kwargs, &block)
+          end
+        
+          def visible?(context)
+            return super unless @visibility_permission 
+    
+            profile_name = context[:visibility_profile] # Current profile name
+            profile = context.schema.visibility_profiles[profile_name] # Current profile data
+            
+            return super unless profile
+        
+            super && profile[@visibility_permission]
+          end
         end
       end
     end
