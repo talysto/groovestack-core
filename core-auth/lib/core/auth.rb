@@ -2,26 +2,26 @@
 
 require 'active_record'
 require 'dry-configurable'
-require 'graphql_devise'
-require 'omniauth-google-oauth2'
-require 'omniauth-apple'
+# require 'graphql_devise'
+# require 'omniauth-google-oauth2'
+# require 'omniauth-apple'
 
 require 'core/auth/version'
 require 'core/auth/railtie' if defined?(Rails::Railtie)
 
-# add devise and devise_token_auth app/ dirs to load path
-Dir[File.join(Gem::Specification.find_by_name("devise").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
-Dir[File.join(Gem::Specification.find_by_name("devise_token_auth").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
+# # add devise and devise_token_auth app/ dirs to load path
+# Dir[File.join(Gem::Specification.find_by_name("devise").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
+# Dir[File.join(Gem::Specification.find_by_name("devise_token_auth").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
 
 unless defined?(ApplicationController)
   class ApplicationController < ActionController::Base
   end
 end
 
-unless defined?(DeviseTokenAuth::Concerns)
-  module DeviseTokenAuth::Concerns
-  end
-end
+# unless defined?(DeviseTokenAuth::Concerns)
+#   module DeviseTokenAuth::Concerns
+#   end
+# end
 
 require 'users/roles'
 require 'user'

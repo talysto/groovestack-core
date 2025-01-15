@@ -31,9 +31,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency "dry-configurable"
-  spec.add_dependency 'graphql_devise', '~>2.0'
-  spec.add_dependency 'omniauth-google-oauth2'
-  spec.add_dependency 'omniauth-apple'
+  # spec.add_dependency 'graphql_devise', '~>2.0'
+  # spec.add_dependency 'omniauth-google-oauth2'
+  # spec.add_dependency 'omniauth-apple'
   spec.add_dependency 'rails'
   spec.add_dependency 'jsonb_accessor', '~>1.4'
   
@@ -42,9 +42,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'fabrication'
   spec.add_development_dependency 'faker'
 
-  spec.add_development_dependency 'combustion', '~> 1.3'  # Test engines without a full 'dummy' app https://github.com/pat/combustion
+  # spec.add_development_dependency 'combustion', '~> 1.3'  # Test engines without a full 'dummy' app https://github.com/pat/combustion
   spec.add_development_dependency 'racksh'                # get a console without a full Rails application
-  spec.add_development_dependency 'sinatra-activerecord'  # ActiveRecord without rails
+  # spec.add_development_dependency 'sinatra-activerecord'  # ActiveRecord without rails
 
   # spec.add_development_dependency 'activerecord'
   # spec.add_development_dependency 'minitest', '~> 5.0'

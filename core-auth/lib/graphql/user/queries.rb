@@ -16,7 +16,7 @@ module GraphQL
       end
 
       def current_user
-        context[:current_resource]
+        context[:current_user] || context[:current_resource]
       end
   
       def users_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
