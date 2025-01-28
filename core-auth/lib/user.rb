@@ -1,7 +1,6 @@
 require 'jsonb_accessor'
 
 class User < ActiveRecord::Base
-  include Users::Roles
   # extend ::Devise::Models
 
   # Include default devise modules. Others available are:
