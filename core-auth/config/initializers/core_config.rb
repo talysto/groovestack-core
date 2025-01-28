@@ -24,8 +24,5 @@ ActiveSupport.on_load(:after_initialize) do
         }
       }
     }
-
-    # make AppConfig query public
-    ::Types::QueryType.fields["AppConfig"].instance_variable_set(:@authenticate, false)
   end
 end

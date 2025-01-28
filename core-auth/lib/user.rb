@@ -31,18 +31,4 @@ class User < ActiveRecord::Base
   def has_email_provider?
     encrypted_password.present?
   end
-
-  def build_auth_headers(token, client = 'default')
-    # client may use expiry to prevent validation request if expired
-    # must be cast as string or headers will break
-    expiry = tokens[client]['expiry'] || tokens[client][:expiry]
-    headers = {
-      DeviseTokenAuth.headers_names[:"access-token"] => token,
-      DeviseTokenAuth.headers_names[:"token-type"]   => 'Bearer',
-      DeviseTokenAuth.headers_names[:"client"]       => client,
-      DeviseTokenAuth.headers_names[:"expiry"]       => expiry.to_s,
-      DeviseTokenAuth.headers_names[:"id"]           => id
-    }
-    headers.merge(build_bearer_token(headers))
-  end
 end
