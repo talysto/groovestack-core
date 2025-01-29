@@ -10,7 +10,16 @@ module Core
             class_methods do
               # TODO make authorize default to true
 
-              def react_admin_resource(entity, class_name: nil, graphql_path: nil, graphql_type: nil, graphql_filter: nil, authorize: false, policy: nil, **args)
+              def react_admin_resource(entity, 
+                class_name: nil,
+                graphql_path: nil,
+                graphql_type: nil,
+                graphql_filter: nil,
+                authorize: false,
+                visibility_permission: nil,
+                policy: nil,
+                **args
+              )
                 # NOTE class_name is only required if a custom _base_scope is not defined
                 # NOTE graphql_path is only required to override the default graphql path
 
@@ -55,7 +64,7 @@ module Core
                 # Record
 
                 unless except.include?(:find)
-                  field entity_model_name.to_sym, entity_type, null: true, resolver_method: entity_model_name.to_sym,
+                  field entity_model_name.to_sym, entity_type, null: true, visibility_permission: visibility_permission, resolver_method: entity_model_name.to_sym,
                                                                description: "Find #{entity_class}." do
                     argument :id, ::GraphQL::Types::ID, required: true, description: Documentation::Arguments.id
                   end
@@ -64,8 +73,7 @@ module Core
                 # Collection
 
                 unless except.include?(:collection)
-                  field "all_#{entity.to_s.underscore}".to_sym, type: [entity_type], null: false, camelize: false,
-                                                             resolver_method: entity do
+                  field "all_#{entity.to_s.underscore}".to_sym, type: [entity_type], null: false, camelize: false, visibility_permission: visibility_permission, resolver_method: entity do
                     argument :page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.page
                     argument :per_page, ::GraphQL::Types::Int, required: false,
                                                                description: Documentation::Arguments.per_page
@@ -83,7 +91,7 @@ module Core
 
                 field "_all_#{entity.to_s.underscore}_meta".to_sym,
                       type: ::Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata,
-                      camelize: false, null: true, resolver_method: "#{entity}_meta".to_sym do
+                      camelize: false, null: true, visibility_permission: visibility_permission, resolver_method: "#{entity}_meta".to_sym do
                   argument :page, ::GraphQL::Types::Int, required: false, description: Documentation::Arguments.page
                   argument :per_page, ::GraphQL::Types::Int, required: false,
                                                              description: Documentation::Arguments.per_page
