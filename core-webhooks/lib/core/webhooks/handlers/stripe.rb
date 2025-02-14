@@ -11,7 +11,7 @@ module Core
 
         def ensure_authentic!
           stripe_event.present?
-        rescue e 
+        rescue => e
           raise ::Core::Webhooks::UnverifiedWebhookError, e
         end
 
