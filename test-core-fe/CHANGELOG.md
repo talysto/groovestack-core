@@ -1,5 +1,12 @@
 # test-core-fe
 
+## 0.2.134
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/auth@0.2.28
+
 ## 0.2.133
 
 ### Patch Changes
