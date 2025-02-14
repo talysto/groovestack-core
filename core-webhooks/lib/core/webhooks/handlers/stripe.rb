@@ -3,7 +3,7 @@ module Core
     module Handlers
       class Stripe < Core::Webhooks::Handler
         extend Dry::Configurable
-        REQUIRED_CREDENTIALS = [:STRIPE_API_KEY].freeze
+        REQUIRED_CREDENTIALS = [:STRIPE_WEBHOOK_SIGNING_SECRET].freeze
 
         def self.handles?(webhook_event)
           webhook_event.headers['HTTP_STRIPE_SIGNATURE'].present?
@@ -22,14 +22,14 @@ module Core
         def duplicate?
           event = webhook_event.data['id']
 
-          ::Core::Webhooks::Event.where.(source: :stripe).where("data->>'id' = ?", event).size.positive?
+          ::Core::Webhooks::Event.where(source: :stripe).where("data->>'id' = ?", event).size.positive?
         end
 
         protected
 
         def stripe_event
-          @stripe_event ||= Stripe::Webhook.construct_event(
-            webhook_event.data,
+          @stripe_event ||= ::Stripe::Webhook.construct_event(
+            raw_request_data,
             webhook_event.headers['HTTP_STRIPE_SIGNATURE'],
             Rails.application.credentials.send(self.class.required_credentials.first)
           )
