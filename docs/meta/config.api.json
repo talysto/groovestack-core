@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.3",
+    "toolVersion": "7.43.0",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -173,17 +173,25 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/config!DemoWelcome:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/config!DemoWelcome:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "DemoWelcome: "
+              "text": "DemoWelcome: ({ modules }: "
             },
             {
               "kind": "Content",
-              "text": "({ modules }: {\n    modules?: any[] | undefined;\n}) => "
+              "text": "{\n    modules?: any[] | undefined;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -192,26 +200,36 @@
             }
           ],
           "fileUrlPath": "dist/DemoWelcome.d.ts",
-          "isReadonly": true,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 5
+          },
           "releaseTag": "Public",
-          "name": "DemoWelcome",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 3
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ modules }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "DemoWelcome"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/config!GroovestackDash:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/config!GroovestackDash:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "GroovestackDash: "
+              "text": "GroovestackDash: () => "
             },
             {
               "kind": "Content",
-              "text": "() => "
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -220,26 +238,23 @@
             }
           ],
           "fileUrlPath": "dist/GroovestackDash.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "GroovestackDash",
-          "variableTypeTokenRange": {
+          "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 3
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [],
+          "name": "GroovestackDash"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/config!GroovestackLayout:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/config!GroovestackLayout:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "GroovestackLayout: "
-            },
-            {
-              "kind": "Content",
-              "text": "({ AppBarProps, LayoutProps }: "
+              "text": "GroovestackLayout: ({ AppBarProps, LayoutProps }: "
             },
             {
               "kind": "Reference",
@@ -251,32 +266,54 @@
               "text": ") => "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
           "fileUrlPath": "dist/layout/GroovestackLayout.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "GroovestackLayout",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 5
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ AppBarProps, LayoutProps }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "GroovestackLayout"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/config!HomeView:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/config!HomeView:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "HomeView: "
+              "text": "HomeView: ({ modules }: "
             },
             {
               "kind": "Content",
-              "text": "({ modules }: {\n    modules?: any[] | undefined;\n}) => "
+              "text": "{\n    modules?: any[] | undefined;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -285,13 +322,23 @@
             }
           ],
           "fileUrlPath": "dist/HomeView.d.ts",
-          "isReadonly": true,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 5
+          },
           "releaseTag": "Public",
-          "name": "HomeView",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 3
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ modules }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "HomeView"
         }
       ]
     }

@@ -34,8 +34,6 @@ export const csrfToken = () => {
   return meta && meta.content;
 };
 
-const csrf = csrfToken()
-
 const AppInitHeadline = () => {
   return (
     <Box sx={{ p: 3 }}>
@@ -188,7 +186,7 @@ export const LoginPage = (props: LoginPageProps) => {
         method='post'
         action={href}
       >
-        <Input type='hidden' name='authenticity_token' value={csrf} />
+        <Input type='hidden' name='authenticity_token' value={csrfToken()} />
         <Button sx={btnSx} type='submit' variant="outlined" startIcon={icon}>{label}</Button>
       </Box>
     )

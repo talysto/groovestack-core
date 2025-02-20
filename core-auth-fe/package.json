@@ -1,7 +1,7 @@
 {
   "name": "@groovestack/auth",
   "title": "CORE Auth",
-  "version": "0.2.27",
+  "version": "0.2.28",
   "description": "React-admin custom login flow that supports email/password as well as Oauth (Google & Apple) out of the box.",
   "homepage": "https://talysto.com/groovestack/#core-auth",
   "keywords": [

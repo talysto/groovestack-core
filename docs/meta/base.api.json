@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.3",
+    "toolVersion": "7.43.0",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -214,17 +214,13 @@
           }
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!CodeField:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!CodeField:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "CodeField: "
-            },
-            {
-              "kind": "Content",
-              "text": "({ label, source }: "
+              "text": "CodeField: ({ label, source }: "
             },
             {
               "kind": "Reference",
@@ -234,6 +230,10 @@
             {
               "kind": "Content",
               "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -246,13 +246,23 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/fields/CodeField.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "CodeField",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 6
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ label, source }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "CodeField"
         },
         {
           "kind": "Class",
@@ -677,17 +687,13 @@
           "implementsTokenRanges": []
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!CustomButtonDrawer:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!CustomButtonDrawer:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "CustomButtonDrawer: "
-            },
-            {
-              "kind": "Content",
-              "text": "({ mode, icon, drawerProps, createProps, editProps, onClickableComponentClick, clickableComponent, children, drawerWidth, label, footer, }: "
+              "text": "CustomButtonDrawer: ({ mode, icon, drawerProps, createProps, editProps, onClickableComponentClick, clickableComponent, children, drawerWidth, label, footer, }: "
             },
             {
               "kind": "Reference",
@@ -699,32 +705,42 @@
               "text": ") => "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
           "fileUrlPath": "dist/src/react-admin/CustomButtonDrawer.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "CustomButtonDrawer",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 5
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ mode, icon, drawerProps, createProps, editProps, onClickableComponentClick, clickableComponent, children, drawerWidth, label, footer, }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "CustomButtonDrawer"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!DateField:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!DateField:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "DateField: "
-            },
-            {
-              "kind": "Content",
-              "text": "(props: "
+              "text": "DateField: (props: "
             },
             {
               "kind": "Reference",
@@ -734,6 +750,10 @@
             {
               "kind": "Content",
               "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -746,26 +766,32 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/fields/DateField.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "DateField",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 6
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "props",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "DateField"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!DateRangeFilter:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!DateRangeFilter:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "DateRangeFilter: "
-            },
-            {
-              "kind": "Content",
-              "text": "({ namedFilters, onChange, displayNamedFiltersLabels, eodTransform, defaultValue, }: "
+              "text": "DateRangeFilter: ({ namedFilters, onChange, displayNamedFiltersLabels, eodTransform, defaultValue, }: "
             },
             {
               "kind": "Reference",
@@ -777,42 +803,90 @@
               "text": ") => "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
           "fileUrlPath": "dist/src/components/DateRangeFilter/index.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "DateRangeFilter",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 5
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ namedFilters, onChange, displayNamedFiltersLabels, eodTransform, defaultValue, }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "DateRangeFilter"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!diffObjects:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!diffObjects:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "diffObjects: "
+              "text": "diffObjects: (old: "
             },
             {
               "kind": "Content",
-              "text": "(old: any, updated: any) => any"
+              "text": "any"
+            },
+            {
+              "kind": "Content",
+              "text": ", updated: "
+            },
+            {
+              "kind": "Content",
+              "text": "any"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "any"
             }
           ],
           "fileUrlPath": "dist/src/react-admin/hooks/useSaveOnlyChanges.d.ts",
-          "isReadonly": true,
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 6
+          },
           "releaseTag": "Public",
-          "name": "diffObjects",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "old",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "updated",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "diffObjects"
         },
         {
           "kind": "Enum",
@@ -895,17 +969,25 @@
           ]
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!ExternalLink:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!ExternalLink:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "ExternalLink: "
+              "text": "ExternalLink: ({ url, title, hideIcon, sx, }: "
             },
             {
               "kind": "Content",
-              "text": "({ url, title, hideIcon, sx, }: {\n    url: string;\n    title: string;\n    sx?: object | undefined;\n    hideIcon?: boolean | undefined;\n}) => "
+              "text": "{\n    url: string;\n    title: string;\n    sx?: object | undefined;\n    hideIcon?: boolean | undefined;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -914,13 +996,23 @@
             }
           ],
           "fileUrlPath": "dist/src/components/ExternalLink.d.ts",
-          "isReadonly": true,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 5
+          },
           "releaseTag": "Public",
-          "name": "ExternalLink",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 3
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ url, title, hideIcon, sx, }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "ExternalLink"
         },
         {
           "kind": "Function",
@@ -956,17 +1048,13 @@
           "name": "generateTimeZoneOptions"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!MoneyField:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!MoneyField:function(1)",
           "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "MoneyField: "
-            },
-            {
-              "kind": "Content",
-              "text": "(props: "
+              "text": "MoneyField: (props: "
             },
             {
               "kind": "Reference",
@@ -976,6 +1064,10 @@
             {
               "kind": "Content",
               "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -988,26 +1080,32 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/fields/MoneyField.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "MoneyField",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 6
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "props",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "MoneyField"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!MoneyInput:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!MoneyInput:function(1)",
           "docComment": "/**\n * React Admin Field that supports editing a currency value.\n *\n * @component\n *\n * @example\n *\n * return ( <MoneyField source='price' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "MoneyInput: "
-            },
-            {
-              "kind": "Content",
-              "text": "(props: "
+              "text": "MoneyInput: (props: "
             },
             {
               "kind": "Reference",
@@ -1019,32 +1117,42 @@
               "text": ") => "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
           "fileUrlPath": "dist/src/react-admin/inputs/MoneyInput.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "MoneyInput",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 5
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "props",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "MoneyInput"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!PolymorphicReferenceField:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!PolymorphicReferenceField:function(1)",
           "docComment": "/**\n * React Admin Field that renders a Rails-style polymorphic relationship\n *\n * @component\n *\n * @example\n *\n * return ( <PolymorphicReferenceField source='author' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "PolymorphicReferenceField: "
-            },
-            {
-              "kind": "Content",
-              "text": "({ source, }: "
+              "text": "PolymorphicReferenceField: ({ source, }: "
             },
             {
               "kind": "Reference",
@@ -1054,6 +1162,10 @@
             {
               "kind": "Content",
               "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -1066,26 +1178,32 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/fields/PolymorphicReferenceField.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "PolymorphicReferenceField",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 6
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ source, }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "PolymorphicReferenceField"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!StatusInput:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!StatusInput:function(1)",
           "docComment": "/**\n * React Admin Field that updating a status value via permitted state transition events.\n *\n * @component\n *\n * @example\n *\n * <StatusInput source='status' />\n *\n * @example\n *\n * Usage in a DataGrid as an editable column <WrapperField label='status'> <StatusInput source=\"status\" label={false} /> </WrapperField>\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "StatusInput: "
-            },
-            {
-              "kind": "Content",
-              "text": "(props: "
+              "text": "StatusInput: (props: "
             },
             {
               "kind": "Reference",
@@ -1106,6 +1224,10 @@
               "text": ") => "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
@@ -1116,26 +1238,44 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/inputs/StatusInput.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "StatusInput",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 5,
             "endIndex": 8
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "props",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "StatusInput"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!timeAgo:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!timeAgo:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "timeAgo: "
+              "text": "timeAgo: (timestamp: "
             },
             {
               "kind": "Content",
-              "text": "(timestamp: string) => "
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
             },
             {
               "kind": "Reference",
@@ -1148,26 +1288,32 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/fields/TimeAgoField.d.ts",
-          "isReadonly": true,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
           "releaseTag": "Public",
-          "name": "timeAgo",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 4
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "timestamp",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "timeAgo"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!TimeAgoField:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!TimeAgoField:function(1)",
           "docComment": "/**\n * React Admin Field that renders a timestamp relative to the current time. For example: - 2 hours ago - 12 minutes from now The full timestamp is available as a tooltip.\n *\n * @component\n *\n * @example\n *\n * return ( <TimeAgoField source='created_at' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "TimeAgoField: "
-            },
-            {
-              "kind": "Content",
-              "text": "(props: "
+              "text": "TimeAgoField: (props: "
             },
             {
               "kind": "Reference",
@@ -1179,6 +1325,10 @@
               "text": ") => "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
@@ -1189,26 +1339,32 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/fields/TimeAgoField.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "TimeAgoField",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 6
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "props",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "TimeAgoField"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!TimezoneSelectInput:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!TimezoneSelectInput:function(1)",
           "docComment": "/**\n * React Admin Input that allows user to select a timezone. ' Input provides the current timezone as a first option and autocomplete to quickly find your local timezone.\n *\n * @component\n *\n * @example\n *\n * return ( <TimezoneSelectInput source='timezone' /> )\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "TimezoneSelectInput: "
-            },
-            {
-              "kind": "Content",
-              "text": "(props: "
+              "text": "TimezoneSelectInput: (props: "
             },
             {
               "kind": "Reference",
@@ -1220,19 +1376,33 @@
               "text": ") => "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
             }
           ],
           "fileUrlPath": "dist/src/react-admin/inputs/TimezoneSelectInput.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "TimezoneSelectInput",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
             "endIndex": 5
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "props",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "TimezoneSelectInput"
         },
         {
           "kind": "Function",
@@ -1253,6 +1423,10 @@
               "text": "): "
             },
             {
+              "kind": "Content",
+              "text": "import(\"react/jsx-runtime\")."
+            },
+            {
               "kind": "Reference",
               "text": "JSX.Element",
               "canonicalReference": "@types/react!JSX.Element:interface"
@@ -1265,7 +1439,7 @@
           "fileUrlPath": "dist/src/react-admin/inputs/ToggleButtonInput.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
-            "endIndex": 4
+            "endIndex": 5
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
@@ -1282,17 +1456,17 @@
           "name": "ToggleButtonInput"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/base!useSaveOnlyChanges:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/base!useSaveOnlyChanges:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "useSaveOnlyChanges: "
+              "text": "useSaveOnlyChanges: () => "
             },
             {
               "kind": "Content",
-              "text": "() => {\n    saveOnlyChanges: (data: "
+              "text": "{\n    saveOnlyChanges: (data: "
             },
             {
               "kind": "Reference",
@@ -1319,7 +1493,7 @@
             },
             {
               "kind": "Content",
-              "text": "<"
+              "text": "<import('react-admin')."
             },
             {
               "kind": "Reference",
@@ -1332,13 +1506,14 @@
             }
           ],
           "fileUrlPath": "dist/src/react-admin/hooks/useSaveOnlyChanges.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "useSaveOnlyChanges",
-          "variableTypeTokenRange": {
+          "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 10
-          }
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [],
+          "name": "useSaveOnlyChanges"
         }
       ]
     }
