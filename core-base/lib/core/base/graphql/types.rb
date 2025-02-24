@@ -3,7 +3,7 @@ module Core
     module GraphQL
       module Types
         class BaseArgument < ::GraphQL::Schema::Argument
-          def initialize(*args, camelize: false, **kwargs, &block)
+          def initialize(*args, camelize: ::Core::Base.config.graphql.camelize, **kwargs, &block)
             # Then, call super _without_ any args, where Ruby will take
             # _all_ the args originally passed to this method and pass it to the super method.
             super
@@ -15,7 +15,7 @@ module Core
 
           attr_accessor :authenticate, :visibility_permission
 
-          def initialize(*args, authenticate: nil, visibility_permission: nil, null: false, camelize: false, **kwargs, &block)
+          def initialize(*args, authenticate: nil, visibility_permission: nil, null: false, camelize: ::Core::Base.config.graphql.camelize, **kwargs, &block)
             # Then, call super _without_ any args, where Ruby will take
             # _all_ the args originally passed to this method and pass it to the super method.
             @authenticate = authenticate

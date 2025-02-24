@@ -11,6 +11,7 @@ module Core
           field :id, ID, null: false, description: 'ID'
           field :source, String, null: false, description: 'source'
           field :status, String, null: false, description: 'status'
+          field :headers, ::GraphQL::Types::JSON, null: true, description: 'headers'
 
           field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'created_at'
           field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'updated_at'
