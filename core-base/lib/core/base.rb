@@ -36,10 +36,11 @@ module Core
     end
 
     autoload :ActiveRecord, 'core/base/active_record'
+    autoload :Listener, 'core/base/listeners'
     autoload :Listeners, 'core/base/listeners'
 
     autoload :PubSub, 'core/base/pub_sub' if defined?(Wisper)
-    autoload :Railtie, 'core/base/railtie' if defined?(Rails::Railtie)
+    autoload :CoreRailtie, 'core/base/railtie' if defined?(Rails::Railtie)
 
     extend Dry::Configurable
 

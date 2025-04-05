@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module GraphQL
-  module Schema
-    module Member
+  class Schema
+    class Member
       module BaseDSLMethods
         def default_graphql_name
           @default_graphql_name ||= begin
