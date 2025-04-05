@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   module Base
     module GraphQL
@@ -12,14 +14,14 @@ module Core
         #   queries is a mutation. If an error occurs during the execution of a mutation, the transaction is
         #   rolled back, and the errors are returned with null data.
         #
-        
-        # Note:
-        # - This module assumes that the multiplex object responds to `queries` and each query responds to
-        #   `mutation?`.
+
+        # NOTE: This module assumes that the multiplex object responds to `queries` and each query
+        # responds to `mutation?`.
 
         module AtomicMultiplexTransaction
+          # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
           def execute_multiplex(multiplex:)
-            is_mutation = multiplex.queries.any? { |query| query.mutation? }
+            is_mutation = multiplex.queries.any?(&:mutation?)
 
             return yield unless is_mutation
 
@@ -30,7 +32,9 @@ module Core
               ::ActiveRecord::Base.transaction do
                 results = yield
 
-                rollback = results.any? { |result| result.is_a?(::GraphQL::Query::Result) && result.to_h['errors'].present? }
+                rollback = results.any? do |result|
+                  result.is_a?(::GraphQL::Query::Result) && result.to_h['errors'].present?
+                end
 
                 raise ::ActiveRecord::Rollback if rollback
 
@@ -39,7 +43,7 @@ module Core
             rescue ::ActiveRecord::Rollback
               rollback = true
             end
-            
+
             return results unless rollback
 
             # IF rollback, extract errors and return null for data
@@ -51,6 +55,7 @@ module Core
               )
             end
           end
+          # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
         end
       end
     end

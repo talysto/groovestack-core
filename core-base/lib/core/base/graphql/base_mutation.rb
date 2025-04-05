@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 module Core
-  module Base 
+  module Base
     module GraphQL
       class BaseMutation < ::GraphQL::Schema::Mutation
         argument_class ::Core::Base::GraphQL::Types::BaseArgument
 
         def resolve(**args)
           perform(**args)
-
-        rescue => e
+        rescue StandardError => e
           Core::Base.notify_error(self.class, e)
 
           raise e

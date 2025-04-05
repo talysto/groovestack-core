@@ -1,5 +1,7 @@
-module Core 
-  module Base 
+# frozen_string_literal: true
+
+module Core
+  module Base
     module GraphQL
       class BaseInputObject < ::GraphQL::Schema::InputObject
         argument_class ::Core::Base::GraphQL::Types::BaseArgument

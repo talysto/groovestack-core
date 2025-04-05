@@ -6,3 +6,4 @@ tmp
 dist
 stats.html
 local.groovestack-demo.com*
+core-*/Gemfile.lock

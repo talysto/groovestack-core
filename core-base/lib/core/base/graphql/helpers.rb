@@ -1,28 +1,30 @@
+# frozen_string_literal: true
+
 module Core
   module Base
     module GraphQL
       module Helpers
-        module Types 
+        module Types
           module StatusEventVirtualAttributes
             def all_events
               object.class.aasm.events.map { |event| event.name.to_s }
             end
-  
+
             def permitted_events
               object.aasm.events(permitted: true).map { |event| event.name.to_s }
             end
-  
+
             def status_events
               all = all_events
               permitted = permitted_events
-  
+
               all.map do |event|
                 { name: event.titleize, key: event, enabled: permitted.include?(event) }
               end
             end
           end
 
-          module Typified 
+          module Typified
             extend ActiveSupport::Concern
 
             included do
@@ -34,46 +36,64 @@ module Core
             end
           end
         end
-        
+
         module Mutations
           module StatusEvents
-            def trigger_status_event!(obj:, attrs:, event:, args: nil, authorization_policy: nil)
-              # NOTE: args spread requires keys to be symbols, but by default they are passed as strings. This is why we use `symbolize_keys` here
-              raise ::GraphQL::ExecutionError, 'event not present' unless event.present?
+            def trigger_status_event!(obj:, attrs:, event:, args: nil, authorization_policy: nil) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+              # NOTE: args spread requires keys to be symbols, but by default
+              # they are passed as strings. This is why we use `symbolize_keys` here
+              raise ::GraphQL::ExecutionError, 'event not present' if event.blank?
 
-              event = event.gsub("!", '').to_sym
+              event = event.gsub('!', '').to_sym
 
-              raise ::GraphQL::ExecutionError, 'Cannot update multiple attributes when firing instance methods' if attrs.present?
-              raise ::GraphQL::ExecutionError, "#{event.capitalize} unavailable" unless obj.aasm.events.map(&:name).include?(event)
-              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to #{event} this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_aasm_events.include?(event)
+              if attrs.present?
+                raise ::GraphQL::ExecutionError,
+                      'Cannot update multiple attributes when firing instance methods'
+              end
+              unless obj.aasm.events.map(&:name).include?(event)
+                raise ::GraphQL::ExecutionError,
+                      "#{event.capitalize} unavailable"
+              end
+              unless authorization_policy.nil? || authorization_policy.permitted_aasm_events.include?(event)
+                raise ::GraphQL::ExecutionError,
+                      "Unauthorized not allowed to #{event} this #{obj.class}"
+              end
 
-              event = "#{event}!".to_sym
+              event = :"#{event}!"
 
               if args.present? && args.is_a?(Array)
-                obj.send("#{event}", *args)
+                obj.send(event.to_s, *args)
               elsif args.present? && args.is_a?(Hash)
-                obj.send("#{event}", **args.symbolize_keys!)
+                obj.send(event.to_s, **args.symbolize_keys!)
               else
-                obj.send("#{event}")
+                obj.send(event.to_s)
               end
             end
           end
+
           module InstanceMethods
-            def trigger_instance_method!(obj:, attrs:, instance_method:, args: nil, authorization_policy: nil)
-              raise GraphQL::ExecutionError, 'instance_method not present' unless instance_method.present?
+            def trigger_instance_method!(obj:, attrs:, instance_method:, args: nil, authorization_policy: nil) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+              raise GraphQL::ExecutionError, 'instance_method not present' if instance_method.blank?
 
               instance_method = instance_method.to_sym
 
               raise ::GraphQL::ExecutionError, 'instance_method undefined' unless obj.respond_to?(instance_method)
-              raise ::GraphQL::ExecutionError, 'Cannot update multiple attributes when triggering instance method' if attrs.present?
-              raise ::GraphQL::ExecutionError, "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(instance_method)
+
+              if attrs.present?
+                raise ::GraphQL::ExecutionError,
+                      'Cannot update multiple attributes when triggering instance method'
+              end
+              unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(instance_method) # rubocop:disable Layout/LineLength
+                raise ::GraphQL::ExecutionError,
+                      "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}"
+              end
 
               if args.present? && args.is_a?(Array)
-                obj.send("#{instance_method}", *args)
+                obj.send(instance_method.to_s, *args)
               elsif args.present? && args.is_a?(Hash)
-                obj.send("#{instance_method}", **args.symbolize_keys!)
+                obj.send(instance_method.to_s, **args.symbolize_keys!)
               else
-                obj.send("#{instance_method}")
+                obj.send(instance_method.to_s)
               end
             end
           end
@@ -82,17 +102,17 @@ module Core
         module Controller
           extend ActiveSupport::Concern
 
-          included do            
+          included do # rubocop:disable Metrics/BlockLength
             private
 
             def operation_name
               params[:operationName]
             end
-      
+
             def query
               params[:query]
             end
-      
+
             def variables
               prepare_variables(params[:variables])
             end
@@ -122,7 +142,7 @@ module Core
               logger.error err.backtrace.join('\/n')
 
               render json: { errors: [{ message: err.message, backtrace: err.backtrace }], data: {} },
-                    status: :internal_server_error
+                     status: :internal_server_error
             end
           end
         end

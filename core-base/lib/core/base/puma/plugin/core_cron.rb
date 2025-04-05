@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'puma/plugin'
 
 # Need to pre-declare Puma::Plugin here - not sure why, but it's innocusous so leave it
@@ -23,10 +25,10 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
     Rails.logger.flush if production? && defined?(Rails)
   end
 
-  def start(_launcher)
+  def start(_launcher) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     trap('TERM') do
       log '[core-cron] Graceful shutdown'
-      exit
+      exit # rubocop:disable Rails/Exit
     end
 
     in_background do

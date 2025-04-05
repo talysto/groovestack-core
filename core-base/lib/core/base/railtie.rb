@@ -8,7 +8,7 @@ if defined?(Rails)
 
         CORE_ENGINE = true
 
-        included do 
+        included do # rubocop:disable Metrics/BlockLength
           def dx_validations
             []
           end
@@ -21,30 +21,32 @@ if defined?(Rails)
             self.class.name.deconstantize.constantize::VERSION
           end
 
-          def after_init 
-            if Rails.const_defined?("Console") && (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
-              puts 'CORE Platform DX Mode'.bold if module_name == 'Base'
-              core_base_dx_validate
+          def after_init
+            unless Rails.const_defined?('Console') && (ENV['RAILS_ENV'] || ENV.fetch('RACK_ENV', nil)) == 'development'
+              return
+            end
+
+            puts 'CORE Platform DX Mode'.bold if module_name == 'Base'
+            core_base_dx_validate
+          end
+
+          def append_migrations(app) # rubocop:disable Metrics/AbcSize
+            return if app.root.present? && root.present? && app.root.to_s.match?(root.to_s)
+
+            config.paths['db/migrate'].expanded.each do |expanded_path|
+              app.config.paths['db/migrate'] << expanded_path
             end
           end
 
-          def append_migrations(app)
-            unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-              config.paths['db/migrate'].expanded.each do |expanded_path|
-                app.config.paths['db/migrate'] << expanded_path
-              end
+          def append_initializers(app) # rubocop:disable Metrics/AbcSize
+            return if app.root.present? && root.present? && app.root.to_s.match?(root.to_s)
+
+            config.paths['config/initializers'].expanded.each do |expanded_path|
+              app.config.paths['config/initializers'] << expanded_path
             end
           end
 
-          def append_initializers(app)
-            unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
-              config.paths['config/initializers'].expanded.each do |expanded_path|
-                app.config.paths['config/initializers'] << expanded_path
-              end
-            end
-          end
-
-          def core_base_dx_validate
+          def core_base_dx_validate # rubocop:disable Metrics/AbcSize
             errors = []
             dx_validations.each do |v|
               v[:eval].call
@@ -58,21 +60,21 @@ if defined?(Rails)
               msg = "  CORE::#{module_name}\t#{module_version}"
               msg += module_description if respond_to?(:module_description)
               msg += "\t#{errors[0]}"
-              puts msg
             else
               print '✔'.green
               msg = "  CORE::#{module_name}\t#{module_version}"
               msg += module_description if respond_to?(:module_description)
-              puts msg
             end
+
+            puts msg
           end
         end
       end
 
       class Railtie < Rails::Engine
         include CoreRailtie
-        
-        def dx_validations 
+
+        def dx_validations
           [
             {
               eval: proc { require 'pg' },
@@ -96,7 +98,7 @@ if defined?(Rails)
         initializer :init_puma do |app|
           return unless defined?(Puma)
 
-          unless app.root.present? && root.present? && (app.root.to_s.match? root.to_s)
+          unless app.root.present? && root.present? && app.root.to_s.match?(root.to_s)
             config.paths.add('lib/core/base/puma/plugin')
             app.config.paths.add('app/lib/puma/plugin')
             config.paths['lib/core/base/puma/plugin'].expanded.each do |expanded_path|
