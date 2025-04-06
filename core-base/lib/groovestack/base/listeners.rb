@@ -1,25 +1,27 @@
-module Core
-  module Base 
+# frozen_string_literal: true
+
+module Groovestack
+  module Base
     module Listener
       extend ::ActiveSupport::Concern
 
       CORE_LISTENER = true
 
       module ClassMethods
-        def init(throttle_seconds: 0)
+        def init(_throttle_seconds: 0)
           raise 'listener must define class method init'
         end
 
         def throttle(seconds)
-          wait = false 
+          wait = false
 
-          return Proc.new do |&block|
+          proc do |&block|
             unless wait
-              wait = true 
-              
-              Thread.new do 
+              wait = true
+
+              Thread.new do
                 block.call
-                
+
                 sleep(seconds)
 
                 wait = false
@@ -29,11 +31,13 @@ module Core
         end
       end
     end
-    
+
     module Listeners
-      class InitAll 
+      class InitAll
         def self.run(throttle_seconds: 0)
-          core_listeners = ObjectSpace.each_object(Class).select { |klass| klass.const_defined?(:CORE_LISTENER) && klass.const_get(:CORE_LISTENER) }
+          core_listeners = ObjectSpace.each_object(Class).select do |klass|
+            klass.const_defined?(:CORE_LISTENER) && klass.const_get(:CORE_LISTENER)
+          end
           core_listeners.map { |listener| listener.init(throttle_seconds: throttle_seconds) }.flatten
         end
       end
@@ -53,12 +57,12 @@ module Core
             @connection = connection
 
             @connection_instance = connection.instance_variable_get(:@connection)
-            
+
             begin
               connection_instance.async_exec "LISTEN #{db_channel}"
 
               loop do
-                connection_instance.wait_for_notify do |channel, pid, payload|
+                connection_instance.wait_for_notify do |_channel, _pid, payload|
                   yield payload if block_given?
                 end
               end
@@ -72,7 +76,7 @@ module Core
           connection_instance.async_exec "UNLISTEN #{db_channel}"
         end
 
-        def disconnect 
+        def disconnect
           ::ActiveRecord::Base.connection_pool.checkin(connection)
         end
       end

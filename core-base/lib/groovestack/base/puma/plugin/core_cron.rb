@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'puma/plugin'
 
 # Need to pre-declare Puma::Plugin here - not sure why, but it's innocusous so leave it
@@ -23,10 +25,10 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
     Rails.logger.flush if production? && defined?(Rails)
   end
 
-  def start(_launcher)
+  def start(_launcher) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     trap('TERM') do
       log '[core-cron] Graceful shutdown'
-      exit
+      exit # rubocop:disable Rails/Exit
     end
 
     in_background do
@@ -41,7 +43,7 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
           PgLock.new(name: 'core-cron-commander', ttl: 30.minutes.to_i, attempts: 1).lock do
             log '[core-cron] Obtained CORE-CRON PGLock'
 
-            core_listeners = ::Core::Base::Listeners::InitAll.run(throttle_seconds: 1)
+            core_listeners = ::Groovestack::Base::Listeners::InitAll.run(throttle_seconds: 1)
           end
         rescue Timeout::Error
           # normal behavior - don't do anything when this happens

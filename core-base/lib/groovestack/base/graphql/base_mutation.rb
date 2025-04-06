@@ -1,14 +1,15 @@
-module Core
-  module Base 
+# frozen_string_literal: true
+
+module Groovestack
+  module Base
     module GraphQL
       class BaseMutation < ::GraphQL::Schema::Mutation
-        argument_class ::Core::Base::GraphQL::Types::BaseArgument
+        argument_class ::Groovestack::Base::GraphQL::Types::BaseArgument
 
         def resolve(**args)
           perform(**args)
-
-        rescue => e
-          Core::Base.notify_error(self.class, e)
+        rescue StandardError => e
+          Groovestack::Base.notify_error(self.class, e)
 
           raise e
         end

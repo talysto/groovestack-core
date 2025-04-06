@@ -1,10 +1,12 @@
-module Core
+# frozen_string_literal: true
+
+module Groovestack
   module Base
     module ActiveRecord
       module Authorization
-        module FieldsForSerialization 
+        module FieldsForSerialization
           extend ActiveSupport::Concern
-      
+
           # required for memoization during graphql serialization
           def authorized_fields_for_serialization(user)
             @authorized_fields_for_serialization ||= Pundit.policy!(user, self).permitted_attributes_for_show

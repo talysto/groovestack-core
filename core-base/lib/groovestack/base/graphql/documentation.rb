@@ -2,7 +2,7 @@
 
 require 'ostruct'
 
-module Core
+module Groovestack
   module Base
     module GraphQL
       module Documentation

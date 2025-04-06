@@ -1,4 +1,6 @@
-module Core
+# frozen_string_literal: true
+
+module Groovestack
   module Base
     module PubSub
       class GraphQLPublisher
@@ -11,7 +13,7 @@ module Core
 
       class GraphQLSubscriber
         def graphql_trigger_event(subscription, args, event, kwargs)
-          ::Core::Base::GraphQL::Subscriptions::EventHandler.trigger(subscription, args, event, kwargs)
+          ::Groovestack::Base::GraphQL::Subscriptions::EventHandler.trigger(subscription, args, event, kwargs)
         end
       end
     end
@@ -19,5 +21,5 @@ module Core
 end
 
 ActiveSupport.on_load(:after_initialize) do
-  ::Core::Base::PubSub::GraphQLPublisher.subscribe(::Core::Base::PubSub::GraphQLSubscriber.new)
+  ::Groovestack::Base::PubSub::GraphQLPublisher.subscribe(::Groovestack::Base::PubSub::GraphQLSubscriber.new)
 end
