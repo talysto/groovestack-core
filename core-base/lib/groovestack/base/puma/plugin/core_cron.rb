@@ -43,7 +43,7 @@ Puma::Plugin.create do # rubocop:disable Metrics/BlockLength
           PgLock.new(name: 'core-cron-commander', ttl: 30.minutes.to_i, attempts: 1).lock do
             log '[core-cron] Obtained CORE-CRON PGLock'
 
-            core_listeners = ::Core::Base::Listeners::InitAll.run(throttle_seconds: 1)
+            core_listeners = ::Groovestack::Base::Listeners::InitAll.run(throttle_seconds: 1)
           end
         rescue Timeout::Error
           # normal behavior - don't do anything when this happens

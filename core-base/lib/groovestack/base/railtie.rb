@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Core
+module Groovestack
   module Base
     module CoreRailtie
       extend ActiveSupport::Concern
@@ -56,12 +56,12 @@ module Core
 
           if errors.length.positive?
             print '⚠️'.brown
-            msg = "  CORE::#{module_name}\t#{module_version}"
+            msg = "  Groovestack::#{module_name}\t#{module_version}"
             msg += module_description if respond_to?(:module_description)
             msg += "\t#{errors[0]}"
           else
             print '✔'.green
-            msg = "  CORE::#{module_name}\t#{module_version}"
+            msg = "  Groovestack::#{module_name}\t#{module_version}"
             msg += module_description if respond_to?(:module_description)
           end
 
@@ -98,9 +98,9 @@ module Core
         return unless defined?(Puma)
 
         unless app.root.present? && root.present? && app.root.to_s.match?(root.to_s)
-          config.paths.add('lib/core/base/puma/plugin')
+          config.paths.add('lib/groovestack/base/puma/plugin')
           app.config.paths.add('app/lib/puma/plugin')
-          config.paths['lib/core/base/puma/plugin'].expanded.each do |expanded_path|
+          config.paths['lib/groovestack/base/puma/plugin'].expanded.each do |expanded_path|
             app.config.paths['app/lib/puma/plugin'] << expanded_path
           end
         end

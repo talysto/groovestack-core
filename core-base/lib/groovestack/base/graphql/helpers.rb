@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Core
+module Groovestack
   module Base
     module GraphQL
       module Helpers

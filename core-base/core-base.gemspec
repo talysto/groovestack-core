@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'lib/core/base/version'
+require_relative 'lib/groovestack/base/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'groovestack-base'
-  spec.version = Core::Base::VERSION
+  spec.version = Groovestack::Base::VERSION
   spec.authors = ['Darren Rush']
   spec.email = ['dlrush@gmail.com']
 
   spec.summary = 'Shared extensions for CORE modules'
-  spec.description = 'CORE::Base defines reusable extensions for the CORE Platform.'
-  spec.post_install_message = 'CORE::Base installed'
+  spec.description = 'Groovestack::Base defines reusable extensions for the CORE Platform.'
+  spec.post_install_message = 'Groovestack::Base installed'
 
   spec.homepage = 'https://moonlight-labs.com/core/'
   spec.required_ruby_version = '>= 3.1.0'

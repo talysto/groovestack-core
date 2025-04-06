@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module Core
+module Groovestack
   module Base
     module GraphQL
       class BaseInputObject < ::GraphQL::Schema::InputObject
-        argument_class ::Core::Base::GraphQL::Types::BaseArgument
+        argument_class ::Groovestack::Base::GraphQL::Types::BaseArgument
       end
     end
   end

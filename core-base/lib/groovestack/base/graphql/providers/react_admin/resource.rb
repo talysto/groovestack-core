@@ -2,7 +2,7 @@
 
 # TODO: refactor according to rubocop suggestions
 
-module Core
+module Groovestack
   module Base
     module GraphQL
       module Providers
@@ -22,7 +22,7 @@ module Core
                                        authorize: false,
                                        visibility_permission: nil,
                                        policy: nil,
-                                       camelize: ::Core::Base.config.graphql.camelize,
+                                       camelize: ::Groovestack::Base.config.graphql.camelize,
                                        **args)
                 # NOTE: class_name is only required if a custom _base_scope is not defined
                 # NOTE graphql_path is only required to override the default graphql path
@@ -121,7 +121,7 @@ module Core
                 return if except.include?(:collection_meta)
 
                 field :"_all_#{entity.to_s.underscore}_meta",
-                      type: ::Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata,
+                      type: ::Groovestack::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata,
                       camelize: camelize,
                       null: true,
                       visibility_permission: visibility_permission,
