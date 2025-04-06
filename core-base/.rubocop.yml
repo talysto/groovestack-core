@@ -12,6 +12,10 @@ GraphQL/FieldDescription:
 GraphQL/ObjectDescription:
   Enabled: false
 
+Layout/LineLength:
+  Exclude:
+    - spec/**/*
+
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
