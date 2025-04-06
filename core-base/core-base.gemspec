@@ -3,7 +3,7 @@
 require_relative 'lib/core/base/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'core-base'
+  spec.name = 'groovestack-base'
   spec.version = Core::Base::VERSION
   spec.authors = ['Darren Rush']
   spec.email = ['dlrush@gmail.com']
@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage = 'https://moonlight-labs.com/core/'
   spec.required_ruby_version = '>= 3.1.0'
 
-  spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+  spec.metadata['allowed_push_host'] = "https://rubygems.org"
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://moonlight-labs.com/core/'
@@ -30,12 +30,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activerecord'
-  spec.add_dependency 'dry-configurable'
-  spec.add_dependency 'graphql'
-  spec.add_dependency 'pg'
-  spec.add_dependency 'pg_lock'
-  spec.add_dependency 'puma'
+  spec.add_dependency 'activerecord', '~> 7.0'
+  spec.add_dependency 'dry-configurable', '~> 1.0'
+  spec.add_dependency 'graphql', '~> 2.5'
+  spec.add_dependency 'pg', '~> 1.0'
+  spec.add_dependency 'pg_lock', '~> 1.0'
+  spec.add_dependency 'puma', '~> 5.0'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
