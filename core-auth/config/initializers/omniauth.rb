@@ -41,7 +41,7 @@ module OmniAuth
         super
       end
 
-      def callback_phase
+      def callback_phase # rubocop:disable Metrics/AbcSize
         # add omniauth params back to session
 
         apple_omniauth_params = JSON.parse(cookies.encrypted['apple_omniauth_params'])
@@ -55,7 +55,8 @@ module OmniAuth
       end
 
       def authorize_params
-        @authorize_params ||= super.merge(nonce: new_nonce) # memoize so they aren't regenerated in the request_phase super call
+        # memoize so they aren't regenerated in the request_phase super call
+        @authorize_params ||= super.merge(nonce: new_nonce)
       end
 
       private

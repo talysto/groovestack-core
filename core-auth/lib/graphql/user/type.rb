@@ -13,7 +13,7 @@ module GraphQL
 
       field :email, String, null: true, description: 'email'
       field :has_email_provider, Boolean, null: true, description: 'user has email provider',
-                                          method: :has_email_provider?
+                                          method: :email_provider?
       field :image, String, null: true, description: 'user image url'
       field :language, String, null: true, description: 'user language'
       field :name, String, null: true, description: 'name'

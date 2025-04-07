@@ -10,7 +10,7 @@ module GraphQL
 
         react_admin_resource :users, graphql_path: 'GraphQL'
 
-        def User(id:)
+        def User(id:) # rubocop:disable Naming/MethodName
           id == 'me' ? current_user : ::User.find(id)
         end
       end
@@ -19,7 +19,7 @@ module GraphQL
         context[:current_resource]
       end
 
-      def users_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+      def users_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {}) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
         scope = base_scope
         scope = scope.where(id: filter.ids) if filter.ids.present?
 

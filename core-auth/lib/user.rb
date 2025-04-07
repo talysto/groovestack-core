@@ -30,11 +30,11 @@ class User < ApplicationRecord
     nil
   end
 
-  def has_email_provider?
+  def email_provider?
     encrypted_password.present?
   end
 
-  def build_auth_headers(token, client = 'default')
+  def build_auth_headers(token, client = 'default') # rubocop:disable Metrics/AbcSize
     # client may use expiry to prevent validation request if expired
     # must be cast as string or headers will break
     expiry = tokens[client]['expiry'] || tokens[client][:expiry]

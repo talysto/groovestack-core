@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActiveSupport.on_load(:after_initialize) do
+ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLength
   module DeviseTokenAuth
     module Concerns
       module ActiveRecordSupport

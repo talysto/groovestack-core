@@ -53,7 +53,7 @@ module Groovestack
         @auth_params
       end
 
-      def get_resource_from_auth_hash
+      def get_resource_from_auth_hash # rubocop:disable Naming/AccessorMethodName
         # invitation_token = request.env.dig('omniauth.params', 'invitation_token')
         language = request.env.dig('omniauth.params', 'language')
 
@@ -81,7 +81,7 @@ module Groovestack
         @resource
       end
 
-      def verified
+      def verified # rubocop:disable Metrics/AbcSize
         omniauth_success do
           set_token_in_cookie(@resource, @token)
 

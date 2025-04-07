@@ -18,23 +18,33 @@ if defined?(Rails)
               eval: proc { raise unless defined?(::Core::Config) },
               message: "Error: 'core-config' gem is required, add it your your gemfile"
             },
-            # {
-            #   eval: proc { raise unless (app_config = ::Core::Config::App.generate_config) && ((app_config.keys.include?(:oauth_enabled) && !app_config[:oauth_enabled]) || ::Groovestack::Auth::Providers::OmniAuth.enabled_providers.present? ) },
-            #   message: "Warning: oauth is enabled but no providers are configured. Follow the instructions in the README to configure oauth providers or disable oauth in the groovestack initializer."
-            # }
             {
               eval: proc {
                 raise if ::Groovestack::Auth.enabled_providers_sans_configuration.present?
               },
-              message: "\n\tWarning: enabled providers are missing required credentials:\n\t\t#{::Groovestack::Auth.enabled_providers_sans_configuration.map do |h|
-                "#{h.provider.to_s.titleize} - #{h.required_credentials.join(', ')}"
-              end.join("\n\t\t")}\n\tAdd them to your credentials file or disable the providers by adding them to Groovestack::Auth.disabled_providers."
+              message: missing_configuration_msg
             }
           ]
         end
 
+        def providers_missing_configuration
+          ::Groovestack::Auth.enabled_providers_sans_configuration.map do |h|
+            "#{h.provider.to_s.titleize} - #{h.required_credentials.join(', ')}"
+          end
+        end
+
+        def missing_configuration_msg
+          msg = "\n\tWarning: enabled providers are missing required credentials:\n\t\t"
+          msg += providers_missing_configuration.join("\n\t\t")
+          "#{msg}\n\tAdd them to your credentials file or disable the providers by adding them to Groovestack::Auth.disabled_providers." # rubocop:disable Layout/LineLength
+        end
+
         def module_description
-          "\n\tAvailable auth providers: #{::Groovestack::Auth.available_providers.map(&:k).map(&:to_s).map(&:titleize).join(', ')}\n\tEnabled auth providers: #{::Groovestack::Auth.enabled_providers.map(&:k).map(&:to_s).map(&:titleize).join(', ')}"
+          avail = ::Groovestack::Auth.available_providers.map(&:k).map(&:to_s).map(&:titleize)
+          descr = "\n\tAvailable auth providers: #{avail.join(', ')}"
+          enabled = ::Groovestack::Auth.enabled_providers.map(&:k).map(&:to_s).map(&:titleize)
+          descr += "\n\tEnabled auth providers: #{enabled.join(', ')}"
+          descr
         end
 
         initializer :append_migrations do |app|

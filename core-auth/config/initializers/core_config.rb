@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActiveSupport.on_load(:after_initialize) do
+ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLength
   if defined?(Core::Config)
     Core::Config::App.dynamic_config << { key: :has_admins, build: proc { User.admins.count.positive? } }
     Core::Config::App.dynamic_config << { key: :user_roles, build: proc { User::ROLES } }
@@ -15,7 +15,9 @@ ActiveSupport.on_load(:after_initialize) do
           enabled: Groovestack::Auth.enabled_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).map do |p|
             p.as_json(%i[k path])
           end,
-          configured: Groovestack::Auth.configured_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).map do |p|
+          configured: Groovestack::Auth.configured_providers(
+            ancestor: Groovestack::Auth::Providers::OmniAuth
+          ).map do |p|
             p.as_json(%i[k provider path])
           end
         }

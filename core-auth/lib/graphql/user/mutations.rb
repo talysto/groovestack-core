@@ -34,7 +34,7 @@ module GraphQL
           obj
         end
 
-        def update_with_password!(user, **attrs)
+        def update_with_password!(user, **attrs) # rubocop:disable Metrics/AbcSize
           unless current_user&.id == user.id
             raise GraphQL::ExecutionError,
                   'Validation Failed: user can only update their own password'
@@ -42,7 +42,7 @@ module GraphQL
 
           ::User.transaction do
             # if password isn't set yet, allow them to set it
-            user.password = attrs[:current_password] = attrs[:password] unless user.has_email_provider?
+            user.password = attrs[:current_password] = attrs[:password] unless user.email_provider?
 
             raise GraphQL::ExecutionError, user.errors.full_messages.join(' ') unless user.update_with_password(attrs)
 

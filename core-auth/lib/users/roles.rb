@@ -33,7 +33,8 @@ module Users
         roles.include? User::Role::ADMIN
       end
 
-      def has_role?(role)
+      # TODO: rname role?
+      def has_role?(role) # rubocop:disable Naming/PredicateName
         roles.include? role.to_s
       end
     end

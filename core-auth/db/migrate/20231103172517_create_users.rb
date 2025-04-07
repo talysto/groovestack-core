@@ -2,7 +2,7 @@
 
 # dynamic rails major version as recommended by perplexity
 class CreateUsers < ActiveRecord::Migration[Gem::Version.new(Rails.version).segments.first.to_f]
-  def change
+  def change # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     create_table :users, id: :uuid do |t|
       ## Database authenticatable
       t.string :encrypted_password, null: false, default: ''
@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[Gem::Version.new(Rails.version).segm
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
-      t.boolean  :allow_password_change, default: false
+      t.boolean  :allow_password_change, default: false, null: false
 
       ## Rememberable
       t.datetime :remember_created_at

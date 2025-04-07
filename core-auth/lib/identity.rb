@@ -3,7 +3,7 @@
 class Identity < ApplicationRecord
   belongs_to :user
 
-  def self.find_or_create_from_omniauth!(auth:, current_user: nil, user_attrs: {})
+  def self.find_or_create_from_omniauth!(auth:, current_user: nil, user_attrs: {}) # rubocop:disable Metrics/AbcSize
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |identity|
       # TODO
       # possible cases
