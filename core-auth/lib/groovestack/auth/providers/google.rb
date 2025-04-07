@@ -4,9 +4,9 @@ module Groovestack
       class Google < OmniAuth
         PROVIDER = :google_oauth2
         K = :google
-        REQUIRED_CREDENTIALS = [:GOOGLE_CLIENT_ID, :GOOGLE_CLIENT_SECRET]
+        REQUIRED_CREDENTIALS = %i[GOOGLE_CLIENT_ID GOOGLE_CLIENT_SECRET]
 
-        def self.generate_omniauth_args 
+        def self.generate_omniauth_args
           super << { name: k, origin_param: 'return_to' }
         end
       end

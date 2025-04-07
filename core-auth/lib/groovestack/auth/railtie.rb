@@ -23,10 +23,12 @@ if defined?(Rails)
             #   message: "Warning: oauth is enabled but no providers are configured. Follow the instructions in the README to configure oauth providers or disable oauth in the groovestack initializer."
             # }
             {
-              eval: proc { 
-                raise if ::Groovestack::Auth.enabled_providers_sans_configuration.present? 
+              eval: proc {
+                raise if ::Groovestack::Auth.enabled_providers_sans_configuration.present?
               },
-              message: "\n\tWarning: enabled providers are missing required credentials:\n\t\t#{::Groovestack::Auth.enabled_providers_sans_configuration.map { |h| "#{h.provider.to_s.titleize} - #{h.required_credentials.join(', ')}" }.join("\n\t\t")}\n\tAdd them to your credentials file or disable the providers by adding them to Groovestack::Auth.disabled_providers."
+              message: "\n\tWarning: enabled providers are missing required credentials:\n\t\t#{::Groovestack::Auth.enabled_providers_sans_configuration.map do |h|
+                "#{h.provider.to_s.titleize} - #{h.required_credentials.join(', ')}"
+              end.join("\n\t\t")}\n\tAdd them to your credentials file or disable the providers by adding them to Groovestack::Auth.disabled_providers."
             }
           ]
         end

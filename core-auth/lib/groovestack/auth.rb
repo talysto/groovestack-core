@@ -10,8 +10,12 @@ require 'groovestack/auth/version'
 require 'groovestack/auth/railtie' if defined?(Rails::Railtie)
 
 # add devise and devise_token_auth app/ dirs to load path
-Dir[File.join(Gem::Specification.find_by_name("devise").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
-Dir[File.join(Gem::Specification.find_by_name("devise_token_auth").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
+Dir[File.join(Gem::Specification.find_by_name('devise').gem_dir, 'app', '*')].each do |sub_dir|
+  $LOAD_PATH.push(sub_dir)
+end
+Dir[File.join(Gem::Specification.find_by_name('devise_token_auth').gem_dir, 'app', '*')].each do |sub_dir|
+  $LOAD_PATH.push(sub_dir)
+end
 
 unless defined?(ApplicationController)
   class ApplicationController < ActionController::Base
@@ -68,4 +72,4 @@ module Groovestack
   end
 end
 
-require 'test/fabricators/user_fabricator' if defined?(Fabrication) && defined?(Faker)
+require 'fabricators/user_fabricator' if defined?(Fabrication) && defined?(Faker)

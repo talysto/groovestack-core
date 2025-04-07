@@ -26,7 +26,7 @@ ActiveSupport.on_load(:after_initialize) do
   module AugmentedGraphqlDeviseRegisterArgs
     extend ActiveSupport::Concern
 
-    included do 
+    included do
       argument :name, String, required: true
     end
   end
@@ -37,7 +37,7 @@ ActiveSupport.on_load(:after_initialize) do
     private
 
     def build_resource(attrs)
-      # NOTE remove provider from attrs b/c use identity model
+      # NOTE: remove provider from attrs b/c use identity model
       attrs.delete(:provider)
       attrs[:roles] = [Users::Roles::Role::ADMIN] unless Core::Config::App.generate_config[:has_admins]
       resource_class.new(attrs)

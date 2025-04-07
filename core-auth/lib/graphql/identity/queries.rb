@@ -8,9 +8,9 @@ module GraphQL
       included do
         include ::Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource
 
-        react_admin_resource :identities, graphql_path: "GraphQL"
+        react_admin_resource :identities, graphql_path: 'GraphQL'
       end
-  
+
       def identities_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
         scope = base_scope
         scope = scope.where(id: filter.ids) if filter.ids.present?
@@ -23,4 +23,3 @@ module GraphQL
     end
   end
 end
-

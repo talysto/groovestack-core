@@ -11,7 +11,7 @@ module Users
       end
 
       ROLES = [
-        Role::ADMIN,
+        Role::ADMIN
       ].freeze
 
       def add_roles(roles)

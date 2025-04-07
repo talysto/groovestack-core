@@ -1,12 +1,12 @@
 module Groovestack
-  module Auth 
-    module SchemaPlugin 
+  module Auth
+    module SchemaPlugin
       extend ActiveSupport::Concern
 
-      included do 
+      included do
         use GraphqlDevise::SchemaPlugin.new(
-          query:            Types::QueryType,
-          mutation:         Types::MutationType,
+          query: Types::QueryType,
+          mutation: Types::MutationType,
           resource_loaders: [
             GraphqlDevise::ResourceLoader.new(User)
           ]

@@ -5,7 +5,7 @@ module Groovestack
         BASE_PATH = '/users/auth'.freeze
 
         def self.required_credentials
-          self.const_defined?(:REQUIRED_CREDENTIALS) ? self::REQUIRED_CREDENTIALS : []
+          const_defined?(:REQUIRED_CREDENTIALS) ? self::REQUIRED_CREDENTIALS : []
         end
 
         def self.required_credentials_present?
@@ -16,11 +16,11 @@ module Groovestack
           required_credentials_present?
         end
 
-        def self.generate_omniauth_args 
+        def self.generate_omniauth_args
           # different providers require different arguments
           [
-            provider, 
-            *required_credentials.map { |c| Rails.application.credentials.send(c) },
+            provider,
+            *required_credentials.map { |c| Rails.application.credentials.send(c) }
           ]
         end
 
@@ -28,16 +28,16 @@ module Groovestack
           "#{BASE_PATH}/#{k}"
         end
 
-        def self.as_json(keys=nil)
+        def self.as_json(keys = nil)
           verbose = super.merge({
-            required_credentials: required_credentials,
-            path: path,
-            generate_omniauth_args: generate_omniauth_args
-          })
-  
+                                  required_credentials: required_credentials,
+                                  path: path,
+                                  generate_omniauth_args: generate_omniauth_args
+                                })
+
           return verbose if keys.nil?
-  
-          verbose.select { |k, v| keys.include?(k) }
+
+          verbose.select { |k, _v| keys.include?(k) }
         end
       end
     end

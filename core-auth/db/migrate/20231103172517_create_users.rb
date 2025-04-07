@@ -1,13 +1,13 @@
 class CreateUsers < ActiveRecord::Migration[Gem::Version.new(Rails.version).segments.first.to_f] # dynamic rails major version as recommended by perplexity
   def change
-    create_table :users, id: :uuid do |t|      
+    create_table :users, id: :uuid do |t|
       ## Database authenticatable
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
-      t.boolean  :allow_password_change, :default => false
+      t.boolean  :allow_password_change, default: false
 
       ## Rememberable
       t.datetime :remember_created_at

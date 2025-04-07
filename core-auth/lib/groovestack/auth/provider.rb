@@ -1,5 +1,5 @@
 module Groovestack
-  module Auth 
+  module Auth
     def self.available_providers(ancestor: nil)
       # ensure all providers are loaded
       ::Groovestack::Auth::Providers.eager_load!
@@ -21,13 +21,13 @@ module Groovestack
       enabled_providers(ancestor: ancestor) - configured_providers(ancestor: ancestor)
     end
 
-    class Provider 
+    class Provider
       def self.provider
-        self.const_defined?(:PROVIDER) ? self::PROVIDER : nil
+        const_defined?(:PROVIDER) ? self::PROVIDER : nil
       end
 
       def self.k
-        self.const_defined?(:K) ? self::K : provider
+        const_defined?(:K) ? self::K : provider
       end
 
       def self.available?
@@ -42,15 +42,15 @@ module Groovestack
         false
       end
 
-      def self.as_json(keys=nil)
+      def self.as_json(keys = nil)
         verbose = {
           provider: provider,
-          k: k || provider,
+          k: k || provider
         }
 
         return verbose if keys.nil?
 
-        verbose.select { |k, v| keys.include?(k) }
+        verbose.select { |k, _v| keys.include?(k) }
       end
     end
   end

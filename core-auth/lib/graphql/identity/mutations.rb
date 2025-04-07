@@ -5,14 +5,14 @@ module GraphQL
     module Mutations
       class Delete < ::Groovestack::Base::GraphQL::BaseMutation
         argument :id, ID, required: true
-  
+
         type ::GraphQL::Identity::Type
-  
+
         def perform(id:)
           identity = ::Identity.find(id)
-  
+
           identity.destroy!
-  
+
           identity
         end
       end

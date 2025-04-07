@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   # GraphqlDevise overrides (due to omniauthable relying on new Identity model)
   # NOTE: DeviseTokenAuth User.provider & User.uid columns are removed
   # TODO: can we remove this overrides?
-  
-  def provider 
+
+  def provider
     # will probably need to pick from identities eventually
     nil
   end
@@ -37,11 +37,11 @@ class User < ActiveRecord::Base
     # must be cast as string or headers will break
     expiry = tokens[client]['expiry'] || tokens[client][:expiry]
     headers = {
-      DeviseTokenAuth.headers_names[:"access-token"] => token,
-      DeviseTokenAuth.headers_names[:"token-type"]   => 'Bearer',
-      DeviseTokenAuth.headers_names[:"client"]       => client,
-      DeviseTokenAuth.headers_names[:"expiry"]       => expiry.to_s,
-      DeviseTokenAuth.headers_names[:"id"]           => id
+      DeviseTokenAuth.headers_names[:'access-token'] => token,
+      DeviseTokenAuth.headers_names[:'token-type'] => 'Bearer',
+      DeviseTokenAuth.headers_names[:client] => client,
+      DeviseTokenAuth.headers_names[:expiry] => expiry.to_s,
+      DeviseTokenAuth.headers_names[:id] => id
     }
     headers.merge(build_bearer_token(headers))
   end

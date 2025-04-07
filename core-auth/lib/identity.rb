@@ -3,7 +3,7 @@ class Identity < ActiveRecord::Base
 
   def self.find_or_create_from_omniauth!(auth:, current_user: nil, user_attrs: {})
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |identity|
-      # TODO 
+      # TODO
       # possible cases
       # 1. user exists in the system (i.e. we found an email for them)
       # 2. user does not exist in the system (i.e. oauth email doesn't match anything in the system
@@ -15,7 +15,7 @@ class Identity < ActiveRecord::Base
         user_attrs_to_assign = user_attrs_to_assign.merge(user_attrs[:defaults] || {})
         user = User.new
       end
-      
+
       attrs = auth['info'].to_hash.slice(*user.attribute_names)
       user.assign_attributes(attrs.merge(user_attrs_to_assign))
 

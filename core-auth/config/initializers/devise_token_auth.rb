@@ -29,7 +29,7 @@ DeviseTokenAuth.setup do |config|
   # This route will be the prefix for all oauth2 redirect callbacks. For
   # example, using the default '/omniauth', the github oauth2 provider will
   # redirect successful authentications to '/omniauth/github/callback'
-  config.omniauth_prefix = "/users/auth"
+  config.omniauth_prefix = '/users/auth'
 
   config.cookie_attributes = {
     expires: 10.seconds
@@ -47,12 +47,12 @@ DeviseTokenAuth.setup do |config|
 
   # Makes it possible to change the headers names
   config.headers_names = {
-    :'authorization' => 'Authorization',
-    :'access-token' => 'access-token',
-    :'client' => 'client',
-    :'expiry' => 'expiry',
-    :'id' => 'id',
-    :'token-type' => 'token-type'
+    authorization: 'Authorization',
+    'access-token': 'access-token',
+    client: 'client',
+    expiry: 'expiry',
+    id: 'id',
+    'token-type': 'token-type'
   }
 
   # Makes it possible to use custom uid column

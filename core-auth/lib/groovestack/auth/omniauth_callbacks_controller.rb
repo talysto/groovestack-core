@@ -21,7 +21,7 @@ class Groovestack::Auth::OmniauthCallbacksController < DeviseTokenAuth::Omniauth
     @auth_hash ||= request.env['omniauth.auth'] # goes through plain old omniauth so need to override
   end
 
-  def resource_class(mapping = nil)
+  def resource_class(_mapping = nil)
     # TODO: this is required b/c their code relies on the resource_class
     # method which expects access to the 'dta.omniauth.params' which we
     # don't currently have access through b/c we are going directly
@@ -30,6 +30,7 @@ class Groovestack::Auth::OmniauthCallbacksController < DeviseTokenAuth::Omniauth
     return @resource_class if defined?(@resource_class)
 
     raise 'No resource_class found' unless @resource.present?
+
     @resource_class = @resource.class
 
     @resource_class
@@ -38,11 +39,11 @@ class Groovestack::Auth::OmniauthCallbacksController < DeviseTokenAuth::Omniauth
   def create_auth_params
     @auth_params = {
       auth_token: @token.token,
-      client_id:  @token.client,
+      client_id: @token.client,
       # uid:        @resource.uid,
-      expiry:     @token.expiry,
-      config:     @config,
-      id:         @resource.id
+      expiry: @token.expiry,
+      config: @config,
+      id: @resource.id
     }
     @auth_params.merge!(oauth_registration: true) if @oauth_registration
     @auth_params
@@ -52,17 +53,21 @@ class Groovestack::Auth::OmniauthCallbacksController < DeviseTokenAuth::Omniauth
     # invitation_token = request.env.dig('omniauth.params', 'invitation_token')
     language = request.env.dig('omniauth.params', 'language')
 
-    c_user = current_user rescue nil
-    
-    identity_params = { 
-      auth: auth_hash, 
+    c_user = begin
+      current_user
+    rescue StandardError
+      nil
+    end
+
+    identity_params = {
+      auth: auth_hash,
       current_user: c_user,
-      user_attrs: { 
+      user_attrs: {
         defaults: {
           roles: Core::Config::App.generate_config[:has_admins] ? [] : [Users::Roles::Role::ADMIN]
         },
         priority: {
-          language: language,
+          language: language
         }
       }
     }
@@ -73,14 +78,14 @@ class Groovestack::Auth::OmniauthCallbacksController < DeviseTokenAuth::Omniauth
   end
 
   def verified
-    omniauth_success do 
+    omniauth_success do
       set_token_in_cookie(@resource, @token)
-      
-      redirect_url =  if redirect_options.present? || request.env["omniauth.origin"].split('?').size > 1
-                        DeviseTokenAuth::Url.generate(request.env["omniauth.origin"], redirect_options)
-                      else
-                        request.env["omniauth.origin"].split('?').first # get rid of occasional trailing ?
-                      end
+
+      redirect_url = if redirect_options.present? || request.env['omniauth.origin'].split('?').size > 1
+                       DeviseTokenAuth::Url.generate(request.env['omniauth.origin'], redirect_options)
+                     else
+                       request.env['omniauth.origin'].split('?').first # get rid of occasional trailing ?
+                     end
 
       redirect_to redirect_url
 
@@ -92,7 +97,7 @@ class Groovestack::Auth::OmniauthCallbacksController < DeviseTokenAuth::Omniauth
     @error = params[:message]
     # render_data_or_redirect('authFailure', omniauth_failure_error: @error)
 
-    ::Groovestack::Base.notify_error("Groovestack::Auth::OmniauthCallbacksController.omniauth_failure", @error)
+    ::Groovestack::Base.notify_error('Groovestack::Auth::OmniauthCallbacksController.omniauth_failure', @error)
 
     data = { omniauth_failure_error: @error }.merge(redirect_options)
     redirect_to DeviseTokenAuth::Url.generate(session['omniauth.origin'], data)
