@@ -29,7 +29,7 @@ module GraphQL
         scope = scope.fuzzysearch(filter.name) if filter.name.present?
         scope = scope.with_roles(filter.roles) if filter.roles.present?
 
-        return scope unless sort_field.present?
+        return scope if sort_field.blank?
 
         sort_field = 'last_sign_in_at' if sort_field == 'last_login_at'
 

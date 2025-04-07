@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'jsonb_accessor'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include Users::Roles
   extend ::Devise::Models
 

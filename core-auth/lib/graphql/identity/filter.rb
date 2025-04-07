@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GraphQL
   module Identity
     class Filter < ::Groovestack::Base::GraphQL::BaseInputObject

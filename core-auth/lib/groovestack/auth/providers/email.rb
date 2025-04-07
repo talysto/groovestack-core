@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Groovestack
   module Auth
     module Providers

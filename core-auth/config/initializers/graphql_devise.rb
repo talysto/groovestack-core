@@ -1,18 +1,24 @@
-ActiveSupport.on_load(:after_initialize) do
-  module DeviseTokenAuth::Concerns::ActiveRecordSupport
-    extend ActiveSupport::Concern
+# frozen_string_literal: true
 
-    class_methods do
-      # Override to remove provider from attrs b/c use identity model
-      def dta_find_by(attrs = {})
-        attrs.delete(:provider)
-        attrs.delete('provider')
-        find_by(attrs)
+ActiveSupport.on_load(:after_initialize) do
+  module DeviseTokenAuth
+    module Concerns
+      module ActiveRecordSupport
+        extend ActiveSupport::Concern
+
+        class_methods do
+          # Override to remove provider from attrs b/c use identity model
+          def dta_find_by(attrs = {})
+            attrs.delete(:provider)
+            attrs.delete('provider')
+            find_by(attrs)
+          end
+        end
       end
     end
   end
 
-  class User < ActiveRecord::Base
+  class User < ApplicationRecord
     # Override to remove provider from attrs b/c use identity model
     def self.dta_find_by(attrs = {})
       attrs.delete(:provider)

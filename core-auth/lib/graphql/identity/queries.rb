@@ -16,7 +16,7 @@ module GraphQL
         scope = scope.where(id: filter.ids) if filter.ids.present?
         scope = scope.where(user_id: filter.user_id) if filter.user_id.present?
 
-        return scope unless sort_field.present?
+        return scope if sort_field.blank?
 
         scope.order({ sort_field.underscore => sort_order || 'desc' })
       end

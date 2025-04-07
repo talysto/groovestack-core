@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Groovestack::Auth::Railtie.routes.draw do
   devise_scope :user do
     match '/users/auth/:provider/callback', to: 'groovestack/auth/omniauth_callbacks#verified', via: %i[get post],

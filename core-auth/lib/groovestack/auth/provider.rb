@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Groovestack
   module Auth
     def self.available_providers(ancestor: nil)
@@ -50,7 +52,7 @@ module Groovestack
 
         return verbose if keys.nil?
 
-        verbose.select { |k, _v| keys.include?(k) }
+        verbose.slice(*keys)
       end
     end
   end

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Groovestack
   module Auth
     module Providers
       class OmniAuth < Groovestack::Auth::Provider
-        BASE_PATH = '/users/auth'.freeze
+        BASE_PATH = '/users/auth'
 
         def self.required_credentials
           const_defined?(:REQUIRED_CREDENTIALS) ? self::REQUIRED_CREDENTIALS : []
@@ -37,7 +39,7 @@ module Groovestack
 
           return verbose if keys.nil?
 
-          verbose.select { |k, _v| keys.include?(k) }
+          verbose.slice(*keys)
         end
       end
     end

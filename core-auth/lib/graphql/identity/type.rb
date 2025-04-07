@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GraphQL
   module Identity
     class Type < ::Groovestack::Base::GraphQL::Types::BaseObject

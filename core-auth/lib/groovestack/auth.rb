@@ -23,7 +23,9 @@ unless defined?(ApplicationController)
 end
 
 unless defined?(DeviseTokenAuth::Concerns)
-  module DeviseTokenAuth::Concerns
+  module DeviseTokenAuth
+    module Concerns
+    end
   end
 end
 

@@ -22,7 +22,7 @@ module GraphQL
         def perform(id:, **attrs)
           obj = id == current_user&.id ? current_user : ::User.find(id)
 
-          return update_with_password!(obj, **attrs) if (attrs.keys & %i[password current_password]).present?
+          return update_with_password!(obj, **attrs) if attrs.keys.intersect?(%i[password current_password])
 
           if !current_user.admin? && attrs[:roles].present?
             raise GraphQL::ExecutionError,

@@ -1,4 +1,7 @@
-class CreateUsers < ActiveRecord::Migration[Gem::Version.new(Rails.version).segments.first.to_f] # dynamic rails major version as recommended by perplexity
+# frozen_string_literal: true
+
+# dynamic rails major version as recommended by perplexity
+class CreateUsers < ActiveRecord::Migration[Gem::Version.new(Rails.version).segments.first.to_f]
   def change
     create_table :users, id: :uuid do |t|
       ## Database authenticatable

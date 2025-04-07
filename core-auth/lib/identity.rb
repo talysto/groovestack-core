@@ -1,4 +1,6 @@
-class Identity < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Identity < ApplicationRecord
   belongs_to :user
 
   def self.find_or_create_from_omniauth!(auth:, current_user: nil, user_attrs: {})

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   module Roles
     extend ActiveSupport::Concern
@@ -7,7 +9,7 @@ module Users
       scope :admins, -> { with_roles(:admin) }
 
       module Role
-        ADMIN = 'admin'.freeze
+        ADMIN = 'admin'
       end
 
       ROLES = [
