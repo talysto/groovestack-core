@@ -1,4 +1,4 @@
-module Core
+module Groovestack
   module Auth
     module Providers
       class Apple < OmniAuth

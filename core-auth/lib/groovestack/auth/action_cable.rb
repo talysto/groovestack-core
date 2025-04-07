@@ -1,4 +1,4 @@
-module Core
+module Groovestack
   module Auth 
     module ActionCable
       module Connection

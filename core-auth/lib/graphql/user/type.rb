@@ -1,7 +1,7 @@
 module GraphQL
   module User
-    class Type < ::Core::Base::GraphQL::Types::BaseObject
-      include ::Core::Base::GraphQL::Helpers::Types::Typified
+    class Type < ::Groovestack::Base::GraphQL::Types::BaseObject
+      include ::Groovestack::Base::GraphQL::Helpers::Types::Typified
       
       description 'An user'
 

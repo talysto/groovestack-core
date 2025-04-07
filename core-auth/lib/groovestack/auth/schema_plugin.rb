@@ -1,4 +1,4 @@
-module Core
+module Groovestack
   module Auth 
     module SchemaPlugin 
       extend ActiveSupport::Concern

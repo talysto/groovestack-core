@@ -7,9 +7,9 @@ ActiveSupport.on_load(:after_initialize) do
       key: :oauth_providers, 
       build: Proc.new { 
         { 
-          available: Core::Auth.available_providers(ancestor: Core::Auth::Providers::OmniAuth).map { |p| p.as_json[:k] }, 
-          enabled: Core::Auth.enabled_providers(ancestor: Core::Auth::Providers::OmniAuth).map { |p| p.as_json([:k, :path]) },
-          configured: Core::Auth.configured_providers(ancestor: Core::Auth::Providers::OmniAuth).map { |p| p.as_json([:k, :provider, :path]) }
+          available: Groovestack::Auth.available_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).map { |p| p.as_json[:k] }, 
+          enabled: Groovestack::Auth.enabled_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).map { |p| p.as_json([:k, :path]) },
+          configured: Groovestack::Auth.configured_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).map { |p| p.as_json([:k, :provider, :path]) }
         } 
       } 
     }
@@ -18,9 +18,9 @@ ActiveSupport.on_load(:after_initialize) do
       key: :auth_providers,
       build: Proc.new {
         {
-          available: Core::Auth.available_providers.map { |p| p.as_json([:k, :provider]) },
-          enabled: Core::Auth.enabled_providers.map { |p| p.as_json([:k, :provider, :path]) },
-          configured: Core::Auth.configured_providers.map { |p| p.as_json([:k, :provider, :path]) }
+          available: Groovestack::Auth.available_providers.map { |p| p.as_json([:k, :provider]) },
+          enabled: Groovestack::Auth.enabled_providers.map { |p| p.as_json([:k, :provider, :path]) },
+          configured: Groovestack::Auth.configured_providers.map { |p| p.as_json([:k, :provider, :path]) }
         }
       }
     }

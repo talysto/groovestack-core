@@ -6,7 +6,7 @@ module GraphQL
       extend ActiveSupport::Concern
 
       included do
-        include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
+        include ::Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource
 
         react_admin_resource :users, graphql_path: "GraphQL"
   

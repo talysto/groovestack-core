@@ -1,15 +1,15 @@
-= CORE Auth
+= Groovestack Auth
 
 == Introduction
-CORE Auth is a https://talysto.com/tech/groovestack/[Groovestack] CORE gem that provides a token-based authentication solution for https://rubyonrails.org/[Ruby on Rails] / https://graphql-ruby.org/[GraphQL Ruby] applications. CORE Auth is built on top of
+Groovestack Auth is a https://talysto.com/tech/groovestack/[Groovestack] Groovestack gem that provides a token-based authentication solution for https://rubyonrails.org/[Ruby on Rails] / https://graphql-ruby.org/[GraphQL Ruby] applications. Groovestack Auth is built on top of
 
 * https://github.com/graphql-devise/graphql_devise[graphql_devise] - https://graphql-ruby.org/[GraphQL Ruby] wrapper for https://github.com/lynndylanhurley/devise_token_auth[Devise Token Auth]
 * https://github.com/omniauth/omniauth[OmniAuth] - Multi-Provider Authentication.
 
-CORE Auth enables seamless authentication via email and password or through OAuth providers like Google and Apple. Users can connect and authenticate with multiple providers (i.e. email, google or apple). CORE Auth also integrates seemlessly with https://guides.rubyonrails.org/action_cable_overview.html[Action Cable].
+Groovestack Auth enables seamless authentication via email and password or through OAuth providers like Google and Apple. Users can connect and authenticate with multiple providers (i.e. email, google or apple). Groovestack Auth also integrates seemlessly with https://guides.rubyonrails.org/action_cable_overview.html[Action Cable].
 
 === Configuration
-CORE Auth ships with email and password authentication out of the box as well as easily configurable https://github.com/zquestz/omniauth-google-oauth2[Google] and https://github.com/nhosoya/omniauth-apple[Apple] OAuth providers.
+Groovestack Auth ships with email and password authentication out of the box as well as easily configurable https://github.com/zquestz/omniauth-google-oauth2[Google] and https://github.com/nhosoya/omniauth-apple[Apple] OAuth providers.
 
 ==== create-groovestack
 When using the https://github.com/groovestack/create-groovestack[create-groovestack] utility to bootstrap a new Groovestack application, enabling OAuth providers is easy. Simply add the required third party keys to your Rails credentials file. For example, to enable Google OAuth, add the following to your Rails credentials file:
@@ -31,7 +31,7 @@ APPLE_TEAM_ID: YOUR_TEAM_ID
 
 For instructions on how to acquire the required keys, see the https://github.com/zquestz/omniauth-google-oauth2[omniauth-google-oauth2] and https://github.com/nhosoya/omniauth-apple[omniauth-apple] documentation.
 
-CORE Auth ships with development and production environment https://edgeguides.rubyonrails.org/security.html#custom-credentials[rails credentials] out of the box. To edit your environment specific Rails credentials file, run 
+Groovestack Auth ships with development and production environment https://edgeguides.rubyonrails.org/security.html#custom-credentials[rails credentials] out of the box. To edit your environment specific Rails credentials file, run 
 [source,shell]
 ----
 rails credentials:edit -e [environment]

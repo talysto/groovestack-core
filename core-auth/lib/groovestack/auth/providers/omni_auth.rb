@@ -1,7 +1,7 @@
-module Core
+module Groovestack
   module Auth
     module Providers
-      class OmniAuth < Core::Auth::Provider
+      class OmniAuth < Groovestack::Auth::Provider
         BASE_PATH = '/users/auth'.freeze
 
         def self.required_credentials

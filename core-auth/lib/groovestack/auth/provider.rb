@@ -1,10 +1,10 @@
-module Core
+module Groovestack
   module Auth 
     def self.available_providers(ancestor: nil)
       # ensure all providers are loaded
-      ::Core::Auth::Providers.eager_load!
+      ::Groovestack::Auth::Providers.eager_load!
 
-      root = ancestor || ::Core::Auth::Provider
+      root = ancestor || ::Groovestack::Auth::Provider
 
       root.descendants.select(&:available?)
     end
@@ -35,7 +35,7 @@ module Core
       end
 
       def self.enabled?
-        available? && ::Core::Auth.disabled_providers.exclude?(provider)
+        available? && ::Groovestack::Auth.disabled_providers.exclude?(provider)
       end
 
       def self.configured?

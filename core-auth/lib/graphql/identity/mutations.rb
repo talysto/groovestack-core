@@ -3,7 +3,7 @@
 module GraphQL
   module Identity
     module Mutations
-      class Delete < ::Core::Base::GraphQL::BaseMutation
+      class Delete < ::Groovestack::Base::GraphQL::BaseMutation
         argument :id, ID, required: true
   
         type ::GraphQL::Identity::Type

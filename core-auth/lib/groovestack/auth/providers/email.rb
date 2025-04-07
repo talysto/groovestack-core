@@ -1,7 +1,7 @@
-module Core
+module Groovestack
   module Auth
     module Providers
-      class Email < Core::Auth::Provider
+      class Email < Groovestack::Auth::Provider
         PROVIDER = :email
 
         def self.configured?

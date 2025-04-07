@@ -5,7 +5,7 @@ require 'devise_token_auth/concerns/set_user_by_token'
 require 'devise_token_auth/application_controller'
 require 'devise_token_auth/omniauth_callbacks_controller'
 
-class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+class Groovestack::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
   def verified_request?
     # required b/c apple uses POST to callback and resets the origin header
     # source: https://github.com/rails/rails/blob/6b93fff8af32ef5e91f4ec3cfffb081d0553faf0/actionpack/lib/action_controller/metal/request_forgery_protection.rb#L442C11-L442C27
@@ -92,7 +92,7 @@ class Core::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbac
     @error = params[:message]
     # render_data_or_redirect('authFailure', omniauth_failure_error: @error)
 
-    ::Core::Base.notify_error("Core::Auth::OmniauthCallbacksController.omniauth_failure", @error)
+    ::Groovestack::Base.notify_error("Groovestack::Auth::OmniauthCallbacksController.omniauth_failure", @error)
 
     data = { omniauth_failure_error: @error }.merge(redirect_options)
     redirect_to DeviseTokenAuth::Url.generate(session['omniauth.origin'], data)

@@ -1,4 +1,4 @@
-class CreateUsers < ActiveRecord::Migration[7.0]
+class CreateUsers < ActiveRecord::Migration[Gem::Version.new(Rails.version).segments.first.to_f] # dynamic rails major version as recommended by perplexity
   def change
     create_table :users, id: :uuid do |t|      
       ## Database authenticatable

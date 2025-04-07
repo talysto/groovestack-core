@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  Core::Auth.configured_providers(ancestor: Core::Auth::Providers::OmniAuth).each do |p|
+  Groovestack::Auth.configured_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).each do |p|
     provider *p.generate_omniauth_args
   end
 end
@@ -15,7 +15,7 @@ module Core
   end
 end
 
-OmniAuth.config.on_failure = Core::Auth::OmniauthFailureEndpoint
+OmniAuth.config.on_failure = Groovestack::Auth::OmniauthFailureEndpoint
 
 module OmniAuth
   module Strategies

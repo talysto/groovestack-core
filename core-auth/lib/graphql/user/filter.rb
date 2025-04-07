@@ -1,6 +1,6 @@
 module GraphQL
   module User
-    class Filter < ::Core::Base::GraphQL::BaseInputObject
+    class Filter < ::Groovestack::Base::GraphQL::BaseInputObject
       description 'User filter props'
 
       argument :ids, [ID], required: false

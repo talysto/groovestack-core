@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'active_record'
-require 'dry-configurable'
+require 'groovestack/base'
+
 require 'graphql_devise'
 require 'omniauth-google-oauth2'
 require 'omniauth-apple'
 
-require 'core/auth/version'
-require 'core/auth/railtie' if defined?(Rails::Railtie)
+require 'groovestack/auth/version'
+require 'groovestack/auth/railtie' if defined?(Rails::Railtie)
 
 # add devise and devise_token_auth app/ dirs to load path
 Dir[File.join(Gem::Specification.find_by_name("devise").gem_dir, "app", '*')].each { |sub_dir| $LOAD_PATH.push(sub_dir) }
@@ -43,22 +43,22 @@ module GraphQL
   end
 end
 
-module Core
+module Groovestack
   module Auth
-    autoload :Provider, 'core/auth/provider'
-    autoload :AuthenticatedApiController, 'core/auth/authenticated_api_controller'
-    autoload :OmniauthCallbacksController, 'core/auth/omniauth_callbacks_controller'
-    autoload :ActionCable, 'core/auth/action_cable'
-    autoload :SchemaPlugin, 'core/auth/schema_plugin'
+    autoload :Provider, 'groovestack/auth/provider'
+    autoload :AuthenticatedApiController, 'groovestack/auth/authenticated_api_controller'
+    autoload :OmniauthCallbacksController, 'groovestack/auth/omniauth_callbacks_controller'
+    autoload :ActionCable, 'groovestack/auth/action_cable'
+    autoload :SchemaPlugin, 'groovestack/auth/schema_plugin'
 
     module Providers
       extend ActiveSupport::Autoload
 
       eager_autoload do
-        autoload :Email, 'core/auth/providers/email'
-        autoload :OmniAuth, 'core/auth/providers/omni_auth'
-        autoload :Apple, 'core/auth/providers/apple'
-        autoload :Google, 'core/auth/providers/google'
+        autoload :Email, 'groovestack/auth/providers/email'
+        autoload :OmniAuth, 'groovestack/auth/providers/omni_auth'
+        autoload :Apple, 'groovestack/auth/providers/apple'
+        autoload :Google, 'groovestack/auth/providers/google'
       end
     end
 
