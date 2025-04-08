@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Core
+module Groovestack
   module Config
     module GraphQL
       module App
@@ -8,11 +8,11 @@ module Core
           extend ActiveSupport::Concern
 
           included do
-            field :AppConfig, ::GraphQL::Types::JSON, null: false
+            field :AppConfig, ::GraphQL::Types::JSON, null: false # rubocop:disable GraphQL/FieldName
           end
 
-          def AppConfig
-            Core::Config::App.generate_config
+          def AppConfig # rubocop:disable Naming/MethodName
+            Groovestack::Config::App.generate_config
           end
         end
       end
