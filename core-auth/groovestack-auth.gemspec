@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'groovestack-base', '>= 0.1.7'
+  spec.add_dependency 'groovestack-config', '>= 0.1.1'
   spec.add_dependency 'jsonb_accessor', '~>1.4'
 
   # spec.add_development_dependency 'graphql_devise'

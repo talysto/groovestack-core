@@ -46,7 +46,7 @@ if defined?(GraphqlDevise)
       def build_resource(attrs)
         # NOTE: remove provider from attrs b/c use identity model
         attrs.delete(:provider)
-        attrs[:roles] = [Users::Roles::Role::ADMIN] unless Core::Config::App.generate_config[:has_admins]
+        attrs[:roles] = [Users::Roles::Role::ADMIN] unless Groovestack::Config::App.generate_config[:has_admins]
         resource_class.new(attrs)
       end
     end

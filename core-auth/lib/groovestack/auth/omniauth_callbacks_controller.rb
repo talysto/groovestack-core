@@ -68,7 +68,7 @@ module Groovestack
           current_user: c_user,
           user_attrs: {
             defaults: {
-              roles: Core::Config::App.generate_config[:has_admins] ? [] : [Users::Roles::Role::ADMIN]
+              roles: Groovestack::Config::App.generate_config[:has_admins] ? [] : [Users::Roles::Role::ADMIN]
             },
             priority: {
               language: language

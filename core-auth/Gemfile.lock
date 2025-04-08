@@ -3,6 +3,7 @@ PATH
   specs:
     groovestack-auth (0.1.1)
       groovestack-base (>= 0.1.7)
+      groovestack-config (>= 0.1.1)
       jsonb_accessor (~> 1.4)
       omniauth-apple
       omniauth-google-oauth2
@@ -67,6 +68,8 @@ GEM
       pg (~> 1.0)
       pg_lock (~> 1.0)
       puma (~> 5.0)
+    groovestack-config (0.1.1)
+      groovestack-base (~> 0.1.5)
     hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLength
-  if defined?(Core::Config)
-    Core::Config::App.dynamic_config << { key: :has_admins, build: proc { User.admins.count.positive? } }
-    Core::Config::App.dynamic_config << { key: :user_roles, build: proc { User::ROLES } }
+  if defined?(Groovestack::Config)
+    Groovestack::Config::App.dynamic_config << { key: :has_admins, build: proc { User.admins.count.positive? } }
+    Groovestack::Config::App.dynamic_config << { key: :user_roles, build: proc { User::ROLES } }
 
-    Core::Config::App.dynamic_config << {
+    Groovestack::Config::App.dynamic_config << {
       key: :oauth_providers,
       build: proc do
         {
@@ -24,7 +24,7 @@ ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLengt
       end
     }
 
-    Core::Config::App.dynamic_config << {
+    Groovestack::Config::App.dynamic_config << {
       key: :auth_providers,
       build: proc do
         {

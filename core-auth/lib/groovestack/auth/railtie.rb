@@ -11,14 +11,6 @@ if defined?(Rails)
         def dx_validations
           [
             {
-              eval: proc { raise unless defined?(::Groovestack::Base) },
-              message: "Error: 'core-base' gem is required, add it your your gemfile"
-            },
-            {
-              eval: proc { raise unless defined?(::Core::Config) },
-              message: "Error: 'core-config' gem is required, add it your your gemfile"
-            },
-            {
               eval: proc {
                 raise if ::Groovestack::Auth.enabled_providers_sans_configuration.present?
               },
