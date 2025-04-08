@@ -1,15 +1,48 @@
+plugins:
+  - rubocop-graphql
+  - rubocop-rails
+
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 3.1.3
-  Exclude:
-    - Gemfile.lock
 
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+GraphQL/FieldDescription:
+  Enabled: false
 
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
+GraphQL/ObjectDescription:
+  Enabled: false
 
 Layout/LineLength:
-  Max: 120
+  Exclude:
+    - spec/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - '*.gemspec'
+
+Metrics/MethodLength:
+  Max: 20
+
+# TODO: reenable and replace puts / logs with global, configurable logger
+Rails/Output:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/RedundantConstantBase:
+  Enabled: false
+
+
+
+# Style/StringLiterals:
+#   Enabled: true
+#   EnforcedStyle: double_quotes
+
+# Style/StringLiteralsInInterpolation:
+#   Enabled: true
+#   EnforcedStyle: double_quotes
+
+# Layout/LineLength:
+#   Max: 120

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 # rubocop:disable Rails/RefuteMethods
 
@@ -8,8 +8,11 @@ module Core
   class TestConfig < Minitest::Test
     def setup
       # set class variable defaults
+
+      # rubocop:disable Style/ClassVars
       Core::Config::App.class_variable_set(:@@config, {})
       Core::Config::App.class_variable_set(:@@dynamic_config, [])
+      # rubocop:enable Style/ClassVars
     end
 
     def test_that_it_has_a_version_number
@@ -31,12 +34,12 @@ module Core
 
     def test_can_add_dynamic_config
       assert_equal Core::Config::App.dynamic_config.size, 0
-      Core::Config::App.dynamic_config << { key: :hello, build: Proc.new { 'world' } }
+      Core::Config::App.dynamic_config << { key: :hello, build: proc { 'world' } }
       assert_equal Core::Config::App.dynamic_config.size, 1
     end
 
     def test_generate_dynamic_config
-      Core::Config::App.dynamic_config << { key: :hello, build: Proc.new { 'world' } }
+      Core::Config::App.dynamic_config << { key: :hello, build: proc { 'world' } }
       config = Core::Config::App.generate_config
       assert_equal config[:hello], 'world'
     end

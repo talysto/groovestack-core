@@ -8,10 +8,10 @@ module Groovestack
           extend ActiveSupport::Concern
 
           included do
-            field :AppConfig, ::GraphQL::Types::JSON, null: false
+            field :AppConfig, ::GraphQL::Types::JSON, null: false # rubocop:disable GraphQL/FieldName
           end
 
-          def AppConfig
+          def AppConfig # rubocop:disable Naming/MethodName
             Groovestack::Config::App.generate_config
           end
         end
