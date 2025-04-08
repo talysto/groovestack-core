@@ -1,11 +1,13 @@
-module Core
+# frozen_string_literal: true
+
+module Groovestack
   module Auth
     module Providers
       class Apple < OmniAuth
         PROVIDER = :apple
-        REQUIRED_CREDENTIALS = [:APPLE_CLIENT_ID, :APPLE_TEAM_ID, :APPLE_KEY_ID, :APPLE_PEM_CONTENT]
+        REQUIRED_CREDENTIALS = %i[APPLE_CLIENT_ID APPLE_TEAM_ID APPLE_KEY_ID APPLE_PEM_CONTENT].freeze
 
-        def self.generate_omniauth_args 
+        def self.generate_omniauth_args
           [
             provider,
             Rails.application.credentials.APPLE_CLIENT_ID,

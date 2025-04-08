@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   module Roles
     extend ActiveSupport::Concern
@@ -7,11 +9,11 @@ module Users
       scope :admins, -> { with_roles(:admin) }
 
       module Role
-        ADMIN = 'admin'.freeze
+        ADMIN = 'admin'
       end
 
       ROLES = [
-        Role::ADMIN,
+        Role::ADMIN
       ].freeze
 
       def add_roles(roles)
@@ -31,7 +33,8 @@ module Users
         roles.include? User::Role::ADMIN
       end
 
-      def has_role?(role)
+      # TODO: rname role?
+      def has_role?(role) # rubocop:disable Naming/PredicateName
         roles.include? role.to_s
       end
     end

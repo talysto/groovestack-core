@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require_relative 'lib/groovestack/base/version'
+require_relative 'lib/groovestack/auth/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'groovestack-base'
-  spec.version = Groovestack::Base::VERSION
-  spec.authors = ['Darren Rush']
-  spec.email = ['dlrush@gmail.com']
+  spec.name = 'groovestack-auth'
+  spec.version = Groovestack::Auth::VERSION
+  spec.authors = ['Max Schridde']
+  spec.email = ['maxjschridde@gmail.com']
 
-  spec.summary = 'Shared extensions for CORE modules'
-  spec.description = 'Groovestack::Base defines reusable extensions for the CORE Platform.'
-  spec.post_install_message = 'Groovestack::Base installed'
+  spec.summary = 'Groovestack extension for application authentication'
+  spec.description = 'Groovestack::Auth is an authentication extension for the Groovestack Platform.'
+  spec.post_install_message = 'Groovestack::Auth installed'
 
-  spec.homepage = 'https://talysto.com/tech/groovestack/'
+  spec.homepage = 'https://github.com/talysto/groovestack-core/'
   spec.required_ruby_version = '>= 3.1.0'
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
@@ -30,12 +30,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activerecord', '~> 7.0'
-  spec.add_dependency 'dry-configurable', '~> 1.0'
-  spec.add_dependency 'graphql', '>= 1.8', '< 2.4' # TODO: bump once graphql_devise is updated in groovestack-auth
-  spec.add_dependency 'pg', '~> 1.0'
-  spec.add_dependency 'pg_lock', '~> 1.0'
-  spec.add_dependency 'puma', '~> 5.0'
+  spec.add_dependency 'groovestack-base', '~> 0.1', '>= 0.1.7'
+  spec.add_dependency 'groovestack-config', '~> 0.1', '>= 0.1.1'
+  spec.add_dependency 'jsonb_accessor', '~>1.4'
+
+  # spec.add_development_dependency 'graphql_devise'
+  spec.add_dependency 'omniauth-apple'
+  spec.add_dependency 'omniauth-google-oauth2'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

@@ -1,10 +1,12 @@
-module Core
-  module Auth 
+# frozen_string_literal: true
+
+module Groovestack
+  module Auth
     def self.available_providers(ancestor: nil)
       # ensure all providers are loaded
-      ::Core::Auth::Providers.eager_load!
+      ::Groovestack::Auth::Providers.eager_load!
 
-      root = ancestor || ::Core::Auth::Provider
+      root = ancestor || ::Groovestack::Auth::Provider
 
       root.descendants.select(&:available?)
     end
@@ -21,13 +23,13 @@ module Core
       enabled_providers(ancestor: ancestor) - configured_providers(ancestor: ancestor)
     end
 
-    class Provider 
+    class Provider
       def self.provider
-        self.const_defined?(:PROVIDER) ? self::PROVIDER : nil
+        const_defined?(:PROVIDER) ? self::PROVIDER : nil
       end
 
       def self.k
-        self.const_defined?(:K) ? self::K : provider
+        const_defined?(:K) ? self::K : provider
       end
 
       def self.available?
@@ -35,22 +37,22 @@ module Core
       end
 
       def self.enabled?
-        available? && ::Core::Auth.disabled_providers.exclude?(provider)
+        available? && ::Groovestack::Auth.disabled_providers.exclude?(provider)
       end
 
       def self.configured?
         false
       end
 
-      def self.as_json(keys=nil)
+      def self.as_json(keys = nil)
         verbose = {
           provider: provider,
-          k: k || provider,
+          k: k || provider
         }
 
         return verbose if keys.nil?
 
-        verbose.select { |k, v| keys.include?(k) }
+        verbose.slice(*keys)
       end
     end
   end

@@ -3,45 +3,52 @@
 module GraphQL
   module User
     module Mutations
-      class Update < ::Core::Base::GraphQL::BaseMutation
-        argument :id, ID, required: true
-        argument :email, String, required: false
-        argument :name, String, required: false
+      class Update < ::Groovestack::Base::GraphQL::BaseMutation
         argument :current_password, String, required: false
+        argument :email, String, required: false
+        argument :id, ID, required: true
+        argument :image, String, required: false
+        argument :language, String, required: false
+        argument :name, String, required: false
         argument :password, String, required: false
         argument :roles, [String], required: false
-        argument :language, String, required: false
-        argument :image, String, required: false
-        
+
         type ::GraphQL::User::Type
-  
+
         def current_user
           context[:current_resource]
         end
-  
+
         def perform(id:, **attrs)
           obj = id == current_user&.id ? current_user : ::User.find(id)
-  
-          return update_with_password!(obj, **attrs) if (attrs.keys & [:password, :current_password]).present?
-          
-          raise GraphQL::ExecutionError, 'Validation Failed: only admins can update user roles' if !current_user.admin? && attrs[:roles].present?
-          
+
+          return update_with_password!(obj, **attrs) if attrs.keys.intersect?(%i[password current_password])
+
+          if !current_user.admin? && attrs[:roles].present?
+            raise GraphQL::ExecutionError,
+                  'Validation Failed: only admins can update user roles'
+          end
+
           obj.update!(attrs)
-  
+
           obj
         end
-  
-        def update_with_password!(user, **attrs)
-          raise GraphQL::ExecutionError, 'Validation Failed: user can only update their own password' unless current_user&.id == user.id
-  
+
+        def update_with_password!(user, **attrs) # rubocop:disable Metrics/AbcSize
+          unless current_user&.id == user.id
+            raise GraphQL::ExecutionError,
+                  'Validation Failed: user can only update their own password'
+          end
+
           ::User.transaction do
-            user.password = attrs[:current_password] = attrs[:password] unless user.has_email_provider? # if password isn't set yet, allow them to set it
-            
+            # if password isn't set yet, allow them to set it
+            user.password = attrs[:current_password] = attrs[:password] unless user.email_provider?
+
             raise GraphQL::ExecutionError, user.errors.full_messages.join(' ') unless user.update_with_password(attrs)
-  
+
             context[:bypass_sign_in].call user.reload, scope: :user
           end
-  
+
           user
         end
       end

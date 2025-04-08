@@ -1,19 +1,21 @@
-module Core
-  module Auth 
+# frozen_string_literal: true
+
+module Groovestack
+  module Auth
     module ActionCable
       module Connection
         extend ActiveSupport::Concern
 
-        included do 
+        included do
           identified_by :current_resource
         end
 
-        def connect      
-          self.current_resource = find_verified_resource    
-        end     
-    
-        private 
-    
+        def connect
+          self.current_resource = find_verified_resource
+        end
+
+        private
+
         def find_verified_resource
           if (verified_user = env['warden'].user)
             verified_user

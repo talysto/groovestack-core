@@ -6,21 +6,20 @@ module GraphQL
       extend ActiveSupport::Concern
 
       included do
-        include ::Core::Base::GraphQL::Providers::ReactAdmin::Resource
+        include ::Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource
 
-        react_admin_resource :identities, graphql_path: "GraphQL"
+        react_admin_resource :identities, graphql_path: 'GraphQL'
       end
-  
+
       def identities_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
         scope = base_scope
         scope = scope.where(id: filter.ids) if filter.ids.present?
         scope = scope.where(user_id: filter.user_id) if filter.user_id.present?
 
-        return scope unless sort_field.present?
+        return scope if sort_field.blank?
 
         scope.order({ sort_field.underscore => sort_order || 'desc' })
       end
     end
   end
 end
-

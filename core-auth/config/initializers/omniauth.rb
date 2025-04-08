@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 Rails.application.config.middleware.use OmniAuth::Builder do
-  Core::Auth.configured_providers(ancestor: Core::Auth::Providers::OmniAuth).each do |p|
-    provider *p.generate_omniauth_args
+  Groovestack::Auth.configured_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).each do |p|
+    provider(*p.generate_omniauth_args)
   end
 end
 
-module Core 
-  module Auth 
+module Groovestack
+  module Auth
     class OmniauthFailureEndpoint < OmniAuth::FailureEndpoint
       def call
         # raise_out! if OmniAuth.config.failure_raise_out_environments.include?(ENV['RACK_ENV'].to_s)
@@ -15,7 +17,7 @@ module Core
   end
 end
 
-OmniAuth.config.on_failure = Core::Auth::OmniauthFailureEndpoint
+OmniAuth.config.on_failure = Groovestack::Auth::OmniauthFailureEndpoint
 
 module OmniAuth
   module Strategies
@@ -29,17 +31,18 @@ module OmniAuth
         auth_params = authorize_params # add state & nonce to session values to persisted cookies
 
         cookies.encrypted['apple_omniauth_params'] = {
-          same_site: :none, 
-          expires: 1.minute.from_now, 
+          same_site: :none,
+          expires: 1.minute.from_now,
           secure: true,
-          value: JSON.generate({ origin: session['omniauth.origin'] || request.env['HTTP_REFERER'], state: auth_params[:state], nonce: auth_params[:nonce] })
+          value: JSON.generate({ origin: session['omniauth.origin'] || request.env['HTTP_REFERER'],
+                                 state: auth_params[:state], nonce: auth_params[:nonce] })
         }
 
         super
       end
 
-      def callback_phase
-        # add omniauth params back to session 
+      def callback_phase # rubocop:disable Metrics/AbcSize
+        # add omniauth params back to session
 
         apple_omniauth_params = JSON.parse(cookies.encrypted['apple_omniauth_params'])
         cookies.delete('apple_omniauth_params')
@@ -52,9 +55,10 @@ module OmniAuth
       end
 
       def authorize_params
-        @authorize_params ||= super.merge(nonce: new_nonce) # memoize so they aren't regenerated in the request_phase super call
+        # memoize so they aren't regenerated in the request_phase super call
+        @authorize_params ||= super.merge(nonce: new_nonce)
       end
-      
+
       private
 
       def cookies
