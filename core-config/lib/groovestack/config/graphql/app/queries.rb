@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Core
+module Groovestack
   module Config
     module GraphQL
       module App
@@ -12,7 +12,7 @@ module Core
           end
 
           def AppConfig
-            Core::Config::App.generate_config
+            Groovestack::Config::App.generate_config
           end
         end
       end

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'groovestack/base'
+
 require_relative "config/version"
 require_relative "config/railtie" if defined?(Rails::Railtie)
 require_relative "config/graphql/app/queries"
 
-module Core
+module Groovestack
   module Config
     class Error < StandardError; end
     
