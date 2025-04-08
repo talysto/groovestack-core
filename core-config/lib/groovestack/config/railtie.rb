@@ -1,18 +1,13 @@
 # frozen_string_literal: true
 
 if defined?(Rails)
-  module Core
+  module Groovestack
     module Config
       class Railtie < Rails::Engine
-        include ::Core::Base::CoreRailtie
+        include ::Groovestack::Base::CoreRailtie
 
         def dx_validations
-          [
-            {
-              eval: proc { raise unless defined?(::Core::Base) },
-              message: "Error: 'core-base' gem is required, add it your your gemfile"
-            },
-          ]
+          []
         end
 
         initializer :append_initializers do |app|

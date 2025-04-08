@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = 'Groovestack::Base defines reusable extensions for the CORE Platform.'
   spec.post_install_message = 'Groovestack::Base installed'
 
-  spec.homepage = 'https://github.com/talysto/groovestack-core/'
+  spec.homepage = 'https://talysto.com/tech/groovestack/'
   spec.required_ruby_version = '>= 3.1.0'
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
