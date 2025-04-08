@@ -30,14 +30,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'groovestack-base', '>= 0.1.6'
+  spec.add_dependency 'groovestack-base', '>= 0.1.7'
   spec.add_dependency 'jsonb_accessor', '~>1.4'
 
-  # TODO: make these optional
-  spec.add_dependency 'graphql_devise', '~>1.4'
+  # spec.add_development_dependency 'graphql_devise'
   spec.add_dependency 'omniauth-apple'
   spec.add_dependency 'omniauth-google-oauth2'
-  spec.add_dependency 'rails', '~> 7.0'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

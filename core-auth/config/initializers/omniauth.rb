@@ -6,7 +6,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 end
 
-module Core
+module Groovestack
   module Auth
     class OmniauthFailureEndpoint < OmniAuth::FailureEndpoint
       def call

@@ -2,15 +2,18 @@
 
 require 'jsonb_accessor'
 
-class User < ApplicationRecord
+class User < ActiveRecord::Base
   include Users::Roles
-  extend ::Devise::Models
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable
+  if defined?(Devise)
+    extend ::Devise::Models
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable
+
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :trackable, :validatable
+  end
 
   has_many :identities, dependent: :destroy
 

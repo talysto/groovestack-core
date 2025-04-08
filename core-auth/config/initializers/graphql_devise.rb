@@ -1,56 +1,58 @@
 # frozen_string_literal: true
 
-ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLength
-  module DeviseTokenAuth
-    module Concerns
-      module ActiveRecordSupport
-        extend ActiveSupport::Concern
+if defined?(GraphqlDevise)
+  ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLength
+    module DeviseTokenAuth
+      module Concerns
+        module ActiveRecordSupport
+          extend ActiveSupport::Concern
 
-        class_methods do
-          # Override to remove provider from attrs b/c use identity model
-          def dta_find_by(attrs = {})
-            attrs.delete(:provider)
-            attrs.delete('provider')
-            find_by(attrs)
+          class_methods do
+            # Override to remove provider from attrs b/c use identity model
+            def dta_find_by(attrs = {})
+              attrs.delete(:provider)
+              attrs.delete('provider')
+              find_by(attrs)
+            end
           end
         end
       end
     end
-  end
 
-  class User < ApplicationRecord
-    # Override to remove provider from attrs b/c use identity model
-    def self.dta_find_by(attrs = {})
-      attrs.delete(:provider)
-      attrs.delete('provider')
-      find_by(attrs)
+    class User < ActiveRecord::Base
+      # Override to remove provider from attrs b/c use identity model
+      def self.dta_find_by(attrs = {})
+        attrs.delete(:provider)
+        attrs.delete('provider')
+        find_by(attrs)
+      end
     end
-  end
 
-  User.include ::GraphqlDevise::Authenticatable
+    User.include ::GraphqlDevise::Authenticatable
 
-  module AugmentedGraphqlDeviseRegisterArgs
-    extend ActiveSupport::Concern
+    module AugmentedGraphqlDeviseRegisterArgs
+      extend ActiveSupport::Concern
 
-    included do
-      argument :name, String, required: true
+      included do
+        argument :name, String, required: true
+      end
     end
-  end
 
-  GraphqlDevise::Mutations::Register.include AugmentedGraphqlDeviseRegisterArgs
+    GraphqlDevise::Mutations::Register.include AugmentedGraphqlDeviseRegisterArgs
 
-  GraphqlDevise::Mutations::Register.class_eval do
-    private
+    GraphqlDevise::Mutations::Register.class_eval do
+      private
 
-    def build_resource(attrs)
-      # NOTE: remove provider from attrs b/c use identity model
-      attrs.delete(:provider)
-      attrs[:roles] = [Users::Roles::Role::ADMIN] unless Core::Config::App.generate_config[:has_admins]
-      resource_class.new(attrs)
+      def build_resource(attrs)
+        # NOTE: remove provider from attrs b/c use identity model
+        attrs.delete(:provider)
+        attrs[:roles] = [Users::Roles::Role::ADMIN] unless Core::Config::App.generate_config[:has_admins]
+        resource_class.new(attrs)
+      end
     end
-  end
 
-  GraphqlDevise::Types::AuthenticatableType.class_eval do
-    field :id, GraphQL::Types::ID, null: false
+    GraphqlDevise::Types::AuthenticatableType.class_eval do
+      field :id, GraphQL::Types::ID, null: false
+    end
   end
 end

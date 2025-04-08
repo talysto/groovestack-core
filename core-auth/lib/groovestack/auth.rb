@@ -2,29 +2,31 @@
 
 require 'groovestack/base'
 
-require 'graphql_devise'
+require 'graphql_devise' if defined?(GraphqlDevise)
 require 'omniauth-google-oauth2'
 require 'omniauth-apple'
 
 require 'groovestack/auth/version'
 require 'groovestack/auth/railtie' if defined?(Rails::Railtie)
 
-# add devise and devise_token_auth app/ dirs to load path
-Dir[File.join(Gem::Specification.find_by_name('devise').gem_dir, 'app', '*')].each do |sub_dir|
-  $LOAD_PATH.push(sub_dir)
-end
-Dir[File.join(Gem::Specification.find_by_name('devise_token_auth').gem_dir, 'app', '*')].each do |sub_dir|
-  $LOAD_PATH.push(sub_dir)
-end
-
-unless defined?(ApplicationController)
-  class ApplicationController < ActionController::Base
+if defined?(GraphqlDevise)
+  # add devise and devise_token_auth app/ dirs to load path
+  Dir[File.join(Gem::Specification.find_by_name('devise').gem_dir, 'app', '*')].each do |sub_dir|
+    $LOAD_PATH.push(sub_dir)
   end
-end
+  Dir[File.join(Gem::Specification.find_by_name('devise_token_auth').gem_dir, 'app', '*')].each do |sub_dir|
+    $LOAD_PATH.push(sub_dir)
+  end
 
-unless defined?(DeviseTokenAuth::Concerns)
-  module DeviseTokenAuth
-    module Concerns
+  unless defined?(ApplicationController)
+    class ApplicationController < ActionController::Base
+    end
+  end
+
+  unless defined?(DeviseTokenAuth::Concerns)
+    module DeviseTokenAuth
+      module Concerns
+      end
     end
   end
 end
@@ -52,10 +54,13 @@ end
 module Groovestack
   module Auth
     autoload :Provider, 'groovestack/auth/provider'
-    autoload :AuthenticatedApiController, 'groovestack/auth/authenticated_api_controller'
-    autoload :OmniauthCallbacksController, 'groovestack/auth/omniauth_callbacks_controller'
-    autoload :ActionCable, 'groovestack/auth/action_cable'
-    autoload :SchemaPlugin, 'groovestack/auth/schema_plugin'
+
+    if defined?(GraphqlDevise)
+      autoload :AuthenticatedApiController, 'groovestack/auth/authenticated_api_controller'
+      autoload :OmniauthCallbacksController, 'groovestack/auth/omniauth_callbacks_controller'
+      autoload :ActionCable, 'groovestack/auth/action_cable'
+      autoload :SchemaPlugin, 'groovestack/auth/schema_plugin'
+    end
 
     module Providers
       extend ActiveSupport::Autoload
@@ -75,3 +80,29 @@ module Groovestack
 end
 
 require 'fabricators/user_fabricator' if defined?(Fabrication) && defined?(Faker)
+
+# TODO: remove aliases after all core modules have been updated
+# to reference Groovestack::Auth
+module Core
+  module Auth
+    Provider = ::Groovestack::Auth::Provider
+
+    if defined?(GraphqlDevise)
+      AuthenticatedApiController = ::Groovestack::Auth::AuthenticatedApiController
+      OmniauthCallbacksController = ::Groovestack::Auth::OmniauthCallbacksController
+      ActionCable = ::Groovestack::Auth::ActionCable
+      SchemaPlugin = ::Groovestack::Auth::SchemaPlugin
+    end
+
+    module Providers
+      Email = ::Groovestack::Auth::Providers::Email
+      OmniAuth = ::Groovestack::Auth::Providers::OmniAuth
+      Apple = ::Groovestack::Auth::Providers::Apple
+      Google = ::Groovestack::Auth::Providers::Google
+    end
+
+    extend Dry::Configurable
+
+    setting :disabled_providers, default: [], reader: true
+  end
+end
