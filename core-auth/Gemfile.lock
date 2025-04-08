@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    groovestack-auth (0.1.1)
-      groovestack-base (>= 0.1.7)
-      groovestack-config (>= 0.1.1)
+    groovestack-auth (0.1.3)
+      groovestack-base (~> 0.1, >= 0.1.7)
+      groovestack-config (~> 0.1, >= 0.1.1)
       jsonb_accessor (~> 1.4)
       omniauth-apple
       omniauth-google-oauth2

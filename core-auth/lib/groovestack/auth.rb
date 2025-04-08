@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'groovestack/base'
+require 'groovestack/config'
 
 require 'graphql_devise' if defined?(GraphqlDevise)
 require 'omniauth-google-oauth2'
