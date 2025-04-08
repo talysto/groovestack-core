@@ -36,6 +36,6 @@ ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLengt
     }
 
     # make AppConfig query public
-    ::Types::QueryType.fields['AppConfig'].instance_variable_set(:@authenticate, false)
+    ::Types::QueryType.fields['AppConfig'].instance_variable_set(:@authenticate, false) if defined?(::Types::QueryType)
   end
 end
