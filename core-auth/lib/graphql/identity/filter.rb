@@ -2,7 +2,7 @@
 
 module GraphQL
   module Identity
-    class Filter < ::Groovestack::Base::GraphQL::BaseInputObject
+    class Filter < ::Groovestack::Base::GraphQL::Base::InputObject
       description 'Identity filter props'
 
       argument :ids, [ID], required: false

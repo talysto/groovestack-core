@@ -12,26 +12,58 @@ require 'groovestack/base/utilities/string'
 module Groovestack
   module Base
     module GraphQL
-      module Subscriptions
-        autoload :EventHandler, 'groovestack/base/graphql/subscriptions/event_handler'
+      module Authorization
+        autoload :AuthorizedField, 'groovestack/base/graphql/authorization/authorized_field'
+        autoload :AuthorizedObject, 'groovestack/base/graphql/authorization/authorized_object'
+        autoload :VisibleField, 'groovestack/base/graphql/authorization/visible_field'
       end
 
-      autoload :Types, 'groovestack/base/graphql/types'
-      autoload :BaseInputObject, 'groovestack/base/graphql/base_input_object'
-      autoload :BaseMutation, 'groovestack/base/graphql/base_mutation'
-      autoload :Documentation, 'groovestack/base/graphql/documentation'
-      autoload :BaseSubscription, 'groovestack/base/graphql/base_subscription'
-      autoload :Helpers, 'groovestack/base/graphql/helpers'
+      module Base
+        autoload :Argument, 'groovestack/base/graphql/base/argument'
+        autoload :Field, 'groovestack/base/graphql/base/field'
+        autoload :Object, 'groovestack/base/graphql/base/object'
+        autoload :InputObject, 'groovestack/base/graphql/base/input_object'
+        autoload :Mutation, 'groovestack/base/graphql/base/mutation'
+        autoload :Subscription, 'groovestack/base/graphql/base/subscription'
+      end
 
-      module Tracers
-        autoload :AtomicMultiplexTransaction, 'groovestack/base/graphql/tracers/atomic_multiplex_transaction'
+      module Controllers
+        autoload :GraphQLController, 'groovestack/base/graphql/controllers/graphql_controller'
+      end
+
+      module Documentation
+        autoload :Arguments, 'groovestack/base/graphql/documentation/arguments'
+        autoload :Fields, 'groovestack/base/graphql/documentation/fields'
+      end
+
+      module Mutations
+        autoload :AASMEventTrigger, 'groovestack/base/graphql/mutations/aasm_event_trigger'
+        autoload :MethodTrigger, 'groovestack/base/graphql/mutations/method_trigger'
       end
 
       module Providers
         module ReactAdmin
-          autoload :Resource, 'groovestack/base/graphql/providers/react_admin/resource'
-          autoload :Types, 'groovestack/base/graphql/providers/react_admin/types'
+          autoload :Resource, 'groovestack/base/graphql/providers/react_admin'
+          module Types
+            autoload :RAListMetadata, 'groovestack/base/graphql/providers/react_admin'
+          end
         end
+      end
+
+      module Subscriptions
+        autoload :Trigger, 'groovestack/base/graphql/subscriptions/trigger'
+      end
+
+      module Types
+        autoload :AASMEventAttributes, 'groovestack/base/graphql/types/aasm_event_attributes'
+        autoload :Currency, 'groovestack/base/graphql/types/currency'
+        autoload :Money, 'groovestack/base/graphql/types/money'
+        autoload :SubscriptionPayload, 'groovestack/base/graphql/types/subscription_payload'
+        autoload :TypeResolver, 'groovestack/base/graphql/types/type_resolver'
+      end
+
+      module Tracers
+        autoload :AtomicMultiplexTransaction, 'groovestack/base/graphql/tracers'
       end
     end
 
@@ -84,25 +116,48 @@ module Core
   module Base
     module GraphQL
       module Subscriptions
-        EventHandler = ::Groovestack::Base::GraphQL::Subscriptions::EventHandler
+        EventHandler = ::Groovestack::Base::GraphQL::Subscriptions::Trigger
       end
 
-      Types = ::Groovestack::Base::GraphQL::Types
-      BaseInputObject = ::Groovestack::Base::GraphQL::BaseInputObject
-      BaseMutation = ::Groovestack::Base::GraphQL::BaseMutation
-      Documentation = ::Groovestack::Base::GraphQL::Documentation
-      BaseSubscription = ::Groovestack::Base::GraphQL::BaseSubscription
-      Helpers = ::Groovestack::Base::GraphQL::Helpers
+      module Types
+        BaseArgument = ::Groovestack::Base::GraphQL::Base::Argument
+        BaseField = ::Groovestack::Base::GraphQL::Base::Field
+        BaseObject = ::Groovestack::Base::GraphQL::Base::Object
+        AuthorizedBaseField = ::Groovestack::Base::GraphQL::Authorization::AuthorizedField
+        AuthorizedBaseObject = ::Groovestack::Base::GraphQL::Authorization::AuthorizedObject
+        VisibleBaseField = ::Groovestack::Base::GraphQL::Authorization::VisibleField
+      end
+      BaseInputObject = ::Groovestack::Base::GraphQL::Base::InputObject
+      BaseMutation = ::Groovestack::Base::GraphQL::Base::Mutation
+      module Documentation
+        Arguments = ::Groovestack::Base::GraphQL::Documentation::Arguments
+        Fields = ::Groovestack::Base::GraphQL::Documentation::Fields
+      end
+      BaseSubscription = ::Groovestack::Base::GraphQL::Base::Subscription
+      module Helpers
+        module Types
+          StatusEventVirtualAttributes = ::Groovestack::Base::GraphQL::Types::AASMEventAttributes
+          Typified = ::Groovestack::Base::GraphQL::Types::TypeResolver
+        end
 
-      module Tracers
-        AtomicMultiplexTransaction = ::Groovestack::Base::GraphQL::Tracers::AtomicMultiplexTransaction
+        module Mutations
+          StatusEvents = ::Groovestack::Base::GraphQL::Mutations::AASMEventTrigger
+          InstanceMethods = ::Groovestack::Base::GraphQL::Mutations::MethodTrigger
+        end
+        Controller = ::Groovestack::Base::GraphQL::Controllers::GraphQLController
       end
 
       module Providers
         module ReactAdmin
           Resource = ::Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource
-          Types = ::Groovestack::Base::GraphQL::Providers::ReactAdmin::Types
+          module Types
+            RAListMetadata = ::Groovestack::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata
+          end
         end
+      end
+
+      module Tracers
+        AtomicMultiplexTransaction = ::Groovestack::Base::GraphQL::Tracers::AtomicMultiplexTransaction
       end
     end
 

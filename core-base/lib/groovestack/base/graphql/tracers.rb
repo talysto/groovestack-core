@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: add specs
+
 module Groovestack
   module Base
     module GraphQL
@@ -19,23 +21,26 @@ module Groovestack
         # responds to `mutation?`.
 
         module AtomicMultiplexTransaction
-          # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-          def execute_multiplex(multiplex:)
-            is_mutation = multiplex.queries.any?(&:mutation?)
+          def execute_multiplex(multiplex:, &block)
+            return yield unless contains_mutation?(multiplex)
 
-            return yield unless is_mutation
+            execute_with_transaction(&block)
+          end
 
+          private
+
+          def contains_mutation?(multiplex)
+            multiplex.queries.any?(&:mutation?)
+          end
+
+          def execute_with_transaction
             results = nil
             rollback = false
 
             begin
               ::ActiveRecord::Base.transaction do
                 results = yield
-
-                rollback = results.any? do |result|
-                  result.is_a?(::GraphQL::Query::Result) && result.to_h['errors'].present?
-                end
-
+                rollback = results_errors?(results)
                 raise ::ActiveRecord::Rollback if rollback
 
                 results
@@ -44,10 +49,16 @@ module Groovestack
               rollback = true
             end
 
-            return results unless rollback
+            rollback ? handle_rollback(results) : results
+          end
 
-            # IF rollback, extract errors and return null for data
+          def results_errors?(results)
+            results.any? do |result|
+              result.is_a?(::GraphQL::Query::Result) && result.to_h['errors'].present?
+            end
+          end
 
+          def handle_rollback(results)
             results.map do |result|
               ::GraphQL::Query::Result.new(
                 query: result.query,
@@ -55,7 +66,6 @@ module Groovestack
               )
             end
           end
-          # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
         end
       end
     end

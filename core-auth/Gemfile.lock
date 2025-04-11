@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    groovestack-auth (0.1.3)
-      groovestack-base (~> 0.1, >= 0.1.7)
-      groovestack-config (~> 0.1, >= 0.1.1)
+    groovestack-auth (0.1.5)
+      groovestack-base (~> 0.1, >= 0.1.10)
+      groovestack-config (~> 0.1, >= 0.1.2)
       jsonb_accessor (~> 1.4)
       omniauth-apple
       omniauth-google-oauth2
@@ -61,15 +61,15 @@ GEM
     graphql (2.3.22)
       base64
       fiber-storage
-    groovestack-base (0.1.7)
+    groovestack-base (0.1.10)
       activerecord (~> 7.0)
       dry-configurable (~> 1.0)
       graphql (>= 1.8, < 2.4)
       pg (~> 1.0)
       pg_lock (~> 1.0)
       puma (~> 5.0)
-    groovestack-config (0.1.1)
-      groovestack-base (~> 0.1.5)
+    groovestack-config (0.1.2)
+      groovestack-base (~> 0.1.10)
     hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -194,4 +194,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.4.22
+   2.6.7
