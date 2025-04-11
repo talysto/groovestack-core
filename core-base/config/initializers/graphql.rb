@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: add specs
+
 module GraphQL
   class Schema
     class Member

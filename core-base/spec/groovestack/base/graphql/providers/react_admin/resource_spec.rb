@@ -1,15 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-require 'groovestack/base'
-require 'active_support/core_ext/string'
-require 'graphql'
-require 'groovestack/base/graphql/types'
-require 'groovestack/base/graphql/base_input_object'
-
 RSpec.describe Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource do
   let(:test_class) do
-    Class.new(Groovestack::Base::GraphQL::Types::AuthorizedBaseObject) do
+    Class.new(Groovestack::Base::GraphQL::Authorization::AuthorizedObject) do
       include Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource
       graphql_name 'Test'
     end
@@ -30,12 +23,12 @@ RSpec.describe Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource do
   }
 
   let(:entity_type) do
-    Class.new(Groovestack::Base::GraphQL::Types::BaseObject) do
+    Class.new(Groovestack::Base::GraphQL::Base::Object) do
       graphql_name 'TestType'
     end
   end
   let(:entity_filter_type) do
-    Class.new(Groovestack::Base::GraphQL::BaseInputObject) do
+    Class.new(Groovestack::Base::GraphQL::Base::InputObject) do
       graphql_name 'TestFilter'
     end
   end

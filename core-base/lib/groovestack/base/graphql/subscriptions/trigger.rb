@@ -4,7 +4,7 @@ module Groovestack
   module Base
     module GraphQL
       module Subscriptions
-        class EventHandler
+        class Trigger
           def self.trigger(subscription, args, event, kwargs)
             triggered = false
 

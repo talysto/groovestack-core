@@ -15,13 +15,6 @@ module Groovestack
                                      sort_order: 'order with which to sort the results (i.e. ASC, DESC)',
                                      filter: 'hash of parameters by which to filter the results (i.e. { ids: [1,2,3] })'
                                    })
-        Fields = OpenStruct.new({
-                                  created_at: 'time of record creation',
-                                  id: 'a unique record identifier',
-                                  relation_count: 'total number of records in a given scope',
-                                  updated_at: 'time of last record update'
-                                })
-
         # rubocop:enable Style/OpenStructUse
       end
     end
