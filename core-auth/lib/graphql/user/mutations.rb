@@ -3,7 +3,7 @@
 module GraphQL
   module User
     module Mutations
-      class Update < ::Groovestack::Base::GraphQL::BaseMutation
+      class Update < ::Groovestack::Base::GraphQL::Base::Mutation
         argument :current_password, String, required: false
         argument :email, String, required: false
         argument :id, ID, required: true

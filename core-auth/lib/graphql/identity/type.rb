@@ -2,7 +2,7 @@
 
 module GraphQL
   module Identity
-    class Type < ::Groovestack::Base::GraphQL::Types::BaseObject
+    class Type < ::Groovestack::Base::GraphQL::Base::Object
       description 'An identity'
 
       graphql_name 'Identity'

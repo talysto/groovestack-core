@@ -2,8 +2,8 @@
 
 module GraphQL
   module User
-    class Type < ::Groovestack::Base::GraphQL::Types::BaseObject
-      include ::Groovestack::Base::GraphQL::Helpers::Types::Typified
+    class Type < ::Groovestack::Base::GraphQL::Base::Object
+      include ::Groovestack::Base::GraphQL::Types::TypeResolver
 
       description 'An user'
 

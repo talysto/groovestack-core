@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    groovestack-config (0.1.0)
-      groovestack-base (~> 0.1.5)
+    groovestack-config (0.1.2)
+      groovestack-base (~> 0.1.10)
 
 GEM
   remote: https://rubygems.org/
@@ -44,7 +44,7 @@ GEM
     graphql (2.3.22)
       base64
       fiber-storage
-    groovestack-base (0.1.7)
+    groovestack-base (0.1.10)
       activerecord (~> 7.0)
       dry-configurable (~> 1.0)
       graphql (>= 1.8, < 2.4)
@@ -119,4 +119,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.4.22
+   2.6.7
