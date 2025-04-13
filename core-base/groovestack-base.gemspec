@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'graphql', '>= 1.8', '< 2.4' # TODO: bump once graphql_devise is updated in groovestack-auth
   spec.add_dependency 'pg', '~> 1.0'
   spec.add_dependency 'pg_lock', '~> 1.0'
-  spec.add_dependency 'puma', '~> 5.0'
+  spec.add_dependency 'puma', '>= 5.0', '< 7'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
