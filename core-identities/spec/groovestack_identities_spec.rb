@@ -53,13 +53,13 @@ RSpec.describe Groovestack::Identities do
       end
     end
   end
-  
+
   describe 'fabricators' do
-    it 'makes user fabricator available when Fabrication and Faker are defined' do      
+    it 'makes user fabricator available when Fabrication and Faker are defined' do
       # Check that Fabrication is defined
       expect(defined?(Fabrication)).to be_truthy
       expect(defined?(Faker)).to be_truthy
-      
+
       # Test that the user fabricator is defined without building a user
       expect(Fabrication.manager.schematics.keys).to include(:user)
       expect(Fabrication.manager.schematics.keys).to include(:user_with_email)

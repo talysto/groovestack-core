@@ -2,7 +2,7 @@
 
 require 'jsonb_accessor'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include Users::Roles
 
   has_many :identities, dependent: :destroy

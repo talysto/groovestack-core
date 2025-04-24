@@ -7,12 +7,12 @@ module GraphQL
 
       description 'A user'
 
-      field :id, ID, null: false, description: 'id'
       field :email, String, null: true, description: 'email'
+      field :id, ID, null: false, description: 'id'
       field :language, String, null: true, description: 'user language'
       field :name, String, null: true, description: 'name'
       field :roles, [String], null: true, description: 'roles'
-      
+
       field :created_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'created at'
       field :updated_at, ::GraphQL::Types::ISO8601DateTime, null: false, description: 'updated at'
 

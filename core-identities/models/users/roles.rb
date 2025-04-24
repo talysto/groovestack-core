@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Lint/ConstantDefinitionInBlock
+
 module Users
   module Roles
     extend ActiveSupport::Concern
@@ -39,3 +41,5 @@ module Users
     end
   end
 end
+
+# rubocop:enable Lint/ConstantDefinitionInBlock

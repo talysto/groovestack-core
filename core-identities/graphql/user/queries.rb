@@ -19,7 +19,7 @@ module GraphQL
         context[:current_resource]
       end
 
-      def users_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {})
+      def users_scope(base_scope:, sort_field: nil, sort_order: nil, filter: {}) # rubocop:disable Metrics/AbcSize
         scope = base_scope
         scope = scope.where(id: filter.ids) if filter.ids.present?
 

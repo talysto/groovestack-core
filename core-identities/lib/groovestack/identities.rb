@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "identities/version"
+require_relative 'identities/version'
 
 require 'groovestack/base'
 require 'users/roles'
@@ -11,7 +11,7 @@ require 'groovestack/identities/railtie' if defined?(Rails::Railtie)
 
 # Load fabricators if Fabrication and Faker are available
 if defined?(Fabrication) && defined?(Faker)
-  fabricator_path = File.expand_path('../../../spec/fabricators/user_fabricator', __FILE__)
+  fabricator_path = File.expand_path('../../spec/fabricators/user_fabricator', __dir__)
   require fabricator_path
 end
 
