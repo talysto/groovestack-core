@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'jsonb_accessor'
-
-class User < ApplicationRecord
+class User < ActiveRecord::Base
   include Users::Roles
 
   has_many :identities, dependent: :destroy

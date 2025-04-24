@@ -7,8 +7,11 @@ module Users
     extend ActiveSupport::Concern
 
     included do
-      scope :with_roles, ->(roles) { jsonb_contains(:roles, roles) }
-      scope :admins, -> { with_roles(:admin) }
+      scope :with_roles, ->(roles) { 
+        roles_array = Array(roles).map(&:to_s)
+        where("roles ?| array[:roles]", roles: roles_array)
+      }
+      scope :admins, -> { with_roles(Role::ADMIN) }
 
       module Role
         ADMIN = 'admin'

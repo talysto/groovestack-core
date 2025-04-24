@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Identity < ApplicationRecord
+class Identity < ActiveRecord::Base
   belongs_to :user
 end
