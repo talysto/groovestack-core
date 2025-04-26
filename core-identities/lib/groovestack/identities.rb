@@ -9,10 +9,14 @@ require 'identity'
 
 require 'groovestack/identities/railtie' if defined?(Rails::Railtie)
 
-# Load fabricators if Fabrication and Faker are available
-if defined?(Fabrication) && defined?(Faker)
-  fabricator_path = File.expand_path('../../spec/fabricators/user_fabricator', __dir__)
-  require fabricator_path
+# Load fabricators if Fabrication and Faker are available and we're not in a testing context
+# This prevents circular requires between spec_helper and this file
+if defined?(Fabrication) && defined?(Faker) && $LOADED_FEATURES.grep(/spec_helper/).none?
+  begin
+    require 'user_fabricator'
+  rescue LoadError
+    # Do nothing if fabricator can't be loaded - it's optional for regular usage
+  end
 end
 
 module GraphQL

@@ -8,8 +8,8 @@
 
 require 'fabrication'
 require 'faker'
+require_relative 'fabrication_helper'
 require 'groovestack/identities'
-require_relative 'fabricators/user_fabricator'
 
 #
 # Given that it is always loaded, you are encouraged to keep this file as

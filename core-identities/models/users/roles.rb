@@ -7,9 +7,9 @@ module Users
     extend ActiveSupport::Concern
 
     included do
-      scope :with_roles, ->(roles) { 
+      scope :with_roles, lambda { |roles|
         roles_array = Array(roles).map(&:to_s)
-        where("roles ?| array[:roles]", roles: roles_array)
+        where('roles ?| array[:roles]', roles: roles_array)
       }
       scope :admins, -> { with_roles(Role::ADMIN) }
 
