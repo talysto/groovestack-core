@@ -1,24 +1,3 @@
-# frozen_string_literal: true
-
-Rails.application.config.middleware.use OmniAuth::Builder do
-  Groovestack::Auth.configured_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).each do |p|
-    provider(*p.generate_omniauth_args)
-  end
-end
-
-module Groovestack
-  module Auth
-    class OmniauthFailureEndpoint < OmniAuth::FailureEndpoint
-      def call
-        # raise_out! if OmniAuth.config.failure_raise_out_environments.include?(ENV['RACK_ENV'].to_s)
-        redirect_to_failure
-      end
-    end
-  end
-end
-
-OmniAuth.config.on_failure = Groovestack::Auth::OmniauthFailureEndpoint
-
 module OmniAuth
   module Strategies
     class Apple < OmniAuth::Strategies::OAuth2

@@ -2,12 +2,9 @@ module Auth
   module User
     extend ActiveSupport::Concern
     
-    included do
-      extend ::Devise::Models
-  
-      devise :database_authenticatable, :registerable,
-              :recoverable, :rememberable, :trackable, :validatable,
-              :confirmable, :lockable, :timeoutable
+    included do  
+      # Include default devise modules.
+      devise(*Groovestack::Auth.devise_modules)
     end
   end
 end

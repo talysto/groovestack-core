@@ -2,10 +2,10 @@
 
 require_relative 'provider'
 
-if defined?(Rails)
+if defined?(Rails::Engine)
   module Groovestack
     module Auth
-      class Railtie < ::Rails::Engine
+      class Engine < ::Rails::Engine
         include ::Groovestack::Base::CoreRailtie
 
         def dx_validations
@@ -47,8 +47,19 @@ if defined?(Rails)
           append_initializers app
         end
 
+        initializer :append_locales do |app|
+          append_locales app
+        end
+
         config.after_initialize do
           after_init
+        end
+
+        config.to_prepare do 
+          # Include Auth concerns after Rails is fully loaded to ensure Devise is loaded
+
+          ::User.include ::Auth::User
+          ::Identity.include ::Auth::Identity
         end
       end
     end
