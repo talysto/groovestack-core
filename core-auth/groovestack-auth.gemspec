@@ -28,9 +28,9 @@ Gem::Specification.new do |spec|
   end
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
+  spec.require_paths = ['graphql', 'lib', 'models/concerns']
 
-  spec.add_dependency 'groovestack-base', '~> 0.1', '>= 0.1.10'
+  spec.add_dependency 'groovestack-identities', '~> 0.1', '>= 0.1.2'
   spec.add_dependency 'groovestack-config', '~> 0.1', '>= 0.1.2'
   spec.add_dependency 'jsonb_accessor', '~>1.4'
 

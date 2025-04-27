@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'groovestack/base'
+require 'groovestack/identities'
 require 'groovestack/config'
 
 require 'graphql_devise' if defined?(GraphqlDevise)
@@ -17,11 +17,20 @@ if defined?(GraphqlDevise)
   end
   Dir[File.join(Gem::Specification.find_by_name('devise_token_auth').gem_dir, 'app', '*')].each do |sub_dir|
     $LOAD_PATH.push(sub_dir)
+require 'auth/identity'
+require 'auth/user'
+# on app init, insert Auth concerns into User & Identity models
+ActiveSupport.on_load(:active_record) do
+  User.class_eval do
+    include Auth::User
   end
 
   unless defined?(ApplicationController)
     class ApplicationController < ActionController::Base
     end
+  
+  Identity.class_eval do
+    include Auth::Identity
   end
 
   unless defined?(DeviseTokenAuth::Concerns)
@@ -29,26 +38,13 @@ if defined?(GraphqlDevise)
       module Concerns
       end
     end
+  GraphQL::User::Type.class_eval do
+    include GraphQL::UserExtensions
   end
 end
 
-require 'users/roles'
-require 'user'
-require 'identity'
-
-module GraphQL
-  module Identity
-    autoload :Type, 'graphql/identity/type'
-    autoload :Filter, 'graphql/identity/filter'
-    autoload :Queries, 'graphql/identity/queries'
-    autoload :Mutations, 'graphql/identity/mutations'
-  end
-
-  module User
-    autoload :Filter, 'graphql/user/filter'
-    autoload :Type, 'graphql/user/type'
-    autoload :Queries, 'graphql/user/queries'
-    autoload :Mutations, 'graphql/user/mutations'
+  GraphQL::Identity::Type.class_eval do
+    include GraphQL::IdentityExtensions
   end
 end
 
@@ -79,8 +75,6 @@ module Groovestack
     setting :disabled_providers, default: [], reader: true
   end
 end
-
-require 'fabricators/user_fabricator' if defined?(Fabrication) && defined?(Faker)
 
 # TODO: remove aliases after all core modules have been updated
 # to reference Groovestack::Auth
