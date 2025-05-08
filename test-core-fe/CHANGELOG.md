@@ -1,5 +1,18 @@
 # test-core-fe
 
+## 0.2.135
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/comments@0.3.0
+  - @groovestack/versions@0.3.0
+  - @groovestack/webhooks@0.3.0
+  - @groovestack/config@0.3.0
+  - @groovestack/auth@0.3.0
+  - @groovestack/base@0.3.0
+  - @groovestack/jobs@0.3.0
+
 ## 0.2.134
 
 ### Patch Changes
