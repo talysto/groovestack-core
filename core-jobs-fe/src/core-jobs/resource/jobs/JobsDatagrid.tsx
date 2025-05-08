@@ -28,7 +28,7 @@ export const JobDatagrid = () => {
   const moreThanSmall = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Datagrid
-      onClick={rowClick}
+      // onClick={rowClick}
       // rowClick={false}
       // rowClick='tFunc'
       //  bulkActionButtons={!moreThanSmall && false}

@@ -334,7 +334,7 @@ importers:
   core-jobs-fe:
     dependencies:
       '@apollo/client':
-        specifier: ^3.8.6
+        specifier: ^3.8
         version: 3.13.8(@types/react@18.3.21)(graphql@16.11.0)(react-dom@18.3.1)(react@18.3.1)
       '@groovestack/base':
         specifier: workspace:^

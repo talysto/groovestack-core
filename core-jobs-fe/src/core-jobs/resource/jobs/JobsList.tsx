@@ -19,7 +19,7 @@ import {
   useShowController,
 } from 'react-admin'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useSubscription, ApolloProvider } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
 
 import { SUBSCRIBE_TO_JOB_REPORT } from '../../gql'
 import {
@@ -32,6 +32,8 @@ import { Header } from '../Header'
 import { JobsAside } from './JobsAside'
 import { JobDatagrid } from './JobsDatagrid'
 import { jobStatuses } from './jobsStatuses'
+import { useApolloContext } from '../../hooks/useApolloContext'
+import { ApolloSubscriptionProvider } from '../../components/ApolloSubscriptionProvider'
 
 export const JobsKPIsContext = createContext<RaRecord>({} as RaRecord)
 
@@ -167,25 +169,13 @@ const ListActions = () => {
   )
 }
 
-// export const JobsEditActions = () => {
-//   const record = useRecordContext()
-
-//   return (
-//     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-//       {record.actions.includes('retry') && (
-//         <UpdateButton label="Retry" data={{ instance_method: 'retry!' }} />
-//       )}
-//       {record.actions.includes('run_now') && (
-//         <UpdateButton label="Run Now" data={{ instance_method: 'run_now!' }} />
-//       )}
-//       {record.actions.includes('delete') && <DeleteWithConfirmButton color="primary" label="" />}
-//     </Box>
-//   )
-// }
-
-const JobsList = () => {
-  const theme = useTheme()
+const JobsKPIsContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [kpis, setKpis] = useState<RaRecord>({} as RaRecord)
+  const { enabled: apolloEnabled } = useApolloContext()
+
+  const updateKpis = (subscriptionData: any) => {
+    if (subscriptionData?.JobReport && subscriptionData?.JobReport.event.type != 'subscribe') setKpis({id: 'jobs_kpis' as Identifier, data: subscriptionData?.JobReport.event.payload.data})
+  }
 
   // initial fetch
   useShowController({
@@ -194,14 +184,30 @@ const JobsList = () => {
     queryOptions: { onSuccess(report) { setKpis(report) } }
   })
 
-  const { data: subscriptionData } = useSubscription(SUBSCRIBE_TO_JOB_REPORT, { variables: { id: 'jobs_kpis' } })
-
-  useEffect(() => {
-    if (subscriptionData?.JobReport && subscriptionData?.JobReport.event.type != 'subscribe') setKpis({id: 'jobs_kpis' as Identifier, data: subscriptionData?.JobReport.event.payload.data})
-  }, [subscriptionData])
+  if (apolloEnabled) return (
+    <ApolloSubscriptionProvider 
+      Context={JobsKPIsContext} 
+      value={kpis} 
+      updateValue={updateKpis}
+      subscription={SUBSCRIBE_TO_JOB_REPORT}
+      variables={{ id: 'jobs_kpis' }}
+    >
+      {children}
+    </ApolloSubscriptionProvider>
+  )
 
   return (
     <JobsKPIsContext.Provider value={kpis}>
+      {children}
+    </JobsKPIsContext.Provider>
+  )
+}
+
+const JobsList = () => {
+  const theme = useTheme()
+
+  return (
+    <JobsKPIsContextProvider>
       <ListBase filterDefaultValues={{ view: 'summary' }}>
         <Title title="Jobs" />
 
@@ -247,11 +253,16 @@ const JobsList = () => {
           </Grid>
         </Grid>
       </ListBase>
-    </JobsKPIsContext.Provider>
+    </JobsKPIsContextProvider>
   )
 }
 
 const JobsListWithApolloProvider = () => {
+  const { enabled: apolloEnabled } = useApolloContext()
+
+  if (!apolloEnabled) return <JobsList />
+
+
   // don't want dataprovider wrapped in proxy 
   // https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/dataProvider/useDataProvider.ts
   const dataProvider = useContext(DataProviderContext)
