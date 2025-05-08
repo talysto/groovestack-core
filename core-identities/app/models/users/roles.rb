@@ -15,10 +15,14 @@ module Users
 
       module Role
         ADMIN = 'admin'
+        EXEC = 'exec'.freeze
+        STAFF = 'staff'.freeze
       end
 
       ROLES = [
-        Role::ADMIN
+        Role::ADMIN,
+        Role::EXEC,
+        Role::STAFF
       ].freeze
 
       def add_roles(roles)

@@ -123,6 +123,8 @@ module Core
         BaseArgument = ::Groovestack::Base::GraphQL::Base::Argument
         BaseField = ::Groovestack::Base::GraphQL::Base::Field
         BaseObject = ::Groovestack::Base::GraphQL::Base::Object
+        Money = ::Groovestack::Base::GraphQL::Types::Money
+        SubscriptionPayload = ::Groovestack::Base::GraphQL::Types::SubscriptionPayload
         AuthorizedBaseField = ::Groovestack::Base::GraphQL::Authorization::AuthorizedField
         AuthorizedBaseObject = ::Groovestack::Base::GraphQL::Authorization::AuthorizedObject
         VisibleBaseField = ::Groovestack::Base::GraphQL::Authorization::VisibleField
