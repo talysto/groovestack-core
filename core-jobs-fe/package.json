@@ -33,16 +33,6 @@
     "dayjs": "^1.11.9",
     "react-copy-to-clipboard": "^5.1.0"
   },
-  "peerDependencies": {
-    "@apollo/client": "^3.8.6",
-    "@mui/icons-material": ">=5.11.11",
-    "@mui/material": ">=5.10.2",
-    "dayjs": ">=1.11.7",
-    "react": "^18.0",
-    "react-admin": "^5.0",
-    "react-copy-to-clipboard": ">=5.1.0",
-    "react-dom": "^18.0"
-  },
   "dependencies": {
     "@groovestack/base": "workspace:^",
     "@mui/lab": "5.0.0-alpha.146",
@@ -55,6 +45,19 @@
     "prop-types": "^15.8.1",
     "query-string": "^8.1.0",
     "react-syntax-highlighter": ">=15.5.0"
+  },
+  "peerDependencies": {
+    "@apollo/client": "^3.8.6",
+    "@mui/icons-material": ">=5.14.1",
+    "@mui/lab": "5.0.0-alpha.146",
+    "@mui/material": ">=5.14.15",
+    "dayjs": ">=1.11.7",
+    "react": "^18.3.1",
+    "react-admin": "^5.8.0",
+    "react-copy-to-clipboard": ">=5.1.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.16.0",
+    "react-router": "^6.30.0"
   },
   "publishConfig": {
     "access": "public",

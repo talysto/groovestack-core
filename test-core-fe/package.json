@@ -12,24 +12,25 @@
     "seed": "tsx ./scripts/data.ts > ./dev-data.json"
   },
   "dependencies": {
-    "@groovestack/auth": "workspace:^",
     "@groovestack/base": "workspace:^",
-    "@groovestack/comments": "workspace:^",
     "@groovestack/config": "workspace:^",
+    "@groovestack/auth": "workspace:^",
+    "@groovestack/comments": "workspace:^",
     "@groovestack/jobs": "workspace:^",
-    "@groovestack/notifications": "workspace:^",
     "@groovestack/versions": "workspace:^",
     "@groovestack/webhooks": "workspace:^",
     "@mui/material": "^5.14.11",
-    "ra-data-fakerest": "^4.12.1",
-    "react": "^18.0",
-    "react-dom": "^18.0",
-    "react-router-dom": "^6.16.0"
+    "ra-data-fakerest": "^5.0.4",
+    "react": "^18.3.1",
+    "react-admin": "^5.8.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.16.0",
+    "react-router": "^6.30.0"
   },
   "devDependencies": {
-    "@faker-js/faker": ">=8.0.0"
-  },
-  "resolutions": {
-    "react-router-dom": "6.16.0"
+    "@faker-js/faker": ">=8.0.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "vite": "^6.3.5"
   }
 }

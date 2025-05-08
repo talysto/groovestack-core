@@ -22,7 +22,7 @@ export default defineConfig({
     // visualizer({ open: false }),
   ],
   build: {
-    sourcemap: true,
+    // sourcemap: true,
     lib: {
       entry: {
         index: resolve(__dirname, 'src/core-auth/index.ts'),

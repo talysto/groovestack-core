@@ -21,7 +21,7 @@ export default defineConfig({
     visualizer({ open: false }),
   ],
   build: {
-    sourcemap: true,
+    // sourcemap: true,
     lib: {
       entry: {
         index: resolve(__dirname, 'src/core-config/index.ts'),
@@ -33,7 +33,7 @@ export default defineConfig({
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       plugins: [autoExternal()],
-      external: [/@mui/, 'react/jsx-runtime', '@faker-js/faker'],
+      // external: [/@mui/, 'react/jsx-runtime', '@faker-js/faker'],
 
       output: {
         // Provide global variables to use in the UMD build
