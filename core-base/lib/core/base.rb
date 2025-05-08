@@ -1,30 +1,6 @@
 # frozen_string_literal: true
 
 require 'dry-configurable'
-require 'graphql'
-require 'pg'
-
-require 'core/base/utilities/string'
-
-require 'core/base/version'
-require 'core/base/puma/plugin/core_cron'
-require 'core/base/railtie' if defined?(Rails::Railtie)
-
-require 'core/base/graphql/subscriptions/event_handler'
-require 'core/base/graphql/types'
-require 'core/base/graphql/base_input_object'
-require 'core/base/graphql/base_mutation'
-require 'core/base/graphql/documentation'
-require 'core/base/graphql/base_subscription'
-require 'core/base/graphql/helpers'
-
-require 'core/base/graphql/providers/react_admin/resource'
-require 'core/base/graphql/providers/react_admin/types'
-
-require 'core/base/active_record'
-require 'core/base/listeners'
-
-require 'core/base/pub_sub' if defined?(Wisper)
 
 module Core
   module Base
@@ -41,6 +17,10 @@ module Core
       setting :notify_method, reader: true, default: :notify
     end
 
+    setting :graphql do 
+      setting :camelize, default: false
+    end
+
     def self.notify_error(prefix, e)
       msg = "#{[prefix, 'error'].compact.join(' ')}: #{e}"
 
@@ -55,3 +35,29 @@ module Core
     class WrongSchemaFormat < Core::Base::Error; end
   end
 end
+
+require 'graphql'
+require 'pg'
+
+require 'core/base/utilities/string'
+
+require 'core/base/version'
+require 'core/base/puma/plugin/core_cron'
+require 'core/base/railtie' if defined?(Rails::Railtie)
+
+require 'core/base/graphql/subscriptions/event_handler'
+require 'core/base/graphql/types'
+require 'core/base/graphql/base_input_object'
+require 'core/base/graphql/base_mutation'
+require 'core/base/graphql/documentation'
+require 'core/base/graphql/base_subscription'
+require 'core/base/graphql/helpers'
+require 'core/base/graphql/tracers/atomic_multiplex_transaction'
+
+require 'core/base/graphql/providers/react_admin/resource'
+require 'core/base/graphql/providers/react_admin/types'
+
+require 'core/base/active_record'
+require 'core/base/listeners'
+
+require 'core/base/pub_sub' if defined?(Wisper)

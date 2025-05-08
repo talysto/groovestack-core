@@ -34,6 +34,7 @@ module Core
             end
           end
         end
+        
         module Mutations
           module StatusEvents
             def trigger_status_event!(obj:, attrs:, event:, args: nil, authorization_policy: nil)
@@ -63,8 +64,8 @@ module Core
 
               instance_method = instance_method.to_sym
 
-              raise GraphQL::ExecutionError, 'instance_method undefined' unless obj.respond_to?(instance_method)
-              raise GraphQL::ExecutionError, 'Cannot update multiple attributes when triggering instance method' if attrs.present?
+              raise ::GraphQL::ExecutionError, 'instance_method undefined' unless obj.respond_to?(instance_method)
+              raise ::GraphQL::ExecutionError, 'Cannot update multiple attributes when triggering instance method' if attrs.present?
               raise ::GraphQL::ExecutionError, "Unauthorized not allowed to trigger #{instance_method} for this #{obj.class}" unless authorization_policy.nil? || authorization_policy.permitted_instance_methods.include?(instance_method)
 
               if args.present? && args.is_a?(Array)
@@ -74,6 +75,54 @@ module Core
               else
                 obj.send("#{instance_method}")
               end
+            end
+          end
+        end
+
+        module Controller
+          extend ActiveSupport::Concern
+
+          included do            
+            private
+
+            def operation_name
+              params[:operationName]
+            end
+      
+            def query
+              params[:query]
+            end
+      
+            def variables
+              prepare_variables(params[:variables])
+            end
+
+            # Handle variables in form data, JSON body, or a blank value
+            def prepare_variables(variables_param)
+              case variables_param
+              when String
+                if variables_param.present?
+                  JSON.parse(variables_param) || {}
+                else
+                  {}
+                end
+              when Hash
+                variables_param
+              when ActionController::Parameters
+                variables_param.to_unsafe_hash # GraphQL-Ruby will validate name and type of incoming variables.
+              when nil
+                {}
+              else
+                raise ArgumentError, "Unexpected parameter: #{variables_param}"
+              end
+            end
+
+            def handle_error_in_development(err)
+              logger.error err.message
+              logger.error err.backtrace.join('\/n')
+
+              render json: { errors: [{ message: err.message, backtrace: err.backtrace }], data: {} },
+                    status: :internal_server_error
             end
           end
         end

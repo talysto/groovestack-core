@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
-require_relative "lib/core/webhooks/version"
+require_relative "lib/core/activities/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "core-webhooks"
-  spec.version = Core::Webhooks::VERSION
+  spec.name = "core-activities"
+  spec.version = Core::Activities::VERSION
   spec.authors = ["Max Schridde"]
   spec.email = ["maxjschridde@gmail.com"]
 
-  spec.summary = "CORE module to handle webhook integrations"
-  spec.description = "CORE module to handle webhook integrations"
+  spec.summary = "CORE extension for application activities"
+  spec.description = "CORE extension for application activities"
+  spec.post_install_message = 'CORE::Activities installed'
   spec.homepage = "https://github.com/talysto/groovestack-core"
   spec.required_ruby_version = ">= 2.6.0"
-  spec.post_install_message = 'CORE::Webhooks installed'
 
-  # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/talysto/groovestack-core"
-  spec.metadata["changelog_uri"] = "https://github.com/talysto/groovestack-core/core-webhooks/CHANGELOG.md"
+  spec.metadata["changelog_uri"] = "https://github.com/talysto/groovestack-core/core-activities"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -32,15 +32,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Uncomment to register a new dependency of your gem
-  spec.add_dependency "aasm"
   spec.add_dependency "dry-configurable"
-  spec.add_dependency 'rails'
   spec.add_dependency "wisper-activerecord"
-
-  spec.add_development_dependency 'fabrication'
-  spec.add_development_dependency 'faker'
-  spec.add_development_dependency 'pg'
-  spec.add_development_dependency 'racksh'                # get a console without a full Rails application
-  spec.add_development_dependency 'sinatra-activerecord'  # ActiveRecord without rails
+  spec.add_dependency 'activerecord'
 end
