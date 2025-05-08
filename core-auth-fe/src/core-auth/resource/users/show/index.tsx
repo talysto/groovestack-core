@@ -69,7 +69,7 @@ const AdminUserMeta = () => {
   )
 }
 
-const DefaultEditProps: EditProps = {
+const DefaultEditProps: Omit<EditProps, 'children'> = {
   redirect: false,
   actions: false,
   title: ' ', // don't override titles
