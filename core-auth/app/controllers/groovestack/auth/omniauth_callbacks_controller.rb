@@ -105,11 +105,11 @@ module Groovestack
           }
         }
   
-        @user = Identity.find_or_create_from_omniauth!(**identity_params).user
-  
+        @user = ::Identity.find_or_create_from_omniauth!(**identity_params).user
+
         remember_me @user
-        sign_in @user
-  
+        sign_in(:user, @user)
+
         if json_format?
           # return connected identity info for FE user hydration
           render json: @user.slice(:id, :email, :name), status: :ok

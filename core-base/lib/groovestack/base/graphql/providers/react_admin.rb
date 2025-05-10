@@ -86,7 +86,7 @@ module Groovestack
               end
 
               def define_meta_resolver(entity, authorize, policy, base_scope)
-                define_method :"#{entity}_meta" do |_page: nil, _per_page: nil, **attrs|
+                define_method :"#{entity}_meta" do |page: nil, per_page: nil, **attrs|
                   scope = resolve_scope(authorize, policy, :IndexScope, base_scope)
                   { count: send("#{entity}_scope", **attrs, base_scope: scope).size }
                 end

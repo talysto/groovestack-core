@@ -13,7 +13,7 @@ module GraphQL
         type ::GraphQL::User::Type
 
         def current_user
-          context[:current_resource]
+          context[:current_user]
         end
 
         def perform(id:, **attrs)

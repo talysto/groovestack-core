@@ -12,16 +12,15 @@ module Groovestack
         def show
           self.resource = warden.authenticate!(auth_options)
 
-          # begin
-          #   if !resource.confirmed?
-          #     resource.skip_confirmation_notification! # skip sending confirmation email
-          #     resource.confirm
-          #   end
-          # rescue StandardError => e
-          #   msg = "Passwordless Magic Link Confirmation Failure: #{e}"
-          #   Bugsnag.notify(msg)
-          #   logger.error msg
-          # end
+          begin
+            if !resource.confirmed?
+              resource.skip_confirmation_notification! # skip sending confirmation email
+              resource.confirm
+            end
+          rescue StandardError => e
+            msg = "Passwordless Magic Link Confirmation Failure: #{e}"
+            ::Groovestack::Base.notify_error(e.class, msg)
+          end
 
           set_flash_message!(:notice, :signed_in)
           sign_in(resource_name, resource, event: :authentication)

@@ -1,3 +1,4 @@
+puts "groovestack auth settings"
 module Groovestack
   module Auth
     module Settings
@@ -6,12 +7,22 @@ module Groovestack
       included do
         extend Dry::Configurable
 
-        # Devise & OmniAuth custom config and overrides
-        setting :configure_devise, default: ->(config) {}, reader: true
-
         # NOTE: this impact user devise migration changes. Be sure
         # to set / override this when initialling integrating with groovestack-auth
-        setting :devise_modules, default: [:database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable, :magic_link_authenticatable, :omniauthable], reader: true
+        setting :devise_modules, default: [
+          :database_authenticatable,
+          :registerable,
+          :recoverable,
+          :rememberable,
+          :validatable,
+          :confirmable,
+          :lockable,
+          :timeoutable,
+          :trackable,
+          :magic_link_authenticatable,
+          :omniauthable,
+          omniauth_providers: %i[apple facebook google]
+        ], reader: true
 
         setting :devise_for_routes_kwargs, default: {
           controllers: {

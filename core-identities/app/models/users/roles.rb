@@ -11,7 +11,6 @@ module Users
         roles_array = Array(roles).map(&:to_s)
         where('roles ?| array[:roles]', roles: roles_array)
       }
-      scope :admins, -> { with_roles(Role::ADMIN) }
 
       module Role
         ADMIN = 'admin'
@@ -33,17 +32,21 @@ module Users
         add_roles([role])
       end
 
-      def admin!
-        add_role(User::Role::ADMIN)
-        save!
-      end
-
-      def admin?
-        roles.include? User::Role::ADMIN
-      end
-
       def role?(role)
         roles.include? role.to_s
+      end
+
+      ROLES.each do |role|
+        define_method("#{role}!") do
+          add_role(role)
+          save!
+        end
+
+        define_method("#{role}?") do
+          role?(role)
+        end
+
+        scope :"#{role}", -> { with_roles(role) }
       end
     end
   end

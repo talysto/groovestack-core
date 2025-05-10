@@ -7,11 +7,11 @@ module Groovestack
         extend ActiveSupport::Concern
 
         included do
-          identified_by :current_resource
+          identified_by :current_user
         end
 
         def connect
-          self.current_resource = find_verified_resource
+          self.current_user = find_verified_resource
         end
 
         private

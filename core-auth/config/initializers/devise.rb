@@ -280,6 +280,9 @@ Devise.setup do |config|
     OmniAuth.config.on_failure = Groovestack::Auth::OmniauthFailureEndpoint
   end
 
+  OmniAuth.config.logger = Rails.logger if Rails.env.development?
+  OmniAuth.config.allowed_request_methods = [:post]
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -342,8 +345,6 @@ Devise.setup do |config|
   # be expired. In other words, each time you sign in, all existing magic links
   # will be considered invalid.
   config.passwordless_expire_old_tokens_on_sign_in = true
-
-  Groovestack::Auth.configure_devise.call(config) if Groovestack::Auth.configure_devise # Allow overrides
 end
 
 module Devise

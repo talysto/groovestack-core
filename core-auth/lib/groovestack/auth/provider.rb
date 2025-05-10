@@ -54,6 +54,13 @@ module Groovestack
 
         verbose.slice(*keys)
       end
+
+      def self.credential_for(key)
+        provider_credentials = Rails.application.credentials.groovestack.auth.send(k)
+        return unless provider_credentials.present?
+
+        provider_credentials.send(key)
+      end
     end
   end
 end

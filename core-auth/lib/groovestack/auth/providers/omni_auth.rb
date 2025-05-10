@@ -11,7 +11,7 @@ module Groovestack
         end
 
         def self.required_credentials_present?
-          required_credentials.all? { |credential| Rails.application.credentials.send(credential).present? }
+          required_credentials.all? { |credential| credential_for(credential).present? }
         end
 
         def self.configured?
@@ -22,7 +22,7 @@ module Groovestack
           # different providers require different arguments
           [
             provider,
-            *required_credentials.map { |c| Rails.application.credentials.send(c) }
+            *required_credentials.map { |credential| credential_for(credential) }
           ]
         end
 

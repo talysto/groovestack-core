@@ -13,7 +13,7 @@ module Auth
           # 1. user exists in the system (i.e. we found an email for them)
           # 2. user does not exist in the system (i.e. oauth email doesn't match anything in the system
     
-          user = current_user || User.find_by(email: auth.info.email)
+          user = current_user || ::User.find_by(email: auth.info.email)
           user_attrs_to_assign = user_attrs[:priority] || {}
     
           if user.nil?
@@ -23,8 +23,8 @@ module Auth
     
           attrs = auth['info'].to_hash.slice(*user.attribute_names)
           user.assign_attributes(attrs.merge(user_attrs_to_assign))
-    
-          # user.skip_confirmation!
+          
+          user.skip_confirmation! unless user.confirmed?
           user.save!
     
           identity.omniauth_data = auth
