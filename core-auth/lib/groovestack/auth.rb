@@ -12,9 +12,6 @@ require 'groovestack/auth/engine' if defined?(Rails::Engine)
 require 'groovestack/auth/settings'
 require 'groovestack/auth/routes'
 
-require 'auth/identity'
-require 'auth/user'
-
 module Groovestack
   module Auth
     module Passwordless
@@ -48,11 +45,11 @@ end
 
 # Include Auth concerns after Rails is fully loaded
 ActiveSupport.on_load(:devise) do
-  GraphQL::User::Type.class_eval do
-    include GraphQL::UserExtensions
+  ::GraphQL::User::Type.class_eval do
+    include ::GraphQL::UserExtensions
   end
 
-  GraphQL::Identity::Type.class_eval do
-    include GraphQL::IdentityExtensions
+  ::GraphQL::Identity::Type.class_eval do
+    include ::GraphQL::IdentityExtensions
   end
 end

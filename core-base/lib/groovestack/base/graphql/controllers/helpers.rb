@@ -4,7 +4,7 @@ module Groovestack
   module Base
     module GraphQL
       module Controllers
-        module GraphQLController
+        module Helpers
           extend ActiveSupport::Concern
 
           included do # rubocop:disable Metrics/BlockLength

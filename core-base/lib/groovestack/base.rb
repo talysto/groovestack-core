@@ -8,9 +8,12 @@ require 'pg_lock'
 
 require 'groovestack/base/version'
 require 'groovestack/base/utilities/string'
+require 'groovestack/base/settings'
 
 module Groovestack
   module Base
+    include ::Groovestack::Base::Settings
+    
     module GraphQL
       module Authorization
         autoload :AuthorizedField, 'groovestack/base/graphql/authorization/authorized_field'
@@ -28,7 +31,8 @@ module Groovestack
       end
 
       module Controllers
-        autoload :GraphQLController, 'groovestack/base/graphql/controllers/graphql_controller'
+        autoload :Helpers, 'groovestack/base/graphql/controllers/helpers'
+        autoload :Execute, 'groovestack/base/graphql/controllers/execute'
       end
 
       module Documentation
@@ -74,35 +78,6 @@ module Groovestack
     autoload :PubSub, 'groovestack/base/pub_sub' if defined?(Wisper)
     autoload :CoreRailtie, 'groovestack/base/railtie' if defined?(Rails::Railtie)
 
-    extend Dry::Configurable
-
-    DEFAULT_ERROR_MONITOR =  ::Logger.new($stdout)
-
-    # ex:
-    #   /config/initializers/core_base.rb
-
-    #   Groovestack::Base.configure do |config|
-    #     config.error_notifier.handler = Bugsnag
-    #   end
-    setting :error_notifier, reader: true do
-      setting :handler, reader: true
-      setting :notify_method, reader: true, default: :notify
-    end
-
-    setting :graphql do
-      setting :camelize, default: false
-    end
-
-    def self.notify_error(prefix, err)
-      msg = "#{[prefix, 'error'].compact.join(' ')}: #{err}"
-
-      if error_notifier&.handler.present?
-        error_notifier.handler.send(error_notifier.notify_method, msg)
-      else
-        DEFAULT_ERROR_MONITOR.error(msg)
-      end
-    end
-
     class Error < StandardError; end
     class WrongSchemaFormat < Groovestack::Base::Error; end
   end
@@ -146,7 +121,7 @@ module Core
           StatusEvents = ::Groovestack::Base::GraphQL::Mutations::AASMEventTrigger
           InstanceMethods = ::Groovestack::Base::GraphQL::Mutations::MethodTrigger
         end
-        Controller = ::Groovestack::Base::GraphQL::Controllers::GraphQLController
+        Controller = ::Groovestack::Base::GraphQL::Controllers::Helpers
       end
 
       module Providers

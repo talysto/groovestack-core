@@ -58,8 +58,8 @@ if defined?(Rails::Engine)
         config.to_prepare do 
           # Include Auth concerns after Rails is fully loaded to ensure Devise is loaded
 
-          ::User.include ::Auth::User
-          ::Identity.include ::Auth::Identity
+          ::User.include ::Groovestack::Auth::User
+          ::Identity.include ::Groovestack::Auth::Identity
         end
       end
     end
