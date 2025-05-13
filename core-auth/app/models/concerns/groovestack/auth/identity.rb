@@ -25,7 +25,6 @@ module Groovestack
             attrs = auth['info'].to_hash.slice(*user.attribute_names)
             user.assign_attributes(attrs.merge(user_attrs_to_assign))
             
-            user.skip_confirmation! unless user.confirmed?
             user.save!
       
             identity.omniauth_data = auth

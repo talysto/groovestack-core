@@ -16,12 +16,6 @@ module GraphQL
           identity
         end
       end
-
-      extend ActiveSupport::Concern
-
-      included do
-        field :delete_identity, mutation: ::GraphQL::Identity::Mutations::Delete, description: 'delete identity'
-      end
     end
   end
 end

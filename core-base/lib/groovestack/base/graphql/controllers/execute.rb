@@ -21,7 +21,7 @@ module Groovestack
               result =  groovestack_graphql_schema.execute(
                 query, 
                 variables: variables, 
-                context: {}, 
+                context: defined?(context) ? context : {}, 
                 operation_name: operation_name
               )
 

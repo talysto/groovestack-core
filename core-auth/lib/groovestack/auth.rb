@@ -14,6 +14,14 @@ require 'groovestack/auth/routes'
 
 module Groovestack
   module Auth
+    module GraphQL
+      autoload :AuthorizedField, 'groovestack/auth/graphql/authorized_field'
+      autoload :AuthorizedObject, 'groovestack/auth/graphql/authorized_object'
+      autoload :VisibleField, 'groovestack/auth/graphql/visible_field'
+      autoload :VisibleObject, 'groovestack/auth/graphql/visible_object'
+      autoload :SchemaVisibility, 'groovestack/auth/graphql/schema_visibility'
+    end
+
     module Passwordless
       autoload :TOtpTokenizer, 'groovestack/auth/passwordless/t_otp_tokenizer'
     end

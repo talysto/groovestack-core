@@ -12,7 +12,7 @@ module Groovestack
       
             private
             
-            def context        
+            def context  
               context = {
                 visibility_profile: visibility_profile,
                 current_user: current_user

@@ -107,6 +107,16 @@ module Groovestack
   
         @user = ::Identity.find_or_create_from_omniauth!(**identity_params).user
 
+        begin
+          if !@user.confirmed?
+            @user.skip_confirmation_notification! # skip sending confirmation email
+            @user.confirm
+          end
+        rescue StandardError => e
+          msg = "OmniAuth Callback Confirmation Failure: #{e}"
+          ::Groovestack::Base.notify_error(e.class, msg)
+        end
+
         remember_me @user
         sign_in(:user, @user)
 
