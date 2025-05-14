@@ -60,11 +60,8 @@ module Groovestack
       end
   
       def omniauth_request_origin
-        # TODO: validate custom origin is whitelisted
-        
-        if same_origin_request? && (origin_url = ::Groovestack::Auth.omniauth_origin_url)
-          return origin_url
-        end
+        return ::Groovestack::Auth.omniauth_origin_url if ::Groovestack::Auth.omniauth_origin_url.present?
+        return ::Rails.application.routes.url_helpers.root_url if same_origin_request?
   
         request.env['omniauth.origin']
       end

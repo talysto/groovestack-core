@@ -276,8 +276,6 @@ Devise.setup do |config|
     Groovestack::Auth.configured_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).each do |p|
       config.omniauth(*p.generate_omniauth_args)
     end
-
-    OmniAuth.config.on_failure = Groovestack::Auth::OmniauthFailureEndpoint
   end
 
   OmniAuth.config.logger = Rails.logger if Rails.env.development?

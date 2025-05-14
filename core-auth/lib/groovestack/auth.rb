@@ -42,10 +42,6 @@ module Groovestack
       end
     end
 
-    if defined?(OmniAuth)
-      autoload :OmniauthFailureEndpoint, 'groovestack/auth/omniauth_failure_endpoint'
-    end
-
     include ::Groovestack::Auth::Settings
     include ::Groovestack::Auth::Routes
   end
