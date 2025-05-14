@@ -9,7 +9,7 @@ module Groovestack
         def draw_routes(mapper)
           mapper.instance_exec do
             devise_for :users, ::Groovestack::Auth.devise_for_routes_kwargs
-        
+
             devise_scope :user do
               post 'users/magic_link', to: 'groovestack/auth/passwordless/magic_links#show'
 
@@ -23,4 +23,4 @@ module Groovestack
       end
     end
   end
-end 
+end

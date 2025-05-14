@@ -3,12 +3,15 @@
 class AddDeviseToUsersAndIdentities < ActiveRecord::Migration[7.0]
   def change # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     # Add authentication columns to the existing users table
-    change_column_default :users, :email, from: nil, to: ""
+    change_column_default :users, :email, from: nil, to: ''
     change_column_null :users, :email, false
 
     change_table :users do |t|
       ## Database authenticatable
-      t.string :encrypted_password, null: false, default: "" if Groovestack::Auth.devise_modules.include?(:database_authenticatable)
+      if Groovestack::Auth.devise_modules.include?(:database_authenticatable)
+        t.string :encrypted_password, null: false,
+                                      default: ''
+      end
 
       ## Recoverable
       if Groovestack::Auth.devise_modules.include?(:recoverable)

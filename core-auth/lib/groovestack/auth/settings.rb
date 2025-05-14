@@ -1,4 +1,5 @@
-puts "groovestack auth settings"
+# frozen_string_literal: true
+
 module Groovestack
   module Auth
     module Settings
@@ -21,7 +22,7 @@ module Groovestack
           :trackable,
           :magic_link_authenticatable,
           :omniauthable,
-          omniauth_providers: %i[apple facebook google]
+          { omniauth_providers: %i[apple facebook google] }
         ], reader: true
 
         setting :devise_for_routes_kwargs, default: {

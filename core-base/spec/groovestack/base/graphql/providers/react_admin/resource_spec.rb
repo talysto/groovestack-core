@@ -2,7 +2,7 @@
 
 RSpec.describe Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource do
   let(:test_class) do
-    Class.new(Groovestack::Base::GraphQL::Authorization::AuthorizedObject) do
+    Class.new(Groovestack::Base::GraphQL::Base::Object) do
       include Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource
       graphql_name 'Test'
     end

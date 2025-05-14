@@ -12,7 +12,7 @@ module Groovestack
         rescue StandardError => e
           # NOTE: this is a fallback for when Pundit is not available
           ::Groovestack::Base.notify_error(e)
-          
+
           []
         end
       end

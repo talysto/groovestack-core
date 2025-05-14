@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OmniAuth
   module Strategies
     class Apple < OmniAuth::Strategies::OAuth2

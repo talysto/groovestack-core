@@ -55,7 +55,7 @@ if defined?(Rails::Engine)
           after_init
         end
 
-        config.to_prepare do 
+        config.to_prepare do
           # Include Auth concerns after Rails is fully loaded to ensure Devise is loaded
 
           ::User.include ::Groovestack::Auth::User

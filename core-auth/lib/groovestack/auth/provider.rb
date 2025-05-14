@@ -57,7 +57,7 @@ module Groovestack
 
       def self.credential_for(key)
         provider_credentials = Rails.application.credentials.groovestack.auth.send(k)
-        return unless provider_credentials.present?
+        return if provider_credentials.blank?
 
         provider_credentials.send(key)
       end

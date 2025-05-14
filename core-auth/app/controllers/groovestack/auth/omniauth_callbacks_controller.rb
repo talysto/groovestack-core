@@ -16,13 +16,13 @@ module Groovestack
 
       def failure
         # override for error notifications & to support custom origin redirects
-  
+
         known_reasons = %w[user_cancelled_authorize user_denied]
-  
+
         handled = known_reasons.any? do |reason|
           request.params&.dig('error_reason') == reason || request.params&.dig('error') == reason
         end
-  
+
         if !handled && Rails.env.production?
           failure_kind = OmniAuth::Utils.camelize(failed_strategy.name)
           blob = {
@@ -31,26 +31,27 @@ module Groovestack
             params: request.params,
             omniauth: request.env['omniauth.auth']
           }
-  
+
           exception = OmniauthFailureError.new(blob.to_s)
-                  
+
           ::Groovestack::Base.notify_error('Groovestack::Auth::OmniauthCallbacksController.omniauth_failure', exception)
         end
-  
+
         set_flash_message! :alert, :failure, kind: failure_kind, reason: failure_message
-        redirect_to after_omniauth_failure_path_for(resource_name), allow_other_host: ::Groovestack::Auth.allow_other_host_redirects
+        redirect_to after_omniauth_failure_path_for(resource_name),
+                    allow_other_host: ::Groovestack::Auth.allow_other_host_redirects
       end
 
       protected
 
       def set_auth_hash
         # set omniauth.auth for /callback requests (that skip the request phase)
-        return unless params['omniauth'].present?
-  
+        return if params['omniauth'].blank?
+
         # only set if not already set (i.e. no override)
         request.env['omniauth.auth'] ||= JSON.parse(params['omniauth'].to_json, object_class: OmniAuth::AuthHash)
       end
-  
+
       def after_omniauth_failure_path_for(scope)
         if (origin_url = omniauth_request_origin)
           return origin_url
@@ -58,11 +59,11 @@ module Groovestack
 
         super
       end
-  
+
       def omniauth_request_origin
         return ::Groovestack::Auth.omniauth_origin_url if ::Groovestack::Auth.omniauth_origin_url.present?
         return ::Rails.application.routes.url_helpers.root_url if same_origin_request?
-  
+
         request.env['omniauth.origin']
       end
 
@@ -70,15 +71,15 @@ module Groovestack
 
       def json_format?
         # WHY necessary?
-        # request.format.json? may not be set correctly for FE auth that handles the 
+        # request.format.json? may not be set correctly for FE auth that handles the
         # request phase and only hits /callback
         # request.path_parameters[:format] is set to 'json' in the same case
         request.format.json? || request.path_parameters[:format] == 'json'
       end
-  
+
       def same_origin_request?
-        return true unless request.env['omniauth.origin'].present?
-        
+        return true if request.env['omniauth.origin'].blank?
+
         request.env['omniauth.origin'].starts_with?(request.base_url)
       end
 
@@ -92,8 +93,8 @@ module Groovestack
 
       def handle_oauth(provider:)
         auth = request.env['omniauth.auth']
-  
-        identity_params = { 
+
+        identity_params = {
           auth: auth,
           user_attrs: {
             defaults: {
@@ -101,11 +102,11 @@ module Groovestack
             }
           }
         }
-  
+
         @user = ::Identity.find_or_create_from_omniauth!(**identity_params).user
 
         begin
-          if !@user.confirmed?
+          unless @user.confirmed?
             @user.skip_confirmation_notification! # skip sending confirmation email
             @user.confirm
           end
@@ -120,20 +121,17 @@ module Groovestack
         if json_format?
           # return connected identity info for FE user hydration
           render json: @user.slice(:id, :email, :name), status: :ok
+        elsif same_origin_request?
+          redirect_to after_sign_in_path_for(@user)
         else
-          if same_origin_request?
-            redirect_to after_sign_in_path_for(@user)
-          else 
-            redirect_to omniauth_request_origin, allow_other_host: ::Groovestack::Auth.allow_other_host_redirects
-          end
+          redirect_to omniauth_request_origin, allow_other_host: ::Groovestack::Auth.allow_other_host_redirects
         end
       rescue ActiveRecord::RecordInvalid => e
         # let FE handle missing email gracefully
-        if e.record.errors[:email].present? && e.record.errors[:email].include?("can't be blank")
-          redirect_to add_search_params(after_omniauth_failure_path_for(resource_name), { errors: { email_missing: true} }), allow_other_host: ::Groovestack::Auth.allow_other_host_redirects
-        else
-          raise e
-        end
+        raise e unless e.record.errors[:email].present? && e.record.errors[:email].include?("can't be blank")
+
+        redirect_to add_search_params(after_omniauth_failure_path_for(resource_name), { errors: { email_missing: true } }),
+                    allow_other_host: ::Groovestack::Auth.allow_other_host_redirects
       end
     end
   end

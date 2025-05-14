@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = %w[lib models fabricators]
 
-  spec.add_dependency 'groovestack-base', '~> 0.1', '>= 0.1.10'
+  spec.add_dependency 'groovestack-base', '~> 0.1', '>= 0.1.12'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

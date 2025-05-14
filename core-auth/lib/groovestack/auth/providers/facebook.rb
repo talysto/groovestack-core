@@ -9,7 +9,7 @@ module Groovestack
         REQUIRED_CREDENTIALS = %i[app_id app_secret].freeze
 
         def self.generate_omniauth_args
-          [*super, client_options: { site: 'https://graph.facebook.com/v22.0' }]
+          [*super, { client_options: { site: 'https://graph.facebook.com/v22.0' } }]
         end
       end
     end

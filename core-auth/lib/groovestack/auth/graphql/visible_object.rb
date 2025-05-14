@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Groovestack
   module Auth
     module GraphQL
@@ -6,7 +8,7 @@ module Groovestack
 
         def self.visible?(context)
           any_visible_fields = fields.values.any? { |field| field.visible?(context) }
-    
+
           super && any_visible_fields
         end
       end

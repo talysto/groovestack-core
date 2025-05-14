@@ -324,10 +324,10 @@ Devise.setup do |config|
   # Need to use a custom Devise mailer in order to send magic links.
   # If you're already using a custom mailer just have it inherit from
   # Devise::Passwordless::Mailer instead of Devise::Mailer
-  config.mailer = "Devise::Passwordless::Mailer"
+  config.mailer = 'Devise::Passwordless::Mailer'
 
   # Which algorithm to use for tokenizing magic links. See README for descriptions
-  config.passwordless_tokenizer = "::Groovestack::Auth::Passwordless::TOtpTokenizer"
+  config.passwordless_tokenizer = '::Groovestack::Auth::Passwordless::TOtpTokenizer'
 
   # Time period after a magic login link is sent out that it will be valid for.
   config.passwordless_login_within = 20.minutes
@@ -384,12 +384,13 @@ module Devise
 
       # Sets the authentication hash and the token from params_auth_hash or http_auth_hash.
       def with_authentication_hash(auth_type, auth_values)
-        self.authentication_hash, self.authentication_type = {}, auth_type
+        self.authentication_hash = {}
+        self.authentication_type = auth_type
         self.token = auth_values[:token]
         self.email = auth_values[:email] # NOTE: persist email to include in decode key
 
-        parsed_auth_values = parse_authentication_key_values(auth_values, authentication_keys) 
-        parsed_request_values = parse_authentication_key_values(request_values, request_keys)        
+        parsed_auth_values = parse_authentication_key_values(auth_values, authentication_keys)
+        parsed_request_values = parse_authentication_key_values(request_values, request_keys)
 
         parsed_auth_values && parsed_request_values
       end

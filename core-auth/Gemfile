@@ -5,11 +5,15 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in groovestack-auth.gemspec
 gemspec
 
-gem "devise-passwordless"
-gem "omniauth-apple"
-gem "omniauth-google-oauth2"
+gem 'devise-passwordless'
+gem 'omniauth-apple'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2', '1.1.2'
+
 gem 'fabrication'
 gem 'faker'
 gem 'racksh' # get a console without a full Rails application
 gem 'rspec'
-gem 'rubocop', require: false
+gem 'rubocop'
+gem 'rubocop-graphql', '~> 1.0'
+gem 'rubocop-rails', '~> 2.18'

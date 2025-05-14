@@ -13,7 +13,7 @@ require 'groovestack/base/settings'
 module Groovestack
   module Base
     include ::Groovestack::Base::Settings
-    
+
     module GraphQL
       module Base
         autoload :Argument, 'groovestack/base/graphql/base/argument'
@@ -84,6 +84,8 @@ require 'groovestack/base/puma/plugin/core_cron' if defined?(Puma)
 # to reference Groovestack::Base
 module Core
   module Base
+    include ::Groovestack::Base::Settings
+
     module GraphQL
       module Subscriptions
         EventHandler = ::Groovestack::Base::GraphQL::Subscriptions::Trigger
@@ -135,29 +137,6 @@ module Core
 
     PubSub = ::Groovestack::Base::PubSub if defined?(Wisper)
     CoreRailtie = ::Groovestack::Base::CoreRailtie if defined?(Rails::Railtie)
-
-    extend Dry::Configurable
-
-    DEFAULT_ERROR_MONITOR =  ::Logger.new($stdout)
-
-    setting :error_notifier, reader: true do
-      setting :handler, reader: true
-      setting :notify_method, reader: true, default: :notify
-    end
-
-    setting :graphql do
-      setting :camelize, default: false
-    end
-
-    def self.notify_error(prefix, err)
-      msg = "#{[prefix, 'error'].compact.join(' ')}: #{err}"
-
-      if error_notifier&.handler.present?
-        error_notifier.handler.send(error_notifier.notify_method, msg)
-      else
-        DEFAULT_ERROR_MONITOR.error(msg)
-      end
-    end
 
     Error = ::Groovestack::Base::Error
     WrongSchemaFormat = ::Groovestack::Base::WrongSchemaFormat

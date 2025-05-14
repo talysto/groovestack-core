@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rotp'
 # require 'base32'  # You can use any Base32 encoder
 
@@ -5,7 +7,7 @@ module Groovestack
   module Auth
     module Passwordless
       module TOtpTokenizer
-        extend self
+        module_function
 
         # Validity period (in seconds)
         def token_validity_seconds
@@ -47,7 +49,7 @@ module Groovestack
           #
           resource = resource_class.find_by(email: email)
 
-          raise 'Resource not found' unless resource.present?
+          raise 'Resource not found' if resource.blank?
 
           # # Remove the hyphen to get the plain digits.
           # otp = otp_from_formatted_code(code)
@@ -55,7 +57,7 @@ module Groovestack
 
           verify_opts = {}
           # by default, ROTP is fixed window interval. This code enables a sliding window
-          now = Time.now
+          now = Time.zone.now
           verify_opts[:at] = now
           verify_opts[:drift_behind] = token_validity_seconds / 2 # (now.sec % token_validity_seconds) - 1
           if resource_class.passwordless_expire_old_tokens_on_sign_in && resource.current_sign_in_at.present?
@@ -65,7 +67,7 @@ module Groovestack
           # end sliding window logic
           decrypted_data = totp_for(resource).verify(otp, **verify_opts)
 
-          raise ::Devise::Passwordless::InvalidOrExpiredTokenError unless decrypted_data.present?
+          raise ::Devise::Passwordless::InvalidOrExpiredTokenError if decrypted_data.blank?
 
           [resource, { data: decrypted_data }]
         end

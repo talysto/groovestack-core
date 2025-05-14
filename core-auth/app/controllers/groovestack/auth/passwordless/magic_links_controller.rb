@@ -7,13 +7,13 @@ module Groovestack
         skip_before_action :verify_authenticity_token
         prepend_before_action :require_no_authentication, only: :show
         prepend_before_action :allow_params_authentication!, only: :show
-        prepend_before_action(only: [:show]) { request.env["devise.skip_timeout"] = true }
+        prepend_before_action(only: [:show]) { request.env['devise.skip_timeout'] = true }
 
         def show
           self.resource = warden.authenticate!(auth_options)
 
           begin
-            if !resource.confirmed?
+            unless resource.confirmed?
               resource.skip_confirmation_notification! # skip sending confirmation email
               resource.confirm
             end
@@ -40,17 +40,17 @@ module Groovestack
         end
 
         def translation_scope
-          "devise.sessions"
+          'devise.sessions'
         end
 
         private
 
         def resource_params
-          params.permit({ user: [:email, :remember_me, :token] })
+          params.permit({ user: %i[email remember_me token] })
         end
 
         def create_params
-          resource_params.permit({ user: [:email, :remember_me] })
+          resource_params.permit({ user: %i[email remember_me] })
         end
       end
     end
