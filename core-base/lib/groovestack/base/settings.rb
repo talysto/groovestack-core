@@ -10,7 +10,7 @@ module Groovestack
 
         setting :error_notifier, reader: true do
           setting :handler, reader: true, default: ::Logger.new($stdout)
-          setting :notify_method, reader: true, default: :notify
+          setting :notify_method, reader: true, default: :info
         end
 
         setting :graphql do
