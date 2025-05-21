@@ -401,6 +401,34 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(react@18.3.1)
 
+  core-notifications-fe:
+    dependencies:
+      '@apollo/client':
+        specifier: ^3.8.6
+        version: 3.13.8(@types/react@18.3.21)(graphql@16.11.0)(react-dom@18.3.1)(react@18.3.1)
+      '@groovestack/base':
+        specifier: workspace:^
+        version: link:../core-base-fe
+      '@mui/icons-material':
+        specifier: '>=5.14.0'
+        version: 7.1.0(@mui/material@5.17.1)(@types/react@18.3.21)(react@18.3.1)
+      '@mui/material':
+        specifier: '>=5.14.0'
+        version: 5.17.1(@emotion/react@11.14.0)(@emotion/styled@11.14.0)(@types/react@18.3.21)(react-dom@18.3.1)(react@18.3.1)
+      react:
+        specifier: ^18.0
+        version: 18.3.1
+      react-admin:
+        specifier: ^5.0
+        version: 5.8.0(@mui/system@7.1.0)(@mui/utils@7.1.0)(@types/react@18.3.21)(csstype@3.1.3)(react-dom@18.3.1)(react-is@19.1.0)(react@18.3.1)
+      react-dom:
+        specifier: ^18.0
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@types/react-syntax-highlighter':
+        specifier: ^15.5.6
+        version: 15.5.13
+
   core-versions-fe:
     dependencies:
       '@groovestack/base':
@@ -462,6 +490,31 @@ importers:
         specifier: ^15.5.6
         version: 15.5.13
 
+  labs/core-labs-fe:
+    dependencies:
+      '@mui/material':
+        specifier: '>=5.0.0'
+        version: 5.17.1(@emotion/react@11.14.0)(@emotion/styled@11.14.0)(@types/react@18.3.21)(react-dom@18.3.1)(react@18.3.1)
+      lodash:
+        specifier: '>=4.0.0'
+        version: 4.17.21
+      react:
+        specifier: ^18.0
+        version: 18.3.1
+      react-admin:
+        specifier: ^5.0
+        version: 5.8.0(@mui/system@7.1.0)(@mui/utils@7.1.0)(@types/react@18.3.21)(csstype@3.1.3)(react-dom@18.3.1)(react-is@19.1.0)(react@18.3.1)
+      react-dom:
+        specifier: ^18.0
+        version: 18.3.1(react@18.3.1)
+      react-number-format:
+        specifier: ^5.3.4
+        version: 5.4.4(react-dom@18.3.1)(react@18.3.1)
+    devDependencies:
+      '@types/prop-types':
+        specifier: ^15.7.6
+        version: 15.7.14
+
   test-core-fe:
     dependencies:
       '@groovestack/auth':
@@ -479,6 +532,12 @@ importers:
       '@groovestack/jobs':
         specifier: workspace:^
         version: link:../core-jobs-fe
+      '@groovestack/labs':
+        specifier: workspace:^
+        version: link:../labs/core-labs-fe
+      '@groovestack/notifications':
+        specifier: workspace:^
+        version: link:../core-notifications-fe
       '@groovestack/versions':
         specifier: workspace:^
         version: link:../core-versions-fe
@@ -10182,6 +10241,16 @@ packages:
 
   /react-is@19.1.0:
     resolution: {integrity: sha512-Oe56aUPnkHyyDxxkvqtd7KkdQP5uIUfHxd5XTb3wE9d/kRnZLmKbDB0GWk919tdQ+mxxPtG6EAs6RMT6i1qtHg==}
+
+  /react-number-format@5.4.4(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-wOmoNZoOpvMminhifQYiYSTCLUDOiUbBunrMrMjA+dV52sY+vck1S4UhR6PkgnoCquvvMSeJjErXZ4qSaWCliA==}
+    peerDependencies:
+      react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
 
   /react-refresh@0.17.0:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}

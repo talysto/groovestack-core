@@ -1,5 +1,20 @@
 # test-core-fe
 
+## 0.2.137
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/labs@0.2.1
+
+## 0.2.136
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/notifications@0.3.0
+  - @groovestack/labs@0.2.0
+
 ## 0.2.135
 
 ### Patch Changes

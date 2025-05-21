@@ -2,7 +2,7 @@
   "name": "@groovestack/labs",
   "title": "CORE Labs",
   "description": "Experimental components and other elements not yet ready for mainline",
-  "version": "0.1.5",
+  "version": "0.2.1",
   "type": "module",
   "files": [
     "dist"
@@ -20,8 +20,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --project tsconfig.build.json && vite build",
-    "preview": "vite preview",
-    "prepublishOnly": "npm run build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@mui/material": ">=5.0.0",

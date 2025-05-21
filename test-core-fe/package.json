@@ -1,7 +1,7 @@
 {
   "name": "test-core-fe",
   "private": true,
-  "version": "0.2.135",
+  "version": "0.2.137",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,6 +17,8 @@
     "@groovestack/auth": "workspace:^",
     "@groovestack/comments": "workspace:^",
     "@groovestack/jobs": "workspace:^",
+    "@groovestack/labs": "workspace:^",
+    "@groovestack/notifications": "workspace:^",
     "@groovestack/versions": "workspace:^",
     "@groovestack/webhooks": "workspace:^",
     "@mui/material": "^5.14.11",

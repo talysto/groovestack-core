@@ -190,9 +190,8 @@
               "text": ", userFn: "
             },
             {
-              "kind": "Reference",
-              "text": "Function",
-              "canonicalReference": "!Function:interface"
+              "kind": "Content",
+              "text": "() => any"
             },
             {
               "kind": "Content",

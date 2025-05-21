@@ -1,4 +1,4 @@
-import { Admin, localStorageStore, Resource } from 'react-admin'
+import { Admin, localStorageStore, Resource, Show, TextField } from 'react-admin'
 import { Box } from '@mui/material'
 
 // Source Code import
@@ -6,6 +6,8 @@ import { Auth } from '@groovestack/auth'
 import { GroovestackDash } from '@groovestack/config'
 import { Comments } from '@groovestack/comments'
 import { Jobs } from '@groovestack/jobs'
+import { AddressField } from '@groovestack/labs'
+import { Notifications } from '@groovestack/notifications'
 import { Versions } from '@groovestack/versions'
 import { Webhooks } from '@groovestack/webhooks'
 
@@ -89,7 +91,13 @@ function AdminApp() {
         icon={Auth.Users.Icon}
         // edit={User.Edit}
         list={Auth.Users.List}
-        show={Auth.Users.Show}
+        // show={Auth.Users.Show}
+        show={
+          <Show>
+            <TextField source="id" />
+            <AddressField source="address" record={{ id: 1, address: '123 Main St' }} />
+          </Show>
+        }
         recordRepresentation="Auth Name"
       />
 
@@ -132,6 +140,13 @@ function AdminApp() {
         list={Webhooks.List}
         show={Webhooks.Show}
         recordRepresentation={Webhooks.recordRepresentation}
+      />
+
+      <Resource
+        name="Notification"
+        icon={Notifications.Icon}
+        list={Notifications.List}
+        show={Notifications.Show}
       />
     </Admin>
   )
