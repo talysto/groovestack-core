@@ -1,0 +1,9 @@
+<p>Hello <%= @resource.email %>!</p>
+
+<p>You can login using the code below:</p>
+
+<center>
+  <p style="font-size: 40px; font-weight: bold;"><%= @token %></p>
+</center>
+
+<p>Note that the code will expire in <%= Devise.passwordless_login_within.inspect %>.</p>          

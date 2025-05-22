@@ -5,17 +5,17 @@ module Groovestack
     module Providers
       class Apple < OmniAuth
         PROVIDER = :apple
-        REQUIRED_CREDENTIALS = %i[APPLE_CLIENT_ID APPLE_TEAM_ID APPLE_KEY_ID APPLE_PEM_CONTENT].freeze
+        REQUIRED_CREDENTIALS = %i[client_id team_id key_id pem_content].freeze
 
         def self.generate_omniauth_args
           [
             provider,
-            Rails.application.credentials.APPLE_CLIENT_ID,
+            credential_for(:client_id),
             '',
             {
-              team_id: Rails.application.credentials.APPLE_TEAM_ID,
-              key_id: Rails.application.credentials.APPLE_KEY_ID,
-              pem: Rails.application.credentials.APPLE_PEM_CONTENT,
+              team_id: credential_for(:team_id),
+              key_id: credential_for(:key_id),
+              pem: credential_for(:pem_content),
               origin_param: 'return_to'
             }
           ]

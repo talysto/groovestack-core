@@ -28,12 +28,13 @@ Gem::Specification.new do |spec|
         f.start_with?(*%w[bin/ test/ spec/ features/ .git appveyor Gemfile .rspec])
     end
   end
+  spec.files += Dir["{app}/**/*"]
 
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = %w[lib models fabricators]
 
-  spec.add_dependency 'groovestack-base', '~> 0.1', '>= 0.1.10'
+  spec.add_dependency 'groovestack-base', '~> 0.1', '>= 0.1.12'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

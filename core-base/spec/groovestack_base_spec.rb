@@ -9,13 +9,11 @@ RSpec.describe Groovestack::Base do
     # Test main modules for both namespaces
     %w[
       Core::Base::GraphQL
-      Core::Base::ActiveRecord
       Core::Base::Listener
       Core::Base::Listeners
       Core::Base::PubSub
       Core::Base::CoreRailtie
       Groovestack::Base::GraphQL
-      Groovestack::Base::ActiveRecord
       Groovestack::Base::Listeners
     ].each do |const|
       it "autoloads #{const}" do
@@ -54,9 +52,6 @@ RSpec.describe Groovestack::Base do
       Core::Base::GraphQL::Types::BaseArgument
       Core::Base::GraphQL::Types::BaseField
       Core::Base::GraphQL::Types::BaseObject
-      Core::Base::GraphQL::Types::AuthorizedBaseField
-      Core::Base::GraphQL::Types::AuthorizedBaseObject
-      Core::Base::GraphQL::Types::VisibleBaseField
       Core::Base::GraphQL::BaseInputObject
       Core::Base::GraphQL::BaseMutation
       Core::Base::GraphQL::Documentation::Arguments
@@ -69,16 +64,13 @@ RSpec.describe Groovestack::Base do
       Core::Base::GraphQL::Providers::ReactAdmin::Resource
       Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata
       Core::Base::GraphQL::Tracers::AtomicMultiplexTransaction
-      Groovestack::Base::GraphQL::Authorization::AuthorizedField
-      Groovestack::Base::GraphQL::Authorization::AuthorizedObject
-      Groovestack::Base::GraphQL::Authorization::VisibleField
       Groovestack::Base::GraphQL::Base::Argument
       Groovestack::Base::GraphQL::Base::Field
       Groovestack::Base::GraphQL::Base::InputObject
       Groovestack::Base::GraphQL::Base::Mutation
       Groovestack::Base::GraphQL::Base::Object
       Groovestack::Base::GraphQL::Base::Subscription
-      Groovestack::Base::GraphQL::Controllers::GraphQLController
+      Groovestack::Base::GraphQL::Controllers::Helpers
       Groovestack::Base::GraphQL::Documentation::Arguments
       Groovestack::Base::GraphQL::Documentation::Fields
       Groovestack::Base::GraphQL::Mutations::AASMEventTrigger
@@ -105,9 +97,6 @@ RSpec.describe Groovestack::Base do
         expect(Core::Base::GraphQL::Types::BaseArgument).to eq(Groovestack::Base::GraphQL::Base::Argument)
         expect(Core::Base::GraphQL::Types::BaseField).to eq(Groovestack::Base::GraphQL::Base::Field)
         expect(Core::Base::GraphQL::Types::BaseObject).to eq(Groovestack::Base::GraphQL::Base::Object)
-        expect(Core::Base::GraphQL::Types::AuthorizedBaseField).to eq(Groovestack::Base::GraphQL::Authorization::AuthorizedField)
-        expect(Core::Base::GraphQL::Types::AuthorizedBaseObject).to eq(Groovestack::Base::GraphQL::Authorization::AuthorizedObject)
-        expect(Core::Base::GraphQL::Types::VisibleBaseField).to eq(Groovestack::Base::GraphQL::Authorization::VisibleField)
         expect(Core::Base::GraphQL::BaseInputObject).to eq(Groovestack::Base::GraphQL::Base::InputObject)
         expect(Core::Base::GraphQL::BaseMutation).to eq(Groovestack::Base::GraphQL::Base::Mutation)
         expect(Core::Base::GraphQL::Documentation::Arguments).to eq(Groovestack::Base::GraphQL::Documentation::Arguments)
@@ -117,14 +106,13 @@ RSpec.describe Groovestack::Base do
         expect(Core::Base::GraphQL::Helpers::Types::Typified).to eq(Groovestack::Base::GraphQL::Types::TypeResolver)
         expect(Core::Base::GraphQL::Helpers::Mutations::StatusEvents).to eq(Groovestack::Base::GraphQL::Mutations::AASMEventTrigger)
         expect(Core::Base::GraphQL::Helpers::Mutations::InstanceMethods).to eq(Groovestack::Base::GraphQL::Mutations::MethodTrigger)
-        expect(Core::Base::GraphQL::Helpers::Controller).to eq(Groovestack::Base::GraphQL::Controllers::GraphQLController)
+        expect(Core::Base::GraphQL::Helpers::Controller).to eq(::Groovestack::Base::GraphQL::Controllers::Helpers)
         expect(Core::Base::GraphQL::Providers::ReactAdmin::Resource).to eq(Groovestack::Base::GraphQL::Providers::ReactAdmin::Resource)
         expect(Core::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata).to eq(Groovestack::Base::GraphQL::Providers::ReactAdmin::Types::RAListMetadata)
         expect(Core::Base::GraphQL::Tracers::AtomicMultiplexTransaction).to eq(Groovestack::Base::GraphQL::Tracers::AtomicMultiplexTransaction)
       end
 
-      it 'aliases ActiveRecord and Listeners correctly' do
-        expect(Core::Base::ActiveRecord).to eq(Groovestack::Base::ActiveRecord)
+      it 'aliases and Listeners correctly' do
         expect(Core::Base::Listener).to eq(Groovestack::Base::Listener)
         expect(Core::Base::Listeners).to eq(Groovestack::Base::Listeners)
       end
@@ -148,7 +136,7 @@ RSpec.describe Groovestack::Base do
       end
 
       it 'has default error monitor' do
-        expect(base::DEFAULT_ERROR_MONITOR).to be_a(Logger)
+        expect(base.config.error_notifier.handler).to be_a(Logger)
       end
     end
   end

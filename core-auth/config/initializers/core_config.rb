@@ -2,9 +2,6 @@
 
 ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLength
   if defined?(Groovestack::Config)
-    Groovestack::Config::App.dynamic_config << { key: :has_admins, build: proc { User.admins.count.positive? } }
-    Groovestack::Config::App.dynamic_config << { key: :user_roles, build: proc { User::ROLES } }
-
     Groovestack::Config::App.dynamic_config << {
       key: :oauth_providers,
       build: proc do
@@ -34,8 +31,5 @@ ActiveSupport.on_load(:after_initialize) do # rubocop:disable Metrics/BlockLengt
         }
       end
     }
-
-    # make AppConfig query public
-    ::Types::QueryType.fields['AppConfig'].instance_variable_set(:@authenticate, false) if defined?(::Types::QueryType)
   end
 end

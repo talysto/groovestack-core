@@ -45,6 +45,14 @@ module Groovestack
           end
         end
 
+        def append_locales(app) # rubocop:disable Metrics/AbcSize
+          return if app.root.present? && root.present? && app.root.to_s.match?(root.to_s)
+
+          config.paths['config/locales'].expanded.each do |expanded_path|
+            app.config.paths['config/locales'] << expanded_path
+          end
+        end
+
         def core_base_dx_validate # rubocop:disable Metrics/AbcSize
           errors = []
           dx_validations.each do |v|

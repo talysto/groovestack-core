@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'identities/version'
-
 require 'groovestack/base'
-require 'users/roles'
-require 'user'
-require 'identity'
-
 require 'groovestack/identities/railtie' if defined?(Rails::Railtie)
 
 # Load fabricators if Fabrication and Faker are available and we're not in a testing context

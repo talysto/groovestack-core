@@ -11,7 +11,6 @@ RSpec.describe Groovestack::Auth do
   describe 'autoloading' do
     # Test main modules for both namespaces
     %w[
-      Core::Auth::Provider
       Groovestack::Auth::Provider
     ].each do |const|
       it "autoloads #{const}" do
@@ -21,11 +20,6 @@ RSpec.describe Groovestack::Auth do
 
     # Test Providers submodules for both namespaces
     %w[
-      Core::Auth::Providers
-      Core::Auth::Providers::Email
-      Core::Auth::Providers::OmniAuth
-      Core::Auth::Providers::Apple
-      Core::Auth::Providers::Google
       Groovestack::Auth::Providers
       Groovestack::Auth::Providers::Email
       Groovestack::Auth::Providers::OmniAuth
@@ -36,24 +30,10 @@ RSpec.describe Groovestack::Auth do
         expect { Object.const_get(const) }.not_to raise_error
       end
     end
-
-    # Test that Core::Auth aliases point to Groovestack::Auth
-    describe 'Core::Auth aliases' do
-      it 'aliases main modules correctly' do
-        expect(Core::Auth::Provider).to eq(Groovestack::Auth::Provider)
-      end
-
-      it 'aliases Providers modules correctly' do
-        expect(Core::Auth::Providers::Email).to eq(Groovestack::Auth::Providers::Email)
-        expect(Core::Auth::Providers::OmniAuth).to eq(Groovestack::Auth::Providers::OmniAuth)
-        expect(Core::Auth::Providers::Apple).to eq(Groovestack::Auth::Providers::Apple)
-        expect(Core::Auth::Providers::Google).to eq(Groovestack::Auth::Providers::Google)
-      end
-    end
   end
 
   describe 'configuration' do
-    [Groovestack::Auth, Core::Auth].each do |auth|
+    [Groovestack::Auth].each do |auth|
       it 'has configurable disabled_providers setting' do
         expect(auth.config).to respond_to(:disabled_providers)
         expect(auth.config.disabled_providers).to eq([])

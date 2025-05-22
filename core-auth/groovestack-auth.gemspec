@@ -26,17 +26,17 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
+  spec.files += Dir['{app}/**/*']
+
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'groovestack-base', '~> 0.1', '>= 0.1.10'
-  spec.add_dependency 'groovestack-config', '~> 0.1', '>= 0.1.2'
-  spec.add_dependency 'jsonb_accessor', '~>1.4'
-
-  # spec.add_development_dependency 'graphql_devise'
-  spec.add_dependency 'omniauth-apple'
-  spec.add_dependency 'omniauth-google-oauth2'
+  spec.add_dependency 'devise'
+  spec.add_dependency 'devise-passwordless'
+  spec.add_dependency 'groovestack-config', '~> 0.1', '>= 0.1.4'
+  spec.add_dependency 'groovestack-identities', '~> 0.1', '>= 0.1.3'
+  spec.add_dependency 'rotp'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

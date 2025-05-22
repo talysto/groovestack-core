@@ -6,7 +6,7 @@ module Groovestack
       class Google < OmniAuth
         PROVIDER = :google_oauth2
         K = :google
-        REQUIRED_CREDENTIALS = %i[GOOGLE_CLIENT_ID GOOGLE_CLIENT_SECRET].freeze
+        REQUIRED_CREDENTIALS = %i[client_id client_secret].freeze
 
         def self.generate_omniauth_args
           super << { name: k, origin_param: 'return_to' }
