@@ -1,13 +1,28 @@
-module GraphQL::Schema::Member::BaseDSLMethods
-  def default_graphql_name
-    @default_graphql_name ||= begin
-      raise ::GraphQL::RequiredImplementationMissingError, 'Anonymous class should declare a `graphql_name`' if name.nil?
+# frozen_string_literal: true
 
-      # ex name: "GraphQL::User::Type"
-      # ex name: "GraphQL::Admin::User::Type"
+# TODO: add specs
 
-      graphql_name = name.split("GraphQL").last.split("Types::").last.split("::Type").first.gsub("::", "")
-      graphql_name.gsub("Admin", "") # assumption here that graphql schema def might have an admin namespace. TODO refactor
+module GraphQL
+  class Schema
+    class Member
+      module BaseDSLMethods
+        def default_graphql_name
+          @default_graphql_name ||= begin
+            if name.nil?
+              raise ::GraphQL::RequiredImplementationMissingError,
+                    'Anonymous class should declare a `graphql_name`'
+            end
+
+            # ex name: "GraphQL::User::Type"
+            # ex name: "GraphQL::Admin::User::Type"
+
+            graphql_name = name.split('GraphQL').last.split('Types::').last.split('::Type').first.gsub('::', '')
+            # TODO: refactor
+            # assumption here that graphql schema has an admin namespace.
+            graphql_name.gsub('Admin', '')
+          end
+        end
+      end
     end
   end
 end

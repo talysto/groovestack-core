@@ -10,7 +10,7 @@
 # See https://docs.rubocop.org/rubocop/configuration
 # require: rubocop-rake
 
-require:
+plugins:
   - rubocop-graphql
   - rubocop-rails
 

@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '8e430744c273797c60cfcf99d64f7a8fbee63658962406bfa182411251d649c928af95811599abc23e43a4e8c01c325db70673f7dd65d0c8f36bb0691d36a7c6'
+  # config.secret_key = '6d879cdbe0630c1b39310196d5bd8e02e5294765b033b532fe2dedf1cb1e82cb057d536a98916bc7ac2e79b5b73b6c28095734334b183b37deb7c9bafe98720b'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '21363becc5ddc4ea771daae0f5104f70581c4f63a673ddf554b324bad528eed7ad00d3780e5dda35fea3a0f0893d97d41ef7b6b0dba732f1439b8453e6d84f0e'
+  # config.pepper = 'cba69c8e3859c3f48f690734984e6e4ee3cb455797c292538654b6a995b8c90ec8df6bf0af35c3490cdaa1fccc68273fb9caf191da14b987c364b3c3235b7359'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -143,7 +143,7 @@ Devise.setup do |config|
   # without confirming their account.
   # Default is 0.days, meaning the user cannot access the website without
   # confirming their account.
-  # config.allow_unconfirmed_access_for = 2.days
+  config.allow_unconfirmed_access_for = 2.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -271,7 +271,16 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  
+  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  if defined?(OmniAuth)
+    Groovestack::Auth.configured_providers(ancestor: Groovestack::Auth::Providers::OmniAuth).each do |p|
+      config.omniauth(*p.generate_omniauth_args)
+    end
+  end
+
+  OmniAuth.config.logger = Rails.logger if Rails.env.development?
+  OmniAuth.config.allowed_request_methods = [:post]
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -293,7 +302,7 @@ Devise.setup do |config|
   #
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
-  # config.omniauth_path_prefix = '/users/auth'
+  config.omniauth_path_prefix = '/users/auth'
 
   # ==> Hotwire/Turbo configuration
   # When using Devise with Hotwire/Turbo, the http status for error responses
@@ -309,4 +318,82 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  # ==> Configuration for :magic_link_authenticatable
+
+  # Need to use a custom Devise mailer in order to send magic links.
+  # If you're already using a custom mailer just have it inherit from
+  # Devise::Passwordless::Mailer instead of Devise::Mailer
+  config.mailer = 'Devise::Passwordless::Mailer'
+
+  # Which algorithm to use for tokenizing magic links. See README for descriptions
+  config.passwordless_tokenizer = '::Groovestack::Auth::Passwordless::TOtpTokenizer'
+
+  # Time period after a magic login link is sent out that it will be valid for.
+  config.passwordless_login_within = 20.minutes
+
+  # The secret key used to generate passwordless login tokens. The default value
+  # is nil, which means defer to Devise's `secret_key` config value. Changing this
+  # key will render invalid all existing passwordless login tokens. You can
+  # generate your own secret value with e.g. `rake secret`
+  # config.passwordless_secret_key = nil
+
+  # When using the :trackable module and MessageEncryptorTokenizer, set to true to
+  # consider magic link tokens generated before the user's current sign in time to
+  # be expired. In other words, each time you sign in, all existing magic links
+  # will be considered invalid.
+  config.passwordless_expire_old_tokens_on_sign_in = true
+end
+
+module Devise
+  module Strategies
+    class MagicLinkAuthenticatable < Authenticatable
+      # NOTE: need to monkey patch to pass email through
+      # to tokenizer (allows stateless tokens)
+      attr_accessor :email
+
+      def valid_for_http_auth?
+        super && http_auth_hash[:token].present? && http_auth_hash[:email].present?
+      end
+
+      def valid_for_params_auth?
+        super && params_auth_hash[:token].present? && params_auth_hash[:email].present?
+      end
+
+      def authenticate!
+        resource_class = mapping.to
+
+        begin
+          resource, extra = resource_class.decode_passwordless_token(token, email, resource_class)
+        rescue Devise::Passwordless::InvalidOrExpiredTokenError
+          fail!(:magic_link_invalid)
+          return
+        end
+
+        if validate(resource)
+          remember_me(resource)
+          resource.after_magic_link_authentication
+          env['warden.magic_link_extra'] = extra.fetch('data', {}).delete('extra')
+          success!(resource)
+        else
+          fail!(:magic_link_invalid)
+        end
+      end
+
+      private
+
+      # Sets the authentication hash and the token from params_auth_hash or http_auth_hash.
+      def with_authentication_hash(auth_type, auth_values)
+        self.authentication_hash = {}
+        self.authentication_type = auth_type
+        self.token = auth_values[:token]
+        self.email = auth_values[:email] # NOTE: persist email to include in decode key
+
+        parsed_auth_values = parse_authentication_key_values(auth_values, authentication_keys)
+        parsed_request_values = parse_authentication_key_values(request_values, request_keys)
+
+        parsed_auth_values && parsed_request_values
+      end
+    end
+  end
 end
