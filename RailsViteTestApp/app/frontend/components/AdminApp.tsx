@@ -42,6 +42,7 @@ export const AdminApp = () => {
   
   return (
     <Admin
+      darkTheme={null}
       loginPage={Auth.RA.LoginPage}
       disableTelemetry
       authProvider={authProvider}

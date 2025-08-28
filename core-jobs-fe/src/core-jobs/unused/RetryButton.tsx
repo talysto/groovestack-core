@@ -21,6 +21,7 @@ export const RetryButton = () => {
     e.preventDefault()
 
     try {
+      //@ts-ignore
       await dataProvider.update(resource, {
         id: record.id,
         previousData: record,

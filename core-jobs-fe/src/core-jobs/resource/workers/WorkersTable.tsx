@@ -34,7 +34,7 @@ export const WorkersTable = () => {
       resource="JobLocker"
       disableSyncWithLocation
     >
-      <Datagrid bulkActionButtons={false}>
+      <Datagrid bulkActionButtons={false} rowClick={false}>
         <TextField source="host" />
         <TextField source="pid" />
         <NumberField source="workers" />

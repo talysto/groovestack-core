@@ -13,7 +13,7 @@ export const JobStatusField = (props: FieldProps) => {
   const status = get(record, source)
 
   // TODO if running then add CircularProgress
-  let { icon: ChipIcon, ...rest} =  jobStatuses[status]
+  const { icon: ChipIcon, ...rest} =  jobStatuses[status]
   const filteredChipProps: JobStatusType = { ...rest, ...(ChipIcon ? {icon: <ChipIcon />} : {} ) };
 
   return (

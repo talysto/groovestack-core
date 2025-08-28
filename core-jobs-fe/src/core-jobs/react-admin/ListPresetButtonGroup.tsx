@@ -14,7 +14,7 @@ export interface ListViewToggleButtonsProps {
   sortfilterToggles: Array<{
     label: string
     value: string
-    icon: any
+    icon: React.ElementType
     collapsable?: boolean
     filterSpec: FilterPayload
     sortSpec: SortPayload

@@ -2,7 +2,7 @@ module Core
   module Activities
     module GraphQL
       module Activity
-        class Type < ::Core::Base::GraphQL::Types::AuthorizedBaseObject
+        class Type < ::Core::Base::GraphQL::Types::BaseObject
           description 'An activity'
 
           field :actor_id, ID, null: true, description: 'actor id'

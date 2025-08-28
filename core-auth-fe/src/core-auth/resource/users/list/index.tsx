@@ -41,7 +41,7 @@ export const UserTable = () => (
       <UserIdField />
       <TimeAgoField source="last_login_at" label="Last Login" />
       <NumberField source="sign_in_count" label="Sign Ins" />
-      <WrapperField label="Identities">
+      <WrapperField source="Identities" label="Identities">
         <EnabledIdentitiesIcons />
       </WrapperField>
     </Datagrid>

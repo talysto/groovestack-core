@@ -1,5 +1,16 @@
 # @groovestack/versions
 
+## 0.3.0
+
+### Minor Changes
+
+- Upgrade to RA5 (beta)
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/base@0.3.0
+
 ## 0.2.15
 
 ### Patch Changes

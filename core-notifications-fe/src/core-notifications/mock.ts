@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-const simpleNotification = (userFn: Function) => {
+const simpleNotification = (userFn: () => any) => {
   const user = userFn()
 
   return {
@@ -17,7 +17,7 @@ const simpleNotification = (userFn: Function) => {
   }
 }
 
-const taskNotification = (userFn: Function) => {
+const taskNotification = (userFn: () => any) => {
   const user = userFn()
 
   return {
@@ -47,7 +47,7 @@ const taskNotification = (userFn: Function) => {
   }
 }
 
-const globalNotification = (_userFn: Function) => {
+const globalNotification = () => {
   const publish_at = faker.helpers.arrayElement([null, faker.date.anytime()])
   const expire_at = publish_at
     ? faker.date.future({ refDate: publish_at })
@@ -79,8 +79,8 @@ const globalNotification = (_userFn: Function) => {
   }
 }
 
-const mockNotification = (userFn: Function, type: string | undefined) => {
-  let kind: ((userFn: Function) => any)
+const mockNotification = (userFn: () => any, type: string | undefined) => {
+  let kind: ((userFn: any) => any)
 
   switch (type) {
     case 'Simple':
@@ -109,6 +109,6 @@ const mockNotification = (userFn: Function, type: string | undefined) => {
   }
 }
 
-export const mockNotifications = (count = 35, userFn: Function, type: string | undefined = undefined) => {
+export const mockNotifications = (count = 35, userFn: () => any, type: string | undefined = undefined) => {
   return Array.from({ length: count }, () => mockNotification(userFn, type))
 }

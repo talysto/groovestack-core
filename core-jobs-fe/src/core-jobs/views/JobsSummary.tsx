@@ -57,6 +57,7 @@ export const JobsSummaryPivot = () => {
                   total={5}
                   isLoading={false}
                   sort={{ field: 'sub_class', order: 'ASC' }}
+                  rowClick={false}
                   bulkActionButtons={false}
                   sx={{
                     '& .RaDatagrid-headerCell': {
@@ -83,7 +84,7 @@ export const JobsSummaryPivot = () => {
                       <FunctionField
                         key={idx}
                         sortable={false}
-                        render={(record: any) => record && (
+                        render={(record: RaRecord) => record && (
                           <span
                             title={new Intl.NumberFormat().format(
                               record[status],

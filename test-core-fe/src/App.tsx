@@ -1,13 +1,17 @@
-import { Admin, Resource } from 'react-admin'
+import { Admin, localStorageStore, Resource, Show, TextField } from 'react-admin'
 import { Box } from '@mui/material'
 
 // Source Code import
 import { Auth } from '@groovestack/auth'
+import { GroovestackDash } from '@groovestack/config'
 import { Comments } from '@groovestack/comments'
-import { HomeView, GroovestackDash } from '@groovestack/config'
+import { Jobs } from '@groovestack/jobs'
+import { AddressField } from '@groovestack/labs'
+import { Notifications } from '@groovestack/notifications'
+import { Versions } from '@groovestack/versions'
 import { Webhooks } from '@groovestack/webhooks'
 
-import { mockDataProvider, mockAuthProvider, credentials, defaultAppConfig } from './data/mock-providers'
+import { mockDataProvider, mockAuthProvider, credentials } from './data/mock-providers'
 import { Company } from './resources/company'
 
 // import { pkg as CoreBasePkg } from '@groovestack/base'
@@ -15,8 +19,6 @@ import { Company } from './resources/company'
 // import { pkg as CoreWebhooksPkg } from '@groovestack/webhooks'
 
 const authProvider = await mockAuthProvider() // await Auth.Providers.Mock(params)
-
-const appInit = true
 
 const appConfig = { 
   has_admins: true, 
@@ -59,11 +61,13 @@ const LoginPage = (props: any) => {
     <Auth.RA.LoginPage 
       {...props} 
       credentials={credentials} 
-      appInit={appInit} 
+      appInit={true} 
       Headline={AppInitHeadline} 
     />
   )
 }
+
+const store = localStorageStore()
 
 function AdminApp() {
   // credentials.setAppConfig(defaultAppConfig)
@@ -77,7 +81,9 @@ function AdminApp() {
       loginPage={LoginPage}
       dashboard={GroovestackDash}
       layout={Auth.RA.Layout}
+      store={store}
       requireAuth
+      darkTheme={null}
       // theme={houseLightTheme}
     >
       <Resource
@@ -85,7 +91,13 @@ function AdminApp() {
         icon={Auth.Users.Icon}
         // edit={User.Edit}
         list={Auth.Users.List}
-        show={Auth.Users.Show}
+        // show={Auth.Users.Show}
+        show={
+          <Show>
+            <TextField source="id" />
+            <AddressField source="address" record={{ id: 1, address: '123 Main St' }} />
+          </Show>
+        }
         recordRepresentation="Auth Name"
       />
 
@@ -105,8 +117,22 @@ function AdminApp() {
         edit={Comments.Edit}
       />
 
-      <Resource name="JobLocker" />
-      <Resource name="JobStat" />
+      <Resource
+        name={Jobs.Name}
+        icon={Jobs.Icon}
+        list={Jobs.List}
+        edit={Jobs.Edit}
+      />
+
+      <Resource
+        name="Version"
+        icon={Versions.Icon}
+        list={Versions.List}
+        show={Versions.Show}
+      />
+
+      {/* <Resource name="JobLocker" />
+      <Resource name="JobStat" /> */}
 
       <Resource
         name="Webhook"
@@ -114,6 +140,13 @@ function AdminApp() {
         list={Webhooks.List}
         show={Webhooks.Show}
         recordRepresentation={Webhooks.recordRepresentation}
+      />
+
+      <Resource
+        name="Notification"
+        icon={Notifications.Icon}
+        list={Notifications.List}
+        show={Notifications.Show}
       />
     </Admin>
   )

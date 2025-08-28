@@ -1,4 +1,4 @@
-import buildGraphQLProvider, { buildIntrospection, FieldNameConventionEnum, DataProviderExtensions } from '@moonlight-labs/ra-data-graphql-advanced'
+import buildGraphQLProvider, { buildIntrospection, FieldNameConventionEnum } from '@moonlight-labs/ra-data-graphql-advanced'
 
 import { client } from './client'
 

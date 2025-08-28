@@ -2,7 +2,6 @@ import {
   TextField,
   TextFieldProps,
   WrapperField,
-  useRecordContext,
 } from 'react-admin'
 
 export interface AddressFieldProps extends TextFieldProps {
@@ -25,7 +24,6 @@ export const AddressField = ({
   // labelComponents = false,
   ...rest
 }: AddressFieldProps) => {
-  const record = useRecordContext()
   const address = '123 Main St' // TODO _.get(record, rest.source)
 
   if (!address) return null
@@ -33,7 +31,7 @@ export const AddressField = ({
   if (typeof address === 'string') return <TextField {...rest} />
 
   return (
-    <WrapperField>
+    <WrapperField source='Address'>
       {/* <Stack direction="row" spacing={1}> */}
       <TextField
         {...rest}

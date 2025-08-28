@@ -1,5 +1,29 @@
 # @groovestack/auth
 
+## 0.3.0
+
+### Minor Changes
+
+- Upgrade to RA5 (beta)
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/config@0.3.0
+  - @groovestack/base@0.3.0
+
+## 0.2.28
+
+### Patch Changes
+
+- ensure latest csrf token is included in social sign in button posts
+
+## 0.2.27
+
+### Patch Changes
+
+- export social identity icons reference many field
+
 ## 0.2.26
 
 ### Patch Changes

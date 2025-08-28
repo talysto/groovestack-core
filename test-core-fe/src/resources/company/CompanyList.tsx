@@ -14,7 +14,7 @@ import {
 
 export const CompanyList = () => (
   <List>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="name" sx={{ fontWeight: 'bold' }} />
       <TextField source="address" />
 
@@ -22,12 +22,14 @@ export const CompanyList = () => (
         label="Comments"
         reference="Comment"
         target="resource_id"
+        sx={{'& a': { textDecoration: 'none' }}}
       />
 
       <ReferenceManyCount
         label="Changes"
         reference="Version"
         target="resource_id"
+        sx={{'& a': { textDecoration: 'none' }}}
       />
 
       <NumberField
@@ -42,7 +44,7 @@ export const CompanyList = () => (
       <MoneyField source="share_price" />
       <MoneyField source="market_cap" />
 
-      <WrapperField label="status">
+      <WrapperField source='status' label="status">
         <StatusInput source="status" label={false} />
       </WrapperField>
 

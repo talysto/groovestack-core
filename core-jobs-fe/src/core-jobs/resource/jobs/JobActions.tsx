@@ -9,7 +9,7 @@ import { DeleteMenuItem } from './DeleteMenuItem'
 import { UpdateMenuItem } from './UpdateMenuItem'
 import { EditJob } from './edit'
 
-export const JobActions = (props: FieldProps) => {
+export const JobActions = (_props: Omit<FieldProps, 'source'>) => {
   const record = useRecordContext()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

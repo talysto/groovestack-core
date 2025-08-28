@@ -1,17 +1,17 @@
 import { Box } from '@mui/material'
 import { get } from 'lodash'
+import React from 'react'
 import { FieldProps, useRecordContext } from 'react-admin'
 // import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
 
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Light as SyntaxHighlighterBase } from 'react-syntax-highlighter'
 import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json'
 import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco'
 
+const SyntaxHighlighter = SyntaxHighlighterBase as any
 SyntaxHighlighter.registerLanguage('json', json)
 
-// import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-
-export const CodeField = ({ label, source }: FieldProps) => {
+export const CodeField = ({ source }: FieldProps) => {
   const record = useRecordContext()
   if (!record || !source) return null
 

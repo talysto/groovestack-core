@@ -16,7 +16,7 @@ const decodeCookie = (cookie: string | null): any => {
 
   if (!cookie) return null
 
-  let cookie_value = unescape(cookie.split('--')[0])
+  const cookie_value = unescape(cookie.split('--')[0])
   // let cookie_payload = JSON.parse(atob(cookie_value))
   // console.log('cookie_payload', cookie_payload)
   // let decoded_stored_value = atob(cookie_payload._rails.message)

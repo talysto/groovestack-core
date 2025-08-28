@@ -1,9 +1,6 @@
 import {
-  Datagrid,
   InfiniteList,
   useRecordContext,
-  TextField,
-  List,
   SingleFieldList
 } from 'react-admin'
 

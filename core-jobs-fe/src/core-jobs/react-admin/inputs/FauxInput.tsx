@@ -2,7 +2,7 @@ import { Box, SxProps } from '@mui/material'
 import { InputProps } from 'react-admin'
 
 export type tProps = InputProps & {
-  children: any
+  children: React.ReactNode
   sx?: SxProps
 }
 

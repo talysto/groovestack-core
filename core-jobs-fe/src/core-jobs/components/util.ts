@@ -3,7 +3,7 @@ export function numberToHuman(num: number, withSpace = true) {
   if (-1000 < num && num < 1000) {
     return num
   }
-  var ci = 'KMGTPE'[Symbol.iterator]()
+  const ci = 'KMGTPE'[Symbol.iterator]()
   while (num <= -999950 || num >= 999950) {
     num /= 1000
     ci.next()

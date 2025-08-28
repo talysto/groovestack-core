@@ -1,5 +1,17 @@
 # @groovestack/labs
 
+## 0.2.1
+
+### Patch Changes
+
+- remove npm prebuild step script
+
+## 0.2.0
+
+### Minor Changes
+
+- react-admin 5
+
 ## 0.1.5
 
 ### Patch Changes

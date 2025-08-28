@@ -121,7 +121,7 @@ export const MoneyInput = ({
 }
 
 interface CustomProps {
-  onChange: ({}) => void
+  onChange: () => void
   name: string
 }
 

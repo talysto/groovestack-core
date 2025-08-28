@@ -1,5 +1,11 @@
 # @groovestack/notifications
 
+## 0.3.0
+
+### Minor Changes
+
+- react-admin 5
+
 ## 0.2.33
 
 ### Patch Changes

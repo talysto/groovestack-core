@@ -5,7 +5,7 @@ import { Grid } from '@mui/material'
 import { JobStatusField } from '../../react-admin/fields/JobStatusField'
 import { JobTimelineField } from '../../react-admin/fields/JobTimelineField'
 
-export const EditJob = (props: any) => {
+export const EditJob = (_props: any) => {
   return (
     <Form>
       <Grid container>

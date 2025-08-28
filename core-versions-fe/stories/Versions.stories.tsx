@@ -33,7 +33,7 @@ const dataProvider = () =>
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default: Story = {
   render: () => (
-    <Admin dataProvider={dataProvider()}>
+    <Admin darkTheme={null} dataProvider={dataProvider()}>
       <Resource name="versions" list={Versions.List} />
     </Admin>
   ),

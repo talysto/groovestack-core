@@ -1,6 +1,6 @@
 {
   "name": "@groovestack/comments",
-  "version": "0.2.15",
+  "version": "0.3.0",
   "type": "module",
   "files": [
     "dist"
@@ -21,17 +21,18 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {},
-  "peerDependencies": {
-    "@mui/icons-material": ">=5.11.11",
-    "@mui/material": ">=5.11.13",
-    "react": ">=18.2.0",
-    "react-admin": ">=4.9.1",
-    "react-dom": ">=18.2.0",
-    "react-hook-form": ">=7.43.9"
-  },
   "dependencies": {
     "@groovestack/base": "workspace:^"
+  },
+  "peerDependencies": {
+    "@mui/icons-material": ">=5.14.1",
+    "@mui/lab": "5.0.0-alpha.146",
+    "@mui/material": ">=5.14.15",
+    "react": "^18.3.1",
+    "react-admin": "^5.8.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.16.0",
+    "react-router": "^6.30.0"
   },
   "publishConfig": {
     "access": "public",

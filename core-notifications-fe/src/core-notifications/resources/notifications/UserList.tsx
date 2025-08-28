@@ -14,7 +14,7 @@ import {
   Button,
   InfiniteList,
   SingleFieldList,
-  useDataProvider,
+  // useDataProvider,
   useGetIdentity,
   useListContext,
   useRecordContext,
@@ -43,6 +43,7 @@ const NotificationSubscriber = () => {
 export const UserList = () => {
   const to = useRecordContext()
 
+  if (!to) return null
   return (
     <InfiniteList
       resource="Notification"
@@ -85,12 +86,13 @@ const NotificationItem = () => {
 
 const ActionButtons = () => {
   const notification = useRecordContext()
+  if (!notification) return null
   const { data: currentUser } = useGetIdentity()
 
   const [update] = useUpdate()
 
 
-  const markAsRead = (e: any) => {
+  const markAsRead = (e: { preventDefault: () => void; }) => {
     e.preventDefault() // necessary to prevent redirects on update (default save behavior)
 
     update(
@@ -107,7 +109,7 @@ const ActionButtons = () => {
     )
   }
 
-  const markAsComplete = (e: any, action_response: string) => {
+  const markAsComplete = (e: { preventDefault: () => void; }, action_response: string) => {
     e.preventDefault()
 
     update(

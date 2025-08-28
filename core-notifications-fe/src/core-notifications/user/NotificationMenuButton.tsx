@@ -119,6 +119,7 @@ const NotificationMenuButtonWithApolloProvider = (props: any) => {
   // https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/dataProvider/useDataProvider.ts
   const dataProvider = useContext(DataProviderContext)
 
+  if (!dataProvider) return null
   return (
     <ApolloProvider client={dataProvider.client}>
       <NotificationMenuButton {...props} />

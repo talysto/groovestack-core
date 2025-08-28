@@ -37,7 +37,7 @@ export const UtilizationChart = () => {
             const running = Math.min(data.running, workers)
             const utilization = Math.round((100.0 * running) / workers) || 0
 
-            let config = { ...utilizationOptions } // make a copy
+            const config = { ...utilizationOptions } // make a copy
             config.series[0].data[0].value = utilization
 
             chart?.current?.getEchartsInstance().setOption(config)

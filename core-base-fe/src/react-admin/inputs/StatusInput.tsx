@@ -38,7 +38,9 @@ type StatusEvent = { key: string; enabled: boolean; name: string }
  * </WrapperField>
  */
 export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
-  const { source, label, isRequired, className, sx, ...rest } = props
+  const { source, label, isRequired, 
+    // className, sx, ...rest 
+  } = props
   // const { id, field, fieldState } = useInput({source})
   const record = useRecordContext()
   const resource = useResourceContext()
@@ -47,7 +49,7 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
   const notify = useNotify()
 
   const [openDialog, setOpenDialog] = useState(false)
-  const [update, { isLoading, error }] = useUpdate()
+  const [update, { error }] = useUpdate()
   const saveContext = useSaveContext()
   const [statusEvent, setStatusEvent] = useState<StatusEvent>()
 
@@ -73,12 +75,14 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
     event.stopPropagation()
 
     const { save } = saveContext || {}
-    
+    if (!record) return null 
+
     if (save) {
       // in a create / edit context. use save so that mutation options are passed through
       save({ status_event: statusEvent?.key })
     } else
       update(resource, {
+        
         id: record.id,
         data: { status_event: statusEvent?.key },
         previousData: record,
@@ -92,7 +96,7 @@ export const StatusInput = (props: FormGroupProps & CommonInputProps) => {
     if (error)
       notify(
         `There was an error updating the ${resource} status: ${
-          (error as any).message
+          error.message
         }`,
         { type: 'error' },
       )

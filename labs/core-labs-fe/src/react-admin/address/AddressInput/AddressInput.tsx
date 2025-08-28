@@ -6,10 +6,9 @@ import { InputProps, TextInput } from 'react-admin'
  * using the Google Places API (if enabled)
  */
 export const AddressInput = (props: AddressInputProps) => {
-  const {} = props
+  // const {} = props
   return (
     <TextInput
-      fullWidth
       multiline
       minRows={2}
       sx={{ minWidth: '25em' }}

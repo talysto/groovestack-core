@@ -2,7 +2,7 @@
   "name": "@groovestack/base",
   "title": "CORE Base",
   "description": "Support classes and general-purpose components for MUI and React-Admin",
-  "version": "0.2.13",
+  "version": "0.3.0",
   "type": "module",
   "files": [
     "dist"
@@ -22,23 +22,28 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "devDependencies": {
+    "@types/prop-types": "^15.7.6"
+  },
   "dependencies": {
-    "@mui/material": ">=5.0.0",
     "@types/react-syntax-highlighter": ">=15.5.6",
     "clsx": ">=2.0.0",
-    "lodash": ">=4.0.0",
-    "prop-types": "^15.8.1",
-    "react": ">=18.0.0",
-    "react-admin": ">=4.8.0",
-    "react-dom": ">=18.0.0"
+    "lodash": ">=4.0.0"
   },
   "optionalDependencies": {
     "@mui/x-date-pickers-pro": "^6.14.0",
     "dayjs": ">=1.11.0",
     "react-syntax-highlighter": ">=15.5.0"
   },
-  "devDependencies": {
-    "@types/prop-types": "^15.7.6"
+  "peerDependencies": {
+    "@mui/icons-material": ">=5.14.1",
+    "@mui/lab": "5.0.0-alpha.146",
+    "@mui/material": ">=5.14.15",
+    "react": "^18.3.1",
+    "react-admin": "^5.8.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.16.0",
+    "react-router": "^6.30.0"
   },
   "publishConfig": {
     "access": "public",

@@ -58,7 +58,7 @@ const examples = [
     desc: 'RatingInput acts as a standard ReactAdmin Input.',
   },
   {
-    code: `<RatingInput source="rating" componentProps={{ emptyIcon: <StarsIcon />, icon: <StarsIcon color=\'error\' /> }} />`,
+    code: `<RatingInput source="rating" componentProps={{ emptyIcon: <StarsIcon />, icon: <StarsIcon color='error' /> }} />`,
     component: (
       <RatingInput
         source="rating"

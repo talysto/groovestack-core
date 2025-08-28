@@ -34,7 +34,7 @@ export const CommentCreate = () => {
   if (!record) return null
 
   function defaults() {
-    return Object.assign(
+    return record && Object.assign(
       {
         resource_type: record.type,
         resource_id: record.id,
@@ -56,7 +56,6 @@ export const CommentCreate = () => {
       mutationOptions={{
         onSuccess: () => {
           // TODO Clear the form
-          // @ts-ignore-line
           // document.getElementById("commentCreateForm").reset();
           // formContext.reset(defaults())
           // refresh()
@@ -75,7 +74,6 @@ export const CommentCreate = () => {
           multiline
           minRows={2}
           maxRows={6}
-          fullWidth
           label={<CurrentUserField />}
           InputProps={{
             endAdornment: (

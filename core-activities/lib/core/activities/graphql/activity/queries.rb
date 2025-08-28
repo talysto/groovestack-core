@@ -6,7 +6,7 @@ module Core
           extend ActiveSupport::Concern
 
           included do
-            react_admin_resource :activities, graphql_path: 'GraphQL'
+            react_admin_resource :activities, class_name: 'Core::Activities::Activity', graphql_type: 'Core::Activities::GraphQL::Activity::Type', graphql_filter: 'Core::Activities::GraphQL::Activity::Filter'
           end
 
           def activities_scope(base_scope: nil, sort_field: nil, sort_order: nil, filter: {})

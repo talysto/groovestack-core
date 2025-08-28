@@ -1,8 +1,7 @@
-import { Update as ActionUpdate } from '@mui/icons-material'
+// import { Update as ActionUpdate } from '@mui/icons-material'
 import { ListItemProps, MenuItem } from '@mui/material'
-import { ReactElement, useState } from 'react'
+import { MouseEventHandler, ReactElement, useState } from 'react'
 import {
-  BulkActionProps,
   RaRecord,
   UpdateParams,
   // UpdateWithUndoListItem,
@@ -13,9 +12,8 @@ import {
   useUpdate,
   Confirm
 } from 'react-admin'
-import { UseMutationOptions } from 'react-query'
+import { UseMutationOptions } from '@tanstack/react-query'
 // import { Button, ButtonProps } from './Button';
-// import { BulkActionProps } from '../types';
 
 //TODO: this is a copy of UpdateWithUndoListItem.tsx, but with the Button component replaced with MenuItem.
 //1. replace props: any with an appropriate version of props: UpdateWithUndoButtonProps
@@ -34,12 +32,11 @@ export const UpdateMenuItem = (props: any) => {
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
 
-  const defaultIcon = <ActionUpdate />
+  if (!record) return null
 
   const {
     data,
     label = 'ra.action.update',
-    icon = defaultIcon,
     onClick,
     mutationOptions = {},
     confirmContent,
@@ -81,7 +78,7 @@ export const UpdateMenuItem = (props: any) => {
     ...otherMutationOptions
   } = mutationOptions
 
-  const handleClick = (e: any) => {
+  const handleClick : MouseEventHandler = (e) => {
     updateMany(
       resource,
       { id: record.id, data, meta: mutationMeta, previousData: record },
@@ -142,16 +139,16 @@ export const UpdateMenuItem = (props: any) => {
 }
 
 const sanitizeRestProps = ({
-  filterValues,
+  // filterValues,
   // label,
-  selectedIds,
+  // selectedIds,
   ...rest
 }: Omit<UpdateWithUndoListItemProps, 'resource' | 'icon' | 'data'>) => rest
 
 export interface UpdateWithUndoListItemProps<
   RecordType extends RaRecord = any,
   MutationOptionsError = unknown,
-> extends BulkActionProps,
+> extends
     ListItemProps {
   icon?: ReactElement
   data: any

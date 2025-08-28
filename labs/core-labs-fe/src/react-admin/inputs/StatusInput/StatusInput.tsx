@@ -47,7 +47,7 @@ type StatusInputProps = FormGroupProps & CommonInputProps & {
 }
 
 export const StatusInput = (props: StatusInputProps) => {
-  const { source, label, isRequired, className, sx, buttonProps, updateOptions, ...rest } = props
+  const { source, label, isRequired, className, sx, buttonProps, updateOptions } = props
   // const { id, field, fieldState } = useInput({source})
   const record = useRecordContext()
   const resource = useResourceContext()
@@ -56,7 +56,7 @@ export const StatusInput = (props: StatusInputProps) => {
   const notify = useNotify()
 
   const [openDialog, setOpenDialog] = useState(false)
-  const [update, { isLoading, error }] = useUpdate()
+  const [update, { error }] = useUpdate()
   const saveContext = useSaveContext()
   const [statusEvent, setStatusEvent] = useState<StatusEvent>()
 

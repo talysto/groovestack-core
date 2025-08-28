@@ -5,8 +5,8 @@ import { MoneyInput, StatusInput } from '@groovestack/base'
 export const CompanyForm = () => {
   return (
     <SimpleForm>
-      <TextInput source="name" fullWidth />
-      <TextInput source="address" fullWidth />
+      <TextInput source="name" />
+      <TextInput source="address" />
       <MoneyInput source="share_price" />
       <MoneyInput source="market_cap" />
       <StatusInput source="status" />

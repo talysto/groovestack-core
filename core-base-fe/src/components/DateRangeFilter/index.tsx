@@ -61,12 +61,12 @@ export const DateRangeFilter = ({
     else onChange(range)
   }
 
-  const rangeEqual = (r1: DateRangeType, r2: DateRangeType) => {
-    if (!r1 || !r2) return false
-    if (r1.length != 2 || r2.length != 2) return false
+  // const rangeEqual = (r1: DateRangeType, r2: DateRangeType) => {
+  //   if (!r1 || !r2) return false
+  //   if (r1.length != 2 || r2.length != 2) return false
 
-    return r1[0]?.isSame(r2[0]) && r1[1]?.isSame(r2[1])
-  }
+  //   return r1[0]?.isSame(r2[0]) && r1[1]?.isSame(r2[1])
+  // }
 
   const renderRangeLabel = () => (
     <Chip

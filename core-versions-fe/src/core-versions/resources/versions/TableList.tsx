@@ -3,8 +3,8 @@ import React from 'react'
 import {
   Datagrid,
   DateInput,
-  EditButton,
   List,
+  ListProps,
   WrapperField,
 } from 'react-admin'
 
@@ -14,29 +14,26 @@ import {
 } from '@groovestack/base'
 import { ChangesTable } from './ChangesTable'
 
-const ActionsField = (props: any) => {
-  return (
-    <EditButton
-      // basePath={props.basePath} // TODO: Upgrade this
-      record={props.record}
-    />
-  )
-}
+// const ActionsField = (props: any) => {
+//   return (
+//     <EditButton
+//       // basePath={props.basePath} // TODO: Upgrade this
+//       record={props.record}
+//     />
+//   )
+// }
 
 const versionFilters = [
   <DateInput source="created_at_lte" label="Before" />,
   <DateInput source="created_at_gte" label="After" />,
 ]
 
+type VersionsTableProps = Omit<ListProps, 'sort' | 'filters'>
+
 export const VersionsTable: React.FC<{
-  tableProps?: any
+  tableProps?: VersionsTableProps
   changesDisplayed?: number
 }> = ({ tableProps, changesDisplayed = 3 }) => {
-  const rowStyle = (record: any, index: number) => ({
-    // backgroundColor: record.changes >= 5 ? '#efe' : 'white',
-    // height: 2, // Set the row height to 50 pixels
-    // width: 5
-  })
 
   return (
     <List
@@ -44,10 +41,10 @@ export const VersionsTable: React.FC<{
       filters={versionFilters}
       {...tableProps}
     >
-      <Datagrid rowClick="show" rowStyle={rowStyle}>
+      <Datagrid rowClick="show" >
         <PolymorphicReferenceField source="actor" />
         <PolymorphicReferenceField source="resource" />
-        <WrapperField label="Changes">
+        <WrapperField source='Changes' label="Changes">
           <ChangesTable changesDisplayed={changesDisplayed} />
         </WrapperField>
         <DateField source="timestamp" showTime={false} />

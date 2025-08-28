@@ -1,5 +1,47 @@
 # test-core-fe
 
+## 0.2.137
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/labs@0.2.1
+
+## 0.2.136
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/notifications@0.3.0
+  - @groovestack/labs@0.2.0
+
+## 0.2.135
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/comments@0.3.0
+  - @groovestack/versions@0.3.0
+  - @groovestack/webhooks@0.3.0
+  - @groovestack/config@0.3.0
+  - @groovestack/auth@0.3.0
+  - @groovestack/base@0.3.0
+  - @groovestack/jobs@0.3.0
+
+## 0.2.134
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/auth@0.2.28
+
+## 0.2.133
+
+### Patch Changes
+
+- Updated dependencies
+  - @groovestack/auth@0.2.27
+
 ## 0.2.132
 
 ### Patch Changes

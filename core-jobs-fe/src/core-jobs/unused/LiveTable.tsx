@@ -19,7 +19,7 @@ export const LiveTable: React.FC<LiveTableProps> = ({
   transform,
   rowTotals = false,
 }) => {
-  const [data, setData] = useState<any[]>([])
+  const [data, setData] = useState([])
 
   const fetchData = async () => {
     // console.log('LiveTable: fetching data...')

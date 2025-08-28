@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.3",
+    "toolVersion": "7.43.0",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -173,17 +173,25 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "Variable",
-          "canonicalReference": "@groovestack/webhooks!mockWebhooks:var",
+          "kind": "Function",
+          "canonicalReference": "@groovestack/webhooks!mockWebhooks:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "mockWebhooks: "
+              "text": "mockWebhooks: (count?: "
             },
             {
               "kind": "Content",
-              "text": "(count?: number) => {\n    source: string;\n    event: string;\n    status: string;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: string;\n    created_at: "
+              "text": "number"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    source: string;\n    event: string;\n    status: string;\n    data: {\n        sample: string;\n        id: string;\n    };\n    id: string;\n    created_at: "
             },
             {
               "kind": "Reference",
@@ -205,13 +213,23 @@
             }
           ],
           "fileUrlPath": "dist/src/core-webhooks/mock.d.ts",
-          "isReadonly": true,
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 8
+          },
           "releaseTag": "Public",
-          "name": "mockWebhooks",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 6
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "count",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "mockWebhooks"
         }
       ]
     }

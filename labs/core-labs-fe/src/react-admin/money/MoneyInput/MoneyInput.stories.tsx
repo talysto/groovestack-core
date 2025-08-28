@@ -60,7 +60,7 @@ export const BasicUsage: Story = {
   decorators: [
     (Story, context) => {
       const { record, ...rest } = context.args
-      const [vals, setVals] = useState({})
+      // const [vals, setVals] = useState({})
 
       const changed: FormEventHandler<HTMLDivElement> = (e) => {
         console.log(e.target.value)

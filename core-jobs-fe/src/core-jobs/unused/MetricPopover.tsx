@@ -16,7 +16,7 @@ export const MetricPopover = ({
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick= (event: any) => {
     setAnchorEl(event.currentTarget)
   }
 

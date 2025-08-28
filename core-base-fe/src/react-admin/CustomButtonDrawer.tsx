@@ -10,7 +10,7 @@ import {
   DrawerProps,
   IconButton,
 } from '@mui/material'
-import { JSXElementConstructor, ReactElement, cloneElement, useState } from 'react'
+import { ReactElement, cloneElement, useState } from 'react'
 import {
   Button,
   ButtonProps,
@@ -19,7 +19,7 @@ import {
   Edit,
   EditProps,
   RecordContextProvider,
-  useEditContext,
+  // useEditContext,
   useNotify,
   useRecordContext,
   useRefresh,
@@ -32,8 +32,8 @@ export type ButtonDrawerProps = {
   drawerProps: {
     title?: string | React.ReactNode
   } & DrawerProps & { onSuccess?: () => void }
-  createProps?: CreateProps
-  editProps?: EditProps
+  createProps?: Omit<CreateProps, 'children'>
+  editProps?: Omit<EditProps, 'children'>
   buttonProps?: ButtonProps
   drawerWidth?: DrawerWidth
   footer?: React.ReactNode
@@ -41,8 +41,7 @@ export type ButtonDrawerProps = {
   icon?: React.ReactElement
   onClickableComponentClick?: () => void
   clickableComponent?: ReactElement<
-    { onClick: () => void },
-    string | JSXElementConstructor<any>
+    { onClick: () => void }
   >
 }
 
@@ -57,8 +56,8 @@ export type CustomDrawerProps = {
   mode?: 'static' | 'create' | 'edit'
   children: ButtonDrawerProps['children']
   open: boolean
-  editProps?: EditProps
-  createProps?: CreateProps
+  editProps?: Omit<EditProps, 'children'>
+  createProps?: Omit<CreateProps, 'children'>
   drawerWidth: DrawerWidth
   onClose: () => void
   title?: ButtonDrawerProps['drawerProps']['title']
@@ -72,7 +71,6 @@ export const CustomButtonDrawer = ({
   drawerProps,
   createProps,
   editProps,
-  onClickableComponentClick,
   clickableComponent = (
     <Button
       startIcon={icon}
@@ -85,7 +83,7 @@ export const CustomButtonDrawer = ({
   ),
   children,
   drawerWidth = DrawerWidth.Small,
-  label,
+  // label,
   footer,
 }: ButtonDrawerProps) => {
   const [open, setOpen] = useState(false)
@@ -143,7 +141,7 @@ const CustomDrawer = ({
   const notify = useNotify()
   const refresh = useRefresh()
   const record = useRecordContext()
-  const e = useEditContext()
+  // const e = useEditContext()
   const resource = useResourceContext()
 
   // console.log('Record', record)
@@ -226,7 +224,7 @@ const CustomDrawer = ({
             </RecordContextProvider>
           </Create>
         )}
-        {mode == 'edit' && (
+        {mode == 'edit' && record && (
           <Edit
             mutationMode="pessimistic"
             mutationOptions={{ onSuccess }}
